@@ -1169,6 +1169,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator291 = New System.Windows.Forms.ToolStripSeparator()
         Me.PROGRAMTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
         Me.UpdatePendingLRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPDATEROUNDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator90 = New System.Windows.Forms.ToolStripSeparator()
         Me.SendMailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendMailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1283,7 +1284,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.UPDATEROUNDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7059,29 +7059,26 @@ Partial Class MDIMain
         'YARNJOBORDER_MASTER
         '
         Me.YARNJOBORDER_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNJOBORDERADD, Me.YARNJOBORDEREDIT, Me.ToolStripSeparator340})
-        Me.YARNJOBORDER_MASTER.Enabled = False
         Me.YARNJOBORDER_MASTER.Name = "YARNJOBORDER_MASTER"
         Me.YARNJOBORDER_MASTER.Size = New System.Drawing.Size(221, 22)
         Me.YARNJOBORDER_MASTER.Text = "Yarn Job Order (Production)"
         '
         'YARNJOBORDERADD
         '
-        Me.YARNJOBORDERADD.Enabled = False
         Me.YARNJOBORDERADD.Name = "YARNJOBORDERADD"
-        Me.YARNJOBORDERADD.Size = New System.Drawing.Size(168, 22)
+        Me.YARNJOBORDERADD.Size = New System.Drawing.Size(180, 22)
         Me.YARNJOBORDERADD.Text = "Add New Entry"
         '
         'YARNJOBORDEREDIT
         '
-        Me.YARNJOBORDEREDIT.Enabled = False
         Me.YARNJOBORDEREDIT.Name = "YARNJOBORDEREDIT"
-        Me.YARNJOBORDEREDIT.Size = New System.Drawing.Size(168, 22)
+        Me.YARNJOBORDEREDIT.Size = New System.Drawing.Size(180, 22)
         Me.YARNJOBORDEREDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator340
         '
         Me.ToolStripSeparator340.Name = "ToolStripSeparator340"
-        Me.ToolStripSeparator340.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator340.Size = New System.Drawing.Size(177, 6)
         '
         'WARPING_MASTER
         '
@@ -8582,6 +8579,12 @@ Partial Class MDIMain
         Me.UpdatePendingLRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
         Me.UpdatePendingLRStockToolStripMenuItem.Text = "Update Pending LR Stock"
         '
+        'UPDATEROUNDER_MASTER
+        '
+        Me.UPDATEROUNDER_MASTER.Name = "UPDATEROUNDER_MASTER"
+        Me.UPDATEROUNDER_MASTER.Size = New System.Drawing.Size(253, 22)
+        Me.UPDATEROUNDER_MASTER.Text = "Update Rounder"
+        '
         'ToolStripSeparator90
         '
         Me.ToolStripSeparator90.Name = "ToolStripSeparator90"
@@ -9360,12 +9363,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'UPDATEROUNDER_MASTER
-        '
-        Me.UPDATEROUNDER_MASTER.Name = "UPDATEROUNDER_MASTER"
-        Me.UPDATEROUNDER_MASTER.Size = New System.Drawing.Size(253, 22)
-        Me.UPDATEROUNDER_MASTER.Text = "Update Rounder"
         '
         'MDIMain
         '

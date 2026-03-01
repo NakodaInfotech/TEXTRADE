@@ -6,11 +6,9 @@ Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class YarnJobOrderWeftDetails
 
-    Dim SALEREGID As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Public multi As Boolean = False
-    Public fromno, tono As Integer
-    Public PARTYNAME As String
+
 
     Private Sub InvoiceGridDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Try
@@ -26,7 +24,7 @@ Public Class YarnJobOrderWeftDetails
         End Try
     End Sub
 
-    Sub fillgrid(ByVal TEMPCONDITION)
+    Sub fillgrid()
         Try
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
@@ -35,7 +33,7 @@ Public Class YarnJobOrderWeftDetails
 
             Dim OBJCMN As New ClsCommon
 
-            Dim dt As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_WEFTMATCHING.JOB_NO, 0)AS JOBNO,ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTSRNO, 0) AS WEFTGRIDSRNO, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTSYM, '') AS WEFTGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WEFTYARNQUALITY, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTDENIER, 0) AS WEFTDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WEFTMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WEFTSHADE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTPE, 0) AS WEFTPE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTBE, 0) AS WEFTBE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTTE, 0) AS WEFTTE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTWT, 0) AS WEFTWT, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTCONS, 0) AS WEFTCONS, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTRATE, 0) AS WEFTRATE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTCOST, 0) AS WEFTCOST  ", "", " JOBORDER_WEFTMATCHING LEFT OUTER JOIN COLORMASTER ON JOBORDER_WEFTMATCHING.JOB_WEFTCOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN MILLMASTER ON JOBORDER_WEFTMATCHING.JOB_WEFTMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON JOBORDER_WEFTMATCHING.JOB_WEFTYARNQUALITYID = YARNQUALITYMASTER.YARN_ID  ", " AND JOBORDER_WEFTMATCHING.JOB_YEARID = " & YearId & " ORDER BY WEFTGRIDSRNO")
+            Dim dt As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_WEFTMATCHING.JOB_NO, 0)AS JOBNO,ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTSRNO, 0) AS WEFTGRIDSRNO, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTSYM, '') AS WEFTGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WEFTYARNQUALITY, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTDENIER, 0) AS WEFTDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WEFTMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WEFTSHADE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTPE, 0) AS WEFTPE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTBE, 0) AS WEFTBE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTTE, 0) AS WEFTTE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTWT, 0) AS WEFTWT, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTCONS, 0) AS WEFTCONS, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTRATE, 0) AS WEFTRATE, ISNULL(JOBORDER_WEFTMATCHING.JOB_WEFTCOST, 0) AS WEFTCOST  ", "", " JOBORDER_WEFTMATCHING LEFT OUTER JOIN COLORMASTER ON JOBORDER_WEFTMATCHING.JOB_WEFTCOLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN MILLMASTER ON JOBORDER_WEFTMATCHING.JOB_WEFTMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON JOBORDER_WEFTMATCHING.JOB_WEFTYARNQUALITYID = YARNQUALITYMASTER.YARN_ID  ", " AND JOBORDER_WEFTMATCHING.JOB_YEARID = " & YearId & " ORDER BY JOBNO,WEFTGRIDSRNO")
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -53,11 +51,10 @@ Public Class YarnJobOrderWeftDetails
                 Exit Sub
             End If
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim OBJBILL As New InvoiceMaster
+                Dim OBJBILL As New YarnJobOrder
                 OBJBILL.MdiParent = MDIMain
                 OBJBILL.EDIT = editval
-                OBJBILL.TEMPINVOICENO = billno
-                OBJBILL.TEMPREGNAME = cmbregister.Text.Trim
+                OBJBILL.tempdesignno = billno
                 OBJBILL.Show()
             End If
         Catch ex As Exception
@@ -73,44 +70,6 @@ Public Class YarnJobOrderWeftDetails
         End Try
     End Sub
 
-    Private Sub cmbregister_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbregister.Enter
-        Try
-            If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'SALE'")
-
-            Dim clscommon As New ClsCommon
-            Dim dt As DataTable
-            dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
-            If dt.Rows.Count > 0 Then
-                cmbregister.Text = dt.Rows(0).Item(0).ToString
-            End If
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub cmbregister_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbregister.Validating
-        Try
-            If cmbregister.Text.Trim.Length > 0 Then
-                cmbregister.Text = UCase(cmbregister.Text)
-
-                Dim clscommon As New ClsCommon
-                Dim dt As DataTable
-                dt = clscommon.SEARCH(" register_id ", "", " RegisterMaster ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
-                If dt.Rows.Count > 0 Then
-                    SALEREGID = dt.Rows(0).Item(0)
-                    fillgrid(" and INVOICEMASTER.INVOICE_yearid = " & YearId & " AND RegisterMaster.register_name = '" & cmbregister.Text.Trim & "'")
-                Else
-                    MsgBox("Register Not Present, Add New from Master Module")
-                    e.Cancel = True
-                End If
-            Else
-                fillgrid(" AND INVOICEMASTER.INVOICE_YEARID = " & YearId)
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 
     Private Sub cmdcancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdcancel.Click
         Me.Close()
@@ -118,58 +77,19 @@ Public Class YarnJobOrderWeftDetails
 
     Private Sub CMDOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDOK.Click
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("INVOICENO"))
+            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
+        fillgrid()
     End Sub
 
     Private Sub gridINVOICE_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("INVOICENO"))
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMDSAVELAYOUT_Click(sender As Object, e As EventArgs) Handles CMDSAVELAYOUT.Click
-        Try
-            Dim layoutFileName As String = $"{Me.Name}"
-            Dim layoutPath As String = System.IO.Path.Combine(Application.StartupPath, layoutFileName)
-            gridbill.SaveLayoutToXml(layoutPath)
-            'MessageBox.Show("Layout saved as: " & layoutFileName)
-
-
-
-
-            ' Prompt user for filename
-            Dim userFileName As String = InputBox("Enter a name for the layout file (without extension):", "Save Layout", Me.Name)
-
-            ' Exit if the user cancels or enters nothing
-            If String.IsNullOrWhiteSpace(userFileName) Then
-                MessageBox.Show("Save cancelled.")
-                Exit Sub
-            End If
-
-            ' Add .xml extension and construct path
-            Dim FileName As String = $"{userFileName}.xml"
-
-            ' Save layout to file
-            gridbill.SaveLayoutToXml(layoutPath)
-            MessageBox.Show("Layout saved as: " & FileName)
-
-            ' Read file content
-            Dim xmlContent As String = File.ReadAllText(layoutPath)
-
-
-
-            Dim OBJSELECTSG As New SelectCustomLayout
-            OBJSELECTSG.FORMNAMES = layoutFileName
-            OBJSELECTSG.FILENAME = FileName
-            OBJSELECTSG.FILES = xmlContent
-            OBJSELECTSG.ShowDialog()
-
-
+            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -178,65 +98,36 @@ Public Class YarnJobOrderWeftDetails
     Private Sub InvoiceGridDetails_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'SALE INVOICE'")
+            DTROW = USERRIGHTS.Select("FormName = 'DESIGN MASTER'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
 
-            fillregister(cmbregister, " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'SALE' and register_cmpid = " & CmpId & " and register_locationid = " & Locationid & " and register_yearid = " & YearId)
-            cmbregister_Validating(sender, New System.ComponentModel.CancelEventArgs())
-
-            'If MsgBox("Want to Load Layout ? ", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-            '    Dim layoutFileName As String = $"{Me.Name}.xml"
-            '    Dim OBJPO As New ClsCustomLayout
-            '    Dim dt As DataTable = OBJPO.selectLAYOUT(UserName, layoutFileName, CmpId, YearId)
-            '    If dt.Rows.Count > 0 AndAlso dt.Columns.Contains("CL_LayoutContent") Then
-            '        Dim layoutXml As String = dt.Rows(0)("CL_LayoutContent").ToString()
-
-            '        If Not String.IsNullOrWhiteSpace(layoutXml) Then
-            '            Using ms As New System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(layoutXml))
-            '                gridbill.RestoreLayoutFromStream(ms)
-            '            End Using
-            '        End If
-            '    Else
-            '        MessageBox.Show("Layout file not found: " & layoutFileName)
-            '    End If
-
-            'End If
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub gridbill_RowStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles gridbill.RowStyle
-        Try
-            If e.RowHandle >= 0 Then
-                Dim View As GridView = sender
-                If View.GetRowCellDisplayText(e.RowHandle, View.Columns("BILLCHECKED")) = "Checked" Then
-                    e.Appearance.Font = New System.Drawing.Font("CALIBRI", 9.0F, System.Drawing.FontStyle.Bold)
-                    e.Appearance.BackColor = Color.LightGreen
-                ElseIf View.GetRowCellDisplayText(e.RowHandle, View.Columns("BILLDISPUTE")) = "Checked" Then
-                    e.Appearance.Font = New System.Drawing.Font("CALIBRI", 9.0F, System.Drawing.FontStyle.Bold)
-                    e.Appearance.BackColor = Color.Yellow
-                End If
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
             End If
+
+            fillgrid()
+
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+
 
     Private Sub ToolStripButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
         Try
-            Dim PATH As String = Application.StartupPath & "\Sale Details.XLS"
+            Dim PATH As String = Application.StartupPath & "\Yarn Job Order Weft Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
-            opti.SheetName = "Sale Details"
+            opti.SheetName = "Yarn Job Order Weft Details"
             gridbill.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Sale Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+            EXCELCMPHEADER(PATH, "Yarn Job Order Weft Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
         Catch ex As Exception
-            MsgBox("Invoice Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+            MsgBox("Yarn Job Order Weft Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
 

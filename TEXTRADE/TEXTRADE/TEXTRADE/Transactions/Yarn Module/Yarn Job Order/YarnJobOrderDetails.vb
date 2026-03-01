@@ -73,10 +73,10 @@ Public Class YarnJobOrderDetails
             End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim OBJSTORES As New StoreConsumption
+                Dim OBJSTORES As New YarnJobOrder
                 OBJSTORES.MdiParent = MDIMain
                 OBJSTORES.EDIT = editval
-                OBJSTORES.TEMPCONSUMENO = INWARDNO
+                OBJSTORES.tempdesignno = INWARDNO
                 OBJSTORES.Show()
             End If
         Catch ex As Exception
@@ -86,7 +86,7 @@ Public Class YarnJobOrderDetails
 
     Private Sub gridpayment_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("CONSUME"))
+            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -94,7 +94,7 @@ Public Class YarnJobOrderDetails
 
     Private Sub CMDEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEDIT.Click
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("CONSUME"))
+            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -134,9 +134,9 @@ Public Class YarnJobOrderDetails
             Dim PATH As String = Application.StartupPath & "\Stores Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
-            opti.SheetName = "Stores Details"
+            opti.SheetName = "Yarn Job Order Details"
             gridbill.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Stores Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+            EXCELCMPHEADER(PATH, "Yarn Job Order Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
         Catch ex As Exception
             MsgBox("Stores Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
