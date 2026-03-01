@@ -1074,9 +1074,9 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
-            'Dim OBJROLLS As New RollsRecdDetails
-            'OBJROLLS.MdiParent = MDIMain
-            'OBJROLLS.Show()
+            Dim OBJROLLS As New RollsRecdFromWarperDetails
+            OBJROLLS.MdiParent = MDIMain
+            OBJROLLS.Show()
         Catch ex As Exception
             Throw ex
         End Try
