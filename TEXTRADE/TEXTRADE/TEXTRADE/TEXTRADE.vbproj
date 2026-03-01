@@ -2989,18 +2989,6 @@
     <Compile Include="Transactions\Yarn Module\Beam Issue\SelectBeamStock.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgram.Designer.vb">
-      <DependentUpon>BeamProgram.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgram.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.Designer.vb">
-      <DependentUpon>BeamProgramDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.Designer.vb">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </Compile>
@@ -3119,12 +3107,6 @@
       <DependentUpon>SelectYarnGodownTransfer.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnGodownTransfer.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.Designer.vb">
-      <DependentUpon>SelectYarnStockGdnTransfer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.Designer.vb">
@@ -8672,30 +8654,6 @@
     <Compile Include="Transactions\Yarn Module\Grey Recd\GreyRecdKnittingDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Grey Recd\GreyRecdProduction.Designer.vb">
-      <DependentUpon>GreyRecdProduction.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Grey Recd\GreyRecdProduction.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Grey Recd\GreyRecdProductionDetails.Designer.vb">
-      <DependentUpon>GreyRecdProductionDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Grey Recd\GreyRecdProductionDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Production Issue\ProductionIssue.Designer.vb">
-      <DependentUpon>ProductionIssue.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Production Issue\ProductionIssue.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Production Issue\ProductionIssueDetails.Designer.vb">
-      <DependentUpon>ProductionIssueDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Production Issue\ProductionIssueDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Challan\SelectYarnStock.Designer.vb">
       <DependentUpon>SelectYarnStock.vb</DependentUpon>
     </Compile>
@@ -8712,18 +8670,6 @@
       <DependentUpon>YarnIssueDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Issue\YarnIssueDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Issue\YarnIssueKnitting.Designer.vb">
-      <DependentUpon>YarnIssueKnitting.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Issue\YarnIssueKnitting.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Issue\YarnIssueKnittingDetails.Designer.vb">
-      <DependentUpon>YarnIssueKnittingDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Issue\YarnIssueKnittingDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\YarnRecd.Designer.vb">
@@ -8760,18 +8706,6 @@
       <DependentUpon>YarnRecdFromJobberDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\YarnRecdFromJobberDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Return\ProductionFloorReturn.Designer.vb">
-      <DependentUpon>ProductionFloorReturn.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Return\ProductionFloorReturn.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Return\ProductionFloorReturnDetails.Designer.vb">
-      <DependentUpon>ProductionFloorReturnDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Return\ProductionFloorReturnDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnKnitting.Designer.vb">
@@ -10644,12 +10578,6 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\SelectBeamStock.resx">
       <DependentUpon>SelectBeamStock.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Beam Prog\BeamProgram.resx">
-      <DependentUpon>BeamProgram.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Beam Prog\BeamProgramDetails.resx">
-      <DependentUpon>BeamProgramDetails.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
@@ -10709,9 +10637,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnGodownTransfer.resx">
       <DependentUpon>SelectYarnGodownTransfer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\SelectYarnStockGdnTransfer.resx">
-      <DependentUpon>SelectYarnStockGdnTransfer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn InterGodown Transfer\YarnInterGodownTransfer.resx">
       <DependentUpon>YarnInterGodownTransfer.vb</DependentUpon>
@@ -13959,18 +13884,6 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Recd\GreyRecdKnittingDetails.resx">
       <DependentUpon>GreyRecdKnittingDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Grey Recd\GreyRecdProduction.resx">
-      <DependentUpon>GreyRecdProduction.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Grey Recd\GreyRecdProductionDetails.resx">
-      <DependentUpon>GreyRecdProductionDetails.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Production Issue\ProductionIssue.resx">
-      <DependentUpon>ProductionIssue.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Production Issue\ProductionIssueDetails.resx">
-      <DependentUpon>ProductionIssueDetails.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Challan\SelectYarnStock.resx">
       <DependentUpon>SelectYarnStock.vb</DependentUpon>
     </EmbeddedResource>
@@ -13979,12 +13892,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Issue\YarnIssueDetails.resx">
       <DependentUpon>YarnIssueDetails.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Issue\YarnIssueKnitting.resx">
-      <DependentUpon>YarnIssueKnitting.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Issue\YarnIssueKnittingDetails.resx">
-      <DependentUpon>YarnIssueKnittingDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\YarnRecd.resx">
       <DependentUpon>YarnRecd.vb</DependentUpon>
@@ -14003,12 +13910,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\YarnRecdFromJobberDetails.resx">
       <DependentUpon>YarnRecdFromJobberDetails.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Return\ProductionFloorReturn.resx">
-      <DependentUpon>ProductionFloorReturn.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Return\ProductionFloorReturnDetails.resx">
-      <DependentUpon>ProductionFloorReturnDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Return\YarnReturnKnitting.resx">
       <DependentUpon>YarnReturnKnitting.vb</DependentUpon>
