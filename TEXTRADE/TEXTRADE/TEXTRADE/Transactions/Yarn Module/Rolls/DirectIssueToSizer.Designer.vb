@@ -23,6 +23,8 @@ Partial Class DirectIssueSizer
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMBTRANSPORT = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.cmbcode = New System.Windows.Forms.ComboBox()
         Me.cmbname = New System.Windows.Forms.ComboBox()
@@ -35,6 +37,8 @@ Partial Class DirectIssueSizer
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMBTRANSPORT)
+        Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.TXTADD)
         Me.BlendPanel1.Controls.Add(Me.cmbcode)
         Me.BlendPanel1.Controls.Add(Me.cmbname)
@@ -44,14 +48,39 @@ Partial Class DirectIssueSizer
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(361, 88)
+        Me.BlendPanel1.Size = New System.Drawing.Size(361, 134)
         Me.BlendPanel1.TabIndex = 2
+        '
+        'CMBTRANSPORT
+        '
+        Me.CMBTRANSPORT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTRANSPORT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTRANSPORT.BackColor = System.Drawing.SystemColors.Window
+        Me.CMBTRANSPORT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTRANSPORT.FormattingEnabled = True
+        Me.CMBTRANSPORT.Location = New System.Drawing.Point(87, 47)
+        Me.CMBTRANSPORT.MaxDropDownItems = 14
+        Me.CMBTRANSPORT.Name = "CMBTRANSPORT"
+        Me.CMBTRANSPORT.Size = New System.Drawing.Size(246, 23)
+        Me.CMBTRANSPORT.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(26, 51)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(58, 14)
+        Me.Label1.TabIndex = 809
+        Me.Label1.Text = "Transport"
         '
         'TXTADD
         '
         Me.TXTADD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTADD.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTADD.Location = New System.Drawing.Point(284, 57)
+        Me.TXTADD.Location = New System.Drawing.Point(329, 76)
         Me.TXTADD.Name = "TXTADD"
         Me.TXTADD.Size = New System.Drawing.Size(29, 21)
         Me.TXTADD.TabIndex = 808
@@ -63,7 +92,7 @@ Partial Class DirectIssueSizer
         Me.cmbcode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cmbcode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbcode.FormattingEnabled = True
-        Me.cmbcode.Location = New System.Drawing.Point(313, 57)
+        Me.cmbcode.Location = New System.Drawing.Point(329, 76)
         Me.cmbcode.Name = "cmbcode"
         Me.cmbcode.Size = New System.Drawing.Size(25, 23)
         Me.cmbcode.TabIndex = 807
@@ -80,7 +109,7 @@ Partial Class DirectIssueSizer
         Me.cmbname.MaxDropDownItems = 14
         Me.cmbname.Name = "cmbname"
         Me.cmbname.Size = New System.Drawing.Size(246, 23)
-        Me.cmbname.TabIndex = 208
+        Me.cmbname.TabIndex = 0
         '
         'Label4
         '
@@ -101,7 +130,7 @@ Partial Class DirectIssueSizer
         Me.cmdcancel.FlatAppearance.BorderSize = 0
         Me.cmdcancel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdcancel.ForeColor = System.Drawing.Color.Black
-        Me.cmdcancel.Location = New System.Drawing.Point(178, 50)
+        Me.cmdcancel.Location = New System.Drawing.Point(206, 84)
         Me.cmdcancel.Name = "cmdcancel"
         Me.cmdcancel.Size = New System.Drawing.Size(80, 28)
         Me.cmdcancel.TabIndex = 3
@@ -116,7 +145,7 @@ Partial Class DirectIssueSizer
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(92, 50)
+        Me.cmdok.Location = New System.Drawing.Point(120, 84)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 2
@@ -127,7 +156,7 @@ Partial Class DirectIssueSizer
         'DirectIssueSizer
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(361, 88)
+        Me.ClientSize = New System.Drawing.Size(361, 134)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -147,4 +176,6 @@ Partial Class DirectIssueSizer
     Friend WithEvents Label4 As Label
     Friend WithEvents cmdcancel As Button
     Friend WithEvents cmdok As Button
+    Friend WithEvents CMBTRANSPORT As ComboBox
+    Friend WithEvents Label1 As Label
 End Class

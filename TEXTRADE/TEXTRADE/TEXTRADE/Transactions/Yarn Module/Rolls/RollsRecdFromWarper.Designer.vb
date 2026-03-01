@@ -24,17 +24,17 @@ Partial Class RollsRecdFromWarper
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RollsRecdFromWarper))
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle51 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle47 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle48 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle49 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle52 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle53 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle54 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle55 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.CMBCONTRACTOR = New System.Windows.Forms.ComboBox()
@@ -182,7 +182,6 @@ Partial Class RollsRecdFromWarper
         Me.CMDSAVE = New System.Windows.Forms.Button()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.lbllocked = New System.Windows.Forms.Label()
-        Me.LBLEINVGENERATED = New System.Windows.Forms.Label()
         Me.LBLRETGROSSTOTAL = New System.Windows.Forms.Label()
         Me.LBLRETFIRKATOTAL = New System.Windows.Forms.Label()
         Me.LBLRETNETTTOTAL = New System.Windows.Forms.Label()
@@ -276,7 +275,6 @@ Partial Class RollsRecdFromWarper
         Me.BlendPanel1.Controls.Add(Me.CMDSAVE)
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
         Me.BlendPanel1.Controls.Add(Me.lbllocked)
-        Me.BlendPanel1.Controls.Add(Me.LBLEINVGENERATED)
         Me.BlendPanel1.Controls.Add(Me.LBLRETGROSSTOTAL)
         Me.BlendPanel1.Controls.Add(Me.LBLRETFIRKATOTAL)
         Me.BlendPanel1.Controls.Add(Me.LBLRETNETTTOTAL)
@@ -287,7 +285,7 @@ Partial Class RollsRecdFromWarper
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
-        Me.BlendPanel1.TabIndex = 1
+        Me.BlendPanel1.TabIndex = 0
         '
         'Label41
         '
@@ -295,11 +293,11 @@ Partial Class RollsRecdFromWarper
         Me.Label41.BackColor = System.Drawing.Color.Transparent
         Me.Label41.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label41.ForeColor = System.Drawing.Color.Black
-        Me.Label41.Location = New System.Drawing.Point(13, 120)
+        Me.Label41.Location = New System.Drawing.Point(46, 106)
         Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(100, 15)
+        Me.Label41.Size = New System.Drawing.Size(83, 15)
         Me.Label41.TabIndex = 943
-        Me.Label41.Text = "Contractor Name"
+        Me.Label41.Text = "Warper Name"
         '
         'CMBCONTRACTOR
         '
@@ -308,11 +306,11 @@ Partial Class RollsRecdFromWarper
         Me.CMBCONTRACTOR.BackColor = System.Drawing.SystemColors.Window
         Me.CMBCONTRACTOR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBCONTRACTOR.FormattingEnabled = True
-        Me.CMBCONTRACTOR.Location = New System.Drawing.Point(115, 116)
+        Me.CMBCONTRACTOR.Location = New System.Drawing.Point(131, 102)
         Me.CMBCONTRACTOR.MaxDropDownItems = 14
         Me.CMBCONTRACTOR.Name = "CMBCONTRACTOR"
         Me.CMBCONTRACTOR.Size = New System.Drawing.Size(206, 23)
-        Me.CMBCONTRACTOR.TabIndex = 942
+        Me.CMBCONTRACTOR.TabIndex = 3
         '
         'Label40
         '
@@ -320,7 +318,7 @@ Partial Class RollsRecdFromWarper
         Me.Label40.BackColor = System.Drawing.Color.Transparent
         Me.Label40.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label40.ForeColor = System.Drawing.Color.Black
-        Me.Label40.Location = New System.Drawing.Point(774, 75)
+        Me.Label40.Location = New System.Drawing.Point(790, 77)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(60, 15)
         Me.Label40.TabIndex = 914
@@ -331,11 +329,11 @@ Partial Class RollsRecdFromWarper
         Me.TXTLONGATION.BackColor = System.Drawing.Color.Linen
         Me.TXTLONGATION.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTLONGATION.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTLONGATION.Location = New System.Drawing.Point(836, 71)
+        Me.TXTLONGATION.Location = New System.Drawing.Point(852, 73)
         Me.TXTLONGATION.MaxLength = 10
         Me.TXTLONGATION.Name = "TXTLONGATION"
         Me.TXTLONGATION.ReadOnly = True
-        Me.TXTLONGATION.Size = New System.Drawing.Size(52, 23)
+        Me.TXTLONGATION.Size = New System.Drawing.Size(69, 23)
         Me.TXTLONGATION.TabIndex = 913
         Me.TXTLONGATION.TabStop = False
         Me.TXTLONGATION.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -373,7 +371,7 @@ Partial Class RollsRecdFromWarper
         Me.TXTPROGRAMSRNO.BackColor = System.Drawing.SystemColors.Window
         Me.TXTPROGRAMSRNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTPROGRAMSRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPROGRAMSRNO.Location = New System.Drawing.Point(1115, 44)
+        Me.TXTPROGRAMSRNO.Location = New System.Drawing.Point(1160, 48)
         Me.TXTPROGRAMSRNO.MaxLength = 10
         Me.TXTPROGRAMSRNO.Name = "TXTPROGRAMSRNO"
         Me.TXTPROGRAMSRNO.Size = New System.Drawing.Size(79, 23)
@@ -387,7 +385,7 @@ Partial Class RollsRecdFromWarper
         Me.TXTOUTWT.BackColor = System.Drawing.Color.Linen
         Me.TXTOUTWT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTOUTWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTOUTWT.Location = New System.Drawing.Point(720, 127)
+        Me.TXTOUTWT.Location = New System.Drawing.Point(1160, 248)
         Me.TXTOUTWT.MaxLength = 10
         Me.TXTOUTWT.Name = "TXTOUTWT"
         Me.TXTOUTWT.ReadOnly = True
@@ -402,7 +400,7 @@ Partial Class RollsRecdFromWarper
         Me.TXTOUTROLLS.BackColor = System.Drawing.Color.Linen
         Me.TXTOUTROLLS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTOUTROLLS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTOUTROLLS.Location = New System.Drawing.Point(410, 127)
+        Me.TXTOUTROLLS.Location = New System.Drawing.Point(1152, 277)
         Me.TXTOUTROLLS.MaxLength = 10
         Me.TXTOUTROLLS.Name = "TXTOUTROLLS"
         Me.TXTOUTROLLS.ReadOnly = True
@@ -417,7 +415,7 @@ Partial Class RollsRecdFromWarper
         Me.TXTBEAMCHALLANNO.BackColor = System.Drawing.Color.Linen
         Me.TXTBEAMCHALLANNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTBEAMCHALLANNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTBEAMCHALLANNO.Location = New System.Drawing.Point(968, 127)
+        Me.TXTBEAMCHALLANNO.Location = New System.Drawing.Point(1046, 102)
         Me.TXTBEAMCHALLANNO.MaxLength = 10
         Me.TXTBEAMCHALLANNO.Name = "TXTBEAMCHALLANNO"
         Me.TXTBEAMCHALLANNO.ReadOnly = True
@@ -431,7 +429,7 @@ Partial Class RollsRecdFromWarper
         Me.Label39.BackColor = System.Drawing.Color.Transparent
         Me.Label39.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label39.ForeColor = System.Drawing.Color.Black
-        Me.Label39.Location = New System.Drawing.Point(865, 131)
+        Me.Label39.Location = New System.Drawing.Point(941, 106)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(101, 15)
         Me.Label39.TabIndex = 907
@@ -523,7 +521,7 @@ Partial Class RollsRecdFromWarper
         Me.GroupBox3.Location = New System.Drawing.Point(24, 448)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(268, 89)
-        Me.GroupBox3.TabIndex = 13
+        Me.GroupBox3.TabIndex = 15
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Beam Remarks"
         '
@@ -545,11 +543,11 @@ Partial Class RollsRecdFromWarper
         Me.TXTWT.BackColor = System.Drawing.Color.Linen
         Me.TXTWT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTWT.Location = New System.Drawing.Point(836, 99)
+        Me.TXTWT.Location = New System.Drawing.Point(852, 102)
         Me.TXTWT.MaxLength = 10
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.ReadOnly = True
-        Me.TXTWT.Size = New System.Drawing.Size(52, 23)
+        Me.TXTWT.Size = New System.Drawing.Size(69, 23)
         Me.TXTWT.TabIndex = 900
         Me.TXTWT.TabStop = False
         Me.TXTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -560,7 +558,7 @@ Partial Class RollsRecdFromWarper
         Me.Label29.BackColor = System.Drawing.Color.Transparent
         Me.Label29.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label29.ForeColor = System.Drawing.Color.Black
-        Me.Label29.Location = New System.Drawing.Point(786, 103)
+        Me.Label29.Location = New System.Drawing.Point(802, 106)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(48, 15)
         Me.Label29.TabIndex = 899
@@ -571,12 +569,12 @@ Partial Class RollsRecdFromWarper
         Me.TXTROLLS.BackColor = System.Drawing.Color.Linen
         Me.TXTROLLS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTROLLS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTROLLS.Location = New System.Drawing.Point(573, 127)
+        Me.TXTROLLS.Location = New System.Drawing.Point(596, 44)
         Me.TXTROLLS.MaxLength = 10
         Me.TXTROLLS.Name = "TXTROLLS"
         Me.TXTROLLS.ReadOnly = True
         Me.TXTROLLS.Size = New System.Drawing.Size(79, 23)
-        Me.TXTROLLS.TabIndex = 5
+        Me.TXTROLLS.TabIndex = 8
         Me.TXTROLLS.TabStop = False
         Me.TXTROLLS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -586,7 +584,7 @@ Partial Class RollsRecdFromWarper
         Me.Label28.BackColor = System.Drawing.Color.Transparent
         Me.Label28.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.ForeColor = System.Drawing.Color.Black
-        Me.Label28.Location = New System.Drawing.Point(536, 131)
+        Me.Label28.Location = New System.Drawing.Point(559, 48)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(35, 15)
         Me.Label28.TabIndex = 898
@@ -598,7 +596,7 @@ Partial Class RollsRecdFromWarper
         Me.Label27.BackColor = System.Drawing.Color.Transparent
         Me.Label27.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.ForeColor = System.Drawing.Color.Black
-        Me.Label27.Location = New System.Drawing.Point(547, 103)
+        Me.Label27.Location = New System.Drawing.Point(711, 106)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(23, 15)
         Me.Label27.TabIndex = 897
@@ -609,11 +607,11 @@ Partial Class RollsRecdFromWarper
         Me.TXTTL.BackColor = System.Drawing.Color.Linen
         Me.TXTTL.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTTL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTL.Location = New System.Drawing.Point(573, 99)
+        Me.TXTTL.Location = New System.Drawing.Point(736, 102)
         Me.TXTTL.MaxLength = 10
         Me.TXTTL.Name = "TXTTL"
         Me.TXTTL.ReadOnly = True
-        Me.TXTTL.Size = New System.Drawing.Size(79, 23)
+        Me.TXTTL.Size = New System.Drawing.Size(52, 23)
         Me.TXTTL.TabIndex = 896
         Me.TXTTL.TabStop = False
         Me.TXTTL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -624,7 +622,7 @@ Partial Class RollsRecdFromWarper
         Me.Label26.BackColor = System.Drawing.Color.Transparent
         Me.Label26.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.ForeColor = System.Drawing.Color.Black
-        Me.Label26.Location = New System.Drawing.Point(924, 103)
+        Me.Label26.Location = New System.Drawing.Point(550, 106)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(42, 15)
         Me.Label26.TabIndex = 895
@@ -635,12 +633,12 @@ Partial Class RollsRecdFromWarper
         Me.TXTLENGTH.BackColor = System.Drawing.Color.Linen
         Me.TXTLENGTH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTLENGTH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTLENGTH.Location = New System.Drawing.Point(968, 99)
+        Me.TXTLENGTH.Location = New System.Drawing.Point(596, 102)
         Me.TXTLENGTH.MaxLength = 10
         Me.TXTLENGTH.Name = "TXTLENGTH"
         Me.TXTLENGTH.ReadOnly = True
         Me.TXTLENGTH.Size = New System.Drawing.Size(79, 23)
-        Me.TXTLENGTH.TabIndex = 7
+        Me.TXTLENGTH.TabIndex = 10
         Me.TXTLENGTH.TabStop = False
         Me.TXTLENGTH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -650,7 +648,7 @@ Partial Class RollsRecdFromWarper
         Me.Label25.BackColor = System.Drawing.Color.Transparent
         Me.Label25.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label25.ForeColor = System.Drawing.Color.Black
-        Me.Label25.Location = New System.Drawing.Point(795, 48)
+        Me.Label25.Location = New System.Drawing.Point(811, 48)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(39, 15)
         Me.Label25.TabIndex = 893
@@ -661,11 +659,11 @@ Partial Class RollsRecdFromWarper
         Me.TXTCOUNT.BackColor = System.Drawing.Color.Linen
         Me.TXTCOUNT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCOUNT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOUNT.Location = New System.Drawing.Point(836, 44)
+        Me.TXTCOUNT.Location = New System.Drawing.Point(852, 44)
         Me.TXTCOUNT.MaxLength = 10
         Me.TXTCOUNT.Name = "TXTCOUNT"
         Me.TXTCOUNT.ReadOnly = True
-        Me.TXTCOUNT.Size = New System.Drawing.Size(52, 23)
+        Me.TXTCOUNT.Size = New System.Drawing.Size(69, 23)
         Me.TXTCOUNT.TabIndex = 892
         Me.TXTCOUNT.TabStop = False
         Me.TXTCOUNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -676,7 +674,7 @@ Partial Class RollsRecdFromWarper
         Me.Label24.BackColor = System.Drawing.Color.Transparent
         Me.Label24.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.ForeColor = System.Drawing.Color.Black
-        Me.Label24.Location = New System.Drawing.Point(693, 103)
+        Me.Label24.Location = New System.Drawing.Point(709, 77)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(25, 15)
         Me.Label24.TabIndex = 891
@@ -687,7 +685,7 @@ Partial Class RollsRecdFromWarper
         Me.TXTCUT.BackColor = System.Drawing.Color.Linen
         Me.TXTCUT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCUT.Location = New System.Drawing.Point(720, 99)
+        Me.TXTCUT.Location = New System.Drawing.Point(736, 73)
         Me.TXTCUT.MaxLength = 10
         Me.TXTCUT.Name = "TXTCUT"
         Me.TXTCUT.ReadOnly = True
@@ -702,7 +700,7 @@ Partial Class RollsRecdFromWarper
         Me.Label23.BackColor = System.Drawing.Color.Transparent
         Me.Label23.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.Black
-        Me.Label23.Location = New System.Drawing.Point(332, 103)
+        Me.Label23.Location = New System.Drawing.Point(53, 135)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(76, 15)
         Me.Label23.TabIndex = 889
@@ -713,11 +711,11 @@ Partial Class RollsRecdFromWarper
         Me.TXTWARPINGNO.BackColor = System.Drawing.Color.White
         Me.TXTWARPINGNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTWARPINGNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTWARPINGNO.Location = New System.Drawing.Point(410, 99)
+        Me.TXTWARPINGNO.Location = New System.Drawing.Point(131, 131)
         Me.TXTWARPINGNO.MaxLength = 10
         Me.TXTWARPINGNO.Name = "TXTWARPINGNO"
-        Me.TXTWARPINGNO.Size = New System.Drawing.Size(79, 23)
-        Me.TXTWARPINGNO.TabIndex = 8
+        Me.TXTWARPINGNO.Size = New System.Drawing.Size(50, 23)
+        Me.TXTWARPINGNO.TabIndex = 4
         '
         'Label22
         '
@@ -725,7 +723,7 @@ Partial Class RollsRecdFromWarper
         Me.Label22.BackColor = System.Drawing.Color.Transparent
         Me.Label22.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.ForeColor = System.Drawing.Color.Black
-        Me.Label22.Location = New System.Drawing.Point(685, 48)
+        Me.Label22.Location = New System.Drawing.Point(701, 48)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(33, 15)
         Me.Label22.TabIndex = 887
@@ -736,7 +734,7 @@ Partial Class RollsRecdFromWarper
         Me.TXTENDS.BackColor = System.Drawing.Color.Linen
         Me.TXTENDS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTENDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTENDS.Location = New System.Drawing.Point(720, 44)
+        Me.TXTENDS.Location = New System.Drawing.Point(736, 44)
         Me.TXTENDS.MaxLength = 10
         Me.TXTENDS.Name = "TXTENDS"
         Me.TXTENDS.ReadOnly = True
@@ -769,7 +767,7 @@ Partial Class RollsRecdFromWarper
         Me.GPRETURN.Location = New System.Drawing.Point(692, 360)
         Me.GPRETURN.Name = "GPRETURN"
         Me.GPRETURN.Size = New System.Drawing.Size(297, 118)
-        Me.GPRETURN.TabIndex = 11
+        Me.GPRETURN.TabIndex = 13
         Me.GPRETURN.TabStop = False
         Me.GPRETURN.Text = "Return Details"
         '
@@ -1013,7 +1011,7 @@ Partial Class RollsRecdFromWarper
         Me.GPUSED.Location = New System.Drawing.Point(378, 360)
         Me.GPUSED.Name = "GPUSED"
         Me.GPUSED.Size = New System.Drawing.Size(297, 118)
-        Me.GPUSED.TabIndex = 10
+        Me.GPUSED.TabIndex = 12
         Me.GPUSED.TabStop = False
         Me.GPUSED.Text = "Used Details"
         '
@@ -1257,7 +1255,7 @@ Partial Class RollsRecdFromWarper
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(655, 75)
+        Me.Label7.Location = New System.Drawing.Point(531, 77)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(63, 15)
         Me.Label7.TabIndex = 859
@@ -1268,12 +1266,12 @@ Partial Class RollsRecdFromWarper
         Me.TXTTOTALENDS.BackColor = System.Drawing.Color.Linen
         Me.TXTTOTALENDS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTTOTALENDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTOTALENDS.Location = New System.Drawing.Point(720, 71)
+        Me.TXTTOTALENDS.Location = New System.Drawing.Point(596, 73)
         Me.TXTTOTALENDS.MaxLength = 10
         Me.TXTTOTALENDS.Name = "TXTTOTALENDS"
         Me.TXTTOTALENDS.ReadOnly = True
-        Me.TXTTOTALENDS.Size = New System.Drawing.Size(52, 23)
-        Me.TXTTOTALENDS.TabIndex = 6
+        Me.TXTTOTALENDS.Size = New System.Drawing.Size(79, 23)
+        Me.TXTTOTALENDS.TabIndex = 9
         Me.TXTTOTALENDS.TabStop = False
         Me.TXTTOTALENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -1283,7 +1281,7 @@ Partial Class RollsRecdFromWarper
         Me.PROGRAMDATE.BackColor = System.Drawing.Color.Linen
         Me.PROGRAMDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PROGRAMDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.PROGRAMDATE.Location = New System.Drawing.Point(573, 71)
+        Me.PROGRAMDATE.Location = New System.Drawing.Point(1177, 219)
         Me.PROGRAMDATE.Mask = "00/00/0000"
         Me.PROGRAMDATE.Name = "PROGRAMDATE"
         Me.PROGRAMDATE.ReadOnly = True
@@ -1292,6 +1290,7 @@ Partial Class RollsRecdFromWarper
         Me.PROGRAMDATE.TabStop = False
         Me.PROGRAMDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.PROGRAMDATE.ValidatingType = GetType(Date)
+        Me.PROGRAMDATE.Visible = False
         '
         'Label1
         '
@@ -1299,11 +1298,12 @@ Partial Class RollsRecdFromWarper
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(489, 75)
+        Me.Label1.Location = New System.Drawing.Point(1093, 223)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(82, 15)
         Me.Label1.TabIndex = 857
         Me.Label1.Text = "Program Date"
+        Me.Label1.Visible = False
         '
         'Label4
         '
@@ -1311,7 +1311,7 @@ Partial Class RollsRecdFromWarper
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(496, 48)
+        Me.Label4.Location = New System.Drawing.Point(198, 135)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(75, 15)
         Me.Label4.TabIndex = 856
@@ -1322,14 +1322,12 @@ Partial Class RollsRecdFromWarper
         Me.TXTPROGRAMNO.BackColor = System.Drawing.SystemColors.Window
         Me.TXTPROGRAMNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTPROGRAMNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPROGRAMNO.Location = New System.Drawing.Point(573, 44)
+        Me.TXTPROGRAMNO.Location = New System.Drawing.Point(277, 131)
         Me.TXTPROGRAMNO.MaxLength = 10
         Me.TXTPROGRAMNO.Name = "TXTPROGRAMNO"
-        Me.TXTPROGRAMNO.Size = New System.Drawing.Size(79, 23)
-        Me.TXTPROGRAMNO.TabIndex = 854
-        Me.TXTPROGRAMNO.TabStop = False
+        Me.TXTPROGRAMNO.Size = New System.Drawing.Size(60, 23)
+        Me.TXTPROGRAMNO.TabIndex = 5
         Me.TXTPROGRAMNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTPROGRAMNO.Visible = False
         '
         'Label6
         '
@@ -1337,7 +1335,7 @@ Partial Class RollsRecdFromWarper
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(27, 64)
+        Me.Label6.Location = New System.Drawing.Point(43, 48)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(86, 15)
         Me.Label6.TabIndex = 851
@@ -1350,7 +1348,7 @@ Partial Class RollsRecdFromWarper
         Me.CMBOURGODOWN.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBOURGODOWN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBOURGODOWN.FormattingEnabled = True
-        Me.CMBOURGODOWN.Location = New System.Drawing.Point(115, 60)
+        Me.CMBOURGODOWN.Location = New System.Drawing.Point(131, 44)
         Me.CMBOURGODOWN.MaxDropDownItems = 14
         Me.CMBOURGODOWN.Name = "CMBOURGODOWN"
         Me.CMBOURGODOWN.Size = New System.Drawing.Size(206, 23)
@@ -1363,11 +1361,11 @@ Partial Class RollsRecdFromWarper
         Me.DTCHALLANDATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.DTCHALLANDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DTCHALLANDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.DTCHALLANDATE.Location = New System.Drawing.Point(410, 71)
+        Me.DTCHALLANDATE.Location = New System.Drawing.Point(420, 73)
         Me.DTCHALLANDATE.Mask = "00/00/0000"
         Me.DTCHALLANDATE.Name = "DTCHALLANDATE"
         Me.DTCHALLANDATE.Size = New System.Drawing.Size(79, 23)
-        Me.DTCHALLANDATE.TabIndex = 4
+        Me.DTCHALLANDATE.TabIndex = 7
         Me.DTCHALLANDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.DTCHALLANDATE.ValidatingType = GetType(Date)
         '
@@ -1377,7 +1375,7 @@ Partial Class RollsRecdFromWarper
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(376, 75)
+        Me.Label3.Location = New System.Drawing.Point(386, 77)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(32, 15)
         Me.Label3.TabIndex = 830
@@ -1389,7 +1387,7 @@ Partial Class RollsRecdFromWarper
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(337, 48)
+        Me.Label2.Location = New System.Drawing.Point(347, 48)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(71, 15)
         Me.Label2.TabIndex = 828
@@ -1400,11 +1398,11 @@ Partial Class RollsRecdFromWarper
         Me.TXTCHALLANNO.BackColor = System.Drawing.Color.White
         Me.TXTCHALLANNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCHALLANNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCHALLANNO.Location = New System.Drawing.Point(410, 44)
+        Me.TXTCHALLANNO.Location = New System.Drawing.Point(420, 44)
         Me.TXTCHALLANNO.MaxLength = 10
         Me.TXTCHALLANNO.Name = "TXTCHALLANNO"
         Me.TXTCHALLANNO.Size = New System.Drawing.Size(79, 23)
-        Me.TXTCHALLANNO.TabIndex = 3
+        Me.TXTCHALLANNO.TabIndex = 6
         '
         'Label5
         '
@@ -1412,11 +1410,11 @@ Partial Class RollsRecdFromWarper
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(30, 93)
+        Me.Label5.Location = New System.Drawing.Point(52, 77)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(83, 15)
+        Me.Label5.Size = New System.Drawing.Size(77, 15)
         Me.Label5.TabIndex = 820
-        Me.Label5.Text = "Warper Name"
+        Me.Label5.Text = "Billing Name"
         '
         'CMBNAME
         '
@@ -1425,11 +1423,11 @@ Partial Class RollsRecdFromWarper
         Me.CMBNAME.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBNAME.FormattingEnabled = True
-        Me.CMBNAME.Location = New System.Drawing.Point(115, 89)
+        Me.CMBNAME.Location = New System.Drawing.Point(131, 73)
         Me.CMBNAME.MaxDropDownItems = 14
         Me.CMBNAME.Name = "CMBNAME"
         Me.CMBNAME.Size = New System.Drawing.Size(206, 23)
-        Me.CMBNAME.TabIndex = 1
+        Me.CMBNAME.TabIndex = 2
         '
         'TXTADD
         '
@@ -1463,7 +1461,7 @@ Partial Class RollsRecdFromWarper
         Me.GroupBox5.Location = New System.Drawing.Point(24, 353)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(268, 89)
-        Me.GroupBox5.TabIndex = 12
+        Me.GroupBox5.TabIndex = 14
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Remarks"
         '
@@ -1484,7 +1482,7 @@ Partial Class RollsRecdFromWarper
         Me.tstxtbillno.Location = New System.Drawing.Point(242, 2)
         Me.tstxtbillno.Name = "tstxtbillno"
         Me.tstxtbillno.Size = New System.Drawing.Size(61, 22)
-        Me.tstxtbillno.TabIndex = 14
+        Me.tstxtbillno.TabIndex = 20
         Me.tstxtbillno.TabStop = False
         Me.tstxtbillno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -1542,17 +1540,19 @@ Partial Class RollsRecdFromWarper
         'toolprevious
         '
         Me.toolprevious.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.toolprevious.Image = Global.TEXTRADE.My.Resources.Resources.POINT021
         Me.toolprevious.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.toolprevious.Name = "toolprevious"
-        Me.toolprevious.Size = New System.Drawing.Size(57, 22)
+        Me.toolprevious.Size = New System.Drawing.Size(73, 22)
         Me.toolprevious.Text = "Previous"
         '
         'toolnext
         '
         Me.toolnext.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.toolnext.Image = Global.TEXTRADE.My.Resources.Resources.POINT04
         Me.toolnext.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.toolnext.Name = "toolnext"
-        Me.toolnext.Size = New System.Drawing.Size(35, 22)
+        Me.toolnext.Size = New System.Drawing.Size(51, 22)
         Me.toolnext.Text = "Next"
         Me.toolnext.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         '
@@ -1566,11 +1566,11 @@ Partial Class RollsRecdFromWarper
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.tbupload)
         Me.TabControl1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(24, 145)
+        Me.TabControl1.Location = New System.Drawing.Point(24, 168)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1026, 202)
-        Me.TabControl1.TabIndex = 9
+        Me.TabControl1.Size = New System.Drawing.Size(1026, 179)
+        Me.TabControl1.TabIndex = 11
         '
         'TabPage1
         '
@@ -1592,7 +1592,7 @@ Partial Class RollsRecdFromWarper
         Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1018, 174)
+        Me.TabPage1.Size = New System.Drawing.Size(1018, 151)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "1. Fresh Cone Details"
         '
@@ -1601,7 +1601,7 @@ Partial Class RollsRecdFromWarper
         Me.LBLTOTALGROSSWT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALGROSSWT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALGROSSWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALGROSSWT.Location = New System.Drawing.Point(719, 155)
+        Me.LBLTOTALGROSSWT.Location = New System.Drawing.Point(719, 125)
         Me.LBLTOTALGROSSWT.Name = "LBLTOTALGROSSWT"
         Me.LBLTOTALGROSSWT.Size = New System.Drawing.Size(103, 15)
         Me.LBLTOTALGROSSWT.TabIndex = 696
@@ -1613,7 +1613,7 @@ Partial Class RollsRecdFromWarper
         Me.LBLTOTALCONES.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALCONES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALCONES.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALCONES.Location = New System.Drawing.Point(619, 155)
+        Me.LBLTOTALCONES.Location = New System.Drawing.Point(619, 125)
         Me.LBLTOTALCONES.Name = "LBLTOTALCONES"
         Me.LBLTOTALCONES.Size = New System.Drawing.Size(103, 15)
         Me.LBLTOTALCONES.TabIndex = 695
@@ -1702,28 +1702,28 @@ Partial Class RollsRecdFromWarper
         Me.GRIDROLLS.AllowUserToDeleteRows = False
         Me.GRIDROLLS.AllowUserToResizeColumns = False
         Me.GRIDROLLS.AllowUserToResizeRows = False
-        DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDROLLS.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle45.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle45.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDROLLS.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle45
         Me.GRIDROLLS.BackgroundColor = System.Drawing.Color.White
         Me.GRIDROLLS.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDROLLS.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDROLLS.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle46.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle46.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle46.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle46.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDROLLS.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle46
         Me.GRIDROLLS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDROLLS.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GQUALITY, Me.GMILLNAME, Me.GLOTNO, Me.GCONES, Me.GGROSSWT, Me.GNETTWT})
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle28.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDROLLS.DefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle50.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle50.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle50.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDROLLS.DefaultCellStyle = DataGridViewCellStyle50
         Me.GRIDROLLS.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDROLLS.Location = New System.Drawing.Point(2, 24)
         Me.GRIDROLLS.MultiSelect = False
@@ -1732,14 +1732,14 @@ Partial Class RollsRecdFromWarper
         Me.GRIDROLLS.RowHeadersVisible = False
         Me.GRIDROLLS.RowHeadersWidth = 30
         Me.GRIDROLLS.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDROLLS.RowsDefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle51.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle51.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDROLLS.RowsDefaultCellStyle = DataGridViewCellStyle51
         Me.GRIDROLLS.RowTemplate.Height = 20
         Me.GRIDROLLS.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDROLLS.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDROLLS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDROLLS.Size = New System.Drawing.Size(953, 129)
+        Me.GRIDROLLS.Size = New System.Drawing.Size(953, 98)
         Me.GRIDROLLS.TabIndex = 6
         Me.GRIDROLLS.TabStop = False
         '
@@ -1781,8 +1781,8 @@ Partial Class RollsRecdFromWarper
         '
         'GCONES
         '
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GCONES.DefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GCONES.DefaultCellStyle = DataGridViewCellStyle47
         Me.GCONES.HeaderText = "Cones"
         Me.GCONES.Name = "GCONES"
         Me.GCONES.ReadOnly = True
@@ -1791,8 +1791,8 @@ Partial Class RollsRecdFromWarper
         '
         'GGROSSWT
         '
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GGROSSWT.DefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GGROSSWT.DefaultCellStyle = DataGridViewCellStyle48
         Me.GGROSSWT.HeaderText = "Gross Wt"
         Me.GGROSSWT.Name = "GGROSSWT"
         Me.GGROSSWT.ReadOnly = True
@@ -1801,8 +1801,8 @@ Partial Class RollsRecdFromWarper
         '
         'GNETTWT
         '
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GNETTWT.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GNETTWT.DefaultCellStyle = DataGridViewCellStyle49
         Me.GNETTWT.HeaderText = "Nett Wt."
         Me.GNETTWT.MaxInputLength = 50
         Me.GNETTWT.Name = "GNETTWT"
@@ -1828,7 +1828,7 @@ Partial Class RollsRecdFromWarper
         Me.LBLTOTALNETTWT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALNETTWT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALNETTWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALNETTWT.Location = New System.Drawing.Point(819, 155)
+        Me.LBLTOTALNETTWT.Location = New System.Drawing.Point(819, 125)
         Me.LBLTOTALNETTWT.Name = "LBLTOTALNETTWT"
         Me.LBLTOTALNETTWT.Size = New System.Drawing.Size(103, 15)
         Me.LBLTOTALNETTWT.TabIndex = 688
@@ -1841,7 +1841,7 @@ Partial Class RollsRecdFromWarper
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(591, 156)
+        Me.Label10.Location = New System.Drawing.Point(591, 126)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(31, 14)
         Me.Label10.TabIndex = 687
@@ -1928,29 +1928,29 @@ Partial Class RollsRecdFromWarper
         Me.gridupload.AllowUserToDeleteRows = False
         Me.gridupload.AllowUserToResizeColumns = False
         Me.gridupload.AllowUserToResizeRows = False
-        DataGridViewCellStyle30.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.Black
-        Me.gridupload.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle52.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle52.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle52.SelectionBackColor = System.Drawing.Color.Black
+        Me.gridupload.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle52
         Me.gridupload.BackgroundColor = System.Drawing.Color.White
         Me.gridupload.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.gridupload.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle31.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.gridupload.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle31
+        DataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle53.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle53.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle53.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.gridupload.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle53
         Me.gridupload.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridupload.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUSRNO, Me.GUREMARKS, Me.GUNAME, Me.GUIMGPATH})
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle32.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle32.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridupload.DefaultCellStyle = DataGridViewCellStyle32
+        DataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle54.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle54.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle54.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle54.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridupload.DefaultCellStyle = DataGridViewCellStyle54
         Me.gridupload.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.gridupload.GridColor = System.Drawing.SystemColors.Control
         Me.gridupload.Location = New System.Drawing.Point(6, 28)
@@ -1960,9 +1960,9 @@ Partial Class RollsRecdFromWarper
         Me.gridupload.RowHeadersVisible = False
         Me.gridupload.RowHeadersWidth = 30
         Me.gridupload.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.White
-        Me.gridupload.RowsDefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle55.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle55.SelectionForeColor = System.Drawing.Color.White
+        Me.gridupload.RowsDefaultCellStyle = DataGridViewCellStyle55
         Me.gridupload.RowTemplate.Height = 20
         Me.gridupload.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridupload.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -2039,7 +2039,7 @@ Partial Class RollsRecdFromWarper
         Me.ROLLSRECDDATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.ROLLSRECDDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ROLLSRECDDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.ROLLSRECDDATE.Location = New System.Drawing.Point(968, 71)
+        Me.ROLLSRECDDATE.Location = New System.Drawing.Point(1047, 73)
         Me.ROLLSRECDDATE.Mask = "00/00/0000"
         Me.ROLLSRECDDATE.Name = "ROLLSRECDDATE"
         Me.ROLLSRECDDATE.Size = New System.Drawing.Size(79, 23)
@@ -2051,7 +2051,7 @@ Partial Class RollsRecdFromWarper
         '
         Me.TXTROLLSRECDNO.BackColor = System.Drawing.Color.Linen
         Me.TXTROLLSRECDNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTROLLSRECDNO.Location = New System.Drawing.Point(968, 44)
+        Me.TXTROLLSRECDNO.Location = New System.Drawing.Point(1047, 44)
         Me.TXTROLLSRECDNO.Name = "TXTROLLSRECDNO"
         Me.TXTROLLSRECDNO.ReadOnly = True
         Me.TXTROLLSRECDNO.Size = New System.Drawing.Size(79, 23)
@@ -2065,7 +2065,7 @@ Partial Class RollsRecdFromWarper
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(889, 48)
+        Me.Label12.Location = New System.Drawing.Point(965, 48)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(78, 15)
         Me.Label12.TabIndex = 634
@@ -2077,7 +2077,7 @@ Partial Class RollsRecdFromWarper
         Me.lblgrndate.BackColor = System.Drawing.Color.Transparent
         Me.lblgrndate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblgrndate.ForeColor = System.Drawing.Color.Black
-        Me.lblgrndate.Location = New System.Drawing.Point(934, 75)
+        Me.lblgrndate.Location = New System.Drawing.Point(1011, 77)
         Me.lblgrndate.Name = "lblgrndate"
         Me.lblgrndate.Size = New System.Drawing.Size(32, 15)
         Me.lblgrndate.TabIndex = 632
@@ -2093,7 +2093,7 @@ Partial Class RollsRecdFromWarper
         Me.CMDDELETE.Location = New System.Drawing.Point(461, 540)
         Me.CMDDELETE.Name = "CMDDELETE"
         Me.CMDDELETE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDDELETE.TabIndex = 16
+        Me.CMDDELETE.TabIndex = 18
         Me.CMDDELETE.Text = "&Delete"
         Me.CMDDELETE.UseVisualStyleBackColor = False
         '
@@ -2107,7 +2107,7 @@ Partial Class RollsRecdFromWarper
         Me.CMDCLEAR.Location = New System.Drawing.Point(375, 540)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
-        Me.CMDCLEAR.TabIndex = 15
+        Me.CMDCLEAR.TabIndex = 17
         Me.CMDCLEAR.Text = "&Clear"
         Me.CMDCLEAR.UseVisualStyleBackColor = False
         '
@@ -2121,7 +2121,7 @@ Partial Class RollsRecdFromWarper
         Me.CMDSAVE.Location = New System.Drawing.Point(461, 505)
         Me.CMDSAVE.Name = "CMDSAVE"
         Me.CMDSAVE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVE.TabIndex = 14
+        Me.CMDSAVE.TabIndex = 16
         Me.CMDSAVE.Text = "&Save"
         Me.CMDSAVE.UseVisualStyleBackColor = False
         '
@@ -2135,7 +2135,7 @@ Partial Class RollsRecdFromWarper
         Me.CMDEXIT.Location = New System.Drawing.Point(547, 540)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDEXIT.TabIndex = 17
+        Me.CMDEXIT.TabIndex = 19
         Me.CMDEXIT.Text = "E&xit"
         Me.CMDEXIT.UseVisualStyleBackColor = False
         '
@@ -2151,18 +2151,6 @@ Partial Class RollsRecdFromWarper
         Me.lbllocked.TabIndex = 452
         Me.lbllocked.Text = "Locked"
         Me.lbllocked.Visible = False
-        '
-        'LBLEINVGENERATED
-        '
-        Me.LBLEINVGENERATED.AutoSize = True
-        Me.LBLEINVGENERATED.BackColor = System.Drawing.Color.Transparent
-        Me.LBLEINVGENERATED.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLEINVGENERATED.ForeColor = System.Drawing.Color.Black
-        Me.LBLEINVGENERATED.Location = New System.Drawing.Point(3, 23)
-        Me.LBLEINVGENERATED.Name = "LBLEINVGENERATED"
-        Me.LBLEINVGENERATED.Size = New System.Drawing.Size(255, 29)
-        Me.LBLEINVGENERATED.TabIndex = 935
-        Me.LBLEINVGENERATED.Text = "Rolls Recd From Warper"
         '
         'LBLRETGROSSTOTAL
         '
@@ -2431,7 +2419,6 @@ Partial Class RollsRecdFromWarper
     Friend WithEvents lbllocked As Label
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
-    Friend WithEvents LBLEINVGENERATED As Label
     Friend WithEvents LBLUSEDFIRKATOTAL As Label
     Friend WithEvents LBLUSEDNETTTOTAL As Label
     Friend WithEvents LBLUSEDGROSSTOTAL As Label

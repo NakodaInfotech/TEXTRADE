@@ -36,11 +36,6 @@ Partial Class ItemMaster
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -66,6 +61,11 @@ Partial Class ItemMaster
         Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle43 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ItemMaster))
         Me.BLENDPANEL1 = New VbPowerPack.BlendPanel()
         Me.GPMAINGROUP = New System.Windows.Forms.GroupBox()
@@ -98,15 +98,6 @@ Partial Class ItemMaster
         Me.GRPWEFTYARNDETAILS = New System.Windows.Forms.GroupBox()
         Me.TXTTOTALWEFTENDS = New System.Windows.Forms.TextBox()
         Me.GRIDWEFT = New System.Windows.Forms.DataGridView()
-        Me.FSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FDENIER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FPICK = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FSHADESRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.TXTWEFTWT = New System.Windows.Forms.TextBox()
         Me.TXTTOTALWEFTAMOUNT = New System.Windows.Forms.TextBox()
@@ -304,6 +295,15 @@ Partial Class ItemMaster
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.FSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FDENIER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FPICK = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FSHADESRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BLENDPANEL1.SuspendLayout()
         Me.GPMAINGROUP.SuspendLayout()
         Me.GRPBEAMDETAILS.SuspendLayout()
@@ -912,97 +912,6 @@ Partial Class ItemMaster
         Me.GRIDWEFT.Size = New System.Drawing.Size(746, 97)
         Me.GRIDWEFT.TabIndex = 11
         Me.GRIDWEFT.TabStop = False
-        '
-        'FSRNO
-        '
-        Me.FSRNO.HeaderText = "Sr."
-        Me.FSRNO.Name = "FSRNO"
-        Me.FSRNO.ReadOnly = True
-        Me.FSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FSRNO.Width = 30
-        '
-        'FQUALITY
-        '
-        Me.FQUALITY.HeaderText = "Weft Quality"
-        Me.FQUALITY.Name = "FQUALITY"
-        Me.FQUALITY.ReadOnly = True
-        Me.FQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FQUALITY.Width = 200
-        '
-        'FSHADE
-        '
-        Me.FSHADE.HeaderText = "Shade"
-        Me.FSHADE.Name = "FSHADE"
-        Me.FSHADE.ReadOnly = True
-        Me.FSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FSHADE.Width = 150
-        '
-        'FDENIER
-        '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FDENIER.DefaultCellStyle = DataGridViewCellStyle15
-        Me.FDENIER.HeaderText = "Denier"
-        Me.FDENIER.Name = "FDENIER"
-        Me.FDENIER.ReadOnly = True
-        Me.FDENIER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FDENIER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FDENIER.Width = 70
-        '
-        'FPICK
-        '
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FPICK.DefaultCellStyle = DataGridViewCellStyle16
-        Me.FPICK.HeaderText = "Ends"
-        Me.FPICK.Name = "FPICK"
-        Me.FPICK.ReadOnly = True
-        Me.FPICK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FPICK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FPICK.Width = 60
-        '
-        'FWT
-        '
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FWT.DefaultCellStyle = DataGridViewCellStyle17
-        Me.FWT.HeaderText = "Wt"
-        Me.FWT.Name = "FWT"
-        Me.FWT.ReadOnly = True
-        Me.FWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FWT.Width = 60
-        '
-        'FRATE
-        '
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FRATE.DefaultCellStyle = DataGridViewCellStyle18
-        Me.FRATE.HeaderText = "Rate"
-        Me.FRATE.Name = "FRATE"
-        Me.FRATE.ReadOnly = True
-        Me.FRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FRATE.Width = 70
-        '
-        'FAMOUNT
-        '
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FAMOUNT.DefaultCellStyle = DataGridViewCellStyle19
-        Me.FAMOUNT.HeaderText = "Amount"
-        Me.FAMOUNT.Name = "FAMOUNT"
-        Me.FAMOUNT.ReadOnly = True
-        Me.FAMOUNT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FAMOUNT.Width = 70
-        '
-        'FSHADESRNO
-        '
-        Me.FSHADESRNO.HeaderText = "SHADESRNO"
-        Me.FSHADESRNO.Name = "FSHADESRNO"
-        Me.FSHADESRNO.ReadOnly = True
-        Me.FSHADESRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.FSHADESRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.FSHADESRNO.Visible = False
         '
         'Label25
         '
@@ -2180,7 +2089,7 @@ Partial Class ItemMaster
         '
         'TXTPICKS
         '
-        Me.TXTPICKS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTPICKS.BackColor = System.Drawing.Color.White
         Me.TXTPICKS.Location = New System.Drawing.Point(253, 276)
         Me.TXTPICKS.Name = "TXTPICKS"
         Me.TXTPICKS.Size = New System.Drawing.Size(60, 23)
@@ -2200,7 +2109,7 @@ Partial Class ItemMaster
         '
         'TXTREED
         '
-        Me.TXTREED.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTREED.BackColor = System.Drawing.Color.White
         Me.TXTREED.Location = New System.Drawing.Point(253, 248)
         Me.TXTREED.MaxLength = 50
         Me.TXTREED.Name = "TXTREED"
@@ -2302,7 +2211,7 @@ Partial Class ItemMaster
         '
         'TXTREEDSPACE
         '
-        Me.TXTREEDSPACE.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTREEDSPACE.BackColor = System.Drawing.Color.White
         Me.TXTREEDSPACE.Location = New System.Drawing.Point(253, 220)
         Me.TXTREEDSPACE.Name = "TXTREEDSPACE"
         Me.TXTREEDSPACE.Size = New System.Drawing.Size(60, 23)
@@ -3304,6 +3213,97 @@ Partial Class ItemMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'FSRNO
+        '
+        Me.FSRNO.HeaderText = "Sr."
+        Me.FSRNO.Name = "FSRNO"
+        Me.FSRNO.ReadOnly = True
+        Me.FSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FSRNO.Width = 30
+        '
+        'FQUALITY
+        '
+        Me.FQUALITY.HeaderText = "Weft Quality"
+        Me.FQUALITY.Name = "FQUALITY"
+        Me.FQUALITY.ReadOnly = True
+        Me.FQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FQUALITY.Width = 200
+        '
+        'FSHADE
+        '
+        Me.FSHADE.HeaderText = "Shade"
+        Me.FSHADE.Name = "FSHADE"
+        Me.FSHADE.ReadOnly = True
+        Me.FSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FSHADE.Width = 150
+        '
+        'FDENIER
+        '
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FDENIER.DefaultCellStyle = DataGridViewCellStyle15
+        Me.FDENIER.HeaderText = "Count"
+        Me.FDENIER.Name = "FDENIER"
+        Me.FDENIER.ReadOnly = True
+        Me.FDENIER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FDENIER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FDENIER.Width = 70
+        '
+        'FPICK
+        '
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FPICK.DefaultCellStyle = DataGridViewCellStyle16
+        Me.FPICK.HeaderText = "Picks"
+        Me.FPICK.Name = "FPICK"
+        Me.FPICK.ReadOnly = True
+        Me.FPICK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FPICK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FPICK.Width = 60
+        '
+        'FWT
+        '
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FWT.DefaultCellStyle = DataGridViewCellStyle17
+        Me.FWT.HeaderText = "Wt"
+        Me.FWT.Name = "FWT"
+        Me.FWT.ReadOnly = True
+        Me.FWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FWT.Width = 60
+        '
+        'FRATE
+        '
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FRATE.DefaultCellStyle = DataGridViewCellStyle18
+        Me.FRATE.HeaderText = "Rate"
+        Me.FRATE.Name = "FRATE"
+        Me.FRATE.ReadOnly = True
+        Me.FRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FRATE.Width = 70
+        '
+        'FAMOUNT
+        '
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FAMOUNT.DefaultCellStyle = DataGridViewCellStyle19
+        Me.FAMOUNT.HeaderText = "Amount"
+        Me.FAMOUNT.Name = "FAMOUNT"
+        Me.FAMOUNT.ReadOnly = True
+        Me.FAMOUNT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FAMOUNT.Width = 70
+        '
+        'FSHADESRNO
+        '
+        Me.FSHADESRNO.HeaderText = "SHADESRNO"
+        Me.FSHADESRNO.Name = "FSHADESRNO"
+        Me.FSHADESRNO.ReadOnly = True
+        Me.FSHADESRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.FSHADESRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.FSHADESRNO.Visible = False
+        '
         'ItemMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -3568,6 +3568,14 @@ Partial Class ItemMaster
     Friend WithEvents GSHADENO As DataGridViewTextBoxColumn
     Friend WithEvents GRPBEAMDETAILS As GroupBox
     Friend WithEvents GRPWEFTYARNDETAILS As GroupBox
+    Friend WithEvents WSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents WQUALITY As DataGridViewTextBoxColumn
+    Friend WithEvents WENDS As DataGridViewTextBoxColumn
+    Friend WithEvents WWT As DataGridViewTextBoxColumn
+    Friend WithEvents WRATE As DataGridViewTextBoxColumn
+    Friend WithEvents WAMOUNT As DataGridViewTextBoxColumn
+    Friend WithEvents TXTTOTALBEAMENDS As TextBox
+    Friend WithEvents TXTTOTALWEFTENDS As TextBox
     Friend WithEvents FSRNO As DataGridViewTextBoxColumn
     Friend WithEvents FQUALITY As DataGridViewTextBoxColumn
     Friend WithEvents FSHADE As DataGridViewTextBoxColumn
@@ -3577,12 +3585,4 @@ Partial Class ItemMaster
     Friend WithEvents FRATE As DataGridViewTextBoxColumn
     Friend WithEvents FAMOUNT As DataGridViewTextBoxColumn
     Friend WithEvents FSHADESRNO As DataGridViewTextBoxColumn
-    Friend WithEvents WSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents WQUALITY As DataGridViewTextBoxColumn
-    Friend WithEvents WENDS As DataGridViewTextBoxColumn
-    Friend WithEvents WWT As DataGridViewTextBoxColumn
-    Friend WithEvents WRATE As DataGridViewTextBoxColumn
-    Friend WithEvents WAMOUNT As DataGridViewTextBoxColumn
-    Friend WithEvents TXTTOTALBEAMENDS As TextBox
-    Friend WithEvents TXTTOTALWEFTENDS As TextBox
 End Class

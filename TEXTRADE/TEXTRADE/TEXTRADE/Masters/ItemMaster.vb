@@ -788,12 +788,12 @@ Public Class ItemMaster
         Try
             If CMBWARPQUALITY.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_TOTALENDS, 0) As TOTALENDS, ISNULL(BEAM_TOTALWT, 0) AS TOTALWT ", "", "BEAMMASTER", "And BEAMMASTER.BEAM_NAME = '" & CMBWARPQUALITY.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(BEAM_TOTALENDS, 0) As TOTALENDS, ISNULL(BEAM_TOTALWT, 0) AS TOTALWT,  ISNULL(BEAM_TAPLINE, 0) AS TAPLINE ", "", "BEAMMASTER", "And BEAMMASTER.BEAM_NAME = '" & CMBWARPQUALITY.Text.Trim & "' AND BEAM_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
-                    'TXTTL.Text = DT.Rows(0).Item("TAPLINE")
+                    TXTWARPTL.Text = DT.Rows(0).Item("TAPLINE")
+                    TXTWEFTTL.Text = DT.Rows(0).Item("TAPLINE")
                     TXTWARPENDS.Text = Val(DT.Rows(0).Item("TOTALENDS"))
                     TXTWARPWT.Text = Val(DT.Rows(0).Item("TOTALWT"))
-
                 End If
                 TOTAL()
             End If
@@ -810,21 +810,10 @@ Public Class ItemMaster
 
     Sub CALC()
         Try
-            'If Val(TXTWARPWT.Text.Trim) = 0 And Val(TXTWARPENDS.Text.Trim) > 0 And Val(TXTWARPTL.Text.Trim) > 0 Then
-            '    If ClientName = "NAYRA" Then
-            '        TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTREEDSPACE.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
-            '    Else
-            '        TXTWARPWT.Text = Format((Val(TXTWARPENDS.Text.Trim) * Val(TXTWARPTL.Text.Trim) * Val(TXTWARPDENIER.Text.Trim)) / 9000000, "0.000")
-            '    End If
-            'End If
 
-            If CMBWEFTQUALITY.Text.Trim <> "" And Val(TXTWEFTPICK.Text.Trim) > 0 And Val(TXTREEDSPACE.Text.Trim) > 0 And Val(TXTWEFTTL.Text.Trim) > 0 And Val(TXTWEFTWT.Text.Trim) = 0 Then
-                If ClientName = "NAYRA" Then
-                    TXTWEFTWT.Text = Format(((Val(TXTREEDSPACE.Text.Trim) * Val(TXTWEFTPICK.Text.Trim) * Val(TXTWEFTTL.Text.Trim)) / 1699.33) / Val(TXTWEFTDENIER.Text.Trim), "0.000")
-                Else
-                    TXTWEFTWT.Text = Format((Val(TXTREEDSPACE.Text.Trim) * Val(TXTWEFTPICK.Text.Trim) * Val(TXTWEFTTL.Text.Trim) * Val(TXTWEFTDENIER.Text.Trim)) / 9000000, "0.000")
-                End If
-            End If
+            'TXTWEFTWT.Text = Format(((Val(TXTREEDSPACE.Text.Trim) * Val(TXTWEFTPICK.Text.Trim) * Val(TXTWEFTTL.Text.Trim)) / 1699.33) / Val(TXTWEFTDENIER.Text.Trim), "0.000")
+            TXTWEFTWT.Text = Format(((Val(TXTGREYWIDTH.Text.Trim) * Val(TXTWEFTPICK.Text.Trim) * Val(TXTWEFTTL.Text.Trim)) / 1850) / Val(TXTWEFTDENIER.Text.Trim), "0.000")
+
 
             TXTWARPAMOUNT.Text = Format(Val(TXTWARPWT.Text.Trim) * Val(TXTWARPRATE.Text.Trim), "0.000")
             TXTWEFTAMOUNT.Text = Format(Val(TXTWEFTWT.Text.Trim) * Val(TXTWEFTRATE.Text.Trim), "0.000")
@@ -1848,6 +1837,9 @@ line1:
                 CMBGREYCATEGORY.BackColor = Color.LemonChiffon
             End If
 
+
+
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -2503,12 +2495,12 @@ line1:
         End Try
     End Sub
 
-
     Sub YARNGROUPBOX()
         If HIDEYARN = False And ClientName <> "VALIANT" Then
             GPMAINGROUP.Visible = True
             GRPBEAMDETAILS.Visible = True
             GRPWEFTYARNDETAILS.Visible = True
+            TXTGREYWIDTH.BackColor = Color.LemonChiffon
         End If
     End Sub
 End Class

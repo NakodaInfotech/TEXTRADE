@@ -581,13 +581,13 @@ LINE1:
         If CMBCONTRACTOR.Text.Trim = "" Then FILLCONTRACT(CMBCONTRACTOR)
     End Sub
 
-    Sub DIRECTISSUESIZER(ByVal SIZERNAME As String)
+    Sub DIRECTISSUESIZER(ByVal SIZERNAME As String, Optional TRANSPORT As String = "")
         Try
             Dim ALPARAVAL As New ArrayList
             ALPARAVAL.Add(Format(Convert.ToDateTime(ROLLSRECDDATE.Text.Trim).Date, "MM/dd/yyyy"))
             ALPARAVAL.Add(CMBOURGODOWN.Text.Trim)
             ALPARAVAL.Add(SIZERNAME)
-            ALPARAVAL.Add("")   'TRANSPORT
+            ALPARAVAL.Add(TRANSPORT)   'TRANSPORT
             ALPARAVAL.Add("")   'VEHICLE NO
 
 
@@ -623,6 +623,7 @@ LINE1:
             ALPARAVAL.Add(Val(TXTROLLSRECDNO.Text.Trim))
             ALPARAVAL.Add("1")
             ALPARAVAL.Add("ROLLRECD")
+            ALPARAVAL.Add(Val(TXTPROGRAMNO.Text.Trim))
 
             Dim OBJROLLISSUE As New ClsRollIssueToSizer
             OBJROLLISSUE.alParaval = ALPARAVAL
@@ -1253,18 +1254,19 @@ LINE1:
                 CMBWINDINGMILL.Visible = True
 
 
-                TXTUSEDFIRKA.TabStop = False
-                TXTUSEDFIRKAWT.TabStop = False
-                TXTUSEDFIRKANETT.TabStop = False
+                'TXTUSEDFIRKA.TabStop = False
+                'TXTUSEDFIRKAWT.TabStop = False
+                'TXTUSEDFIRKANETT.TabStop = False
 
-                TXTRETFRESH.TabStop = False
-                TXTRETFRESHWT.TabStop = False
-                TXTRETFRESHNETT.TabStop = False
+                'TXTRETFRESH.TabStop = False
+                'TXTRETFRESHWT.TabStop = False
+                'TXTRETFRESHNETT.TabStop = False
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
     Sub CALC()
         If ClientName <> "SASHWINKUMAR" Then TXTENDS.Text = Format(Val(TXTTOTALENDS.Text.Trim) / Val(TXTROLLS.Text.Trim))
     End Sub
@@ -1288,7 +1290,7 @@ LINE1:
 
     Private Sub CMBCONTRACTOR_Validating(sender As Object, e As CancelEventArgs) Handles CMBCONTRACTOR.Validating
         Try
-            If CMBCONTRACTOR.Text.Trim = "" Then CONTRACTVALIDATE(CMBCONTRACTOR, e, Me)
+            If CMBCONTRACTOR.Text.Trim <> "" Then CONTRACTVALIDATE(CMBCONTRACTOR, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
