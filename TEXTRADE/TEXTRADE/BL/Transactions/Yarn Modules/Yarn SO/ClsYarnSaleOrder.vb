@@ -92,8 +92,7 @@ Public Class ClsYarnSaleOrder
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHDATE", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@BAGS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
@@ -192,8 +191,6 @@ Public Class ClsYarnSaleOrder
                 .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHDATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BAGS", alParaval(I)))
                 I = I + 1
