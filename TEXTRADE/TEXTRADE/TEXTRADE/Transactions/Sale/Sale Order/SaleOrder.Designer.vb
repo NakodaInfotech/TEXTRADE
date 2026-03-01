@@ -342,6 +342,7 @@ Partial Class SaleOrder
         '
         'BlendPanel1
         '
+        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.LBLORDERON)
         Me.BlendPanel1.Controls.Add(Me.CMBORDERON)
         Me.BlendPanel1.Controls.Add(Me.LBLCATEGORY)
@@ -2088,7 +2089,7 @@ Partial Class SaleOrder
         Me.TabControl2.Location = New System.Drawing.Point(15, 176)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(1207, 223)
+        Me.TabControl2.Size = New System.Drawing.Size(1346, 223)
         Me.TabControl2.TabIndex = 17
         '
         'tbitem
@@ -2114,7 +2115,7 @@ Partial Class SaleOrder
         Me.tbitem.Location = New System.Drawing.Point(4, 23)
         Me.tbitem.Name = "tbitem"
         Me.tbitem.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbitem.Size = New System.Drawing.Size(1199, 196)
+        Me.tbitem.Size = New System.Drawing.Size(1338, 196)
         Me.tbitem.TabIndex = 0
         Me.tbitem.Text = "Item Details"
         '

@@ -25,6 +25,7 @@ Partial Class UpdateRounder
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UpdateRounder))
         Me.cmbregister = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.cmdclear = New System.Windows.Forms.Button()
         Me.cmdEXIT = New System.Windows.Forms.Button()
         Me.CMDUPDATE = New System.Windows.Forms.Button()
         Me.CMBROUNDER = New System.Windows.Forms.ComboBox()
@@ -47,7 +48,6 @@ Partial Class UpdateRounder
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdOK = New System.Windows.Forms.Button()
-        Me.cmdclear = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDPARTY, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDITEM, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,7 +71,7 @@ Partial Class UpdateRounder
         'BlendPanel1
         '
         Me.BlendPanel1.AutoSize = True
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.SystemColors.InactiveCaption, System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.cmdclear)
         Me.BlendPanel1.Controls.Add(Me.cmdEXIT)
         Me.BlendPanel1.Controls.Add(Me.CMDUPDATE)
@@ -83,8 +83,22 @@ Partial Class UpdateRounder
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(572, 581)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'cmdclear
+        '
+        Me.cmdclear.BackColor = System.Drawing.Color.Transparent
+        Me.cmdclear.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdclear.FlatAppearance.BorderSize = 0
+        Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdclear.Location = New System.Drawing.Point(155, 97)
+        Me.cmdclear.Name = "cmdclear"
+        Me.cmdclear.Size = New System.Drawing.Size(89, 28)
+        Me.cmdclear.TabIndex = 722
+        Me.cmdclear.Text = "&Clear"
+        Me.cmdclear.UseVisualStyleBackColor = False
         '
         'cmdEXIT
         '
@@ -141,12 +155,12 @@ Partial Class UpdateRounder
         'GRIDPARTY
         '
         Me.GRIDPARTY.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDPARTY.Location = New System.Drawing.Point(372, 42)
+        Me.GRIDPARTY.Location = New System.Drawing.Point(19, 130)
         Me.GRIDPARTY.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GRIDPARTY.MainView = Me.GRIDITEM
         Me.GRIDPARTY.Name = "GRIDPARTY"
         Me.GRIDPARTY.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit4})
-        Me.GRIDPARTY.Size = New System.Drawing.Size(608, 515)
+        Me.GRIDPARTY.Size = New System.Drawing.Size(524, 432)
         Me.GRIDPARTY.TabIndex = 717
         Me.GRIDPARTY.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDITEM})
         '
@@ -217,7 +231,7 @@ Partial Class UpdateRounder
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(572, 25)
         Me.ToolStrip1.TabIndex = 610
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -300,30 +314,15 @@ Partial Class UpdateRounder
         Me.cmdOK.Text = "&Update"
         Me.cmdOK.UseVisualStyleBackColor = False
         '
-        'cmdclear
-        '
-        Me.cmdclear.BackColor = System.Drawing.Color.Transparent
-        Me.cmdclear.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdclear.FlatAppearance.BorderSize = 0
-        Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdclear.Location = New System.Drawing.Point(155, 97)
-        Me.cmdclear.Name = "cmdclear"
-        Me.cmdclear.Size = New System.Drawing.Size(89, 28)
-        Me.cmdclear.TabIndex = 722
-        Me.cmdclear.Text = "&Clear"
-        Me.cmdclear.UseVisualStyleBackColor = False
-        '
         'UpdateRounder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(572, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "UpdateRounder"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "UpdateRounder"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
         CType(Me.GRIDPARTY, System.ComponentModel.ISupportInitialize).EndInit()
