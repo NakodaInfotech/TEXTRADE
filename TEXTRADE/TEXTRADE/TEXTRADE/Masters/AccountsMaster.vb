@@ -713,6 +713,7 @@ NEXTLINE:
             alParaval.Add(DESIGNATION)
             alParaval.Add(CMOB)
             alParaval.Add(CEMAIL)
+
             alParaval.Add(TXTHINDINAME.Text.Trim)
             alParaval.Add(cmbrounder.Text.Trim)
 

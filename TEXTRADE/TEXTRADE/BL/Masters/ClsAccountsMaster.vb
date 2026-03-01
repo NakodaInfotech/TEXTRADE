@@ -231,10 +231,7 @@ Public Class ClsAccountsMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@LOCKDAYS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@HINDINAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@ROUNDER", alParaval(I)))
-                I += 1
+
 
                 'CONTACT DETAILS
                 .Add(New SqlClient.SqlParameter("@CNAME", alParaval(I)))
@@ -244,6 +241,11 @@ Public Class ClsAccountsMaster
                 .Add(New SqlClient.SqlParameter("@CMOB", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CEMAIL", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@HINDINAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@ROUNDER", alParaval(I)))
                 I += 1
             End With
 
@@ -472,10 +474,7 @@ Public Class ClsAccountsMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@LOCKDAYS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@HINDINAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@ROUNDER", alParaval(I)))
-                I += 1
+
                 'CONTACT DETAILS
                 .Add(New SqlClient.SqlParameter("@CNAME", alParaval(I)))
                 I += 1
@@ -484,6 +483,11 @@ Public Class ClsAccountsMaster
                 .Add(New SqlClient.SqlParameter("@CMOB", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CEMAIL", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@HINDINAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@ROUNDER", alParaval(I)))
                 I += 1
 
 
