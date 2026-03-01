@@ -49,18 +49,18 @@ Public Class BeamRecdFromSizer
                 TXTWTDIFF.Text = Format(Val(TXTWTSUMM.Text.Trim) - Val(TXTWTTOTAL.Text.Trim), "0.000")
                 LBLTAPLINE.Text = Format(Val(TOTALTAPLINE / (GRIDBEAM.RowCount)), "0.00")
 
-                'GET ACTUAL CUT TO BE RECD WITH RESPECT TO PROGRAM NO
-                If Val(TXTPROGRAMNO.Text.Trim) > 0 Then
-                    Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.search("PROGRAM_LENGTH AS LENGTH", "", "PROGRAMMASTER", " AND PROGRAM_SRNO = " & Val(TXTPROGRAMNO.Text.Trim) & " AND PROGRAM_YEARID = " & YearId)
-                    If DT.Rows.Count > 0 Then TXTACTUALCUT.Text = Format((Val(DT.Rows(0).Item(0)) / Val(LBLTAPLINE.Text)) * 1.02, "0.00")
-                Else
-                    TXTACTUALCUT.Text = Format((Val(TXTLENGTH.Text.Trim) / Val(LBLTAPLINE.Text)) * 1.02, "0.00")
-                End If
+            'GET ACTUAL CUT TO BE RECD WITH RESPECT TO PROGRAM NO
+            'If Val(TXTPROGRAMNO.Text.Trim) > 0 Then
+            '    Dim OBJCMN As New ClsCommon
+            '    Dim DT As DataTable = OBJCMN.search("PROGRAM_LENGTH AS LENGTH", "", "PROGRAMMASTER", " AND PROGRAM_SRNO = " & Val(TXTPROGRAMNO.Text.Trim) & " AND PROGRAM_YEARID = " & YearId)
+            '    If DT.Rows.Count > 0 Then TXTACTUALCUT.Text = Format((Val(DT.Rows(0).Item(0)) / Val(LBLTAPLINE.Text)) * 1.02, "0.00")
+            'Else
+            '    TXTACTUALCUT.Text = Format((Val(TXTLENGTH.Text.Trim) / Val(LBLTAPLINE.Text)) * 1.02, "0.00")
+            'End If
 
 
-                'COUNT CALC
-                If GRIDBEAM.RowCount > 0 Then TXTCOUNT.Text = Format(((Val(GRIDBEAM.Rows(0).Cells(GENDS.Index).Value) * Val(LBLTAPLINE.Text.Trim)) / 1850) / (Val(TXTWTSUMM.Text.Trim) / Val(TXTCUTSUMM.Text.Trim)), "0.00")
+            'COUNT CALC
+            If GRIDBEAM.RowCount > 0 Then TXTCOUNT.Text = Format(((Val(GRIDBEAM.Rows(0).Cells(GENDS.Index).Value) * Val(LBLTAPLINE.Text.Trim)) / 1850) / (Val(TXTWTSUMM.Text.Trim) / Val(TXTCUTSUMM.Text.Trim)), "0.00")
 
 
                 'CALC LONGATION

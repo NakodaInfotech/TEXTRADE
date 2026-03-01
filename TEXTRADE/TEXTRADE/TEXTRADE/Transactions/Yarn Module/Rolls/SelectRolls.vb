@@ -55,7 +55,7 @@ Public Class SelectRolls
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("ENDS"), Val(dtrow("ROLLS")), Val(dtrow("WT")), dtrow("NO"), dtrow("SRNO"), dtrow("TYPE"), Val("PROGRAMNO"), Val(dtrow("TOTALENDS")), Val(dtrow("LENGTH")))
+                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("ENDS"), Val(dtrow("ROLLS")), Val(dtrow("WT")), dtrow("NO"), dtrow("SRNO"), dtrow("TYPE"), Val(dtrow("PROGRAMNO")), Val(dtrow("TOTALENDS")), Val(dtrow("LENGTH")))
                 End If
             Next
             Me.Close()

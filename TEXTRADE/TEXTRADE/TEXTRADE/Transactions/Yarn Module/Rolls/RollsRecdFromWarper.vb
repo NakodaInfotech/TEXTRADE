@@ -623,6 +623,7 @@ LINE1:
             ALPARAVAL.Add(Val(TXTROLLSRECDNO.Text.Trim))
             ALPARAVAL.Add("1")
             ALPARAVAL.Add("ROLLRECD")
+            ALPARAVAL.Add(Val(TXTPROGRAMNO.Text.Trim))
 
             Dim OBJROLLISSUE As New ClsRollIssueToSizer
             OBJROLLISSUE.alParaval = ALPARAVAL
@@ -1253,13 +1254,13 @@ LINE1:
                 CMBWINDINGMILL.Visible = True
 
 
-                TXTUSEDFIRKA.TabStop = False
-                TXTUSEDFIRKAWT.TabStop = False
-                TXTUSEDFIRKANETT.TabStop = False
+                'TXTUSEDFIRKA.TabStop = False
+                'TXTUSEDFIRKAWT.TabStop = False
+                'TXTUSEDFIRKANETT.TabStop = False
 
-                TXTRETFRESH.TabStop = False
-                TXTRETFRESHWT.TabStop = False
-                TXTRETFRESHNETT.TabStop = False
+                'TXTRETFRESH.TabStop = False
+                'TXTRETFRESHWT.TabStop = False
+                'TXTRETFRESHNETT.TabStop = False
             End If
         Catch ex As Exception
             Throw ex
@@ -1289,7 +1290,7 @@ LINE1:
 
     Private Sub CMBCONTRACTOR_Validating(sender As Object, e As CancelEventArgs) Handles CMBCONTRACTOR.Validating
         Try
-            If CMBCONTRACTOR.Text.Trim = "" Then CONTRACTVALIDATE(CMBCONTRACTOR, e, Me)
+            If CMBCONTRACTOR.Text.Trim <> "" Then CONTRACTVALIDATE(CMBCONTRACTOR, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
