@@ -205,6 +205,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GBAGS.Caption = "Bags"
         Me.GBAGS.FieldName = "BAGS"
         Me.GBAGS.Name = "GBAGS"
+        Me.GBAGS.OptionsColumn.AllowEdit = False
         Me.GBAGS.Visible = True
         Me.GBAGS.VisibleIndex = 11
         Me.GBAGS.Width = 80
@@ -214,6 +215,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GWT.Caption = "WT"
         Me.GWT.FieldName = "WT"
         Me.GWT.Name = "GWT"
+        Me.GWT.OptionsColumn.AllowEdit = False
         Me.GWT.Visible = True
         Me.GWT.VisibleIndex = 12
         Me.GWT.Width = 80
@@ -223,6 +225,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.GCONES.Caption = "Cones"
         Me.GCONES.FieldName = "CONES"
         Me.GCONES.Name = "GCONES"
+        Me.GCONES.OptionsColumn.AllowEdit = False
         Me.GCONES.Visible = True
         Me.GCONES.VisibleIndex = 13
         '

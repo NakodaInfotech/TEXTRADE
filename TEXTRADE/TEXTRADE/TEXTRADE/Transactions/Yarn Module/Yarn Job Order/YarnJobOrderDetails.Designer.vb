@@ -43,11 +43,11 @@ Partial Class YarnJobOrderDetails
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TOOLWARPGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLWEFTGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
-        Me.TOOLWARPGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
-        Me.TOOLWEFTGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,7 +57,6 @@ Partial Class YarnJobOrderDetails
         '
         'BlendPanel1
         '
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
@@ -124,6 +123,7 @@ Partial Class YarnJobOrderDetails
         Me.GNAME.Caption = "Party Name"
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 2
         Me.GNAME.Width = 200
@@ -133,6 +133,7 @@ Partial Class YarnJobOrderDetails
         Me.GREFNO.Caption = "Ref No"
         Me.GREFNO.FieldName = "REFNO"
         Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.OptionsColumn.AllowEdit = False
         Me.GREFNO.Visible = True
         Me.GREFNO.VisibleIndex = 3
         Me.GREFNO.Width = 100
@@ -182,6 +183,7 @@ Partial Class YarnJobOrderDetails
         Me.GREEDSPACE.Caption = "Reed Space"
         Me.GREEDSPACE.FieldName = "REEDSPACE"
         Me.GREEDSPACE.Name = "GREEDSPACE"
+        Me.GREEDSPACE.OptionsColumn.AllowEdit = False
         Me.GREEDSPACE.Visible = True
         Me.GREEDSPACE.VisibleIndex = 8
         Me.GREEDSPACE.Width = 100
@@ -191,6 +193,7 @@ Partial Class YarnJobOrderDetails
         Me.GPICKS.Caption = "Picks"
         Me.GPICKS.FieldName = "PICKS"
         Me.GPICKS.Name = "GPICKS"
+        Me.GPICKS.OptionsColumn.AllowEdit = False
         Me.GPICKS.Visible = True
         Me.GPICKS.VisibleIndex = 9
         '
@@ -199,6 +202,7 @@ Partial Class YarnJobOrderDetails
         Me.GTOTALENDS.Caption = "Total Ends"
         Me.GTOTALENDS.FieldName = "TOTALENDS"
         Me.GTOTALENDS.Name = "GTOTALENDS"
+        Me.GTOTALENDS.OptionsColumn.AllowEdit = False
         Me.GTOTALENDS.Visible = True
         Me.GTOTALENDS.VisibleIndex = 10
         Me.GTOTALENDS.Width = 100
@@ -257,6 +261,22 @@ Partial Class YarnJobOrderDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
+        'TOOLWARPGRIDDETAILS
+        '
+        Me.TOOLWARPGRIDDETAILS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TOOLWARPGRIDDETAILS.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLWARPGRIDDETAILS.Name = "TOOLWARPGRIDDETAILS"
+        Me.TOOLWARPGRIDDETAILS.Size = New System.Drawing.Size(109, 22)
+        Me.TOOLWARPGRIDDETAILS.Text = "Warp Grid Details"
+        '
+        'TOOLWEFTGRIDDETAILS
+        '
+        Me.TOOLWEFTGRIDDETAILS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TOOLWEFTGRIDDETAILS.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLWEFTGRIDDETAILS.Name = "TOOLWEFTGRIDDETAILS"
+        Me.TOOLWEFTGRIDDETAILS.Size = New System.Drawing.Size(105, 22)
+        Me.TOOLWEFTGRIDDETAILS.Text = "Weft Grid Details"
+        '
         'CMDEXIT
         '
         Me.CMDEXIT.Location = New System.Drawing.Point(662, 541)
@@ -283,22 +303,6 @@ Partial Class YarnJobOrderDetails
         Me.CMDADD.TabIndex = 0
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
-        '
-        'TOOLWARPGRIDDETAILS
-        '
-        Me.TOOLWARPGRIDDETAILS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TOOLWARPGRIDDETAILS.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLWARPGRIDDETAILS.Name = "TOOLWARPGRIDDETAILS"
-        Me.TOOLWARPGRIDDETAILS.Size = New System.Drawing.Size(109, 22)
-        Me.TOOLWARPGRIDDETAILS.Text = "Warp Grid Details"
-        '
-        'TOOLWEFTGRIDDETAILS
-        '
-        Me.TOOLWEFTGRIDDETAILS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TOOLWEFTGRIDDETAILS.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLWEFTGRIDDETAILS.Name = "TOOLWEFTGRIDDETAILS"
-        Me.TOOLWEFTGRIDDETAILS.Size = New System.Drawing.Size(105, 22)
-        Me.TOOLWEFTGRIDDETAILS.Text = "Weft Grid Details"
         '
         'JobOrderDetails
         '
