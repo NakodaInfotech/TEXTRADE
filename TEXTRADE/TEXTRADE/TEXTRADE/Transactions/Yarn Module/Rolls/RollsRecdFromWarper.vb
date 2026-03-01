@@ -581,13 +581,13 @@ LINE1:
         If CMBCONTRACTOR.Text.Trim = "" Then FILLCONTRACT(CMBCONTRACTOR)
     End Sub
 
-    Sub DIRECTISSUESIZER(ByVal SIZERNAME As String)
+    Sub DIRECTISSUESIZER(ByVal SIZERNAME As String, Optional TRANSPORT As String = "")
         Try
             Dim ALPARAVAL As New ArrayList
             ALPARAVAL.Add(Format(Convert.ToDateTime(ROLLSRECDDATE.Text.Trim).Date, "MM/dd/yyyy"))
             ALPARAVAL.Add(CMBOURGODOWN.Text.Trim)
             ALPARAVAL.Add(SIZERNAME)
-            ALPARAVAL.Add("")   'TRANSPORT
+            ALPARAVAL.Add(TRANSPORT)   'TRANSPORT
             ALPARAVAL.Add("")   'VEHICLE NO
 
 
