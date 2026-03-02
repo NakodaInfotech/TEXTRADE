@@ -2288,7 +2288,7 @@ LINESINGLE:
                             Exit Sub
                         End If
                     End If
-                        If ClientName <> "SOFTAS" Then fillgrid(cmbcolor.Text.Trim)
+                    If ClientName <> "SOFTAS" And ClientName <> "SWPL" Then fillgrid(cmbcolor.Text.Trim)
                     TOTAL()
                 End If
             Else
@@ -2681,7 +2681,7 @@ LINESINGLE:
                 If ClientName = "SOFTAS" Then cmbcolor.Text = ""
 
                 'GET ITEMNAME AUTO
-                If (ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "NTC") And CMBDESIGN.Text.Trim <> "" Then
+                If (ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "NTC" Or ClientName = "SWPL") And CMBDESIGN.Text.Trim <> "" Then
                     DT = OBJCMN.SEARCH("ISNULL(ITEM_NAME,'') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID", " AND DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
                 End If
