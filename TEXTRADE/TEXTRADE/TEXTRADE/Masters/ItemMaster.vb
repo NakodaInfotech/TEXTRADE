@@ -1665,6 +1665,8 @@ line1:
                 GRPITEMDETAILS.Visible = True
             End If
 
+            If ClientName = "SWPL" Then LBLSELVEDGE.Text = "Parent Item Name"
+
             If ClientName = "MNIKHIL" Then
                 LBLGSM.Visible = True
                 TXTGSM.Visible = True
@@ -2496,7 +2498,7 @@ line1:
     End Sub
 
     Sub YARNGROUPBOX()
-        If HIDEYARN = False And ClientName <> "VALIANT" Then
+        If HIDEYARN = False And ClientName <> "VALIANT" And ClientName <> "SWPL" Then
             GPMAINGROUP.Visible = True
             GRPBEAMDETAILS.Visible = True
             GRPWEFTYARNDETAILS.Visible = True
