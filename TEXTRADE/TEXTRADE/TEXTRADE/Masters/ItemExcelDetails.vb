@@ -121,6 +121,7 @@ Public Class ItemExcelDetails
     Private Sub ItemExcelDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If ClientName = "SANGHVI" Then GSELVEDGE.Caption = "Tally Item Name"
+            If ClientName = "SWPL" Then GSELVEDGE.Caption = "Parent Item Name"
         Catch ex As Exception
             Throw ex
         End Try
