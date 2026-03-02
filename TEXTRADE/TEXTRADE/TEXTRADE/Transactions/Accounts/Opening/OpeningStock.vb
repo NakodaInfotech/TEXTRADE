@@ -1009,7 +1009,7 @@ Public Class OpeningStock
                 cmbquality.TabStop = False
                 If ClientName = "SWPL" Then CMBDESIGNNO.TabStop = False
                 cmbname.TabStop = False
-                cmbtoname.TabStop = False
+                If cmbtype.Text.Trim = "INHOUSE" Then cmbtoname.TabStop = False
                 TXTBILLNO.TabStop = False
                 If ClientName <> "SSC" Then txtcut.TabStop = False
                 If ClientName <> "SWPL" Then TXTWT.TabStop = False

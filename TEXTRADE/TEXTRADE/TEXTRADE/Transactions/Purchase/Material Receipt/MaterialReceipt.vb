@@ -3283,8 +3283,9 @@ LINE1:
         End If
 
         If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" Then TXTCUT.Clear()
-        If ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SUBHLAXMI" And ClientName <> "SUPEEMA" And ClientName <> "SARAYU" Then TXTBALENO.Clear()
+        If ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SUBHLAXMI" And ClientName <> "SUPEEMA" And ClientName <> "SARAYU" And ClientName <> "SWPL" Then TXTBALENO.Clear()
         TXTWT.Clear()
+        TXTGRIDDESC.Clear()
         TXTMTRS.Clear()
         TXTRECDMTRS.Clear()
         If ClientName <> "SHREENAKODA" Then CMBRACK.Text = ""
@@ -3296,7 +3297,7 @@ LINE1:
             TXTRECDMTRS.Focus()
         ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "SUBHLAXMI" Or ClientName = "OWAIS" Or ClientName = "MAHAJAN" Or ClientName = "SWPL" Then
             TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
-            txtqty.Focus()
+            If ClientName = "SWPL" Then TXTBALENO.Focus() Else txtqty.Focus()
         ElseIf ClientName = "SNCM" Then
 
             GRIDMTRS.EndEdit() '
