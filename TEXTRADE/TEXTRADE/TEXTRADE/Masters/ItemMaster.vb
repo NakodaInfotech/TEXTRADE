@@ -854,7 +854,7 @@ Public Class ItemMaster
         If GRIDWEFTDOUBLECLICK = False Then
 
             If GRIDCOLOR.RowCount > 0 Then
-                GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), CMBWEFTQUALITY.Text.Trim, CMBWEFTSHADE.Text.Trim, Val(TXTWEFTPICK.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTAMOUNT.Text.Trim), GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(GSHADESRNO.Index).Value)
+                GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), CMBWEFTQUALITY.Text.Trim, CMBWEFTSHADE.Text.Trim, Val(TXTWEFTDENIER.Text.Trim), Val(TXTWEFTPICK.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTAMOUNT.Text.Trim), GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(GSHADESRNO.Index).Value)
                 DT_WEFTDETAILS.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), CMBWEFTQUALITY.Text.Trim, CMBWEFTSHADE.Text.Trim, Val(TXTWEFTPICK.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTAMOUNT.Text.Trim), GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(0).Value)
                 getsrno(GRIDWEFT)
             Else
@@ -867,10 +867,10 @@ Public Class ItemMaster
                 If GRIDWEFT.Item(FSRNO.Index, TEMPWEFTROW).Value = DT_WEFTDETAILS.Rows(I).Item("WEFTSRNO") And GRIDWEFT.Item(FSHADESRNO.Index, TEMPWEFTROW).Value = DT_WEFTDETAILS.Rows(I).Item("SHADESRNO") Then
                     DT_WEFTDETAILS.Rows(I).Item("WEFTQUALITY") = CMBWEFTQUALITY.Text.Trim
                     DT_WEFTDETAILS.Rows(I).Item("WEFTSHADE") = CMBWEFTSHADE.Text.Trim
-                    DT_WEFTDETAILS.Rows(I).Item("WEFTPICK") = Val(TXTWEFTDENIER.Text.Trim)
-                    DT_WEFTDETAILS.Rows(I).Item("WEFTWT") = Val(TXTWEFTPICK.Text.Trim)
-                    DT_WEFTDETAILS.Rows(I).Item("WEFTRATE") = Val(TXTWEFTWT.Text.Trim)
-                    DT_WEFTDETAILS.Rows(I).Item("WEFTAMOUNT") = Val(TXTWEFTRATE.Text.Trim)
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTPICK") = Val(TXTWEFTPICK.Text.Trim)
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTWT") = Val(TXTWEFTWT.Text.Trim)
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTRATE") = Val(TXTWEFTRATE.Text.Trim)
+                    DT_WEFTDETAILS.Rows(I).Item("WEFTAMOUNT") = Val(TXTWEFTAMOUNT.Text.Trim)
                 End If
             Next
 LINE1:
