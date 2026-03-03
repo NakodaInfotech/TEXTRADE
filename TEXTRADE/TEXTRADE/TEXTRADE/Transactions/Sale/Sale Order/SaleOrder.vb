@@ -1374,7 +1374,14 @@ line1:
                         If DT.Rows(0).Item("AGENT") <> "" Then CMBAGENT.Text = DT.Rows(0).Item("AGENT")
                         If DT.Rows(0).Item("TRANS1") <> "" Then cmbtrans.Text = DT.Rows(0).Item("TRANS1")
                         If DT.Rows(0).Item("CITYNAME") <> "" Then cmbcity.Text = DT.Rows(0).Item("CITYNAME")
-                        If DT.Rows(0).Item("PACKINGTYPE") <> "" Then CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
+                        If DT.Rows(0).Item("PACKINGTYPE") <> "" Then
+                            CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
+                        Else
+                            If DT.Rows(0).Item("PACKINGTYPE") = "" Then
+                                CMBPACKINGTYPE.Text = DT.Rows(0).Item("PACKINGTYPE")
+                            End If
+                        End If
+
                     End If
                 End If
             End If
@@ -2874,6 +2881,11 @@ LINESINGLE:
 
     Private Sub cmbname_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Validated
         Try
+            If ClientName = "SIDDHGIRI" Then
+                If cmbname.Text.Trim <> "" Then CMBPACKING.Text = cmbname.Text.Trim
+            Else
+                If CMBPACKING.Text.Trim <> "" Then CMBPACKING.Text = cmbname.Text.Trim
+            End If
             If cmbname.Text.Trim <> "" And CMBPACKING.Text.Trim = "" And ClientName <> "INDRAPUJAIMPEX" Then CMBPACKING.Text = cmbname.Text.Trim
         Catch ex As Exception
             Throw ex
