@@ -3283,8 +3283,9 @@ LINE1:
         End If
 
         If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" Then TXTCUT.Clear()
-        If ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SUBHLAXMI" And ClientName <> "SUPEEMA" And ClientName <> "SARAYU" Then TXTBALENO.Clear()
+        If ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SUBHLAXMI" And ClientName <> "SUPEEMA" And ClientName <> "SARAYU" And ClientName <> "SWPL" Then TXTBALENO.Clear()
         TXTWT.Clear()
+        TXTGRIDDESC.Clear()
         TXTMTRS.Clear()
         TXTRECDMTRS.Clear()
         If ClientName <> "SHREENAKODA" Then CMBRACK.Text = ""
@@ -3294,9 +3295,9 @@ LINE1:
         TXTPCSNO.Clear()
         If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Then
             TXTRECDMTRS.Focus()
-        ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "SUBHLAXMI" Or ClientName = "OWAIS" Or ClientName = "MAHAJAN" Then
+        ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "SUBHLAXMI" Or ClientName = "OWAIS" Or ClientName = "MAHAJAN" Or ClientName = "SWPL" Then
             TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
-            txtqty.Focus()
+            If ClientName = "SWPL" Then TXTBALENO.Focus() Else txtqty.Focus()
         ElseIf ClientName = "SNCM" Then
 
             GRIDMTRS.EndEdit() '
@@ -4309,12 +4310,18 @@ LINE1:
             End If
 
 
-            If ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Then
+            If ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "SWPL" Then
                 CMBCHECKSRNO.TabStop = False
                 CMBQUALITY.TabStop = False
-                TXTBALENO.TabStop = False
+                If ClientName <> "SWPL" Then
+                    TXTBALENO.TabStop = False
+                    TXTWT.TabStop = False
+                Else
+                    CMBDESIGN.TabStop = False
+                    CMBSHELF.TabStop = False
+                    CMBYESNO.TabStop = False
+                End If
                 TXTCUT.TabStop = False
-                TXTWT.TabStop = False
                 TXTRATE.TabStop = False
                 CMBPER.TabStop = False
                 If ClientName = "SOFTAS" Then TXTGRIDDESC.TabStop = False
@@ -5339,14 +5346,4 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMDCLOSE_Validated(sender As Object, e As EventArgs) Handles CMDCLOSE.Validated
-        Try
-            'If GBMTRS.Visible = True Then
-            '    MsgBox("CLOSE THE MTRS BOX", MsgBoxStyle.Critical)
-            '    Exit Sub
-            'End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 End Class

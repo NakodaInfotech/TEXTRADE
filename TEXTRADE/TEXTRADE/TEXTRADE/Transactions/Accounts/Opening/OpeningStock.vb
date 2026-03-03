@@ -1,4 +1,5 @@
 ﻿
+Imports System.ComponentModel
 Imports BL
 
 Public Class OpeningStock
@@ -178,7 +179,7 @@ Public Class OpeningStock
 
     Private Sub cmbtoname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbtoname.Validating
         Try
-            If cmbtoname.Text.Trim <> "" Then namevalidate(cmbtoname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
+            If cmbtoname.Text.Trim <> "" Then NAMEVALIDATE(cmbtoname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -186,7 +187,7 @@ Public Class OpeningStock
 
     Private Sub cmbtoname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbtoname.Enter
         Try
-            If cmbtoname.Text.Trim = "" Then fillname(cmbtoname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
+            If cmbtoname.Text.Trim = "" Then FILLNAME(cmbtoname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -232,8 +233,8 @@ Public Class OpeningStock
             fillQUALITY(cmbquality, EDIT)
             FILLDESIGN(CMBDESIGNNO, cmbmerchant.Text.Trim)
             FILLCOLOR(cmbcolor, CMBDESIGNNO.Text.Trim, cmbmerchant.Text.Trim)
-            If ClientName = "RADHA" Then FILLNAME(cmbname, EDIT, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors')") Else fillname(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
-            fillname(cmbtoname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'")
+            If ClientName = "RADHA" Then FILLNAME(cmbname, EDIT, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors')") Else FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'")
+            FILLNAME(cmbtoname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'")
             fillGODOWN(cmbgodown, EDIT)
             fillunit(cmbunit)
             If cmbunit.Text.Trim = "" Then fillunit(cmbunit)
@@ -660,7 +661,7 @@ Public Class OpeningStock
         Try
             'GET BARCODE NO FROM DATABASE
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search(" SM_BARCODE AS BARCODE ", "", " STOCKMASTER ", " AND SM_NO = " & Val(TXTNO.Text.Trim) & " AND SM_CMPID = " & CmpId & " AND SM_LOCATIONID = " & Locationid & " AND SM_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" SM_BARCODE AS BARCODE ", "", " STOCKMASTER ", " AND SM_NO = " & Val(TXTNO.Text.Trim) & " AND SM_CMPID = " & CmpId & " AND SM_LOCATIONID = " & Locationid & " AND SM_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then TXTBARCODE.Text = DT.Rows(0).Item("BARCODE")
             PRINTBARCODE()
         Catch ex As Exception
@@ -676,7 +677,7 @@ Public Class OpeningStock
                     If CHKPRINT.Checked = False And Val(TXTFROM.Text.Trim) = 0 Then Exit Sub
 
                     Dim WHOLESALEBARCODE As Integer = 0
-                    If ClientName = "CC"  Or ClientName = "C3" Or ClientName = "SHREEDEV" Then WHOLESALEBARCODE = MsgBox("Wish to Print Wholesale Barcode?", MsgBoxStyle.YesNo)
+                    If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then WHOLESALEBARCODE = MsgBox("Wish to Print Wholesale Barcode?", MsgBoxStyle.YesNo)
 
                     Dim TEMPHEADER As String = ""
                     If ClientName = "YASHVI" Then
@@ -968,7 +969,213 @@ Public Class OpeningStock
         End Try
     End Sub
 
-    Private Sub TXTREMARKS_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTREMARKS.Validating
+    Sub total()
+        Try
+            If ClientName <> "CC" And ClientName <> "C3" And ClientName <> "SHREEDEV" Then
+                If gridstock.RowCount > 0 Then
+                    For Each row As DataGridViewRow In gridstock.Rows
+                        If row.Cells(GPer.Index).EditedFormattedValue = "Mtrs" Then
+                            row.Cells(GAMOUNT.Index).Value = (row.Cells(gMtrs.Index).EditedFormattedValue * row.Cells(GRATE.Index).EditedFormattedValue)
+                        ElseIf row.Cells(GPer.Index).EditedFormattedValue = "Qty" Then
+                            row.Cells(GAMOUNT.Index).Value = (row.Cells(Gpcs.Index).EditedFormattedValue * row.Cells(GRATE.Index).EditedFormattedValue)
+                        End If
+                        'row.Cells(GAMOUNT.Index).Value = (row.Cells(gMtrs.Index).EditedFormattedValue * row.Cells(GRATE.Index).EditedFormattedValue)
+                    Next
+                End If
+                'TXTAMOUNT.Text = Val(txtMtrs.Text.Trim) * Val(TXTRATE.Text.Trim)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub txtMtrs_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtMtrs.Validated, TXTRATE.Validated
+        total()
+    End Sub
+
+    Private Sub OpeningStock_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+        Try
+            If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
+                TXTBARCODE.Visible = True
+                LBLBARCODE.Visible = True
+                GRATE.HeaderText = "Pur Rate"
+                GAMOUNT.HeaderText = "Sale Rate"
+                TXTAMOUNT.ReadOnly = False
+                TXTAMOUNT.BackColor = Color.White
+            End If
+            If ClientName = "SPCORP" Then CMBDYEINGJOB.Enabled = True
+
+            If ClientName = "SBA" Or ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL" Then
+                cmbquality.TabStop = False
+                If ClientName = "SWPL" Then CMBDESIGNNO.TabStop = False
+                cmbname.TabStop = False
+                If cmbtype.Text.Trim = "INHOUSE" Then cmbtoname.TabStop = False
+                TXTBILLNO.TabStop = False
+                If ClientName <> "SSC" Then txtcut.TabStop = False
+                If ClientName <> "SWPL" Then TXTWT.TabStop = False
+                CMBPER.TabStop = False
+                If ClientName <> "REALCORPORATION" And ClientName <> "SWPL" Then CMBRACK.TabStop = False
+                CMBSHELF.TabStop = False
+                TXTRATE.TabStop = False
+                TXTAMOUNT.TabStop = False
+                TXTADDLESS.TabStop = False
+                TXTNETTRATE.TabStop = False
+                TXTPARTYCHNO.TabStop = False
+                CMBDYEINGJOB.TabStop = False
+                TXTREMARKS.TabStop = False
+            End If
+
+            If (ClientName = "DJIMPEX" Or ClientName = "CHINTAN") And cmbtype.Text.Trim = "INHOUSE" Then TXTYARDS.Visible = True
+
+            If ClientName = "SONU" Then cmbunit.Text = "ROLL"
+            If ClientName = "PURPLE" Then CHKPRINT.CheckState = CheckState.Checked
+            If ClientName = "PARAS" And UserName <> "Admin" Then Exit Sub
+
+            If ClientName = "MAHAVIRPOLYCOT" And cmbtype.Text.Trim <> "INHOUSE" Then
+                TXTADDLESS.TabStop = True
+                TXTNETTRATE.TabStop = True
+            End If
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTBARCODE_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTBARCODE.Validated
+        Try
+            If (ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV") And TXTBARCODE.Text.Trim <> "" Then
+                'FETCH ENTRY FROM LAST YEAR TO ENTER SAME IN OPENINGSTOCK, DO NOT PUT YEARID CLAUSE
+                'DONE BY GULKIT DO NOT CHANGE
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("*", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "'")
+                If DT.Rows.Count > 0 Then
+
+                    'CHECK WHETHER SAME BARCODE IS ENTERED OR NOT
+                    Dim DTCHECK As DataTable = OBJCMN.SEARCH("*", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND YEARID = " & YearId)
+                    If DTCHECK.Rows.Count > 0 Then
+                        MsgBox("Barcode Already Present", MsgBoxStyle.Critical)
+                        TXTBARCODE.Clear()
+                        TXTBARCODE.Focus()
+                        Exit Sub
+                    End If
+
+                    txtsrno.Text = gridstock.RowCount + 1
+                    cmbpiecetype.Text = DT.Rows(0).Item("PIECETYPE")
+                    cmbmerchant.Text = DT.Rows(0).Item("ITEMNAME")
+                    cmbquality.Text = DT.Rows(0).Item("QUALITY")
+                    CMBDESIGNNO.Text = DT.Rows(0).Item("DESIGNNO")
+                    cmbcolor.Text = DT.Rows(0).Item("COLOR")
+                    cmbtoname.Text = DT.Rows(0).Item("JOBBERNAME")
+                    TXTBILLNO.Text = DT.Rows(0).Item("CHALLANNO")
+                    cmbgodown.Text = DT.Rows(0).Item("GODOWN")
+                    txtcut.Text = Val(DT.Rows(0).Item("CUT"))
+                    cmbunit.Text = DT.Rows(0).Item("UNIT")
+                    txtpcs.Text = Val(DT.Rows(0).Item("PCS"))
+                    txtMtrs.Text = Val(DT.Rows(0).Item("MTRS"))
+                    TXTRATE.Text = Val(DT.Rows(0).Item("PURRATE"))
+                    TXTAMOUNT.Text = Val(DT.Rows(0).Item("SALERATE"))
+
+                    total()
+                    SAVE()
+                    CLEAR = True
+                    fillgrid()
+                    TXTBARCODE.Focus()
+                Else
+                    MsgBox("Invaid Barcode", MsgBoxStyle.Critical)
+                    TXTBARCODE.Clear()
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBRACK_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBRACK.Enter
+        Try
+            If CMBRACK.Text.Trim = "" Then FILLRACK(CMBRACK)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBRACK_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBRACK.Validating
+        Try
+            If CMBRACK.Text.Trim <> "" Then RACKVALIDATE(CMBRACK, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSHELF_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBSHELF.Enter
+        Try
+            If CMBSHELF.Text.Trim = "" Then FILLSHELF(CMBSHELF)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSHELF_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBSHELF.Validating
+        Try
+            If CMBSHELF.Text.Trim <> "" Then SHELFVALIDATE(CMBSHELF, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDESIGNNO_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBDESIGNNO.Validated
+        Try
+            If CMBDESIGNNO.Text.Trim <> "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_PURRATE,0) AS PURRATE, ISNULL(DESIGN_SALERATE,0) AS SALERATE, ISNULL(DESIGN_WRATE,0) AS WRATE, ISNULL(ITEMMASTER.ITEM_NAME,'') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID ", " AND DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND DESIGN_YEARID =  " & YearId)
+                TXTRATE.Text = Val(DT.Rows(0).Item("PURRATE"))
+                TXTAMOUNT.Text = Val(DT.Rows(0).Item("SALERATE"))
+                If (ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "NTC") Then cmbmerchant.Text = DT.Rows(0).Item("ITEMNAME")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTSEARCHBARCODE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTSEARCHBARCODE.Validated
+        For Each ROW As DataGridViewRow In gridstock.Rows
+            If LCase(ROW.Cells(gBarcode.Index).Value) = LCase(TXTSEARCHBARCODE.Text.Trim) Then
+                gridstock.FirstDisplayedScrollingRowIndex = ROW.Index
+                gridstock.Rows(ROW.Index).Selected = True
+                TXTSEARCHBARCODE.Clear()
+                Exit Sub
+            End If
+        Next
+    End Sub
+
+    Private Sub TXTYARDS_Validated(sender As Object, e As EventArgs) Handles TXTYARDS.Validated
+        Try
+            If Val(TXTYARDS.Text.Trim) > 0 And ClientName <> "CHINTAN" Then txtMtrs.Text = Format(Val(TXTYARDS.Text.Trim) * 0.914, "0.00")
+            txtMtrs.Focus()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTBALENO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBALENO.Validating
+        Try
+            'CHECK FOR DUPLICATE BALENO
+            If ClientName = "SWPL" And TXTBALENO.Text.Trim <> "" And GRIDDOUBLECLICK = False Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("BARCODE", "", "BARCODESTOCK", " AND BALENO = '" & TXTBALENO.Text.Trim & "' AND YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    MsgBox("Bale No Already Present in Stock", MsgBoxStyle.Critical)
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTLRNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTLRNO.Validating
         If cmbpiecetype.Text.Trim <> "" And cmbmerchant.Text.Trim <> "" And Val(txtpcs.Text.Trim) > 0 Then
             If ClientName <> "AXIS" And ClientName <> "GELATO" And Val(txtMtrs.Text.Trim) = 0 Then Exit Sub
             If cmbtype.Text.Trim = "INHOUSE" Then
@@ -1097,209 +1304,4 @@ Public Class OpeningStock
             Exit Sub
         End If
     End Sub
-
-    Sub total()
-        Try
-            If ClientName <> "CC" And ClientName <> "C3" And ClientName <> "SHREEDEV" Then
-                If gridstock.RowCount > 0 Then
-                    For Each row As DataGridViewRow In gridstock.Rows
-                        If row.Cells(GPer.Index).EditedFormattedValue = "Mtrs" Then
-                            row.Cells(GAMOUNT.Index).Value = (row.Cells(gMtrs.Index).EditedFormattedValue * row.Cells(GRATE.Index).EditedFormattedValue)
-                        ElseIf row.Cells(GPer.Index).EditedFormattedValue = "Qty" Then
-                            row.Cells(GAMOUNT.Index).Value = (row.Cells(Gpcs.Index).EditedFormattedValue * row.Cells(GRATE.Index).EditedFormattedValue)
-                        End If
-                        'row.Cells(GAMOUNT.Index).Value = (row.Cells(gMtrs.Index).EditedFormattedValue * row.Cells(GRATE.Index).EditedFormattedValue)
-                    Next
-                End If
-                'TXTAMOUNT.Text = Val(txtMtrs.Text.Trim) * Val(TXTRATE.Text.Trim)
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub txtMtrs_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtMtrs.Validated
-        total()
-    End Sub
-
-    Private Sub TXTRATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTRATE.Validated
-        total()
-    End Sub
-
-    Private Sub TXTRATE_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTRATE.Validating
-        'If ClientName <> "CC" Then TXTAMOUNT.Text = Val(txtMtrs.Text) * Val(TXTRATE.Text)
-        total()
-    End Sub
-
-    Private Sub OpeningStock_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
-        Try
-            If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
-                TXTBARCODE.Visible = True
-                LBLBARCODE.Visible = True
-                GRATE.HeaderText = "Pur Rate"
-                GAMOUNT.HeaderText = "Sale Rate"
-                TXTAMOUNT.ReadOnly = False
-                TXTAMOUNT.BackColor = Color.White
-            End If
-            If ClientName = "SPCORP" Then CMBDYEINGJOB.Enabled = True
-
-            If ClientName = "SBA" Or ClientName = "SSC" Or ClientName = "REALCORPORATION" Then
-                TXTLOTNO.TabStop = False
-                cmbname.TabStop = False
-                cmbtoname.TabStop = False
-                TXTBILLNO.TabStop = False
-                If ClientName <> "SSC" Then txtcut.TabStop = False
-                TXTWT.TabStop = False
-                CMBPER.TabStop = False
-                If ClientName <> "REALCORPORATION" Then CMBRACK.TabStop = False
-                CMBSHELF.TabStop = False
-                TXTRATE.TabStop = False
-                TXTAMOUNT.TabStop = False
-            End If
-
-            If (ClientName = "DJIMPEX" Or ClientName = "CHINTAN") And cmbtype.Text.Trim = "INHOUSE" Then TXTYARDS.Visible = True
-
-            If ClientName = "SONU" Then cmbunit.Text = "ROLL"
-            If ClientName = "PURPLE" Then CHKPRINT.CheckState = CheckState.Checked
-            If ClientName = "PARAS" And UserName <> "Admin" Then Exit Sub
-
-            If ClientName = "MAHAVIRPOLYCOT" And cmbtype.Text.Trim <> "INHOUSE" Then
-                TXTADDLESS.TabStop = True
-                TXTNETTRATE.TabStop = True
-            End If
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTBARCODE_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTBARCODE.Validated
-        Try
-            If (ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV") And TXTBARCODE.Text.Trim <> "" Then
-                'FETCH ENTRY FROM LAST YEAR TO ENTER SAME IN OPENINGSTOCK, DO NOT PUT YEARID CLAUSE
-                'DONE BY GULKIT DO NOT CHANGE
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search("*", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "'")
-                If DT.Rows.Count > 0 Then
-
-                    'CHECK WHETHER SAME BARCODE IS ENTERED OR NOT
-                    Dim DTCHECK As DataTable = OBJCMN.search("*", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND YEARID = " & YearId)
-                    If DTCHECK.Rows.Count > 0 Then
-                        MsgBox("Barcode Already Present", MsgBoxStyle.Critical)
-                        TXTBARCODE.Clear()
-                        TXTBARCODE.Focus()
-                        Exit Sub
-                    End If
-
-                    txtsrno.Text = gridstock.RowCount + 1
-                    cmbpiecetype.Text = DT.Rows(0).Item("PIECETYPE")
-                    cmbmerchant.Text = DT.Rows(0).Item("ITEMNAME")
-                    cmbquality.Text = DT.Rows(0).Item("QUALITY")
-                    CMBDESIGNNO.Text = DT.Rows(0).Item("DESIGNNO")
-                    cmbcolor.Text = DT.Rows(0).Item("COLOR")
-                    cmbtoname.Text = DT.Rows(0).Item("JOBBERNAME")
-                    TXTBILLNO.Text = DT.Rows(0).Item("CHALLANNO")
-                    cmbgodown.Text = DT.Rows(0).Item("GODOWN")
-                    txtcut.Text = Val(DT.Rows(0).Item("CUT"))
-                    cmbunit.Text = DT.Rows(0).Item("UNIT")
-                    txtpcs.Text = Val(DT.Rows(0).Item("PCS"))
-                    txtMtrs.Text = Val(DT.Rows(0).Item("MTRS"))
-                    TXTRATE.Text = Val(DT.Rows(0).Item("PURRATE"))
-                    TXTAMOUNT.Text = Val(DT.Rows(0).Item("SALERATE"))
-
-                    total()
-                    SAVE()
-                    CLEAR = True
-                    fillgrid()
-                    TXTBARCODE.Focus()
-                Else
-                    MsgBox("Invaid Barcode", MsgBoxStyle.Critical)
-                    TXTBARCODE.Clear()
-                    Exit Sub
-                End If
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBRACK_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBRACK.Enter
-        Try
-            If CMBRACK.Text.Trim = "" Then FILLRACK(CMBRACK)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBRACK_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBRACK.Validating
-        Try
-            If CMBRACK.Text.Trim <> "" Then RACKVALIDATE(CMBRACK, e, Me)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBSHELF_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBSHELF.Enter
-        Try
-            If CMBSHELF.Text.Trim = "" Then FILLSHELF(CMBSHELF)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBSHELF_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBSHELF.Validating
-        Try
-            If CMBSHELF.Text.Trim <> "" Then SHELFVALIDATE(CMBSHELF, e, Me)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBDESIGNNO_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBDESIGNNO.Validated
-        Try
-            If CMBDESIGNNO.Text.Trim <> "" Then
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search(" ISNULL(DESIGN_PURRATE,0) AS PURRATE, ISNULL(DESIGN_SALERATE,0) AS SALERATE, ISNULL(DESIGN_WRATE,0) AS WRATE, ISNULL(ITEMMASTER.ITEM_NAME,'') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID ", " AND DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND DESIGN_YEARID =  " & YearId)
-                TXTRATE.Text = Val(DT.Rows(0).Item("PURRATE"))
-                TXTAMOUNT.Text = Val(DT.Rows(0).Item("SALERATE"))
-                If (ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "NTC") Then cmbmerchant.Text = DT.Rows(0).Item("ITEMNAME")
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub txtMtrs_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtMtrs.Validating
-        Try
-            If ClientName = "MANIBHADRA" Then TXTREMARKS_Validating(sender, e)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTSEARCHBARCODE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTSEARCHBARCODE.Validated
-        For Each ROW As DataGridViewRow In gridstock.Rows
-            If LCase(ROW.Cells(gBarcode.Index).Value) = LCase(TXTSEARCHBARCODE.Text.Trim) Then
-                gridstock.FirstDisplayedScrollingRowIndex = ROW.Index
-                gridstock.Rows(ROW.Index).Selected = True
-                TXTSEARCHBARCODE.Clear()
-                Exit Sub
-            End If
-        Next
-    End Sub
-
-    Private Sub TXTYARDS_Validated(sender As Object, e As EventArgs) Handles TXTYARDS.Validated
-        Try
-            If Val(TXTYARDS.Text.Trim) > 0 And ClientName <> "CHINTAN" Then txtMtrs.Text = Format(Val(TXTYARDS.Text.Trim) * 0.914, "0.00")
-            txtMtrs.Focus()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    'Private Sub gridstock_DataError(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewDataErrorEventArgs) Handles gridstock.DataError
-    '    If (e.Context = (DataGridViewDataErrorContexts.Formatting Or DataGridViewDataErrorContexts.PreferredSize)) Then
-    '        e.ThrowException = False
-    '    End If
-    'End Sub
 End Class
