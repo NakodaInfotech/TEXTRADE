@@ -123,6 +123,7 @@ Public Class ClsOpening
                 I = I + 1
 
 
+
             End With
 
             INTRESULT = objDBOperation.executeNonQuery(strCommand, alParameter)

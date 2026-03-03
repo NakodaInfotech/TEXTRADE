@@ -1192,7 +1192,7 @@ Public Class AgencyReceipt
 
     Sub SETGRIDINVOICE(ByVal DT As DataTable)
         Try
-            'DT.DefaultView.Sort = "BILLDATE, BILLTYPE, BILLNO ASC"
+            DT.DefaultView.Sort = "BILLNO ASC"
             gridbill.DataSource = DT
             If a = 0 Then
                 gridbill.Columns.Insert(0, col)

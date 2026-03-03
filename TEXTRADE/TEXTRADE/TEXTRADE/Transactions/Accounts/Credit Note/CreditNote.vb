@@ -1729,7 +1729,7 @@ LINE1:
         Try
             'FOR ADDING NEW CHKCOL IN GRIDBILL
 
-            'DT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
+            If ClientName = "ABHEE" Then DT.DefaultView.Sort = "BILLNO ASC"
             GRIDBILL.DataSource = DT
             If a = 0 Then
                 GRIDBILL.Columns.Insert(0, col)

@@ -224,6 +224,8 @@ Partial Class GDN
         Me.GSONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GSOSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPARTYPONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LBLTOTALWT = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.SALELOCK, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1448,6 +1450,7 @@ Partial Class GDN
         '
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.LBLTOTALWT)
         Me.TabPage1.Controls.Add(Me.TXTGRIDLOTNO)
         Me.TabPage1.Controls.Add(Me.TXTCUT)
         Me.TabPage1.Controls.Add(Me.CMBPER)
@@ -1698,7 +1701,7 @@ Partial Class GDN
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDGDN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDGDN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDGDN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GPRINTDESC, Me.GDESIGN, Me.GSHADE, Me.GBALENO, Me.GGRIDLOTNO, Me.Gpcs, Me.GUNIT, Me.GCUT, Me.Gmtrs, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GBARCODE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GSALEDONE, Me.GSONO, Me.GSOSRNO, Me.GPARTYPONO})
+        Me.GRIDGDN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GPRINTDESC, Me.GDESIGN, Me.GSHADE, Me.GBALENO, Me.GGRIDLOTNO, Me.Gpcs, Me.GUNIT, Me.GCUT, Me.Gmtrs, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GBARCODE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GSALEDONE, Me.GSONO, Me.GSOSRNO, Me.GPARTYPONO, Me.GWT})
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1721,7 +1724,7 @@ Partial Class GDN
         Me.GRIDGDN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDGDN.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDGDN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDGDN.Size = New System.Drawing.Size(1545, 258)
+        Me.GRIDGDN.Size = New System.Drawing.Size(1745, 258)
         Me.GRIDGDN.TabIndex = 0
         Me.GRIDGDN.TabStop = False
         '
@@ -2426,6 +2429,27 @@ Partial Class GDN
         Me.GPARTYPONO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GPARTYPONO.Width = 80
         '
+        'GWT
+        '
+        Me.GWT.HeaderText = "Wt"
+        Me.GWT.Name = "GWT"
+        Me.GWT.ReadOnly = True
+        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GWT.Width = 80
+        '
+        'LBLTOTALWT
+        '
+        Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(1609, 284)
+        Me.LBLTOTALWT.Name = "LBLTOTALWT"
+        Me.LBLTOTALWT.Size = New System.Drawing.Size(85, 14)
+        Me.LBLTOTALWT.TabIndex = 689
+        Me.LBLTOTALWT.Text = "0.00"
+        Me.LBLTOTALWT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'GDN
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2639,4 +2663,6 @@ Partial Class GDN
     Friend WithEvents GSONO As DataGridViewTextBoxColumn
     Friend WithEvents GSOSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GPARTYPONO As DataGridViewTextBoxColumn
+    Friend WithEvents GWT As DataGridViewTextBoxColumn
+    Friend WithEvents LBLTOTALWT As Label
 End Class

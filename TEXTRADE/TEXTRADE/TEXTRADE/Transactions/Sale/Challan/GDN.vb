@@ -146,6 +146,7 @@ Public Class GDN
         LBLWHATSAPP.Visible = False
         TXTGRIDLOTNO.Clear()
         TXTSTOCK.Clear()
+        LBLTOTALWT.Text = 0.00
 
         GRIDCONSUME.RowCount = 0
         TXTSTORESRNO.Text = GRIDCONSUME.RowCount + 1
@@ -164,6 +165,7 @@ Public Class GDN
             LBLTOTALMTRS.Text = 0.0
             LBLTOTALPCS.Text = 0.0
             LBLAMOUNT.Text = 0.0
+            LBLTOTALWT.Text = 0.0
 
             If GRIDGDN.RowCount > 0 Then
                 For Each row As DataGridViewRow In GRIDGDN.Rows
@@ -176,6 +178,7 @@ Public Class GDN
                     LBLTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text) + Val(row.Cells(Gmtrs.Index).EditedFormattedValue), "0.00")
                     LBLTOTALPCS.Text = Format(Val(LBLTOTALPCS.Text) + Val(row.Cells(Gpcs.Index).EditedFormattedValue), "0.00")
                     LBLAMOUNT.Text = Format(Val(LBLAMOUNT.Text) + Val(row.Cells(GAMOUNT.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(row.Cells(GWT.Index).EditedFormattedValue), "0.00")
                 Next
             End If
             BALECOUNT()
@@ -264,6 +267,7 @@ Public Class GDN
 
             'IF ALLOWPACKINGSLIP IS TRUE THEN FETCH NOOFBALES AUTO FROM LBLTOTALBALES\
             If (ALLOWPACKINGSLIP = True Or ClientName = "MONOGRAM" Or ClientName = "SNCM" Or ClientName = "BIGAPPLE") And Val(TXTBALENOFROM.Text.Trim) = 0 Then TXTBALENOFROM.Text = LBLTOTALBALES.Text.Trim
+            If ClientName = "SWPL" Then TXTBALENOFROM.Text = Val(LBLTOTALBALES.Text)
             If Val(TXTBALENOFROM.Text.Trim) = 0 And ClientName <> "SONU" And ClientName <> "NTC" And ClientName <> "MANSI" Then TXTBALENOFROM.Text = 1
 
             If cmbname.Text.Trim.Length = 0 Then
@@ -697,9 +701,9 @@ CHECKNEXTLINEMTRS:
 
 
 
-                    If ClientName = "KREEVE" Or ClientName = "SMS" Then GRIDGDN.Rows.Add(0, "FRESH", DTROW("ITEMNAME"), "", "", DTROW("DESIGN"), DTROW("COLOR"), DTROW("GRIDPARTYPONO"), "", Format(Val(DTROW("QTY")), "0"), PER, CUT, Format(Val(DTROW("MTRS")), "0.00"), Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", 0, 0, "", 0, DTROW("SONO"), DTROW("GRIDSRNO"), "")
+                    If ClientName = "KREEVE" Or ClientName = "SMS" Then GRIDGDN.Rows.Add(0, "FRESH", DTROW("ITEMNAME"), "", "", DTROW("DESIGN"), DTROW("COLOR"), DTROW("GRIDPARTYPONO"), "", Format(Val(DTROW("QTY")), "0"), PER, CUT, Format(Val(DTROW("MTRS")), "0.00"), Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", 0, 0, "", 0, DTROW("SONO"), DTROW("GRIDSRNO"), "", 0)
 
-                    If ClientName = "LAXMI" Then GRIDGDN.Rows.Add(0, "FRESH", DTROW("ITEMNAME"), "", DTROW("GRIDDESC"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("GRIDPARTYPONO"), "", Format(Val(DTROW("QTY")), "0"), PER, CUT, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", 0, 0, "", 0, DTROW("SONO"), DTROW("GRIDSRNO"), "")
+                    If ClientName = "LAXMI" Then GRIDGDN.Rows.Add(0, "FRESH", DTROW("ITEMNAME"), "", DTROW("GRIDDESC"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("GRIDPARTYPONO"), "", Format(Val(DTROW("QTY")), "0"), PER, CUT, 0, Format(Val(DTROW("RATE")), "0.00"), PER, 0, "", 0, 0, "", 0, DTROW("SONO"), DTROW("GRIDSRNO"), "", 0)
 
 
                     If ClientName = "SNCM" Then
@@ -1103,7 +1107,7 @@ NEXTLINE:
             Dim dttable As DataTable = OBJCLSPROFORMA.SELECTPROFORMA(TEMPPROFORMANO, CmpId, Locationid, YearId)
             If dttable.Rows.Count > 0 Then
                 For Each dr As DataRow In dttable.Rows
-                    GRIDGDN.Rows.Add(GRIDGDN.RowCount + 1, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("PRINTDESC"), dr("DESIGN"), dr("COLOR"), dr("BALENO"), "", Format(Val(dr("PCS")), "0"), "", Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"), 0, 0, 0, "")
+                    GRIDGDN.Rows.Add(GRIDGDN.RowCount + 1, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("PRINTDESC"), dr("DESIGN"), dr("COLOR"), dr("BALENO"), "", Format(Val(dr("PCS")), "0"), "", Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"), 0, 0, 0, "", 0)
                 Next
                 txtremarks.Text = "Proforma No - " & Val(TEMPPROFORMANO)
                 TOTAL()
@@ -1210,7 +1214,7 @@ NEXTLINE:
 
                     txtremarks.Text = Convert.ToString(dr("REMARKS").ToString)
                     TXTMERCHANT.Text = Convert.ToString(dr("ITEMNAME").ToString)
-                    GRIDGDN.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("PRINTDESC"), dr("DESIGN"), dr("COLOR"), dr("BALENO"), dr("GRIDLOTNO"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"), dr("SALEDONE"), dr("GRIDSONO"), dr("GRIDSOSRNO"), dr("GRIDPARTYPONO"))
+                    GRIDGDN.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("PRINTDESC"), dr("DESIGN"), dr("COLOR"), dr("BALENO"), dr("GRIDLOTNO"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"), dr("SALEDONE"), dr("GRIDSONO"), dr("GRIDSOSRNO"), dr("GRIDPARTYPONO"), Val(dr("WT")))
 
                     If Convert.ToBoolean(dr("DONE")) = True Or Val(dr("OUTMTRS")) > 0 Or Val(dr("OUTPCS")) > 0 Then
                         lbllocked.Visible = True
@@ -1350,6 +1354,7 @@ NEXTLINE:
             Dim GRIDSOSRNO As String = ""
             Dim GRIDPARTYPONO As String = ""
             Dim GRIDLOTNO As String = ""
+            Dim WT As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDGDN.Rows
                 If row.Cells(0).Value <> Nothing Then
@@ -1391,6 +1396,7 @@ NEXTLINE:
                         GRIDSOSRNO = Val(row.Cells(GSOSRNO.Index).Value)
                         GRIDPARTYPONO = row.Cells(GPARTYPONO.Index).Value.ToString
                         GRIDLOTNO = row.Cells(GGRIDLOTNO.Index).Value.ToString
+                        WT = Val(row.Cells(GWT.Index).Value)
 
                     Else
                         GRIDSRNO = GRIDSRNO & "|" & Val(row.Cells(GSRNO.Index).Value)
@@ -1430,6 +1436,7 @@ NEXTLINE:
                         GRIDSOSRNO = GRIDSOSRNO & "|" & Val(row.Cells(GSOSRNO.Index).Value)
                         GRIDPARTYPONO = GRIDPARTYPONO & "|" & row.Cells(GPARTYPONO.Index).Value.ToString
                         GRIDLOTNO = GRIDLOTNO & "|" & row.Cells(GGRIDLOTNO.Index).Value.ToString
+                        WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
 
                     End If
                 End If
@@ -1459,6 +1466,7 @@ NEXTLINE:
             alParaval.Add(GRIDSOSRNO)
             alParaval.Add(GRIDPARTYPONO)
             alParaval.Add(GRIDLOTNO)
+            alParaval.Add(WT)
 
 
 
@@ -1560,6 +1568,7 @@ NEXTLINE:
             alParaval.Add(CMBCONTRACTOR.Text.Trim)
             If CHKCHANGEADD.Checked = True Then alParaval.Add(1) Else alParaval.Add(0)
             alParaval.Add(TXTDELIVERYADDRESS.Text.Trim)
+            alParaval.Add(Val(LBLTOTALWT.Text.Trim))
 
             Dim objclsgdn As New ClsGDN()
             objclsgdn.alParaval = alParaval
@@ -2308,6 +2317,7 @@ NEXTLINE:
             End If
 
             If ClientName = "MAFATLAL" Then CHKHIDEPCS.Text = "Hide Mtrs"
+            If ClientName = "SWPL" Then LBLCONSIGNEE.Text = "Vehicle No"
 
 
             If ClientName = "SONU" Then
@@ -2684,7 +2694,7 @@ NEXTLINE:
                     Dim CCRATE As Double = 0
                     Dim CUT As Double = 0
 
-                    If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Or ClientName = "MASHOK" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
+                    If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Or ClientName = "MASHOK" Or ClientName = "SWPL" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
 
                     Dim OBJCMN As New ClsCommon
                     If ClientName = "CC" Or ClientName = "C3" Then
@@ -2735,12 +2745,12 @@ NEXTLINE:
                             DTPS = OBJCMN.SEARCH(" ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, SUM(PCS) AS PCS, CUT, SUM(MTRS) AS MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO ", "", " BARCODESTOCK ", " GROUP BY ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, CUT, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO, YEARID HAVING ROUND(SUM(MTRS),2) >0 AND GODOWN = '" & CMBGODOWN.Text.Trim & "' AND BARCODE = '' AND FROMNO = " & Val(DTROWPS("FROMNO")) & " AND FROMSRNO = " & Val(DTROWPS("FROMSRNO")) & "   AND YEARID = " & YearId)
                         End If
                         For Each DTROWBARCODE As DataRow In DTPS.Rows
-                            GRIDGDN.Rows.Add(0, DTROWBARCODE("PIECETYPE"), DTROWBARCODE("ITEMNAME"), DTROWBARCODE("QUALITY"), "", DTROWBARCODE("DESIGNNO"), DTROWBARCODE("COLOR"), DTROWBARCODE("BALENO"), DTROWBARCODE("LOTNO"), Val(DTROWBARCODE("PCS")), DTROWBARCODE("UNIT"), Format(Val(DTROWBARCODE("CUT")), "0.00"), Format(Val(DTROWBARCODE("MTRS")), "0.00"), CCRATE, PER, 0, DTROWBARCODE("BARCODE"), DTROWBARCODE("FROMNO"), DTROWBARCODE("FROMSRNO"), DTROWBARCODE("TYPE"), 0, 0, 0, "")
+                            GRIDGDN.Rows.Add(0, DTROWBARCODE("PIECETYPE"), DTROWBARCODE("ITEMNAME"), DTROWBARCODE("QUALITY"), "", DTROWBARCODE("DESIGNNO"), DTROWBARCODE("COLOR"), DTROWBARCODE("BALENO"), DTROWBARCODE("LOTNO"), Val(DTROWBARCODE("PCS")), DTROWBARCODE("UNIT"), Format(Val(DTROWBARCODE("CUT")), "0.00"), Format(Val(DTROWBARCODE("MTRS")), "0.00"), CCRATE, PER, 0, DTROWBARCODE("BARCODE"), DTROWBARCODE("FROMNO"), DTROWBARCODE("FROMSRNO"), DTROWBARCODE("TYPE"), 0, 0, 0, "", 0)
                         Next
 
                     Else
                         If ClientName = "SVS" Then
-                            GRIDGDN.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), "", DTROWPS("DESIGNNO"), DTROWPS("COLOR"), "", DTROWPS("LOTNO"), 1, DTROWPS("UNIT"), Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "")
+                            GRIDGDN.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), "", DTROWPS("DESIGNNO"), DTROWPS("COLOR"), "", DTROWPS("LOTNO"), 1, DTROWPS("UNIT"), Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "", Val(DTROWPS("WT")))
                         Else
                             Dim GRIDDESC As String = ""
                             If ClientName = "AVIS" Then GRIDDESC = DTROWPS("LOTNO")
@@ -2756,7 +2766,7 @@ NEXTLINE:
                             End If
                             If ClientName = "KENCOT" Or ClientName = "SAFFRON" Or ClientName = "NTC" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Or ClientName = "RAJKRIPA" Or ClientName = "MANSI" Then GRIDDESC = DTROWPS("GRIDREMARKS")
 
-                            GRIDGDN.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), GRIDDESC, DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("BALENO"), DTROWPS("LOTNO"), Val(DTROWPS("PCS")), DTROWPS("UNIT"), CUT, Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "")
+                            GRIDGDN.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), GRIDDESC, DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("BALENO"), DTROWPS("LOTNO"), Val(DTROWPS("PCS")), DTROWPS("UNIT"), CUT, Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "", Val(DTROWPS("WT")))
                         End If
                     End If
 
@@ -3078,7 +3088,7 @@ LINE1:
 
         GRIDGDN.Enabled = True
         If GRIDDOUBLECLICK = False Then
-            GRIDGDN.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, CMBITEMNAME.Text.Trim, CMBQUALITY.Text.Trim, TXTDESCRIPTION.Text.Trim, CMBDESIGN.Text.Trim, CMBCOLOR.Text.Trim, TXTBALENO.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(TXTPCS.Text.Trim), "0.00"), "", Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), "", 0, 0, 0, 0, 0, 0, "")
+            GRIDGDN.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, CMBITEMNAME.Text.Trim, CMBQUALITY.Text.Trim, TXTDESCRIPTION.Text.Trim, CMBDESIGN.Text.Trim, CMBCOLOR.Text.Trim, TXTBALENO.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(TXTPCS.Text.Trim), "0.00"), "", Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), "", 0, 0, 0, 0, 0, 0, "", 0)
             getsrno(GRIDGDN)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDGDN.Item(GSRNO.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -3661,7 +3671,7 @@ LINE1:
                     If ClientName = "GELATO" Then PER = "Pcs"
                     If ClientName = "SHEETAL" Or ClientName = "MILUXE" Then GRIDREMARKS = TXTDESCRIPTION.Text.Trim
 
-                    GRIDGDN.Rows.Add(GRIDGDN.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), GRIDREMARKS, DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("BALENO"), DT.Rows(0).Item("LOTNO"), PCS, DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, PER, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, 0, 0, "")
+                    GRIDGDN.Rows.Add(GRIDGDN.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), GRIDREMARKS, DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("BALENO"), DT.Rows(0).Item("LOTNO"), PCS, DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("CUT")), "0.00"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), RATE, PER, 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0, 0, 0, "", Val(DT.Rows(0).Item("WT")))
                     TOTAL()
                     GRIDGDN.FirstDisplayedScrollingRowIndex = GRIDGDN.RowCount - 1
 
@@ -3721,7 +3731,7 @@ LINE1:
                 If dttable.Rows.Count > 0 Then
                     For Each DR As DataRow In dttable.Rows
                         If Val(DR("OUTMTRS")) = 0 And Convert.ToBoolean(DR("INHOUSECHECKDONE")) = False Then
-                            GRIDGDN.Rows.Add(Val(DR("GRIDSRNO")), "FRESH", DR("ITEMNAME"), DR("QUALITY"), "", DR("DESIGN"), DR("COLOR"), DR("BALENO"), DR("GRIDLOTNO"), Val(DR("QTY")), DR("UNIT"), Val(DR("CUT")), Format(Val(DR("RECDMTRS")), "0.00"), 0, "Mtrs", 0, DR("BARCODE"), Val(TXTDYEINGRECNO.Text.Trim), DR("GRIDSRNO"), "MATREC", 0, 0, 0, "")
+                            GRIDGDN.Rows.Add(Val(DR("GRIDSRNO")), "FRESH", DR("ITEMNAME"), DR("QUALITY"), "", DR("DESIGN"), DR("COLOR"), DR("BALENO"), DR("GRIDLOTNO"), Val(DR("QTY")), DR("UNIT"), Val(DR("CUT")), Format(Val(DR("RECDMTRS")), "0.00"), 0, "Mtrs", 0, DR("BARCODE"), Val(TXTDYEINGRECNO.Text.Trim), DR("GRIDSRNO"), "MATREC", 0, 0, 0, "", 0)
                         End If
                     Next
                     getsrno(GRIDGDN)

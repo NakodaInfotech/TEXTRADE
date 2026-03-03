@@ -200,7 +200,9 @@ Public Class Receipt
         Try
             'OPEN ALL LEDGERS
             'If cmbname.Text.Trim = "" Then fillledger(cmbname, edit, " and groupmaster.group_SECONDARY = 'Sundry Debtors' and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-            If cmbname.Text.Trim = "" Then fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
+            Dim WHERECLAUSE As String = ""
+            If ClientName = "ABHEE" Then WHERECLAUSE = " AND groupmaster.group_SECONDARY = 'Sundry Debtors' "
+            If cmbname.Text.Trim = "" Then fillledger(cmbname, EDIT, WHERECLAUSE & " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
         Catch ex As Exception
             Throw ex
         End Try
@@ -428,7 +430,9 @@ Public Class Receipt
             USERDELETE = DTROW(0).Item(4)
 
             'getmaxno_receiptmaster()
-            fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
+            Dim WHERECLAUSE As String = ""
+            If ClientName = "ABHEE" Then WHERECLAUSE = " AND groupmaster.group_SECONDARY = 'Sundry Debtors' "
+            fillledger(cmbname, EDIT, WHERECLAUSE & " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             fillledger(cmbaccname, EDIT, " and (groupmaster.group_secondary = 'BANK A/C' OR groupmaster.group_secondary = 'BANK OD A/C' OR groupmaster.group_secondary = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             fillregister(cmbregister, " and register_type = 'RECEIPT'")
             If CMBPARTYBANK.Text = "" Then FILLBANK(CMBPARTYBANK)
@@ -1339,7 +1343,7 @@ NEXTLINE:
 
     Sub SETGRIDINVOICE(ByVal DT As DataTable)
         Try
-            DT.DefaultView.Sort = "BILLDATE, BILLTYPE, BILLNO ASC"
+            If ClientName = "ABHEE" Then DT.DefaultView.Sort = "BILLNO ASC" Else DT.DefaultView.Sort = "BILLDATE, BILLTYPE, BILLNO ASC"
             gridbill.DataSource = DT
             If a = 0 Then
                 gridbill.Columns.Insert(0, col)

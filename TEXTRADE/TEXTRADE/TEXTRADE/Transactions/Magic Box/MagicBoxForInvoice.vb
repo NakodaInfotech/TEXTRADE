@@ -642,6 +642,7 @@ Public Class MagicBoxForInvoice
                 alParaval.Add(Val(row.Cells(GMTRS.Index).Value)) 'ORDERGRNMTRS
                 alParaval.Add(Val(DTPO.Rows(0).Item("RATE")))   'ORDERRATE
                 alParaval.Add("")   'ORDERPARTYPONO
+                alParaval.Add(Convert.ToBoolean(row.Cells(GMANUALROUNDOFF.Index).Value)) 'MANUALROUNDOFF
 
 
                 'alParaval.Add("") 'ORDERGRIDSRNO)
@@ -663,7 +664,6 @@ Public Class MagicBoxForInvoice
                 alParaval.Add("")   'COMPLAINTDATE
                 alParaval.Add(0)    'HOLDINTCALC
 
-                alParaval.Add(Convert.ToBoolean(row.Cells(GMANUALROUNDOFF.Index).Value)) 'MANUALROUNDOFF
 
                 Dim objclsPurord As New ClsAgencyInvoiceMaster()
                 objclsPurord.alParaval = alParaval
@@ -672,7 +672,8 @@ Public Class MagicBoxForInvoice
 
 
                 'WE WILL HAVE TO CREATE CREDIT NOTE IF TDS IS APPLICABLE IN AGENCY
-                If Convert.ToBoolean(row.Cells(GTDS.Index).Value) = True And Val(row.Cells(GTDSAMT.Index).Value) > 0 And row.Cells(GTDSNAME.Index).Value <> "" Then GENERATEAGENCYCN(Val(row.Index))
+                'WE DONT NEED AGENCYCREDITNOTE
+                'If Convert.ToBoolean(row.Cells(GTDS.Index).Value) = True And Val(row.Cells(GTDSAMT.Index).Value) > 0 And row.Cells(GTDSNAME.Index).Value <> "" Then GENERATEAGENCYCN(Val(row.Index))
 
 
 DONTSAVEINAGENCYORDER:
