@@ -217,18 +217,10 @@ Public Class YearTransfer
 
                     ElseIf FRMSTRING = "MASTERTRANSFER" Then
                         'TRANSFERUSER(SELECTEDYEARID)
-                        If CHKLEDGER.Checked = True Then
-                            TRANSFERGROUP(SELECTEDYEARID)
-                            TRANSFERTRANSPORT(SELECTEDYEARID)
-                            TRANSFERAGENTS(SELECTEDYEARID)
-
-                            TRANSFERACCOUNTS(SELECTEDYEARID)
-                            TRANSFEREMPLOYEES(SELECTEDYEARID)
-                        End If
                         If CHKOTHERMASTER.Checked = True Then
                             TRANSFERUSER(SELECTEDYEARID)
 
-                            'TRANSFERGROUP(SELECTEDYEARID)
+                            TRANSFERGROUP(SELECTEDYEARID)
                             TRANSFERLOCATION(SELECTEDYEARID)
                             TRANSFERMATERIALTYPE(SELECTEDYEARID)
                             TRANSFERCATEGORY(SELECTEDYEARID)
@@ -273,6 +265,15 @@ Public Class YearTransfer
                             TRANSFERGOC(SELECTEDYEARID)
                             TRANSFERREGISTER(SELECTEDYEARID)
                         End If
+                        If CHKLEDGER.Checked = True Then
+                            TRANSFERGROUP(SELECTEDYEARID)
+                            TRANSFERTRANSPORT(SELECTEDYEARID)
+                            TRANSFERAGENTS(SELECTEDYEARID)
+
+                            TRANSFERACCOUNTS(SELECTEDYEARID)
+                            TRANSFEREMPLOYEES(SELECTEDYEARID)
+                        End If
+
                         MsgBox("Masters Transferred Successfully")
 
                     ElseIf FRMSTRING = "USERTRANSFER" Then
@@ -365,8 +366,9 @@ Public Class YearTransfer
                 CHKDATA.Enabled = False
                 CHKDATA.Checked = False
             End If
-
-            FILLGRID()
+            If FRMSTRING <> "MASTERTRANSFER" Then
+                FILLGRID()
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1602,6 +1604,7 @@ Public Class YearTransfer
         End If
 
         FILLGRIDCMP()
+        CMBCOMPANY.Enabled = False
     End Sub
     Sub FILLGRIDCMP()
         Try
