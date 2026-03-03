@@ -1143,7 +1143,7 @@ SKIPINVOICE:
                         OBJ.DataDefinition.FormulaFields("BALQTY").Text = Val(DTSO.Rows(0).Item("SOQTY")) - Val(DTSO.Rows(0).Item("ISSQTY"))
                     End If
                     OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
-                    If INVOICECOPYNAME = "OFFICE COPY" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If DIRECTMAIL = True Or DIRECTWHATSAPP = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = 1
                 Else
                     OBJ = New InvoiceReport_TOTALLEFT
                     If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
