@@ -306,6 +306,7 @@ Public Class MagicBox
                 Dim RATE As String = ""
                 Dim PER As String = ""
                 Dim AMOUNT As String = ""
+                Dim SCHDATE As String = ""
                 Dim RECDQTY As String = ""
                 Dim RECDMTRS As String = ""
                 Dim DONE As String = ""
@@ -339,6 +340,7 @@ Public Class MagicBox
                     RATE = row.Cells(GRATE.Index).Value
                     PER = "" 'row.Cells(GPER.Index).Value
                     AMOUNT = "" 'row.Cells(GAMOUNT.Index).Value
+                    SCHDATE = ""
                     RECDQTY = "" 'Val(row.Cells(GRECDQTY.Index).Value)
                     RECDMTRS = "" 'Val(row.Cells(GRECDMTRS.Index).Value)
 
@@ -466,6 +468,7 @@ Public Class MagicBox
                 alParaval.Add(RATE)
                 alParaval.Add(PER)
                 alParaval.Add(AMOUNT)
+                alParaval.Add(SCHDATE)
                 alParaval.Add(RECDQTY)
                 alParaval.Add(RECDMTRS)
                 alParaval.Add(DONE)
@@ -1134,6 +1137,7 @@ NEXTLINE:
             Dim RATE As String = Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GRATE.Index).Value)
             Dim PER As String = "Mtrs"
             Dim AMOUNT As String = Format(Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GRATE.Index).Value) * Val(GRIDMAGICBOX.Rows(ROWNO).Cells(GMTRS.Index).Value), "0.00")
+            Dim SCHDATE As String = ""
             Dim RECDQTY As String = 0
             Dim RECDMTRS As String = 0
             Dim DONE As String = 0
@@ -1154,6 +1158,7 @@ NEXTLINE:
             ALPARAVAL.Add(RATE)
             ALPARAVAL.Add(PER)
             ALPARAVAL.Add(AMOUNT)
+            ALPARAVAL.Add(SCHDATE)
             ALPARAVAL.Add(RECDQTY)
             ALPARAVAL.Add(RECDMTRS)
             ALPARAVAL.Add(DONE)
