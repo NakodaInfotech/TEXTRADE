@@ -1451,6 +1451,9 @@ Public Class MDIMain
                         JOBBERYARNWASTAGEADD.Enabled = True
                         YARNRETURNPURCHASEADD.Enabled = True
                         YARNRETURNKNITTINGADD.Enabled = True
+
+                        YARNINTERGODOWN_MASTER.Enabled = True
+                        YARNINTERGODOWNADD.Enabled = True
                     Else
                         YARNRECDGREYADD.Enabled = False
                         YARNRECDADD.Enabled = False
@@ -1458,6 +1461,9 @@ Public Class MDIMain
                         JOBBERYARNWASTAGEADD.Enabled = False
                         YARNRETURNPURCHASEADD.Enabled = False
                         YARNRETURNKNITTINGADD.Enabled = False
+
+                        YARNINTERGODOWN_MASTER.Enabled = False
+                        YARNINTERGODOWNADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         YARNRECDGREY_MASTER.Enabled = True
@@ -1472,6 +1478,9 @@ Public Class MDIMain
                         JOBBERYARNWASTAGEEDIT.Enabled = True
                         YARNRETURNPURCHASEEDIT.Enabled = True
                         YARNRETURNKNITTINGEDIT.Enabled = True
+
+                        YARNINTERGODOWN_MASTER.Enabled = True
+                        YARNINTERGODOWNEDIT.Enabled = True
                     Else
                         YARNRECDGREYEDIT.Enabled = False
                         YARNRECDEDIT.Enabled = False
@@ -1479,6 +1488,7 @@ Public Class MDIMain
                         JOBBERYARNWASTAGEEDIT.Enabled = False
                         YARNRETURNPURCHASEEDIT.Enabled = False
                         YARNRETURNKNITTINGEDIT.Enabled = False
+                        YARNINTERGODOWNEDIT.Enabled = False
                     End If
 
                 ElseIf DTROW(0).ToString = "YARN ISSUE" Then
