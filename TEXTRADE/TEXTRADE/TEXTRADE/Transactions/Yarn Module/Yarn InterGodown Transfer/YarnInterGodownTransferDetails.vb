@@ -110,7 +110,7 @@ Public Class YarnInterGodownTransferDetails
     Private Sub YarnInterGodownTransferDetails_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'YARNINTER GODOWN'")
+            DTROW = USERRIGHTS.Select("FormName = 'YARNINTERGODOWN'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
