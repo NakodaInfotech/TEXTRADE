@@ -7974,3 +7974,15 @@ SO_SCHEDDATE
 UPDATE SALEORDER_DESC SET SO_SCHEDDATE= ''
 
 ADD IN FORMMASTER   --- YARNINTERGODOWN
+
+***********************************************************************************************
+
+DONE IN RAJDEEP
+***********************************************************************************************
+GDN_DESC -- ADDED GDN_WT --- FLOAT  
+GDN --- ADDED GDN_TOTALWT --- FLOAT
+
+UPDATE GDN SET GDN_TOTALWT = 0
+UPDATE GDN_DESC SET GDN_WT = 0
+
+DONE IN ABHEE
