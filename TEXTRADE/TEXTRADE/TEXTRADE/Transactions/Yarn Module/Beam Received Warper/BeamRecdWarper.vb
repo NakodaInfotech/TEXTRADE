@@ -112,6 +112,7 @@ Public Class BeamRecdWarper
         TXTBEAMNO.Text = NextBeamNo
         GRIDYARNDETAILS.RowCount = 0
 
+        fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
 
 
 
@@ -159,7 +160,7 @@ Public Class BeamRecdWarper
         If CMBMILLNAME.Text = "" Then FILLNAME(CMBMILLNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
         If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
         If CMBBEAMNAME.Text = "" Then fillBEAM(CMBBEAMNAME, EDIT)
-        If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
+        fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
     End Sub
 
     Private Sub BeamRecdWarper_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -1121,6 +1122,8 @@ LINE1:
             TXTBEAMWT.Clear()
             TXTBREAKAGE.Clear()
             CMBROLLNO.Text = ""
+
+            If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
 
             getsrno(GRIDBEAM)
             TOTAL()
