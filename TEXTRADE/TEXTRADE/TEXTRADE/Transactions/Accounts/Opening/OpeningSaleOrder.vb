@@ -127,6 +127,7 @@ Public Class OpeningSaleOrder
             Dim RATE As String = ""
             Dim PER As String = ""
             Dim AMOUNT As String = ""
+            Dim SCHDATE As String = ""
             Dim RECDQTY As String = ""
             Dim RECDMTRS As String = ""
             Dim DONE As String = ""
@@ -150,6 +151,7 @@ Public Class OpeningSaleOrder
                         RATE = row.Cells(GRATE.Index).Value
                         PER = row.Cells(GPER.Index).Value
                         AMOUNT = row.Cells(GAMOUNT.Index).Value
+                        SCHDATE = Format(Convert.ToDateTime(row.Cells(GSCHEDULEDATE.Index).Value).Date, "MM/dd/yyyy")
                         RECDQTY = Val(row.Cells(GRECDQTY.Index).Value)
                         RECDMTRS = Val(row.Cells(GRECDMTRS.Index).Value)
 
@@ -172,6 +174,7 @@ Public Class OpeningSaleOrder
                         RATE = RATE & "|" & row.Cells(GRATE.Index).Value
                         PER = PER & "|" & row.Cells(GPER.Index).Value
                         AMOUNT = AMOUNT & "|" & row.Cells(GAMOUNT.Index).Value
+                        SCHDATE = SCHDATE & "|" & Format(Convert.ToDateTime(row.Cells(GSCHEDULEDATE.Index).Value).Date, "MM/dd/yyyy")
                         RECDQTY = RECDQTY & "|" & Val(row.Cells(GRECDQTY.Index).Value)
                         RECDMTRS = RECDMTRS & "|" & Val(row.Cells(GRECDMTRS.Index).Value)
 
@@ -197,6 +200,7 @@ Public Class OpeningSaleOrder
             alParaval.Add(RATE)
             alParaval.Add(PER)
             alParaval.Add(AMOUNT)
+            alParaval.Add(SCHDATE)
             alParaval.Add(RECDQTY)
             alParaval.Add(RECDMTRS)
             alParaval.Add(DONE)
@@ -276,7 +280,7 @@ Public Class OpeningSaleOrder
         GRIDSO.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            GRIDSO.Rows.Add(Val(txtsrno.Text.Trim), cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, cmbcolor.Text.Trim, TXTPARTYPONO.Text.Trim, Format(Val(txtQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), 0, 0, 0, 0, 0)
+            GRIDSO.Rows.Add(Val(txtsrno.Text.Trim), cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, cmbcolor.Text.Trim, TXTPARTYPONO.Text.Trim, Format(Val(txtQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
             getsrno(GRIDSO)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDSO.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -293,6 +297,8 @@ Public Class OpeningSaleOrder
             GRIDSO.Item(GRATE.Index, TEMPROW).Value = Format(Val(TXTRATE.Text.Trim), "0.00")
             GRIDSO.Item(GPER.Index, TEMPROW).Value = CMBPER.Text.Trim
             GRIDSO.Item(GAMOUNT.Index, TEMPROW).Value = Format(Val(TXTAMOUNT.Text.Trim), "0.00")
+            GRIDSO.Item(GSCHEDULEDATE.Index, TEMPROW).Value = Format(SCHEDDATE.Value.Date, "dd/MM/yyyy")
+
 
             GRIDDOUBLECLICK = False
         End If
@@ -825,7 +831,7 @@ line1:
                         CMBFROMCITY.Text = dr("FROMCITY")
                         If Convert.ToBoolean(dr("VERIFIED")) = True Then CHKVERIFY.CheckState = CheckState.Checked Else CHKVERIFY.CheckState = CheckState.Unchecked
                         CMBORDERON.Text = dr("ORDERON")
-                        GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR"), dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), Val(dr("RECDQTY")), Val(dr("RECDMTRS")), dr("DONE"), dr("SAMPLEDONE"), dr("CLOSED"))
+                        GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR"), dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), Format(Convert.ToDateTime(dr("SCHEDULEDATE")).Date, "dd/MM/yyyy"), Val(dr("RECDQTY")), Val(dr("RECDMTRS")), dr("DONE"), dr("SAMPLEDONE"), dr("CLOSED"))
 
                         If Val(dr("RECDQTY")) > 0 Or Val(dr("RECDMTRS")) > 0 Then
                             GRIDSO.Rows(GRIDSO.RowCount - 1).DefaultCellStyle.BackColor = Color.LightGreen
@@ -1222,6 +1228,8 @@ line1:
                 TXTRATE.Text = GRIDSO.Item(GRATE.Index, GRIDSO.CurrentRow.Index).Value.ToString
                 CMBPER.Text = GRIDSO.Item(GPER.Index, GRIDSO.CurrentRow.Index).Value.ToString
                 TXTAMOUNT.Text = GRIDSO.Item(GAMOUNT.Index, GRIDSO.CurrentRow.Index).Value.ToString
+                SCHEDDATE.Value = Convert.ToDateTime(GRIDSO.Item(GSCHEDULEDATE.Index, GRIDSO.CurrentRow.Index).Value).Date
+
 
 
 
@@ -1799,6 +1807,10 @@ line1:
             If ClientName = "ABHEE" Then
                 CMBORDERON.Visible = True
             End If
+            If ClientName = "SWPL" Then
+                SCHEDDATE.Visible = True
+                GSCHEDULEDATE.Visible = True
+            End If
             If ClientName = "KCRAYON" Then lbltotalqty.Visible = True
 
             If SALEORDERONMTRS = True Then CMBORDERON.Text = "MTRS" Else CMBORDERON.Text = "PCS"
@@ -1926,7 +1938,7 @@ line1:
     Private Sub TXTAMOUNT_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTAMOUNT.Validating
         Try
             If cmbitemname.Text.Trim <> "" And cmbqtyunit.Text.Trim <> "" And ((SALEORDERONMTRS = False And Val(txtQTY.Text.Trim) > 0) Or (SALEORDERONMTRS = True And Val(TXTMTRS.Text.Trim) > 0)) Then
-                fillgrid()
+                If ClientName <> "SWPL" Then fillgrid()
                 total()
             Else
                 MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
@@ -2482,6 +2494,22 @@ line1:
             If CMBCURRENCY.Text.Trim <> "" Then CURRENCYVALIDATE(CMBCURRENCY, e, Me)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub SCHEDDATE_Validating(sender As Object, e As CancelEventArgs) Handles SCHEDDATE.Validating
+        Try
+            If ClientName = "SWPL" Then
+                If cmbitemname.Text.Trim <> "" And cmbqtyunit.Text.Trim <> "" And ((SALEORDERONMTRS = False And Val(txtQTY.Text.Trim) > 0) Or (SALEORDERONMTRS = True And Val(TXTMTRS.Text.Trim) > 0)) Then
+                    fillgrid()
+                    total()
+                Else
+                    MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class

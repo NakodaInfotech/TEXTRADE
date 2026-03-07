@@ -94,6 +94,20 @@ Public Class StoreStockFilter
                 If CMBPARTYNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYREPAIRSTOCK.NAME}='" & CMBPARTYNAME.Text.Trim & "'"
             End If
 
+            If RBLOANTAKENFROMPARTY.Checked = True Then
+                OBJSTOCK.WHERECLAUSE = " {STORESLOANTAKENFROMPARTY.YEARID}=" & YearId
+                If CMBSTOREITEMNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESLOANTAKENFROMPARTY.ITEMNAME}='" & CMBSTOREITEMNAME.Text.Trim & "'"
+                If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESLOANTAKENFROMPARTY.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
+                If CMBPARTYNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESLOANTAKENFROMPARTY.NAME}='" & CMBPARTYNAME.Text.Trim & "'"
+            End If
+
+            If RBPARTYTAKINGLOAN.Checked = True Then
+                OBJSTOCK.WHERECLAUSE = " {STORESPARTYTAKENLOAN.YEARID}=" & YearId
+                If CMBSTOREITEMNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYTAKENLOAN.ITEMNAME}='" & CMBSTOREITEMNAME.Text.Trim & "'"
+                If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYTAKENLOAN.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
+                If CMBPARTYNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYTAKENLOAN.NAME}='" & CMBPARTYNAME.Text.Trim & "'"
+            End If
+
 
 
 
@@ -103,6 +117,13 @@ Public Class StoreStockFilter
                 OBJSTOCK.FRMSTRING = "STOREITEMSTOCKDTLS"
             ElseIf RBPARTYWISE.Checked = True Then
                 OBJSTOCK.FRMSTRING = "STOREPARTYWISE"
+
+            ElseIf RBLOANTAKENFROMPARTY.Checked = True Then
+                OBJSTOCK.FRMSTRING = "STORELOANTAKENFROMPARTY"
+
+            ElseIf RBPARTYTAKINGLOAN.Checked = True Then
+                OBJSTOCK.FRMSTRING = "STOREPARTYTAKENLOAN"
+
             End If
 
             OBJSTOCK.Show()
@@ -110,6 +131,8 @@ Public Class StoreStockFilter
             Throw ex
         End Try
     End Sub
+
+
 
     Private Sub CMBSTOREITEMNAME_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBSTOREITEMNAME.Enter
         Try
