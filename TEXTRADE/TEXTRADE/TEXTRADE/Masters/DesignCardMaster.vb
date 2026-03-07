@@ -909,15 +909,15 @@ Public Class DesignCardMaster
             Ep.SetError(TXTWARPTL, "Fill WARP TL ")
             bln = False
         End If
-        If TXTLEFTSEL.Text.Trim.Length = 0 Then
+        If TXTLEFTSEL.Text.Trim.Length = 0 And ClientName = "AADHAAR" Then
             Ep.SetError(TXTLEFTSEL, "Fill Selvedge Size ")
             bln = False
         End If
-        If TXTLEFTSELENDS.Text.Trim.Length = 0 Then
+        If TXTLEFTSELENDS.Text.Trim.Length = 0 And ClientName = "AADHAAR" Then
             Ep.SetError(TXTLEFTSELENDS, "Fill Selvedge E P Dent ")
             bln = False
         End If
-        If TXTSHRINKAGEPER.Text.Trim.Length = 0 Then
+        If TXTSHRINKAGEPER.Text.Trim.Length = 0 And ClientName = "AADHAAR" Then
             Ep.SetError(TXTSHRINKAGEPER, "Fill Shrinkage Percent. ")
             bln = False
         End If
@@ -2100,32 +2100,82 @@ LINE1:
         '    Dim totalEnds As Double = Math.Ceiling(mainEnds + selvedgeEnds)
         '    TXTTOTALENDS.Text = totalEnds.ToString()
         'End If
-        If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - (Val(TXTLEFTSEL.Text) + Val(TXTRIGHTSEL.Text)), "0.00")
+        '*************************************************************************************
+        'If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - (Val(TXTLEFTSEL.Text) + Val(TXTRIGHTSEL.Text)), "0.00")
+        'If TXTREED.Text <> "" Then TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
+        'If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
+        'If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then TXTLEFTSELDENTS.Text = Format(Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), "0.00")
+        'If TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "" Then TXTRIGHTSELDENTS.Text = Format(Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), "0.00")
+        'If TXTRIGHTSELDENTS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTTOTALSELVEDGEDENTS.Text = Format(Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text), "0.00")
+        ''If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
+        'If TXTTOTALDENTSMAIN.Text <> "" Then TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
+        ''If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
+        ''AS PER RANJAN
+        'If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
+
+        ''If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
+        ''RANJAN
+        'If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
+
+        'If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Format(Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text), "0.00")
+        'If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
+        ''new code 
+        ''If TXTTOTALDENTSMAIN.Text <> "" And TXTTHREADPERDENT.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTTOTALDENTSMAIN.Text) * Val(TXTTHREADPERDENT.Text), "0.00")
+        ''If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALENDS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELENDS.Text), "0.00")
+
+        'If txttotaldentsrepeat.Text <> "" And TXTTOTALDRAWENDS.Text <> "" Then
+        '    Dim totalDents As Double = Val(txttotaldentsrepeat.Text)
+        '    Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
+        '    Dim result As Double = Format(Val(totalDents) * Val(totalDrawEnds), "0.00")
+        '    TXTTOTALENDS.Text = Format((result), "0.00")
+        'End If
+        '*******************************************************************************
+        ' Main Reed Space - default selvedge to 0 if empty
+        Dim leftSel As Double = If(TXTLEFTSEL.Text <> "", Val(TXTLEFTSEL.Text), 0)
+        Dim rightSel As Double = If(TXTRIGHTSEL.Text <> "", Val(TXTRIGHTSEL.Text), 0)
+
+        If TXTREEDSPACE.Text <> "" Then
+            TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - (leftSel + rightSel), "0.00")
+        End If
+
         If TXTREED.Text <> "" Then TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
-        If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
-        If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then TXTLEFTSELDENTS.Text = Format(Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), "0.00")
-        If TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "" Then TXTRIGHTSELDENTS.Text = Format(Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), "0.00")
-        If TXTRIGHTSELDENTS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTTOTALSELVEDGEDENTS.Text = Format(Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text), "0.00")
-        If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
-        'If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
-        'AS PER RANJAN
-        If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
 
-        'If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
-        'RANJAN
-        If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
+        If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then
+            TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
+        End If
 
-        If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Format(Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text), "0.00")
-        If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
-        'new code 
-        'If TXTTOTALDENTSMAIN.Text <> "" And TXTTHREADPERDENT.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTTOTALDENTSMAIN.Text) * Val(TXTTHREADPERDENT.Text), "0.00")
-        'If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALENDS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELENDS.Text), "0.00")
+        ' Selvedge Dents - default to 0 if empty
+        Dim leftSelDents As Double = If(TXTDENTS.Text <> "" And TXTLEFTSEL.Text <> "", Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), 0)
+        Dim rightSelDents As Double = If(TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "", Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), 0)
 
+        TXTLEFTSELDENTS.Text = Format(leftSelDents, "0.00")
+        TXTRIGHTSELDENTS.Text = Format(rightSelDents, "0.00")
+
+        ' Total Selvedge Dents - always calculated (0 if no selvedge)
+        TXTTOTALSELVEDGEDENTS.Text = Format(leftSelDents + rightSelDents, "0.00")
+
+        If TXTTOTALDENTSMAIN.Text <> "" Then
+            TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + (leftSelDents + rightSelDents), "0.00")
+        End If
+
+        ' Selvedge Ends - default to 0 if empty
+        Dim leftSelEnds As Double = If(TXTLEFTSELENDS.Text <> "", Val(TXTLEFTSELENDS.Text) * leftSelDents, 0)
+        Dim rightSelEnds As Double = If(TXTRIGHTSELENDS.Text <> "", Val(TXTRIGHTSELENDS.Text) * rightSelDents, 0)
+
+        TXTLEFTSELTOTALENDS.Text = Format(leftSelEnds, "0.00")
+        TXTRIGHTSELTOTALENDS.Text = Format(rightSelEnds, "0.00")
+        TXTTOTALSELENDS.Text = Format(leftSelEnds + rightSelEnds, "0.00")
+
+        ' Dents Repeat
+        If TXTTOTALDRAWDENTS.Text <> "" And Val(TXTTOTALDRAWDENTS.Text) <> 0 And TXTTOTALDENTS.Text <> "" Then
+            txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
+        End If
+
+        ' Total Ends
         If txttotaldentsrepeat.Text <> "" And TXTTOTALDRAWENDS.Text <> "" Then
             Dim totalDents As Double = Val(txttotaldentsrepeat.Text)
             Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
-            Dim result As Double = Format(Val(totalDents) * Val(totalDrawEnds), "0.00")
-            TXTTOTALENDS.Text = Format((result), "0.00")
+            TXTTOTALENDS.Text = Format(totalDents * totalDrawEnds, "0.00")
         End If
         If TXTTOTALENDS.Text <> "" Then TXTTOTALEXTRAENDS.Text = Format(Val(TXTTOTALENDS.Text) + Val(TXTEXTRAENDS.Text), "0.00")
         ' If TXTTOTALENDS.Text <> "" And TXTTOTALENDS.Text > 0 And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
@@ -2175,12 +2225,18 @@ LINE1:
                 Next
             End If
         End If
-        TXTFWT.Text = 0.000
-        TXTFINISHWT.Text = 0.000
-        TXTGSM.Text = 0
-        TXTGLM.Text = 0.000
+        TXTFWT.Text = "0.000"
+        TXTFINISHWT.Text = "0.000"
+        TXTGSM.Text = "0"
+        TXTGLM.Text = "0.000"
+
+        ' Fabric Weight
         TXTFWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
-        If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) * (1 + (Val(TXTSHRINKAGEPER.Text) / 100) * 0.6), "0.000")
+
+        ' Finish Weight - default shrinkage to 0 if empty
+        Dim shrinkage As Double = If(TXTSHRINKAGEPER.Text <> "", Val(TXTSHRINKAGEPER.Text), 0)
+        TXTFINISHWT.Text = Format(Val(TXTFWT.Text) * (1 + (shrinkage / 100) * 0.6), "0.000")
+        'If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) * (1 + (Val(TXTSHRINKAGEPER.Text) / 100) * 0.6), "0.000")
         If TXTNOOFPCS.Text <> "" And TXTPCSL.Text <> "" Then
             Dim pcs As Double = Val(TXTNOOFPCS.Text)
             Dim pcsl As Double = Val(TXTPCSL.Text)
@@ -2718,10 +2774,10 @@ LINE1:
                     End If
                 End If
             End If
-            cmdbtn1_Click(sender, e, GRIDDRAWING)
-            ' TOTALDRAWDENTS(GRIDDRAWING)
-            CALC()
-            TOTAL()
+            'cmdbtn1_Click(sender, e, GRIDDRAWING)
+            '' TOTALDRAWDENTS(GRIDDRAWING)
+            'CALC()
+            'TOTAL()
         Catch ex As Exception
             Throw ex
         End Try
@@ -3263,10 +3319,7 @@ LINE1:
                 End If
 
             End If
-            Button2_Click(sender, e)
-            COPYWEFTSYM()
-            CALC()
-            TOTAL()
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -3326,9 +3379,7 @@ LINE1:
                 End If
 
             End If
-            COPYSYM()
-            CALC()
-            TOTAL()
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -4324,10 +4375,7 @@ line1:
                 End If
 
             End If
-            Button1_Click(sender, e)
-            COPYSELSYM()
-            CALC()
-            TOTAL()
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -4722,6 +4770,48 @@ line1:
                     'MsgBox("Beam Name Already Exists in Beam Master")
                 End If
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDDRAWING_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDDRAWING.CellEndEdit
+        Try
+            cmdbtn1_Click(sender, New EventArgs(), GRIDDRAWING)
+            CALC()
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDSELVEDGEPATTERN_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSELVEDGEPATTERN.CellEndEdit
+        Try
+            Button1_Click(sender, e)
+            COPYSELSYM()
+            CALC()
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWARPPATTERN_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWARPPATTERN.CellEndEdit
+        Try
+            COPYSYM()
+            CALC()
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDWEFTPATTERN_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDWEFTPATTERN.CellEndEdit
+        Try
+            Button2_Click(sender, e)
+            COPYWEFTSYM()
+            CALC()
+            TOTAL()
         Catch ex As Exception
             Throw ex
         End Try
