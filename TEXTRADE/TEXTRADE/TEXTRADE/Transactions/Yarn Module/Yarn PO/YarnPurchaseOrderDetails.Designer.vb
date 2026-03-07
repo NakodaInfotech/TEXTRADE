@@ -24,6 +24,12 @@ Partial Class YarnPurchaseOrderDetails
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnPurchaseOrderDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TXTCOPIES = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TXTTO = New System.Windows.Forms.TextBox()
+        Me.TXTFROM = New System.Windows.Forms.TextBox()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -60,16 +66,12 @@ Partial Class YarnPurchaseOrderDetails
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.lbl = New System.Windows.Forms.Label()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.TOOLMAIL = New System.Windows.Forms.ToolStripButton()
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.TXTTO = New System.Windows.Forms.TextBox()
-        Me.TXTFROM = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TXTCOPIES = New System.Windows.Forms.TextBox()
+        Me.lbl = New System.Windows.Forms.Label()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,6 +101,72 @@ Partial Class YarnPurchaseOrderDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1184, 581)
         Me.BlendPanel1.TabIndex = 5
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.White
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(715, 6)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(44, 14)
+        Me.Label4.TabIndex = 799
+        Me.Label4.Text = "Copies"
+        '
+        'TXTCOPIES
+        '
+        Me.TXTCOPIES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCOPIES.Location = New System.Drawing.Point(760, 2)
+        Me.TXTCOPIES.Name = "TXTCOPIES"
+        Me.TXTCOPIES.Size = New System.Drawing.Size(29, 22)
+        Me.TXTCOPIES.TabIndex = 798
+        Me.TXTCOPIES.Text = "1"
+        Me.TXTCOPIES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.White
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(606, 5)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(19, 14)
+        Me.Label9.TabIndex = 791
+        Me.Label9.Text = "To"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.White
+        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(508, 5)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(34, 14)
+        Me.Label10.TabIndex = 790
+        Me.Label10.Text = "From"
+        '
+        'TXTTO
+        '
+        Me.TXTTO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTO.Location = New System.Drawing.Point(627, 1)
+        Me.TXTTO.Name = "TXTTO"
+        Me.TXTTO.Size = New System.Drawing.Size(57, 22)
+        Me.TXTTO.TabIndex = 789
+        Me.TXTTO.TabStop = False
+        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTFROM
+        '
+        Me.TXTFROM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFROM.Location = New System.Drawing.Point(543, 1)
+        Me.TXTFROM.Name = "TXTFROM"
+        Me.TXTFROM.Size = New System.Drawing.Size(57, 22)
+        Me.TXTFROM.TabIndex = 788
+        Me.TXTFROM.TabStop = False
+        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'cmdexit
         '
@@ -453,18 +521,6 @@ Partial Class YarnPurchaseOrderDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'lbl
-        '
-        Me.lbl.AutoSize = True
-        Me.lbl.BackColor = System.Drawing.Color.Transparent
-        Me.lbl.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lbl.Location = New System.Drawing.Point(19, 34)
-        Me.lbl.Name = "lbl"
-        Me.lbl.Size = New System.Drawing.Size(128, 14)
-        Me.lbl.TabIndex = 251
-        Me.lbl.Text = "Select a P.O. to Change"
-        '
         'ToolStripButton2
         '
         Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -492,71 +548,24 @@ Partial Class YarnPurchaseOrderDetails
         Me.TOOLWHATSAPP.Size = New System.Drawing.Size(23, 22)
         Me.TOOLWHATSAPP.Text = "&Whatsapp"
         '
-        'Label9
+        'lbl
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.White
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(606, 5)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(19, 14)
-        Me.Label9.TabIndex = 791
-        Me.Label9.Text = "To"
+        Me.lbl.AutoSize = True
+        Me.lbl.BackColor = System.Drawing.Color.Transparent
+        Me.lbl.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lbl.Location = New System.Drawing.Point(19, 34)
+        Me.lbl.Name = "lbl"
+        Me.lbl.Size = New System.Drawing.Size(128, 14)
+        Me.lbl.TabIndex = 251
+        Me.lbl.Text = "Select a P.O. to Change"
         '
-        'Label10
+        'PRINTDIALOG
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.BackColor = System.Drawing.Color.White
-        Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(508, 5)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(34, 14)
-        Me.Label10.TabIndex = 790
-        Me.Label10.Text = "From"
-        '
-        'TXTTO
-        '
-        Me.TXTTO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTO.Location = New System.Drawing.Point(627, 1)
-        Me.TXTTO.Name = "TXTTO"
-        Me.TXTTO.Size = New System.Drawing.Size(57, 22)
-        Me.TXTTO.TabIndex = 789
-        Me.TXTTO.TabStop = False
-        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTFROM
-        '
-        Me.TXTFROM.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTFROM.Location = New System.Drawing.Point(543, 1)
-        Me.TXTFROM.Name = "TXTFROM"
-        Me.TXTFROM.Size = New System.Drawing.Size(57, 22)
-        Me.TXTFROM.TabIndex = 788
-        Me.TXTFROM.TabStop = False
-        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.White
-        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(715, 6)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(44, 14)
-        Me.Label4.TabIndex = 799
-        Me.Label4.Text = "Copies"
-        '
-        'TXTCOPIES
-        '
-        Me.TXTCOPIES.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTCOPIES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCOPIES.Location = New System.Drawing.Point(760, 2)
-        Me.TXTCOPIES.Name = "TXTCOPIES"
-        Me.TXTCOPIES.Size = New System.Drawing.Size(29, 22)
-        Me.TXTCOPIES.TabIndex = 798
-        Me.TXTCOPIES.Text = "1"
-        Me.TXTCOPIES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
         '
         'YarnPurchaseOrderDetails
         '
@@ -626,4 +635,6 @@ Partial Class YarnPurchaseOrderDetails
     Friend WithEvents TOOLWHATSAPP As ToolStripButton
     Friend WithEvents Label4 As Label
     Friend WithEvents TXTCOPIES As TextBox
+    Friend WithEvents PRINTDIALOG As PrintDialog
+    Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
 End Class

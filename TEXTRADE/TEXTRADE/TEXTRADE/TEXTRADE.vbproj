@@ -2887,6 +2887,12 @@
     <Compile Include="Transactions\Stores\Stock Reco\StoreStockRecoOutDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Stores\Stores Loan\StoresLoanMaster.Designer.vb">
+      <DependentUpon>StoresLoanMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stores Loan\StoresLoanMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Stores\Stores Purchase Order\StoresPurchaseOrder.Designer.vb">
       <DependentUpon>StoresPurchaseOrder.vb</DependentUpon>
     </Compile>
@@ -10524,6 +10530,9 @@
     <EmbeddedResource Include="Transactions\Stores\Stock Reco\StoreStockRecoOutDetails.resx">
       <DependentUpon>StoreStockRecoOutDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stores Loan\StoresLoanMaster.resx">
+      <DependentUpon>StoresLoanMaster.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\Stores Purchase Order\StoresPurchaseOrder.resx">
       <DependentUpon>StoresPurchaseOrder.vb</DependentUpon>
     </EmbeddedResource>
@@ -14771,9 +14780,7 @@
     <None Include="Resources\EINVOICE LOGO.png" />
     <None Include="Resources\NakodaICON.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\Crystal Reports\Stores\Stores Issue And Repair\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -466,7 +466,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTQTY_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTQTY.KeyPress
+    Private Sub TXTQTY_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTQTY.KeyPress, TXTTENTATIVEDAYS.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 

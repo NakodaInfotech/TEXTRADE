@@ -555,7 +555,7 @@ Public Class InvoiceDetails
 
     Private Sub InvoiceDetails_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
-            If ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "PARTOBA" Or ClientName = "INDRAPUJAFABRICS" Then CHKBLANKPAPER.CheckState = CheckState.Checked
+            If ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "PARTOBA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "RAJDEEP" Then CHKBLANKPAPER.CheckState = CheckState.Checked
             If ClientName = "KDFAB" Then
                 GRECDDATE.Visible = True
                 GRECDDATE.VisibleIndex = GRECDAMT.VisibleIndex + 1

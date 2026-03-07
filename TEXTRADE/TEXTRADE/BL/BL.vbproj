@@ -409,6 +409,7 @@
     <Compile Include="Transactions\Stores\ClsRecFromReparing.vb" />
     <Compile Include="Transactions\Stores\ClsStoreConsumption.vb" />
     <Compile Include="Transactions\Stores\ClsStoreInward.vb" />
+    <Compile Include="Transactions\Stores\ClsStoresLoan.vb" />
     <Compile Include="Transactions\Stores\ClsStoresReorderLevel.vb" />
     <Compile Include="Transactions\Stores\ClsStoreStockAdjustment.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Issue\ClsBeamIssueWeaver.vb" />
