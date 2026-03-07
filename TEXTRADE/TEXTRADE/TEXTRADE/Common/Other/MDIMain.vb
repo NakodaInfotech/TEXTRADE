@@ -11149,4 +11149,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub STORELOAN_ADD_Click(sender As Object, e As EventArgs) Handles STORELOAN_ADD.Click
+        Try
+            Dim OBJMASTERTRANSFER As New StoresLoanMaster
+            OBJMASTERTRANSFER.MdiParent = Me
+            OBJMASTERTRANSFER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
