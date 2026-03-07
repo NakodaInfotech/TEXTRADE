@@ -6390,7 +6390,7 @@ Partial Class MDIMain
         Me.STORESLOAN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORELOAN_ADD, Me.STORELOAN_EDIT})
         Me.STORESLOAN_MASTER.Name = "STORESLOAN_MASTER"
         Me.STORESLOAN_MASTER.Size = New System.Drawing.Size(232, 22)
-        Me.STORESLOAN_MASTER.Text = "Stores Loan Master"
+        Me.STORESLOAN_MASTER.Text = "Stores Loan"
         '
         'STORELOAN_ADD
         '
