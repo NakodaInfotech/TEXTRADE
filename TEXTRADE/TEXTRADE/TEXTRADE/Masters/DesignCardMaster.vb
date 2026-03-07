@@ -2632,37 +2632,37 @@ LINE1:
         End If
     End Sub
 
-    Sub FILLDRAWGRID()
-        If TXTDRAWENDS.Text.Trim = "" Then
-            Exit Sub
-        End If
-        If GRIDDRAWDOUBLECLICK = False Then
-            GRIDDRAWING.Rows.Add(Val(TXTDRAWSRNO.Text.Trim), TXTDRAWENDS.Text.Trim)
-            getsrno(GRIDDRAWING)
-        ElseIf GRIDDRAWDOUBLECLICK = True Then
-            GRIDDRAWING.Item(DSRNO.Index, TEMPDRAWROW).Value = Val(TXTDRAWSRNO.Text.Trim)
-            GRIDDRAWING.Item(DENDS.Index, TEMPDRAWROW).Value = TXTDRAWENDS.Text.Trim
-            TXTDRAWSRNO.Focus()
-            GRIDDRAWDOUBLECLICK = False
-        End If
-        GRIDDRAWING.ClearSelection()
-        TXTDRAWENDS.Clear()
-        TXTDRAWENDS.Focus()
-        If GRIDDRAWING.RowCount > 0 Then
-            TXTDRAWSRNO.Text = Val(GRIDDRAWING.Rows(GRIDDRAWING.RowCount - 1).Cells(0).Value) + 1
-        Else
-            TXTDRAWSRNO.Text = 1
-        End If
-        'TOTALDRAWDENTS(GRIDDRAWING)
-    End Sub
+    'Sub FILLDRAWGRID()
+    '    If TXTDRAWENDS.Text.Trim = "" Then
+    '        Exit Sub
+    '    End If
+    '    If GRIDDRAWDOUBLECLICK = False Then
+    '        GRIDDRAWING.Rows.Add(Val(TXTDRAWSRNO.Text.Trim), TXTDRAWENDS.Text.Trim)
+    '        getsrno(GRIDDRAWING)
+    '    ElseIf GRIDDRAWDOUBLECLICK = True Then
+    '        GRIDDRAWING.Item(DSRNO.Index, TEMPDRAWROW).Value = Val(TXTDRAWSRNO.Text.Trim)
+    '        GRIDDRAWING.Item(DENDS.Index, TEMPDRAWROW).Value = TXTDRAWENDS.Text.Trim
+    '        TXTDRAWSRNO.Focus()
+    '        GRIDDRAWDOUBLECLICK = False
+    '    End If
+    '    GRIDDRAWING.ClearSelection()
+    '    TXTDRAWENDS.Clear()
+    '    TXTDRAWENDS.Focus()
+    '    If GRIDDRAWING.RowCount > 0 Then
+    '        TXTDRAWSRNO.Text = Val(GRIDDRAWING.Rows(GRIDDRAWING.RowCount - 1).Cells(0).Value) + 1
+    '    Else
+    '        TXTDRAWSRNO.Text = 1
+    '    End If
+    '    'TOTALDRAWDENTS(GRIDDRAWING)
+    'End Sub
 
-    Private Sub TXTDRAWENDS_Validated(sender As Object, e As EventArgs) Handles TXTDRAWENDS.Validated
-        Try
-            FILLDRAWGRID()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub TXTDRAWENDS_Validated(sender As Object, e As EventArgs) Handles TXTDRAWENDS.Validated
+    '    Try
+    '        FILLDRAWGRID()
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub GRIDDRAWING_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDDRAWING.CellValidating
         Try
@@ -3514,7 +3514,7 @@ LINE1:
         End Try
     End Function
 
-    Private Sub cmdbtn1_Click(sender As Object, e As EventArgs, Optional GDV As DataGridView = Nothing) Handles cmdbtn1.Click
+    Private Sub cmdbtn1_Click(sender As Object, e As EventArgs, Optional GDV As DataGridView = Nothing) Handles CMDDRAWCALC.Click
         If GDV Is GRIDDRAWING Then
             CalculateTotalsForGrid(GRIDDRAWING, "DENDS", "DREPEAT", "DREPEATS1", "DREPEATS2", "DTOTALREPEAT", "DTOTALREPEAT1", "DTOTALREPEAT2")
 

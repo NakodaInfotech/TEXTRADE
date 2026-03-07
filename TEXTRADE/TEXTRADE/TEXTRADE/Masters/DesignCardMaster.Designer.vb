@@ -304,7 +304,7 @@ Partial Class DesignCardMaster
         Me.cmbgridshade = New System.Windows.Forms.ComboBox()
         Me.cmbweftgridshade = New System.Windows.Forms.ComboBox()
         Me.TBDRAWING = New System.Windows.Forms.TabPage()
-        Me.cmdbtn1 = New System.Windows.Forms.Button()
+        Me.CMDDRAWCALC = New System.Windows.Forms.Button()
         Me.TXTTOTALDRAWDENTS = New System.Windows.Forms.TextBox()
         Me.TXTTOTALDRAWENDS = New System.Windows.Forms.TextBox()
         Me.TXTDRAWENDS = New System.Windows.Forms.TextBox()
@@ -312,20 +312,6 @@ Partial Class DesignCardMaster
         Me.Label55 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GRIDDRAWING = New System.Windows.Forms.DataGridView()
-        Me.DSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATMARK = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DTOTALREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DTOTALDENTREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATMARK1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATS1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DTOTALREPEAT1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DTOTALDENTREPEAT1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATMARK2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DREPEATS2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DTOTALREPEAT2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DTOTALDENTREPEAT2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label87 = New System.Windows.Forms.Label()
         Me.GRIDPEG = New System.Windows.Forms.DataGridView()
@@ -511,6 +497,20 @@ Partial Class DesignCardMaster
         Me.TXTLOOMPROD = New System.Windows.Forms.TextBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.DSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATMARK = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DTOTALREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DTOTALDENTREPEAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATMARK1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATS1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DTOTALREPEAT1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DTOTALDENTREPEAT1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATMARK2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DREPEATS2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DTOTALREPEAT2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DTOTALDENTREPEAT2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BLENDPANEL1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
@@ -584,7 +584,7 @@ Partial Class DesignCardMaster
         Me.CHKBLOCKED.Location = New System.Drawing.Point(569, 35)
         Me.CHKBLOCKED.Name = "CHKBLOCKED"
         Me.CHKBLOCKED.Size = New System.Drawing.Size(69, 18)
-        Me.CHKBLOCKED.TabIndex = 1039
+        Me.CHKBLOCKED.TabIndex = 2
         Me.CHKBLOCKED.Text = "Blocked"
         Me.CHKBLOCKED.UseVisualStyleBackColor = False
         '
@@ -608,7 +608,7 @@ Partial Class DesignCardMaster
         Me.CMBSHADE.Location = New System.Drawing.Point(384, 32)
         Me.CMBSHADE.Name = "CMBSHADE"
         Me.CMBSHADE.Size = New System.Drawing.Size(157, 23)
-        Me.CMBSHADE.TabIndex = 3
+        Me.CMBSHADE.TabIndex = 1
         '
         'TXTADD
         '
@@ -777,6 +777,7 @@ Partial Class DesignCardMaster
         Me.DTDATE.Name = "DTDATE"
         Me.DTDATE.Size = New System.Drawing.Size(76, 23)
         Me.DTDATE.TabIndex = 5
+        Me.DTDATE.TabStop = False
         Me.DTDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.DTDATE.ValidatingType = GetType(Date)
         '
@@ -788,6 +789,7 @@ Partial Class DesignCardMaster
         Me.txtcardno.Name = "txtcardno"
         Me.txtcardno.Size = New System.Drawing.Size(80, 22)
         Me.txtcardno.TabIndex = 4
+        Me.txtcardno.TabStop = False
         '
         'LBLNO
         '
@@ -3179,7 +3181,7 @@ Partial Class DesignCardMaster
         'TBDRAWING
         '
         Me.TBDRAWING.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TBDRAWING.Controls.Add(Me.cmdbtn1)
+        Me.TBDRAWING.Controls.Add(Me.CMDDRAWCALC)
         Me.TBDRAWING.Controls.Add(Me.TXTTOTALDRAWDENTS)
         Me.TBDRAWING.Controls.Add(Me.TXTTOTALDRAWENDS)
         Me.TBDRAWING.Controls.Add(Me.TXTDRAWENDS)
@@ -3187,21 +3189,21 @@ Partial Class DesignCardMaster
         Me.TBDRAWING.Controls.Add(Me.Label55)
         Me.TBDRAWING.Controls.Add(Me.Label1)
         Me.TBDRAWING.Controls.Add(Me.GRIDDRAWING)
-        Me.TBDRAWING.Location = New System.Drawing.Point(4, 22)
+        Me.TBDRAWING.Location = New System.Drawing.Point(4, 24)
         Me.TBDRAWING.Name = "TBDRAWING"
         Me.TBDRAWING.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBDRAWING.Size = New System.Drawing.Size(1436, 241)
+        Me.TBDRAWING.Size = New System.Drawing.Size(1436, 239)
         Me.TBDRAWING.TabIndex = 3
         Me.TBDRAWING.Text = "4. Drawing"
         '
-        'cmdbtn1
+        'CMDDRAWCALC
         '
-        Me.cmdbtn1.Location = New System.Drawing.Point(207, 186)
-        Me.cmdbtn1.Name = "cmdbtn1"
-        Me.cmdbtn1.Size = New System.Drawing.Size(75, 23)
-        Me.cmdbtn1.TabIndex = 917
-        Me.cmdbtn1.Text = "Calculate"
-        Me.cmdbtn1.UseVisualStyleBackColor = True
+        Me.CMDDRAWCALC.Location = New System.Drawing.Point(207, 186)
+        Me.CMDDRAWCALC.Name = "CMDDRAWCALC"
+        Me.CMDDRAWCALC.Size = New System.Drawing.Size(75, 23)
+        Me.CMDDRAWCALC.TabIndex = 917
+        Me.CMDDRAWCALC.Text = "Calculate"
+        Me.CMDDRAWCALC.UseVisualStyleBackColor = True
         '
         'TXTTOTALDRAWDENTS
         '
@@ -3309,109 +3311,9 @@ Partial Class DesignCardMaster
         Me.GRIDDRAWING.RowTemplate.Height = 20
         Me.GRIDDRAWING.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDDRAWING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDDRAWING.Size = New System.Drawing.Size(155, 179)
+        Me.GRIDDRAWING.Size = New System.Drawing.Size(1188, 150)
         Me.GRIDDRAWING.TabIndex = 909
         Me.GRIDDRAWING.TabStop = False
-        '
-        'DSRNO
-        '
-        Me.DSRNO.HeaderText = "Sr."
-        Me.DSRNO.Name = "DSRNO"
-        Me.DSRNO.ReadOnly = True
-        Me.DSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DSRNO.Width = 30
-        '
-        'DENDS
-        '
-        Me.DENDS.HeaderText = "Ends"
-        Me.DENDS.Name = "DENDS"
-        Me.DENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DREPEATMARK
-        '
-        Me.DREPEATMARK.HeaderText = "Repeat Mark"
-        Me.DREPEATMARK.Name = "DREPEATMARK"
-        Me.DREPEATMARK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATMARK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DREPEATMARK.Visible = False
-        '
-        'DREPEAT
-        '
-        Me.DREPEAT.HeaderText = "Repeats"
-        Me.DREPEAT.Name = "DREPEAT"
-        Me.DREPEAT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEAT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DREPEAT.Visible = False
-        '
-        'DTOTALREPEAT
-        '
-        Me.DTOTALREPEAT.HeaderText = "Total Repeat"
-        Me.DTOTALREPEAT.Name = "DTOTALREPEAT"
-        Me.DTOTALREPEAT.Visible = False
-        '
-        'DTOTALDENTREPEAT
-        '
-        Me.DTOTALDENTREPEAT.HeaderText = "TOTAL D R"
-        Me.DTOTALDENTREPEAT.Name = "DTOTALDENTREPEAT"
-        Me.DTOTALDENTREPEAT.Visible = False
-        '
-        'DREPEATMARK1
-        '
-        Me.DREPEATMARK1.HeaderText = "Repeat Mark 1"
-        Me.DREPEATMARK1.Name = "DREPEATMARK1"
-        Me.DREPEATMARK1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATMARK1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DREPEATMARK1.Visible = False
-        '
-        'DREPEATS1
-        '
-        Me.DREPEATS1.HeaderText = "Repeats 1"
-        Me.DREPEATS1.Name = "DREPEATS1"
-        Me.DREPEATS1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATS1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DREPEATS1.Visible = False
-        '
-        'DTOTALREPEAT1
-        '
-        Me.DTOTALREPEAT1.HeaderText = "Total Repeat 1"
-        Me.DTOTALREPEAT1.Name = "DTOTALREPEAT1"
-        Me.DTOTALREPEAT1.Visible = False
-        '
-        'DTOTALDENTREPEAT1
-        '
-        Me.DTOTALDENTREPEAT1.HeaderText = "TOTAL D R1"
-        Me.DTOTALDENTREPEAT1.Name = "DTOTALDENTREPEAT1"
-        Me.DTOTALDENTREPEAT1.Visible = False
-        '
-        'DREPEATMARK2
-        '
-        Me.DREPEATMARK2.HeaderText = "Repeat Mark 2"
-        Me.DREPEATMARK2.Name = "DREPEATMARK2"
-        Me.DREPEATMARK2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATMARK2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DREPEATMARK2.Visible = False
-        '
-        'DREPEATS2
-        '
-        Me.DREPEATS2.HeaderText = "Repeats 2"
-        Me.DREPEATS2.Name = "DREPEATS2"
-        Me.DREPEATS2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DREPEATS2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DREPEATS2.Visible = False
-        '
-        'DTOTALREPEAT2
-        '
-        Me.DTOTALREPEAT2.HeaderText = "Total Repeat 2"
-        Me.DTOTALREPEAT2.Name = "DTOTALREPEAT2"
-        Me.DTOTALREPEAT2.Visible = False
-        '
-        'DTOTALDENTREPEAT2
-        '
-        Me.DTOTALDENTREPEAT2.HeaderText = "TOTAL D R2"
-        Me.DTOTALDENTREPEAT2.Name = "DTOTALDENTREPEAT2"
-        Me.DTOTALDENTREPEAT2.Visible = False
         '
         'TabPage1
         '
@@ -3665,6 +3567,7 @@ Partial Class DesignCardMaster
         Me.CMBDESIGNNO.Name = "CMBDESIGNNO"
         Me.CMBDESIGNNO.Size = New System.Drawing.Size(233, 23)
         Me.CMBDESIGNNO.TabIndex = 2
+        Me.CMBDESIGNNO.TabStop = False
         Me.CMBDESIGNNO.Visible = False
         '
         'Label2
@@ -3688,7 +3591,7 @@ Partial Class DesignCardMaster
         Me.CMBITEMNAME.Location = New System.Drawing.Point(98, 32)
         Me.CMBITEMNAME.Name = "CMBITEMNAME"
         Me.CMBITEMNAME.Size = New System.Drawing.Size(233, 23)
-        Me.CMBITEMNAME.TabIndex = 1
+        Me.CMBITEMNAME.TabIndex = 0
         '
         'CMDCLEAR
         '
@@ -3754,7 +3657,7 @@ Partial Class DesignCardMaster
         Me.TABCONTROLMAIN.Name = "TABCONTROLMAIN"
         Me.TABCONTROLMAIN.SelectedIndex = 0
         Me.TABCONTROLMAIN.Size = New System.Drawing.Size(1361, 233)
-        Me.TABCONTROLMAIN.TabIndex = 6
+        Me.TABCONTROLMAIN.TabIndex = 3
         '
         'TBMAIN
         '
@@ -4217,7 +4120,7 @@ Partial Class DesignCardMaster
         '
         'TXTSHRINKAGEPER
         '
-        Me.TXTSHRINKAGEPER.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTSHRINKAGEPER.BackColor = System.Drawing.SystemColors.Window
         Me.TXTSHRINKAGEPER.Location = New System.Drawing.Point(423, 128)
         Me.TXTSHRINKAGEPER.MaxLength = 50
         Me.TXTSHRINKAGEPER.Name = "TXTSHRINKAGEPER"
@@ -5586,6 +5489,94 @@ Partial Class DesignCardMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'DSRNO
+        '
+        Me.DSRNO.HeaderText = "Sr."
+        Me.DSRNO.Name = "DSRNO"
+        Me.DSRNO.ReadOnly = True
+        Me.DSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DSRNO.Width = 30
+        '
+        'DENDS
+        '
+        Me.DENDS.HeaderText = "Ends"
+        Me.DENDS.Name = "DENDS"
+        Me.DENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEATMARK
+        '
+        Me.DREPEATMARK.HeaderText = "Repeat Mark"
+        Me.DREPEATMARK.Name = "DREPEATMARK"
+        Me.DREPEATMARK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATMARK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEAT
+        '
+        Me.DREPEAT.HeaderText = "Repeats"
+        Me.DREPEAT.Name = "DREPEAT"
+        Me.DREPEAT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEAT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DTOTALREPEAT
+        '
+        Me.DTOTALREPEAT.HeaderText = "Total Repeat"
+        Me.DTOTALREPEAT.Name = "DTOTALREPEAT"
+        '
+        'DTOTALDENTREPEAT
+        '
+        Me.DTOTALDENTREPEAT.HeaderText = "TOTAL D R"
+        Me.DTOTALDENTREPEAT.Name = "DTOTALDENTREPEAT"
+        '
+        'DREPEATMARK1
+        '
+        Me.DREPEATMARK1.HeaderText = "Repeat Mark 1"
+        Me.DREPEATMARK1.Name = "DREPEATMARK1"
+        Me.DREPEATMARK1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATMARK1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEATS1
+        '
+        Me.DREPEATS1.HeaderText = "Repeats 1"
+        Me.DREPEATS1.Name = "DREPEATS1"
+        Me.DREPEATS1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATS1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DTOTALREPEAT1
+        '
+        Me.DTOTALREPEAT1.HeaderText = "Total Repeat 1"
+        Me.DTOTALREPEAT1.Name = "DTOTALREPEAT1"
+        '
+        'DTOTALDENTREPEAT1
+        '
+        Me.DTOTALDENTREPEAT1.HeaderText = "TOTAL D R1"
+        Me.DTOTALDENTREPEAT1.Name = "DTOTALDENTREPEAT1"
+        '
+        'DREPEATMARK2
+        '
+        Me.DREPEATMARK2.HeaderText = "Repeat Mark 2"
+        Me.DREPEATMARK2.Name = "DREPEATMARK2"
+        Me.DREPEATMARK2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATMARK2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DREPEATS2
+        '
+        Me.DREPEATS2.HeaderText = "Repeats 2"
+        Me.DREPEATS2.Name = "DREPEATS2"
+        Me.DREPEATS2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DREPEATS2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DTOTALREPEAT2
+        '
+        Me.DTOTALREPEAT2.HeaderText = "Total Repeat 2"
+        Me.DTOTALREPEAT2.Name = "DTOTALREPEAT2"
+        '
+        'DTOTALDENTREPEAT2
+        '
+        Me.DTOTALDENTREPEAT2.HeaderText = "TOTAL D R2"
+        Me.DTOTALDENTREPEAT2.Name = "DTOTALDENTREPEAT2"
+        '
         'DesignCardMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -5927,7 +5918,7 @@ Partial Class DesignCardMaster
     Friend WithEvents CMBWEFTYARNQUALITY As ComboBox
     Friend WithEvents GRIDWEFT As DataGridView
     Friend WithEvents TBDRAWING As TabPage
-    Friend WithEvents cmdbtn1 As Button
+    Friend WithEvents CMDDRAWCALC As Button
     Friend WithEvents TXTTOTALDRAWDENTS As TextBox
     Friend WithEvents TXTTOTALDRAWENDS As TextBox
     Friend WithEvents TXTDRAWENDS As TextBox
@@ -5935,20 +5926,6 @@ Partial Class DesignCardMaster
     Friend WithEvents Label55 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents GRIDDRAWING As DataGridView
-    Friend WithEvents DSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents DENDS As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATMARK As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEAT As DataGridViewTextBoxColumn
-    Friend WithEvents DTOTALREPEAT As DataGridViewTextBoxColumn
-    Friend WithEvents DTOTALDENTREPEAT As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATMARK1 As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATS1 As DataGridViewTextBoxColumn
-    Friend WithEvents DTOTALREPEAT1 As DataGridViewTextBoxColumn
-    Friend WithEvents DTOTALDENTREPEAT1 As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATMARK2 As DataGridViewTextBoxColumn
-    Friend WithEvents DREPEATS2 As DataGridViewTextBoxColumn
-    Friend WithEvents DTOTALREPEAT2 As DataGridViewTextBoxColumn
-    Friend WithEvents DTOTALDENTREPEAT2 As DataGridViewTextBoxColumn
     Friend WithEvents Label81 As Label
     Friend WithEvents CMBWEFTGRIDSYMBOL As ComboBox
     Friend WithEvents CMBGRIDSYM As ComboBox
@@ -6072,4 +6049,18 @@ Partial Class DesignCardMaster
     Friend WithEvents cmbgridshade As ComboBox
     Friend WithEvents cmbweftgridshade As ComboBox
     Friend WithEvents CHKBLOCKED As CheckBox
+    Friend WithEvents DSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents DENDS As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATMARK As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEAT As DataGridViewTextBoxColumn
+    Friend WithEvents DTOTALREPEAT As DataGridViewTextBoxColumn
+    Friend WithEvents DTOTALDENTREPEAT As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATMARK1 As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATS1 As DataGridViewTextBoxColumn
+    Friend WithEvents DTOTALREPEAT1 As DataGridViewTextBoxColumn
+    Friend WithEvents DTOTALDENTREPEAT1 As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATMARK2 As DataGridViewTextBoxColumn
+    Friend WithEvents DREPEATS2 As DataGridViewTextBoxColumn
+    Friend WithEvents DTOTALREPEAT2 As DataGridViewTextBoxColumn
+    Friend WithEvents DTOTALDENTREPEAT2 As DataGridViewTextBoxColumn
 End Class
