@@ -96,10 +96,10 @@ Public Class ClsStoresLoan
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTLoan_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTSTORESLOAN_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@LoanNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@LOANNO", alParaval(0)))
                 .Add(New SqlClient.SqlParameter("@CmpID", alParaval(1)))
                 .Add(New SqlClient.SqlParameter("@LocationID", alParaval(2)))
                 .Add(New SqlClient.SqlParameter("@YearID", alParaval(3)))

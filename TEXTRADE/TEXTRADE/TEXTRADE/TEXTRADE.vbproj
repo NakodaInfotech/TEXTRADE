@@ -2917,6 +2917,12 @@
     <Compile Include="Transactions\Stores\Stores Loan\StoresLoan.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Stores\Stores Loan\StoresLoanDetails.Designer.vb">
+      <DependentUpon>StoresLoanDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Stores\Stores Loan\StoresLoanDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Stores\Stores Purchase Order\StoresPurchaseOrder.Designer.vb">
       <DependentUpon>StoresPurchaseOrder.vb</DependentUpon>
     </Compile>
@@ -10564,6 +10570,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\Stores Loan\StoresLoan.resx">
       <DependentUpon>StoresLoan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Stores\Stores Loan\StoresLoanDetails.resx">
+      <DependentUpon>StoresLoanDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Stores\Stores Purchase Order\StoresPurchaseOrder.resx">
       <DependentUpon>StoresPurchaseOrder.vb</DependentUpon>

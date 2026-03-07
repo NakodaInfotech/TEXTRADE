@@ -116,6 +116,10 @@ Public Class ClsYarnRecd
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@POGRIDSRNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
 
 
                 'POGRID
@@ -253,6 +257,10 @@ Public Class ClsYarnRecd
                 .Add(New SqlClient.SqlParameter("@GRIDPONO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@POGRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
 
                 'POGRID
