@@ -72,7 +72,7 @@ Public Class StoreStockDesign
                 crpo.ReportSource = RPTSTOREITEMSTOCKDTLS
 
             ElseIf FRMSTRING = "STOREPARTYWISE" Then
-                RPTSTOREPARTYWISE.DataDefinition.FormulaFields("PERIOD").Text = "' STORE PARTWISE STOCK SUMMARY - " & PERIOD & "'"
+                RPTSTOREPARTYWISE.DataDefinition.FormulaFields("PERIOD").Text = "' STORES PARTWISE ISSUE AND REPAIR STOCK SUMMARY - " & PERIOD & "'"
                 RPTSTOREPARTYWISE.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
                 RPTSTOREPARTYWISE.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
                 crpo.ReportSource = RPTSTOREPARTYWISE
