@@ -1,7 +1,7 @@
 ﻿
 Imports BL
 Imports System.Windows.Forms
-Public Class StoresLoanMaster
+Public Class StoresLoan
     'following two variables is only for used in edit mode....
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim gridDoubleClick As Boolean
@@ -370,7 +370,7 @@ Public Class StoresLoanMaster
                     Exit Sub
                 End If
                 Dim ALPARAVAL As New ArrayList
-                Dim objclsloan As New ClsLoan
+                Dim objclsloan As New ClsStoresLoan
 
                 ALPARAVAL.Add(TEMPloanNO)
                 ALPARAVAL.Add(CmpId)
