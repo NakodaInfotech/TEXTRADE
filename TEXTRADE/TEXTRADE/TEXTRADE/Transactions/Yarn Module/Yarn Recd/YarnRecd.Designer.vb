@@ -155,6 +155,7 @@ Partial Class YarnRecd
         Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.TXTRACK = New System.Windows.Forms.TextBox()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -173,6 +174,8 @@ Partial Class YarnRecd
         Me.GOUTMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GGRIDSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRACK = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -258,7 +261,7 @@ Partial Class YarnRecd
         Me.TXTHAMALICHARGES.Location = New System.Drawing.Point(478, 77)
         Me.TXTHAMALICHARGES.Name = "TXTHAMALICHARGES"
         Me.TXTHAMALICHARGES.Size = New System.Drawing.Size(70, 23)
-        Me.TXTHAMALICHARGES.TabIndex = 673
+        Me.TXTHAMALICHARGES.TabIndex = 4
         Me.TXTHAMALICHARGES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label7
@@ -281,7 +284,7 @@ Partial Class YarnRecd
         Me.TXTLRNO.Location = New System.Drawing.Point(478, 49)
         Me.TXTLRNO.Name = "TXTLRNO"
         Me.TXTLRNO.Size = New System.Drawing.Size(70, 23)
-        Me.TXTLRNO.TabIndex = 671
+        Me.TXTLRNO.TabIndex = 3
         Me.TXTLRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label2
@@ -330,7 +333,7 @@ Partial Class YarnRecd
         Me.cmbtrans.MaxDropDownItems = 14
         Me.cmbtrans.Name = "cmbtrans"
         Me.cmbtrans.Size = New System.Drawing.Size(267, 23)
-        Me.cmbtrans.TabIndex = 3
+        Me.cmbtrans.TabIndex = 2
         Me.cmbtrans.TabStop = False
         '
         'Label18
@@ -354,7 +357,7 @@ Partial Class YarnRecd
         Me.CHALLANDATE.Mask = "00/00/0000"
         Me.CHALLANDATE.Name = "CHALLANDATE"
         Me.CHALLANDATE.Size = New System.Drawing.Size(82, 23)
-        Me.CHALLANDATE.TabIndex = 5
+        Me.CHALLANDATE.TabIndex = 6
         Me.CHALLANDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.CHALLANDATE.ValidatingType = GetType(Date)
         '
@@ -381,7 +384,7 @@ Partial Class YarnRecd
         Me.cmbGodown.MaxDropDownItems = 14
         Me.cmbGodown.Name = "cmbGodown"
         Me.cmbGodown.Size = New System.Drawing.Size(204, 23)
-        Me.cmbGodown.TabIndex = 6
+        Me.cmbGodown.TabIndex = 7
         '
         'YARNDATE
         '
@@ -405,7 +408,7 @@ Partial Class YarnRecd
         Me.TXTLOTNO.Location = New System.Drawing.Point(832, 77)
         Me.TXTLOTNO.Name = "TXTLOTNO"
         Me.TXTLOTNO.Size = New System.Drawing.Size(70, 23)
-        Me.TXTLOTNO.TabIndex = 7
+        Me.TXTLOTNO.TabIndex = 8
         Me.TXTLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LBLLOTNO
@@ -424,7 +427,7 @@ Partial Class YarnRecd
         '
         Me.TXTBARCODE.BackColor = System.Drawing.Color.White
         Me.TXTBARCODE.ForeColor = System.Drawing.Color.DimGray
-        Me.TXTBARCODE.Location = New System.Drawing.Point(812, 19)
+        Me.TXTBARCODE.Location = New System.Drawing.Point(735, 27)
         Me.TXTBARCODE.Multiline = True
         Me.TXTBARCODE.Name = "TXTBARCODE"
         Me.TXTBARCODE.ReadOnly = True
@@ -529,7 +532,7 @@ Partial Class YarnRecd
         'txtgridremarks
         '
         Me.txtgridremarks.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtgridremarks.Location = New System.Drawing.Point(812, 15)
+        Me.txtgridremarks.Location = New System.Drawing.Point(725, 25)
         Me.txtgridremarks.Name = "txtgridremarks"
         Me.txtgridremarks.Size = New System.Drawing.Size(10, 22)
         Me.txtgridremarks.TabIndex = 4
@@ -592,7 +595,7 @@ Partial Class YarnRecd
         Me.cmddelete.Location = New System.Drawing.Point(577, 484)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 11
+        Me.cmddelete.TabIndex = 14
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -606,7 +609,7 @@ Partial Class YarnRecd
         Me.cmdselectPO.Location = New System.Drawing.Point(534, 450)
         Me.cmdselectPO.Name = "cmdselectPO"
         Me.cmdselectPO.Size = New System.Drawing.Size(80, 28)
-        Me.cmdselectPO.TabIndex = 2
+        Me.cmdselectPO.TabIndex = 11
         Me.cmdselectPO.Text = "Select &P.O"
         Me.cmdselectPO.UseVisualStyleBackColor = False
         '
@@ -620,7 +623,7 @@ Partial Class YarnRecd
         Me.cmdclear.Location = New System.Drawing.Point(491, 484)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 10
+        Me.cmdclear.TabIndex = 13
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
@@ -634,7 +637,7 @@ Partial Class YarnRecd
         Me.cmdok.Location = New System.Drawing.Point(620, 450)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 9
+        Me.cmdok.TabIndex = 12
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -648,7 +651,7 @@ Partial Class YarnRecd
         Me.cmdexit.Location = New System.Drawing.Point(663, 484)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 12
+        Me.cmdexit.TabIndex = 15
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -770,7 +773,7 @@ Partial Class YarnRecd
         Me.TXTCHALLANNO.Location = New System.Drawing.Point(650, 49)
         Me.TXTCHALLANNO.Name = "TXTCHALLANNO"
         Me.TXTCHALLANNO.Size = New System.Drawing.Size(82, 23)
-        Me.TXTCHALLANNO.TabIndex = 4
+        Me.TXTCHALLANNO.TabIndex = 5
         '
         'Label5
         '
@@ -805,7 +808,7 @@ Partial Class YarnRecd
         Me.GroupBox5.Location = New System.Drawing.Point(27, 422)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(187, 107)
-        Me.GroupBox5.TabIndex = 13
+        Me.GroupBox5.TabIndex = 10
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Remarks"
         '
@@ -964,12 +967,13 @@ Partial Class YarnRecd
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1199, 295)
-        Me.TabControl1.TabIndex = 8
+        Me.TabControl1.TabIndex = 9
         '
         'TabPage1
         '
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.TXTRACK)
         Me.TabPage1.Controls.Add(Me.TXTJOBBERLOTNO)
         Me.TabPage1.Controls.Add(Me.GRIDYARN)
         Me.TabPage1.Controls.Add(Me.TXTPSHADE)
@@ -1024,7 +1028,7 @@ Partial Class YarnRecd
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDYARN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDYARN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDYARN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.gcolor, Me.GLOTNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLRDATE, Me.GDONE, Me.GOUTPCS, Me.GOUTMTRS, Me.GPONO, Me.GGRIDSRNO})
+        Me.GRIDYARN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.gcolor, Me.GLOTNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLRDATE, Me.GDONE, Me.GOUTPCS, Me.GOUTMTRS, Me.GPONO, Me.GGRIDSRNO, Me.GRACK, Me.GBARCODE})
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1047,7 +1051,7 @@ Partial Class YarnRecd
         Me.GRIDYARN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDYARN.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDYARN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDYARN.Size = New System.Drawing.Size(1183, 222)
+        Me.GRIDYARN.Size = New System.Drawing.Size(1359, 204)
         Me.GRIDYARN.TabIndex = 12
         Me.GRIDYARN.TabStop = False
         '
@@ -1141,7 +1145,7 @@ Partial Class YarnRecd
         Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALWT.Location = New System.Drawing.Point(776, 250)
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(876, 231)
         Me.LBLTOTALWT.Name = "LBLTOTALWT"
         Me.LBLTOTALWT.Size = New System.Drawing.Size(58, 15)
         Me.LBLTOTALWT.TabIndex = 643
@@ -1153,7 +1157,7 @@ Partial Class YarnRecd
         Me.LBLTOTALCONES.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALCONES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALCONES.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALCONES.Location = New System.Drawing.Point(835, 250)
+        Me.LBLTOTALCONES.Location = New System.Drawing.Point(935, 231)
         Me.LBLTOTALCONES.Name = "LBLTOTALCONES"
         Me.LBLTOTALCONES.Size = New System.Drawing.Size(58, 15)
         Me.LBLTOTALCONES.TabIndex = 642
@@ -1178,7 +1182,7 @@ Partial Class YarnRecd
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(687, 250)
+        Me.Label10.Location = New System.Drawing.Point(787, 231)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(31, 14)
         Me.Label10.TabIndex = 635
@@ -1199,7 +1203,7 @@ Partial Class YarnRecd
         Me.lbltotalqty.BackColor = System.Drawing.Color.Transparent
         Me.lbltotalqty.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltotalqty.ForeColor = System.Drawing.Color.Black
-        Me.lbltotalqty.Location = New System.Drawing.Point(717, 250)
+        Me.lbltotalqty.Location = New System.Drawing.Point(817, 231)
         Me.lbltotalqty.Name = "lbltotalqty"
         Me.lbltotalqty.Size = New System.Drawing.Size(51, 15)
         Me.lbltotalqty.TabIndex = 634
@@ -1623,6 +1627,16 @@ Partial Class YarnRecd
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'TXTRACK
+        '
+        Me.TXTRACK.BackColor = System.Drawing.Color.White
+        Me.TXTRACK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRACK.Location = New System.Drawing.Point(1143, 2)
+        Me.TXTRACK.Name = "TXTRACK"
+        Me.TXTRACK.Size = New System.Drawing.Size(100, 23)
+        Me.TXTRACK.TabIndex = 12
+        Me.TXTRACK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'gsrno
         '
         Me.gsrno.HeaderText = "Sr."
@@ -1778,6 +1792,22 @@ Partial Class YarnRecd
         Me.GGRIDSRNO.Name = "GGRIDSRNO"
         Me.GGRIDSRNO.Visible = False
         '
+        'GRACK
+        '
+        Me.GRACK.HeaderText = "Rack"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.ReadOnly = True
+        Me.GRACK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRACK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.HeaderText = "Barcode"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.ReadOnly = True
+        Me.GBARCODE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBARCODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
         'YarnRecd
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1925,6 +1955,7 @@ Partial Class YarnRecd
     Friend WithEvents Label2 As Label
     Friend WithEvents TXTHAMALICHARGES As TextBox
     Friend WithEvents Label7 As Label
+    Friend WithEvents TXTRACK As TextBox
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
     Friend WithEvents GYARNQUALITY As DataGridViewTextBoxColumn
     Friend WithEvents GMILLNAME As DataGridViewTextBoxColumn
@@ -1943,4 +1974,6 @@ Partial Class YarnRecd
     Friend WithEvents GOUTMTRS As DataGridViewTextBoxColumn
     Friend WithEvents GPONO As DataGridViewTextBoxColumn
     Friend WithEvents GGRIDSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GRACK As DataGridViewTextBoxColumn
+    Friend WithEvents GBARCODE As DataGridViewTextBoxColumn
 End Class

@@ -32,7 +32,7 @@ Public Class StoresLoan
 
     Private Sub cmbitemname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbitemname.Enter
         Try
-            If cmbitemname.Text.Trim = "" Then fillitemname(cmbitemname, " AND ITEMMASTER.ITEM_FRMSTRING = 'ITEM' AND (MATERIALTYPEMASTER.MATERIAL_NAME='Stores & Supplies - Production' or   MATERIALTYPEMASTER.MATERIAL_NAME='Pakaging Material')")
+            If cmbitemname.Text.Trim = "" Then FILLSTOREITEMNAME(cmbitemname)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -40,7 +40,7 @@ Public Class StoresLoan
 
     Private Sub cmbitemname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbitemname.Validating
         Try
-            If cmbitemname.Text.Trim <> "" Then itemvalidate(cmbitemname, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'ITEM' and (MATERIALTYPEMASTER.MATERIAL_NAME='Stores & Supplies - Production' or   MATERIALTYPEMASTER.MATERIAL_NAME='Pakaging Material')", "ITEM")
+            If cmbitemname.Text.Trim <> "" Then STOREITEMVALIDATE(cmbitemname, e, Me)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -99,7 +99,7 @@ Public Class StoresLoan
 
     Sub getmax_loan_no()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(loan_no),0) + 1 ", "loanMaster", " AND loan_cmpid=" & CmpId & " and loan_LOCATIONID=" & Locationid & " and loan_YEARID=" & YearId)
+        DTTABLE = getmax(" isnull(max(STORloan_no),0) + 1 ", "STORESLOAN", " AND STORloan_cmpid=" & CmpId & " and STORloan_LOCATIONID=" & Locationid & " and STORloan_YEARID=" & YearId)
         If DTTABLE.Rows.Count > 0 Then
             txtloanno.Text = DTTABLE.Rows(0).Item(0)
         End If
@@ -249,7 +249,7 @@ Public Class StoresLoan
             alParaval.Add(AMT)
 
 
-            Dim objclsloan As New ClsLoan
+            Dim objclsloan As New ClsStoresLoan
             objclsloan.alParaval = alParaval
 
             If edit = False Then
@@ -308,6 +308,7 @@ Public Class StoresLoan
             bln = False
         End If
 
+
         'If chkchange.CheckState = CheckState.Unchecked Then
         '    EP.SetError(txtqty, "Enter Item Details")
         '    bln = False
@@ -359,7 +360,7 @@ Public Class StoresLoan
 
 
 
-            fillitemname(cmbitemname, " AND ITEMMASTER.ITEM_FRMSTRING = 'ITEM'")
+            FILLSTOREITEMNAME(cmbitemname)
             fillunit(cmbqtyunit)
             clear()
 
@@ -461,22 +462,22 @@ Public Class StoresLoan
         End Try
     End Sub
 
-    'Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
-    '    Try
-    '        If USEREDIT = False And USERVIEW = False Then
-    '            MsgBox("Insufficient Rights")
-    '            Exit Sub
-    '        End If
+    Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
 
-    '        Dim objprdetails As New LoanDetail
-    '        objprdetails.MdiParent = MDIMain
-    '        objprdetails.Show()
-    '        objprdetails.BringToFront()
-    '        Me.Close()
-    '    Catch ex As Exception
-    '        If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-    '    End Try
-    'End Sub
+            Dim objprdetails As New StoresLoanDetails
+            objprdetails.MdiParent = MDIMain
+            objprdetails.Show()
+            objprdetails.BringToFront()
+            Me.Close()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 
     Private Sub toolprevious_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolprevious.Click
         TEMPloanNO = Val(txtloanno.Text) - 1
@@ -584,6 +585,8 @@ Public Class StoresLoan
             If cmbitemname.Text.Trim <> "" And cmbqtyunit.Text.Trim <> "" And Val(txtqty.Text.Trim) > 0 Then
                 fillgrid()
                 qtytotal()
+            Else
+                EP.SetError(cmbitemname, "Please enter Proper Details")
             End If
         Catch ex As Exception
             Throw ex

@@ -6376,13 +6376,13 @@ Partial Class MDIMain
         'STORESRECADD
         '
         Me.STORESRECADD.Name = "STORESRECADD"
-        Me.STORESRECADD.Size = New System.Drawing.Size(180, 22)
+        Me.STORESRECADD.Size = New System.Drawing.Size(168, 22)
         Me.STORESRECADD.Text = "Add new Entry"
         '
         'STORESRECEDIT
         '
         Me.STORESRECEDIT.Name = "STORESRECEDIT"
-        Me.STORESRECEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.STORESRECEDIT.Size = New System.Drawing.Size(168, 22)
         Me.STORESRECEDIT.Text = "Edit Existing Entry"
         '
         'STORESLOAN_MASTER
