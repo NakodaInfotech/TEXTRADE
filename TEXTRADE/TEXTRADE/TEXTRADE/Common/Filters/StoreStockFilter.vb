@@ -121,7 +121,7 @@ Public Class StoreStockFilter
             ElseIf RBLOANTAKENFROMPARTY.Checked = True Then
                 OBJSTOCK.FRMSTRING = "STORELOANTAKENFROMPARTY"
 
-            ElseIf RBLOANTAKENFROMPARTY.Checked = True Then
+            ElseIf RBPARTYTAKINGLOAN.Checked = True Then
                 OBJSTOCK.FRMSTRING = "STOREPARTYTAKENLOAN"
 
             End If
