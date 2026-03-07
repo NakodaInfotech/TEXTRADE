@@ -1,0 +1,3 @@
+﻿Public Class SecurityInwardOutwardDetails
+
+End Class
