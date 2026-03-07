@@ -351,7 +351,7 @@ Public Class StoresLoanMaster
             Cursor.Current = Cursors.WaitCursor
 
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'GRN'")
+            DTROW = USERRIGHTS.Select("FormName = 'STORES'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
