@@ -1156,7 +1156,7 @@ PRINT 1,1")
                     oWrite.WriteLine("TEXT 604,233,""ROMAN.TTF"",180,16,16,"":""")
 
                     'for them we are changing width from itemmaster to design, they will enter width in design column
-                    oWrite.WriteLine("TEXT 576,233,""ROMAN.TTF"",180,16,16,""" & TEMPWIDTH & """")
+                    oWrite.WriteLine("TEXT 576,233,""ROMAN.TTF"",180,16,16,""" & DESIGNNO & """")
 
 
                     oWrite.WriteLine("TEXT 312,233,""ROMAN.TTF"",180,16,16,""MTRS""")
