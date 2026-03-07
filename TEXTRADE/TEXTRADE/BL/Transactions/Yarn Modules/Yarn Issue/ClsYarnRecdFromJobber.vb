@@ -98,7 +98,6 @@ Public Class ClsYarnRecdFromJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CUT", alParaval(I)))
@@ -108,6 +107,16 @@ Public Class ClsYarnRecdFromJobber
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTBAG", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
                 I = I + 1
 
 
@@ -231,6 +240,17 @@ Public Class ClsYarnRecdFromJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTBAG", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
+                I = I + 1
+
 
                 'PROGGRID
                 .Add(New SqlClient.SqlParameter("@PROGGRIDSRNO", alParaval(I)))

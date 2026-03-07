@@ -982,8 +982,25 @@ NEXTLINE:
 
         Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
         If GRIDDOUBLECLICK = False Then
+
+
+            If EDIT = True Then
+                'GET LAST BARCODE SRNO
+                Dim LSRNO As Integer = 0
+                Dim RSRNO As Integer = 0
+                Dim SNO As Integer = 0
+                LSRNO = InStr(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                RSRNO = InStr(LSRNO + 1, GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                SNO = GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
+
+                TXTBARCODE.Text = "Y-" & Val(TXTYARNNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+            Else
+                TXTBARCODE.Text = "Y-" & Val(TXTYARNNO.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
+            End If
+
             GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, TXTRACK.Text.Trim, TXTBARCODE.Text.Trim)
             getsrno(GRIDYARN)
+
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDYARN.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
             GRIDYARN.Item(GYARNQUALITY.Index, TEMPROW).Value = CMBYARNQUALITY.Text.Trim
@@ -1001,6 +1018,7 @@ NEXTLINE:
             GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTGRIDLRNO.Text.Trim
             GRIDYARN.Item(GLRDATE.Index, TEMPROW).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
             GRIDYARN.Item(GRACK.Index, TEMPROW).Value = TXTRACK.Text.Trim
+            GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
 
             GRIDDOUBLECLICK = False
 
@@ -1032,6 +1050,7 @@ NEXTLINE:
         txtsrno.Text = Val(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(0).Value) + 1
         CMBYARNQUALITY.Focus()
         TXTRACK.Clear()
+        TXTBARCODE.Clear()
 
 
     End Sub
@@ -1160,6 +1179,7 @@ NEXTLINE:
                 TXTGRIDLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 DTLRDATE.Text = GRIDYARN.Item(GLRDATE.Index, GRIDYARN.CurrentRow.Index).Value
                 TXTRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTBARCODE.Text = GRIDYARN.Item(GBARCODE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
                 CMBYARNQUALITY.Focus()
