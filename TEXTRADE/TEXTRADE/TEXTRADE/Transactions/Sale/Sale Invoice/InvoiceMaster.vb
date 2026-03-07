@@ -112,6 +112,7 @@ Public Class InvoiceMaster
         CMBLOCALTRANSPORT.Text = ""
         CMBHASTE.Enabled = True
         CMBAGENT.Enabled = True
+        CMBPACKING.Enabled = True
         TXTGATEPASSNO.Clear()
         txtchallan.Clear()
         CHALLANDATE.Text = Now.Date

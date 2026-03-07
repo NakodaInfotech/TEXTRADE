@@ -72,6 +72,7 @@ Public Class DebitNote
             CMBNAME.Enabled = True
             TXTSTATECODE.Clear()
             CMBAGENT.Text = ""
+            CMBAGENT.Enabled = True
             TXTPARTYBILLNO.Clear()
             TXTPARTYBILLDATE.Clear()
 
@@ -1875,6 +1876,9 @@ Public Class DebitNote
                     FILLGRIDINVOICE()
                     GRIDPAYMENT.ClearSelection()
 
+                    If ClientName = "SNCM" Then
+                        CMBAGENT.Enabled = False
+                    End If
 
                     TOTAL()
                     cmbregister.Enabled = False
