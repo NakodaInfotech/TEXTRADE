@@ -605,8 +605,7 @@ Public Class DesignCardMaster
             alParaval.Add(CMBSHADE.Text.Trim)
             alParaval.Add(TXTEXTRAENDS.Text.Trim)
             alParaval.Add(TXTTOTALEXTRAENDS.Text.Trim)
-
-
+            alParaval.Add(CHKBLOCKED.CheckState)
 
             Dim objDESIGN As New ClsDesignCardMaster
             objDESIGN.alParaval = alParaval
@@ -854,6 +853,8 @@ Public Class DesignCardMaster
         GBWARP.Visible = False
         GBWEFT.Visible = False
         GBSSHADEDETAILS.Visible = False
+        CHKBLOCKED.CheckState = CheckState.Unchecked
+
     End Sub
 
     Private Function errorvalid() As Boolean
@@ -938,11 +939,13 @@ Public Class DesignCardMaster
         End If
 
         'check if same item shade wise entry already filled
-        Dim OBJCMN As New ClsCommon
-        Dim DT1 As DataTable = OBJCMN.SEARCH("*", "", "  DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id AND DESIGNCARD.DESIGN_YEARID = ITEMMASTER.item_yearid INNER JOIN COLORMASTER ON DESIGNCARD.DESIGN_YEARID = COLORMASTER.COLOR_yearid AND DESIGNCARD.DESIGN_SHADEID = COLORMASTER.COLOR_id  ", " and itemmaster.item_name = '" & CMBITEMNAME.Text & "' and colormaster.color_name = '" & CMBSHADE.Text & "' and designcard.DESIGN_YEARID = " & YearId)
-        If DT1.Rows.Count > 0 Then
-            Ep.SetError(cmdok, "This Combination of Designcard has already been created ")
-            bln = False
+        If EDIT = False Then
+            Dim OBJCMN As New ClsCommon
+            Dim DT1 As DataTable = OBJCMN.SEARCH("*", "", "  DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id AND DESIGNCARD.DESIGN_YEARID = ITEMMASTER.item_yearid INNER JOIN COLORMASTER ON DESIGNCARD.DESIGN_YEARID = COLORMASTER.COLOR_yearid AND DESIGNCARD.DESIGN_SHADEID = COLORMASTER.COLOR_id  ", " and itemmaster.item_name = '" & CMBITEMNAME.Text & "' and colormaster.color_name = '" & CMBSHADE.Text & "' and designcard.DESIGN_YEARID = " & YearId)
+            If DT1.Rows.Count > 0 Then
+                Ep.SetError(cmdok, "This Combination of Designcard has already been created ")
+                bln = False
+            End If
         End If
 
         Return bln
@@ -1138,6 +1141,7 @@ Public Class DesignCardMaster
                     TXTTOTALEXTRAENDS.Text = dr("TOTALEXTRAENDS")
                     TXTEXTRAENDS.Text = dr("EXTRAENDS")
                     CMBSHADE.Text = dr("SHADE")
+                    CHKBLOCKED.Checked = Convert.ToBoolean(dttable.Rows(0).Item("BLOCKED"))
                 Next
                 'cmbtype.Enabled = False
 
@@ -4708,11 +4712,11 @@ line1:
     End Sub
     Private Sub CMBITEMNAME_Validated(sender As Object, e As EventArgs) Handles CMBITEMNAME.Validated
         Try
-            If CMBITEMNAME.Text <> "" Then
+            If CMBITEMNAME.Text <> "" And EDIT = False Then
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH("*", "", "BEAMMASTER", " and BEAMMASTER.BEAM_NAME = '" & CMBITEMNAME.Text.Trim & "' and BEAMMASTER.BEAM_YEARid = " & YearId)
                 If DT.Rows.Count > 0 Then
-                    MsgBox("Beam Name Already Exists in Beam Master")
+                    'MsgBox("Beam Name Already Exists in Beam Master")
                 End If
             End If
         Catch ex As Exception
