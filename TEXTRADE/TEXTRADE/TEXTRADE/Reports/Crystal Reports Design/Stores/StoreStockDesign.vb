@@ -13,6 +13,8 @@ Public Class StoreStockDesign
     Dim RPTSTOREITEMSTOCKSUMM As New StoreItemWiseStockReport
     Dim RPTSTOREITEMSTOCKDTLS As New StoreItemWiseStockDetailReport
     Dim RPTSTOREPARTYWISE As New StoresPartwiseRepairingReport
+    Dim RPTSTORELOANTAKENFROMPARTY As New StoresLoanTakenFromPartyReport
+    Dim RPTSTOREPARTYTAKENLOAN As New StoresPartyTakenLoanReport
 
 
     Private Sub StoreStockDesign_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -50,6 +52,9 @@ Public Class StoreStockDesign
             If FRMSTRING = "STOREITEMSTOCKSUMM" Then crTables = RPTSTOREITEMSTOCKSUMM.Database.Tables
             If FRMSTRING = "STOREITEMSTOCKDTLS" Then crTables = RPTSTOREITEMSTOCKDTLS.Database.Tables
             If FRMSTRING = "STOREPARTYWISE" Then crTables = RPTSTOREPARTYWISE.Database.Tables
+            If FRMSTRING = "STORELOANTAKENFROMPARTY" Then crTables = RPTSTORELOANTAKENFROMPARTY.Database.Tables
+            If FRMSTRING = "STOREPARTYTAKENLOAN" Then crTables = RPTSTOREPARTYTAKENLOAN.Database.Tables
+
 
 
             For Each crTable In crTables
@@ -72,10 +77,25 @@ Public Class StoreStockDesign
                 crpo.ReportSource = RPTSTOREITEMSTOCKDTLS
 
             ElseIf FRMSTRING = "STOREPARTYWISE" Then
-                RPTSTOREPARTYWISE.DataDefinition.FormulaFields("PERIOD").Text = "' STORES PARTWISE ISSUE AND REPAIR STOCK SUMMARY - " & PERIOD & "'"
+                RPTSTOREPARTYWISE.DataDefinition.FormulaFields("PERIOD").Text = "' STORE PARTWISE ISSUE AND REPAIR STOCK SUMMARY - " & PERIOD & "'"
                 RPTSTOREPARTYWISE.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
                 RPTSTOREPARTYWISE.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
                 crpo.ReportSource = RPTSTOREPARTYWISE
+
+
+            ElseIf FRMSTRING = "STORELOANTAKENFROMPARTY" Then
+                RPTSTORELOANTAKENFROMPARTY.DataDefinition.FormulaFields("PERIOD").Text = "' STORE LOAN TAKEN FROM PARTY AND RETURN TO PARTY - " & PERIOD & "'"
+                RPTSTORELOANTAKENFROMPARTY.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                RPTSTORELOANTAKENFROMPARTY.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                crpo.ReportSource = RPTSTORELOANTAKENFROMPARTY
+
+
+            ElseIf FRMSTRING = "STOREPARTYTAKENLOAN" Then
+                RPTSTOREPARTYTAKENLOAN.DataDefinition.FormulaFields("PERIOD").Text = "' STORE PARTY TAKEN LOAN AND RETURN LOAN - " & PERIOD & "'"
+                RPTSTOREPARTYTAKENLOAN.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                RPTSTOREPARTYTAKENLOAN.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                crpo.ReportSource = RPTSTOREPARTYTAKENLOAN
+
 
             End If
 
@@ -125,12 +145,39 @@ Public Class StoreStockDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTSTOREITEMSTOCKSUMM.Export()
+
             ElseIf FRMSTRING = "STOREITEMSTOCKDTLS" Then
                 expo = RPTSTOREITEMSTOCKDTLS.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTSTOREITEMSTOCKDTLS.Export()
+
+
+            ElseIf FRMSTRING = "STOREPARTYWISE" Then
+                expo = RPTSTOREPARTYWISE.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTSTOREPARTYWISE.Export()
+
+
+            ElseIf FRMSTRING = "STORELOANTAKENFROMPARTY" Then
+                expo = RPTSTORELOANTAKENFROMPARTY.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTSTORELOANTAKENFROMPARTY.Export()
+
+
+            ElseIf FRMSTRING = "STOREPARTYTAKENLOAN" Then
+                expo = RPTSTOREPARTYTAKENLOAN.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTSTOREPARTYTAKENLOAN.Export()
+
+
             End If
 
         Catch ex As Exception
