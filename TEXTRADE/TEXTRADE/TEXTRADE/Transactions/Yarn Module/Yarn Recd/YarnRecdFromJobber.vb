@@ -100,6 +100,7 @@ Public Class YarnRecdFromJobber
         LBLTOTALCONES.Text = 0
         lbltotalqty.Text = 0
         LBLTOTALWT.Text = 0
+        TXTRACK.Clear()
 
     End Sub
 
@@ -323,6 +324,12 @@ CHECKNEXTLINE:
             Dim MTRS As String = ""
             Dim WT As String = ""
             Dim CONES As String = ""
+            Dim RACK As String = ""
+            Dim BARCODE As String = ""
+            Dim OUTWT As String = ""
+            Dim OUTBAG As String = ""
+            Dim DONE As String = ""
+
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
@@ -340,6 +347,11 @@ CHECKNEXTLINE:
                         MTRS = Val(row.Cells(GMTRS.Index).Value)
                         WT = Val(row.Cells(GWT.Index).Value)
                         CONES = Val(row.Cells(GCONES.Index).Value)
+                        RACK = row.Cells(GRACK.Index).Value.ToString
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        OUTWT = Val(row.Cells(GOUTWT.Index).Value)
+                        OUTBAG = Val(row.Cells(GOUTBAGS.Index).Value)
+                        If row.Cells(GDONE.Index).Value = True Then DONE = 1 Else DONE = 0
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
@@ -355,6 +367,11 @@ CHECKNEXTLINE:
                         MTRS = MTRS & "|" & Val(row.Cells(GMTRS.Index).Value)
                         WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
                         CONES = CONES & "|" & Val(row.Cells(GCONES.Index).Value)
+                        RACK = RACK & "|" & row.Cells(GRACK.Index).Value.ToString
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
+                        OUTBAG = OUTBAG & "|" & Val(row.Cells(GOUTBAGS.Index).Value)
+                        If row.Cells(GDONE.Index).Value = True Then DONE = DONE & "|" & "1" Else DONE = DONE & "|" & "0"
 
                     End If
                 End If
@@ -372,6 +389,11 @@ CHECKNEXTLINE:
             alParaval.Add(MTRS)
             alParaval.Add(WT)
             alParaval.Add(CONES)
+            alParaval.Add(RACK)
+            alParaval.Add(BARCODE)
+            alParaval.Add(OUTWT)
+            alParaval.Add(OUTBAG)
+            alParaval.Add(DONE)
 
 
 
@@ -687,7 +709,7 @@ LINE1:
                         dtpchallan.Value = Format(Convert.ToDateTime(dr("CHALLANDATE")).Date, "dd/MM/yyyy")
                         cmbtrans.Text = dr("TRANSNAME").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"))
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAG")), Val(dr("DONE")))
 
                     Next
                     total()
