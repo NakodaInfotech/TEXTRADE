@@ -9,9 +9,6 @@ Imports CrystalDecisions.Shared
 Imports RestSharp
 Imports Newtonsoft.Json
 Imports TaxProEInvoice.API
-Imports DevExpress.CodeParser
-Imports DevExpress.Charts.Native
-
 
 Public Class InvoiceMaster
 
@@ -843,7 +840,10 @@ Public Class InvoiceMaster
                     GRIDINVOICE.Enabled = False
                 End If
 
-
+                If ClientName = "SNCM" Then
+                    CMBAGENT.Enabled = False
+                    CMBPACKING.Enabled = False
+                End If
 
 
             Else
