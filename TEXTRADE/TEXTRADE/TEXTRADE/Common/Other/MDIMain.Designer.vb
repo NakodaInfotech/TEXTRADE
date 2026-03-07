@@ -814,12 +814,15 @@ Partial Class MDIMain
         Me.STORESSTOCKADJUSTMENT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.STORESSTOCKADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.STORESSTOCKEDIT = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STORESREC_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STORESRECADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.STORESRECEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.STOREISSTOREPAIR_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.STOREISSTOREPAIR_ADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.STOREISSTOREPAIR_EDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STORESREC_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STORESRECADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STORESRECEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STORESLOAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STORELOAN_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.STORELOAN_EDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.REGISTER_MAIN = New System.Windows.Forms.ToolStripMenuItem()
         Me.PURREGISTER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALEREGISTER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -6178,7 +6181,7 @@ Partial Class MDIMain
         '
         'STORES_MASTER
         '
-        Me.STORES_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESPO_MASTER, Me.STOREINWARD_MASTER, Me.STORECONSUMPTION_MASTER, Me.TRANSFERSTORES_MASTER, Me.ToolStripSeparator122, Me.STORESTOCKREPORT_MASTER, Me.StoresReOrderLevelReportToolStripMenuItem, Me.ToolStripSeparator222, Me.STORESSTOCKADJUSTMENT_MASTER, Me.STORESREC_MASTER, Me.STOREISSTOREPAIR_MASTER})
+        Me.STORES_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESPO_MASTER, Me.STOREINWARD_MASTER, Me.STORECONSUMPTION_MASTER, Me.TRANSFERSTORES_MASTER, Me.ToolStripSeparator122, Me.STORESTOCKREPORT_MASTER, Me.StoresReOrderLevelReportToolStripMenuItem, Me.ToolStripSeparator222, Me.STORESSTOCKADJUSTMENT_MASTER, Me.STOREISSTOREPAIR_MASTER, Me.STORESREC_MASTER, Me.STORESLOAN_MASTER})
         Me.STORES_MASTER.Name = "STORES_MASTER"
         Me.STORES_MASTER.Size = New System.Drawing.Size(53, 20)
         Me.STORES_MASTER.Text = "Stores"
@@ -6344,31 +6347,12 @@ Partial Class MDIMain
         Me.STORESSTOCKEDIT.Size = New System.Drawing.Size(168, 22)
         Me.STORESSTOCKEDIT.Text = "Edit Existing Entry"
         '
-        'STORESREC_MASTER
-        '
-        Me.STORESREC_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESRECADD, Me.STORESRECEDIT})
-        Me.STORESREC_MASTER.Name = "STORESREC_MASTER"
-        Me.STORESREC_MASTER.Size = New System.Drawing.Size(232, 22)
-        Me.STORESREC_MASTER.Text = "Store Rec From Repairing"
-        '
-        'STORESRECADD
-        '
-        Me.STORESRECADD.Name = "STORESRECADD"
-        Me.STORESRECADD.Size = New System.Drawing.Size(168, 22)
-        Me.STORESRECADD.Text = "Add new Entry"
-        '
-        'STORESRECEDIT
-        '
-        Me.STORESRECEDIT.Name = "STORESRECEDIT"
-        Me.STORESRECEDIT.Size = New System.Drawing.Size(168, 22)
-        Me.STORESRECEDIT.Text = "Edit Existing Entry"
-        '
         'STOREISSTOREPAIR_MASTER
         '
         Me.STOREISSTOREPAIR_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STOREISSTOREPAIR_ADD, Me.STOREISSTOREPAIR_EDIT})
         Me.STOREISSTOREPAIR_MASTER.Name = "STOREISSTOREPAIR_MASTER"
         Me.STOREISSTOREPAIR_MASTER.Size = New System.Drawing.Size(232, 22)
-        Me.STOREISSTOREPAIR_MASTER.Text = "Store Iss To Repairing"
+        Me.STOREISSTOREPAIR_MASTER.Text = "Store Issue To Repairing"
         '
         'STOREISSTOREPAIR_ADD
         '
@@ -6381,6 +6365,44 @@ Partial Class MDIMain
         Me.STOREISSTOREPAIR_EDIT.Name = "STOREISSTOREPAIR_EDIT"
         Me.STOREISSTOREPAIR_EDIT.Size = New System.Drawing.Size(168, 22)
         Me.STOREISSTOREPAIR_EDIT.Text = "Edit Existing Entry"
+        '
+        'STORESREC_MASTER
+        '
+        Me.STORESREC_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORESRECADD, Me.STORESRECEDIT})
+        Me.STORESREC_MASTER.Name = "STORESREC_MASTER"
+        Me.STORESREC_MASTER.Size = New System.Drawing.Size(232, 22)
+        Me.STORESREC_MASTER.Text = "Store Rec From Repairing"
+        '
+        'STORESRECADD
+        '
+        Me.STORESRECADD.Name = "STORESRECADD"
+        Me.STORESRECADD.Size = New System.Drawing.Size(180, 22)
+        Me.STORESRECADD.Text = "Add new Entry"
+        '
+        'STORESRECEDIT
+        '
+        Me.STORESRECEDIT.Name = "STORESRECEDIT"
+        Me.STORESRECEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.STORESRECEDIT.Text = "Edit Existing Entry"
+        '
+        'STORESLOAN_MASTER
+        '
+        Me.STORESLOAN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STORELOAN_ADD, Me.STORELOAN_EDIT})
+        Me.STORESLOAN_MASTER.Name = "STORESLOAN_MASTER"
+        Me.STORESLOAN_MASTER.Size = New System.Drawing.Size(232, 22)
+        Me.STORESLOAN_MASTER.Text = "Stores Loan Master"
+        '
+        'STORELOAN_ADD
+        '
+        Me.STORELOAN_ADD.Name = "STORELOAN_ADD"
+        Me.STORELOAN_ADD.Size = New System.Drawing.Size(180, 22)
+        Me.STORELOAN_ADD.Text = "Add New Entry"
+        '
+        'STORELOAN_EDIT
+        '
+        Me.STORELOAN_EDIT.Name = "STORELOAN_EDIT"
+        Me.STORELOAN_EDIT.Size = New System.Drawing.Size(180, 22)
+        Me.STORELOAN_EDIT.Text = "Edit Existing Entry"
         '
         'REGISTER_MAIN
         '
@@ -7066,19 +7088,19 @@ Partial Class MDIMain
         'YARNJOBORDERADD
         '
         Me.YARNJOBORDERADD.Name = "YARNJOBORDERADD"
-        Me.YARNJOBORDERADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNJOBORDERADD.Size = New System.Drawing.Size(168, 22)
         Me.YARNJOBORDERADD.Text = "Add New Entry"
         '
         'YARNJOBORDEREDIT
         '
         Me.YARNJOBORDEREDIT.Name = "YARNJOBORDEREDIT"
-        Me.YARNJOBORDEREDIT.Size = New System.Drawing.Size(180, 22)
+        Me.YARNJOBORDEREDIT.Size = New System.Drawing.Size(168, 22)
         Me.YARNJOBORDEREDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator340
         '
         Me.ToolStripSeparator340.Name = "ToolStripSeparator340"
-        Me.ToolStripSeparator340.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator340.Size = New System.Drawing.Size(165, 6)
         '
         'WARPING_MASTER
         '
@@ -10651,4 +10673,7 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator344 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator345 As ToolStripSeparator
     Friend WithEvents UPDATEROUNDER_MASTER As ToolStripMenuItem
+    Friend WithEvents STORESLOAN_MASTER As ToolStripMenuItem
+    Friend WithEvents STORELOAN_ADD As ToolStripMenuItem
+    Friend WithEvents STORELOAN_EDIT As ToolStripMenuItem
 End Class
