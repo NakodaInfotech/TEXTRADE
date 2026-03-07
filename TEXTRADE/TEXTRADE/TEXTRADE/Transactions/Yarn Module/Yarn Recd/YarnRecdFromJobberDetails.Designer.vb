@@ -58,6 +58,8 @@ Partial Class YarnRecdFromJobberDetails
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,7 +122,7 @@ Partial Class YarnRecdFromJobberDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GTONAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GPROGNO, Me.GYARN, Me.GMILL, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GCOLOR, Me.glot, Me.gqty, Me.GCUT, Me.GMTRS, Me.gwt, Me.gcones, Me.GJOBNO, Me.GBALANCEWT, Me.GTOTALQTY, Me.GTOTALWT, Me.GREMARKS, Me.GTRANSNAME, Me.GGODOWN, Me.GPROCESS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GTONAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GPROGNO, Me.GYARN, Me.GMILL, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GCOLOR, Me.glot, Me.gqty, Me.GCUT, Me.GMTRS, Me.gwt, Me.gcones, Me.GRACK, Me.GBARCODE, Me.GJOBNO, Me.GBALANCEWT, Me.GTOTALQTY, Me.GTOTALWT, Me.GREMARKS, Me.GTRANSNAME, Me.GGODOWN, Me.GPROCESS})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -293,6 +295,8 @@ Partial Class YarnRecdFromJobberDetails
         Me.GJOBNO.Caption = "Job No."
         Me.GJOBNO.FieldName = "JONO"
         Me.GJOBNO.Name = "GJOBNO"
+        Me.GJOBNO.Visible = True
+        Me.GJOBNO.VisibleIndex = 19
         '
         'GBALANCEWT
         '
@@ -327,7 +331,7 @@ Partial Class YarnRecdFromJobberDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 17
+        Me.GREMARKS.VisibleIndex = 20
         Me.GREMARKS.Width = 180
         '
         'GTRANSNAME
@@ -396,6 +400,25 @@ Partial Class YarnRecdFromJobberDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
+        'GRACK
+        '
+        Me.GRACK.Caption = "Rack"
+        Me.GRACK.FieldName = "RACK"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.OptionsColumn.AllowEdit = False
+        Me.GRACK.Visible = True
+        Me.GRACK.VisibleIndex = 17
+        Me.GRACK.Width = 80
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 18
+        Me.GBARCODE.Width = 100
+        '
         'YarnRecdFromJobberDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -452,4 +475,6 @@ Partial Class YarnRecdFromJobberDetails
     Friend WithEvents GCUT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPROGNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRACK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
