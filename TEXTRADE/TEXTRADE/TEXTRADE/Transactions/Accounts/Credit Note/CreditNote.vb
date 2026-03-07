@@ -74,11 +74,14 @@ Public Class CREDITNOTE
             CMBNAME.Text = ""
             CMBNAME.Enabled = True
             CMBAGENT.Text = ""
+            CMBAGENT.Enabled = True
+
             TXTSTATECODE.Clear()
             TXTPARTYBILLNO.Clear()
             CMBDEBITLEDGER.Text = ""
             CMBDEBITLEDGER.Enabled = True
             CMBPACKING.Text = ""
+            CMBPACKING.Enabled = True
 
             txtremarks.Clear()
             TXTBILLREMARKS.Clear()
@@ -1999,6 +2002,11 @@ LINE1:
                     Next
                     FILLGRIDINVOICE()
                     GRIDPAYMENT.ClearSelection()
+
+                    If ClientName = "SNCM" Then
+                        CMBAGENT.Enabled = False
+                        CMBPACKING.Enabled = False
+                    End If
 
 
                     TOTAL()
