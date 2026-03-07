@@ -890,9 +890,25 @@ LINE1:
         GRIDYARN.Enabled = True
 
         Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
+
         If GRIDDOUBLECLICK = False Then
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"))
+            If EDIT = True Then
+                'GET LAST BARCODE SRNO
+                Dim LSRNO As Integer = 0
+                Dim RSRNO As Integer = 0
+                Dim SNO As Integer = 0
+                LSRNO = InStr(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                RSRNO = InStr(LSRNO + 1, GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                SNO = GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
+
+                TXTBARCODE.Text = "YJ-" & Val(TXTYARNNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+            Else
+                TXTBARCODE.Text = "YJ-" & Val(TXTYARNNO.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
+            End If
+
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"), TXTRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
             GETSRNO(GRIDYARN)
+
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDYARN.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
             GRIDYARN.Item(GYARNQUALITY.Index, TEMPROW).Value = CMBYARNQUALITY.Text.Trim
@@ -905,6 +921,8 @@ LINE1:
             GRIDYARN.Item(GMTRS.Index, TEMPROW).Value = Format(Val(TXTMTRS.Text.Trim), "0.00")
             GRIDYARN.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.000")
             GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0")
+            GRIDYARN.Item(GRACK.Index, TEMPROW).Value = TXTRACK.Text.Trim
+            GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
 
             GRIDDOUBLECLICK = False
 
@@ -932,7 +950,8 @@ LINE1:
         txtsrno.Text = Val(GRIDYARN.RowCount) + 1
         CMBYARNQUALITY.Focus()
 
-
+        TXTRACK.Clear()
+        TXTBARCODE.Clear()
     End Sub
 
     Private Sub cmdupload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdupload.Click
@@ -1058,6 +1077,8 @@ LINE1:
                 TXTMTRS.Text = Val(GRIDYARN.Item(GMTRS.Index, GRIDYARN.CurrentRow.Index).Value)
                 TXTWT.Text = Val(GRIDYARN.Item(GWT.Index, GRIDYARN.CurrentRow.Index).Value)
                 TXTCONES.Text = Val(GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value)
+                TXTRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTBARCODE.Text = GRIDYARN.Item(GBARCODE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
                 CMBYARNQUALITY.Focus()
@@ -1672,13 +1693,13 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Sub TXTCONES_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTCONES.Validated
+    Private Sub TXTCONES_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTRACK.Validated
         Try
             If ClientName = "VAISHALI" Then
                 'FETCH CONEWT FROM MILLMASTER
                 If Val(TXTWT.Text.Trim) = 0 And Val(TXTCONES.Text.Trim) <> 0 And CMBMILL.Text.Trim <> "" Then
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.search("ISNULL(MILL_REMARK,0) AS CONEWT", "", "MILLMASTER ", " AND MILL_NAME = '" & CMBMILL.Text.Trim & "' AND MILL_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MILL_REMARK,0) AS CONEWT", "", "MILLMASTER ", " AND MILL_NAME = '" & CMBMILL.Text.Trim & "' AND MILL_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then TXTWT.Text = Format(Val(TXTCONES.Text.Trim) * Val(DT.Rows(0).Item("CONEWT")), "0.00")
                 End If
             End If
@@ -1696,7 +1717,7 @@ NEXTLINE:
                     Next
                 End If
 
-                fillgrid()
+                FILLGRID()
             Else
                 MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
                 Exit Sub
