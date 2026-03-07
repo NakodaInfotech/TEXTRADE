@@ -61,6 +61,8 @@ Partial Class YarnRecdDetails
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,7 +117,7 @@ Partial Class YarnRecdDetails
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(1208, 503)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1241, 503)
         Me.gridbilldetails.TabIndex = 256
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -123,7 +125,7 @@ Partial Class YarnRecdDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GPONO, Me.GPODATE, Me.GCHALLAN, Me.GCHALLANDATE, Me.GTONAME, Me.GYARN, Me.gmill, Me.gcolor, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GLOTNO, Me.GLOTDATE, Me.GGODOWN, Me.GQTY, Me.GTOTALQTY, Me.gwt, Me.GTOTALWT, Me.GCONES, Me.GTOTALCONES, Me.GTRANSNAME, Me.GGRIDLRNO, Me.GREMARKS, Me.GGREYFINISH, Me.GLRNO, Me.GHAMALICHARGES})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GPONO, Me.GPODATE, Me.GCHALLAN, Me.GCHALLANDATE, Me.GTONAME, Me.GYARN, Me.gmill, Me.gcolor, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GLOTNO, Me.GLOTDATE, Me.GQTY, Me.GTOTALQTY, Me.gwt, Me.GTOTALWT, Me.GCONES, Me.GTOTALCONES, Me.GTRANSNAME, Me.GGRIDLRNO, Me.GRACK, Me.GBARCODE, Me.GREMARKS, Me.GGREYFINISH, Me.GLRNO, Me.GHAMALICHARGES})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -160,7 +162,7 @@ Partial Class YarnRecdDetails
         Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 180
         '
         'GPONO
@@ -183,7 +185,7 @@ Partial Class YarnRecdDetails
         Me.GCHALLAN.FieldName = "CHALLANNO"
         Me.GCHALLAN.Name = "GCHALLAN"
         Me.GCHALLAN.Visible = True
-        Me.GCHALLAN.VisibleIndex = 3
+        Me.GCHALLAN.VisibleIndex = 4
         Me.GCHALLAN.Width = 70
         '
         'GCHALLANDATE
@@ -194,7 +196,7 @@ Partial Class YarnRecdDetails
         Me.GCHALLANDATE.FieldName = "CHALLANDATE"
         Me.GCHALLANDATE.Name = "GCHALLANDATE"
         Me.GCHALLANDATE.Visible = True
-        Me.GCHALLANDATE.VisibleIndex = 4
+        Me.GCHALLANDATE.VisibleIndex = 5
         '
         'GTONAME
         '
@@ -202,7 +204,7 @@ Partial Class YarnRecdDetails
         Me.GTONAME.FieldName = "TONAME"
         Me.GTONAME.Name = "GTONAME"
         Me.GTONAME.Visible = True
-        Me.GTONAME.VisibleIndex = 5
+        Me.GTONAME.VisibleIndex = 6
         Me.GTONAME.Width = 100
         '
         'GYARN
@@ -211,7 +213,7 @@ Partial Class YarnRecdDetails
         Me.GYARN.FieldName = "YARNQUALITY"
         Me.GYARN.Name = "GYARN"
         Me.GYARN.Visible = True
-        Me.GYARN.VisibleIndex = 6
+        Me.GYARN.VisibleIndex = 7
         Me.GYARN.Width = 100
         '
         'gmill
@@ -220,7 +222,7 @@ Partial Class YarnRecdDetails
         Me.gmill.FieldName = "MILLNAME"
         Me.gmill.Name = "gmill"
         Me.gmill.Visible = True
-        Me.gmill.VisibleIndex = 7
+        Me.gmill.VisibleIndex = 8
         Me.gmill.Width = 100
         '
         'gcolor
@@ -229,7 +231,7 @@ Partial Class YarnRecdDetails
         Me.gcolor.FieldName = "COLOR"
         Me.gcolor.Name = "gcolor"
         Me.gcolor.Visible = True
-        Me.gcolor.VisibleIndex = 8
+        Me.gcolor.VisibleIndex = 9
         Me.gcolor.Width = 80
         '
         'GDESIGN
@@ -238,7 +240,7 @@ Partial Class YarnRecdDetails
         Me.GDESIGN.FieldName = "DESIGNNO"
         Me.GDESIGN.Name = "GDESIGN"
         Me.GDESIGN.Visible = True
-        Me.GDESIGN.VisibleIndex = 9
+        Me.GDESIGN.VisibleIndex = 10
         Me.GDESIGN.Width = 80
         '
         'GJOBBERLOTNO
@@ -247,7 +249,7 @@ Partial Class YarnRecdDetails
         Me.GJOBBERLOTNO.FieldName = "JOBBERLOTNO"
         Me.GJOBBERLOTNO.Name = "GJOBBERLOTNO"
         Me.GJOBBERLOTNO.Visible = True
-        Me.GJOBBERLOTNO.VisibleIndex = 10
+        Me.GJOBBERLOTNO.VisibleIndex = 11
         Me.GJOBBERLOTNO.Width = 100
         '
         'GLOTNO
@@ -256,7 +258,7 @@ Partial Class YarnRecdDetails
         Me.GLOTNO.FieldName = "GRIDLOTNO"
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 11
+        Me.GLOTNO.VisibleIndex = 12
         '
         'GLOTDATE
         '
@@ -266,7 +268,7 @@ Partial Class YarnRecdDetails
         Me.GLOTDATE.FieldName = "LOTDATE"
         Me.GLOTDATE.Name = "GLOTDATE"
         Me.GLOTDATE.Visible = True
-        Me.GLOTDATE.VisibleIndex = 12
+        Me.GLOTDATE.VisibleIndex = 13
         '
         'GGODOWN
         '
@@ -274,7 +276,7 @@ Partial Class YarnRecdDetails
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
         Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 13
+        Me.GGODOWN.VisibleIndex = 2
         Me.GGODOWN.Width = 140
         '
         'GQTY
@@ -359,7 +361,7 @@ Partial Class YarnRecdDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 22
+        Me.GREMARKS.VisibleIndex = 24
         Me.GREMARKS.Width = 180
         '
         'GGREYFINISH
@@ -368,7 +370,7 @@ Partial Class YarnRecdDetails
         Me.GGREYFINISH.FieldName = "GREYFINISH"
         Me.GGREYFINISH.Name = "GGREYFINISH"
         Me.GGREYFINISH.Visible = True
-        Me.GGREYFINISH.VisibleIndex = 23
+        Me.GGREYFINISH.VisibleIndex = 25
         '
         'GLRNO
         '
@@ -376,7 +378,7 @@ Partial Class YarnRecdDetails
         Me.GLRNO.FieldName = "TRANSPORTLRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 24
+        Me.GLRNO.VisibleIndex = 26
         Me.GLRNO.Width = 80
         '
         'GHAMALICHARGES
@@ -387,7 +389,7 @@ Partial Class YarnRecdDetails
         Me.GHAMALICHARGES.OptionsColumn.AllowEdit = False
         Me.GHAMALICHARGES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GHAMALICHARGES.Visible = True
-        Me.GHAMALICHARGES.VisibleIndex = 25
+        Me.GHAMALICHARGES.VisibleIndex = 27
         Me.GHAMALICHARGES.Width = 100
         '
         'ToolStrip1
@@ -434,6 +436,26 @@ Partial Class YarnRecdDetails
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'GRACK
+        '
+        Me.GRACK.Caption = "Rack"
+        Me.GRACK.FieldName = "RACK"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.OptionsColumn.AllowEdit = False
+        Me.GRACK.Visible = True
+        Me.GRACK.VisibleIndex = 22
+        Me.GRACK.Width = 80
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.OptionsColumn.AllowEdit = False
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 23
+        Me.GBARCODE.Width = 100
         '
         'YarnRecdDetails
         '
@@ -494,4 +516,6 @@ Partial Class YarnRecdDetails
     Friend WithEvents GJOBBERLOTNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GHAMALICHARGES As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRACK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
