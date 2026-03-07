@@ -2755,6 +2755,12 @@
     <Compile Include="Transactions\Sale\Sale Order\ProgramStatusDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Sale\Security\SecurityInwardOutward.Designer.vb">
+      <DependentUpon>SecurityInwardOutward.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Sale\Security\SecurityInwardOutward.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Sample\Sample Order\SampleOrderClose.Designer.vb">
       <DependentUpon>SampleOrderClose.vb</DependentUpon>
     </Compile>
