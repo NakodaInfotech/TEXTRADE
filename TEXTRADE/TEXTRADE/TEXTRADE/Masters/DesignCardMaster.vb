@@ -2214,6 +2214,7 @@ LINE1:
         GETWEFTPE()
         BLENDPERCENTAGE(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
     End Sub
+
     Sub TOTALWARP()
         Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
         PE = 0.00
@@ -2255,6 +2256,7 @@ LINE1:
         TXTTOTALWARPRATE.Text = Format(RATE, "0.00")
         TXTTOTALWARPCOST.Text = Format(COST, "0.00")
     End Sub
+
     Sub TOTALWARPPATTERN()
         CalculateTotalsForGridPATTERN(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
 
@@ -2661,6 +2663,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Private Sub GRIDDRAWING_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDDRAWING.CellValidating
         Try
             ' Assume Shaft value is in a control called numShafts (or you can store it in a variable)
@@ -3496,9 +3499,9 @@ LINE1:
                 Dim endsStr As String = Convert.ToString(row.Cells(endsCol).Value)
                 Dim ends As Integer = 1, repeatsFromEnds As Integer = 1
                 ExtractEndsAndRepeatation(endsStr, ends, repeatsFromEnds)
-                Dim repeats = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).Value)), repeatsFromEnds, Convert.ToInt32(row.Cells(repeatsCol).Value))
-                Dim repeats1 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).Value)), 1, Convert.ToInt32(row.Cells(repeats1Col).Value))
-                Dim repeats2 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).Value)), 1, Convert.ToInt32(row.Cells(repeats2Col).Value))
+                Dim repeats = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeatsCol).EditedFormattedValue)), repeatsFromEnds, Convert.ToInt32(row.Cells(repeatsCol).EditedFormattedValue))
+                Dim repeats1 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats1Col).EditedFormattedValue)), 1, Convert.ToInt32(row.Cells(repeats1Col).EditedFormattedValue))
+                Dim repeats2 = If(String.IsNullOrWhiteSpace(Convert.ToString(row.Cells(repeats2Col).EditedFormattedValue)), 1, Convert.ToInt32(row.Cells(repeats2Col).EditedFormattedValue))
                 Dim totalRepeat = 1 * repeats
                 Dim totalRepeat1 = totalRepeat * repeats1
                 Dim totalRepeat2 = totalRepeat1 * repeats2
@@ -4249,7 +4252,7 @@ line1:
 
     Private Sub GRIDDRAWING_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDDRAWING.KeyDown
         Try
-            If e.KeyCode = Keys.Delete And GRIDDRAWING.RowCount > 0 Then
+            If e.KeyCode = Keys.Delete And GRIDDRAWING.RowCount > 1 Then
 
                 GRIDDRAWING.Rows.RemoveAt(GRIDDRAWING.CurrentRow.Index)
                 TOTALWARP()
@@ -4689,7 +4692,7 @@ line1:
 
     Private Sub CMBSHADE_Enter(sender As Object, e As EventArgs) Handles CMBSHADE.Enter
         Try
-            If CMBSHADE.Text.Trim = "" Then FILLCOLOR(CMBSHADE, "", "")
+            If CMBSHADE.Text.Trim = "" Then FILLCOLOR(CMBSHADE, "", CMBITEMNAME.Text.Trim)
         Catch ex As Exception
             Throw ex
         End Try
@@ -4697,7 +4700,7 @@ line1:
 
     Private Sub CMBSHADE_Validating(sender As Object, e As CancelEventArgs) Handles CMBSHADE.Validating
         Try
-            If CMBSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBSHADE, e, Me, "", "")
+            If CMBSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBSHADE, e, Me, "", CMBITEMNAME.Text.Trim)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
