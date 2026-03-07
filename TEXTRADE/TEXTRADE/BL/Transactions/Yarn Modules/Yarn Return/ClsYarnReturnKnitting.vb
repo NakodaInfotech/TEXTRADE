@@ -88,6 +88,17 @@ Public Class ClsYarnReturnKnitting
                 .Add(New SqlClient.SqlParameter("@lrdate", alParaval(I)))
                 I = I + 1
 
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTBAG", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
+                I = I + 1
+
                 '''''UPLOAD
 
                 '.Add(New SqlClient.SqlParameter("@GRIDUPLOADSRNO", alParaval(I)))
@@ -184,6 +195,16 @@ Public Class ClsYarnReturnKnitting
                 .Add(New SqlClient.SqlParameter("@lrno", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@lrdate", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTBAG", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
                 I = I + 1
 
 
