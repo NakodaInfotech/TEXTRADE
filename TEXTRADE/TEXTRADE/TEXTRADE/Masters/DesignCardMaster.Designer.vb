@@ -3311,7 +3311,7 @@ Partial Class DesignCardMaster
         Me.GRIDDRAWING.RowTemplate.Height = 20
         Me.GRIDDRAWING.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDDRAWING.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDDRAWING.Size = New System.Drawing.Size(1188, 150)
+        Me.GRIDDRAWING.Size = New System.Drawing.Size(155, 178)
         Me.GRIDDRAWING.TabIndex = 909
         Me.GRIDDRAWING.TabStop = False
         '
@@ -5511,6 +5511,7 @@ Partial Class DesignCardMaster
         Me.DREPEATMARK.Name = "DREPEATMARK"
         Me.DREPEATMARK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DREPEATMARK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DREPEATMARK.Visible = False
         '
         'DREPEAT
         '
@@ -5518,16 +5519,19 @@ Partial Class DesignCardMaster
         Me.DREPEAT.Name = "DREPEAT"
         Me.DREPEAT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DREPEAT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DREPEAT.Visible = False
         '
         'DTOTALREPEAT
         '
         Me.DTOTALREPEAT.HeaderText = "Total Repeat"
         Me.DTOTALREPEAT.Name = "DTOTALREPEAT"
+        Me.DTOTALREPEAT.Visible = False
         '
         'DTOTALDENTREPEAT
         '
         Me.DTOTALDENTREPEAT.HeaderText = "TOTAL D R"
         Me.DTOTALDENTREPEAT.Name = "DTOTALDENTREPEAT"
+        Me.DTOTALDENTREPEAT.Visible = False
         '
         'DREPEATMARK1
         '
@@ -5535,6 +5539,7 @@ Partial Class DesignCardMaster
         Me.DREPEATMARK1.Name = "DREPEATMARK1"
         Me.DREPEATMARK1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DREPEATMARK1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DREPEATMARK1.Visible = False
         '
         'DREPEATS1
         '
@@ -5542,16 +5547,19 @@ Partial Class DesignCardMaster
         Me.DREPEATS1.Name = "DREPEATS1"
         Me.DREPEATS1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DREPEATS1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DREPEATS1.Visible = False
         '
         'DTOTALREPEAT1
         '
         Me.DTOTALREPEAT1.HeaderText = "Total Repeat 1"
         Me.DTOTALREPEAT1.Name = "DTOTALREPEAT1"
+        Me.DTOTALREPEAT1.Visible = False
         '
         'DTOTALDENTREPEAT1
         '
         Me.DTOTALDENTREPEAT1.HeaderText = "TOTAL D R1"
         Me.DTOTALDENTREPEAT1.Name = "DTOTALDENTREPEAT1"
+        Me.DTOTALDENTREPEAT1.Visible = False
         '
         'DREPEATMARK2
         '
@@ -5559,6 +5567,7 @@ Partial Class DesignCardMaster
         Me.DREPEATMARK2.Name = "DREPEATMARK2"
         Me.DREPEATMARK2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DREPEATMARK2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DREPEATMARK2.Visible = False
         '
         'DREPEATS2
         '
@@ -5566,16 +5575,19 @@ Partial Class DesignCardMaster
         Me.DREPEATS2.Name = "DREPEATS2"
         Me.DREPEATS2.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DREPEATS2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DREPEATS2.Visible = False
         '
         'DTOTALREPEAT2
         '
         Me.DTOTALREPEAT2.HeaderText = "Total Repeat 2"
         Me.DTOTALREPEAT2.Name = "DTOTALREPEAT2"
+        Me.DTOTALREPEAT2.Visible = False
         '
         'DTOTALDENTREPEAT2
         '
         Me.DTOTALDENTREPEAT2.HeaderText = "TOTAL D R2"
         Me.DTOTALDENTREPEAT2.Name = "DTOTALDENTREPEAT2"
+        Me.DTOTALDENTREPEAT2.Visible = False
         '
         'DesignCardMaster
         '
