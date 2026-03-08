@@ -3,7 +3,7 @@
 Imports BL
 Imports System.Windows.Forms
 
-Public Class YarnReturnKnittingDetails
+Public Class YarnReturnJobberDetails
 
     Public EDIT As Boolean
     Dim temppreqno As Integer
@@ -70,7 +70,7 @@ Public Class YarnReturnKnittingDetails
             End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim objGRN As New YarnReturnKnitting
+                Dim objGRN As New YarnReturnJobber
                 objGRN.MdiParent = MDIMain
                 objGRN.EDIT = editval
                 objGRN.TEMPYARNKNITTINGRETNO = SRNO

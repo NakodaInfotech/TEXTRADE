@@ -5417,7 +5417,7 @@ SKIPLINE:
 
     Private Sub YARNRETURNKNITTINGADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles YARNRETURNKNITTINGADD.Click
         Try
-            Dim OBJYARNRET As New YarnReturnKnitting
+            Dim OBJYARNRET As New YarnReturnJobber
             OBJYARNRET.MdiParent = Me
             OBJYARNRET.Show()
         Catch ex As Exception
@@ -5427,7 +5427,7 @@ SKIPLINE:
 
     Private Sub YARNRETURNKNITTINGEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles YARNRETURNKNITTINGEDIT.Click
         Try
-            Dim OBJYARNRET As New YarnReturnKnittingDetails
+            Dim OBJYARNRET As New YarnReturnJobberDetails
             OBJYARNRET.MdiParent = Me
             OBJYARNRET.Show()
         Catch ex As Exception

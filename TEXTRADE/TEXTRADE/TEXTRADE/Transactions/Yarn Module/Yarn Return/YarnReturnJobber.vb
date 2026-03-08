@@ -4,7 +4,7 @@ Imports System.IO
 Imports System.Windows.Forms
 Imports BL
 
-Public Class YarnReturnKnitting
+Public Class YarnReturnJobber
 
     Public EDIT As Boolean          'used for editing
     Dim IntResult As Integer
@@ -854,7 +854,7 @@ Public Class YarnReturnKnitting
                 Exit Sub
             End If
 
-            Dim OBJEMB As New YarnReturnKnittingDetails
+            Dim OBJEMB As New YarnReturnJobberDetails
             OBJEMB.MdiParent = MDIMain
             OBJEMB.Show()
         Catch ex As Exception

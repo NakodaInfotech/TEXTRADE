@@ -40,7 +40,6 @@ Public Class YarnRecdFromJobber
 
         TXTBALWT.Clear()
 
-        TXTLOTNO.Clear()
         txtPartyMtrs.Clear()
         dtpchallan.Value = Now.Date
         txtchallan.Clear()
@@ -71,12 +70,14 @@ Public Class YarnRecdFromJobber
         PBlock.Visible = False
 
         txtsrno.Text = 1
-        txtgridremarks.Clear()
+        TXTGRIDREMARKS.Clear()
         CMBYARNQUALITY.Text = ""
         CMBMILL.Text = ""
         CMBDESIGN.Text = ""
         TXTJOBBERLOTNO.Clear()
         cmbcolor.Text = ""
+        TXTLOTNO.Clear()
+        TXTGRIDREMARKS.Clear()
         txtqty.Clear()
         TXTWT.Clear()
         TXTCUT.Clear()
@@ -713,7 +714,7 @@ LINE1:
                         cmbtrans.Text = dr("TRANSNAME").ToString
                         TXTVEHICLENO.Text = dr("VEHICLENO").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"), dr("LRNO"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAGS")), Val(dr("DONE")))
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"), dr("LRNO"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAGS")), Val(dr("DONE")))
 
                     Next
                     total()
@@ -911,7 +912,7 @@ LINE1:
                 TXTBARCODE.Text = "YJ-" & Val(TXTYARNNO.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"), TXTLRNO.Text.Trim, CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, TXTGRIDREMARKS.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"), TXTLRNO.Text.Trim, CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
             GETSRNO(GRIDYARN)
 
         ElseIf GRIDDOUBLECLICK = True Then
@@ -927,6 +928,7 @@ LINE1:
             GRIDYARN.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.000")
             GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0")
             GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTLRNO.Text.Trim
+            GRIDYARN.Item(GGRIDREMARKS.Index, TEMPROW).Value = TXTGRIDREMARKS.Text.Trim
             GRIDYARN.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
             GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
 
@@ -939,13 +941,13 @@ LINE1:
         GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 
 
-        txtgridremarks.Clear()
         'CMBYARNQUALITY.Text = ""
         TXTJOBBERLOTNO.Clear()
         CMBMILL.Text = ""
         CMBDESIGN.Text = ""
         cmbcolor.Text = ""
         TXTLOTNO.Clear()
+        TXTGRIDREMARKS.Clear()
         txtqty.Clear()
         TXTWT.Clear()
         TXTCONES.Clear()

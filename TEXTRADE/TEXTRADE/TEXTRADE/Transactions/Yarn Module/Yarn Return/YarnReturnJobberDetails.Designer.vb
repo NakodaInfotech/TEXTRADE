@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class YarnReturnKnittingDetails
+Partial Class YarnReturnJobberDetails
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -49,6 +49,7 @@ Partial Class YarnReturnKnittingDetails
         Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GVEHICLENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
@@ -56,7 +57,6 @@ Partial Class YarnReturnKnittingDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GVEHICLENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -344,6 +344,16 @@ Partial Class YarnReturnKnittingDetails
         Me.GREMARKS.VisibleIndex = 20
         Me.GREMARKS.Width = 180
         '
+        'GVEHICLENO
+        '
+        Me.GVEHICLENO.Caption = "Vehicle No"
+        Me.GVEHICLENO.FieldName = "VEHICLENO"
+        Me.GVEHICLENO.Name = "GVEHICLENO"
+        Me.GVEHICLENO.OptionsColumn.AllowEdit = False
+        Me.GVEHICLENO.Visible = True
+        Me.GVEHICLENO.VisibleIndex = 21
+        Me.GVEHICLENO.Width = 100
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton, Me.ToolStripSeparator1})
@@ -401,26 +411,16 @@ Partial Class YarnReturnKnittingDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select a GRN to Change"
         '
-        'GVEHICLENO
-        '
-        Me.GVEHICLENO.Caption = "Vehicle No"
-        Me.GVEHICLENO.FieldName = "VEHICLENO"
-        Me.GVEHICLENO.Name = "GVEHICLENO"
-        Me.GVEHICLENO.OptionsColumn.AllowEdit = False
-        Me.GVEHICLENO.Visible = True
-        Me.GVEHICLENO.VisibleIndex = 21
-        Me.GVEHICLENO.Width = 100
-        '
-        'YarnReturnKnittingDetails
+        'YarnReturnJobberDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1256, 571)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "YarnReturnKnittingDetails"
+        Me.Name = "YarnReturnJobberDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Yarn Return From Knitting Details"
+        Me.Text = "Yarn Return From Jobber Details"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
