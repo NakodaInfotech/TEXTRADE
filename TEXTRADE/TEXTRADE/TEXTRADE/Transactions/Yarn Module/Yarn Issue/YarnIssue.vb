@@ -873,8 +873,18 @@ Public Class YarnIssue
             DTYARN = OBJSTOCK.DT
             If DTYARN.Rows.Count > 0 Then
                 For Each DTROW As DataRow In DTYARN.Rows
-                    GRIDYARN.Rows.Add(0, DTROW("YARNQUALITY"), DTROW("MILLNAME"), DTROW("DESIGNNO"), DTROW("COLOR"), DTROW("LOTNO"), Format(Val(DTROW("BAGS")), "0"), Format(Val(DTROW("WT")), "0.00"), Format(Val(DTROW("CONES")), "0"), DTROW("LRNO"), Format(DTLRDATE.Value.Date, "dd/MM/yyyy"))
+
+                    For Each ROW As DataGridViewRow In GRIDYARN.Rows
+                        If DTROW("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROW("BARCODE")) Or (DTROW("BARCODE") = "" And Val(ROW.Cells(GFROMNO.Index).Value) = Val(DTROW("FROMNO")) And Val(ROW.Cells(GFROMSRNO.Index).Value) = Val(DTROW("FROMSRNO"))) And ROW.Cells(GFROMTYPE.Index).Value = DTROW("FROMTYPE") Then GoTo NEXTLINE
+                    Next
+
+
+                    GRIDYARN.Rows.Add(0, DTROW("YARNQUALITY"), DTROW("MILLNAME"), DTROW("DESIGNNO"), DTROW("COLOR"), DTROW("LOTNO"), Format(Val(DTROW("BAGS")), "0"), Format(Val(DTROW("WT")), "0.00"), Format(Val(DTROW("CONES")), "0"), DTROW("LRNO"), Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), Format(DTLIFTDATE.Value.Date, "dd/MM/yyyy"), DTROW("BARCODE"), DTROW("FROMNO"), DTROW("FROMSRNO"), DTROW("FROMTYPE"))
+
+NEXTLINE:
+
                 Next
+
                 getsrno(GRIDYARN)
                 total()
                 GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
@@ -1422,6 +1432,48 @@ LINE1:
     End Sub
 
     Private Sub TXTBARCODE_Validated(sender As Object, e As EventArgs) Handles TXTBARCODE.Validated
+        Try
+            If TXTBARCODE.Text.Trim.Length > 0 Then
 
+                If CMBGODOWN.Text.Trim = "" Then
+                    MsgBox("Select Godown First", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("*", "", "YARNBARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+
+                    'VALIDATE GODOWN
+                    If DT.Rows(0).Item("GODOWN") <> CMBGODOWN.Text.Trim Then
+                        MsgBox("Item Not in Selected Godown", MsgBoxStyle.Critical)
+                        TXTBARCODE.Clear()
+                        Exit Sub
+                    End If
+
+                    'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
+                    For Each ROW As DataGridViewRow In GRIDYARN.Rows
+                        If LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(TXTBARCODE.Text.Trim) Then GoTo LINE1
+                    Next
+
+
+                    GRIDYARN.Rows.Add(GRIDYARN.RowCount + 1, DT.Rows(0).Item("YARNQUALITY"), DT.Rows(0).Item("MILLNAME"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("LOTNO"), DT.Rows(0).Item("BAGS"), DT.Rows(0).Item("WT"), DT.Rows(0).Item("CONES"), DT.Rows(0).Item("LRNO"), Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), Format(DTLIFTDATE.Value.Date, "dd/MM/yyyy"), DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("FROMTYPE"))
+                    total()
+                    GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
+
+
+LINE1:
+                    TXTBARCODE.Clear()
+                    TXTBARCODE.Focus()
+                Else
+                    MsgBox("Invalid Barcode", MsgBoxStyle.Critical)
+                    TXTBARCODE.Clear()
+                End If
+            End If
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class
