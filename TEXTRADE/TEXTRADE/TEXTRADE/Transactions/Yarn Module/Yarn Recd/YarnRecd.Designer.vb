@@ -98,6 +98,7 @@ Partial Class YarnRecd
         Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.SaveToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLUPLOADEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.tooldelete = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.toolprevious = New System.Windows.Forms.ToolStripButton()
@@ -176,7 +177,6 @@ Partial Class YarnRecd
         Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.TOOLUPLOADEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -919,6 +919,16 @@ Partial Class YarnRecd
         Me.PrintToolStripButton.Name = "PrintToolStripButton"
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
+        '
+        'TOOLUPLOADEXCEL
+        '
+        Me.TOOLUPLOADEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLUPLOADEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.TOOLUPLOADEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLUPLOADEXCEL.Name = "TOOLUPLOADEXCEL"
+        Me.TOOLUPLOADEXCEL.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLUPLOADEXCEL.Text = "Upload Excel"
+        Me.TOOLUPLOADEXCEL.Visible = False
         '
         'tooldelete
         '
@@ -1808,16 +1818,6 @@ Partial Class YarnRecd
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'TOOLUPLOADEXCEL
-        '
-        Me.TOOLUPLOADEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLUPLOADEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        Me.TOOLUPLOADEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLUPLOADEXCEL.Name = "TOOLUPLOADEXCEL"
-        Me.TOOLUPLOADEXCEL.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLUPLOADEXCEL.Text = "Upload Excel"
-        Me.TOOLUPLOADEXCEL.Visible = False
         '
         'YarnRecd
         '
