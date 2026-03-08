@@ -165,6 +165,7 @@ Public Class YarnReturnKnitting
         cmbcolor.Text = ""
         TXTLRNO.Clear()
         TXTWT.Clear()
+        TXTVEHICLENO.Clear()
 
         GRIDYARN.RowCount = 0
 
@@ -319,6 +320,7 @@ Public Class YarnReturnKnitting
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
+            alParaval.Add(TXTVEHICLENO.Text.Trim)
 
 
             Dim gridsrno As String = ""
@@ -622,9 +624,11 @@ Public Class YarnReturnKnitting
 
                         CMBTRANS.Text = dr("TRANSNAME").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
+                        TXTVEHICLENO.Text = Convert.ToString(dr("VEHICLENO").ToString)
+
                         GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAG")), Val(dr("DONE")))
 
-                        If Convert.ToDecimal(dr("RECDMTRS")) > 0 Then
+                        If Convert.ToDecimal(dr("OUTWT")) > 0 Then
                             lbllocked.Visible = True
                             PBlock.Visible = True
                         End If
