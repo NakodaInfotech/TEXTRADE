@@ -2,6 +2,7 @@
 Imports BL
 Imports DevExpress.CodeParser
 Imports DevExpress.XtraReports.UI
+Imports iTextSharp
 Public Class YarnLoanMaster
     'following two variables is only for used in edit mode....
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -146,6 +147,35 @@ Public Class YarnLoanMaster
             Cursor.Current = Cursors.Default
         End Try
     End Sub
+    Function errorvalid() As Boolean
+        Try
+            Dim bln As Boolean = True
+
+            If cmbname.Text.Trim.Length = 0 Then
+                EP.SetError(cmbname, " Please Fill Company Name ")
+                bln = False
+            End If
+
+            If cmbGodown.Text.Trim.Length = 0 Then
+                EP.SetError(cmbGodown, " Please Fill Godown Name ")
+                bln = False
+            End If
+
+
+            If GRIDYARN.RowCount = 0 Then
+                EP.SetError(TabControl1, "Fill Item Details")
+                bln = False
+            End If
+
+
+
+
+
+            Return bln
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Function
 
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -368,7 +398,7 @@ Public Class YarnLoanMaster
     Sub fillgrid()
         GRIDYARN.Enabled = True
         If gridDoubleClick = False Then
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, TXTJOBBERLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, cmbrack.Text.Trim, TXTBARCODE.Text.Trim)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, TXTJOBBERLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, cmbrack.Text.Trim, txtbarcode.Text.Trim)
             getsrno(GRIDYARN)
         ElseIf gridDoubleClick = True Then
             GRIDYARN.Item(gsrno.Index, tempRow).Value = Val(txtsrno.Text.Trim)

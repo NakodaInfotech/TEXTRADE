@@ -83,7 +83,7 @@ Public Class StoresLoan
 
 
         gridDoubleClick = False
-
+        'txtadd.Clear()
 
 
         getmax_loan_no() 'this function is for to get max value from the Purchase loanuisition table
@@ -334,6 +334,11 @@ Public Class StoresLoan
             e.SuppressKeyPress = True
         ElseIf e.KeyCode = Keys.Enter Then
             SendKeys.Send("{Tab}")
+        ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
+            Call OpenToolStripButton_Click(sender, e)
+        ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then       'for Delete
+            tstxtbillno.Focus()
+            tstxtbillno.SelectAll()
         End If
     End Sub
 

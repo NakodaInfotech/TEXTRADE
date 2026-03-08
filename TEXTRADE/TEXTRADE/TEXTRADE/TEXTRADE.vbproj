@@ -3187,6 +3187,12 @@
     <Compile Include="Transactions\Yarn Module\YarnLoan\YarnLoanMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\YarnLoan\YarnLoanMasterDetails.Designer.vb">
+      <DependentUpon>YarnLoanMasterDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\YarnLoan\YarnLoanMasterDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Merge Details\MergeLedgerDetails.Designer.vb">
       <DependentUpon>MergeLedgerDetails.vb</DependentUpon>
     </Compile>

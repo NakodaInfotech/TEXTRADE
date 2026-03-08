@@ -105,15 +105,15 @@ Public Class StoresLoanDetails
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
 
-            Dim PATH As String = Application.StartupPath & "\Loan Details.XLS"
+            Dim PATH As String = Application.StartupPath & "\Stores Loan Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
             For Each proc In System.Diagnostics.Process.GetProcessesByName("Excel")
                 proc.Kill()
             Next
-            opti.SheetName = "Loan Details"
+            opti.SheetName = "Stores Loan Details"
             gridbill.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Loan Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+            EXCELCMPHEADER(PATH, "Stores Loan Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
         Catch ex As Exception
             Throw ex
         End Try
