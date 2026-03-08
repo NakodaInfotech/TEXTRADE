@@ -102,9 +102,9 @@ Public Class ClsYarnLoan
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@Loan", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TRANSPORT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALAmt", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
                 I = I + 1
