@@ -20,7 +20,7 @@ Public Class ClsYarnLoan
         Dim DTTABLE As DataTable
         Try
             'save purchase REQUEST
-            Dim strCommand As String = "SP_TRANS_STORES_LOAN_SAVE"
+            Dim strCommand As String = "SP_TRANS_YARNLOAN_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
@@ -92,7 +92,7 @@ Public Class ClsYarnLoan
         Dim DTTABLE As DataTable
         Try
             'save purchase REQUEST
-            Dim strCommand As String = "SP_TRANS_STORES_LOAN_SAVE"
+            Dim strCommand As String = "SP_TRANS_YARNLOAN_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
@@ -149,6 +149,9 @@ Public Class ClsYarnLoan
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
 
+
+                .Add(New SqlClient.SqlParameter("@YARNNO", alParaval(I)))
+                I = I + 1
             End With
 
             DTTABLE = objDBOperation.execute(strCommand, alParameter).Tables(0)
