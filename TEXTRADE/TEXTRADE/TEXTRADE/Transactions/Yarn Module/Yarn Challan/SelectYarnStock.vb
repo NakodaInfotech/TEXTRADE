@@ -1,7 +1,5 @@
 ﻿
 Imports BL
-Imports System.Windows.Forms
-Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class SelectYarnStock
 
@@ -28,19 +26,25 @@ Public Class SelectYarnStock
 
     Private Sub Opening_Stock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            fillgrid("  AND yearid=" & YearId)
+            fillgrid()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Sub fillgrid(ByVal TEMPCONDITION)
+    Sub FILLGRID()
         Try
-            If GODOWN <> "" Then TEMPCONDITION = TEMPCONDITION & " AND GODOWN ='" & GODOWN & "'"
+            Dim WHERECLAUSE As String = "  AND YEARID=" & YearId
+            If GODOWN <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GODOWN ='" & GODOWN & "'"
             Dim OBJCMN As New ClsCommon
-            Dim dt As DataTable = OBJCMN.search(" CAST(0 AS BIT) AS CHK, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO, SUM(ISNULL(CONES,0)) AS CONES, SUM(BAGS) AS BAGS, SUM(WT) AS WT ", "", "  YARNSTOCKVIEW ", TEMPCONDITION & " GROUP BY GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO HAVING SUM(WT) > 0 ")
-            gridbilldetails.DataSource = dt
-            If dt.Rows.Count > 0 Then
+            Dim DT As New DataTable
+            If ALLOWYARNBARCODEPRINT = True Then
+                DT = OBJCMN.SEARCH(" CAST(0 AS BIT) AS CHK, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO, CONES, BAGS, WT, BARCODE, FROMNO, FROMSRNO, FROMTYPE ", "", "  YARNBARCODESTOCK ", WHERECLAUSE)
+            Else
+                DT = OBJCMN.SEARCH(" CAST(0 AS BIT) AS CHK, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO, SUM(ISNULL(CONES,0)) AS CONES, SUM(BAGS) AS BAGS, SUM(WT) AS WT, '' AS BARCODE, 0 AS FROMNO, 0 AS FROMSRNO, '' AS FROMTYPE ", "", "  YARNSTOCKVIEW ", WHERECLAUSE & " GROUP BY GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO HAVING SUM(WT) > 0 ")
+            End If
+            gridbilldetails.DataSource = DT
+            If DT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
                 gridbill.TopRowIndex = gridbill.RowCount - 15
             End If
@@ -60,11 +64,15 @@ Public Class SelectYarnStock
             DT.Columns.Add("BAGS")
             DT.Columns.Add("WT")
             DT.Columns.Add("CONES")
+            DT.Columns.Add("BARCODE")
+            DT.Columns.Add("FROMNO")
+            DT.Columns.Add("FROMSRNO")
+            DT.Columns.Add("FROMTYPE")
 
             For I As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(I)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), dtrow("LOTNO"), dtrow("LRNO"), Val(dtrow("BAGS")), Val(dtrow("WT")), Val(dtrow("CONES")))
+                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), dtrow("LOTNO"), dtrow("LRNO"), Val(dtrow("BAGS")), Val(dtrow("WT")), Val(dtrow("CONES")), dtrow("BARCODE"), Val(dtrow("FROMNO")), Val(dtrow("FROMSRNO")), dtrow("FROMTYPE"))
                 End If
             Next
             Me.Close()
