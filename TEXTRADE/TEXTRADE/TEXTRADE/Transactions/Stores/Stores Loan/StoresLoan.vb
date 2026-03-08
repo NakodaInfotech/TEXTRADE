@@ -81,8 +81,7 @@ Public Class StoresLoan
         gridloan.RowCount = 0
         lbltotalqty.Text = 0.0
 
-        lbllocked.Visible = False
-        PBlock.Visible = False
+
         gridDoubleClick = False
 
 
@@ -314,10 +313,7 @@ Public Class StoresLoan
         '    bln = False
         'End If
 
-        If lbllocked.Visible = True Then
-            EP.SetError(lbllocked, "Quotation Raised, Delete Quotation First")
-            bln = False
-        End If
+
 
         If Not datecheck(loandate.Value) Then bln = False
         Return bln
