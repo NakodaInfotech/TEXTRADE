@@ -358,6 +358,10 @@ Public Class YarnIssue
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim LIFTDATE As String = ""
+            Dim BARCODE As String = ""
+            Dim FROMNO As String = ""
+            Dim FROMSRNO As String = ""
+            Dim FROMTYPE As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
@@ -375,6 +379,10 @@ Public Class YarnIssue
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         If row.Cells(GLRDATE.Index).Value <> "" Then LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = Format(Now.Date, "MM/dd/yyyy")
                         If row.Cells(GLIFTINGDATE.Index).Value <> "" Then LIFTDATE = Format(Convert.ToDateTime(row.Cells(GLIFTINGDATE.Index).Value).Date, "MM/dd/yyyy") Else LIFTDATE = Format(Now.Date, "MM/dd/yyyy")
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
 
 
                     Else
@@ -387,11 +395,14 @@ Public Class YarnIssue
                         LOTNO = LOTNO & "|" & row.Cells(GLOTNO.Index).Value.ToString
                         qty = qty & "|" & row.Cells(GQTY.Index).Value
                         WT = WT & "|" & row.Cells(GWT.Index).Value
-
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         If row.Cells(GLRDATE.Index).Value <> "" Then LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = LRDATE & "|" & Format(Now.Date, "MM/dd/yyyy")
                         If row.Cells(GLIFTINGDATE.Index).Value <> "" Then LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLIFTINGDATE.Index).Value).Date, "MM/dd/yyyy") Else LIFTDATE = LIFTDATE & "|" & Format(Now.Date, "MM/dd/yyyy")
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = FROMSRNO & "|" & row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
 
                     End If
                 End If
@@ -411,6 +422,10 @@ Public Class YarnIssue
             alParaval.Add(LRNO)
             alParaval.Add(LRDATE)
             alParaval.Add(LIFTDATE)
+            alParaval.Add(BARCODE)
+            alParaval.Add(FROMNO)
+            alParaval.Add(FROMSRNO)
+            alParaval.Add(FROMTYPE)
 
             alParaval.Add(CHKYARNRECD.Checked)
             alParaval.Add(TXTBEAMDESC.Text.Trim)
@@ -597,7 +612,7 @@ Public Class YarnIssue
                         If dr("LRNO") <> "" Then TEMPLRDATE = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
                         Dim TEMPLIFTDATE As String = ""
                         If dr("LRNO") <> "" Then TEMPLIFTDATE = Format(Convert.ToDateTime(dr("LIFTINGDATE")).Date, "dd/MM/yyyy")
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), TEMPLRDATE, TEMPLIFTDATE)
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), TEMPLRDATE, TEMPLIFTDATE, dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
 
                         If Convert.ToDecimal(dr("RECDWT")) > 0 Then
                             lbllocked.Visible = True
@@ -1385,5 +1400,9 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TXTBARCODE_Validated(sender As Object, e As EventArgs) Handles TXTBARCODE.Validated
+
     End Sub
 End Class
