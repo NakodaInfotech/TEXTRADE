@@ -3181,6 +3181,18 @@
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\YarnLoan\YarnLoanMaster.Designer.vb">
+      <DependentUpon>YarnLoanMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\YarnLoan\YarnLoanMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\YarnLoan\YarnLoanMasterDetails.Designer.vb">
+      <DependentUpon>YarnLoanMasterDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\YarnLoan\YarnLoanMasterDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Merge Details\MergeLedgerDetails.Designer.vb">
       <DependentUpon>MergeLedgerDetails.vb</DependentUpon>
     </Compile>
@@ -10705,6 +10717,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\YarnLoan\YarnLoanMaster.resx">
+      <DependentUpon>YarnLoanMaster.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Merge Details\MergeLedgerDetails.resx">
       <DependentUpon>MergeLedgerDetails.vb</DependentUpon>

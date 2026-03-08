@@ -433,6 +433,7 @@
     <Compile Include="Transactions\Yarn Modules\Grey Recd\ClsGreyRecdFromJobber.vb" />
     <Compile Include="Transactions\Yarn Modules\Grey Recd\ClsGreyRecdKnitting.vb" />
     <Compile Include="Transactions\Yarn Modules\Grey Recd\ClsGreyRecdProduction.vb" />
+    <Compile Include="Transactions\Yarn Modules\Yarn Loan\ClsYarnLoan.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn PO\ClsYarnPurchaseOrder.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Program\ClsYarnDyeingProgram.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Return\ClsProductionFloorReturn.vb" />
