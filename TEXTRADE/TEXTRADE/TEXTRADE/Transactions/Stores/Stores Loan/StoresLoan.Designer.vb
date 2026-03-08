@@ -23,13 +23,13 @@ Partial Class StoresLoan
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StoresLoan))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
@@ -98,7 +98,6 @@ Partial Class StoresLoan
         '
         'BlendPanel1
         '
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.CMBCODE)
         Me.BlendPanel1.Controls.Add(Me.cmddelete)
         Me.BlendPanel1.Controls.Add(Me.cmdclear)
@@ -152,7 +151,7 @@ Partial Class StoresLoan
         Me.cmddelete.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmddelete.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmddelete.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmddelete.Location = New System.Drawing.Point(461, 491)
+        Me.cmddelete.Location = New System.Drawing.Point(441, 465)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(78, 27)
         Me.cmddelete.TabIndex = 8
@@ -167,7 +166,7 @@ Partial Class StoresLoan
         Me.cmdclear.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdclear.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdclear.Location = New System.Drawing.Point(543, 462)
+        Me.cmdclear.Location = New System.Drawing.Point(358, 465)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(78, 27)
         Me.cmdclear.TabIndex = 7
@@ -182,7 +181,7 @@ Partial Class StoresLoan
         Me.cmdok.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdok.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdok.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdok.Location = New System.Drawing.Point(461, 462)
+        Me.cmdok.Location = New System.Drawing.Point(276, 465)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(78, 27)
         Me.cmdok.TabIndex = 6
@@ -197,7 +196,7 @@ Partial Class StoresLoan
         Me.cmdexit.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdexit.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdexit.Location = New System.Drawing.Point(543, 491)
+        Me.cmdexit.Location = New System.Drawing.Point(523, 465)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(78, 27)
         Me.cmdexit.TabIndex = 9
@@ -414,28 +413,28 @@ Partial Class StoresLoan
         Me.gridloan.AllowUserToDeleteRows = False
         Me.gridloan.AllowUserToResizeColumns = False
         Me.gridloan.AllowUserToResizeRows = False
-        DataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.Black
-        Me.gridloan.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        Me.gridloan.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle8
         Me.gridloan.BackgroundColor = System.Drawing.Color.White
         Me.gridloan.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.gridloan.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.gridloan.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.gridloan.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.gridloan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridloan.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.gitemname, Me.gdesc, Me.gQty, Me.gqtyunit, Me.gAmt, Me.GDONE})
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridloan.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridloan.DefaultCellStyle = DataGridViewCellStyle13
         Me.gridloan.GridColor = System.Drawing.SystemColors.Control
         Me.gridloan.Location = New System.Drawing.Point(2, 24)
         Me.gridloan.MultiSelect = False
@@ -443,9 +442,9 @@ Partial Class StoresLoan
         Me.gridloan.RowHeadersVisible = False
         Me.gridloan.RowHeadersWidth = 30
         Me.gridloan.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.White
-        Me.gridloan.RowsDefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White
+        Me.gridloan.RowsDefaultCellStyle = DataGridViewCellStyle14
         Me.gridloan.RowTemplate.Height = 20
         Me.gridloan.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridloan.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -465,8 +464,8 @@ Partial Class StoresLoan
         '
         'gitemname
         '
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.gitemname.DefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.gitemname.DefaultCellStyle = DataGridViewCellStyle10
         Me.gitemname.HeaderText = "Item Name"
         Me.gitemname.Name = "gitemname"
         Me.gitemname.ReadOnly = True
@@ -485,10 +484,10 @@ Partial Class StoresLoan
         '
         'gQty
         '
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle25.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle25.NullValue = Nothing
-        Me.gQty.DefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.NullValue = Nothing
+        Me.gQty.DefaultCellStyle = DataGridViewCellStyle11
         Me.gQty.HeaderText = "Qty."
         Me.gQty.Name = "gQty"
         Me.gQty.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -506,8 +505,8 @@ Partial Class StoresLoan
         '
         'gAmt
         '
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.gAmt.DefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.gAmt.DefaultCellStyle = DataGridViewCellStyle12
         Me.gAmt.HeaderText = "Amt"
         Me.gAmt.Name = "gAmt"
         Me.gAmt.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
