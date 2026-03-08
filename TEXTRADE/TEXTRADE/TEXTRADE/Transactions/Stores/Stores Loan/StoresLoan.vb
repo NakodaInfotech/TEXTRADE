@@ -81,10 +81,9 @@ Public Class StoresLoan
         gridloan.RowCount = 0
         lbltotalqty.Text = 0.0
 
-        lbllocked.Visible = False
-        PBlock.Visible = False
-        gridDoubleClick = False
 
+        gridDoubleClick = False
+        'txtadd.Clear()
 
 
         getmax_loan_no() 'this function is for to get max value from the Purchase loanuisition table
@@ -314,10 +313,7 @@ Public Class StoresLoan
         '    bln = False
         'End If
 
-        If lbllocked.Visible = True Then
-            EP.SetError(lbllocked, "Quotation Raised, Delete Quotation First")
-            bln = False
-        End If
+
 
         If Not datecheck(loandate.Value) Then bln = False
         Return bln
@@ -338,6 +334,11 @@ Public Class StoresLoan
             e.SuppressKeyPress = True
         ElseIf e.KeyCode = Keys.Enter Then
             SendKeys.Send("{Tab}")
+        ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
+            Call OpenToolStripButton_Click(sender, e)
+        ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then       'for Delete
+            tstxtbillno.Focus()
+            tstxtbillno.SelectAll()
         End If
     End Sub
 
@@ -441,7 +442,7 @@ Public Class StoresLoan
                 If TEMPMSG = vbYes Then
 
                     Dim ALPARAVAL As New ArrayList
-                    Dim OBJLOAN As New ClsLoan
+                    Dim OBJLOAN As New ClsStoresLoan
 
                     ALPARAVAL.Add(Val(txtloanno.Text.Trim))
                     ALPARAVAL.Add(CmpId)

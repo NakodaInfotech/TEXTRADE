@@ -32,6 +32,7 @@ Partial Class StoresLoan
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StoresLoan))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.cmddelete = New System.Windows.Forms.Button()
         Me.cmdclear = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
@@ -70,8 +71,6 @@ Partial Class StoresLoan
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.txtremarks = New System.Windows.Forms.TextBox()
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
-        Me.PBlock = New System.Windows.Forms.PictureBox()
-        Me.lbllocked = New System.Windows.Forms.Label()
         Me.chkchange = New System.Windows.Forms.CheckBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.cmbLoan = New System.Windows.Forms.ComboBox()
@@ -85,7 +84,6 @@ Partial Class StoresLoan
         Me.toolprevious = New System.Windows.Forms.ToolStripButton()
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
@@ -94,14 +92,12 @@ Partial Class StoresLoan
         CType(Me.pbcopy, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridloan, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
-        CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.CMBCODE)
         Me.BlendPanel1.Controls.Add(Me.cmddelete)
         Me.BlendPanel1.Controls.Add(Me.cmdclear)
@@ -122,8 +118,6 @@ Partial Class StoresLoan
         Me.BlendPanel1.Controls.Add(Me.TabControl1)
         Me.BlendPanel1.Controls.Add(Me.GroupBox5)
         Me.BlendPanel1.Controls.Add(Me.tstxtbillno)
-        Me.BlendPanel1.Controls.Add(Me.PBlock)
-        Me.BlendPanel1.Controls.Add(Me.lbllocked)
         Me.BlendPanel1.Controls.Add(Me.chkchange)
         Me.BlendPanel1.Controls.Add(Me.Label6)
         Me.BlendPanel1.Controls.Add(Me.cmbLoan)
@@ -135,6 +129,20 @@ Partial Class StoresLoan
         Me.BlendPanel1.Size = New System.Drawing.Size(673, 549)
         Me.BlendPanel1.TabIndex = 6
         '
+        'CMBCODE
+        '
+        Me.CMBCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBCODE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBCODE.Enabled = False
+        Me.CMBCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBCODE.FormattingEnabled = True
+        Me.CMBCODE.Location = New System.Drawing.Point(640, 41)
+        Me.CMBCODE.MaxDropDownItems = 14
+        Me.CMBCODE.Name = "CMBCODE"
+        Me.CMBCODE.Size = New System.Drawing.Size(10, 22)
+        Me.CMBCODE.TabIndex = 739
+        Me.CMBCODE.Visible = False
+        '
         'cmddelete
         '
         Me.cmddelete.BackColor = System.Drawing.Color.Transparent
@@ -143,7 +151,7 @@ Partial Class StoresLoan
         Me.cmddelete.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmddelete.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmddelete.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmddelete.Location = New System.Drawing.Point(461, 491)
+        Me.cmddelete.Location = New System.Drawing.Point(441, 465)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(78, 27)
         Me.cmddelete.TabIndex = 8
@@ -158,7 +166,7 @@ Partial Class StoresLoan
         Me.cmdclear.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdclear.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdclear.Location = New System.Drawing.Point(543, 462)
+        Me.cmdclear.Location = New System.Drawing.Point(358, 465)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(78, 27)
         Me.cmdclear.TabIndex = 7
@@ -173,7 +181,7 @@ Partial Class StoresLoan
         Me.cmdok.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdok.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdok.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdok.Location = New System.Drawing.Point(461, 462)
+        Me.cmdok.Location = New System.Drawing.Point(276, 465)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(78, 27)
         Me.cmdok.TabIndex = 6
@@ -188,7 +196,7 @@ Partial Class StoresLoan
         Me.cmdexit.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdexit.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdexit.Location = New System.Drawing.Point(543, 491)
+        Me.cmdexit.Location = New System.Drawing.Point(523, 465)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(78, 27)
         Me.cmdexit.TabIndex = 9
@@ -605,35 +613,11 @@ Partial Class StoresLoan
         '
         Me.tstxtbillno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.tstxtbillno.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tstxtbillno.Location = New System.Drawing.Point(239, 1)
+        Me.tstxtbillno.Location = New System.Drawing.Point(243, 1)
         Me.tstxtbillno.Name = "tstxtbillno"
         Me.tstxtbillno.Size = New System.Drawing.Size(45, 22)
         Me.tstxtbillno.TabIndex = 15
         Me.tstxtbillno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'PBlock
-        '
-        Me.PBlock.BackColor = System.Drawing.Color.Transparent
-        Me.PBlock.Location = New System.Drawing.Point(263, 446)
-        Me.PBlock.Name = "PBlock"
-        Me.PBlock.Size = New System.Drawing.Size(68, 72)
-        Me.PBlock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PBlock.TabIndex = 446
-        Me.PBlock.TabStop = False
-        Me.PBlock.Visible = False
-        '
-        'lbllocked
-        '
-        Me.lbllocked.AutoSize = True
-        Me.lbllocked.BackColor = System.Drawing.Color.Transparent
-        Me.lbllocked.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbllocked.ForeColor = System.Drawing.Color.Red
-        Me.lbllocked.Location = New System.Drawing.Point(337, 446)
-        Me.lbllocked.Name = "lbllocked"
-        Me.lbllocked.Size = New System.Drawing.Size(82, 29)
-        Me.lbllocked.TabIndex = 445
-        Me.lbllocked.Text = "Locked"
-        Me.lbllocked.Visible = False
         '
         'chkchange
         '
@@ -738,17 +722,19 @@ Partial Class StoresLoan
         'toolprevious
         '
         Me.toolprevious.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.toolprevious.Image = Global.TEXTRADE.My.Resources.Resources.POINT021
         Me.toolprevious.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.toolprevious.Name = "toolprevious"
-        Me.toolprevious.Size = New System.Drawing.Size(57, 22)
+        Me.toolprevious.Size = New System.Drawing.Size(73, 22)
         Me.toolprevious.Text = "Previous"
         '
         'toolnext
         '
         Me.toolnext.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.toolnext.Image = Global.TEXTRADE.My.Resources.Resources.POINT04
         Me.toolnext.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.toolnext.Name = "toolnext"
-        Me.toolnext.Size = New System.Drawing.Size(35, 22)
+        Me.toolnext.Size = New System.Drawing.Size(51, 22)
         Me.toolnext.Text = "Next"
         Me.toolnext.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         '
@@ -757,34 +743,20 @@ Partial Class StoresLoan
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'CMBCODE
-        '
-        Me.CMBCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBCODE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBCODE.Enabled = False
-        Me.CMBCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBCODE.FormattingEnabled = True
-        Me.CMBCODE.Location = New System.Drawing.Point(461, 0)
-        Me.CMBCODE.MaxDropDownItems = 14
-        Me.CMBCODE.Name = "CMBCODE"
-        Me.CMBCODE.Size = New System.Drawing.Size(58, 22)
-        Me.CMBCODE.TabIndex = 739
-        Me.CMBCODE.Visible = False
-        '
         'EP
         '
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'StoresLoanMaster
+        'StoresLoan
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(673, 549)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "StoresLoanMaster"
+        Me.Name = "StoresLoan"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "StoresLoanMaster"
         Me.BlendPanel1.ResumeLayout(False)
@@ -798,7 +770,6 @@ Partial Class StoresLoan
         CType(Me.gridloan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
-        CType(Me.PBlock, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
@@ -845,8 +816,6 @@ Partial Class StoresLoan
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents txtremarks As TextBox
     Friend WithEvents tstxtbillno As TextBox
-    Friend WithEvents PBlock As PictureBox
-    Friend WithEvents lbllocked As Label
     Friend WithEvents chkchange As CheckBox
     Friend WithEvents Label6 As Label
     Friend WithEvents cmbLoan As ComboBox

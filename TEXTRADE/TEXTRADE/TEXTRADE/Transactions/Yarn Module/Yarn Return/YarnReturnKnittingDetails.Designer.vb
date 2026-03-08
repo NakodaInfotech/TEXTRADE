@@ -41,6 +41,8 @@ Partial Class YarnReturnKnittingDetails
         Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCONES = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLAN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -50,10 +52,11 @@ Partial Class YarnReturnKnittingDetails
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.lbl = New System.Windows.Forms.Label()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
+        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.lbl = New System.Windows.Forms.Label()
+        Me.GVEHICLENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,7 +135,7 @@ Partial Class YarnReturnKnittingDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GPROCESS, Me.GYARN, Me.GMILL, Me.GDESIGN, Me.GCOLOR, Me.GLOTNO, Me.GBAGS, Me.GWT, Me.GCONES, Me.GTRANSNAME, Me.GCHALLAN, Me.GTOTALBAGS, Me.GTOTALWT, Me.GTOTALCONES, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GPROCESS, Me.GYARN, Me.GMILL, Me.GDESIGN, Me.GCOLOR, Me.GLOTNO, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRACK, Me.GBARCODE, Me.GTRANSNAME, Me.GCHALLAN, Me.GTOTALBAGS, Me.GTOTALWT, Me.GTOTALCONES, Me.GREMARKS, Me.GVEHICLENO})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -175,7 +178,7 @@ Partial Class YarnReturnKnittingDetails
         '
         Me.GNAME.Caption = "Party Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
@@ -262,13 +265,33 @@ Partial Class YarnReturnKnittingDetails
         Me.GCONES.Visible = True
         Me.GCONES.VisibleIndex = 12
         '
+        'GRACK
+        '
+        Me.GRACK.Caption = "Rack"
+        Me.GRACK.FieldName = "RACK"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.OptionsColumn.AllowEdit = False
+        Me.GRACK.Visible = True
+        Me.GRACK.VisibleIndex = 13
+        Me.GRACK.Width = 100
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.OptionsColumn.AllowEdit = False
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 14
+        Me.GBARCODE.Width = 80
+        '
         'GTRANSNAME
         '
         Me.GTRANSNAME.Caption = "Transport Name"
         Me.GTRANSNAME.FieldName = "TRANSNAME"
         Me.GTRANSNAME.Name = "GTRANSNAME"
         Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 13
+        Me.GTRANSNAME.VisibleIndex = 15
         Me.GTRANSNAME.Width = 150
         '
         'GCHALLAN
@@ -277,7 +300,7 @@ Partial Class YarnReturnKnittingDetails
         Me.GCHALLAN.FieldName = "CHALLANNO"
         Me.GCHALLAN.Name = "GCHALLAN"
         Me.GCHALLAN.Visible = True
-        Me.GCHALLAN.VisibleIndex = 14
+        Me.GCHALLAN.VisibleIndex = 16
         Me.GCHALLAN.Width = 70
         '
         'GTOTALBAGS
@@ -288,7 +311,7 @@ Partial Class YarnReturnKnittingDetails
         Me.GTOTALBAGS.FieldName = "TOTALBAGS"
         Me.GTOTALBAGS.Name = "GTOTALBAGS"
         Me.GTOTALBAGS.Visible = True
-        Me.GTOTALBAGS.VisibleIndex = 15
+        Me.GTOTALBAGS.VisibleIndex = 17
         Me.GTOTALBAGS.Width = 60
         '
         'GTOTALWT
@@ -299,7 +322,7 @@ Partial Class YarnReturnKnittingDetails
         Me.GTOTALWT.FieldName = "TOTALWT"
         Me.GTOTALWT.Name = "GTOTALWT"
         Me.GTOTALWT.Visible = True
-        Me.GTOTALWT.VisibleIndex = 16
+        Me.GTOTALWT.VisibleIndex = 18
         Me.GTOTALWT.Width = 60
         '
         'GTOTALCONES
@@ -310,7 +333,7 @@ Partial Class YarnReturnKnittingDetails
         Me.GTOTALCONES.FieldName = "TOTALCONES"
         Me.GTOTALCONES.Name = "GTOTALCONES"
         Me.GTOTALCONES.Visible = True
-        Me.GTOTALCONES.VisibleIndex = 17
+        Me.GTOTALCONES.VisibleIndex = 19
         '
         'GREMARKS
         '
@@ -318,7 +341,7 @@ Partial Class YarnReturnKnittingDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 18
+        Me.GREMARKS.VisibleIndex = 20
         Me.GREMARKS.Width = 180
         '
         'ToolStrip1
@@ -343,6 +366,15 @@ Partial Class YarnReturnKnittingDetails
         Me.toolStripSeparator.Name = "toolStripSeparator"
         Me.toolStripSeparator.Size = New System.Drawing.Size(6, 25)
         '
+        'TOOLREFRESH
+        '
+        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
+        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLREFRESH.Name = "TOOLREFRESH"
+        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLREFRESH.Text = "ToolStripButton1"
+        '
         'PrintToolStripButton
         '
         Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -352,6 +384,11 @@ Partial Class YarnReturnKnittingDetails
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
         'lbl
         '
         Me.lbl.AutoSize = True
@@ -360,23 +397,19 @@ Partial Class YarnReturnKnittingDetails
         Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lbl.Location = New System.Drawing.Point(19, 34)
         Me.lbl.Name = "lbl"
-        Me.lbl.Size = New System.Drawing.Size(124, 14)
+        Me.lbl.Size = New System.Drawing.Size(133, 14)
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select a GRN to Change"
         '
-        'ToolStripSeparator1
+        'GVEHICLENO
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'TOOLREFRESH
-        '
-        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
-        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLREFRESH.Name = "TOOLREFRESH"
-        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLREFRESH.Text = "ToolStripButton1"
+        Me.GVEHICLENO.Caption = "Vehicle No"
+        Me.GVEHICLENO.FieldName = "VEHICLENO"
+        Me.GVEHICLENO.Name = "GVEHICLENO"
+        Me.GVEHICLENO.OptionsColumn.AllowEdit = False
+        Me.GVEHICLENO.Visible = True
+        Me.GVEHICLENO.VisibleIndex = 21
+        Me.GVEHICLENO.Width = 100
         '
         'YarnReturnKnittingDetails
         '
@@ -430,4 +463,7 @@ Partial Class YarnReturnKnittingDetails
     Friend WithEvents GCONES As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents TOOLREFRESH As ToolStripButton
+    Friend WithEvents GRACK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GVEHICLENO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

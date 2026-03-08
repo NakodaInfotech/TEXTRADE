@@ -24,16 +24,16 @@ Partial Class YarnWastage
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnWastage))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.LBLTOTALCONES = New System.Windows.Forms.Label()
         Me.LBLNAME = New System.Windows.Forms.Label()
@@ -59,25 +59,15 @@ Partial Class YarnWastage
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TXTCONES = New System.Windows.Forms.TextBox()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
         Me.TXTLOTNO = New System.Windows.Forms.TextBox()
         Me.CMBSHADE = New System.Windows.Forms.ComboBox()
-        Me.Button5 = New System.Windows.Forms.Button()
         Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.CMBTYPE = New System.Windows.Forms.ComboBox()
         Me.TXTNARR = New System.Windows.Forms.TextBox()
         Me.TXTWT = New System.Windows.Forms.TextBox()
         Me.CMBMILLNAME = New System.Windows.Forms.ComboBox()
         Me.CMBQUALITY = New System.Windows.Forms.ComboBox()
         Me.TXTSRNO = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.BTNMILL = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.BTNNARRATION = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.GRIDWASTAGE = New System.Windows.Forms.DataGridView()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -135,7 +125,6 @@ Partial Class YarnWastage
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
-        Me.BlendPanel1.Controls.Add(Me.LBLTOTALCONES)
         Me.BlendPanel1.Controls.Add(Me.LBLNAME)
         Me.BlendPanel1.Controls.Add(Me.CMBNAME)
         Me.BlendPanel1.Controls.Add(Me.CMBOURGODOWN)
@@ -145,8 +134,6 @@ Partial Class YarnWastage
         Me.BlendPanel1.Controls.Add(Me.GroupBox5)
         Me.BlendPanel1.Controls.Add(Me.tstxtbillno)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
-        Me.BlendPanel1.Controls.Add(Me.LBLTOTALWT)
-        Me.BlendPanel1.Controls.Add(Me.Label10)
         Me.BlendPanel1.Controls.Add(Me.TabControl1)
         Me.BlendPanel1.Controls.Add(Me.DTENTRYDATE)
         Me.BlendPanel1.Controls.Add(Me.TXTWASTAGENO)
@@ -169,7 +156,7 @@ Partial Class YarnWastage
         Me.LBLTOTALCONES.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALCONES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALCONES.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALCONES.Location = New System.Drawing.Point(957, 464)
+        Me.LBLTOTALCONES.Location = New System.Drawing.Point(895, 305)
         Me.LBLTOTALCONES.Name = "LBLTOTALCONES"
         Me.LBLTOTALCONES.Size = New System.Drawing.Size(58, 15)
         Me.LBLTOTALCONES.TabIndex = 821
@@ -366,7 +353,7 @@ Partial Class YarnWastage
         Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALWT.Location = New System.Drawing.Point(835, 464)
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(789, 305)
         Me.LBLTOTALWT.Name = "LBLTOTALWT"
         Me.LBLTOTALWT.Size = New System.Drawing.Size(84, 14)
         Me.LBLTOTALWT.TabIndex = 643
@@ -379,7 +366,7 @@ Partial Class YarnWastage
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(791, 464)
+        Me.Label10.Location = New System.Drawing.Point(729, 305)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(31, 14)
         Me.Label10.TabIndex = 635
@@ -400,26 +387,19 @@ Partial Class YarnWastage
         '
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.LBLTOTALCONES)
         Me.TabPage1.Controls.Add(Me.TXTCONES)
-        Me.TabPage1.Controls.Add(Me.Button8)
-        Me.TabPage1.Controls.Add(Me.Button7)
         Me.TabPage1.Controls.Add(Me.TXTLOTNO)
         Me.TabPage1.Controls.Add(Me.CMBSHADE)
-        Me.TabPage1.Controls.Add(Me.Button5)
         Me.TabPage1.Controls.Add(Me.CMBDESIGN)
-        Me.TabPage1.Controls.Add(Me.Button4)
         Me.TabPage1.Controls.Add(Me.CMBTYPE)
         Me.TabPage1.Controls.Add(Me.TXTNARR)
         Me.TabPage1.Controls.Add(Me.TXTWT)
         Me.TabPage1.Controls.Add(Me.CMBMILLNAME)
         Me.TabPage1.Controls.Add(Me.CMBQUALITY)
         Me.TabPage1.Controls.Add(Me.TXTSRNO)
-        Me.TabPage1.Controls.Add(Me.Button2)
-        Me.TabPage1.Controls.Add(Me.BTNMILL)
-        Me.TabPage1.Controls.Add(Me.Button6)
-        Me.TabPage1.Controls.Add(Me.Button3)
-        Me.TabPage1.Controls.Add(Me.BTNNARRATION)
-        Me.TabPage1.Controls.Add(Me.Button1)
+        Me.TabPage1.Controls.Add(Me.LBLTOTALWT)
+        Me.TabPage1.Controls.Add(Me.Label10)
         Me.TabPage1.Controls.Add(Me.GRIDWASTAGE)
         Me.TabPage1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabPage1.Location = New System.Drawing.Point(4, 24)
@@ -432,46 +412,16 @@ Partial Class YarnWastage
         'TXTCONES
         '
         Me.TXTCONES.BackColor = System.Drawing.Color.White
-        Me.TXTCONES.Location = New System.Drawing.Point(873, 30)
+        Me.TXTCONES.Location = New System.Drawing.Point(873, 3)
         Me.TXTCONES.MaxLength = 200
         Me.TXTCONES.Name = "TXTCONES"
         Me.TXTCONES.Size = New System.Drawing.Size(80, 22)
         Me.TXTCONES.TabIndex = 7
         Me.TXTCONES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'Button8
-        '
-        Me.Button8.BackColor = System.Drawing.Color.Transparent
-        Me.Button8.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button8.FlatAppearance.BorderSize = 0
-        Me.Button8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button8.ForeColor = System.Drawing.Color.Black
-        Me.Button8.Location = New System.Drawing.Point(875, 2)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(78, 27)
-        Me.Button8.TabIndex = 822
-        Me.Button8.TabStop = False
-        Me.Button8.Text = "Cones"
-        Me.Button8.UseVisualStyleBackColor = False
-        '
-        'Button7
-        '
-        Me.Button7.BackColor = System.Drawing.Color.Transparent
-        Me.Button7.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button7.FlatAppearance.BorderSize = 0
-        Me.Button7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button7.ForeColor = System.Drawing.Color.Black
-        Me.Button7.Location = New System.Drawing.Point(734, 2)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(80, 27)
-        Me.Button7.TabIndex = 821
-        Me.Button7.TabStop = False
-        Me.Button7.Text = "Lot No."
-        Me.Button7.UseVisualStyleBackColor = False
-        '
         'TXTLOTNO
         '
-        Me.TXTLOTNO.Location = New System.Drawing.Point(733, 30)
+        Me.TXTLOTNO.Location = New System.Drawing.Point(733, 3)
         Me.TXTLOTNO.MaxLength = 200
         Me.TXTLOTNO.Name = "TXTLOTNO"
         Me.TXTLOTNO.Size = New System.Drawing.Size(80, 22)
@@ -483,25 +433,10 @@ Partial Class YarnWastage
         Me.CMBSHADE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBSHADE.BackColor = System.Drawing.Color.White
         Me.CMBSHADE.FormattingEnabled = True
-        Me.CMBSHADE.Location = New System.Drawing.Point(633, 30)
+        Me.CMBSHADE.Location = New System.Drawing.Point(633, 3)
         Me.CMBSHADE.Name = "CMBSHADE"
         Me.CMBSHADE.Size = New System.Drawing.Size(100, 22)
         Me.CMBSHADE.TabIndex = 4
-        '
-        'Button5
-        '
-        Me.Button5.BackColor = System.Drawing.Color.Transparent
-        Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.ForeColor = System.Drawing.Color.Black
-        Me.Button5.Location = New System.Drawing.Point(633, 2)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(100, 27)
-        Me.Button5.TabIndex = 684
-        Me.Button5.TabStop = False
-        Me.Button5.Text = "Shade"
-        Me.Button5.UseVisualStyleBackColor = False
         '
         'CMBDESIGN
         '
@@ -509,25 +444,10 @@ Partial Class YarnWastage
         Me.CMBDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBDESIGN.BackColor = System.Drawing.Color.White
         Me.CMBDESIGN.FormattingEnabled = True
-        Me.CMBDESIGN.Location = New System.Drawing.Point(533, 30)
+        Me.CMBDESIGN.Location = New System.Drawing.Point(533, 3)
         Me.CMBDESIGN.Name = "CMBDESIGN"
         Me.CMBDESIGN.Size = New System.Drawing.Size(100, 22)
         Me.CMBDESIGN.TabIndex = 3
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.Transparent
-        Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.Black
-        Me.Button4.Location = New System.Drawing.Point(533, 2)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(100, 27)
-        Me.Button4.TabIndex = 682
-        Me.Button4.TabStop = False
-        Me.Button4.Text = "Design"
-        Me.Button4.UseVisualStyleBackColor = False
         '
         'CMBTYPE
         '
@@ -537,14 +457,14 @@ Partial Class YarnWastage
         Me.CMBTYPE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBTYPE.FormattingEnabled = True
         Me.CMBTYPE.Items.AddRange(New Object() {"Wastage", "Longation", "Shortage"})
-        Me.CMBTYPE.Location = New System.Drawing.Point(33, 30)
+        Me.CMBTYPE.Location = New System.Drawing.Point(33, 3)
         Me.CMBTYPE.Name = "CMBTYPE"
         Me.CMBTYPE.Size = New System.Drawing.Size(100, 22)
         Me.CMBTYPE.TabIndex = 0
         '
         'TXTNARR
         '
-        Me.TXTNARR.Location = New System.Drawing.Point(953, 30)
+        Me.TXTNARR.Location = New System.Drawing.Point(953, 3)
         Me.TXTNARR.MaxLength = 200
         Me.TXTNARR.Name = "TXTNARR"
         Me.TXTNARR.Size = New System.Drawing.Size(180, 22)
@@ -553,7 +473,7 @@ Partial Class YarnWastage
         'TXTWT
         '
         Me.TXTWT.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWT.Location = New System.Drawing.Point(813, 30)
+        Me.TXTWT.Location = New System.Drawing.Point(813, 3)
         Me.TXTWT.MaxLength = 10
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.Size = New System.Drawing.Size(60, 22)
@@ -566,7 +486,7 @@ Partial Class YarnWastage
         Me.CMBMILLNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBMILLNAME.BackColor = System.Drawing.Color.White
         Me.CMBMILLNAME.FormattingEnabled = True
-        Me.CMBMILLNAME.Location = New System.Drawing.Point(333, 30)
+        Me.CMBMILLNAME.Location = New System.Drawing.Point(333, 3)
         Me.CMBMILLNAME.Name = "CMBMILLNAME"
         Me.CMBMILLNAME.Size = New System.Drawing.Size(200, 22)
         Me.CMBMILLNAME.TabIndex = 2
@@ -577,7 +497,7 @@ Partial Class YarnWastage
         Me.CMBQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBQUALITY.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBQUALITY.FormattingEnabled = True
-        Me.CMBQUALITY.Location = New System.Drawing.Point(133, 30)
+        Me.CMBQUALITY.Location = New System.Drawing.Point(133, 3)
         Me.CMBQUALITY.Name = "CMBQUALITY"
         Me.CMBQUALITY.Size = New System.Drawing.Size(200, 22)
         Me.CMBQUALITY.TabIndex = 1
@@ -585,7 +505,7 @@ Partial Class YarnWastage
         'TXTSRNO
         '
         Me.TXTSRNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTSRNO.Location = New System.Drawing.Point(3, 30)
+        Me.TXTSRNO.Location = New System.Drawing.Point(3, 3)
         Me.TXTSRNO.Name = "TXTSRNO"
         Me.TXTSRNO.ReadOnly = True
         Me.TXTSRNO.Size = New System.Drawing.Size(30, 22)
@@ -593,141 +513,50 @@ Partial Class YarnWastage
         Me.TXTSRNO.TabStop = False
         Me.TXTSRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.Transparent
-        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.Black
-        Me.Button2.Location = New System.Drawing.Point(33, 2)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(100, 27)
-        Me.Button2.TabIndex = 671
-        Me.Button2.TabStop = False
-        Me.Button2.Text = "Type"
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'BTNMILL
-        '
-        Me.BTNMILL.BackColor = System.Drawing.Color.Transparent
-        Me.BTNMILL.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BTNMILL.FlatAppearance.BorderSize = 0
-        Me.BTNMILL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BTNMILL.ForeColor = System.Drawing.Color.Black
-        Me.BTNMILL.Location = New System.Drawing.Point(333, 2)
-        Me.BTNMILL.Name = "BTNMILL"
-        Me.BTNMILL.Size = New System.Drawing.Size(200, 27)
-        Me.BTNMILL.TabIndex = 670
-        Me.BTNMILL.TabStop = False
-        Me.BTNMILL.Text = "Mill Name"
-        Me.BTNMILL.UseVisualStyleBackColor = False
-        '
-        'Button6
-        '
-        Me.Button6.BackColor = System.Drawing.Color.Transparent
-        Me.Button6.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button6.ForeColor = System.Drawing.Color.Black
-        Me.Button6.Location = New System.Drawing.Point(814, 2)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(60, 27)
-        Me.Button6.TabIndex = 664
-        Me.Button6.TabStop = False
-        Me.Button6.Text = "Wt."
-        Me.Button6.UseVisualStyleBackColor = False
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.Transparent
-        Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.Black
-        Me.Button3.Location = New System.Drawing.Point(133, 2)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(200, 27)
-        Me.Button3.TabIndex = 2
-        Me.Button3.TabStop = False
-        Me.Button3.Text = "Quality"
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'BTNNARRATION
-        '
-        Me.BTNNARRATION.BackColor = System.Drawing.Color.Transparent
-        Me.BTNNARRATION.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BTNNARRATION.FlatAppearance.BorderSize = 0
-        Me.BTNNARRATION.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BTNNARRATION.ForeColor = System.Drawing.Color.Black
-        Me.BTNNARRATION.Location = New System.Drawing.Point(953, 2)
-        Me.BTNNARRATION.Name = "BTNNARRATION"
-        Me.BTNNARRATION.Size = New System.Drawing.Size(180, 27)
-        Me.BTNNARRATION.TabIndex = 1
-        Me.BTNNARRATION.TabStop = False
-        Me.BTNNARRATION.Text = "Narration"
-        Me.BTNNARRATION.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.Black
-        Me.Button1.Location = New System.Drawing.Point(3, 2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(30, 27)
-        Me.Button1.TabIndex = 0
-        Me.Button1.TabStop = False
-        Me.Button1.Text = "Sr."
-        Me.Button1.UseVisualStyleBackColor = False
-        '
         'GRIDWASTAGE
         '
         Me.GRIDWASTAGE.AllowUserToAddRows = False
         Me.GRIDWASTAGE.AllowUserToDeleteRows = False
         Me.GRIDWASTAGE.AllowUserToResizeColumns = False
         Me.GRIDWASTAGE.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDWASTAGE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDWASTAGE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle21
         Me.GRIDWASTAGE.BackgroundColor = System.Drawing.Color.White
         Me.GRIDWASTAGE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDWASTAGE.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDWASTAGE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle22.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDWASTAGE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle22
         Me.GRIDWASTAGE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDWASTAGE.ColumnHeadersVisible = False
         Me.GRIDWASTAGE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GTYPE, Me.GQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GSHADE, Me.GLOTNO, Me.Gwt, Me.GCONES, Me.GNARRATION, Me.GOUTWT})
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDWASTAGE.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle25.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDWASTAGE.DefaultCellStyle = DataGridViewCellStyle25
         Me.GRIDWASTAGE.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDWASTAGE.Location = New System.Drawing.Point(2, 53)
+        Me.GRIDWASTAGE.Location = New System.Drawing.Point(2, 26)
         Me.GRIDWASTAGE.MultiSelect = False
         Me.GRIDWASTAGE.Name = "GRIDWASTAGE"
         Me.GRIDWASTAGE.ReadOnly = True
         Me.GRIDWASTAGE.RowHeadersVisible = False
         Me.GRIDWASTAGE.RowHeadersWidth = 30
         Me.GRIDWASTAGE.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDWASTAGE.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDWASTAGE.RowsDefaultCellStyle = DataGridViewCellStyle26
         Me.GRIDWASTAGE.RowTemplate.Height = 20
         Me.GRIDWASTAGE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDWASTAGE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDWASTAGE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDWASTAGE.Size = New System.Drawing.Size(1151, 246)
+        Me.GRIDWASTAGE.Size = New System.Drawing.Size(1151, 273)
         Me.GRIDWASTAGE.TabIndex = 5
         Me.GRIDWASTAGE.TabStop = False
         '
@@ -793,8 +622,8 @@ Partial Class YarnWastage
         '
         'Gwt
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Gwt.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Gwt.DefaultCellStyle = DataGridViewCellStyle23
         Me.Gwt.HeaderText = "Wt."
         Me.Gwt.MaxInputLength = 50
         Me.Gwt.Name = "Gwt"
@@ -805,8 +634,8 @@ Partial Class YarnWastage
         '
         'GCONES
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GCONES.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GCONES.DefaultCellStyle = DataGridViewCellStyle24
         Me.GCONES.HeaderText = "Cones"
         Me.GCONES.MaxInputLength = 50
         Me.GCONES.Name = "GCONES"
@@ -917,29 +746,29 @@ Partial Class YarnWastage
         Me.gridupload.AllowUserToDeleteRows = False
         Me.gridupload.AllowUserToResizeColumns = False
         Me.gridupload.AllowUserToResizeRows = False
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black
-        Me.gridupload.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle27.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle27.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.Black
+        Me.gridupload.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle27
         Me.gridupload.BackgroundColor = System.Drawing.Color.White
         Me.gridupload.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.gridupload.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.gridupload.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle28.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.gridupload.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle28
         Me.gridupload.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridupload.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUSRNO, Me.GUREMARKS, Me.GUNAME, Me.GUIMGPATH})
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridupload.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle29.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridupload.DefaultCellStyle = DataGridViewCellStyle29
         Me.gridupload.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.gridupload.GridColor = System.Drawing.SystemColors.Control
         Me.gridupload.Location = New System.Drawing.Point(6, 28)
@@ -949,9 +778,9 @@ Partial Class YarnWastage
         Me.gridupload.RowHeadersVisible = False
         Me.gridupload.RowHeadersWidth = 30
         Me.gridupload.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White
-        Me.gridupload.RowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.White
+        Me.gridupload.RowsDefaultCellStyle = DataGridViewCellStyle30
         Me.gridupload.RowTemplate.Height = 20
         Me.gridupload.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridupload.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -1250,11 +1079,6 @@ Partial Class YarnWastage
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents BTNMILL As System.Windows.Forms.Button
-    Friend WithEvents Button6 As System.Windows.Forms.Button
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents BTNNARRATION As System.Windows.Forms.Button
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents GRIDWASTAGE As System.Windows.Forms.DataGridView
     Friend WithEvents tbupload As System.Windows.Forms.TabPage
     Friend WithEvents TXTIMGPATH As System.Windows.Forms.TextBox
@@ -1281,7 +1105,6 @@ Partial Class YarnWastage
     Friend WithEvents cmdclear As System.Windows.Forms.Button
     Friend WithEvents cmdok As System.Windows.Forms.Button
     Friend WithEvents cmdexit As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents PBlock As System.Windows.Forms.PictureBox
     Friend WithEvents lbllocked As System.Windows.Forms.Label
     Friend WithEvents CMBTYPE As System.Windows.Forms.ComboBox
@@ -1294,12 +1117,8 @@ Partial Class YarnWastage
     Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
     Friend WithEvents TXTLOTNO As System.Windows.Forms.TextBox
     Friend WithEvents CMBSHADE As System.Windows.Forms.ComboBox
-    Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents CMBDESIGN As System.Windows.Forms.ComboBox
-    Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents TXTCONES As System.Windows.Forms.TextBox
-    Friend WithEvents Button8 As System.Windows.Forms.Button
-    Friend WithEvents Button7 As System.Windows.Forms.Button
     Friend WithEvents LBLTOTALCONES As System.Windows.Forms.Label
     Friend WithEvents gsrno As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents GTYPE As System.Windows.Forms.DataGridViewTextBoxColumn

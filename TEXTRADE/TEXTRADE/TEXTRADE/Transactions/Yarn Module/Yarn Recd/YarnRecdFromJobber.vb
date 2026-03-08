@@ -100,7 +100,7 @@ Public Class YarnRecdFromJobber
         LBLTOTALCONES.Text = 0
         lbltotalqty.Text = 0
         LBLTOTALWT.Text = 0
-        TXTRACK.Clear()
+        CMBRACK.Text = ""
 
     End Sub
 
@@ -760,6 +760,7 @@ LINE1:
             FILLMILL(CMBMILL, EDIT)
             FILLDESIGN(CMBDESIGN, "")
             FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, "")
+            If CMBRACK.Text.Trim = "" Then FILLRACK(CMBRACK)
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -906,7 +907,7 @@ LINE1:
                 TXTBARCODE.Text = "YJ-" & Val(TXTYARNNO.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"), TXTRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"), CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
             GETSRNO(GRIDYARN)
 
         ElseIf GRIDDOUBLECLICK = True Then
@@ -921,7 +922,7 @@ LINE1:
             GRIDYARN.Item(GMTRS.Index, TEMPROW).Value = Format(Val(TXTMTRS.Text.Trim), "0.00")
             GRIDYARN.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.000")
             GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0")
-            GRIDYARN.Item(GRACK.Index, TEMPROW).Value = TXTRACK.Text.Trim
+            GRIDYARN.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
             GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
 
             GRIDDOUBLECLICK = False
@@ -950,7 +951,7 @@ LINE1:
         txtsrno.Text = Val(GRIDYARN.RowCount) + 1
         CMBYARNQUALITY.Focus()
 
-        TXTRACK.Clear()
+        CMBRACK.Text = ""
         TXTBARCODE.Clear()
     End Sub
 
@@ -1077,7 +1078,7 @@ LINE1:
                 TXTMTRS.Text = Val(GRIDYARN.Item(GMTRS.Index, GRIDYARN.CurrentRow.Index).Value)
                 TXTWT.Text = Val(GRIDYARN.Item(GWT.Index, GRIDYARN.CurrentRow.Index).Value)
                 TXTCONES.Text = Val(GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value)
-                TXTRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                CMBRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTBARCODE.Text = GRIDYARN.Item(GBARCODE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
@@ -1693,7 +1694,7 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Sub TXTCONES_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTRACK.Validated
+    Private Sub TXTCONES_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBRACK.Validated
         Try
             If ClientName = "VAISHALI" Then
                 'FETCH CONEWT FROM MILLMASTER
@@ -1768,4 +1769,23 @@ NEXTLINE:
             Cursor.Current = Cursors.Default
         End Try
     End Sub
+
+    Private Sub CMBRACK_Validating(sender As Object, e As CancelEventArgs) Handles CMBRACK.Validating
+        Try
+            If CMBRACK.Text.Trim <> "" Then RACKVALIDATE(CMBRACK, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+    Private Sub CMBRACK_Enter(sender As Object, e As EventArgs) Handles CMBRACK.Enter
+        Try
+            If CMBRACK.Text.Trim = "" Then FILLRACK(CMBRACK)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
 End Class

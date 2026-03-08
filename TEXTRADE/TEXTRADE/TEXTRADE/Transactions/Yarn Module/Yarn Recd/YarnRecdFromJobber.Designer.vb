@@ -101,7 +101,6 @@ Partial Class YarnRecdFromJobber
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TXTRACK = New System.Windows.Forms.TextBox()
         Me.LBLTOTALMTRS = New System.Windows.Forms.Label()
         Me.LBLTOTALCUT = New System.Windows.Forms.Label()
         Me.TXTMTRS = New System.Windows.Forms.TextBox()
@@ -167,6 +166,7 @@ Partial Class YarnRecdFromJobber
         Me.PBSoftCopy = New System.Windows.Forms.PictureBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.CMBRACK = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -926,7 +926,7 @@ Partial Class YarnRecdFromJobber
         '
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TabPage1.Controls.Add(Me.TXTRACK)
+        Me.TabPage1.Controls.Add(Me.CMBRACK)
         Me.TabPage1.Controls.Add(Me.LBLTOTALMTRS)
         Me.TabPage1.Controls.Add(Me.LBLTOTALCUT)
         Me.TabPage1.Controls.Add(Me.TXTMTRS)
@@ -953,16 +953,6 @@ Partial Class YarnRecdFromJobber
         Me.TabPage1.Size = New System.Drawing.Size(1104, 229)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "1. Item Details"
-        '
-        'TXTRACK
-        '
-        Me.TXTRACK.BackColor = System.Drawing.Color.White
-        Me.TXTRACK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRACK.Location = New System.Drawing.Point(1073, 2)
-        Me.TXTRACK.Name = "TXTRACK"
-        Me.TXTRACK.Size = New System.Drawing.Size(100, 23)
-        Me.TXTRACK.TabIndex = 11
-        Me.TXTRACK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LBLTOTALMTRS
         '
@@ -1726,6 +1716,16 @@ Partial Class YarnRecdFromJobber
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'CMBRACK
+        '
+        Me.CMBRACK.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBRACK.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBRACK.FormattingEnabled = True
+        Me.CMBRACK.Location = New System.Drawing.Point(1073, 2)
+        Me.CMBRACK.Name = "CMBRACK"
+        Me.CMBRACK.Size = New System.Drawing.Size(100, 22)
+        Me.CMBRACK.TabIndex = 755
+        '
         'YarnRecdFromJobber
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1884,5 +1884,5 @@ Partial Class YarnRecdFromJobber
     Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
     Friend WithEvents GOUTBAGS As DataGridViewTextBoxColumn
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
-    Friend WithEvents TXTRACK As TextBox
+    Friend WithEvents CMBRACK As ComboBox
 End Class

@@ -61,6 +61,8 @@ Public Class ClsYarnReturnKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -86,6 +88,17 @@ Public Class ClsYarnReturnKnitting
                 .Add(New SqlClient.SqlParameter("@lrno", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@lrdate", alParaval(I)))
+                I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTBAG", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
                 I = I + 1
 
                 '''''UPLOAD
@@ -159,6 +172,8 @@ Public Class ClsYarnReturnKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -184,6 +199,16 @@ Public Class ClsYarnReturnKnitting
                 .Add(New SqlClient.SqlParameter("@lrno", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@lrdate", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTBAG", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
                 I = I + 1
 
 
