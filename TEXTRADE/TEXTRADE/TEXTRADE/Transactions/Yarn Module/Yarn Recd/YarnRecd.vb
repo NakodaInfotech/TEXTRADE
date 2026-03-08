@@ -48,7 +48,7 @@ Public Class YarnRecd
         txttransremarks.Clear()
 
         txtremarks.Clear()
-        TXTRACK.Clear()
+        CMBRACK.Text = ""
 
 
         txtuploadsrno.Clear()
@@ -90,7 +90,7 @@ Public Class YarnRecd
 
         getmaxno()
 
-
+        TXTVEHICLENO.Clear()
         LBLTOTALCONES.Text = 0
         lbltotalqty.Text = 0
         LBLTOTALWT.Text = 0
@@ -310,6 +310,7 @@ CHECKNEXTLINE:
             alParaval.Add(0)
             alParaval.Add(TXTHAMALICHARGES.Text.Trim)
             alParaval.Add(TXTLRNO.Text.Trim)
+            alParaval.Add(TXTVEHICLENO.Text.Trim)
 
 
             Dim gridsrno As String = ""
@@ -727,6 +728,7 @@ LINE1:
                         podate.Value = Format(Convert.ToDateTime(dr("PODATE")).Date, "dd/MM/yyyy")
                         TXTHAMALICHARGES.Text = Convert.ToString(dr("HAMALICHARGES").ToString)
                         TXTLRNO.Text = Convert.ToString(dr("TRANSPORTLRNO").ToString)
+                        TXTVEHICLENO.Text = Convert.ToString(dr("VEHICLENO").ToString)
 
 
 
@@ -998,7 +1000,7 @@ NEXTLINE:
                 TXTBARCODE.Text = "Y-" & Val(TXTYARNNO.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, TXTRACK.Text.Trim, TXTBARCODE.Text.Trim)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, CMBRACK.Text.Trim, TXTBARCODE.Text.Trim)
             getsrno(GRIDYARN)
 
         ElseIf GRIDDOUBLECLICK = True Then
@@ -1017,7 +1019,7 @@ NEXTLINE:
             GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
             GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTGRIDLRNO.Text.Trim
             GRIDYARN.Item(GLRDATE.Index, TEMPROW).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
-            GRIDYARN.Item(GRACK.Index, TEMPROW).Value = TXTRACK.Text.Trim
+            GRIDYARN.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
             GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
 
             GRIDDOUBLECLICK = False
@@ -1049,7 +1051,7 @@ NEXTLINE:
         TXTBARCODE.Clear()
         txtsrno.Text = Val(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(0).Value) + 1
         CMBYARNQUALITY.Focus()
-        TXTRACK.Clear()
+        CMBRACK.Text = ""
         TXTBARCODE.Clear()
 
 
@@ -1178,7 +1180,7 @@ NEXTLINE:
                 TXTCONES.Text = GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTGRIDLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 DTLRDATE.Text = GRIDYARN.Item(GLRDATE.Index, GRIDYARN.CurrentRow.Index).Value
-                TXTRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                CMBRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTBARCODE.Text = GRIDYARN.Item(GBARCODE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
@@ -1637,7 +1639,7 @@ LINE1:
                 TXTLOTNO.Visible = False
                 TXTGRIDLOTNO.Enabled = False
                 TXTGRIDLOTNO.TabStop = False
-
+                TOOLUPLOADEXCEL.Visible = True
             End If
 
 
@@ -1695,18 +1697,22 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TOOLUPLOADEXCEL_Click(sender As Object, e As EventArgs)
+    Private Sub TOOLUPLOADEXCEL_Click(sender As Object, e As EventArgs) Handles TOOLUPLOADEXCEL.Click
         Try
             If EDIT = True Then Exit Sub
 
 
             OpenFileDialog1.Filter = "Excel (*.xls;*.xlsx;*.csv)|*.xls;*.xlsx;*.csv"
-            OpenFileDialog1.ShowDialog()
+            'OpenFileDialog1.ShowDialog()
             OpenFileDialog1.AddExtension = True
+            If OpenFileDialog1.ShowDialog() <> DialogResult.OK Then Exit Sub
 
             Dim cPart As Microsoft.Office.Interop.Excel.Range
             Dim oExcel As Microsoft.Office.Interop.Excel.Application = CreateObject("Excel.Application")
             Dim oBook As Microsoft.Office.Interop.Excel.Workbook = oExcel.Workbooks.Open(OpenFileDialog1.FileName, , False)
+
+
+
             Dim oSheet As New Microsoft.Office.Interop.Excel.Worksheet
             oSheet = oBook.Worksheets("Sheet1")
 
@@ -1720,12 +1726,11 @@ LINE1:
             DTSAVE.Columns.Add("PARTYCOLOR")
             DTSAVE.Columns.Add("COLOR")
             DTSAVE.Columns.Add("BAGS")
-            DTSAVE.Columns.Add("WEIGHT")
+            DTSAVE.Columns.Add("WT")
             DTSAVE.Columns.Add("CONES")   'MTRS
             DTSAVE.Columns.Add("BOXNO")
             DTSAVE.Columns.Add("LRDATE")
-
-            DTSAVE.Columns.Add("WT")
+            DTSAVE.Columns.Add("RACK")
 
             Dim ARR As New ArrayList
             Dim COLIND As Integer = 0
@@ -1743,56 +1748,79 @@ LINE1:
                 'End If
 
                 If IsDBNull(oSheet.Range("A" & I.ToString).Text) = False Then
-                    DTROWSAVE("ITEMNAME") = oSheet.Range("B" & I.ToString).Text
+                    DTROWSAVE("ITEMNAME") = oSheet.Range("A" & I.ToString).Text
                 Else
                     DTROWSAVE("ITEMNAME") = ""
                 End If
 
                 If IsDBNull(oSheet.Range("B" & I.ToString).Text) = False Then
-                    DTROWSAVE("MILLNAME") = oSheet.Range("C" & I.ToString).Text
+                    DTROWSAVE("MILLNAME") = oSheet.Range("B" & I.ToString).Text
                 Else
                     DTROWSAVE("MILLNAME") = ""
                 End If
 
                 If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
-                    DTROWSAVE("COLOR") = oSheet.Range("D" & I.ToString).Text
+                    DTROWSAVE("DESIGNNO") = oSheet.Range("C" & I.ToString).Text
+                Else
+                    DTROWSAVE("DESIGNNO") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
+                    DTROWSAVE("PARTYLOTNO") = oSheet.Range("D" & I.ToString).Text
+                Else
+                    DTROWSAVE("PARTYLOTNO") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
+                    DTROWSAVE("PARTYCOLOR") = oSheet.Range("E" & I.ToString).Text
+                Else
+                    DTROWSAVE("PARTYCOLOR") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("F" & I.ToString).Text) = False Then
+                    DTROWSAVE("COLOR") = oSheet.Range("F" & I.ToString).Text
                 Else
                     DTROWSAVE("COLOR") = ""
                 End If
 
-                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
-                    DTROWSAVE("BALENO") = oSheet.Range("E" & I.ToString).Text
-                Else
-                    DTROWSAVE("BALENO") = ""
-                End If
-
-
-                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
-                    DTROWSAVE("PCS") = Val(oSheet.Range("F" & I.ToString).Text)
-                Else
-                    DTROWSAVE("PCS") = 0
-                End If
-
-                If IsDBNull(oSheet.Range("F" & I.ToString).Text) = False Then
-                    DTROWSAVE("QTY") = Val(oSheet.Range("G" & I.ToString).Text)
-                Else
-                    DTROWSAVE("QTY") = 0
-                End If
-
                 If IsDBNull(oSheet.Range("G" & I.ToString).Text) = False Then
-                    DTROWSAVE("UNIT") = oSheet.Range("H" & I.ToString).Text
+                    DTROWSAVE("BAGS") = Val(oSheet.Range("G" & I.ToString).Text)
                 Else
-                    DTROWSAVE("UNIT") = ""
+                    DTROWSAVE("BAGS") = 0
                 End If
+
 
                 If IsDBNull(oSheet.Range("H" & I.ToString).Text) = False Then
-                    DTROWSAVE("WT") = Val(oSheet.Range("I" & I.ToString).Text)
+                    DTROWSAVE("WT") = Val(oSheet.Range("H" & I.ToString).Text)
                 Else
                     DTROWSAVE("WT") = 0
                 End If
 
+                If IsDBNull(oSheet.Range("I" & I.ToString).Text) = False Then
+                    DTROWSAVE("CONES") = Val(oSheet.Range("I" & I.ToString).Text)
+                Else
+                    DTROWSAVE("CONES") = 0
+                End If
 
-                If Val(DTROWSAVE("QTY")) = 0 Then GoTo SKIPLINE
+                If IsDBNull(oSheet.Range("J" & I.ToString).Text) = False Then
+                    DTROWSAVE("BOXNO") = oSheet.Range("J" & I.ToString).Text
+                Else
+                    DTROWSAVE("BOXNO") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("K" & I.ToString).Text) = False Then
+                    DTROWSAVE("LRDATE") = Convert.ToDateTime(oSheet.Range("K" & I.ToString).Value)
+                Else
+                    DTROWSAVE("LRDATE") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("L" & I.ToString).Text) = False Then
+                    DTROWSAVE("RACK") = oSheet.Range("L" & I.ToString).Text
+                Else
+                    DTROWSAVE("RACK") = ""
+                End If
+
+                If Val(DTROWSAVE("WT")) = 0 Then GoTo SKIPLINE
 
 
 
@@ -1944,28 +1972,32 @@ LINE1:
 
                 'ADD NEW UNIT
                 'PIECETYPE SAVE
-                If DTROWSAVE("UNIT") <> "" Then
-                    DTTABLE = OBJCMN.SEARCH("UNIT_ID AS UNITID", "", "UNITMASTER", " AND UNIT_ABBR = '" & DTROWSAVE("UNIT") & "' AND UNIT_YEARID = " & YearId)
+                If DTROWSAVE("RACK") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & DTROWSAVE("RACK") & "' AND RACK_YEARID = " & YearId)
                     If DTTABLE.Rows.Count = 0 Then
                         'ADD NEW UNIT
-                        Dim OBJUNIT As New ClsUnitMaster
-                        OBJUNIT.alParaval.Add(UCase(DTROWSAVE("UNIT"))) 'NAME
-                        OBJUNIT.alParaval.Add(UCase(DTROWSAVE("UNIT"))) 'ABBR
-                        OBJUNIT.alParaval.Add("")   'REMARKS
+                        Dim OBJUNIT As New ClsRackMaster
+                        OBJUNIT.alParaval.Add(UCase(DTROWSAVE("RACK"))) 'NAME
+                        OBJUNIT.alParaval.Add("") 'REMARKS
+                        OBJUNIT.alParaval.Add("")   'CATEGORY
                         OBJUNIT.alParaval.Add(CmpId)
-                        OBJUNIT.alParaval.Add(0)
+                        'OBJUNIT.alParaval.Add(0)
                         OBJUNIT.alParaval.Add(Userid)
                         OBJUNIT.alParaval.Add(YearId)
-                        OBJUNIT.alParaval.Add(0)   'TRANSFER
+                        'OBJUNIT.alParaval.Add(0)   'TRANSFER
 
                         Dim INTRESCAT As Integer = OBJUNIT.SAVE()
                     End If
                 End If
 
 
+                Dim LRDATE As String = ""
+                If DTROWSAVE("LRDATE").ToString <> "" Then
+                    LRDATE = Format(Convert.ToDateTime(DTROWSAVE("LRDATE")), "dd/MM/yyyy")
+                End If
 
-                TXTLOTNO.Text = DTROWSAVE("LOTNO")
-                GRIDYARN.Rows.Add(DTROWSAVE("ITEMNAME"), DTROWSAVE("MILLNAME"), DTROWSAVE("DESIGNNO"), "", DTROWSAVE("COLOR"), Format(Val(DTROWSAVE("PCS")), "0.00"), DTROWSAVE("UNIT"), 0, Format(Val(DTROWSAVE("QTY")), "0.00"), "", "", Format(Val(DTROWSAVE("WT")), "0.00"), 0, 0, 0, "Mtrs", 0, "", 0, 0, 0, 0, 0, 0, "")
+                'TXTLOTNO.Text = DTROWSAVE("LOTNO")
+                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), DTROWSAVE("MILLNAME"), DTROWSAVE("DESIGNNO"), DTROWSAVE("PARTYLOTNO"), DTROWSAVE("PARTYCOLOR"), DTROWSAVE("COLOR"), "", Format(Val(DTROWSAVE("BAGS")), "0.00"), Format(Val(DTROWSAVE("WT")), "0.00"), Format(Val(DTROWSAVE("CONES")), "0.00"), DTROWSAVE("BOXNO"), LRDATE, 0, 0, 0, 0, 0, DTROWSAVE("RACK"), "")
 
                 DTROWSAVE = DTSAVE.NewRow()
 
@@ -1984,7 +2016,7 @@ SKIPLINE:
     End Sub
 
 
-    Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTRACK.Validated
+    Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBRACK.Validated
         Try
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
                 'If ClientName <> "VAISHALI" Then TXTGRIDLOTNO.Text = TXTLOTNO.Text.Trim
@@ -2034,6 +2066,22 @@ SKIPLINE:
                     Exit Sub
                 End If
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBRACK_Enter(sender As Object, e As EventArgs) Handles CMBRACK.Enter
+        Try
+            If CMBRACK.Text.Trim = "" Then FILLRACK(CMBRACK)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBRACK_Validating(sender As Object, e As CancelEventArgs) Handles CMBRACK.Validating
+        Try
+            If CMBRACK.Text.Trim <> "" Then RACKVALIDATE(CMBRACK, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
