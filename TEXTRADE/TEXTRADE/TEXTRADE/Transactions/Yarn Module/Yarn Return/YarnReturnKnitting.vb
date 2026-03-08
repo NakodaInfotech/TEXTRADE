@@ -1,7 +1,8 @@
 ﻿
-Imports BL
-Imports System.Windows.Forms
+Imports System.ComponentModel
 Imports System.IO
+Imports System.Windows.Forms
+Imports BL
 
 Public Class YarnReturnKnitting
 
@@ -165,13 +166,14 @@ Public Class YarnReturnKnitting
         cmbcolor.Text = ""
         TXTLRNO.Clear()
         TXTWT.Clear()
+        TXTVEHICLENO.Clear()
 
         GRIDYARN.RowCount = 0
 
         GRIDDOUBLECLICK = False
         GRIDUPLOADDOUBLECLICK = False
         getmaxno()
-        TXTRACK.Clear()
+        CMBRACK.Text = ""
         If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
 
 
@@ -319,6 +321,7 @@ Public Class YarnReturnKnitting
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
+            alParaval.Add(TXTVEHICLENO.Text.Trim)
 
 
             Dim gridsrno As String = ""
@@ -622,9 +625,11 @@ Public Class YarnReturnKnitting
 
                         CMBTRANS.Text = dr("TRANSNAME").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
+                        TXTVEHICLENO.Text = Convert.ToString(dr("VEHICLENO").ToString)
+
                         GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAG")), Val(dr("DONE")))
 
-                        If Convert.ToDecimal(dr("RECDMTRS")) > 0 Then
+                        If Convert.ToDecimal(dr("OUTWT")) > 0 Then
                             lbllocked.Visible = True
                             PBlock.Visible = True
                         End If
@@ -674,6 +679,7 @@ Public Class YarnReturnKnitting
             FILLDESIGN(CMBDESIGN, "")
             FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, "")
             If CMBPROCESS.Text.Trim = "" Then FILLPROCESS(CMBPROCESS)
+            If CMBRACK.Text.Trim = "" Then FILLRACK(CMBRACK)
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -736,7 +742,7 @@ Public Class YarnReturnKnitting
         End Try
     End Sub
 
-    Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTRACK.Validated
+    Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBRACK.Validated
         Try
 
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
@@ -786,7 +792,7 @@ Public Class YarnReturnKnitting
                 TXTBARCODE.Text = "YR-" & Val(TXTKNITTINGRETURN.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), TXTRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0)
             getsrno(GRIDYARN)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDYARN.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -804,7 +810,9 @@ Public Class YarnReturnKnitting
             GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
             GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTLRNO.Text.Trim
             GRIDYARN.Item(GLRDATE.Index, TEMPROW).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
+            GRIDYARN.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
             GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
+
 
 
             GRIDDOUBLECLICK = False
@@ -834,7 +842,7 @@ Public Class YarnReturnKnitting
         TXTBARCODE.Clear()
 
         CMBYARNQUALITY.Focus()
-        TXTRACK.Clear()
+        CMBRACK.Text = ""
 
     End Sub
 
@@ -1155,6 +1163,7 @@ LINE1:
                 TXTCONES.Text = GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 DTLRDATE.Text = GRIDYARN.Item(GLRDATE.Index, GRIDYARN.CurrentRow.Index).Value
+                CMBRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTBARCODE.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
@@ -1294,6 +1303,23 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
             Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub CMBRACK_Validating(sender As Object, e As CancelEventArgs) Handles CMBRACK.Validating
+        Try
+            If CMBRACK.Text.Trim <> "" Then RACKVALIDATE(CMBRACK, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+    Private Sub CMBRACK_Enter(sender As Object, e As EventArgs) Handles CMBRACK.Enter
+        Try
+            If CMBRACK.Text.Trim = "" Then FILLRACK(CMBRACK)
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class
