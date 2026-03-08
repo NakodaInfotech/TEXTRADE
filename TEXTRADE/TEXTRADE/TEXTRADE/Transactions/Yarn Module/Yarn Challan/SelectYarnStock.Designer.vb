@@ -39,6 +39,10 @@ Partial Class SelectYarnStock
         Me.GTOTALCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFROMNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFROMSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFROMTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,7 +108,7 @@ Partial Class SelectYarnStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gchk, Me.GYARNQUALITY, Me.GCATEGORY, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GLRNO, Me.GTOTALCONES, Me.GBAGS, Me.GTOTALWT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gchk, Me.GYARNQUALITY, Me.GCATEGORY, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GLRNO, Me.GBAGS, Me.GTOTALWT, Me.GBARCODE, Me.GTOTALCONES, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -178,7 +182,7 @@ Partial Class SelectYarnStock
         Me.GCOLOR.OptionsColumn.AllowEdit = False
         Me.GCOLOR.Visible = True
         Me.GCOLOR.VisibleIndex = 5
-        Me.GCOLOR.Width = 150
+        Me.GCOLOR.Width = 120
         '
         'GLOTNO
         '
@@ -209,18 +213,19 @@ Partial Class SelectYarnStock
         Me.GTOTALCONES.OptionsColumn.AllowEdit = False
         Me.GTOTALCONES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALCONES.Visible = True
-        Me.GTOTALCONES.VisibleIndex = 8
+        Me.GTOTALCONES.VisibleIndex = 11
         '
         'GBAGS
         '
-        Me.GBAGS.Caption = "Box/Pcs"
+        Me.GBAGS.Caption = "Bags"
         Me.GBAGS.DisplayFormat.FormatString = "0"
         Me.GBAGS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GBAGS.FieldName = "BAGS"
         Me.GBAGS.Name = "GBAGS"
         Me.GBAGS.OptionsColumn.AllowEdit = False
+        Me.GBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBAGS.Visible = True
-        Me.GBAGS.VisibleIndex = 9
+        Me.GBAGS.VisibleIndex = 8
         '
         'GTOTALWT
         '
@@ -232,8 +237,42 @@ Partial Class SelectYarnStock
         Me.GTOTALWT.OptionsColumn.AllowEdit = False
         Me.GTOTALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALWT.Visible = True
-        Me.GTOTALWT.VisibleIndex = 10
+        Me.GTOTALWT.VisibleIndex = 9
         Me.GTOTALWT.Width = 90
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.OptionsColumn.AllowEdit = False
+        Me.GBARCODE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count)})
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 10
+        Me.GBARCODE.Width = 120
+        '
+        'GFROMNO
+        '
+        Me.GFROMNO.Caption = "FROMNO"
+        Me.GFROMNO.FieldName = "FROMNO"
+        Me.GFROMNO.Name = "GFROMNO"
+        Me.GFROMNO.OptionsColumn.AllowEdit = False
+        '
+        'GFROMSRNO
+        '
+        Me.GFROMSRNO.Caption = "FROMSRNO"
+        Me.GFROMSRNO.FieldName = "FROMSRNO"
+        Me.GFROMSRNO.Name = "GFROMSRNO"
+        Me.GFROMSRNO.OptionsColumn.AllowEdit = False
+        '
+        'GFROMTYPE
+        '
+        Me.GFROMTYPE.Caption = "FROMTYPE"
+        Me.GFROMTYPE.FieldName = "FROMTYPE"
+        Me.GFROMTYPE.Name = "GFROMTYPE"
+        Me.GFROMTYPE.OptionsColumn.AllowEdit = False
+        Me.GFROMTYPE.Visible = True
+        Me.GFROMTYPE.VisibleIndex = 12
         '
         'SelectYarnStock
         '
@@ -271,4 +310,8 @@ Partial Class SelectYarnStock
     Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBAGS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GFROMNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GFROMSRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GFROMTYPE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
