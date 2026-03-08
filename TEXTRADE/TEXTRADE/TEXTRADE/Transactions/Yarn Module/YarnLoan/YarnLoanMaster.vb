@@ -150,27 +150,18 @@ Public Class YarnLoanMaster
     Function errorvalid() As Boolean
         Try
             Dim bln As Boolean = True
-
             If cmbname.Text.Trim.Length = 0 Then
                 EP.SetError(cmbname, " Please Fill Company Name ")
                 bln = False
             End If
-
             If cmbGodown.Text.Trim.Length = 0 Then
                 EP.SetError(cmbGodown, " Please Fill Godown Name ")
                 bln = False
             End If
-
-
             If GRIDYARN.RowCount = 0 Then
                 EP.SetError(TabControl1, "Fill Item Details")
                 bln = False
             End If
-
-
-
-
-
             Return bln
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -418,7 +409,7 @@ Public Class YarnLoanMaster
 
         End If
 
-        total()
+        'total()
 
         GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 
