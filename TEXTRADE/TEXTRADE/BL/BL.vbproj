@@ -433,6 +433,7 @@
     <Compile Include="Transactions\Yarn Modules\Grey Recd\ClsGreyRecdFromJobber.vb" />
     <Compile Include="Transactions\Yarn Modules\Grey Recd\ClsGreyRecdKnitting.vb" />
     <Compile Include="Transactions\Yarn Modules\Grey Recd\ClsGreyRecdProduction.vb" />
+    <Compile Include="Transactions\Yarn Modules\Yarn Loan\ClsYarnLoan.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn PO\ClsYarnPurchaseOrder.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Program\ClsYarnDyeingProgram.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Return\ClsProductionFloorReturn.vb" />
@@ -501,9 +502,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Transactions\Yarn Modules\Yarn Loan\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
