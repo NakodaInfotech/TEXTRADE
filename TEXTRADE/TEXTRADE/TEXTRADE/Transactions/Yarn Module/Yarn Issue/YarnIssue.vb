@@ -1447,7 +1447,7 @@ LINE1:
                     Next
 
 
-                    GRIDYARN.Rows.Add(GRIDYARN.RowCount + 1, DT.Rows(0).Item("YARNQUALITY"), DT.Rows(0).Item("MILLNAME"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), 0, DT.Rows(0).Item("LOTNO"), DT.Rows(0).Item("BAGS"), DT.Rows(0).Item("WT"), DT.Rows(0).Item("CONES"), DT.Rows(0).Item("LRNO"), DTLRDATE.Value = Now.Date, DTLIFTDATE.Value = Now.Date, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("FROMTYPE"))
+                    GRIDYARN.Rows.Add(GRIDYARN.RowCount + 1, DT.Rows(0).Item("YARNQUALITY"), DT.Rows(0).Item("MILLNAME"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("LOTNO"), DT.Rows(0).Item("BAGS"), DT.Rows(0).Item("WT"), DT.Rows(0).Item("CONES"), DT.Rows(0).Item("LRNO"), Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), Format(DTLIFTDATE.Value.Date, "dd/MM/yyyy"), DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("FROMTYPE"))
                     total()
                     GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 
