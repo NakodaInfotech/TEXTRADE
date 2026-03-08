@@ -50,13 +50,14 @@ Partial Class YarnIssueDetails
         Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GYARNRECD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,6 +67,7 @@ Partial Class YarnIssueDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
@@ -83,7 +85,7 @@ Partial Class YarnIssueDetails
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(620, 544)
+        Me.cmdexit.Location = New System.Drawing.Point(663, 544)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 651
@@ -97,7 +99,7 @@ Partial Class YarnIssueDetails
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(534, 544)
+        Me.cmdok.Location = New System.Drawing.Point(577, 544)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 650
@@ -340,6 +342,16 @@ Partial Class YarnIssueDetails
         Me.GYARNRECD.Visible = True
         Me.GYARNRECD.VisibleIndex = 23
         '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.OptionsColumn.AllowEdit = False
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 21
+        Me.GBARCODE.Width = 100
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton, Me.ToolStripSeparator1})
@@ -385,15 +397,19 @@ Partial Class YarnIssueDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'GBARCODE
+        'CMDSAVELAYOUT
         '
-        Me.GBARCODE.Caption = "Barcode"
-        Me.GBARCODE.FieldName = "BARCODE"
-        Me.GBARCODE.Name = "GBARCODE"
-        Me.GBARCODE.OptionsColumn.AllowEdit = False
-        Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 21
-        Me.GBARCODE.Width = 100
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 544)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'YarnIssueDetails
         '
@@ -450,4 +466,5 @@ Partial Class YarnIssueDetails
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents GYARNRECD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class
