@@ -23,6 +23,7 @@ Partial Class YarnRecdFromJobberDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -44,6 +45,7 @@ Partial Class YarnRecdFromJobberDetails
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gwt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gcones = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GJOBNO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,15 +56,14 @@ Partial Class YarnRecdFromJobberDetails
         Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPROCESS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GVEHICLENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GVEHICLENO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
+        Me.GGRIDREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,6 +83,20 @@ Partial Class YarnRecdFromJobberDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 7
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 544)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 653
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'cmdexit
         '
@@ -126,7 +141,7 @@ Partial Class YarnRecdFromJobberDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GTONAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GPROGNO, Me.GYARN, Me.GMILL, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GCOLOR, Me.glot, Me.gqty, Me.GCUT, Me.GMTRS, Me.gwt, Me.gcones, Me.GLRNO, Me.GRACK, Me.GBARCODE, Me.GJOBNO, Me.GBALANCEWT, Me.GTOTALQTY, Me.GTOTALWT, Me.GREMARKS, Me.GTRANSNAME, Me.GGODOWN, Me.GPROCESS, Me.GVEHICLENO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GTONAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GPROGNO, Me.GYARN, Me.GMILL, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GCOLOR, Me.glot, Me.GGRIDREMARKS, Me.gqty, Me.GCUT, Me.GMTRS, Me.gwt, Me.gcones, Me.GLRNO, Me.GRACK, Me.GBARCODE, Me.GJOBNO, Me.GBALANCEWT, Me.GTOTALQTY, Me.GTOTALWT, Me.GREMARKS, Me.GTRANSNAME, Me.GGODOWN, Me.GPROCESS, Me.GVEHICLENO})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -246,7 +261,7 @@ Partial Class YarnRecdFromJobberDetails
         Me.gqty.Name = "gqty"
         Me.gqty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.gqty.Visible = True
-        Me.gqty.VisibleIndex = 9
+        Me.gqty.VisibleIndex = 10
         '
         'GCUT
         '
@@ -273,7 +288,7 @@ Partial Class YarnRecdFromJobberDetails
         Me.gwt.Name = "gwt"
         Me.gwt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.gwt.Visible = True
-        Me.gwt.VisibleIndex = 10
+        Me.gwt.VisibleIndex = 11
         '
         'gcones
         '
@@ -282,7 +297,15 @@ Partial Class YarnRecdFromJobberDetails
         Me.gcones.Name = "gcones"
         Me.gcones.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.gcones.Visible = True
-        Me.gcones.VisibleIndex = 11
+        Me.gcones.VisibleIndex = 12
+        '
+        'GLRNO
+        '
+        Me.GLRNO.Caption = "LR No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 13
         '
         'GRACK
         '
@@ -291,7 +314,7 @@ Partial Class YarnRecdFromJobberDetails
         Me.GRACK.Name = "GRACK"
         Me.GRACK.OptionsColumn.AllowEdit = False
         Me.GRACK.Visible = True
-        Me.GRACK.VisibleIndex = 13
+        Me.GRACK.VisibleIndex = 14
         Me.GRACK.Width = 80
         '
         'GBARCODE
@@ -300,7 +323,7 @@ Partial Class YarnRecdFromJobberDetails
         Me.GBARCODE.FieldName = "BARCODE"
         Me.GBARCODE.Name = "GBARCODE"
         Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 14
+        Me.GBARCODE.VisibleIndex = 15
         Me.GBARCODE.Width = 100
         '
         'GJOBNO
@@ -342,7 +365,7 @@ Partial Class YarnRecdFromJobberDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 15
+        Me.GREMARKS.VisibleIndex = 16
         Me.GREMARKS.Width = 180
         '
         'GTRANSNAME
@@ -365,6 +388,12 @@ Partial Class YarnRecdFromJobberDetails
         Me.GPROCESS.FieldName = "PROCESS"
         Me.GPROCESS.Name = "GPROCESS"
         Me.GPROCESS.Width = 100
+        '
+        'GVEHICLENO
+        '
+        Me.GVEHICLENO.Caption = "Vehicle No"
+        Me.GVEHICLENO.FieldName = "VEHICLENO"
+        Me.GVEHICLENO.Name = "GVEHICLENO"
         '
         'ToolStrip1
         '
@@ -411,33 +440,14 @@ Partial Class YarnRecdFromJobberDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'GVEHICLENO
+        'GGRIDREMARKS
         '
-        Me.GVEHICLENO.Caption = "Vehicle No"
-        Me.GVEHICLENO.FieldName = "VEHICLENO"
-        Me.GVEHICLENO.Name = "GVEHICLENO"
-        '
-        'GLRNO
-        '
-        Me.GLRNO.Caption = "LR No"
-        Me.GLRNO.FieldName = "LRNO"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 12
-        '
-        'CMDSAVELAYOUT
-        '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 544)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 653
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
+        Me.GGRIDREMARKS.Caption = "Description"
+        Me.GGRIDREMARKS.FieldName = "GRIDREMARKS"
+        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
+        Me.GGRIDREMARKS.Visible = True
+        Me.GGRIDREMARKS.VisibleIndex = 9
+        Me.GGRIDREMARKS.Width = 150
         '
         'YarnRecdFromJobberDetails
         '
@@ -500,4 +510,5 @@ Partial Class YarnRecdFromJobberDetails
     Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GVEHICLENO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GGRIDREMARKS As DevExpress.XtraGrid.Columns.GridColumn
 End Class
