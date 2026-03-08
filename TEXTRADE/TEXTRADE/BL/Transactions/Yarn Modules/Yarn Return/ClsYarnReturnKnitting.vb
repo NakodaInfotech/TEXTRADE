@@ -79,6 +79,8 @@ Public Class ClsYarnReturnKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
@@ -100,21 +102,6 @@ Public Class ClsYarnReturnKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
                 I = I + 1
-
-                '''''UPLOAD
-
-                '.Add(New SqlClient.SqlParameter("@GRIDUPLOADSRNO", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@UPLOADREMARKS", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@UPLOADNAME", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@IMGPATH", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@NEWIMGPATH", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@FILENAME", alParaval(I)))
-                'I = I + 1
 
 
             End With
@@ -190,6 +177,8 @@ Public Class ClsYarnReturnKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
@@ -212,20 +201,6 @@ Public Class ClsYarnReturnKnitting
                 I = I + 1
 
 
-                '''''UPLOAD
-
-                '.Add(New SqlClient.SqlParameter("@GRIDUPLOADSRNO", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@UPLOADREMARKS", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@UPLOADNAME", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@IMGPATH", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@NEWIMGPATH", alParaval(I)))
-                'I = I + 1
-                '.Add(New SqlClient.SqlParameter("@FILENAME", alParaval(I)))
-                'I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@YARNRETNO", alParaval(I)))
                 I = I + 1

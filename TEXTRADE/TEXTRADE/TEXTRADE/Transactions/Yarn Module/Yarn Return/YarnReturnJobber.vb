@@ -135,8 +135,8 @@ Public Class YarnReturnJobber
         YRETDATE.Text = Now.Date
         tstxtbillno.Clear()
         CMBTRANS.Text = ""
-        TXTLRNO.Clear()
-        DTLRDATE.Value = Now.Date
+        TXTVEHICLENO.Clear()
+
         txtremarks.Clear()
 
         txtuploadsrno.Clear()
@@ -157,31 +157,29 @@ Public Class YarnReturnJobber
         LBLTOTALWT.Text = 0.0
         LBLTOTALCONES.Text = 0.0
 
+        txtsrno.Text = 1
         CMBYARNQUALITY.Text = ""
         CMBMILL.Text = ""
         CMBDESIGN.Text = ""
-        TXTLOTNO.Clear()
-        txtqty.Clear()
-        TXTCONES.Clear()
         cmbcolor.Text = ""
-        TXTLRNO.Clear()
+        TXTLOTNO.Clear()
+        TXTGRIDREMARKS.Clear()
+        TXTQTY.Clear()
         TXTWT.Clear()
-        TXTVEHICLENO.Clear()
+        TXTCONES.Clear()
+        TXTLRNO.Clear()
+        DTLRDATE.Value = Now.Date
+        CMBRACK.Text = ""
 
         GRIDYARN.RowCount = 0
 
         GRIDDOUBLECLICK = False
         GRIDUPLOADDOUBLECLICK = False
         getmaxno()
-        CMBRACK.Text = ""
         If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
 
+        txtuploadsrno.Text = 1
 
-        If gridupload.RowCount > 0 Then
-            txtuploadsrno.Text = Val(gridupload.Rows(gridupload.RowCount - 1).Cells(0).Value) + 1
-        Else
-            txtuploadsrno.Text = 1
-        End If
     End Sub
 
     Sub total()
@@ -194,7 +192,6 @@ Public Class YarnReturnJobber
                     lbltotalqty.Text = Format(Val(lbltotalqty.Text) + Val(ROW.Cells(GQTY.Index).EditedFormattedValue), "0.00")
                     LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
                     LBLTOTALCONES.Text = Format(Val(LBLTOTALCONES.Text) + Val(ROW.Cells(GCONES.Index).EditedFormattedValue), "0.00")
-
                 End If
             Next
         Catch ex As Exception
@@ -210,7 +207,7 @@ Public Class YarnReturnJobber
 
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(YARNRET_NO),0) + 1 ", " YARNKNITTINGRETURN ", " AND YARNRET_cmpid=" & CmpId & " and YARNRET_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(YARNRET_NO),0) + 1 ", " YARNKNITTINGRETURN ", " and YARNRET_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTKNITTINGRETURN.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -250,19 +247,6 @@ Public Class YarnReturnJobber
                 bln = False
             End If
 
-            'If TXTCHALLANNO.Text.Trim <> "" Then
-            '    If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(TXTCHALLANNO.Text.Trim)) Then
-            '        'for search
-            '        Dim objclscommon As New ClsCommon()
-            '        Dim DT As DataTable = objclscommon.search(" YARNRET_challanno", "", " YARNKNITTINGRETURN ", " and YARNRET_challanno = '" & TXTCHALLANNO.Text.Trim & "' AND YARNRET_YEARID =" & YearId)
-            '        If DT.Rows.Count > 0 Then
-            '            EP.SetError(TXTCHALLANNO, "Challan No. Already Exists")
-            '            bln = False
-            '        End If
-            '    End If
-            'End If
-
-
             If YRETDATE.Text = "__/__/____" Then
                 EP.SetError(YRETDATE, " Please Enter Proper Date")
                 bln = False
@@ -277,17 +261,6 @@ Public Class YarnReturnJobber
                 EP.SetError(TXTKNITTINGRETURN, "Enter Job Out No")
                 bln = False
             End If
-
-            'If ALLOWMANUALJONO = True Then
-            '    If TXTJONO.Text <> "" And CMBNAME.Text.Trim <> "" And EDIT = False Then
-            '        Dim OBJCMN As New ClsCommon
-            '        Dim dttable As DataTable = OBJCMN.search(" ISNULL(JOBOUT.JO_NO,0)  AS JONO", "", " JOBOUT ", "  AND JOBOUT.JO_NO=" & TXTJONO.Text.Trim & " AND JOBOUT.JO_CMPID = " & CmpId & " AND JOBOUT.JO_LOCATIONID = " & Locationid & " AND JOBOUT.JO_YEARID = " & YearId)
-            '        If dttable.Rows.Count > 0 Then
-            '            EP.SetError(TXTJONO, "Job Out No Already Exist")
-            '            bln = False
-            '        End If
-            '    End If
-            'End If
 
             Return bln
         Catch ex As Exception
@@ -324,13 +297,14 @@ Public Class YarnReturnJobber
             alParaval.Add(TXTVEHICLENO.Text.Trim)
 
 
-            Dim gridsrno As String = ""
+            Dim GRIDSRNO As String = ""
             Dim YARNQUALITY As String = ""
             Dim MILLNAME As String = ""
             Dim DESIGN As String = ""
             Dim COLOR As String = ""
             Dim LOTNO As String = ""
-            Dim qty As String = ""
+            Dim GRIDREMARKS As String = ""
+            Dim QTY As String = ""
             Dim WT As String = ""
             Dim CONES As String = ""
             Dim LRNO As String = ""
@@ -338,7 +312,7 @@ Public Class YarnReturnJobber
             Dim RACK As String = ""
             Dim BARCODE As String = ""
             Dim OUTWT As String = ""
-            Dim OUTBAG As String = ""
+            Dim OUTBAGS As String = ""
             Dim DONE As String = ""
 
 
@@ -351,16 +325,16 @@ Public Class YarnReturnJobber
                         DESIGN = row.Cells(GDESIGN.Index).Value.ToString
                         COLOR = row.Cells(gcolor.Index).Value.ToString
                         LOTNO = row.Cells(GLOTNO.Index).Value.ToString
-                        qty = row.Cells(GQTY.Index).Value.ToString
+                        GRIDREMARKS = row.Cells(GGRIDREMARKS.Index).Value
+                        QTY = row.Cells(GQTY.Index).Value.ToString
                         WT = row.Cells(GWT.Index).Value
                         CONES = row.Cells(GCONES.Index).Value.ToString
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
-                        'LRDATE = row.Cells(GLRDATE.Index).Value.ToString
                         LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         RACK = row.Cells(GRACK.Index).Value.ToString
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
                         OUTWT = Val(row.Cells(GOUTWT.Index).Value)
-                        OUTBAG = Val(row.Cells(GOUTBAGS.Index).Value)
+                        OUTBAGS = Val(row.Cells(GOUTBAGS.Index).Value)
                         If row.Cells(GDONE.Index).Value = True Then DONE = 1 Else DONE = 0
 
 
@@ -372,30 +346,31 @@ Public Class YarnReturnJobber
                         DESIGN = DESIGN & "|" & row.Cells(GDESIGN.Index).Value.ToString
                         COLOR = COLOR & "|" & row.Cells(gcolor.Index).Value.ToString
                         LOTNO = LOTNO & "|" & row.Cells(GLOTNO.Index).Value.ToString
-                        qty = qty & "|" & row.Cells(GQTY.Index).Value
+                        GRIDREMARKS = GRIDREMARKS & "|" & row.Cells(GGRIDREMARKS.Index).Value
+                        QTY = QTY & "|" & row.Cells(GQTY.Index).Value
                         WT = WT & "|" & row.Cells(GWT.Index).Value
-
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         RACK = RACK & "|" & row.Cells(GRACK.Index).Value.ToString
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
                         OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
-                        OUTBAG = OUTBAG & "|" & Val(row.Cells(GOUTBAGS.Index).Value)
+                        OUTBAGS = OUTBAGS & "|" & Val(row.Cells(GOUTBAGS.Index).Value)
                         If row.Cells(GDONE.Index).Value = True Then DONE = DONE & "|" & "1" Else DONE = DONE & "|" & "0"
 
                     End If
                 End If
             Next
 
-            alParaval.Add(gridsrno)
+            alParaval.Add(GRIDSRNO)
             alParaval.Add(YARNQUALITY)
             alParaval.Add(MILLNAME)
             alParaval.Add(DESIGN)
 
             alParaval.Add(COLOR)
             alParaval.Add(LOTNO)
-            alParaval.Add(qty)
+            alParaval.Add(GRIDREMARKS)
+            alParaval.Add(QTY)
             alParaval.Add(WT)
 
             alParaval.Add(CONES)
@@ -404,45 +379,8 @@ Public Class YarnReturnJobber
             alParaval.Add(RACK)
             alParaval.Add(BARCODE)
             alParaval.Add(OUTWT)
-            alParaval.Add(OUTBAG)
+            alParaval.Add(OUTBAGS)
             alParaval.Add(DONE)
-
-            'Dim griduploadsrno As String = ""
-            'Dim imgpath As String = ""
-            'Dim uploadremarks As String = ""
-            'Dim name As String = ""
-            'Dim NEWIMGPATH As String = ""
-            'Dim FILENAME As String = ""
-
-
-            ' ''Saving Upload Grid
-
-            'For Each row As Windows.Forms.DataGridViewRow In gridupload.Rows
-            '    If row.Cells(0).Value <> Nothing Then
-            '        If griduploadsrno = "" Then
-            '            griduploadsrno = row.Cells(0).Value.ToString
-            '            uploadremarks = row.Cells(1).Value.ToString
-            '            name = row.Cells(2).Value.ToString
-            '            imgpath = row.Cells(3).Value.ToString
-            '            NEWIMGPATH = row.Cells(GUNEWIMGPATH.Index).Value.ToString
-
-            '        Else
-            '            griduploadsrno = griduploadsrno & "|" & row.Cells(0).Value.ToString
-            '            uploadremarks = uploadremarks & "|" & row.Cells(1).Value.ToString
-            '            name = name & "|" & row.Cells(2).Value.ToString
-            '            imgpath = imgpath & "|" & row.Cells(3).Value.ToString
-            '            NEWIMGPATH = NEWIMGPATH & "|" & row.Cells(GUNEWIMGPATH.Index).Value.ToString
-
-            '        End If
-            '    End If
-            'Next
-
-            'alParaval.Add(griduploadsrno)
-            'alParaval.Add(uploadremarks)
-            'alParaval.Add(name)
-            'alParaval.Add(imgpath)
-            'alParaval.Add(NEWIMGPATH)
-            'alParaval.Add(FILENAME)
 
             Dim objCUTTING As New ClsYarnReturnKnitting()
             objCUTTING.alParaval = alParaval
@@ -471,15 +409,6 @@ Public Class YarnReturnJobber
                 EDIT = False
             End If
 
-            ' '' COPY SCANNED DOCS FILES 
-            'For Each ROW As DataGridViewRow In gridupload.Rows
-            '    If FileIO.FileSystem.DirectoryExists(Application.StartupPath & "\UPLOADDOCS") = False Then
-            '        FileIO.FileSystem.CreateDirectory(Application.StartupPath & "\UPLOADDOCS")
-            '    End If
-            '    If FileIO.FileSystem.FileExists(Application.StartupPath & "\UPLOADDOCS") = False Then
-            '        System.IO.File.Copy(ROW.Cells(GUIMGPATH.Index).Value, ROW.Cells(GUNEWIMGPATH.Index).Value, True)
-            '    End If
-            'Next
 
             clear()
             YRETDATE.Focus()
@@ -578,10 +507,6 @@ Public Class YarnReturnJobber
         End If
     End Sub
 
-    Private Sub JOBOUT_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
-        'If AscW(e.KeyChar) <> 33 Then chkchange.CheckState = CheckState.Checked
-    End Sub
-
     Private Sub JOBOUT_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim DTROW() As DataRow
@@ -627,7 +552,7 @@ Public Class YarnReturnJobber
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
                         TXTVEHICLENO.Text = Convert.ToString(dr("VEHICLENO").ToString)
 
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAG")), Val(dr("DONE")))
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAG")), Val(dr("DONE")))
 
                         If Convert.ToDecimal(dr("OUTWT")) > 0 Then
                             lbllocked.Visible = True
@@ -637,20 +562,12 @@ Public Class YarnReturnJobber
                     Next
 
                     Dim OBJCMN As New ClsCommon
-                    dttable = OBJCMN.search(" YARNKNITTINGRETURN_UPLOAD.YARNRET_SRNO AS GRIDSRNO, YARNKNITTINGRETURN_UPLOAD.YARNRET_REMARKS AS REMARKS, YARNKNITTINGRETURN_UPLOAD.YARNRET_NAME AS NAME, YARNKNITTINGRETURN_UPLOAD.YARNRET_PHOTO AS IMGPATH ", "", " YARNKNITTINGRETURN_UPLOAD ", " AND YARNKNITTINGRETURN_UPLOAD.YARNRET_NO = " & TEMPYARNKNITTINGRETNO & " AND YARNRET_YEARID = " & YearId & " ORDER BY YARNKNITTINGRETURN_UPLOAD.YARNRET_SRNO")
+                    dttable = OBJCMN.SEARCH(" YARNKNITTINGRETURN_UPLOAD.YARNRET_SRNO AS GRIDSRNO, YARNKNITTINGRETURN_UPLOAD.YARNRET_REMARKS AS REMARKS, YARNKNITTINGRETURN_UPLOAD.YARNRET_NAME AS NAME, YARNKNITTINGRETURN_UPLOAD.YARNRET_PHOTO AS IMGPATH ", "", " YARNKNITTINGRETURN_UPLOAD ", " AND YARNKNITTINGRETURN_UPLOAD.YARNRET_NO = " & TEMPYARNKNITTINGRETNO & " AND YARNRET_YEARID = " & YearId & " ORDER BY YARNKNITTINGRETURN_UPLOAD.YARNRET_SRNO")
                     If dttable.Rows.Count > 0 Then
                         For Each DTR As DataRow In dttable.Rows
                             gridupload.Rows.Add(DTR("GRIDSRNO"), DTR("REMARKS"), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))))
                         Next
                     End If
-
-                    'Dim OBJCMN As New ClsCommon
-                    'dttable = OBJCMN.search(" YARNKNITTINGRETURN_UPLOAD.YARNRET_GRIDSRNO AS GRIDSRNO, YARNKNITTINGRETURN_UPLOAD.YARNRET_REMARKS AS REMARKS, YARNKNITTINGRETURN_UPLOAD.YARNRET_NAME AS NAME, YARNKNITTINGRETURN_UPLOAD.YARNRET_IMGPATH AS IMGPATH ,YARNRET_NEWIMGPATH AS NEWIMGPATH", "", " YARNKNITTINGRETURN_UPLOAD ", " AND YARNKNITTINGRETURN_UPLOAD.YARNRET_NO = " & TEMPYARNKNITTINGRETNO & " AND YARNRET_YEARID = " & YearId & " ORDER BY YARNKNITTINGRETURN_UPLOAD.YARNRET_GRIDSRNO")
-                    'If dttable.Rows.Count > 0 Then
-                    '    For Each DTR As DataRow In dttable.Rows
-                    '        gridupload.Rows.Add(DTR("GRIDSRNO"), DTR("REMARKS"), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))), DTR("NEWIMGPATH"))
-                    '    Next
-                    'End If
 
                     total()
                     GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
@@ -757,7 +674,7 @@ Public Class YarnReturnJobber
                 Exit Sub
             ElseIf Val(TXTCONES.Text.Trim) <= 0 Then
                 MsgBox("Enter Cones....", MsgBoxStyle.Critical)
-                txtqty.Focus()
+                TXTQTY.Focus()
                 Exit Sub
             ElseIf Val(TXTWT.Text.Trim) <= 0 Then
                 MsgBox("Enter Weight", MsgBoxStyle.Critical)
@@ -775,7 +692,7 @@ Public Class YarnReturnJobber
 
         GRIDYARN.Enabled = True
 
-        Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
+        Dim TEMPQTY As Integer = Val(TXTQTY.Text.Trim)
         If GRIDDOUBLECLICK = False Then
 
             If EDIT = True Then
@@ -792,7 +709,7 @@ Public Class YarnReturnJobber
                 TXTBARCODE.Text = "YR-" & Val(TXTKNITTINGRETURN.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, TXTGRIDREMARKS.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0)
             getsrno(GRIDYARN)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDYARN.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -803,8 +720,9 @@ Public Class YarnReturnJobber
             GRIDYARN.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
             GRIDYARN.Item(gcolor.Index, TEMPROW).Value = cmbcolor.Text.Trim
             GRIDYARN.Item(GLOTNO.Index, TEMPROW).Value = TXTLOTNO.Text.Trim
+            GRIDYARN.Item(GGRIDREMARKS.Index, TEMPROW).Value = TXTGRIDREMARKS.Text.Trim
 
-            GRIDYARN.Item(GQTY.Index, TEMPROW).Value = Format(Val(txtqty.Text.Trim), "0.00")
+            GRIDYARN.Item(GQTY.Index, TEMPROW).Value = Format(Val(TXTQTY.Text.Trim), "0.00")
             GRIDYARN.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
 
             GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
@@ -829,15 +747,12 @@ Public Class YarnReturnJobber
         CMBDESIGN.Text = ""
         cmbcolor.Text = ""
         TXTLOTNO.Clear()
-        txtqty.Clear()
+        TXTGRIDREMARKS.Clear()
+        TXTQTY.Clear()
         TXTWT.Clear()
         TXTCONES.Clear()
         TXTLRNO.Clear()
         DTLRDATE.Value = Now.Date
-
-        'txtPartyMtrs.Clear()
-        'txtCheckPcs.Clear()
-        'TXTBARCODE.Clear()
         txtsrno.Text = Val(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(0).Value) + 1
         TXTBARCODE.Clear()
 
@@ -872,41 +787,6 @@ Public Class YarnReturnJobber
         End Try
     End Sub
 
-    Sub uploadgetsrno(ByRef grid As System.Windows.Forms.DataGridView)
-        'Try
-        '    'If edit = False Then
-        '    Dim i As Integer = 0
-        '    For Each row As DataGridViewRow In grid.Rows
-        '        If row.Visible = True Then
-        '            row.Cells(GGRIDUPLOADSRNO.Index).Value = i + 1
-        '            i = i + 1
-        '        End If
-        '    Next
-        '    'End If
-        'Catch ex As Exception
-        '    If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        'End Try
-    End Sub
-
-    'Private Sub CMDSELECTDO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDSELECTSTOCK.Click
-    '    Try
-    '        Dim DTJO As New DataTable
-    '        Dim OBJSELECTGDN As New SelectStockGDN
-    '        OBJSELECTGDN.GODOWN = CMBGODOWN.Text.Trim
-    '        OBJSELECTGDN.ShowDialog()
-    '        DTJO = OBJSELECTGDN.DT
-    '        If DTJO.Rows.Count > 0 Then
-    '            For Each DTROWPS As DataRow In DTJO.Rows
-    '                GRIDYARN.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("LOTNO"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), DTROWPS("DESIGNNO"), DTROWPS("COLOR"), 1, Format(Val(DTROWPS("MTRS")), "0.00"), DTROWPS("BARCODE"), 0, 0, DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"))
-    '            Next
-    '            getsrno(GRIDYARN)
-    '            total()
-    '            GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
 
     Private Sub tstxtbillno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles tstxtbillno.Validating
         Try
@@ -980,19 +860,6 @@ LINE1:
     End Sub
 
     Private Sub CMDVIEW_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDVIEW.Click
-        'Try
-        '    If txtimgpath.Text.Trim <> "" Then
-        '        If Path.GetExtension(txtimgpath.Text.Trim) = ".pdf" Then
-        '            System.Diagnostics.Process.Start(txtimgpath.Text.Trim)
-        '        Else
-        '            Dim objVIEW As New ViewImage
-        '            objVIEW.pbsoftcopy.ImageLocation = PBSoftCopy.ImageLocation
-        '            objVIEW.ShowDialog()
-        '        End If
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
 
         Try
             If gridupload.SelectedRows.Count > 0 Then
@@ -1157,8 +1024,9 @@ LINE1:
                 CMBDESIGN.Text = GRIDYARN.Item(GDESIGN.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 cmbcolor.Text = GRIDYARN.Item(gcolor.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTLOTNO.Text = GRIDYARN.Item(GLOTNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTGRIDREMARKS.Text = GRIDYARN.Item(GGRIDREMARKS.Index, GRIDYARN.CurrentRow.Index).Value
 
-                txtqty.Text = GRIDYARN.Item(gQty.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTQTY.Text = GRIDYARN.Item(gQty.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTWT.Text = GRIDYARN.Item(GWT.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTCONES.Text = GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
@@ -1267,12 +1135,12 @@ LINE1:
         End If
     End Sub
 
-    Private Sub txtqty_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtqty.KeyPress, TXTCONES.KeyPress
-        numkeypress(e, TXTCONES, Me)
+    Private Sub txtqty_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTQTY.KeyPress, TXTCONES.KeyPress
+        numkeypress(e, sender, Me)
     End Sub
 
     Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress
-        numdotkeypress(e, TXTWT, Me)
+        numdotkeypress(e, sender, Me)
     End Sub
 
     Private Sub SaveToolStripButton_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles SaveToolStripButton.Click
@@ -1313,7 +1181,6 @@ LINE1:
             Throw ex
         End Try
     End Sub
-
 
     Private Sub CMBRACK_Enter(sender As Object, e As EventArgs) Handles CMBRACK.Enter
         Try

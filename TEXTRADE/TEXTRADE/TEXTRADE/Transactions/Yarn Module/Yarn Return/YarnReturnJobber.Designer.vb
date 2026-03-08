@@ -64,7 +64,7 @@ Partial Class YarnReturnJobber
         Me.LBLTOTALCONES = New System.Windows.Forms.Label()
         Me.txtsrno = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.txtqty = New System.Windows.Forms.TextBox()
+        Me.TXTQTY = New System.Windows.Forms.TextBox()
         Me.lbltotalqty = New System.Windows.Forms.Label()
         Me.TXTLRNO = New System.Windows.Forms.TextBox()
         Me.cmbcolor = New System.Windows.Forms.ComboBox()
@@ -116,6 +116,7 @@ Partial Class YarnReturnJobber
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.TXTGRIDREMARKS = New System.Windows.Forms.TextBox()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -153,6 +154,7 @@ Partial Class YarnReturnJobber
         Me.BlendPanel1.Controls.Add(Me.TXTVEHICLENO)
         Me.BlendPanel1.Controls.Add(Me.Label2)
         Me.BlendPanel1.Controls.Add(Me.TXTBARCODE)
+        Me.BlendPanel1.Controls.Add(Me.DTLRDATE)
         Me.BlendPanel1.Controls.Add(Me.TXTTRANSADD)
         Me.BlendPanel1.Controls.Add(Me.TXTCHALLANNO)
         Me.BlendPanel1.Controls.Add(Me.LBLCHALLAN)
@@ -185,7 +187,7 @@ Partial Class YarnReturnJobber
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1084, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
         '
         'TXTVEHICLENO
@@ -341,16 +343,16 @@ Partial Class YarnReturnJobber
         Me.TabControl1.Location = New System.Drawing.Point(11, 137)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1045, 260)
+        Me.TabControl1.Size = New System.Drawing.Size(1211, 260)
         Me.TabControl1.TabIndex = 7
         '
         'TabPage1
         '
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.TXTGRIDREMARKS)
         Me.TabPage1.Controls.Add(Me.CMBRACK)
         Me.TabPage1.Controls.Add(Me.TXTLOTNO)
-        Me.TabPage1.Controls.Add(Me.DTLRDATE)
         Me.TabPage1.Controls.Add(Me.TXTCONES)
         Me.TabPage1.Controls.Add(Me.CMBMILL)
         Me.TabPage1.Controls.Add(Me.CMBDESIGN)
@@ -361,7 +363,7 @@ Partial Class YarnReturnJobber
         Me.TabPage1.Controls.Add(Me.LBLTOTALCONES)
         Me.TabPage1.Controls.Add(Me.txtsrno)
         Me.TabPage1.Controls.Add(Me.Label10)
-        Me.TabPage1.Controls.Add(Me.txtqty)
+        Me.TabPage1.Controls.Add(Me.TXTQTY)
         Me.TabPage1.Controls.Add(Me.lbltotalqty)
         Me.TabPage1.Controls.Add(Me.TXTLRNO)
         Me.TabPage1.Controls.Add(Me.cmbcolor)
@@ -369,7 +371,7 @@ Partial Class YarnReturnJobber
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1037, 233)
+        Me.TabPage1.Size = New System.Drawing.Size(1203, 233)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "1. Item Details"
         '
@@ -379,19 +381,19 @@ Partial Class YarnReturnJobber
         Me.CMBRACK.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBRACK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBRACK.FormattingEnabled = True
-        Me.CMBRACK.Location = New System.Drawing.Point(942, 2)
+        Me.CMBRACK.Location = New System.Drawing.Point(1153, 2)
         Me.CMBRACK.Name = "CMBRACK"
         Me.CMBRACK.Size = New System.Drawing.Size(100, 23)
-        Me.CMBRACK.TabIndex = 10
+        Me.CMBRACK.TabIndex = 11
         '
         'TXTLOTNO
         '
         Me.TXTLOTNO.BackColor = System.Drawing.Color.White
         Me.TXTLOTNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTLOTNO.Location = New System.Drawing.Point(553, 2)
+        Me.TXTLOTNO.Location = New System.Drawing.Point(563, 2)
         Me.TXTLOTNO.Name = "TXTLOTNO"
-        Me.TXTLOTNO.Size = New System.Drawing.Size(70, 23)
+        Me.TXTLOTNO.Size = New System.Drawing.Size(100, 23)
         Me.TXTLOTNO.TabIndex = 4
         Me.TXTLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -399,19 +401,20 @@ Partial Class YarnReturnJobber
         '
         Me.DTLRDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DTLRDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DTLRDATE.Location = New System.Drawing.Point(862, 2)
+        Me.DTLRDATE.Location = New System.Drawing.Point(1066, 62)
         Me.DTLRDATE.Name = "DTLRDATE"
-        Me.DTLRDATE.Size = New System.Drawing.Size(80, 23)
-        Me.DTLRDATE.TabIndex = 9
+        Me.DTLRDATE.Size = New System.Drawing.Size(90, 23)
+        Me.DTLRDATE.TabIndex = 10
+        Me.DTLRDATE.Visible = False
         '
         'TXTCONES
         '
         Me.TXTCONES.BackColor = System.Drawing.Color.White
         Me.TXTCONES.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCONES.Location = New System.Drawing.Point(741, 2)
+        Me.TXTCONES.Location = New System.Drawing.Point(1003, 2)
         Me.TXTCONES.Name = "TXTCONES"
-        Me.TXTCONES.Size = New System.Drawing.Size(52, 23)
-        Me.TXTCONES.TabIndex = 7
+        Me.TXTCONES.Size = New System.Drawing.Size(50, 23)
+        Me.TXTCONES.TabIndex = 8
         Me.TXTCONES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBMILL
@@ -423,7 +426,7 @@ Partial Class YarnReturnJobber
         Me.CMBMILL.FormattingEnabled = True
         Me.CMBMILL.Location = New System.Drawing.Point(213, 2)
         Me.CMBMILL.Name = "CMBMILL"
-        Me.CMBMILL.Size = New System.Drawing.Size(149, 23)
+        Me.CMBMILL.Size = New System.Drawing.Size(150, 23)
         Me.CMBMILL.TabIndex = 1
         '
         'CMBDESIGN
@@ -432,19 +435,19 @@ Partial Class YarnReturnJobber
         Me.CMBDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBDESIGN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBDESIGN.FormattingEnabled = True
-        Me.CMBDESIGN.Location = New System.Drawing.Point(362, 2)
+        Me.CMBDESIGN.Location = New System.Drawing.Point(363, 2)
         Me.CMBDESIGN.Name = "CMBDESIGN"
-        Me.CMBDESIGN.Size = New System.Drawing.Size(91, 23)
+        Me.CMBDESIGN.Size = New System.Drawing.Size(100, 23)
         Me.CMBDESIGN.TabIndex = 2
         '
         'TXTWT
         '
         Me.TXTWT.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTWT.Location = New System.Drawing.Point(681, 2)
+        Me.TXTWT.Location = New System.Drawing.Point(943, 2)
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWT.TabIndex = 6
+        Me.TXTWT.TabIndex = 7
         Me.TXTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GRIDYARN
@@ -489,8 +492,8 @@ Partial Class YarnReturnJobber
         Me.GRIDYARN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDYARN.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDYARN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDYARN.Size = New System.Drawing.Size(1170, 172)
-        Me.GRIDYARN.TabIndex = 11
+        Me.GRIDYARN.Size = New System.Drawing.Size(1401, 172)
+        Me.GRIDYARN.TabIndex = 12
         Me.GRIDYARN.TabStop = False
         '
         'CMBYARNQUALITY
@@ -510,7 +513,7 @@ Partial Class YarnReturnJobber
         Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALWT.Location = New System.Drawing.Point(676, 197)
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(945, 198)
         Me.LBLTOTALWT.Name = "LBLTOTALWT"
         Me.LBLTOTALWT.Size = New System.Drawing.Size(58, 15)
         Me.LBLTOTALWT.TabIndex = 643
@@ -522,7 +525,7 @@ Partial Class YarnReturnJobber
         Me.LBLTOTALCONES.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALCONES.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALCONES.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALCONES.Location = New System.Drawing.Point(735, 197)
+        Me.LBLTOTALCONES.Location = New System.Drawing.Point(995, 198)
         Me.LBLTOTALCONES.Name = "LBLTOTALCONES"
         Me.LBLTOTALCONES.Size = New System.Drawing.Size(58, 15)
         Me.LBLTOTALCONES.TabIndex = 642
@@ -547,28 +550,28 @@ Partial Class YarnReturnJobber
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(587, 197)
+        Me.Label10.Location = New System.Drawing.Point(849, 198)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(33, 15)
         Me.Label10.TabIndex = 635
         Me.Label10.Text = "Total"
         '
-        'txtqty
+        'TXTQTY
         '
-        Me.txtqty.BackColor = System.Drawing.Color.White
-        Me.txtqty.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtqty.Location = New System.Drawing.Point(623, 2)
-        Me.txtqty.Name = "txtqty"
-        Me.txtqty.Size = New System.Drawing.Size(58, 23)
-        Me.txtqty.TabIndex = 5
-        Me.txtqty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTQTY.BackColor = System.Drawing.Color.White
+        Me.TXTQTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTQTY.Location = New System.Drawing.Point(863, 2)
+        Me.TXTQTY.Name = "TXTQTY"
+        Me.TXTQTY.Size = New System.Drawing.Size(80, 23)
+        Me.TXTQTY.TabIndex = 6
+        Me.TXTQTY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lbltotalqty
         '
         Me.lbltotalqty.BackColor = System.Drawing.Color.Transparent
         Me.lbltotalqty.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltotalqty.ForeColor = System.Drawing.Color.Black
-        Me.lbltotalqty.Location = New System.Drawing.Point(630, 197)
+        Me.lbltotalqty.Location = New System.Drawing.Point(892, 198)
         Me.lbltotalqty.Name = "lbltotalqty"
         Me.lbltotalqty.Size = New System.Drawing.Size(51, 15)
         Me.lbltotalqty.TabIndex = 634
@@ -579,10 +582,10 @@ Partial Class YarnReturnJobber
         '
         Me.TXTLRNO.BackColor = System.Drawing.Color.White
         Me.TXTLRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTLRNO.Location = New System.Drawing.Point(793, 2)
+        Me.TXTLRNO.Location = New System.Drawing.Point(1053, 2)
         Me.TXTLRNO.Name = "TXTLRNO"
-        Me.TXTLRNO.Size = New System.Drawing.Size(69, 23)
-        Me.TXTLRNO.TabIndex = 8
+        Me.TXTLRNO.Size = New System.Drawing.Size(100, 23)
+        Me.TXTLRNO.TabIndex = 9
         Me.TXTLRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'cmbcolor
@@ -591,7 +594,7 @@ Partial Class YarnReturnJobber
         Me.cmbcolor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbcolor.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbcolor.FormattingEnabled = True
-        Me.cmbcolor.Location = New System.Drawing.Point(453, 2)
+        Me.cmbcolor.Location = New System.Drawing.Point(463, 2)
         Me.cmbcolor.Name = "cmbcolor"
         Me.cmbcolor.Size = New System.Drawing.Size(100, 23)
         Me.cmbcolor.TabIndex = 3
@@ -1071,7 +1074,7 @@ Partial Class YarnReturnJobber
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1084, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -1150,6 +1153,14 @@ Partial Class YarnReturnJobber
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'TXTGRIDREMARKS
+        '
+        Me.TXTGRIDREMARKS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTGRIDREMARKS.Location = New System.Drawing.Point(663, 2)
+        Me.TXTGRIDREMARKS.Name = "TXTGRIDREMARKS"
+        Me.TXTGRIDREMARKS.Size = New System.Drawing.Size(200, 23)
+        Me.TXTGRIDREMARKS.TabIndex = 5
+        '
         'gsrno
         '
         Me.gsrno.HeaderText = "Sr."
@@ -1184,7 +1195,6 @@ Partial Class YarnReturnJobber
         Me.GDESIGN.ReadOnly = True
         Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDESIGN.Width = 90
         '
         'gcolor
         '
@@ -1201,7 +1211,6 @@ Partial Class YarnReturnJobber
         Me.GLOTNO.ReadOnly = True
         Me.GLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLOTNO.Width = 70
         '
         'GGRIDREMARKS
         '
@@ -1210,7 +1219,7 @@ Partial Class YarnReturnJobber
         Me.GGRIDREMARKS.ReadOnly = True
         Me.GGRIDREMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GGRIDREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GGRIDREMARKS.Width = 150
+        Me.GGRIDREMARKS.Width = 200
         '
         'GQTY
         '
@@ -1223,7 +1232,7 @@ Partial Class YarnReturnJobber
         Me.GQTY.ReadOnly = True
         Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GQTY.Width = 60
+        Me.GQTY.Width = 80
         '
         'GWT
         '
@@ -1255,7 +1264,6 @@ Partial Class YarnReturnJobber
         Me.GLRNO.ReadOnly = True
         Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GLRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLRNO.Width = 70
         '
         'GLRDATE
         '
@@ -1266,7 +1274,8 @@ Partial Class YarnReturnJobber
         Me.GLRDATE.ReadOnly = True
         Me.GLRDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GLRDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLRDATE.Width = 80
+        Me.GLRDATE.Visible = False
+        Me.GLRDATE.Width = 90
         '
         'GRACK
         '
@@ -1315,7 +1324,7 @@ Partial Class YarnReturnJobber
         'YarnReturnJobber
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1084, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -1358,7 +1367,7 @@ Partial Class YarnReturnJobber
     Friend WithEvents LBLTOTALCONES As System.Windows.Forms.Label
     Friend WithEvents txtsrno As System.Windows.Forms.TextBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents txtqty As System.Windows.Forms.TextBox
+    Friend WithEvents TXTQTY As System.Windows.Forms.TextBox
     Friend WithEvents lbltotalqty As System.Windows.Forms.Label
     Friend WithEvents TXTLRNO As System.Windows.Forms.TextBox
     Friend WithEvents cmbcolor As System.Windows.Forms.ComboBox
@@ -1423,6 +1432,7 @@ Partial Class YarnReturnJobber
     Friend WithEvents TXTVEHICLENO As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents CMBRACK As ComboBox
+    Friend WithEvents TXTGRIDREMARKS As TextBox
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
     Friend WithEvents GYARNQUALITY As DataGridViewTextBoxColumn
     Friend WithEvents GMILLNAME As DataGridViewTextBoxColumn
