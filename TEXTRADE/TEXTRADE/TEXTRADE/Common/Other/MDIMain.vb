@@ -11169,4 +11169,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AddNewYarnLoanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewYarnLoanToolStripMenuItem.Click
+        Try
+            Dim OBJyarnstore As New YarnLoanMaster
+            OBJyarnstore.MdiParent = Me
+            OBJyarnstore.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExixitingYarnLoanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExixitingYarnLoanToolStripMenuItem.Click
+        Try
+            Dim OBJyarnstore As New YarnLoanMasterDetails
+            OBJyarnstore.MdiParent = Me
+            OBJyarnstore.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
