@@ -1517,7 +1517,7 @@ LINE1:
         Try
             If TXTLOTNO.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search(" ISNULL(YARN_NO,0) AS YARNRECDNO ", "", " YARNRECD INNER JOIN LEDGERS ON YARN_LEDGERID = ACC_ID ", " AND YARN_TYPE = '" & FRMSTRING & "' AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND YARN_PLOTNO = '" & TXTLOTNO.Text.Trim & "' AND YARN_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(YARN_NO,0) AS YARNRECDNO ", "", " YARNRECD INNER JOIN LEDGERS ON YARN_LEDGERID = ACC_ID ", " AND YARN_TYPE = '" & FRMSTRING & "' AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND YARN_PLOTNO = '" & TXTLOTNO.Text.Trim & "' AND YARN_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     If (EDIT = False) Or (EDIT = True And Val(DT.Rows(0).Item(0)) <> Val(TXTYARNNO.Text.Trim)) Then
                         MsgBox("Lot No Already Exists in Inward No " & Val(DT.Rows(0).Item("YARNRECDNO")), MsgBoxStyle.Critical)
@@ -1666,7 +1666,7 @@ LINE1:
         Try
             If cmbname.Text.Trim <> "" And TXTPSHADE.Text.Trim <> "" And EDIT = False Then
                 Dim OBJCMN As New ClsCommon
-                Dim dt As DataTable = OBJCMN.search(" ISNULL(COLORMASTER.COLOR_NAME,'') AS COLOR", "", "COLORTAGGING INNER JOIN COLORMASTER ON COLORTAGGING.TAG_COLORID = COLORMASTER.COLOR_ID INNER JOIN LEDGERS ON LEDGERS.Acc_id = COLORTAGGING.TAG_LEDGERID ", " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' and ISNULL(COLORTAGGING.TAG_PCOLOR, '')='" & TXTPSHADE.Text.Trim & "' AND COLORTAGGING.TAG_YEARID = " & YearId)
+                Dim dt As DataTable = OBJCMN.SEARCH(" ISNULL(COLORMASTER.COLOR_NAME,'') AS COLOR", "", "COLORTAGGING INNER JOIN COLORMASTER ON COLORTAGGING.TAG_COLORID = COLORMASTER.COLOR_ID INNER JOIN LEDGERS ON LEDGERS.Acc_id = COLORTAGGING.TAG_LEDGERID ", " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' and ISNULL(COLORTAGGING.TAG_PCOLOR, '')='" & TXTPSHADE.Text.Trim & "' AND COLORTAGGING.TAG_YEARID = " & YearId)
                 If dt.Rows.Count > 0 Then cmbcolor.Text = dt.Rows(0).Item("COLOR")
             End If
         Catch ex As Exception
@@ -1680,7 +1680,7 @@ LINE1:
                 'FETCH CONEWT FROM MILLMASTER
                 If Val(TXTWT.Text.Trim) = 0 And Val(TXTCONES.Text.Trim) <> 0 And CMBMILL.Text.Trim <> "" Then
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.search("ISNULL(MILL_REMARK,0) AS CONEWT", "", "MILLMASTER ", " AND MILL_NAME = '" & CMBMILL.Text.Trim & "' AND MILL_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MILL_REMARK,0) AS CONEWT", "", "MILLMASTER ", " AND MILL_NAME = '" & CMBMILL.Text.Trim & "' AND MILL_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then TXTWT.Text = Format(Val(TXTCONES.Text.Trim) * Val(DT.Rows(0).Item("CONEWT")), "0.00")
                 End If
             End If

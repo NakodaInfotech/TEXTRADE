@@ -377,6 +377,65 @@ Public Class YarnLoanMaster
         End If
     End Sub
 
+    Private Sub YarnLoanMaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            Cursor.Current = Cursors.WaitCursor
+
+            Dim DTROW() As DataRow
+            DTROW = USERRIGHTS.Select("FormName = 'YARN RECD'")
+            USERADD = DTROW(0).Item(1)
+            USEREDIT = DTROW(0).Item(2)
+            USERVIEW = DTROW(0).Item(3)
+            USERDELETE = DTROW(0).Item(4)
+
+
+            fillcmb()
+            clear()
+
+            If edit = True Then
+
+                If USEREDIT = False And USERVIEW = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                Dim objclsYARN As New ClsYarnLoan()
+                Dim dttable As New DataTable
+
+                dttable = objclsYARN.selectLoan(TEMPloanNO, CmpId, Locationid, YearId)
+
+                If dttable.Rows.Count > 0 Then
+                    For Each dr As DataRow In dttable.Rows
+
+                        txtloanno.Text = TEMPloanNO
+                        loandate.Value = Convert.ToDateTime(dr("DATE"))
+                        cmbname.Text = Convert.ToString(dr("PARTYNAME"))
+                        cmbLoan.Text = Convert.ToString(dr("TYPE").ToString)
+                        txtremarks.Text = Convert.ToString(dr("REMARKS"))
+                        cmbtrans.Text = Convert.ToString(dr("TRANSPORT"))
+                        cmbGodown.Text = Convert.ToString(dr("GODOWN"))
+                        GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNNAME"), dr("MILLNAME"), dr("LOTNO"), Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
+                    Next
+                    GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
+                End If
+
+                chkchange.CheckState = CheckState.Checked
+                total()
+            End If
+
+            'If gridDoubleClick = False Then
+            If GRIDYARN.RowCount > 0 Then
+                txtsrno.Text = Val(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(gsrno.Index).Value) + 1
+            Else
+                txtsrno.Text = 1
+            End If
+            'End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
             For Each row As DataGridViewRow In grid.Rows
@@ -409,7 +468,7 @@ Public Class YarnLoanMaster
 
         End If
 
-        'total()
+        total()
 
         GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 
@@ -439,5 +498,16 @@ Public Class YarnLoanMaster
         txtsrno.Focus()
 
     End Sub
-
+    Sub total()
+        lbltotalbags.Text = "0.00"
+        LBLTOTALCONES.Text = "0.00"
+        LBLTOTALWT.Text = "0.00"
+        For Each row As DataGridViewRow In GRIDYARN.Rows
+            If Val(row.Cells(GQTY.Index).Value) <> 0 Then
+                lbltotalbags.Text = Val(lbltotalbags.Text) + Val(row.Cells(GQTY.Index).Value)
+                LBLTOTALCONES.Text = Val(LBLTOTALCONES.Text) + Val(row.Cells(GCONES.Index).Value)
+                LBLTOTALWT.Text = Val(LBLTOTALWT.Text) + Val(row.Cells(GWT.Index).Value)
+            End If
+        Next
+    End Sub
 End Class

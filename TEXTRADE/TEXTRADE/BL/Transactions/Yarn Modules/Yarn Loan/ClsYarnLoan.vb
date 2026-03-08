@@ -181,6 +181,25 @@ Public Class ClsYarnLoan
         End Try
         Return dtTable
     End Function
+    Public Function selectLoan(ByVal YARNNO As Integer, ByVal Cmpid As Integer, ByVal LocationID As Integer, ByVal YearID As Integer) As DataTable
+        Dim dtTable As DataTable
+        Try
+
+            Dim strCommand As String = "SP_SELECTYARNLOAN_FOR_EDIT"
+            Dim alParameter As New ArrayList
+            With alParameter
+                .Add(New SqlClient.SqlParameter("@YARNno", YARNNO))
+                .Add(New SqlClient.SqlParameter("@CmpID", Cmpid))
+                .Add(New SqlClient.SqlParameter("@LocationID", LocationID))
+                .Add(New SqlClient.SqlParameter("@YearID", YearID))
+            End With
+            dtTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+        Return dtTable
+    End Function
 
     Public Function Delete() As Integer
         Dim intResult As Integer
