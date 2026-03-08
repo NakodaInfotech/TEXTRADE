@@ -10496,6 +10496,9 @@
     <EmbeddedResource Include="Transactions\Sale\Sale Order\ProgramStatusDetails.resx">
       <DependentUpon>ProgramStatusDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Sale\Security\SecurityInwardOutward.resx">
+      <DependentUpon>SecurityInwardOutward.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sample\Sample Order\SampleOrderClose.resx">
       <DependentUpon>SampleOrderClose.vb</DependentUpon>
     </EmbeddedResource>
