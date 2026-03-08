@@ -319,6 +319,7 @@ CHECKNEXTLINE:
             Dim JOBBERLOTNO As String = ""
             Dim COLOR As String = ""
             Dim LOTNO As String = ""
+            Dim GRIDREMARKS As String = ""
             Dim qty As String = ""
             Dim CUT As String = ""
             Dim MTRS As String = ""
@@ -343,6 +344,7 @@ CHECKNEXTLINE:
                         JOBBERLOTNO = row.Cells(GJOBBERLOTNO.Index).Value.ToString
                         COLOR = row.Cells(gcolor.Index).Value.ToString
                         LOTNO = row.Cells(GLOTNO.Index).Value.ToString
+                        GRIDREMARKS = row.Cells(GGRIDREMARKS.Index).Value.ToString
                         qty = Val(row.Cells(GQTY.Index).Value)
                         CUT = Val(row.Cells(GCUT.Index).Value)
                         MTRS = Val(row.Cells(GMTRS.Index).Value)
@@ -364,6 +366,7 @@ CHECKNEXTLINE:
                         JOBBERLOTNO = JOBBERLOTNO & "|" & row.Cells(GJOBBERLOTNO.Index).Value.ToString
                         COLOR = COLOR & "|" & row.Cells(gcolor.Index).Value.ToString
                         LOTNO = LOTNO & "|" & row.Cells(GLOTNO.Index).Value.ToString
+                        GRIDREMARKS = GRIDREMARKS & "|" & row.Cells(GGRIDREMARKS.Index).Value.ToString
                         qty = qty & "|" & Val(row.Cells(GQTY.Index).Value)
                         CUT = CUT & "|" & Val(row.Cells(GCUT.Index).Value)
                         MTRS = MTRS & "|" & Val(row.Cells(GMTRS.Index).Value)
@@ -387,6 +390,7 @@ CHECKNEXTLINE:
             alParaval.Add(JOBBERLOTNO)
             alParaval.Add(COLOR)
             alParaval.Add(LOTNO)
+            alParaval.Add(GRIDREMARKS)
             alParaval.Add(qty)
             alParaval.Add(CUT)
             alParaval.Add(MTRS)

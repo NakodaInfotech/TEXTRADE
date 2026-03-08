@@ -1,4 +1,5 @@
 ﻿
+Imports System.IO
 Imports BL
 
 Public Class YarnRecdFromJobberDetails
@@ -35,7 +36,7 @@ Public Class YarnRecdFromJobberDetails
                 Exit Sub
             End If
 
-            fillgrid()
+            FILLGRID()
 
         Catch ex As Exception
             Throw ex
@@ -46,8 +47,8 @@ Public Class YarnRecdFromJobberDetails
         Try
             Dim OBJYARN As New ClsYarnRecdFromJobber
             Dim DT As DataTable = OBJYARN.selectYARN(0, CmpId, 0, YearId, "")
-            gridbilldetails.DataSource = dt
-            If dt.Rows.Count > 0 Then
+            gridbilldetails.DataSource = DT
+            If DT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
                 gridbill.TopRowIndex = gridbill.RowCount - 15
             End If
