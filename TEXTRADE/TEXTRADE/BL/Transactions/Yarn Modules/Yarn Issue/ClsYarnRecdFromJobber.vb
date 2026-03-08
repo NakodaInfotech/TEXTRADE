@@ -100,6 +100,8 @@ Public Class ClsYarnRecdFromJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CUT", alParaval(I)))
@@ -234,6 +236,8 @@ Public Class ClsYarnRecdFromJobber
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
