@@ -540,6 +540,10 @@ LINE1:
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim LIFTDATE As String = ""
+            Dim BARCODE As String = ""
+            Dim FROMNO As String = ""
+            Dim FROMSRNO As String = ""
+            Dim FROMTYPE As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
@@ -557,6 +561,10 @@ LINE1:
                         LRNO = ""
                         LRDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
                         LIFTDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = TXTYARNNO.Text.Trim
+                        FROMSRNO = row.Cells(gsrno.Index).Value.ToString
+                        FROMTYPE = "YARNRECDJOBBER"
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
@@ -572,6 +580,10 @@ LINE1:
                         LRNO = LRNO & "|" & ""
                         LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
                         LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = FROMNO & "|" & TXTYARNNO.Text.Trim
+                        FROMSRNO = FROMSRNO & "|" & row.Cells(gsrno.Index).Value.ToString
+                        FROMTYPE = FROMTYPE & "|" & "YARNRECDJOBBER"
 
                     End If
                 End If
@@ -590,6 +602,13 @@ LINE1:
             ALPARAVAL.Add(LRNO)
             ALPARAVAL.Add(LRDATE)
             ALPARAVAL.Add(LIFTDATE)
+
+            ALPARAVAL.Add(BARCODE)
+            ALPARAVAL.Add(FROMNO)
+            ALPARAVAL.Add(FROMSRNO)
+            ALPARAVAL.Add(FROMTYPE)
+
+
             ALPARAVAL.Add(0)    'CHKYARNRECD
             ALPARAVAL.Add("")    'BEAMRECDDESC
             ALPARAVAL.Add("")    'VEHICLE NO
