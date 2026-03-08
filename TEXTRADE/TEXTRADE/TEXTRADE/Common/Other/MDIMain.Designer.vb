@@ -1287,6 +1287,9 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.YarnStoreLoanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewYarnLoanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExixitingYarnLoanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -6822,7 +6825,7 @@ Partial Class MDIMain
         '
         'YARNMODULE_MENU
         '
-        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BeamToolStripMenuItem, Me.ToolStripSeparator339, Me.GreyReceived_MENU, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.ToolStripSeparator342, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNRECDTOOLSTRIP})
+        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BeamToolStripMenuItem, Me.ToolStripSeparator339, Me.GreyReceived_MENU, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.ToolStripSeparator342, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNRECDTOOLSTRIP, Me.YarnStoreLoanToolStripMenuItem})
         Me.YARNMODULE_MENU.Name = "YARNMODULE_MENU"
         Me.YARNMODULE_MENU.Size = New System.Drawing.Size(87, 20)
         Me.YARNMODULE_MENU.Text = "Yarn Module"
@@ -7606,7 +7609,7 @@ Partial Class MDIMain
         Me.GODOWNYARNWASTAGE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GODOWNYARNWASTAGEADD, Me.GODOWNYARNWASTAGEEDIT, Me.ToolStripSeparator31})
         Me.GODOWNYARNWASTAGE_MASTER.Enabled = False
         Me.GODOWNYARNWASTAGE_MASTER.Name = "GODOWNYARNWASTAGE_MASTER"
-        Me.GODOWNYARNWASTAGE_MASTER.Size = New System.Drawing.Size(152, 22)
+        Me.GODOWNYARNWASTAGE_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.GODOWNYARNWASTAGE_MASTER.Text = "In House Entry"
         '
         'GODOWNYARNWASTAGEADD
@@ -7633,7 +7636,7 @@ Partial Class MDIMain
         Me.JOBBERYARNWASTAGE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.JOBBERYARNWASTAGEADD, Me.JOBBERYARNWASTAGEEDIT, Me.ToolStripSeparator161})
         Me.JOBBERYARNWASTAGE_MASTER.Enabled = False
         Me.JOBBERYARNWASTAGE_MASTER.Name = "JOBBERYARNWASTAGE_MASTER"
-        Me.JOBBERYARNWASTAGE_MASTER.Size = New System.Drawing.Size(152, 22)
+        Me.JOBBERYARNWASTAGE_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.JOBBERYARNWASTAGE_MASTER.Text = "Jobber Entry"
         '
         'JOBBERYARNWASTAGEADD
@@ -7658,7 +7661,7 @@ Partial Class MDIMain
         'ToolStripSeparator85
         '
         Me.ToolStripSeparator85.Name = "ToolStripSeparator85"
-        Me.ToolStripSeparator85.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripSeparator85.Size = New System.Drawing.Size(177, 6)
         '
         'YARNRECDTOOLSTRIP
         '
@@ -9386,6 +9389,25 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
+        'YarnStoreLoanToolStripMenuItem
+        '
+        Me.YarnStoreLoanToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewYarnLoanToolStripMenuItem, Me.EditExixitingYarnLoanToolStripMenuItem})
+        Me.YarnStoreLoanToolStripMenuItem.Name = "YarnStoreLoanToolStripMenuItem"
+        Me.YarnStoreLoanToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.YarnStoreLoanToolStripMenuItem.Text = "Yarn Store Loan"
+        '
+        'AddNewYarnLoanToolStripMenuItem
+        '
+        Me.AddNewYarnLoanToolStripMenuItem.Name = "AddNewYarnLoanToolStripMenuItem"
+        Me.AddNewYarnLoanToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.AddNewYarnLoanToolStripMenuItem.Text = "Add New Yarn Loan"
+        '
+        'EditExixitingYarnLoanToolStripMenuItem
+        '
+        Me.EditExixitingYarnLoanToolStripMenuItem.Name = "EditExixitingYarnLoanToolStripMenuItem"
+        Me.EditExixitingYarnLoanToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.EditExixitingYarnLoanToolStripMenuItem.Text = "Edit Exisiting Yarn Loan"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10676,4 +10698,7 @@ Partial Class MDIMain
     Friend WithEvents STORESLOAN_MASTER As ToolStripMenuItem
     Friend WithEvents STORELOAN_ADD As ToolStripMenuItem
     Friend WithEvents STORELOAN_EDIT As ToolStripMenuItem
+    Friend WithEvents YarnStoreLoanToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddNewYarnLoanToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditExixitingYarnLoanToolStripMenuItem As ToolStripMenuItem
 End Class
