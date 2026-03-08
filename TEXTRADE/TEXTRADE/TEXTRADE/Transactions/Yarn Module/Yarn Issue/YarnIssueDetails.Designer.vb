@@ -49,13 +49,14 @@ Partial Class YarnIssueDetails
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GYARNRECD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GYARNRECD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,7 +119,7 @@ Partial Class YarnIssueDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GMACHINENO, Me.GCHALLAN, Me.GPROCESS, Me.GMILL, Me.GYARN, Me.GDESIGN, Me.GCOLOR, Me.GLOTNO, Me.GBAGS, Me.GTOTALBAGS, Me.gwt, Me.GTOTALWT, Me.GCONES, Me.GTOTALCONES, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GREMARKS, Me.GYARNRECD})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GMACHINENO, Me.GCHALLAN, Me.GPROCESS, Me.GMILL, Me.GYARN, Me.GDESIGN, Me.GCOLOR, Me.GLOTNO, Me.GBAGS, Me.GTOTALBAGS, Me.gwt, Me.GTOTALWT, Me.GCONES, Me.GTOTALCONES, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GREMARKS, Me.GYARNRECD, Me.GBARCODE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -161,7 +162,7 @@ Partial Class YarnIssueDetails
         '
         Me.GNAME.Caption = "Jobber Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
@@ -328,8 +329,16 @@ Partial Class YarnIssueDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 21
+        Me.GREMARKS.VisibleIndex = 22
         Me.GREMARKS.Width = 180
+        '
+        'GYARNRECD
+        '
+        Me.GYARNRECD.Caption = "Yarn Recd"
+        Me.GYARNRECD.FieldName = "YARNRECD"
+        Me.GYARNRECD.Name = "GYARNRECD"
+        Me.GYARNRECD.Visible = True
+        Me.GYARNRECD.VisibleIndex = 23
         '
         'ToolStrip1
         '
@@ -376,13 +385,15 @@ Partial Class YarnIssueDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'GYARNRECD
+        'GBARCODE
         '
-        Me.GYARNRECD.Caption = "Yarn Recd"
-        Me.GYARNRECD.FieldName = "YARNRECD"
-        Me.GYARNRECD.Name = "GYARNRECD"
-        Me.GYARNRECD.Visible = True
-        Me.GYARNRECD.VisibleIndex = 22
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.OptionsColumn.AllowEdit = False
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 21
+        Me.GBARCODE.Width = 100
         '
         'YarnIssueDetails
         '
@@ -438,4 +449,5 @@ Partial Class YarnIssueDetails
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents GYARNRECD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class

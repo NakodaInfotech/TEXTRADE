@@ -309,6 +309,10 @@ Public Class YarnReturnPurchase
             Dim CONES As String = ""
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
+            Dim BARCODE As String = ""
+            Dim FROMNO As String = ""
+            Dim FROMSRNO As String = ""
+            Dim FROMTYPE As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
@@ -326,6 +330,10 @@ Public Class YarnReturnPurchase
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         'LRDATE = row.Cells(GLRDATE.Index).Value.ToString
                         LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
 
 
                     Else
@@ -342,6 +350,10 @@ Public Class YarnReturnPurchase
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = FROMSRNO & "|" & row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
 
                     End If
                 End If
@@ -360,6 +372,10 @@ Public Class YarnReturnPurchase
             alParaval.Add(CONES)
             alParaval.Add(LRNO)
             alParaval.Add(LRDATE)
+            alParaval.Add(BARCODE)
+            alParaval.Add(FROMNO)
+            alParaval.Add(FROMSRNO)
+            alParaval.Add(FROMTYPE)
 
             'Dim griduploadsrno As String = ""
             'Dim imgpath As String = ""
@@ -578,7 +594,7 @@ Public Class YarnReturnPurchase
 
                         CMBTRANS.Text = dr("TRANSNAME").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"))
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
 
                         If Convert.ToDecimal(dr("RECDMTRS")) > 0 Then
                             lbllocked.Visible = True
@@ -1203,6 +1219,26 @@ LINE1:
         numkeypress(e, TXTCONES, Me)
     End Sub
 
+    Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
+        Try
+            Dim DTYARN As New DataTable
+            Dim OBJSTOCK As New SelectYarnStock
+            OBJSTOCK.GODOWN = CMBGODOWN.Text.Trim
+            OBJSTOCK.ShowDialog()
+            DTYARN = OBJSTOCK.DT
+            If DTYARN.Rows.Count > 0 Then
+                For Each DTROW As DataRow In DTYARN.Rows
+                    GRIDYARN.Rows.Add(0, DTROW("YARNQUALITY"), DTROW("MILLNAME"), DTROW("DESIGNNO"), DTROW("COLOR"), DTROW("LOTNO"), Format(Val(DTROW("BAGS")), "0"), Format(Val(DTROW("WT")), "0.00"), Format(Val(DTROW("CONES")), "0"), DTROW("LRNO"), Format(DTLRDATE.Value.Date, "dd/MM/yyyy"))
+                Next
+                getsrno(GRIDYARN)
+                total()
+                GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress
         numdotkeypress(e, TXTWT, Me)
     End Sub
@@ -1224,5 +1260,24 @@ LINE1:
         Finally
             Cursor.Current = Cursors.Default
         End Try
+    End Sub
+
+    Private Sub YarnReturnPurchase_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+
+        If ALLOWYARNBARCODEPRINT = True Then
+            'LBLSRNO.Text = "Bale No"
+            txtsrno.Visible = False
+            CMBYARNQUALITY.Visible = False
+            CMBMILL.Visible = False
+            CMBDESIGN.Visible = False
+            cmbcolor.Visible = False
+            TXTLOTNO.Visible = False
+            txtqty.Visible = False
+            TXTWT.Visible = False
+            TXTCONES.Visible = False
+            TXTLRNO.Visible = False
+            DTLRDATE.Visible = False
+        End If
+
     End Sub
 End Class

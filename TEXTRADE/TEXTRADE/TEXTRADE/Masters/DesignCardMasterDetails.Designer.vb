@@ -165,7 +165,7 @@ Partial Class DesignCardMasterDetails
         Me.CMDEXIT.FlatAppearance.BorderSize = 0
         Me.CMDEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXIT.Location = New System.Drawing.Point(439, 541)
+        Me.CMDEXIT.Location = New System.Drawing.Point(645, 541)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXIT.TabIndex = 322
@@ -179,7 +179,7 @@ Partial Class DesignCardMasterDetails
         Me.CMDEDIT.FlatAppearance.BorderSize = 0
         Me.CMDEDIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEDIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEDIT.Location = New System.Drawing.Point(353, 541)
+        Me.CMDEDIT.Location = New System.Drawing.Point(559, 541)
         Me.CMDEDIT.Name = "CMDEDIT"
         Me.CMDEDIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEDIT.TabIndex = 323
@@ -193,7 +193,7 @@ Partial Class DesignCardMasterDetails
         Me.CMDADDNEW.FlatAppearance.BorderSize = 0
         Me.CMDADDNEW.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDADDNEW.ForeColor = System.Drawing.Color.Black
-        Me.CMDADDNEW.Location = New System.Drawing.Point(181, 541)
+        Me.CMDADDNEW.Location = New System.Drawing.Point(387, 541)
         Me.CMDADDNEW.Name = "CMDADDNEW"
         Me.CMDADDNEW.Size = New System.Drawing.Size(80, 28)
         Me.CMDADDNEW.TabIndex = 324
@@ -207,7 +207,7 @@ Partial Class DesignCardMasterDetails
         Me.CMDREFRESH.FlatAppearance.BorderSize = 0
         Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
-        Me.CMDREFRESH.Location = New System.Drawing.Point(267, 541)
+        Me.CMDREFRESH.Location = New System.Drawing.Point(473, 541)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
         Me.CMDREFRESH.TabIndex = 325
@@ -226,7 +226,7 @@ Partial Class DesignCardMasterDetails
         Me.BlendPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
-        Me.BlendPanel2.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel2.Size = New System.Drawing.Size(1221, 581)
         Me.BlendPanel2.TabIndex = 7
         '
         'GRIDBILLDETAILS
@@ -260,7 +260,7 @@ Partial Class DesignCardMasterDetails
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 0
+        Me.GITEMNAME.VisibleIndex = 1
         Me.GITEMNAME.Width = 150
         '
         'GDESIGNNO
@@ -270,7 +270,7 @@ Partial Class DesignCardMasterDetails
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.OptionsColumn.AllowEdit = False
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 1
+        Me.GDESIGNNO.VisibleIndex = 2
         Me.GDESIGNNO.Width = 150
         '
         'GCARDNO
@@ -280,7 +280,7 @@ Partial Class DesignCardMasterDetails
         Me.GCARDNO.Name = "GCARDNO"
         Me.GCARDNO.OptionsColumn.AllowEdit = False
         Me.GCARDNO.Visible = True
-        Me.GCARDNO.VisibleIndex = 2
+        Me.GCARDNO.VisibleIndex = 0
         Me.GCARDNO.Width = 80
         '
         'GDATE
@@ -954,14 +954,14 @@ Partial Class DesignCardMasterDetails
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.ExcelExport, Me.ToolStripSeparator2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1221, 25)
         Me.ToolStrip1.TabIndex = 318
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'DesignCardMasterDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(1221, 581)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
