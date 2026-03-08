@@ -1164,6 +1164,25 @@ LINE1:
             If ClientName = "SWPL" Then
                 GLRNO.HeaderText = "Box No."
             End If
+
+
+            If ALLOWYARNBARCODEPRINT = True Then
+                'LBLSRNO.Text = "Bale No"
+                txtsrno.Visible = False
+                CMBYARNQUALITY.Visible = False
+                CMBMILL.Visible = False
+                CMBDESIGN.Visible = False
+                cmbcolor.Visible = False
+                TXTLOTNO.Visible = False
+                txtqty.Visible = False
+                TXTWT.Visible = False
+                TXTCONES.Visible = False
+                TXTLRNO.Visible = False
+                DTLRDATE.Visible = False
+                DTLIFTDATE.Visible = False
+            End If
+
+
         Catch ex As Exception
             Throw ex
         End Try

@@ -471,11 +471,8 @@ Public Class OpeningStock
                 gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
             End If
 
-            If gridstock.RowCount > 0 Then
-                txtsrno.Text = Val(gridstock.Rows(gridstock.RowCount - 1).Cells(0).Value) + 1
-            Else
-                txtsrno.Text = 1
-            End If
+            txtsrno.Text = Val(gridstock.RowCount) + 1
+
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
