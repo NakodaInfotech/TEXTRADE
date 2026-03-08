@@ -441,7 +441,7 @@ Public Class StoresLoan
                 If TEMPMSG = vbYes Then
 
                     Dim ALPARAVAL As New ArrayList
-                    Dim OBJLOAN As New ClsLoan
+                    Dim OBJLOAN As New ClsStoresLoan
 
                     ALPARAVAL.Add(Val(txtloanno.Text.Trim))
                     ALPARAVAL.Add(CmpId)
