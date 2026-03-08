@@ -121,6 +121,10 @@ Public Class ClsOpening
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@COMPLAINTDATE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@CHANGEDATE", alParaval(I)))
+                I = I + 1
 
 
 

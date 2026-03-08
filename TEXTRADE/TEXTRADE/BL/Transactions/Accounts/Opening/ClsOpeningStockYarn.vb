@@ -18,7 +18,7 @@ Public Class ClsOpeningStockYarn
 
 #Region "Functions"
 
-    Public Function save() As DataTable
+    Public Function SAVE() As DataTable
         Dim DTTABLE As DataTable
         Try
             'save SALE order
@@ -36,7 +36,7 @@ Public Class ClsOpeningStockYarn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
-                
+
                 .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
@@ -53,7 +53,7 @@ Public Class ClsOpeningStockYarn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TONAME", alParaval(I)))
                 I = I + 1
-               
+
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BAGS", alParaval(I)))
@@ -62,7 +62,7 @@ Public Class ClsOpeningStockYarn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
                 I = I + 1
-               
+
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
@@ -72,6 +72,14 @@ Public Class ClsOpeningStockYarn
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1
 
             End With
@@ -140,6 +148,14 @@ Public Class ClsOpeningStockYarn
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@SMNO", alParaval(I)))
