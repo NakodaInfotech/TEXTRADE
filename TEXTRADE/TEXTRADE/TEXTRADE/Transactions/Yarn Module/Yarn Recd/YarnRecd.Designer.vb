@@ -1147,6 +1147,7 @@ Partial Class YarnRecd
         Me.GRIDYARN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
 <<<<<<< HEAD
         Me.GRIDYARN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.gcolor, Me.GLOTNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLRDATE, Me.GDONE, Me.GOUTPCS, Me.GOUTMTRS, Me.GPONO, Me.GGRIDSRNO, Me.GRACK, Me.GBARCODE})
+<<<<<<< HEAD
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1157,6 +1158,8 @@ Partial Class YarnRecd
         Me.GRIDYARN.DefaultCellStyle = DataGridViewCellStyle7
 =======
         Me.GRIDYARN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.gcolor, Me.GLOTNO, Me.GGRIDREMARKS, Me.GQTY, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLRDATE, Me.GDONE, Me.GOUTPCS, Me.GOUTMTRS, Me.GPONO, Me.GGRIDSRNO, Me.GRACK, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GBARCODE})
+=======
+>>>>>>> parent of f6a63b5b (CHAGES)
         DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle24.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1166,10 +1169,13 @@ Partial Class YarnRecd
         DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDYARN.DefaultCellStyle = DataGridViewCellStyle24
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 8e69ed3d1818bbe4c5b6c3c816a24ddbeca1e8f7
 =======
 >>>>>>> parent of f44d4565 (Merge branch 'main' of https://github.com/NakodaInfotech/TEXTRADE)
 >>>>>>> eef23ef2139b73742d5eb80b2929962a565fedfd
+=======
+>>>>>>> parent of f6a63b5b (CHAGES)
         Me.GRIDYARN.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDYARN.Location = New System.Drawing.Point(2, 25)
         Me.GRIDYARN.MultiSelect = False
@@ -2139,6 +2145,7 @@ Partial Class YarnRecd
     Friend WithEvents CMBRACK As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents TXTVEHICLENO As TextBox
+<<<<<<< HEAD
     Friend WithEvents LBLYARN As Label
 =======
     Friend WithEvents LBLTOTALAMT As Label
@@ -2147,4 +2154,6 @@ Partial Class YarnRecd
 =======
 >>>>>>> parent of f44d4565 (Merge branch 'main' of https://github.com/NakodaInfotech/TEXTRADE)
 >>>>>>> eef23ef2139b73742d5eb80b2929962a565fedfd
+=======
+>>>>>>> parent of f6a63b5b (CHAGES)
 End Class
