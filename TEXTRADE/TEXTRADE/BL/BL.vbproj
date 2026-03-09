@@ -250,6 +250,7 @@
     <Compile Include="Transactions\DyeingPriceList\ClsDyeingPriceList.vb" />
     <Compile Include="Transactions\Sale\ClsPosterOrder.vb" />
     <Compile Include="Transactions\Sale\ClsSalesEnquiry.vb" />
+    <Compile Include="Transactions\Sale\ClsSecurityInwardOutward.vb" />
     <Compile Include="Transactions\Sample\ClsInterGodownTransferSample.vb" />
     <Compile Include="Masters\ClsItemDesignImage.vb" />
     <Compile Include="Masters\ClsItemPriceList.vb" />

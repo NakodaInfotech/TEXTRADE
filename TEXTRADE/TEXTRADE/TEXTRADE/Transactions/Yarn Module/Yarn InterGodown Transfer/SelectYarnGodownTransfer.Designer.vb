@@ -27,14 +27,14 @@ Partial Class SelectYarnGodownTransfer
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLIFTINGDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,6 +42,7 @@ Partial Class SelectYarnGodownTransfer
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +82,7 @@ Partial Class SelectYarnGodownTransfer
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GBAGS, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLIFTINGDATE, Me.GGODOWN})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GBAGS, Me.GWT, Me.GCONES, Me.GBARCODE, Me.GLRNO, Me.GLIFTINGDATE, Me.GGODOWN})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -106,6 +107,26 @@ Partial Class SelectYarnGodownTransfer
         Me.CHKEDIT.Caption = ""
         Me.CHKEDIT.Name = "CHKEDIT"
         Me.CHKEDIT.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'GYARNQUALITY
+        '
+        Me.GYARNQUALITY.Caption = "Yarn Quality"
+        Me.GYARNQUALITY.FieldName = "YARNQUALITY"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.OptionsColumn.AllowEdit = False
+        Me.GYARNQUALITY.Visible = True
+        Me.GYARNQUALITY.VisibleIndex = 1
+        Me.GYARNQUALITY.Width = 200
+        '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.Caption = "Mill Name"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.OptionsColumn.AllowEdit = False
+        Me.GMILLNAME.Visible = True
+        Me.GMILLNAME.VisibleIndex = 2
+        Me.GMILLNAME.Width = 150
         '
         'GDESIGNNO
         '
@@ -137,26 +158,6 @@ Partial Class SelectYarnGodownTransfer
         Me.GLOTNO.VisibleIndex = 5
         Me.GLOTNO.Width = 80
         '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.Caption = "Mill Name"
-        Me.GMILLNAME.FieldName = "MILLNAME"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.OptionsColumn.AllowEdit = False
-        Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 2
-        Me.GMILLNAME.Width = 150
-        '
-        'GYARNQUALITY
-        '
-        Me.GYARNQUALITY.Caption = "Yarn Quality"
-        Me.GYARNQUALITY.FieldName = "YARNQUALITY"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.OptionsColumn.AllowEdit = False
-        Me.GYARNQUALITY.Visible = True
-        Me.GYARNQUALITY.VisibleIndex = 1
-        Me.GYARNQUALITY.Width = 200
-        '
         'GBAGS
         '
         Me.GBAGS.Caption = "Bags"
@@ -168,15 +169,6 @@ Partial Class SelectYarnGodownTransfer
         Me.GBAGS.Visible = True
         Me.GBAGS.VisibleIndex = 6
         Me.GBAGS.Width = 80
-        '
-        'GCONES
-        '
-        Me.GCONES.Caption = "Cones"
-        Me.GCONES.FieldName = "CONES"
-        Me.GCONES.Name = "GCONES"
-        Me.GCONES.OptionsColumn.AllowEdit = False
-        Me.GCONES.Visible = True
-        Me.GCONES.VisibleIndex = 7
         '
         'GWT
         '
@@ -191,13 +183,22 @@ Partial Class SelectYarnGodownTransfer
         Me.GWT.VisibleIndex = 8
         Me.GWT.Width = 100
         '
+        'GCONES
+        '
+        Me.GCONES.Caption = "Cones"
+        Me.GCONES.FieldName = "CONES"
+        Me.GCONES.Name = "GCONES"
+        Me.GCONES.OptionsColumn.AllowEdit = False
+        Me.GCONES.Visible = True
+        Me.GCONES.VisibleIndex = 7
+        '
         'GLRNO
         '
         Me.GLRNO.Caption = "Lr No"
         Me.GLRNO.FieldName = "LRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 9
+        Me.GLRNO.VisibleIndex = 10
         Me.GLRNO.Width = 100
         '
         'GLIFTINGDATE
@@ -206,7 +207,7 @@ Partial Class SelectYarnGodownTransfer
         Me.GLIFTINGDATE.FieldName = "LIFTINGDATE"
         Me.GLIFTINGDATE.Name = "GLIFTINGDATE"
         Me.GLIFTINGDATE.Visible = True
-        Me.GLIFTINGDATE.VisibleIndex = 10
+        Me.GLIFTINGDATE.VisibleIndex = 11
         Me.GLIFTINGDATE.Width = 80
         '
         'GGODOWN
@@ -215,7 +216,7 @@ Partial Class SelectYarnGodownTransfer
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
         Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 11
+        Me.GGODOWN.VisibleIndex = 12
         Me.GGODOWN.Width = 120
         '
         'APPROXDATE
@@ -257,6 +258,15 @@ Partial Class SelectYarnGodownTransfer
         Me.cmdok.TabIndex = 8
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.OptionsColumn.AllowEdit = False
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 9
         '
         'SelectYarnGodownTransfer
         '
@@ -300,4 +310,5 @@ Partial Class SelectYarnGodownTransfer
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents cmdexit As Button
     Friend WithEvents cmdok As Button
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
