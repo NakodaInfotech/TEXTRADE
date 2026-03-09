@@ -83,9 +83,6 @@ Public Class ClsYarnRecd
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
-                I = I + 1
-
 
 
                 'grid parameters
@@ -105,8 +102,6 @@ Public Class ClsYarnRecd
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDLOTNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
@@ -125,13 +120,6 @@ Public Class ClsYarnRecd
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
-                I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
 
@@ -239,8 +227,6 @@ Public Class ClsYarnRecd
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
-                I = I + 1
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
@@ -259,8 +245,6 @@ Public Class ClsYarnRecd
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDLOTNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
@@ -278,12 +262,6 @@ Public Class ClsYarnRecd
                 .Add(New SqlClient.SqlParameter("@POGRIDSRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1

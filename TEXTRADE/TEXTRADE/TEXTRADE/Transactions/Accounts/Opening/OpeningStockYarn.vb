@@ -57,11 +57,6 @@ Public Class OpeningStockYarn
                 TXTWT.Text = Val(gridstock.Item(GWT.Index, gridstock.CurrentRow.Index).Value)
                 TXTCONES.Text = Val(gridstock.Item(GCONES.Index, gridstock.CurrentRow.Index).Value)
                 CMBRACK.Text = gridstock.Item(GRACK.Index, gridstock.CurrentRow.Index).Value
-                'TXTGRIDREMARKS.Text = gridstock.Item(GREMARKS.Index, gridstock.CurrentRow.Index).Value.ToString
-                CMBPER.Text = gridstock.Item(GPER.Index, gridstock.CurrentRow.Index).Value.ToString
-                TXTRATE.Text = Val(gridstock.Item(GRATE.Index, gridstock.CurrentRow.Index).Value)
-                TXTAMOUNT.Text = Val(gridstock.Item(GAMOUNT.Index, gridstock.CurrentRow.Index).Value)
-
                 TXTBARCODE.Text = gridstock.Item(GBARCODE.Index, gridstock.CurrentRow.Index).Value
 
                 TEMPROW = gridstock.CurrentRow.Index
@@ -114,7 +109,7 @@ Public Class OpeningStockYarn
         gridstock.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
-            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), TXTLOTNO.Text.Trim, CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, CMBPROCESS.Text.Trim, TXTREMARKS.Text.Trim, TXTLRNO.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBILLNO.Text.Trim, CMBTONAME.Text, CMBGODOWN.Text.Trim, Val(TXTBAGS.Text.Trim), Val(TXTWT.Text.Trim), Val(TXTCONES.Text.Trim), CMBRACK.Text.Trim, TXTGRIDREMARKS, CMBPER.Text.Trim, TXTRATE.Text.Trim, TXTAMOUNT.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
+            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), TXTLOTNO.Text.Trim, CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, CMBPROCESS.Text.Trim, TXTREMARKS.Text.Trim, TXTLRNO.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBILLNO.Text.Trim, CMBTONAME.Text, CMBGODOWN.Text.Trim, Val(TXTBAGS.Text.Trim), Val(TXTWT.Text.Trim), Val(TXTCONES.Text.Trim), CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
             getsrno(gridstock)
             gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
         ElseIf GRIDDOUBLECLICK = True Then
@@ -135,13 +130,6 @@ Public Class OpeningStockYarn
             gridstock.Item(GWT.Index, TEMPROW).Value = Val(TXTWT.Text.Trim)
             gridstock.Item(GCONES.Index, TEMPROW).Value = Val(TXTCONES.Text.Trim)
             gridstock.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
-            gridstock.Item(GGRIDREMARKS.Index, TEMPROW).Value = Val(TXTGRIDREMARKS.Text.Trim)
-            gridstock.Item(GPER.Index, TEMPROW).Value = CMBPER.Text.Trim
-            gridstock.Item(GRATE.Index, TEMPROW).Value = Val(TXTRATE.Text.Trim)
-            gridstock.Item(GAMOUNT.Index, TEMPROW).Value = Val(TXTAMOUNT.Text.Trim)
-
-
-
 
             GRIDDOUBLECLICK = False
         End If
@@ -165,10 +153,6 @@ Public Class OpeningStockYarn
             TXTCONES.Clear()
             TXTLOTNO.Focus()
             CMBRACK.Text = ""
-            CMBPER.Text = ""
-            TXTGRIDREMARKS.CLEAR()
-            TXTRATE.Clear()
-            TXTAMOUNT.Clear()
         End If
 
     End Sub
@@ -238,7 +222,7 @@ Public Class OpeningStockYarn
             End If
 
             Dim OBJCMN As New ClsCommon
-            Dim dttable As DataTable = OBJCMN.SEARCH("   ISNULL(STOCKMASTER_YARN.SM_TYPE, '') AS TYPE, ISNULL(STOCKMASTER_YARN.SM_DATE, GETDATE()) AS DATE, ISNULL(STOCKMASTER_YARN.SM_GRIDSRNO, 0) AS GRIDSRNO, ISNULL(STOCKMASTER_YARN.SM_NO, 0) AS SMNO, ISNULL(STOCKMASTER_YARN.SM_LOTNO, '') AS LOTNO, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS YARNQUALITY, ISNULL(MILLMASTER.MILL_NAME, '') AS MILLNAME, ISNULL(PROCESS_NAME,'') AS PROCESSNAME, ISNULL(TONAME.Acc_cmpname, '') AS TONAME, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(STOCKMASTER_YARN.SM_BAGS, 0) AS BAGS, ISNULL(STOCKMASTER_YARN.SM_WT, 0) AS WT, ISNULL(STOCKMASTER_YARN.SM_CMPID, 0) AS CMPID, ISNULL(STOCKMASTER_YARN.SM_YEARID, 0) AS YEARID, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(STOCKMASTER_YARN.SM_REMARKS,'') AS REMARKS, ISNULL(STOCKMASTER_YARN.SM_LRNO, '') AS LRNO, ISNULL(STOCKMASTER_YARN.SM_LRDATE, GETDATE()) AS LRDATE, ISNULL(STOCKMASTER_YARN.SM_BILLNO,'') AS BILLNO, ISNULL(STOCKMASTER_YARN.SM_CONES, 0) AS CONES, ISNULL(RACKMASTER.RACK_NAME,'') AS RACK, ISNULL(STOCKMASTER_YARN.SM_BARCODE, '') AS BARCODE, ISNULL(STOCKMASTER_YARN.SM_GRIDREMARKS,'') AS GRIDREMARKS,ISNULL(STOCKMASTER_YARN.SM_PER, '') AS PER,  ISNULL(STOCKMASTER_YARN.SM_RATE, 0)AS RATE , ISNULL(STOCKMASTER_YARN.SM_AMOUNT,0) AS AMOUNT", "", " DESIGNMASTER RIGHT OUTER JOIN COLORMASTER RIGHT OUTER JOIN YARNQUALITYMASTER INNER JOIN STOCKMASTER_YARN ON YARNQUALITYMASTER.YARN_ID = STOCKMASTER_YARN.SM_YARNQUALITYID ON  COLORMASTER.COLOR_id = STOCKMASTER_YARN.SM_COLORID ON DESIGNMASTER.DESIGN_id = STOCKMASTER_YARN.SM_DESIGNID LEFT OUTER JOIN MILLMASTER ON STOCKMASTER_YARN.SM_MILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN GODOWNMASTER ON STOCKMASTER_YARN.SM_GODOWNID = GODOWNMASTER.GODOWN_id LEFT OUTER JOIN LEDGERS AS TONAME ON STOCKMASTER_YARN.SM_LEDGERIDTO = TONAME.Acc_id LEFT OUTER JOIN PROCESSMASTER ON SM_PROCESSID = PROCESS_ID LEFT OUTER JOIN RACKMASTER ON STOCKMASTER_YARN.SM_RACKID = RACKMASTER.RACK_ID", " AND STOCKMASTER_YARN.SM_TYPE = '" & FRMSTRING & "' AND STOCKMASTER_YARN.SM_YEARID = " & YearId & " ORDER BY SM_NO")
+            Dim dttable As DataTable = OBJCMN.SEARCH("   ISNULL(STOCKMASTER_YARN.SM_TYPE, '') AS TYPE, ISNULL(STOCKMASTER_YARN.SM_DATE, GETDATE()) AS DATE, ISNULL(STOCKMASTER_YARN.SM_GRIDSRNO, 0) AS GRIDSRNO, ISNULL(STOCKMASTER_YARN.SM_NO, 0) AS SMNO, ISNULL(STOCKMASTER_YARN.SM_LOTNO, '') AS LOTNO, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS YARNQUALITY, ISNULL(MILLMASTER.MILL_NAME, '') AS MILLNAME, ISNULL(PROCESS_NAME,'') AS PROCESSNAME, ISNULL(TONAME.Acc_cmpname, '') AS TONAME, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(STOCKMASTER_YARN.SM_BAGS, 0) AS BAGS, ISNULL(STOCKMASTER_YARN.SM_WT, 0) AS WT, ISNULL(STOCKMASTER_YARN.SM_CMPID, 0) AS CMPID, ISNULL(STOCKMASTER_YARN.SM_YEARID, 0) AS YEARID, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(STOCKMASTER_YARN.SM_REMARKS,'') AS REMARKS, ISNULL(STOCKMASTER_YARN.SM_LRNO, '') AS LRNO, ISNULL(STOCKMASTER_YARN.SM_LRDATE, GETDATE()) AS LRDATE, ISNULL(STOCKMASTER_YARN.SM_BILLNO,'') AS BILLNO, ISNULL(STOCKMASTER_YARN.SM_CONES, 0) AS CONES, ISNULL(RACKMASTER.RACK_NAME,'') AS RACK, ISNULL(STOCKMASTER_YARN.SM_BARCODE, '') AS BARCODE", "", " DESIGNMASTER RIGHT OUTER JOIN COLORMASTER RIGHT OUTER JOIN YARNQUALITYMASTER INNER JOIN STOCKMASTER_YARN ON YARNQUALITYMASTER.YARN_ID = STOCKMASTER_YARN.SM_YARNQUALITYID ON  COLORMASTER.COLOR_id = STOCKMASTER_YARN.SM_COLORID ON DESIGNMASTER.DESIGN_id = STOCKMASTER_YARN.SM_DESIGNID LEFT OUTER JOIN MILLMASTER ON STOCKMASTER_YARN.SM_MILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN GODOWNMASTER ON STOCKMASTER_YARN.SM_GODOWNID = GODOWNMASTER.GODOWN_id LEFT OUTER JOIN LEDGERS AS TONAME ON STOCKMASTER_YARN.SM_LEDGERIDTO = TONAME.Acc_id LEFT OUTER JOIN PROCESSMASTER ON SM_PROCESSID = PROCESS_ID LEFT OUTER JOIN RACKMASTER ON STOCKMASTER_YARN.SM_RACKID = RACKMASTER.RACK_ID", " AND STOCKMASTER_YARN.SM_TYPE = '" & FRMSTRING & "' AND STOCKMASTER_YARN.SM_YEARID = " & YearId & " ORDER BY SM_NO")
             If dttable.Rows.Count > 0 Then
                 For Each DR As DataRow In dttable.Rows
                     openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
@@ -322,15 +306,6 @@ Public Class OpeningStockYarn
             ALPARAVAL.Add(TXTREMARKS.Text.Trim)
             ALPARAVAL.Add(TXTBILLNO.Text.Trim)
             ALPARAVAL.Add(CMBRACK.Text.Trim)
-            ALPARAVAL.Add(TXTGRIDREMARKS.Text.Trim)
-            ALPARAVAL.Add(CMBPER.Text.Trim)
-            ALPARAVAL.Add(TXTRATE.Text.Trim)
-            ALPARAVAL.Add(TXTAMOUNT.Text.Trim)
-
-
-
-
-
 
 
             OBJSM.alParaval = ALPARAVAL
@@ -557,86 +532,7 @@ Public Class OpeningStockYarn
         End Try
     End Sub
 
-    'Private Sub CMBRACK_Validated(sender As Object, e As EventArgs) Handles CMBRACK.Validated
-    '    Try
-    '        If ClientName = "VAISHALI" And cmbtype.Text.Trim = "GODOWNSTOCKYARN" Then
-    '            'FETCH CONEWT FROM MILLMASTER
-    '            If Val(TXTWT.Text.Trim) = 0 And Val(TXTCONES.Text.Trim) <> 0 And CMBMILL.Text.Trim <> "" Then
-    '                Dim OBJCMN As New ClsCommon
-    '                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MILL_REMARK,0) AS CONEWT", "", "MILLMASTER ", " AND MILL_NAME = '" & CMBMILL.Text.Trim & "' AND MILL_YEARID = " & YearId)
-    '                If DT.Rows.Count > 0 Then TXTWT.Text = Format(Val(TXTCONES.Text.Trim) * Val(DT.Rows(0).Item("CONEWT")), "0.00")
-    '            End If
-    '        End If
-
-
-    '        If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
-    '            If ClientName <> "VAISHALI" And Val(TXTCONES.Text.Trim) = 0 Then Exit Sub
-    '            If cmbtype.Text.Trim = "GODOWNSTOCKYARN" Then
-    '                If CMBGODOWN.Text.Trim <> "" Then
-    '                    CMBPROCESS.Text = ""
-    '                    SAVE()
-    '                    CLEAR = True
-    '                    fillgrid()
-    '                Else
-    '                    MsgBox("Enter Proper Details")
-    '                    Exit Sub
-    '                End If
-    '            ElseIf cmbtype.Text = "JOBBERSTOCKYARN" Then
-    '                If CMBTONAME.Text.Trim <> "" And CMBPROCESS.Text.Trim <> "" Then
-    '                    CMBGODOWN.Text = ""
-    '                    SAVE()
-    '                    CLEAR = True
-    '                    fillgrid()
-    '                Else
-    '                    MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
-    '                    Exit Sub
-    '                End If
-    '            End If
-    '        Else
-    '            MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
-    '            Exit Sub
-    '        End If
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-
-    Private Sub TXTRATE_KeyPress(sender As Object, e As KeyPressEventArgs)
-        numdotkeypress(e, sender, Me)
-    End Sub
-    Sub total()
-        Try
-            If gridstock.RowCount > 0 Then
-                For Each row As DataGridViewRow In gridstock.Rows
-                    If row.Cells(GPER.Index).EditedFormattedValue = "Wt" Then
-                        row.Cells(GAMOUNT.Index).Value = (row.Cells(GWT.Index).EditedFormattedValue * row.Cells(GRATE.Index).EditedFormattedValue)
-                    ElseIf row.Cells(GPER.Index).EditedFormattedValue = "Bags" Then
-                        row.Cells(GAMOUNT.Index).Value = (row.Cells(GBAGS.Index).EditedFormattedValue * row.Cells(GRATE.Index).EditedFormattedValue)
-                    End If
-                    'row.Cells(GAMOUNT.Index).Value = (row.Cells(gMtrs.Index).EditedFormattedValue * row.Cells(GRATE.Index).EditedFormattedValue)
-                Next
-            End If
-            'TXTAMOUNT.Text = Val(txtMtrs.Text.Trim) * Val(TXTRATE.Text.Trim)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-    Private Sub TXTWT_Validated(sender As Object, e As EventArgs) Handles TXTWT.Validated
-        total()
-    End Sub
-    Private Sub CMBPER_Validating(sender As Object, e As CancelEventArgs) Handles CMBPER.Validating
-        Try
-            If CMBPER.Text = "Bags" Then
-                TXTAMOUNT.Text = Val(TXTBAGS.Text) * Val(TXTRATE.Text)
-            Else
-                TXTAMOUNT.Text = Val(TXTWT.Text) * Val(TXTRATE.Text)
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTAMOUNT_Validated(sender As Object, e As EventArgs) Handles TXTAMOUNT.Validated
+    Private Sub CMBRACK_Validated(sender As Object, e As EventArgs) Handles CMBRACK.Validated
         Try
             If ClientName = "VAISHALI" And cmbtype.Text.Trim = "GODOWNSTOCKYARN" Then
                 'FETCH CONEWT FROM MILLMASTER

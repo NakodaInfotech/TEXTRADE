@@ -23,22 +23,18 @@ Partial Class OpeningStockYarn
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.TXTTO = New System.Windows.Forms.TextBox()
         Me.LBLTO = New System.Windows.Forms.Label()
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
         Me.LBLFROM = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TXTGRIDREMARKS = New System.Windows.Forms.TextBox()
-        Me.TXTAMOUNT = New System.Windows.Forms.TextBox()
-        Me.TXTRATE = New System.Windows.Forms.TextBox()
-        Me.CMBPER = New System.Windows.Forms.ComboBox()
         Me.CMBRACK = New System.Windows.Forms.ComboBox()
         Me.TXTBILLNO = New System.Windows.Forms.TextBox()
         Me.TXTREMARKS = New System.Windows.Forms.TextBox()
@@ -66,10 +62,6 @@ Partial Class OpeningStockYarn
         Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCONES = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRACK = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GOUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GOUTBAGS = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -93,7 +85,6 @@ Partial Class OpeningStockYarn
         Me.openingdate = New System.Windows.Forms.DateTimePicker()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridstock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +94,7 @@ Partial Class OpeningStockYarn
         'BlendPanel1
         '
         Me.BlendPanel1.AutoSize = True
+        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.TXTTO)
         Me.BlendPanel1.Controls.Add(Me.LBLTO)
         Me.BlendPanel1.Controls.Add(Me.TXTBARCODE)
@@ -175,10 +167,6 @@ Partial Class OpeningStockYarn
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
-        Me.Panel1.Controls.Add(Me.TXTGRIDREMARKS)
-        Me.Panel1.Controls.Add(Me.TXTAMOUNT)
-        Me.Panel1.Controls.Add(Me.TXTRATE)
-        Me.Panel1.Controls.Add(Me.CMBPER)
         Me.Panel1.Controls.Add(Me.CMBRACK)
         Me.Panel1.Controls.Add(Me.TXTBILLNO)
         Me.Panel1.Controls.Add(Me.TXTREMARKS)
@@ -200,46 +188,6 @@ Partial Class OpeningStockYarn
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1250, 493)
         Me.Panel1.TabIndex = 1
-        '
-        'TXTGRIDREMARKS
-        '
-        Me.TXTGRIDREMARKS.BackColor = System.Drawing.Color.White
-        Me.TXTGRIDREMARKS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTGRIDREMARKS.Location = New System.Drawing.Point(1533, 5)
-        Me.TXTGRIDREMARKS.Name = "TXTGRIDREMARKS"
-        Me.TXTGRIDREMARKS.Size = New System.Drawing.Size(120, 22)
-        Me.TXTGRIDREMARKS.TabIndex = 36
-        '
-        'TXTAMOUNT
-        '
-        Me.TXTAMOUNT.BackColor = System.Drawing.Color.Linen
-        Me.TXTAMOUNT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTAMOUNT.Location = New System.Drawing.Point(1793, 5)
-        Me.TXTAMOUNT.Name = "TXTAMOUNT"
-        Me.TXTAMOUNT.ReadOnly = True
-        Me.TXTAMOUNT.Size = New System.Drawing.Size(80, 22)
-        Me.TXTAMOUNT.TabIndex = 35
-        Me.TXTAMOUNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTRATE
-        '
-        Me.TXTRATE.BackColor = System.Drawing.Color.White
-        Me.TXTRATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE.Location = New System.Drawing.Point(1713, 5)
-        Me.TXTRATE.Name = "TXTRATE"
-        Me.TXTRATE.Size = New System.Drawing.Size(80, 22)
-        Me.TXTRATE.TabIndex = 34
-        Me.TXTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'CMBPER
-        '
-        Me.CMBPER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CMBPER.FormattingEnabled = True
-        Me.CMBPER.Items.AddRange(New Object() {"Mtrs", "Qty"})
-        Me.CMBPER.Location = New System.Drawing.Point(1653, 4)
-        Me.CMBPER.Name = "CMBPER"
-        Me.CMBPER.Size = New System.Drawing.Size(60, 23)
-        Me.CMBPER.TabIndex = 33
         '
         'CMBRACK
         '
@@ -335,28 +283,28 @@ Partial Class OpeningStockYarn
         Me.gridstock.AllowUserToDeleteRows = False
         Me.gridstock.AllowUserToResizeColumns = False
         Me.gridstock.AllowUserToResizeRows = False
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black
-        Me.gridstock.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.gridstock.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.gridstock.BackgroundColor = System.Drawing.Color.White
         Me.gridstock.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.gridstock.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.gridstock.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.gridstock.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridstock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridstock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GNO, Me.GLOTNO, Me.GYARNQUALITY, Me.GMILL, Me.GDESIGN, Me.GSHADE, Me.GPROCESS, Me.GREMARKS, Me.GLRNO, Me.GLRDATE, Me.GBILLNO, Me.gtoname, Me.GGODOWN, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRACK, Me.GGRIDREMARKS, Me.GPER, Me.GRATE, Me.GAMOUNT, Me.GBARCODE, Me.GOUTWT, Me.GOUTBAGS, Me.GDONE})
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridstock.DefaultCellStyle = DataGridViewCellStyle11
+        Me.gridstock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GNO, Me.GLOTNO, Me.GYARNQUALITY, Me.GMILL, Me.GDESIGN, Me.GSHADE, Me.GPROCESS, Me.GREMARKS, Me.GLRNO, Me.GLRDATE, Me.GBILLNO, Me.gtoname, Me.GGODOWN, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRACK, Me.GBARCODE, Me.GOUTWT, Me.GOUTBAGS, Me.GDONE})
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridstock.DefaultCellStyle = DataGridViewCellStyle5
         Me.gridstock.GridColor = System.Drawing.SystemColors.Control
         Me.gridstock.Location = New System.Drawing.Point(3, 27)
         Me.gridstock.MultiSelect = False
@@ -365,14 +313,14 @@ Partial Class OpeningStockYarn
         Me.gridstock.RowHeadersVisible = False
         Me.gridstock.RowHeadersWidth = 30
         Me.gridstock.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White
-        Me.gridstock.RowsDefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
+        Me.gridstock.RowsDefaultCellStyle = DataGridViewCellStyle6
         Me.gridstock.RowTemplate.Height = 20
         Me.gridstock.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridstock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.gridstock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gridstock.Size = New System.Drawing.Size(1946, 448)
+        Me.gridstock.Size = New System.Drawing.Size(1679, 448)
         Me.gridstock.TabIndex = 14
         Me.gridstock.TabStop = False
         '
@@ -502,8 +450,8 @@ Partial Class OpeningStockYarn
         '
         'GBAGS
         '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBAGS.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBAGS.DefaultCellStyle = DataGridViewCellStyle3
         Me.GBAGS.HeaderText = "Bags"
         Me.GBAGS.Name = "GBAGS"
         Me.GBAGS.ReadOnly = True
@@ -513,8 +461,8 @@ Partial Class OpeningStockYarn
         '
         'GWT
         '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GWT.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GWT.DefaultCellStyle = DataGridViewCellStyle4
         Me.GWT.HeaderText = "Wt"
         Me.GWT.Name = "GWT"
         Me.GWT.ReadOnly = True
@@ -539,34 +487,6 @@ Partial Class OpeningStockYarn
         Me.GRACK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRACK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GRACK.Width = 80
-        '
-        'GGRIDREMARKS
-        '
-        Me.GGRIDREMARKS.HeaderText = "Remarks"
-        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
-        Me.GGRIDREMARKS.ReadOnly = True
-        Me.GGRIDREMARKS.Width = 120
-        '
-        'GPER
-        '
-        Me.GPER.HeaderText = "Per"
-        Me.GPER.Name = "GPER"
-        Me.GPER.ReadOnly = True
-        Me.GPER.Width = 60
-        '
-        'GRATE
-        '
-        Me.GRATE.HeaderText = "Rate"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.ReadOnly = True
-        Me.GRATE.Width = 80
-        '
-        'GAMOUNT
-        '
-        Me.GAMOUNT.HeaderText = "Amount"
-        Me.GAMOUNT.Name = "GAMOUNT"
-        Me.GAMOUNT.ReadOnly = True
-        Me.GAMOUNT.Width = 80
         '
         'GBARCODE
         '
@@ -823,15 +743,6 @@ Partial Class OpeningStockYarn
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.Color.White
-        Me.TextBox1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(1533, 5)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(120, 22)
-        Me.TextBox1.TabIndex = 36
-        '
         'OpeningStockYarn
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -905,17 +816,8 @@ Partial Class OpeningStockYarn
     Friend WithEvents GWT As DataGridViewTextBoxColumn
     Friend WithEvents GCONES As DataGridViewTextBoxColumn
     Friend WithEvents GRACK As DataGridViewTextBoxColumn
-    Friend WithEvents GGRIDREMARKS As DataGridViewTextBoxColumn
-    Friend WithEvents GPER As DataGridViewTextBoxColumn
-    Friend WithEvents GRATE As DataGridViewTextBoxColumn
-    Friend WithEvents GAMOUNT As DataGridViewTextBoxColumn
     Friend WithEvents GBARCODE As DataGridViewTextBoxColumn
     Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
     Friend WithEvents GOUTBAGS As DataGridViewTextBoxColumn
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
-    Friend WithEvents TXTAMOUNT As TextBox
-    Friend WithEvents TXTRATE As TextBox
-    Friend WithEvents CMBPER As ComboBox
-    Friend WithEvents TXTGRIDREMARKS As TextBox
-    Friend WithEvents TextBox1 As TextBox
 End Class
