@@ -45,6 +45,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +82,7 @@ Partial Class YarnInterGodownTransferDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GFROMGODOWN, Me.GTOGODOWN, Me.GTRANSPORT, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GLOTNO, Me.GLRNO, Me.GCOLOR, Me.GBAGS, Me.GWT, Me.GCONES})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GFROMGODOWN, Me.GTOGODOWN, Me.GTRANSPORT, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GLOTNO, Me.GLRNO, Me.GCOLOR, Me.GBAGS, Me.GWT, Me.GCONES, Me.GBARCODE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -288,6 +289,14 @@ Partial Class YarnInterGodownTransferDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 14
+        '
         'YarnInterGodownTransferDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -332,4 +341,5 @@ Partial Class YarnInterGodownTransferDetails
     Friend WithEvents GCONES As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
