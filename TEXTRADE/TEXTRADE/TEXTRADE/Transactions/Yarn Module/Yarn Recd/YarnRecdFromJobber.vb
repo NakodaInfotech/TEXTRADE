@@ -480,14 +480,14 @@ CHECKNEXTLINE:
 
 
 
-            ' If EDIT = False And (ClientName = "VAISHALI" Or ClientName = "KARAN" Or ClientName = "NAYRA" Or ClientName = "AKASHDEEP" Or ClientName = "SWPL") Then
-            If MsgBox("Issue Yarn Directly?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            If EDIT = False And (ClientName = "VAISHALI" Or ClientName = "KARAN" Or ClientName = "NAYRA" Or ClientName = "AKASHDEEP") Then
+                If MsgBox("Issue Yarn Directly?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                     Dim OBJISSUE As New YarnDirectIssueJobber
                     OBJISSUE.ShowDialog()
                     If OBJISSUE.CMBJOBBER.Text.Trim = "" Then GoTo LINE1
                     DIRECTISSUEJOBBER(OBJISSUE.CMBJOBBER.Text.Trim, OBJISSUE.CMBPROCESS.Text.Trim, OBJISSUE.txtremarks.Text.Trim)
                 End If
-            'End If
+            End If
 
 LINE1:
 
