@@ -190,6 +190,7 @@ Partial Class YarnRecd
         Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.LBLYARN = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -208,6 +209,7 @@ Partial Class YarnRecd
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.LBLYARN)
         Me.BlendPanel1.Controls.Add(Me.Label9)
         Me.BlendPanel1.Controls.Add(Me.TXTVEHICLENO)
         Me.BlendPanel1.Controls.Add(Me.TXTHAMALICHARGES)
@@ -1958,6 +1960,18 @@ Partial Class YarnRecd
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'LBLYARN
+        '
+        Me.LBLYARN.AutoSize = True
+        Me.LBLYARN.BackColor = System.Drawing.Color.Transparent
+        Me.LBLYARN.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLYARN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LBLYARN.Location = New System.Drawing.Point(4, 24)
+        Me.LBLYARN.Name = "LBLYARN"
+        Me.LBLYARN.Size = New System.Drawing.Size(171, 23)
+        Me.LBLYARN.TabIndex = 431
+        Me.LBLYARN.Text = "Yarn Recd Purchaser"
+        '
         'YarnRecd
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2138,4 +2152,5 @@ Partial Class YarnRecd
     Friend WithEvents GBARCODE As DataGridViewTextBoxColumn
     Friend WithEvents CMBPER As ComboBox
     Friend WithEvents LBLTOTALAMT As Label
+    Friend WithEvents LBLYARN As Label
 End Class
