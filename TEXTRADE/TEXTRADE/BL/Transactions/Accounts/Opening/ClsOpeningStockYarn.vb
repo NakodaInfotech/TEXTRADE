@@ -81,6 +81,14 @@ Public Class ClsOpeningStockYarn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -156,6 +164,14 @@ Public Class ClsOpeningStockYarn
                 .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@SMNO", alParaval(I)))

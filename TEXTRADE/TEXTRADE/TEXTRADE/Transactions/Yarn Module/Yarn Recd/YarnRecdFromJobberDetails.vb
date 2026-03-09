@@ -1,4 +1,5 @@
 ﻿
+Imports System.IO
 Imports BL
 
 Public Class YarnRecdFromJobberDetails
@@ -35,7 +36,7 @@ Public Class YarnRecdFromJobberDetails
                 Exit Sub
             End If
 
-            fillgrid()
+            FILLGRID()
 
         Catch ex As Exception
             Throw ex
@@ -46,8 +47,8 @@ Public Class YarnRecdFromJobberDetails
         Try
             Dim OBJYARN As New ClsYarnRecdFromJobber
             Dim DT As DataTable = OBJYARN.selectYARN(0, CmpId, 0, YearId, "")
-            gridbilldetails.DataSource = dt
-            If dt.Rows.Count > 0 Then
+            gridbilldetails.DataSource = DT
+            If DT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
                 gridbill.TopRowIndex = gridbill.RowCount - 15
             End If
@@ -95,6 +96,49 @@ Public Class YarnRecdFromJobberDetails
         End Try
     End Sub
 
+    Private Sub CMDSAVELAYOUT_Click(sender As Object, e As EventArgs) Handles CMDSAVELAYOUT.Click
+        Try
+            Dim layoutFileName As String = $"{Me.Name}"
+            Dim layoutPath As String = System.IO.Path.Combine(Application.StartupPath, layoutFileName)
+            gridbill.SaveLayoutToXml(layoutPath)
+            'MessageBox.Show("Layout saved as: " & layoutFileName)
+
+
+
+
+            ' Prompt user for filename
+            Dim userFileName As String = InputBox("Enter a name for the layout file (without extension):", "Save Layout", Me.Name)
+
+            ' Exit if the user cancels or enters nothing
+            If String.IsNullOrWhiteSpace(userFileName) Then
+                MessageBox.Show("Save cancelled.")
+                Exit Sub
+            End If
+
+            ' Add .xml extension and construct path
+            Dim FileName As String = $"{userFileName}.xml"
+
+            ' Save layout to file
+            gridbill.SaveLayoutToXml(layoutPath)
+            MessageBox.Show("Layout saved as: " & FileName)
+
+            ' Read file content
+            Dim xmlContent As String = File.ReadAllText(layoutPath)
+
+
+
+            Dim OBJSELECTSG As New SelectCustomLayout
+            OBJSELECTSG.FORMNAMES = layoutFileName
+            OBJSELECTSG.FILENAME = FileName
+            OBJSELECTSG.FILES = xmlContent
+            OBJSELECTSG.ShowDialog()
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub gridpayment_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
         Try
             showform(True, gridbill.GetFocusedRowCellValue("YARNNO"))
@@ -104,6 +148,7 @@ Public Class YarnRecdFromJobberDetails
     End Sub
 
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
+
         Try
             showform(True, gridbill.GetFocusedRowCellValue("YARNNO"))
         Catch ex As Exception

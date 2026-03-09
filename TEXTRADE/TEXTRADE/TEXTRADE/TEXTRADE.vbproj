@@ -8750,16 +8750,16 @@
     <Compile Include="Transactions\Yarn Module\Yarn Recd\YarnRecdFromJobberDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnKnitting.Designer.vb">
-      <DependentUpon>YarnReturnKnitting.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnJobber.Designer.vb">
+      <DependentUpon>YarnReturnJobber.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnKnitting.vb">
+    <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnJobber.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnKnittingDetails.Designer.vb">
-      <DependentUpon>YarnReturnKnittingDetails.vb</DependentUpon>
+    <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnJobberDetails.Designer.vb">
+      <DependentUpon>YarnReturnJobberDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnKnittingDetails.vb">
+    <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnJobberDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Return\YarnReturnPurchase.Designer.vb">
@@ -13973,11 +13973,11 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\YarnRecdFromJobberDetails.resx">
       <DependentUpon>YarnRecdFromJobberDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Return\YarnReturnKnitting.resx">
-      <DependentUpon>YarnReturnKnitting.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Return\YarnReturnJobber.resx">
+      <DependentUpon>YarnReturnJobber.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Return\YarnReturnKnittingDetails.resx">
-      <DependentUpon>YarnReturnKnittingDetails.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Return\YarnReturnJobberDetails.resx">
+      <DependentUpon>YarnReturnJobberDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Return\YarnReturnPurchase.resx">
       <DependentUpon>YarnReturnPurchase.vb</DependentUpon>

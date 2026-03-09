@@ -1,10 +1,13 @@
 ﻿
-Imports System.IO
-Imports BL
 
-Public Class YarnIssueDetails
+Imports BL
+Imports System.IO
+Imports System.Windows.Forms
+
+Public Class YarnReturnJobberDetails
+
     Public EDIT As Boolean
-    Dim TEMPYARNNO As Integer
+    Dim temppreqno As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
@@ -25,7 +28,7 @@ Public Class YarnIssueDetails
 
     Private Sub GRNDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN ISSUE'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN RECD'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -36,7 +39,8 @@ Public Class YarnIssueDetails
                 Exit Sub
             End If
 
-            fillgrid(" and dbo.YARNISSUE.YARN_yearid=" & YearId & " order by dbo.YARNISSUE.YARN_no ")
+            fillgrid(" and dbo.YARNKNITTINGRETURN.YARNRET_yearid=" & YearId & " order by dbo.YARNKNITTINGRETURN.YARNRET_NO ")
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -44,17 +48,16 @@ Public Class YarnIssueDetails
 
     Sub fillgrid(ByVal TEMPCONDITION)
         Try
-            Dim OBJDEPT As New ClsYarnIssue
-            OBJDEPT.alParaval.Add(0)
-            OBJDEPT.alParaval.Add(CmpId)
-            OBJDEPT.alParaval.Add(Locationid)
-            OBJDEPT.alParaval.Add(YearId)
-            Dim DT As DataTable = OBJDEPT.selectYARN(0, CmpId, Locationid, YearId)
-            gridbilldetails.DataSource = DT
+            Dim objclsCMST As New ClsCommonMaster
+            Dim dt As DataTable = objclsCMST.search(" ISNULL(YARNKNITTINGRETURN.YARNRET_NO, 0) AS SRNO, ISNULL(YARNKNITTINGRETURN.YARNRET_date, GETDATE()) AS DATE, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(YARNKNITTINGRETURN.YARNRET_CHALLANNO, '') AS CHALLANNO, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(YARNKNITTINGRETURN.YARNRET_TOTALBAGS, 0) AS TOTALBAGS, ISNULL(YARNKNITTINGRETURN.YARNRET_TOTALWT, 0) AS TOTALWT, ISNULL(YARNKNITTINGRETURN.YARNRET_TOTALCONES, 0) AS TOTALCONES, ISNULL(YARNKNITTINGRETURN.YARNRET_remarks, '') AS REMARKS, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(PROCESSMASTER.PROCESS_NAME, '') AS PROCESS, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS YARNQUALITY, ISNULL(MILLMASTER.MILL_NAME, '') AS MILL, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(YARNKNITTINGRETURN_DESC.YARNRET_BARCODE, '') AS BARCODE, ISNULL(YARNKNITTINGRETURN_DESC.YARNRET_LOTNO, '') AS LOTNO, ISNULL(YARNKNITTINGRETURN_DESC.YARNRET_GRIDREMARKS, '') AS GRIDREMARKS, ISNULL(YARNKNITTINGRETURN_DESC.YARNRET_BAGS, 0) AS BAGS, ISNULL(YARNKNITTINGRETURN_DESC.YARNRET_WT, 0) AS WT, ISNULL(YARNKNITTINGRETURN_DESC.YARNRET_CONES, 0) AS CONES, ISNULL(YARNKNITTINGRETURN.YARNRET_VEHICLENO, '') AS VEHICLENO, ISNULL(RACKMASTER.RACK_NAME, '') AS RACK   ", "", " YARNKNITTINGRETURN INNER JOIN GODOWNMASTER ON YARNKNITTINGRETURN.YARNRET_GODOWNID = GODOWNMASTER.GODOWN_id INNER JOIN LEDGERS ON YARNKNITTINGRETURN.YARNRET_LEDGERID = LEDGERS.Acc_id INNER JOIN PROCESSMASTER ON YARNKNITTINGRETURN.YARNRET_PROCESSID = PROCESSMASTER.PROCESS_ID INNER JOIN YARNKNITTINGRETURN_DESC ON YARNKNITTINGRETURN.YARNRET_NO = YARNKNITTINGRETURN_DESC.YARNRET_NO AND  YARNKNITTINGRETURN.YARNRET_yearid = YARNKNITTINGRETURN_DESC.YARNRET_YEARID INNER JOIN YARNQUALITYMASTER ON YARNKNITTINGRETURN_DESC.YARNRET_YARNQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN RACKMASTER ON YARNKNITTINGRETURN_DESC.YARNRET_RACKID = RACKMASTER.RACK_ID LEFT OUTER JOIN MILLMASTER ON YARNKNITTINGRETURN_DESC.YARNRET_MILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN COLORMASTER ON YARNKNITTINGRETURN_DESC.YARNRET_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON YARNKNITTINGRETURN_DESC.YARNRET_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON YARNKNITTINGRETURN.YARNRET_transledgerid = TRANSLEDGERS.Acc_id   ", TEMPCONDITION)
+            gridbilldetails.DataSource = dt
+            If dt.Rows.Count > 0 Then
+                gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                gridbill.TopRowIndex = gridbill.RowCount - 15
+            End If
         Catch ex As Exception
             Throw ex
         End Try
-
     End Sub
 
     Sub showform(ByVal editval As Boolean, ByVal SRNO As Integer)
@@ -65,10 +68,10 @@ Public Class YarnIssueDetails
             End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim objGRN As New YarnIssue
+                Dim objGRN As New YarnReturnJobber
                 objGRN.MdiParent = MDIMain
                 objGRN.EDIT = editval
-                objGRN.TEMPYARNNO = SRNO
+                objGRN.TEMPYARNKNITTINGRETNO = SRNO
                 objGRN.Show()
             End If
         Catch ex As Exception
@@ -83,14 +86,6 @@ Public Class YarnIssueDetails
                 Exit Sub
             End If
             showform(False, 0)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
-        Try
-            fillgrid(" and dbo.YARNISSUE.YARN_yearid=" & YearId & " order by dbo.YARNISSUE.YARN_no ")
         Catch ex As Exception
             Throw ex
         End Try
@@ -147,6 +142,14 @@ Public Class YarnIssueDetails
         End Try
     End Sub
 
+    Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
+        Try
+            fillgrid(" and dbo.YARNKNITTINGRETURN.YARNRET_yearid=" & YearId & " order by dbo.YARNKNITTINGRETURN.YARNRET_NO ")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
             showform(True, gridbill.GetFocusedRowCellValue("SRNO"))
@@ -155,30 +158,19 @@ Public Class YarnIssueDetails
         End Try
     End Sub
 
-
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
 
-            Dim PATH As String = Application.StartupPath & "\Yarn Issue Details.XLS"
+            Dim PATH As String = Application.StartupPath & "\Yarn Return Knitting Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
-            opti.SheetName = "Yarn Issue Details"
+            opti.SheetName = "Yarn Return Knitting Details"
             gridbill.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Yarn Issue Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+            EXCELCMPHEADER(PATH, "Yarn Return Knitting Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
         Catch ex As Exception
-            MsgBox("Yarn Issue Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+            MsgBox("Yarn Return Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
 
-    Private Sub YarnIssueDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        Try
-            If ClientName = "VAISHALI" Then
-                GMACHINENO.Visible = False
-                GLRNO.Caption = "MachineNo"
-                GLRDATE.Caption = "Date"
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+
 End Class

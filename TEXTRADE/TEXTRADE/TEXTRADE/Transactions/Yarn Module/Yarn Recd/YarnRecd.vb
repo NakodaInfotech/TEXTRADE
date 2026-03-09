@@ -49,8 +49,12 @@ Public Class YarnRecd
 
         txtremarks.Clear()
         CMBRACK.Text = ""
-
-
+        txtgridremarks.Clear()
+        TXTRATE.Clear()
+        CMBPER.Text = ""
+        TXTAMT.Clear()
+        LBLTOTALAMT.Text = 0.0
+        TXTGREMARKS.Clear()
         txtuploadsrno.Clear()
         txtuploadname.Clear()
         txtuploadremarks.Clear()
@@ -102,13 +106,22 @@ Public Class YarnRecd
             LBLTOTALCONES.Text = 0.0
             LBLTOTALWT.Text = 0.0
             lbltotalqty.Text = 0.0
+            LBLTOTALAMT.Text = 0.0
+            TXTAMT.Text = 0.0
             For Each ROW As DataGridViewRow In GRIDYARN.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
                     lbltotalqty.Text = Format(Val(lbltotalqty.Text) + Val(ROW.Cells(GQTY.Index).EditedFormattedValue), "0.00")
                     LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
                     LBLTOTALCONES.Text = Format(Val(LBLTOTALCONES.Text) + Val(ROW.Cells(GCONES.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALAMT.Text = Format(Val(LBLTOTALAMT.Text) + Val(ROW.Cells(GAMOUNT.Index).EditedFormattedValue), "0.00")
                 End If
             Next
+
+            If CMBPER.Text = "Bags" Then
+                TXTAMT.Text = Val(txtqty.Text) * Val(TXTRATE.Text)
+            Else
+                TXTAMT.Text = Val(TXTWT.Text) * Val(TXTRATE.Text)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -311,6 +324,7 @@ CHECKNEXTLINE:
             alParaval.Add(TXTHAMALICHARGES.Text.Trim)
             alParaval.Add(TXTLRNO.Text.Trim)
             alParaval.Add(TXTVEHICLENO.Text.Trim)
+            alParaval.Add(Val(LBLTOTALAMT.Text.Trim))
 
 
             Dim gridsrno As String = ""
@@ -321,6 +335,7 @@ CHECKNEXTLINE:
             Dim PCOLOR As String = ""
             Dim COLOR As String = ""
             Dim GRIDLOTNO As String = ""
+            Dim GRIDREMARKS As String = ""
             Dim qty As String = ""
             Dim WT As String = ""
             Dim CONES As String = ""
@@ -330,6 +345,10 @@ CHECKNEXTLINE:
             Dim PONO As String = ""
             Dim POGRIDSRNO As String = ""
             Dim RACK As String = ""
+            Dim RATE As String = ""
+            Dim PER As String = ""
+            Dim AMOUNT As String = ""
+
             Dim BARCODE As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
@@ -343,6 +362,7 @@ CHECKNEXTLINE:
                         PCOLOR = row.Cells(GPCOLOR.Index).Value.ToString
                         COLOR = row.Cells(gcolor.Index).Value.ToString
                         GRIDLOTNO = row.Cells(GLOTNO.Index).Value.ToString
+                        GRIDREMARKS = row.Cells(GGRIDREMARKS.Index).Value.ToString
                         qty = Val(row.Cells(GQTY.Index).Value)
                         WT = Val(row.Cells(GWT.Index).Value)
                         CONES = Val(row.Cells(GCONES.Index).Value)
@@ -352,6 +372,9 @@ CHECKNEXTLINE:
                         PONO = Val(row.Cells(GPONO.Index).Value)
                         POGRIDSRNO = Val(row.Cells(GGRIDSRNO.Index).Value)
                         RACK = row.Cells(GRACK.Index).Value.ToString
+                        RATE = Val(row.Cells(GRATE.Index).Value)
+                        PER = row.Cells(GPER.Index).Value.ToString
+                        AMOUNT = Val(row.Cells(GAMOUNT.Index).Value)
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
 
                     Else
@@ -363,6 +386,7 @@ CHECKNEXTLINE:
                         PCOLOR = PCOLOR & "|" & row.Cells(GPCOLOR.Index).Value.ToString
                         COLOR = COLOR & "|" & row.Cells(gcolor.Index).Value.ToString
                         GRIDLOTNO = GRIDLOTNO & "|" & row.Cells(GLOTNO.Index).Value.ToString
+                        GRIDREMARKS = GRIDREMARKS & "|" & row.Cells(GGRIDREMARKS.Index).Value.ToString
                         qty = qty & "|" & Val(row.Cells(GQTY.Index).Value)
                         WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
                         CONES = CONES & "|" & Val(row.Cells(GCONES.Index).Value)
@@ -372,6 +396,10 @@ CHECKNEXTLINE:
                         PONO = PONO & "|" & Val(row.Cells(GPONO.Index).Value)
                         POGRIDSRNO = POGRIDSRNO & "|" & Val(row.Cells(GGRIDSRNO.Index).Value)
                         RACK = RACK & "|" & row.Cells(GRACK.Index).Value.ToString
+                        RATE = RATE & "|" & Val(row.Cells(GRATE.Index).Value)
+                        PER = PER & "|" & row.Cells(GPER.Index).Value.ToString
+                        AMOUNT = AMOUNT & "|" & Val(row.Cells(GAMOUNT.Index).Value)
+
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
 
 
@@ -388,6 +416,7 @@ CHECKNEXTLINE:
             alParaval.Add(PCOLOR)
             alParaval.Add(COLOR)
             alParaval.Add(GRIDLOTNO)
+            alParaval.Add(GRIDREMARKS)
             alParaval.Add(qty)
             alParaval.Add(WT)
             alParaval.Add(CONES)
@@ -397,6 +426,10 @@ CHECKNEXTLINE:
             alParaval.Add(PONO)
             alParaval.Add(POGRIDSRNO)
             alParaval.Add(RACK)
+            alParaval.Add(RATE)
+            alParaval.Add(PER)
+            alParaval.Add(AMOUNT)
+
             alParaval.Add(BARCODE)
 
 
@@ -548,6 +581,10 @@ LINE1:
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim LIFTDATE As String = ""
+            Dim BARCODE As String = ""
+            Dim FROMNO As String = ""
+            Dim FROMSRNO As String = ""
+            Dim FROMTYPE As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
@@ -565,7 +602,10 @@ LINE1:
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTDATE = Format(Convert.ToDateTime(YARNDATE).Date, "MM/dd/yyyy")
-
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = TXTYARNNO.Text.Trim
+                        FROMSRNO = row.Cells(GGRIDSRNO.Index).Value
+                        FROMTYPE = "YARNRECD"
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
@@ -582,6 +622,10 @@ LINE1:
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(YARNDATE).Date, "MM/dd/yyyy")
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value
+                        FROMNO = FROMNO & "|" & TXTYARNNO.Text.Trim
+                        FROMSRNO = FROMSRNO & "|" & row.Cells(GGRIDSRNO.Index).Value
+                        FROMTYPE = FROMTYPE & "|" & "YARNRECD"
 
                     End If
                 End If
@@ -601,6 +645,12 @@ LINE1:
             ALPARAVAL.Add(LRNO)
             ALPARAVAL.Add(LRDATE)
             ALPARAVAL.Add(LIFTDATE)
+            ALPARAVAL.Add(BARCODE)
+            ALPARAVAL.Add(FROMNO)
+            ALPARAVAL.Add(FROMSRNO)
+            ALPARAVAL.Add(FROMTYPE)
+
+
             ALPARAVAL.Add(0)    'CHKYARNRECD
             ALPARAVAL.Add("")    'BEAMRECDDESC
             ALPARAVAL.Add("")    'vehicle no
@@ -653,7 +703,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub GRN_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+    Private Sub GRN_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
             If errorvalid() = True Then
                 Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
@@ -682,7 +732,7 @@ LINE1:
         End If
     End Sub
 
-    Private Sub GRN_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub GRN_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN RECD'")
             USERADD = DTROW(0).Item(1)
@@ -734,7 +784,7 @@ LINE1:
 
                         cmbtrans.Text = dr("TRANSNAME").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
-                        GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNQUALITY"), dr("MILLNAME"), dr("DESIGNNO"), dr("JOBBERLOTNO"), dr("PCOLOR"), dr("COLOR"), dr("GRIDLOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, Val(dr("OUTPCS")), Val(dr("OUTMTRS")), dr("GRIDPONO").ToString, dr("POGRIDSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
+                        GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNQUALITY"), dr("MILLNAME"), dr("DESIGNNO"), dr("JOBBERLOTNO"), dr("PCOLOR"), dr("COLOR"), dr("GRIDLOTNO"), dr("GRIDREMARKS"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, Val(dr("OUTPCS")), Val(dr("OUTMTRS")), dr("GRIDPONO").ToString, dr("POGRIDSRNO").ToString, dr("RACK").ToString, Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE").ToString)
 
                     Next
                     total()
@@ -1000,7 +1050,7 @@ NEXTLINE:
                 TXTBARCODE.Text = "Y-" & Val(TXTYARNNO.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, CMBRACK.Text.Trim, TXTBARCODE.Text.Trim)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, TXTPSHADE.Text.Trim, cmbcolor.Text.Trim, TXTGRIDLOTNO.Text.Trim, TXTGREMARKS.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, CMBRACK.Text.Trim, Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), TXTBARCODE.Text.Trim)
             getsrno(GRIDYARN)
 
         ElseIf GRIDDOUBLECLICK = True Then
@@ -1013,6 +1063,7 @@ NEXTLINE:
             GRIDYARN.Item(GPCOLOR.Index, TEMPROW).Value = TXTPSHADE.Text.Trim
             GRIDYARN.Item(gcolor.Index, TEMPROW).Value = cmbcolor.Text.Trim
             GRIDYARN.Item(GLOTNO.Index, TEMPROW).Value = TXTGRIDLOTNO.Text.Trim
+            GRIDYARN.Item(GGRIDREMARKS.Index, TEMPROW).Value = TXTGREMARKS.Text.Trim
             GRIDYARN.Item(GQTY.Index, TEMPROW).Value = Format(Val(txtqty.Text.Trim), "0.00")
             GRIDYARN.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
 
@@ -1020,6 +1071,11 @@ NEXTLINE:
             GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTGRIDLRNO.Text.Trim
             GRIDYARN.Item(GLRDATE.Index, TEMPROW).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
             GRIDYARN.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
+            GRIDYARN.Item(GRATE.Index, TEMPROW).Value = Format(Val(TXTRATE.Text.Trim), "0.00")
+            GRIDYARN.Item(GPER.Index, TEMPROW).Value = CMBPER.Text.Trim
+
+            GRIDYARN.Item(GAMOUNT.Index, TEMPROW).Value = Format(Val(TXTAMT.Text.Trim), "0.00")
+
             GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
 
             GRIDDOUBLECLICK = False
@@ -1045,13 +1101,17 @@ NEXTLINE:
         TXTGRIDLRNO.Clear()
         DTLRDATE.Value = Now.Date
         TXTHSNCODE.Clear()
-
+        TXTGREMARKS.Clear()
         txtPartyMtrs.Clear()
         txtCheckPcs.Clear()
         TXTBARCODE.Clear()
         txtsrno.Text = Val(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(0).Value) + 1
         CMBYARNQUALITY.Focus()
         CMBRACK.Text = ""
+        TXTRATE.Clear()
+        CMBPER.Text = ""
+        TXTAMT.Clear()
+
         TXTBARCODE.Clear()
 
 
@@ -1175,12 +1235,18 @@ NEXTLINE:
                 TXTPSHADE.Text = GRIDYARN.Item(GPCOLOR.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 cmbcolor.Text = GRIDYARN.Item(gcolor.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTGRIDLOTNO.Text = GRIDYARN.Item(GLOTNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTGREMARKS.Text = GRIDYARN.Item(GGRIDREMARKS.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 txtqty.Text = GRIDYARN.Item(GQTY.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTWT.Text = GRIDYARN.Item(GWT.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTCONES.Text = GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTGRIDLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 DTLRDATE.Text = GRIDYARN.Item(GLRDATE.Index, GRIDYARN.CurrentRow.Index).Value
                 CMBRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTRATE.Text = GRIDYARN.Item(GRATE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                CMBPER.Text = GRIDYARN.Item(GPER.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+
+                TXTAMT.Text = GRIDYARN.Item(GAMOUNT.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+
                 TXTBARCODE.Text = GRIDYARN.Item(GBARCODE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
@@ -1622,7 +1688,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub GRN_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+    Private Sub GRN_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Shown
         Try
             If ClientName = "VAISHALI" Then
                 TXTLOTNO.Visible = False
@@ -1640,6 +1706,10 @@ LINE1:
                 TXTGRIDLOTNO.Enabled = False
                 TXTGRIDLOTNO.TabStop = False
                 TOOLUPLOADEXCEL.Visible = True
+            End If
+
+            If TYPE = "FINISH" Then
+                LBLYARN.Text = "Yarn Recd (FINISH)"
             End If
 
 
@@ -2017,35 +2087,35 @@ SKIPLINE:
 
 
     Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBRACK.Validated
-        Try
-            If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
-                'If ClientName <> "VAISHALI" Then TXTGRIDLOTNO.Text = TXTLOTNO.Text.Trim
+        'Try
+        '    If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
+        '        'If ClientName <> "VAISHALI" Then TXTGRIDLOTNO.Text = TXTLOTNO.Text.Trim
 
-                'check whether same quality and shade is present in grid or not
-                If ClientName = "VAISHALI" And cmbcolor.Text.Trim <> "" Then
-                    For Each ROW As DataGridViewRow In GRIDYARN.Rows
-                        If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And ROW.Index <> TEMPROW) Then
-                            If ROW.Cells(GYARNQUALITY.Index).Value = CMBYARNQUALITY.Text.Trim And ROW.Cells(gcolor.Index).Value = cmbcolor.Text.Trim Then
-                                If MsgBox("Quality with same Shade already present, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                            End If
-                        End If
-                    Next
-                End If
+        '        'check whether same quality and shade is present in grid or not
+        '        If ClientName = "VAISHALI" And cmbcolor.Text.Trim <> "" Then
+        '            For Each ROW As DataGridViewRow In GRIDYARN.Rows
+        '                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And ROW.Index <> TEMPROW) Then
+        '                    If ROW.Cells(GYARNQUALITY.Index).Value = CMBYARNQUALITY.Text.Trim And ROW.Cells(gcolor.Index).Value = cmbcolor.Text.Trim Then
+        '                        If MsgBox("Quality with same Shade already present, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+        '                    End If
+        '                End If
+        '            Next
+        '        End If
 
-                fillgrid()
-            ElseIf CMBYARNQUALITY.Text.Trim = "" Then
-                MsgBox("Enter Yarn Quality Name", MsgBoxStyle.Critical)
-                CMBYARNQUALITY.Focus()
-                Exit Sub
-            ElseIf Val(TXTWT.Text.Trim) <= 0 Then
-                MsgBox("Enter Weight", MsgBoxStyle.Critical)
-                TXTWT.Focus()
-                Exit Sub
-            End If
+        '        fillgrid()
+        '    ElseIf CMBYARNQUALITY.Text.Trim = "" Then
+        '        MsgBox("Enter Yarn Quality Name", MsgBoxStyle.Critical)
+        '        CMBYARNQUALITY.Focus()
+        '        Exit Sub
+        '    ElseIf Val(TXTWT.Text.Trim) <= 0 Then
+        '        MsgBox("Enter Weight", MsgBoxStyle.Critical)
+        '        TXTWT.Focus()
+        '        Exit Sub
+        '    End If
 
-        Catch ex As Exception
-            Throw ex
-        End Try
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 
     Private Sub TXTCONES_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTCONES.KeyPress
@@ -2082,6 +2152,42 @@ SKIPLINE:
     Private Sub CMBRACK_Validating(sender As Object, e As CancelEventArgs) Handles CMBRACK.Validating
         Try
             If CMBRACK.Text.Trim <> "" Then RACKVALIDATE(CMBRACK, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPER_Validating(sender As Object, e As CancelEventArgs) Handles CMBPER.Validating
+        total()
+    End Sub
+
+    Private Sub TXTAMT_Validated(sender As Object, e As EventArgs) Handles TXTAMT.Validated
+        Try
+            If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
+                'If ClientName <> "VAISHALI" Then TXTGRIDLOTNO.Text = TXTLOTNO.Text.Trim
+
+                'check whether same quality and shade is present in grid or not
+                If ClientName = "VAISHALI" And cmbcolor.Text.Trim <> "" Then
+                    For Each ROW As DataGridViewRow In GRIDYARN.Rows
+                        If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And ROW.Index <> TEMPROW) Then
+                            If ROW.Cells(GYARNQUALITY.Index).Value = CMBYARNQUALITY.Text.Trim And ROW.Cells(gcolor.Index).Value = cmbcolor.Text.Trim Then
+                                If MsgBox("Quality with same Shade already present, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                            End If
+                        End If
+                    Next
+                End If
+
+                fillgrid()
+            ElseIf CMBYARNQUALITY.Text.Trim = "" Then
+                MsgBox("Enter Yarn Quality Name", MsgBoxStyle.Critical)
+                CMBYARNQUALITY.Focus()
+                Exit Sub
+            ElseIf Val(TXTWT.Text.Trim) <= 0 Then
+                MsgBox("Enter Weight", MsgBoxStyle.Critical)
+                TXTWT.Focus()
+                Exit Sub
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try

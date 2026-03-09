@@ -47,6 +47,8 @@ Public Class ClsYarnRecdFromJobber
                
                 .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
+                I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
                 I = I + 1
@@ -98,6 +100,8 @@ Public Class ClsYarnRecdFromJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CUT", alParaval(I)))
@@ -107,6 +111,8 @@ Public Class ClsYarnRecdFromJobber
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1
@@ -183,6 +189,8 @@ Public Class ClsYarnRecdFromJobber
 
                 .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
+                I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
                 I = I + 1
@@ -229,6 +237,8 @@ Public Class ClsYarnRecdFromJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
+                I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
                 I = I + 1
@@ -239,6 +249,8 @@ Public Class ClsYarnRecdFromJobber
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1

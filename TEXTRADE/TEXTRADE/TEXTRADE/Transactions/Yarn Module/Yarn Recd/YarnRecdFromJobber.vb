@@ -30,8 +30,6 @@ Public Class YarnRecdFromJobber
         CMBTONAME.Text = ""
         CMBPROCESS.Text = ""
 
-        CMBYARNQUALITY.Text = ""
-        CMBDESIGN.Text = ""
         If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
         CMBTONAME.Text = ""
         CMBTONAME.Enabled = True
@@ -42,19 +40,15 @@ Public Class YarnRecdFromJobber
 
         TXTBALWT.Clear()
 
-        TXTLOTNO.Clear()
         txtPartyMtrs.Clear()
         dtpchallan.Value = Now.Date
         txtchallan.Clear()
-        'txtpono.Clear()
-        'podate.Value = now.date
 
         txtadd.Clear()
         YARNDATE.Text = Now.Date
-        'RECDATE.Text = now.date
 
         cmbtrans.Text = ""
-
+        TXTVEHICLENO.Clear()
         txttransref.Clear()
         txttransremarks.Clear()
 
@@ -76,16 +70,22 @@ Public Class YarnRecdFromJobber
         PBlock.Visible = False
 
         txtsrno.Text = 1
-        txtgridremarks.Clear()
+        TXTGRIDREMARKS.Clear()
         CMBYARNQUALITY.Text = ""
         CMBMILL.Text = ""
-        cmbcolor.Text = ""
+        CMBDESIGN.Text = ""
         TXTJOBBERLOTNO.Clear()
+        cmbcolor.Text = ""
+        TXTLOTNO.Clear()
+        TXTGRIDREMARKS.Clear()
         txtqty.Clear()
         TXTWT.Clear()
         TXTCUT.Clear()
         TXTMTRS.Clear()
         TXTCONES.Clear()
+        TXTLRNO.Clear()
+        CMBRACK.Text = ""
+
         GRIDYARN.RowCount = 0
         GRIDPROG.RowCount = 0
         cmbtrans.Text = ""
@@ -100,7 +100,6 @@ Public Class YarnRecdFromJobber
         LBLTOTALCONES.Text = 0
         lbltotalqty.Text = 0
         LBLTOTALWT.Text = 0
-        CMBRACK.Text = ""
 
     End Sub
 
@@ -294,6 +293,7 @@ CHECKNEXTLINE:
             alParaval.Add(Format(dtpchallan.Value.Date, "MM/dd/yyyy"))
 
             alParaval.Add(cmbtrans.Text.Trim)
+            alParaval.Add(TXTVEHICLENO.Text.Trim)
 
             alParaval.Add(Val(lbltotalqty.Text))
             alParaval.Add(Val(LBLTOTALCUT.Text))
@@ -312,18 +312,20 @@ CHECKNEXTLINE:
             alParaval.Add(0)
 
 
-            Dim gridsrno As String = ""
+            Dim GRIDSRNO As String = ""
             Dim YARNQUALITY As String = ""
             Dim MILLNAME As String = ""
             Dim DESIGN As String = ""
             Dim JOBBERLOTNO As String = ""
             Dim COLOR As String = ""
             Dim LOTNO As String = ""
+            Dim GRIDREMARKS As String = ""
             Dim qty As String = ""
             Dim CUT As String = ""
             Dim MTRS As String = ""
             Dim WT As String = ""
             Dim CONES As String = ""
+            Dim LRNO As String = ""
             Dim RACK As String = ""
             Dim BARCODE As String = ""
             Dim OUTWT As String = ""
@@ -342,11 +344,13 @@ CHECKNEXTLINE:
                         JOBBERLOTNO = row.Cells(GJOBBERLOTNO.Index).Value.ToString
                         COLOR = row.Cells(gcolor.Index).Value.ToString
                         LOTNO = row.Cells(GLOTNO.Index).Value.ToString
+                        GRIDREMARKS = row.Cells(GGRIDREMARKS.Index).Value.ToString
                         qty = Val(row.Cells(GQTY.Index).Value)
                         CUT = Val(row.Cells(GCUT.Index).Value)
                         MTRS = Val(row.Cells(GMTRS.Index).Value)
                         WT = Val(row.Cells(GWT.Index).Value)
                         CONES = Val(row.Cells(GCONES.Index).Value)
+                        LRNO = row.Cells(GLRNO.Index).Value.ToString
                         RACK = row.Cells(GRACK.Index).Value.ToString
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
                         OUTWT = Val(row.Cells(GOUTWT.Index).Value)
@@ -362,11 +366,13 @@ CHECKNEXTLINE:
                         JOBBERLOTNO = JOBBERLOTNO & "|" & row.Cells(GJOBBERLOTNO.Index).Value.ToString
                         COLOR = COLOR & "|" & row.Cells(gcolor.Index).Value.ToString
                         LOTNO = LOTNO & "|" & row.Cells(GLOTNO.Index).Value.ToString
+                        GRIDREMARKS = GRIDREMARKS & "|" & row.Cells(GGRIDREMARKS.Index).Value.ToString
                         qty = qty & "|" & Val(row.Cells(GQTY.Index).Value)
                         CUT = CUT & "|" & Val(row.Cells(GCUT.Index).Value)
                         MTRS = MTRS & "|" & Val(row.Cells(GMTRS.Index).Value)
                         WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
                         CONES = CONES & "|" & Val(row.Cells(GCONES.Index).Value)
+                        LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value.ToString
                         RACK = RACK & "|" & row.Cells(GRACK.Index).Value.ToString
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
                         OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
@@ -384,11 +390,13 @@ CHECKNEXTLINE:
             alParaval.Add(JOBBERLOTNO)
             alParaval.Add(COLOR)
             alParaval.Add(LOTNO)
+            alParaval.Add(GRIDREMARKS)
             alParaval.Add(qty)
             alParaval.Add(CUT)
             alParaval.Add(MTRS)
             alParaval.Add(WT)
             alParaval.Add(CONES)
+            alParaval.Add(LRNO)
             alParaval.Add(RACK)
             alParaval.Add(BARCODE)
             alParaval.Add(OUTWT)
@@ -532,6 +540,10 @@ LINE1:
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim LIFTDATE As String = ""
+            Dim BARCODE As String = ""
+            Dim FROMNO As String = ""
+            Dim FROMSRNO As String = ""
+            Dim FROMTYPE As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
@@ -549,6 +561,10 @@ LINE1:
                         LRNO = ""
                         LRDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
                         LIFTDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = TXTYARNNO.Text.Trim
+                        FROMSRNO = row.Cells(gsrno.Index).Value.ToString
+                        FROMTYPE = "YARNRECDJOBBER"
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
@@ -564,6 +580,10 @@ LINE1:
                         LRNO = LRNO & "|" & ""
                         LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
                         LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = FROMNO & "|" & TXTYARNNO.Text.Trim
+                        FROMSRNO = FROMSRNO & "|" & row.Cells(gsrno.Index).Value.ToString
+                        FROMTYPE = FROMTYPE & "|" & "YARNRECDJOBBER"
 
                     End If
                 End If
@@ -582,6 +602,13 @@ LINE1:
             ALPARAVAL.Add(LRNO)
             ALPARAVAL.Add(LRDATE)
             ALPARAVAL.Add(LIFTDATE)
+
+            ALPARAVAL.Add(BARCODE)
+            ALPARAVAL.Add(FROMNO)
+            ALPARAVAL.Add(FROMSRNO)
+            ALPARAVAL.Add(FROMTYPE)
+
+
             ALPARAVAL.Add(0)    'CHKYARNRECD
             ALPARAVAL.Add("")    'BEAMRECDDESC
             ALPARAVAL.Add("")    'VEHICLE NO
@@ -708,8 +735,9 @@ LINE1:
 
                         dtpchallan.Value = Format(Convert.ToDateTime(dr("CHALLANDATE")).Date, "dd/MM/yyyy")
                         cmbtrans.Text = dr("TRANSNAME").ToString
+                        TXTVEHICLENO.Text = dr("VEHICLENO").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAG")), Val(dr("DONE")))
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"), dr("LRNO"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAGS")), Val(dr("DONE")))
 
                     Next
                     total()
@@ -907,7 +935,7 @@ LINE1:
                 TXTBARCODE.Text = "YJ-" & Val(TXTYARNNO.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"), CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, TXTGRIDREMARKS.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"), TXTLRNO.Text.Trim, CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
             GETSRNO(GRIDYARN)
 
         ElseIf GRIDDOUBLECLICK = True Then
@@ -922,6 +950,8 @@ LINE1:
             GRIDYARN.Item(GMTRS.Index, TEMPROW).Value = Format(Val(TXTMTRS.Text.Trim), "0.00")
             GRIDYARN.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.000")
             GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0")
+            GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTLRNO.Text.Trim
+            GRIDYARN.Item(GGRIDREMARKS.Index, TEMPROW).Value = TXTGRIDREMARKS.Text.Trim
             GRIDYARN.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
             GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
 
@@ -934,13 +964,13 @@ LINE1:
         GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 
 
-        txtgridremarks.Clear()
         'CMBYARNQUALITY.Text = ""
         TXTJOBBERLOTNO.Clear()
         CMBMILL.Text = ""
         CMBDESIGN.Text = ""
         cmbcolor.Text = ""
         TXTLOTNO.Clear()
+        TXTGRIDREMARKS.Clear()
         txtqty.Clear()
         TXTWT.Clear()
         TXTCONES.Clear()
@@ -950,7 +980,7 @@ LINE1:
         TXTBARCODE.Clear()
         txtsrno.Text = Val(GRIDYARN.RowCount) + 1
         CMBYARNQUALITY.Focus()
-
+        TXTLRNO.Clear()
         CMBRACK.Text = ""
         TXTBARCODE.Clear()
     End Sub
@@ -1078,6 +1108,7 @@ LINE1:
                 TXTMTRS.Text = Val(GRIDYARN.Item(GMTRS.Index, GRIDYARN.CurrentRow.Index).Value)
                 TXTWT.Text = Val(GRIDYARN.Item(GWT.Index, GRIDYARN.CurrentRow.Index).Value)
                 TXTCONES.Text = Val(GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value)
+                TXTLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value
                 CMBRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTBARCODE.Text = GRIDYARN.Item(GBARCODE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
@@ -1557,7 +1588,7 @@ LINE1:
                 GQTY.HeaderText = "Box/Tube"
             End If
 
-            If ClientName = "NAYRA" Then GLOTNO.HeaderText = "Lot/Beam No"
+            If ClientName = "SWPL" Then GLRNO.HeaderText = "Box No"
         Catch ex As Exception
             Throw ex
         End Try
