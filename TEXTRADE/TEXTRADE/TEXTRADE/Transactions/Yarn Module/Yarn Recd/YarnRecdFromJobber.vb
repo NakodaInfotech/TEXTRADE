@@ -101,6 +101,12 @@ Public Class YarnRecdFromJobber
         lbltotalqty.Text = 0
         LBLTOTALWT.Text = 0
 
+        CMBPER.Text = ""
+        TXTRATE.Clear()
+        TXTAMT.Clear()
+        LBLTOTALAMT.Text = "0.00"
+
+
     End Sub
 
     Sub TOTAL()
@@ -110,6 +116,8 @@ Public Class YarnRecdFromJobber
             LBLTOTALCONES.Text = 0.0
             LBLTOTALWT.Text = 0.0
             lbltotalqty.Text = 0.0
+            LBLTOTALAMT.Text = 0.0
+            TXTAMT.Text = 0.00
             For Each ROW As DataGridViewRow In GRIDYARN.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
                     lbltotalqty.Text = Format(Val(lbltotalqty.Text) + Val(ROW.Cells(GQTY.Index).EditedFormattedValue), "0.00")
@@ -117,8 +125,16 @@ Public Class YarnRecdFromJobber
                     LBLTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text) + Val(ROW.Cells(GMTRS.Index).EditedFormattedValue), "0.00")
                     LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
                     LBLTOTALCONES.Text = Format(Val(LBLTOTALCONES.Text) + Val(ROW.Cells(GCONES.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALAMT.Text = Format(Val(LBLTOTALAMT.Text) + Val(ROW.Cells(GAMOUNT.Index).EditedFormattedValue), "0.00")
+
                 End If
             Next
+
+            If CMBPER.Text = "Bags" Then
+                TXTAMT.Text = Val(txtqty.Text) * Val(TXTRATE.Text)
+            Else
+                TXTAMT.Text = Val(TXTWT.Text) * Val(TXTRATE.Text)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -310,6 +326,7 @@ CHECKNEXTLINE:
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
+            alParaval.Add(LBLTOTALAMT.Text.Trim)
 
 
             Dim GRIDSRNO As String = ""
@@ -327,6 +344,9 @@ CHECKNEXTLINE:
             Dim CONES As String = ""
             Dim LRNO As String = ""
             Dim RACK As String = ""
+            Dim RATE As String = ""
+            Dim PER As String = ""
+            Dim AMOUNT As String = ""
             Dim BARCODE As String = ""
             Dim OUTWT As String = ""
             Dim OUTBAG As String = ""
@@ -352,6 +372,9 @@ CHECKNEXTLINE:
                         CONES = Val(row.Cells(GCONES.Index).Value)
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         RACK = row.Cells(GRACK.Index).Value.ToString
+                        RATE = Val(row.Cells(GRATE.Index).Value)
+                        PER = row.Cells(GPER.Index).Value.ToString
+                        AMOUNT = Val(row.Cells(GAMOUNT.Index).Value)
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
                         OUTWT = Val(row.Cells(GOUTWT.Index).Value)
                         OUTBAG = Val(row.Cells(GOUTBAGS.Index).Value)
@@ -374,6 +397,9 @@ CHECKNEXTLINE:
                         CONES = CONES & "|" & Val(row.Cells(GCONES.Index).Value)
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value.ToString
                         RACK = RACK & "|" & row.Cells(GRACK.Index).Value.ToString
+                        RATE = RATE & "|" & Val(row.Cells(GRATE.Index).Value)
+                        PER = PER & "|" & row.Cells(GPER.Index).Value.ToString
+                        AMOUNT = AMOUNT & "|" & Val(row.Cells(GAMOUNT.Index).Value)
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
                         OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
                         OUTBAG = OUTBAG & "|" & Val(row.Cells(GOUTBAGS.Index).Value)
@@ -398,6 +424,9 @@ CHECKNEXTLINE:
             alParaval.Add(CONES)
             alParaval.Add(LRNO)
             alParaval.Add(RACK)
+            alParaval.Add(RATE)
+            alParaval.Add(PER)
+            alParaval.Add(AMOUNT)
             alParaval.Add(BARCODE)
             alParaval.Add(OUTWT)
             alParaval.Add(OUTBAG)
@@ -738,7 +767,7 @@ LINE1:
                         TXTVEHICLENO.Text = dr("VEHICLENO").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
 
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"), dr("LRNO"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAGS")), Val(dr("DONE")))
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"), dr("LRNO"), dr("RACK").ToString, Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAGS")), Val(dr("DONE")))
 
 
                         If Val(dr("OUTBAGS")) > 0 Or Val(dr("OUTWT")) > 0 Then
@@ -943,7 +972,7 @@ LINE1:
                 TXTBARCODE.Text = "YJ-" & Val(TXTYARNNO.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, TXTGRIDREMARKS.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"), TXTLRNO.Text.Trim, CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTJOBBERLOTNO.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, TXTGRIDREMARKS.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Val(TXTCUT.Text.Trim), Val(TXTMTRS.Text.Trim), Format(Val(TXTWT.Text.Trim), "0.000"), Format(Val(TXTCONES.Text.Trim), "0"), TXTLRNO.Text.Trim, CMBRACK.Text.Trim, TXTRATE.Text.Trim, CMBPER.Text.Trim, TXTAMT.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
             GETSRNO(GRIDYARN)
 
         ElseIf GRIDDOUBLECLICK = True Then
@@ -961,6 +990,11 @@ LINE1:
             GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTLRNO.Text.Trim
             GRIDYARN.Item(GGRIDREMARKS.Index, TEMPROW).Value = TXTGRIDREMARKS.Text.Trim
             GRIDYARN.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
+            GRIDYARN.Item(GRATE.Index, TEMPROW).Value = Format(Val(TXTRATE.Text.Trim), "0.0")
+            GRIDYARN.Item(GRACK.Index, TEMPROW).Value = CMBPER.Text.Trim
+            GRIDYARN.Item(GAMOUNT.Index, TEMPROW).Value = Format(Val(TXTAMT.Text.Trim), "0.0")
+
+
             GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
 
             GRIDDOUBLECLICK = False
@@ -991,6 +1025,10 @@ LINE1:
         TXTLRNO.Clear()
         CMBRACK.Text = ""
         TXTBARCODE.Clear()
+        TXTRATE.Clear()
+        TXTAMT.Clear()
+        CMBRACK.Text = ""
+
     End Sub
 
     Private Sub cmdupload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdupload.Click
@@ -1118,6 +1156,9 @@ LINE1:
                 TXTCONES.Text = Val(GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value)
                 TXTLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value
                 CMBRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTRATE.Text = Val(GRIDYARN.Item(GRATE.Index, GRIDYARN.CurrentRow.Index).Value)
+                CMBPER.Text = Val(GRIDYARN.Item(GPER.Index, GRIDYARN.CurrentRow.Index).Value)
+                TXTAMT.Text = Val(GRIDYARN.Item(GAMOUNT.Index, GRIDYARN.CurrentRow.Index).Value)
                 TXTBARCODE.Text = GRIDYARN.Item(GBARCODE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
@@ -1622,7 +1663,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress, TXTMTRS.KeyPress, TXTCUT.KeyPress
+    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress, TXTMTRS.KeyPress, TXTCUT.KeyPress, TXTRATE.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
@@ -1733,7 +1774,7 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Sub TXTCONES_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBRACK.Validated
+    Private Sub TXTCONES_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTAMT.Validated
         Try
             If ClientName = "VAISHALI" Then
                 'FETCH CONEWT FROM MILLMASTER
@@ -1782,6 +1823,8 @@ NEXTLINE:
         End Try
     End Sub
 
+
+
     Private Sub TXTCUT_Validated(sender As Object, e As EventArgs) Handles TXTCUT.Validated
         Try
             If Val(TXTPROGNO.Text.Trim) > 0 And Val(TXTCUT.Text.Trim) > 0 Then
@@ -1789,7 +1832,7 @@ NEXTLINE:
                 Dim OBJCMN As New ClsCommon
                 Dim DT As New DataTable
                 If TXTPROGFROMTYPE.Text.Trim = "BEAMPROGRAM" Then
-                    DT = OBJCMN.search("ISNULL(BEAMPROGRAM.BEAMPRM_TOTALWT,0) AS PROGWT", "", " BEAMPROGRAM ", " AND BEAMPROGRAM.BEAMPRM_NO = " & Val(TXTPROGNO.Text.Trim) & " AND BEAMPROGRAM.BEAMPRM_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH("ISNULL(BEAMPROGRAM.BEAMPRM_TOTALWT,0) AS PROGWT", "", " BEAMPROGRAM ", " AND BEAMPROGRAM.BEAMPRM_NO = " & Val(TXTPROGNO.Text.Trim) & " AND BEAMPROGRAM.BEAMPRM_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then TXTWT.Text = Format(Val(TXTCUT.Text.Trim) * Val(DT.Rows(0).Item("PROGWT")), "0.000")
                 End If
             End If
@@ -1826,5 +1869,15 @@ NEXTLINE:
         End Try
     End Sub
 
+    Private Sub CMBPER_Validated(sender As Object, e As EventArgs) Handles CMBPER.Validated
 
+        Try
+
+            TOTAL()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
 End Class

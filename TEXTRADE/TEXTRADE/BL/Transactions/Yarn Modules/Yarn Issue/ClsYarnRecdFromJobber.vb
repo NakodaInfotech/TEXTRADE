@@ -32,24 +32,18 @@ Public Class ClsYarnRecdFromJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@TONAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@PROCESS", alParaval(I)))
                 I = I + 1
-
-
                 .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CHALLANDATE", alParaval(I)))
                 I = I + 1
-
-               
                 .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
                 I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@TOTALQTY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALCUT", alParaval(I)))
@@ -58,11 +52,6 @@ Public Class ClsYarnRecdFromJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
                 I = I + 1
-
-
-
-
-
                 .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@JONO", alParaval(I)))
@@ -73,7 +62,6 @@ Public Class ClsYarnRecdFromJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@PROGTYPE", alParaval(I)))
                 I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
@@ -81,6 +69,8 @@ Public Class ClsYarnRecdFromJobber
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
                 I = I + 1
 
 
@@ -115,6 +105,12 @@ Public Class ClsYarnRecdFromJobber
                 .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
@@ -221,6 +217,9 @@ Public Class ClsYarnRecdFromJobber
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
 
+                .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
+                I = I + 1
+
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
@@ -253,6 +252,12 @@ Public Class ClsYarnRecdFromJobber
                 .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
