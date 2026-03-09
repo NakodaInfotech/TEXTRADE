@@ -182,6 +182,12 @@ Public Class YarnInterGodownTransfer
             'Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim LIFTINGDATE As String = ""
+            Dim FROMNO As String = ""
+            Dim FROMSRNO As String = ""
+            Dim FROMTYPE As String = ""
+            Dim OUTWT As String = ""
+            Dim OUTBAGS As String = ""
+            Dim DONE As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDJO.Rows
@@ -200,15 +206,13 @@ Public Class YarnInterGodownTransfer
                         WEIGHT = row.Cells(GWT.Index).Value.ToString
                         CONES = row.Cells(GCONES.Index).Value.ToString
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
-                        'LRNO = row.Cells(GLRNO.Index).Value
-                        'LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTINGDATE = row.Cells(GLIFTINGDATE.Index).Value
-                        'BARCODE = row.Cells(GBARCODE.Index).Value.ToString
-                        'OUTPCS = row.Cells(GOUTPCS.Index).Value.ToString
-                        'OUTMTRS = row.Cells(GOUTMTRS.Index).Value.ToString
-                        'PONO = row.Cells(GPONO.Index).Value.ToString
-                        'GRIDGSRNO = row.Cells(GGRIDSRNO.Index).Value.ToString
-                        'FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
+                        FROMNO = row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
+                        OUTWT = Val(row.Cells(GOUTWT.Index).Value)
+                        OUTBAGS = Val(row.Cells(GOUTBAGS.Index).Value)
+                        If row.Cells(GDONE.Index).Value = True Then DONE = 1 Else DONE = 0
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(GSRNO.Index).Value.ToString
@@ -224,16 +228,13 @@ Public Class YarnInterGodownTransfer
                         WEIGHT = WEIGHT & "|" & row.Cells(GWT.Index).Value
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value
-                        'LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
-                        'LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTINGDATE = LIFTINGDATE & "|" & (row.Cells(GLIFTINGDATE.Index).Value)
-                        'BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
-                        'OUTPCS = OUTPCS & "|" & row.Cells(GOUTPCS.Index).Value.ToString
-                        'OUTMTRS = OUTMTRS & "|" & row.Cells(GOUTMTRS.Index).Value.ToString
-                        'PONO = PONO & "|" & row.Cells(GPONO.Index).Value.ToString
-                        'GRIDGSRNO = GRIDGSRNO & "|" & row.Cells(GGRIDSRNO.Index).Value.ToString
-                        'FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
-
+                        FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
+                        FROMSRNO = FROMSRNO & "|" & row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
+                        OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
+                        OUTBAGS = OUTBAGS & "|" & Val(row.Cells(GOUTBAGS.Index).Value)
+                        If row.Cells(GDONE.Index).Value = True Then DONE = DONE & "|" & "1" Else DONE = DONE & "|" & "0"
                     End If
                 End If
             Next
@@ -254,12 +255,12 @@ Public Class YarnInterGodownTransfer
             'alParaval.Add(LRNO)
             'alParaval.Add(LRDATE)
             alParaval.Add(LIFTINGDATE)
-            'alParaval.Add(BARCODE)
-            'alParaval.Add(OUTPCS)
-            'alParaval.Add(OUTMTRS)
-            'alParaval.Add(PONO)
-            'alParaval.Add(GRIDGSRNO)
-            'alParaval.Add(FROMTYPE)
+            alParaval.Add(FROMNO)
+            alParaval.Add(FROMSRNO)
+            alParaval.Add(FROMTYPE)
+            alParaval.Add(OUTWT)
+            alParaval.Add(OUTBAGS)
+            alParaval.Add(DONE)
 
 
 
@@ -381,7 +382,7 @@ Public Class YarnInterGodownTransfer
                         'Item Grid
 
 
-                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, dr("LRNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("BARCODE").ToString, dr("LIFTINGDATE").ToString)
+                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, dr("LRNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("BARCODE").ToString, dr("LIFTINGDATE").ToString, dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"), dr("OUTBAGS"), dr("OUTWT"), dr("DONE"))
 
 
                     Next
@@ -622,19 +623,19 @@ LINE1:
             End If
 
             Dim DTJO As New DataTable
-            Dim OBJSELECTGDN As New SelectYarnGodownTransfer
+            Dim OBJSELECTGDN As New SelectYarnStock
             OBJSELECTGDN.GODOWN = CMBFROMGODOWN.Text.Trim
             OBJSELECTGDN.ShowDialog()
             DTJO = OBJSELECTGDN.DT
             If DTJO.Rows.Count > 0 Then
                 For Each DTROWPS As DataRow In DTJO.Rows
 
-                    ''CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
-                    'For Each ROW As DataGridViewRow In GRIDJO.Rows
-                    '    If DTROWPS("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROWPS("BARCODE")) Then GoTo LINE1
-                    'Next
+                    'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
+                    For Each ROW As DataGridViewRow In GRIDJO.Rows
+                        If DTROWPS("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROWPS("BARCODE")) Then GoTo LINE1
+                    Next
 
-                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), DTROWPS("LRNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), DTROWPS("LIFTINGDATE"))
+                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), DTROWPS("LRNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), Format(Convert.ToDateTime(TXTDATE.Text).Date, "dd/MM/yyyy"), DTROWPS("BARCODE"), Val(DTROWPS("FROMNO")), Val(DTROWPS("FROMSRNO")), DTROWPS("FROMTYPE"), 0, 0, 0)
 LINE1:
                 Next
                 getsrno(GRIDJO)

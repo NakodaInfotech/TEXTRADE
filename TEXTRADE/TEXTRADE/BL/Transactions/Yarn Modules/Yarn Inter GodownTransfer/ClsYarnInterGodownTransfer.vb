@@ -86,6 +86,18 @@ Public Class ClsYarnInterGodownTransfer
 
                 .Add(New SqlClient.SqlParameter("@LIFTINGDATE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTBAGS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
+                I = I + 1
 
 
             End With
@@ -169,7 +181,18 @@ Public Class ClsYarnInterGodownTransfer
 
                 .Add(New SqlClient.SqlParameter("@LIFTINGDATE", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTBAGS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
+                I = I + 1
 
 
                 .Add(New SqlClient.SqlParameter("@TEMPGODOWNNO", alParaval(I)))

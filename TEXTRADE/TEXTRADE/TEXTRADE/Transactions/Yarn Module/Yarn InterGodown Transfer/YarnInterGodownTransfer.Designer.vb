@@ -24,14 +24,14 @@ Partial Class YarnInterGodownTransfer
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnInterGodownTransfer))
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
@@ -93,6 +93,12 @@ Partial Class YarnInterGodownTransfer
         Me.GCONES = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLIFTINGDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOUTBAGS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
@@ -396,28 +402,28 @@ Partial Class YarnInterGodownTransfer
         Me.GRIDJO.AllowUserToDeleteRows = False
         Me.GRIDJO.AllowUserToResizeColumns = False
         Me.GRIDJO.AllowUserToResizeRows = False
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDJO.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDJO.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDJO.BackgroundColor = System.Drawing.Color.White
         Me.GRIDJO.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDJO.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDJO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDJO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDJO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDJO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.GCOLOR, Me.GLOTNO, Me.GLRNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GLIFTINGDATE, Me.GBARCODE})
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDJO.DefaultCellStyle = DataGridViewCellStyle15
+        Me.GRIDJO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.GCOLOR, Me.GLOTNO, Me.GLRNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GLIFTINGDATE, Me.GBARCODE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GOUTWT, Me.GOUTBAGS, Me.GDONE})
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDJO.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRIDJO.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDJO.Location = New System.Drawing.Point(4, 3)
         Me.GRIDJO.MultiSelect = False
@@ -425,9 +431,9 @@ Partial Class YarnInterGodownTransfer
         Me.GRIDJO.RowHeadersVisible = False
         Me.GRIDJO.RowHeadersWidth = 30
         Me.GRIDJO.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDJO.RowsDefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDJO.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDJO.RowTemplate.Height = 20
         Me.GRIDJO.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDJO.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -765,8 +771,8 @@ Partial Class YarnInterGodownTransfer
         '
         'GLOTNO
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GLOTNO.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GLOTNO.DefaultCellStyle = DataGridViewCellStyle3
         Me.GLOTNO.HeaderText = "Lot No"
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.ReadOnly = True
@@ -783,8 +789,8 @@ Partial Class YarnInterGodownTransfer
         '
         'GQTY
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle4
         Me.GQTY.HeaderText = "Bags"
         Me.GQTY.Name = "GQTY"
         Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -793,8 +799,8 @@ Partial Class YarnInterGodownTransfer
         '
         'GWT
         '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GWT.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GWT.DefaultCellStyle = DataGridViewCellStyle5
         Me.GWT.HeaderText = "Weight"
         Me.GWT.Name = "GWT"
         Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -803,8 +809,8 @@ Partial Class YarnInterGodownTransfer
         '
         'GCONES
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GCONES.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GCONES.DefaultCellStyle = DataGridViewCellStyle6
         Me.GCONES.HeaderText = "Cones"
         Me.GCONES.Name = "GCONES"
         Me.GCONES.ReadOnly = True
@@ -827,6 +833,42 @@ Partial Class YarnInterGodownTransfer
         Me.GBARCODE.ReadOnly = True
         Me.GBARCODE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GBARCODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GFROMNO
+        '
+        Me.GFROMNO.HeaderText = "From No"
+        Me.GFROMNO.Name = "GFROMNO"
+        Me.GFROMNO.Visible = False
+        '
+        'GFROMSRNO
+        '
+        Me.GFROMSRNO.HeaderText = "From Srno"
+        Me.GFROMSRNO.Name = "GFROMSRNO"
+        Me.GFROMSRNO.Visible = False
+        '
+        'GFROMTYPE
+        '
+        Me.GFROMTYPE.HeaderText = "From Type"
+        Me.GFROMTYPE.Name = "GFROMTYPE"
+        Me.GFROMTYPE.Visible = False
+        '
+        'GOUTWT
+        '
+        Me.GOUTWT.HeaderText = "Out Wt"
+        Me.GOUTWT.Name = "GOUTWT"
+        Me.GOUTWT.Visible = False
+        '
+        'GOUTBAGS
+        '
+        Me.GOUTBAGS.HeaderText = "Out Bags"
+        Me.GOUTBAGS.Name = "GOUTBAGS"
+        Me.GOUTBAGS.Visible = False
+        '
+        'GDONE
+        '
+        Me.GDONE.HeaderText = "Done"
+        Me.GDONE.Name = "GDONE"
+        Me.GDONE.Visible = False
         '
         'YarnInterGodownTransfer
         '
@@ -916,4 +958,10 @@ Partial Class YarnInterGodownTransfer
     Friend WithEvents GCONES As DataGridViewTextBoxColumn
     Friend WithEvents GLIFTINGDATE As DataGridViewTextBoxColumn
     Friend WithEvents GBARCODE As DataGridViewTextBoxColumn
+    Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
+    Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
+    Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
+    Friend WithEvents GOUTBAGS As DataGridViewTextBoxColumn
+    Friend WithEvents GDONE As DataGridViewTextBoxColumn
 End Class
