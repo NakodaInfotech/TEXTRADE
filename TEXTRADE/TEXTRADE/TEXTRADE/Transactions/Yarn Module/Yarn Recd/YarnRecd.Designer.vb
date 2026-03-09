@@ -1168,7 +1168,7 @@ Partial Class YarnRecd
         Me.GRIDYARN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDYARN.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDYARN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDYARN.Size = New System.Drawing.Size(1677, 204)
+        Me.GRIDYARN.Size = New System.Drawing.Size(1747, 204)
         Me.GRIDYARN.TabIndex = 12
         Me.GRIDYARN.TabStop = False
         '
