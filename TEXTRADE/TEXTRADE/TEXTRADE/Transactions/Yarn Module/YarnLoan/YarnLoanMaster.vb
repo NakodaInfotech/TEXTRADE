@@ -107,15 +107,15 @@ Public Class YarnLoanMaster
             alParaval.Add(BARCODE)
 
 
-            Dim objclsloan As New ClsStoresLoan
+            Dim objclsloan As New ClsYarnLoan
             objclsloan.alParaval = alParaval
-
             If edit = False Then
                 If USERADD = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                IntResult = objclsloan.save()
+                Dim DTTABLE As DataTable = objclsloan.save()
+                txtloanno.Text = Val(DTTABLE.Rows(0).Item(0))
                 MessageBox.Show("Details Added")
             Else
                 alParaval.Add(TEMPloanNO)
@@ -123,9 +123,19 @@ Public Class YarnLoanMaster
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                IntResult = objclsloan.Update()
+                alParaval.Add(TEMPloanNO)
+
+                ' Change this part
+                Dim DTTABLE As DataTable = objclsloan.Update()
+
+                ' If you need an integer result from the DataTable:
+                If DTTABLE.Rows.Count > 0 Then
+                    IntResult = Val(DTTABLE.Rows(0).Item(0))  ' Or whatever column contains your result
+                End If
+
                 MsgBox("Details Updated")
             End If
+
             edit = False
             Dim TEMPMSG As Integer
             TEMPMSG = MsgBox("WISH TO PRINT", MsgBoxStyle.YesNo)
@@ -334,7 +344,7 @@ Public Class YarnLoanMaster
         txtremarks.Clear()
         cmbname.Text = ""
         gridDoubleClick = False
-
+        getmax_loan_no()
         CMBYARNQUALITY.Text = ""
         If USERGODOWN <> "" Then cmbGodown.Text = USERGODOWN Else cmbGodown.Text = ""
         txtadd.Clear()
@@ -371,7 +381,7 @@ Public Class YarnLoanMaster
     End Sub
     Sub getmax_loan_no()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(STORloan_no),0) + 1 ", "STORESLOAN", " AND STORloan_cmpid=" & CmpId & " and STORloan_LOCATIONID=" & Locationid & " and STORloan_YEARID=" & YearId)
+        DTTABLE = getmax(" isnull(max(YARNloan_no),0) + 1 ", "YARNLOAN", " AND YARNloan_cmpid=" & CmpId & " and YARNloan_LOCATIONID=" & Locationid & " and YARNloan_YEARID=" & YearId)
         If DTTABLE.Rows.Count > 0 Then
             txtloanno.Text = DTTABLE.Rows(0).Item(0)
         End If
@@ -435,7 +445,10 @@ Public Class YarnLoanMaster
             Cursor.Current = Cursors.Default
         End Try
     End Sub
-
+    Sub getmaxno()
+        Dim DTTABLE As DataTable = getmax(" isnull(max(YARNLOAN_no),0) + 1 ", "YARNLOAN", " and YARNLOAN_yearid=" & YearId)
+        If DTTABLE.Rows.Count > 0 Then txtloanno.Text = DTTABLE.Rows(0).Item(0)
+    End Sub
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
             For Each row As DataGridViewRow In grid.Rows
@@ -445,20 +458,126 @@ Public Class YarnLoanMaster
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
+    Private Sub cmddelete_Click(sender As Object, e As EventArgs) Handles cmddelete.Click
+        Dim IntResult As Integer
+        Try
+
+            If edit = True Then
+                If USERDELETE = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                If MsgBox("Delete Entry?", MsgBoxStyle.YesNo) = vbYes Then
+                    Dim alParaval As New ArrayList
+                    alParaval.Add(txtloanno.Text.Trim)
+                    alParaval.Add(CmpId)
+                    alParaval.Add(Locationid)
+                    alParaval.Add(Userid)
+                    alParaval.Add(YearId)
+
+                    Dim Clsgrn As New ClsYarnLoan()
+                    Clsgrn.alParaval = alParaval
+                    IntResult = Clsgrn.Delete()
+                    MsgBox("Yarn Deleted")
+                    clear()
+                    edit = False
+                End If
+            Else
+                MsgBox("Delete is only in Edit Mode")
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub toolprevious_Click(sender As Object, e As EventArgs) Handles toolprevious.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            Cursor.Current = Cursors.WaitCursor
+
+            GRIDYARN.RowCount = 0
+LINE1:
+            TEMPloanNO = Val(txtloanno.Text) - 1
+            If TEMPloanNO > 0 Then
+                edit = True
+                YarnLoanMaster_Load(sender, e)
+            Else
+                clear()
+                edit = False
+            End If
+            If GRIDYARN.RowCount = 0 And TEMPloanNO > 1 Then
+                txtloanno.Text = TEMPloanNO
+                GoTo LINE1
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub toolnext_Click(sender As Object, e As EventArgs) Handles toolnext.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            GRIDYARN.RowCount = 0
+LINE1:
+            TEMPloanNO = Val(txtloanno.Text) + 1
+            getmaxno()
+            Dim MAXNO As Integer = txtloanno.Text.Trim
+            clear()
+            If Val(txtloanno.Text) - 1 >= TEMPloanNO Then
+                edit = True
+                YarnLoanMaster_Load(sender, e)
+            Else
+                clear()
+                edit = False
+            End If
+            If GRIDYARN.RowCount = 0 And TEMPloanNO < MAXNO Then
+                txtloanno.Text = TEMPloanNO
+                GoTo LINE1
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub tooldelete_Click(sender As Object, e As EventArgs) Handles tooldelete.Click
+        Try
+            Call cmddelete.PerformClick()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub SaveToolStripButton_Click(sender As Object, e As EventArgs) Handles SaveToolStripButton.Click
+        Try
+            Call cmdok.PerformClick()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Sub fillgrid()
         GRIDYARN.Enabled = True
         If gridDoubleClick = False Then
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, TXTJOBBERLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, cmbrack.Text.Trim, txtbarcode.Text.Trim)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, TXTJOBBERLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, cmbrack.Text.Trim, txtbarcode.Text.Trim)
             getsrno(GRIDYARN)
         ElseIf gridDoubleClick = True Then
             GRIDYARN.Item(gsrno.Index, tempRow).Value = Val(txtsrno.Text.Trim)
             GRIDYARN.Item(GYARNQUALITY.Index, tempRow).Value = CMBYARNQUALITY.Text.Trim
             GRIDYARN.Item(GMILLNAME.Index, tempRow).Value = CMBMILL.Text.Trim
             GRIDYARN.Item(GJOBBERLOTNO.Index, tempRow).Value = TXTJOBBERLOTNO.Text.Trim
-            GRIDYARN.Item(GQTY.Index, tempRow).Value = Format(Val(txtqty.Text.Trim), "0.00")
-            GRIDYARN.Item(GWT.Index, tempRow).Value = Format(Val(TXTWT.Text.Trim), "0.00")
+            GRIDYARN.Item(GQTY.Index, tempRow).Value = Format(Val(txtqty.Text.Trim), "0")
+            GRIDYARN.Item(GWT.Index, tempRow).Value = Format(Val(TXTWT.Text.Trim), "0.000")
 
-            GRIDYARN.Item(GCONES.Index, tempRow).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
+            GRIDYARN.Item(GCONES.Index, tempRow).Value = Format(Val(TXTCONES.Text.Trim), "0")
             GRIDYARN.Item(GLRNO.Index, tempRow).Value = TXTGRIDLRNO.Text.Trim
             GRIDYARN.Item(GLRDATE.Index, tempRow).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
             GRIDYARN.Item(GRACK.Index, tempRow).Value = cmbrack.Text.Trim
@@ -509,5 +628,68 @@ Public Class YarnLoanMaster
                 LBLTOTALWT.Text = Val(LBLTOTALWT.Text) + Val(row.Cells(GWT.Index).Value)
             End If
         Next
+    End Sub
+
+    Private Sub cmbrack_Validated(sender As Object, e As EventArgs) Handles cmbrack.Validated
+        Try
+            fillgrid()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDYARN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDYARN.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete And GRIDYARN.RowCount > 0 Then
+                'dont allow user if any of the grid line is in edit mode.....
+                'cmbitemname.Text.Trim <> Val(txtqty.Text) <> 0 And Val(txtamount.Text.Trim) <> 0 And cmbqtyunit.Text.Trim <> 
+                If gridDoubleClick = True Then
+                    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
+                    Exit Sub
+                End If
+                'end of block
+                GRIDYARN.Rows.RemoveAt(GRIDYARN.CurrentRow.Index)
+                getsrno(GRIDYARN)
+                total()
+            ElseIf e.KeyCode = Keys.F5 Then
+                EDITROW()
+            ElseIf e.KeyCode = Keys.F12 And GRIDYARN.RowCount > 0 Then
+                'If gridgrn.CurrentRow.Cells(gitemname.Index).Value <> "" Then
+                '    gridgrn.Rows.Add(CloneWithValues(gridgrn.CurrentRow))
+                '    getsrno(gridgrn)
+                '    total()
+                'End If
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+    Sub EDITROW()
+        Try
+            If GRIDYARN.CurrentRow.Index >= 0 And GRIDYARN.Item(gsrno.Index, GRIDYARN.CurrentRow.Index).Value <> Nothing Then
+                gridDoubleClick = True
+                txtsrno.Text = GRIDYARN.Item(gsrno.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                CMBYARNQUALITY.Text = GRIDYARN.Item(GYARNQUALITY.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                CMBMILL.Text = GRIDYARN.Item(GMILLNAME.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+
+                TXTJOBBERLOTNO.Text = GRIDYARN.Item(GJOBBERLOTNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                txtqty.Text = GRIDYARN.Item(GQTY.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTWT.Text = GRIDYARN.Item(GWT.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTCONES.Text = GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTGRIDLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                DTLRDATE.Text = GRIDYARN.Item(GLRDATE.Index, GRIDYARN.CurrentRow.Index).Value
+                cmbrack.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                txtbarcode.Text = GRIDYARN.Item(GBARCODE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+
+                tempRow = GRIDYARN.CurrentRow.Index
+                CMBYARNQUALITY.Focus()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDYARN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDYARN.CellDoubleClick
+        EDITROW()
     End Sub
 End Class
