@@ -601,7 +601,7 @@ LINE1:
                         CONES = row.Cells(GCONES.Index).Value.ToString
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
-                        LIFTDATE = Format(Convert.ToDateTime(YARNDATE).Date, "MM/dd/yyyy")
+                        LIFTDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
                         FROMNO = TXTYARNNO.Text.Trim
                         FROMSRNO = row.Cells(GGRIDSRNO.Index).Value
@@ -621,7 +621,7 @@ LINE1:
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
-                        LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(YARNDATE).Date, "MM/dd/yyyy")
+                        LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value
                         FROMNO = FROMNO & "|" & TXTYARNNO.Text.Trim
                         FROMSRNO = FROMSRNO & "|" & row.Cells(GGRIDSRNO.Index).Value
