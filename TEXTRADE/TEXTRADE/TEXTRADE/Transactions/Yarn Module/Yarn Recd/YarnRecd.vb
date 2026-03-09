@@ -1642,6 +1642,10 @@ LINE1:
                 TOOLUPLOADEXCEL.Visible = True
             End If
 
+            If TYPE = "FINISH" Then
+                LBLYARN.Text = "Yarn Recd (FINISH)"
+            End If
+
 
 
             Me.Text = "Yarn Recd (" & TYPE & ")"

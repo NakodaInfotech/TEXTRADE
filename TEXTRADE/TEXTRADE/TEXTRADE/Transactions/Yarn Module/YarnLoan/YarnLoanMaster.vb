@@ -382,7 +382,7 @@ Public Class YarnLoanMaster
             Cursor.Current = Cursors.WaitCursor
 
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'YARN RECD'")
+            DTROW = USERRIGHTS.Select("FormName = 'YARNLOAN'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
