@@ -46,6 +46,7 @@ Public Class ClsSecurityInwardOutward
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
