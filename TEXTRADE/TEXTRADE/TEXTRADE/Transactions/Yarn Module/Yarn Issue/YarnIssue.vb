@@ -314,8 +314,8 @@ Public Class YarnIssue
 
 
             'WHEN WE ADD NEW COLUMN HERE, PLZ ADD THEM IN 
-            'YARNRECD
-            'YARN RECD FROM JOBBER ALSO
+            'YARNRECD   -- DIRECTISSUE TO JOBBBER
+            'YARN RECD FROM JOBBER ALSO  --- DIRECTISSUE TO JOBBER
 
 
             Cursor.Current = Cursors.WaitCursor
