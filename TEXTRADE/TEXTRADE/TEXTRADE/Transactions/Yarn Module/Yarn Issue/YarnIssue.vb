@@ -314,8 +314,8 @@ Public Class YarnIssue
 
 
             'WHEN WE ADD NEW COLUMN HERE, PLZ ADD THEM IN 
-            'YARNRECD
-            'YARN RECD FROM JOBBER ALSO
+            'YARNRECD   -- DIRECTISSUE TO JOBBBER
+            'YARN RECD FROM JOBBER ALSO  --- DIRECTISSUE TO JOBBER
 
 
             Cursor.Current = Cursors.WaitCursor
@@ -612,7 +612,7 @@ Public Class YarnIssue
                         If dr("LRNO") <> "" Then TEMPLRDATE = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
                         Dim TEMPLIFTDATE As String = ""
                         If dr("LRNO") <> "" Then TEMPLIFTDATE = Format(Convert.ToDateTime(dr("LIFTINGDATE")).Date, "dd/MM/yyyy")
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), TEMPLRDATE, TEMPLIFTDATE, dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), Format(Convert.ToDateTime(dr("LIFTINGDATE")).Date, "dd/MM/yyyy"), dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
 
                         If Convert.ToDecimal(dr("RECDWT")) > 0 Then
                             lbllocked.Visible = True

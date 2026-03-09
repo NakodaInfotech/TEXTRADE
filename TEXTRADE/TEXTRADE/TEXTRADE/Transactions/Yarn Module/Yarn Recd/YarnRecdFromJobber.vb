@@ -480,14 +480,14 @@ CHECKNEXTLINE:
 
 
 
-            If EDIT = False And (ClientName = "VAISHALI" Or ClientName = "KARAN" Or ClientName = "NAYRA" Or ClientName = "AKASHDEEP") Then
-                If MsgBox("Issue Yarn Directly?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            ' If EDIT = False And (ClientName = "VAISHALI" Or ClientName = "KARAN" Or ClientName = "NAYRA" Or ClientName = "AKASHDEEP" Or ClientName = "SWPL") Then
+            If MsgBox("Issue Yarn Directly?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                     Dim OBJISSUE As New YarnDirectIssueJobber
                     OBJISSUE.ShowDialog()
                     If OBJISSUE.CMBJOBBER.Text.Trim = "" Then GoTo LINE1
                     DIRECTISSUEJOBBER(OBJISSUE.CMBJOBBER.Text.Trim, OBJISSUE.CMBPROCESS.Text.Trim, OBJISSUE.txtremarks.Text.Trim)
                 End If
-            End If
+            'End If
 
 LINE1:
 
@@ -558,9 +558,9 @@ LINE1:
                         qty = row.Cells(GQTY.Index).Value.ToString
                         WT = row.Cells(GWT.Index).Value
                         CONES = row.Cells(GCONES.Index).Value.ToString
-                        LRNO = ""
-                        LRDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
-                        LIFTDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
+                        LRNO = row.Cells(GLRNO.Index).Value.ToString
+                        LRDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy")
+                        LIFTDATE = Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy")
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
                         FROMNO = TXTYARNNO.Text.Trim
                         FROMSRNO = row.Cells(gsrno.Index).Value.ToString
@@ -577,9 +577,9 @@ LINE1:
                         qty = qty & "|" & row.Cells(GQTY.Index).Value
                         WT = WT & "|" & row.Cells(GWT.Index).Value
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
-                        LRNO = LRNO & "|" & ""
-                        LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
-                        LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "MM/dd/yyyy")
+                        LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value.ToString
+                        LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy")
+                        LIFTDATE = LIFTDATE & "|" & Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy")
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
                         FROMNO = FROMNO & "|" & TXTYARNNO.Text.Trim
                         FROMSRNO = FROMSRNO & "|" & row.Cells(gsrno.Index).Value.ToString
