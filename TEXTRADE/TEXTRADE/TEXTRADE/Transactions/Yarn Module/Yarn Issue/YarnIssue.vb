@@ -1407,6 +1407,8 @@ LINE1:
         End Try
     End Sub
 
+
+
     Private Sub cmbitemname_Validating(sender As Object, e As CancelEventArgs) Handles CMBITEMNAME.Validating
         Try
             If CMBITEMNAME.Text.Trim <> "" Then itemvalidate(CMBITEMNAME, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'", "MERCHANT")
