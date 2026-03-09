@@ -71,19 +71,7 @@ Public Class ClsSecurityInwardOutward
 
 
 
-                'INGRID PARAMETERS
-                .Add(New SqlClient.SqlParameter("@INGRIDSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INITEMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INDESC", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INQTY", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INUNIT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INRATE", alParaval(I)))
-                I = I + 1
+
 
 
 
@@ -153,19 +141,6 @@ Public Class ClsSecurityInwardOutward
                 I = I + 1
 
 
-                'INGRID PARAMETERS
-                .Add(New SqlClient.SqlParameter("@INGRIDSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INITEMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INDESC", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INQTY", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INUNIT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INRATE", alParaval(I)))
-                I = I + 1
 
 
 
