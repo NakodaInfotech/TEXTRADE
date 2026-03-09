@@ -107,6 +107,7 @@ Public Class YarnRecd
             LBLTOTALWT.Text = 0.0
             lbltotalqty.Text = 0.0
             LBLTOTALAMT.Text = 0.0
+            TXTAMT.Text = 0.0
             For Each ROW As DataGridViewRow In GRIDYARN.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
                     lbltotalqty.Text = Format(Val(lbltotalqty.Text) + Val(ROW.Cells(GQTY.Index).EditedFormattedValue), "0.00")
@@ -115,6 +116,12 @@ Public Class YarnRecd
                     LBLTOTALAMT.Text = Format(Val(LBLTOTALAMT.Text) + Val(ROW.Cells(GAMOUNT.Index).EditedFormattedValue), "0.00")
                 End If
             Next
+
+            If CMBPER.Text = "Bags" Then
+                TXTAMT.Text = Val(txtqty.Text) * Val(TXTRATE.Text)
+            Else
+                TXTAMT.Text = Val(TXTWT.Text) * Val(TXTRATE.Text)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -696,7 +703,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub GRN_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+    Private Sub GRN_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
             If errorvalid() = True Then
                 Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
@@ -725,7 +732,7 @@ LINE1:
         End If
     End Sub
 
-    Private Sub GRN_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub GRN_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN RECD'")
             USERADD = DTROW(0).Item(1)
@@ -1228,12 +1235,18 @@ NEXTLINE:
                 TXTPSHADE.Text = GRIDYARN.Item(GPCOLOR.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 cmbcolor.Text = GRIDYARN.Item(gcolor.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTGRIDLOTNO.Text = GRIDYARN.Item(GLOTNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTGREMARKS.Text = GRIDYARN.Item(GGRIDREMARKS.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 txtqty.Text = GRIDYARN.Item(GQTY.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTWT.Text = GRIDYARN.Item(GWT.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTCONES.Text = GRIDYARN.Item(GCONES.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 TXTGRIDLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 DTLRDATE.Text = GRIDYARN.Item(GLRDATE.Index, GRIDYARN.CurrentRow.Index).Value
                 CMBRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTRATE.Text = GRIDYARN.Item(GRATE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                CMBPER.Text = GRIDYARN.Item(GPER.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+
+                TXTAMT.Text = GRIDYARN.Item(GAMOUNT.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+
                 TXTBARCODE.Text = GRIDYARN.Item(GBARCODE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
@@ -1675,7 +1688,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub GRN_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
+    Private Sub GRN_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Shown
         Try
             If ClientName = "VAISHALI" Then
                 TXTLOTNO.Visible = False
@@ -2141,15 +2154,7 @@ SKIPLINE:
     End Sub
 
     Private Sub CMBPER_Validating(sender As Object, e As CancelEventArgs) Handles CMBPER.Validating
-        Try
-            If CMBPER.Text = "Bags" Then
-                TXTAMT.Text = Val(txtqty.Text) * Val(TXTRATE.Text)
-            Else
-                TXTAMT.Text = Val(TXTWT.Text) * Val(TXTRATE.Text)
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
+        total()
     End Sub
 
     Private Sub TXTAMT_Validated(sender As Object, e As EventArgs) Handles TXTAMT.Validated
