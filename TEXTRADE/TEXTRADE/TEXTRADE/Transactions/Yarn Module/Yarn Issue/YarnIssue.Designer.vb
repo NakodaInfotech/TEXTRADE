@@ -239,10 +239,10 @@ Partial Class YarnIssue
         Me.TXTEWBNO.BackColor = System.Drawing.Color.White
         Me.TXTEWBNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTEWBNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTEWBNO.Location = New System.Drawing.Point(704, 48)
+        Me.TXTEWBNO.Location = New System.Drawing.Point(421, 106)
         Me.TXTEWBNO.MaxLength = 10
         Me.TXTEWBNO.Name = "TXTEWBNO"
-        Me.TXTEWBNO.Size = New System.Drawing.Size(99, 23)
+        Me.TXTEWBNO.Size = New System.Drawing.Size(216, 23)
         Me.TXTEWBNO.TabIndex = 762
         Me.TXTEWBNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -252,7 +252,7 @@ Partial Class YarnIssue
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.Black
-        Me.Label11.Location = New System.Drawing.Point(651, 52)
+        Me.Label11.Location = New System.Drawing.Point(368, 110)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(50, 15)
         Me.Label11.TabIndex = 763
@@ -263,12 +263,11 @@ Partial Class YarnIssue
         Me.TXTVEHICLENO.BackColor = System.Drawing.Color.White
         Me.TXTVEHICLENO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTVEHICLENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTVEHICLENO.Location = New System.Drawing.Point(421, 105)
+        Me.TXTVEHICLENO.Location = New System.Drawing.Point(715, 48)
         Me.TXTVEHICLENO.MaxLength = 10
         Me.TXTVEHICLENO.Name = "TXTVEHICLENO"
-        Me.TXTVEHICLENO.Size = New System.Drawing.Size(216, 23)
+        Me.TXTVEHICLENO.Size = New System.Drawing.Size(86, 23)
         Me.TXTVEHICLENO.TabIndex = 760
-        Me.TXTVEHICLENO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label7
         '
@@ -276,7 +275,7 @@ Partial Class YarnIssue
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(350, 109)
+        Me.Label7.Location = New System.Drawing.Point(649, 52)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(64, 15)
         Me.Label7.TabIndex = 761
@@ -322,7 +321,7 @@ Partial Class YarnIssue
         'TXTBEAMDESC
         '
         Me.TXTBEAMDESC.ForeColor = System.Drawing.Color.Black
-        Me.TXTBEAMDESC.Location = New System.Drawing.Point(25, 433)
+        Me.TXTBEAMDESC.Location = New System.Drawing.Point(25, 437)
         Me.TXTBEAMDESC.MaxLength = 200
         Me.TXTBEAMDESC.Multiline = True
         Me.TXTBEAMDESC.Name = "TXTBEAMDESC"
@@ -347,7 +346,7 @@ Partial Class YarnIssue
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(24, 124)
+        Me.Label2.Location = New System.Drawing.Point(24, 110)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(73, 15)
         Me.Label2.TabIndex = 754
@@ -1137,7 +1136,7 @@ Partial Class YarnIssue
         Me.CMDCLOSE.FlatAppearance.BorderSize = 0
         Me.CMDCLOSE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDCLOSE.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDCLOSE.Location = New System.Drawing.Point(578, 466)
+        Me.CMDCLOSE.Location = New System.Drawing.Point(619, 470)
         Me.CMDCLOSE.Name = "CMDCLOSE"
         Me.CMDCLOSE.Size = New System.Drawing.Size(82, 27)
         Me.CMDCLOSE.TabIndex = 17
@@ -1223,7 +1222,7 @@ Partial Class YarnIssue
         Me.cmddelete.FlatAppearance.BorderSize = 0
         Me.cmddelete.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmddelete.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmddelete.Location = New System.Drawing.Point(402, 465)
+        Me.cmddelete.Location = New System.Drawing.Point(443, 470)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(82, 27)
         Me.cmddelete.TabIndex = 15
@@ -1237,7 +1236,7 @@ Partial Class YarnIssue
         Me.CMDSELECTSTOCK.FlatAppearance.BorderSize = 0
         Me.CMDSELECTSTOCK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSELECTSTOCK.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(402, 432)
+        Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(443, 437)
         Me.CMDSELECTSTOCK.Name = "CMDSELECTSTOCK"
         Me.CMDSELECTSTOCK.Size = New System.Drawing.Size(82, 27)
         Me.CMDSELECTSTOCK.TabIndex = 12
@@ -1250,9 +1249,9 @@ Partial Class YarnIssue
         Me.GroupBox5.Controls.Add(Me.txtremarks)
         Me.GroupBox5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox5.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox5.Location = New System.Drawing.Point(760, 416)
+        Me.GroupBox5.Location = New System.Drawing.Point(766, 414)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(268, 91)
+        Me.GroupBox5.Size = New System.Drawing.Size(268, 94)
         Me.GroupBox5.TabIndex = 11
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Remarks"
@@ -1273,7 +1272,7 @@ Partial Class YarnIssue
         Me.cmdclear.FlatAppearance.BorderSize = 0
         Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdclear.Location = New System.Drawing.Point(578, 432)
+        Me.cmdclear.Location = New System.Drawing.Point(619, 437)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(82, 27)
         Me.cmdclear.TabIndex = 14
@@ -1287,7 +1286,7 @@ Partial Class YarnIssue
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdok.Location = New System.Drawing.Point(490, 432)
+        Me.cmdok.Location = New System.Drawing.Point(531, 437)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(82, 27)
         Me.cmdok.TabIndex = 13
@@ -1301,7 +1300,7 @@ Partial Class YarnIssue
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(490, 465)
+        Me.cmdexit.Location = New System.Drawing.Point(531, 470)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(82, 27)
         Me.cmdexit.TabIndex = 16
