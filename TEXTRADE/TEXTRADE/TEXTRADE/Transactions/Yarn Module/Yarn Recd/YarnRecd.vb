@@ -518,7 +518,7 @@ CHECKNEXTLINE:
 
             End If
 
-            If EDIT = False And (ClientName = "VAISHALI" Or ClientName = "KARAN" Or ClientName = "NAYRA" Or ClientName = "AKASHDEEP") Then
+            If EDIT = False And (ClientName = "VAISHALI" Or ClientName = "KARAN" Or ClientName = "NAYRA" Or ClientName = "AKASHDEEP" Or ClientName = "SWPL") Then
                 If MsgBox("Issue Yarn Directly?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                     Dim OBJISSUE As New YarnDirectIssueJobber
                     OBJISSUE.TYPE = TYPE
