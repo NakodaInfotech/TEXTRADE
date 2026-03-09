@@ -58,7 +58,6 @@ Partial Class YarnReturnJobberDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,7 +136,7 @@ Partial Class YarnReturnJobberDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GPROCESS, Me.GYARN, Me.GMILL, Me.GDESIGN, Me.GCOLOR, Me.GLOTNO, Me.GGRIDREMARKS, Me.GBAGS, Me.GWT, Me.GCONES, Me.GLRNO, Me.GRACK, Me.GBARCODE, Me.GTRANSNAME, Me.GCHALLAN, Me.GTOTALBAGS, Me.GTOTALWT, Me.GTOTALCONES, Me.GREMARKS, Me.GVEHICLENO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GPROCESS, Me.GYARN, Me.GMILL, Me.GDESIGN, Me.GCOLOR, Me.GLOTNO, Me.GGRIDREMARKS, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRACK, Me.GBARCODE, Me.GTRANSNAME, Me.GCHALLAN, Me.GTOTALBAGS, Me.GTOTALWT, Me.GTOTALCONES, Me.GREMARKS, Me.GVEHICLENO})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -277,7 +276,7 @@ Partial Class YarnReturnJobberDetails
         Me.GRACK.Name = "GRACK"
         Me.GRACK.OptionsColumn.AllowEdit = False
         Me.GRACK.Visible = True
-        Me.GRACK.VisibleIndex = 12
+        Me.GRACK.VisibleIndex = 11
         Me.GRACK.Width = 100
         '
         'GBARCODE
@@ -287,7 +286,7 @@ Partial Class YarnReturnJobberDetails
         Me.GBARCODE.Name = "GBARCODE"
         Me.GBARCODE.OptionsColumn.AllowEdit = False
         Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 13
+        Me.GBARCODE.VisibleIndex = 12
         Me.GBARCODE.Width = 80
         '
         'GTRANSNAME
@@ -296,7 +295,7 @@ Partial Class YarnReturnJobberDetails
         Me.GTRANSNAME.FieldName = "TRANSNAME"
         Me.GTRANSNAME.Name = "GTRANSNAME"
         Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 14
+        Me.GTRANSNAME.VisibleIndex = 13
         Me.GTRANSNAME.Width = 150
         '
         'GCHALLAN
@@ -305,7 +304,7 @@ Partial Class YarnReturnJobberDetails
         Me.GCHALLAN.FieldName = "CHALLANNO"
         Me.GCHALLAN.Name = "GCHALLAN"
         Me.GCHALLAN.Visible = True
-        Me.GCHALLAN.VisibleIndex = 15
+        Me.GCHALLAN.VisibleIndex = 14
         Me.GCHALLAN.Width = 70
         '
         'GTOTALBAGS
@@ -316,7 +315,7 @@ Partial Class YarnReturnJobberDetails
         Me.GTOTALBAGS.FieldName = "TOTALBAGS"
         Me.GTOTALBAGS.Name = "GTOTALBAGS"
         Me.GTOTALBAGS.Visible = True
-        Me.GTOTALBAGS.VisibleIndex = 16
+        Me.GTOTALBAGS.VisibleIndex = 15
         Me.GTOTALBAGS.Width = 60
         '
         'GTOTALWT
@@ -327,7 +326,7 @@ Partial Class YarnReturnJobberDetails
         Me.GTOTALWT.FieldName = "TOTALWT"
         Me.GTOTALWT.Name = "GTOTALWT"
         Me.GTOTALWT.Visible = True
-        Me.GTOTALWT.VisibleIndex = 17
+        Me.GTOTALWT.VisibleIndex = 16
         Me.GTOTALWT.Width = 60
         '
         'GTOTALCONES
@@ -338,7 +337,7 @@ Partial Class YarnReturnJobberDetails
         Me.GTOTALCONES.FieldName = "TOTALCONES"
         Me.GTOTALCONES.Name = "GTOTALCONES"
         Me.GTOTALCONES.Visible = True
-        Me.GTOTALCONES.VisibleIndex = 18
+        Me.GTOTALCONES.VisibleIndex = 17
         '
         'GREMARKS
         '
@@ -346,7 +345,7 @@ Partial Class YarnReturnJobberDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 19
+        Me.GREMARKS.VisibleIndex = 18
         Me.GREMARKS.Width = 180
         '
         'GVEHICLENO
@@ -356,7 +355,7 @@ Partial Class YarnReturnJobberDetails
         Me.GVEHICLENO.Name = "GVEHICLENO"
         Me.GVEHICLENO.OptionsColumn.AllowEdit = False
         Me.GVEHICLENO.Visible = True
-        Me.GVEHICLENO.VisibleIndex = 20
+        Me.GVEHICLENO.VisibleIndex = 19
         Me.GVEHICLENO.Width = 100
         '
         'ToolStrip1
@@ -416,16 +415,6 @@ Partial Class YarnReturnJobberDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select a GRN to Change"
         '
-        'GLRNO
-        '
-        Me.GLRNO.Caption = "LR.No"
-        Me.GLRNO.FieldName = "LRNO"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.OptionsColumn.AllowEdit = False
-        Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 11
-        Me.GLRNO.Width = 100
-        '
         'YarnReturnJobberDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -482,5 +471,4 @@ Partial Class YarnReturnJobberDetails
     Friend WithEvents GVEHICLENO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
-    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
