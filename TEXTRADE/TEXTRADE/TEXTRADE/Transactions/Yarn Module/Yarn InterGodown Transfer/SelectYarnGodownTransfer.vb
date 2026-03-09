@@ -46,6 +46,7 @@ Public Class SelectYarnGodownTransfer
             DT.Columns.Add("BAGS")
             DT.Columns.Add("WT")
             DT.Columns.Add("CONES")
+            DT.Columns.Add("BARCODE")
             'DT.Columns.Add("LRNO")
             DT.Columns.Add("LIFTINGDATE")
             DT.Columns.Add("GODOWN")
@@ -56,7 +57,7 @@ Public Class SelectYarnGodownTransfer
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), dtrow("LOTNO"), dtrow("BAGS"), Val(dtrow("WT")), Val(dtrow("CONES")), dtrow("LIFTINGDATE"))
+                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), dtrow("LOTNO"), dtrow("BAGS"), Val(dtrow("WT")), Val(dtrow("CONES")), dtrow("BARCODE"), dtrow("LIFTINGDATE"))
                 End If
             Next
             Me.Close()

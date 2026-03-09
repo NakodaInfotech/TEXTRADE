@@ -178,6 +178,7 @@ Public Class YarnInterGodownTransfer
             Dim BAGS As String = ""
             Dim WEIGHT As String = ""
             Dim CONES As String = ""
+            Dim BARCODE As String = ""
             'Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim LIFTINGDATE As String = ""
@@ -198,6 +199,7 @@ Public Class YarnInterGodownTransfer
                         BAGS = row.Cells(GQTY.Index).Value.ToString
                         WEIGHT = row.Cells(GWT.Index).Value.ToString
                         CONES = row.Cells(GCONES.Index).Value.ToString
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
                         'LRNO = row.Cells(GLRNO.Index).Value
                         'LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTINGDATE = row.Cells(GLIFTINGDATE.Index).Value
@@ -221,6 +223,7 @@ Public Class YarnInterGodownTransfer
                         BAGS = BAGS & "|" & row.Cells(GQTY.Index).Value
                         WEIGHT = WEIGHT & "|" & row.Cells(GWT.Index).Value
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value
                         'LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         'LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         LIFTINGDATE = LIFTINGDATE & "|" & (row.Cells(GLIFTINGDATE.Index).Value)
@@ -247,6 +250,7 @@ Public Class YarnInterGodownTransfer
             alParaval.Add(BAGS)
             alParaval.Add(WEIGHT)
             alParaval.Add(CONES)
+            alParaval.Add(BARCODE)
             'alParaval.Add(LRNO)
             'alParaval.Add(LRDATE)
             alParaval.Add(LIFTINGDATE)
@@ -377,7 +381,7 @@ Public Class YarnInterGodownTransfer
                         'Item Grid
 
 
-                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, dr("LRNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LIFTINGDATE").ToString)
+                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, dr("LRNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("BARCODE").ToString, dr("LIFTINGDATE").ToString)
 
 
                     Next
