@@ -162,25 +162,7 @@ Public Class ClsYarnLoan
         Return DTTABLE
     End Function
 
-    Public Function selectLoan() As DataTable
-        Dim dtTable As DataTable
-        Try
-
-            Dim strCommand As String = "SP_SELECTSTORESLOAN_FOR_EDIT"
-            Dim alParameter As New ArrayList
-            With alParameter
-                .Add(New SqlClient.SqlParameter("@LOANNO", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@CmpID", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@LocationID", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@YearID", alParaval(3)))
-            End With
-            dtTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
-
-        Catch ex As Exception
-            Throw ex
-        End Try
-        Return dtTable
-    End Function
+  
     Public Function selectLoan(ByVal YARNNO As Integer, ByVal Cmpid As Integer, ByVal LocationID As Integer, ByVal YearID As Integer) As DataTable
         Dim dtTable As DataTable
         Try
@@ -188,7 +170,7 @@ Public Class ClsYarnLoan
             Dim strCommand As String = "SP_SELECTYARNLOAN_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@YARNno", YARNNO))
+                .Add(New SqlClient.SqlParameter("@LOANNO", YARNNO))
                 .Add(New SqlClient.SqlParameter("@CmpID", Cmpid))
                 .Add(New SqlClient.SqlParameter("@LocationID", LocationID))
                 .Add(New SqlClient.SqlParameter("@YearID", YearID))
@@ -204,13 +186,14 @@ Public Class ClsYarnLoan
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_STORES_LOAN_DELETE"
+            Dim strCommand As String = "SP_TRANS_YARNLOAN_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@LoanNO", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@Cmpid", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@LocationID", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@YearID", alParaval(3)))
+                .Add(New SqlClient.SqlParameter("@YARNno", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@Cmpid", alParaval(2)))
+                .Add(New SqlClient.SqlParameter("@LocationID", alParaval(3)))
+                .Add(New SqlClient.SqlParameter("@userID", alParaval(4)))
+                .Add(New SqlClient.SqlParameter("@YearID", alParaval(5)))
 
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
