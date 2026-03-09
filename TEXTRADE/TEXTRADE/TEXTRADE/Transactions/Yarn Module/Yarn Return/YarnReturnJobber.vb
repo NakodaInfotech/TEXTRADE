@@ -554,7 +554,8 @@ Public Class YarnReturnJobber
 
                         GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAG")), Val(dr("DONE")))
 
-                        If Convert.ToDecimal(dr("OUTWT")) > 0 Then
+                        If Val(dr("OUTBAGS")) > 0 Or Val(dr("OUTWT")) > 0 Then
+                            GRIDYARN.Rows(GRIDYARN.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                             lbllocked.Visible = True
                             PBlock.Visible = True
                         End If

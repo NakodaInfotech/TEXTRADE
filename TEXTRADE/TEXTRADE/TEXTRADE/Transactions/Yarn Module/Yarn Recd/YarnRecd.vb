@@ -786,6 +786,12 @@ LINE1:
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
                         GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNQUALITY"), dr("MILLNAME"), dr("DESIGNNO"), dr("JOBBERLOTNO"), dr("PCOLOR"), dr("COLOR"), dr("GRIDLOTNO"), dr("GRIDREMARKS"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, Val(dr("OUTPCS")), Val(dr("OUTMTRS")), dr("GRIDPONO").ToString, dr("POGRIDSRNO").ToString, dr("RACK").ToString, Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE").ToString)
 
+                        If Val(dr("OUTPCS")) > 0 Or Val(dr("OUTMTRS")) > 0 Then
+                            GRIDYARN.Rows(GRIDYARN.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                        End If
+
                     Next
                     total()
                     Validate()

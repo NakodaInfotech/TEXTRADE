@@ -1279,5 +1279,11 @@ LINE1:
             DTLRDATE.Visible = False
         End If
 
+
+
+        If ClientName = "SWPL" Then
+            GLRNO.HeaderText = "Box No"
+        End If
+
     End Sub
 End Class
