@@ -48,6 +48,9 @@ Partial Class YarnJobOrderDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +60,7 @@ Partial Class YarnJobOrderDetails
         '
         'BlendPanel1
         '
+        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.SystemColors.InactiveCaption, System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
@@ -85,7 +89,7 @@ Partial Class YarnJobOrderDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GREFNO, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GREED, Me.GREEDSPACE, Me.GPICKS, Me.GTOTALENDS, Me.GTOTALMTRS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GPICKS, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -135,7 +139,7 @@ Partial Class YarnJobOrderDetails
         Me.GREFNO.Name = "GREFNO"
         Me.GREFNO.OptionsColumn.AllowEdit = False
         Me.GREFNO.Visible = True
-        Me.GREFNO.VisibleIndex = 3
+        Me.GREFNO.VisibleIndex = 5
         Me.GREFNO.Width = 100
         '
         'GITEMNAME
@@ -145,7 +149,7 @@ Partial Class YarnJobOrderDetails
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 4
+        Me.GITEMNAME.VisibleIndex = 3
         Me.GITEMNAME.Width = 250
         '
         'GDESIGNNO
@@ -154,8 +158,6 @@ Partial Class YarnJobOrderDetails
         Me.GDESIGNNO.FieldName = "DESIGNNO"
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.OptionsColumn.AllowEdit = False
-        Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 5
         Me.GDESIGNNO.Width = 120
         '
         'GCOLOR
@@ -165,7 +167,7 @@ Partial Class YarnJobOrderDetails
         Me.GCOLOR.Name = "GCOLOR"
         Me.GCOLOR.OptionsColumn.AllowEdit = False
         Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 6
+        Me.GCOLOR.VisibleIndex = 4
         Me.GCOLOR.Width = 120
         '
         'GREED
@@ -175,7 +177,7 @@ Partial Class YarnJobOrderDetails
         Me.GREED.Name = "GREED"
         Me.GREED.OptionsColumn.AllowEdit = False
         Me.GREED.Visible = True
-        Me.GREED.VisibleIndex = 7
+        Me.GREED.VisibleIndex = 6
         Me.GREED.Width = 100
         '
         'GREEDSPACE
@@ -185,7 +187,7 @@ Partial Class YarnJobOrderDetails
         Me.GREEDSPACE.Name = "GREEDSPACE"
         Me.GREEDSPACE.OptionsColumn.AllowEdit = False
         Me.GREEDSPACE.Visible = True
-        Me.GREEDSPACE.VisibleIndex = 8
+        Me.GREEDSPACE.VisibleIndex = 7
         Me.GREEDSPACE.Width = 100
         '
         'GPICKS
@@ -195,7 +197,7 @@ Partial Class YarnJobOrderDetails
         Me.GPICKS.Name = "GPICKS"
         Me.GPICKS.OptionsColumn.AllowEdit = False
         Me.GPICKS.Visible = True
-        Me.GPICKS.VisibleIndex = 9
+        Me.GPICKS.VisibleIndex = 8
         '
         'GTOTALENDS
         '
@@ -204,7 +206,7 @@ Partial Class YarnJobOrderDetails
         Me.GTOTALENDS.Name = "GTOTALENDS"
         Me.GTOTALENDS.OptionsColumn.AllowEdit = False
         Me.GTOTALENDS.Visible = True
-        Me.GTOTALENDS.VisibleIndex = 10
+        Me.GTOTALENDS.VisibleIndex = 9
         Me.GTOTALENDS.Width = 100
         '
         'GTOTALMTRS
@@ -216,7 +218,7 @@ Partial Class YarnJobOrderDetails
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
         Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
         Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 11
+        Me.GTOTALMTRS.VisibleIndex = 10
         Me.GTOTALMTRS.Width = 100
         '
         'CHKDONE
@@ -226,7 +228,7 @@ Partial Class YarnJobOrderDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1, Me.TOOLWARPGRIDDETAILS, Me.TOOLWEFTGRIDDETAILS})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.TOOLWARPGRIDDETAILS, Me.ToolStripSeparator1, Me.ToolStripSeparator4, Me.TOOLWEFTGRIDDETAILS, Me.ToolStripSeparator3})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -304,14 +306,33 @@ Partial Class YarnJobOrderDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
-        'JobOrderDetails
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 11
+        Me.GREMARKS.Width = 200
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
+        '
+        'YarnJobOrderDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "JobOrderDetails"
+        Me.Name = "YarnJobOrderDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "JobOrderDetails"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -352,4 +373,7 @@ Partial Class YarnJobOrderDetails
     Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TOOLWARPGRIDDETAILS As ToolStripButton
     Friend WithEvents TOOLWEFTGRIDDETAILS As ToolStripButton
+    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
 End Class

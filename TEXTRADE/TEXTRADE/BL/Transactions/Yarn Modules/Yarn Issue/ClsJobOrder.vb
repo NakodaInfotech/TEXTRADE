@@ -56,6 +56,8 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
+                I += 1
                 'warp gridmatching data serializations
                 .Add(New SqlClient.SqlParameter("@WARPGRIDSRNO", alParaval(I)))
                 I += 1
@@ -176,6 +178,8 @@ Public Class ClsJobOrder
                 .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
                 'warp gridmatching data serializations
                 .Add(New SqlClient.SqlParameter("@WARPGRIDSRNO", alParaval(I)))
@@ -301,7 +305,7 @@ Public Class ClsJobOrder
         Dim dtTable As DataTable
 
         Try
-            Dim strCommand As String = "SP_TRANS_SELECT_YARNJOBORDER_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTYARNJOBORDER_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JOBNO", JOBNO))

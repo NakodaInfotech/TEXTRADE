@@ -15,8 +15,6 @@ Public Class YarnJobOrderDetails
                 Me.Close()
             ElseIf e.KeyCode = Keys.N And e.Control = True Then
                 showform(False, 0)
-            ElseIf e.KeyCode = Windows.Forms.Keys.Enter Then
-                CMDEDIT_Click(sender, e)
             ElseIf e.Alt = True And e.KeyCode = Keys.R Then
                 Call TOOLREFRESH_Click(sender, e)
             ElseIf e.Alt = True And e.KeyCode = Keys.P Then
@@ -29,7 +27,7 @@ Public Class YarnJobOrderDetails
 
     Private Sub JobOrderDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'DESIGN MASTER'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN JOBORDER'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -47,16 +45,16 @@ Public Class YarnJobOrderDetails
         End Try
     End Sub
 
-    Sub fillgrid()
+    Sub FILLGRID()
         Try
             Dim OBJSTORE As New ClsJobOrder
             OBJSTORE.alParaval.Add(0)
             OBJSTORE.alParaval.Add(YearId)
             'Dim DT As DataTable = OBJSTORE.SelectYarnJob
             Dim objclsCMST As New ClsCommonMaster
-            Dim dt As DataTable = objclsCMST.search(" CAST(0 AS BIT) AS CHK, JOBORDER.JOB_NO AS JOBNO, ISNULL(JOBORDER.JOB_REFNO, '') AS REFNO,ISNULL(COLORMASTER.COLOR_name, '')AS COLOR, ISNULL(JOBORDER.JOB_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(DESIGNMASTER.DESIGN_NO, 0) AS DESIGNNO, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, JOBORDER.JOB_DATE AS DATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(JOBORDER.JOB_REED, 0) AS REED, ISNULL(JOBORDER.JOB_REEDSPACE, 0) AS REEDSPACE, ISNULL(JOBORDER.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER.JOB_TOTALENDS, 0) AS TOTALENDS,ISNULL(JOBORDER.JOB_TOTALMTRS, 0)AS TOTALMTRS, ISNULL(JOBORDER.JOB_OUTMTRS, 0) AS OUTMTRS,ISNULL(JOBORDER.JOB_DONE,0) AS DONE ", "", " JOBORDER LEFT OUTER JOIN LEDGERS ON JOBORDER.JOB_YEARID = LEDGERS.Acc_yearid AND JOBORDER.JOB_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER.JOB_YEARID = ITEMMASTER.item_yearid AND JOBORDER.JOB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON JOBORDER.JOB_YEARID = COLORMASTER.COLOR_yearid AND JOBORDER.JOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON JOBORDER.JOB_YEARID = DESIGNMASTER.DESIGN_yearid AND JOBORDER.JOB_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND  (JOBORDER.JOB_YEARID  = '" & YearId & "') ORDER BY JOBNO")
-            gridbilldetails.DataSource = DT
-            If DT.Rows.Count > 0 Then
+            Dim dt As DataTable = objclsCMST.search(" CAST(0 AS BIT) AS CHK, JOBORDER.JOB_NO AS JOBNO, ISNULL(JOBORDER.JOB_REFNO, '') AS REFNO,ISNULL(COLORMASTER.COLOR_name, '')AS COLOR, ISNULL(JOBORDER.JOB_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(DESIGNMASTER.DESIGN_NO, 0) AS DESIGNNO, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, JOBORDER.JOB_DATE AS DATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(JOBORDER.JOB_REED, 0) AS REED, ISNULL(JOBORDER.JOB_REEDSPACE, 0) AS REEDSPACE, ISNULL(JOBORDER.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER.JOB_TOTALENDS, 0) AS TOTALENDS,ISNULL(JOBORDER.JOB_TOTALMTRS, 0)AS TOTALMTRS, ISNULL(JOBORDER.JOB_OUTMTRS, 0) AS OUTMTRS,ISNULL(JOBORDER.JOB_DONE,0) AS DONE, ISNULL(JOBORDER.JOB_REMARKS,'') AS REMARKS ", "", " JOBORDER LEFT OUTER JOIN LEDGERS ON JOBORDER.JOB_YEARID = LEDGERS.Acc_yearid AND JOBORDER.JOB_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER.JOB_YEARID = ITEMMASTER.item_yearid AND JOBORDER.JOB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON JOBORDER.JOB_YEARID = COLORMASTER.COLOR_yearid AND JOBORDER.JOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON JOBORDER.JOB_YEARID = DESIGNMASTER.DESIGN_yearid AND JOBORDER.JOB_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND  (JOBORDER.JOB_YEARID  = '" & YearId & "') ORDER BY JOBNO")
+            gridbilldetails.DataSource = dt
+            If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
                 gridbill.TopRowIndex = gridbill.RowCount - 15
             End If
@@ -76,7 +74,7 @@ Public Class YarnJobOrderDetails
                 Dim OBJSTORES As New YarnJobOrder
                 OBJSTORES.MdiParent = MDIMain
                 OBJSTORES.EDIT = editval
-                OBJSTORES.tempdesignno = INWARDNO
+                OBJSTORES.TEMPJONO = INWARDNO
                 OBJSTORES.Show()
             End If
         Catch ex As Exception
