@@ -2065,4 +2065,25 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub TXTROLLNO_Validated(sender As Object, e As EventArgs) Handles TXTROLLNO.Validated
+        Try
+            If ClientName = "MMC" Then
+
+                If String.IsNullOrWhiteSpace(TXTROLLNO.Text) Then Exit Sub
+
+                If GETUNIQBALENO(TXTROLLNO.Text.Trim()) = True Then
+                    MessageBox.Show("Bale No [ " & TXTROLLNO.Text & " ] Already Present !",
+                                "Duplicate Bale No",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
+                    TXTROLLNO.Clear()
+                    TXTROLLNO.Focus()
+                End If
+
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
