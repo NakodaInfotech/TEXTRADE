@@ -1,11 +1,12 @@
 
-Imports System.Net.Mail
-Imports BL
-Imports System.Net
+Imports System.Data.SqlClient
 Imports System.IO
-Imports Newtonsoft.Json
-Imports System.Web
+Imports System.Net
+Imports System.Net.Mail
 Imports System.Security
+Imports System.Web
+Imports BL
+Imports Newtonsoft.Json
 Imports WAProAPI
 
 Module Functions
@@ -9676,6 +9677,7 @@ line1:
     '        Throw ex
     '    End Try
     'End Sub
+
     Sub GROUPVALIDATE(ByRef CMBNAME As ComboBox, ByRef e As System.ComponentModel.CancelEventArgs, ByRef frm As System.Windows.Forms.Form)
         Try
             Cursor.Current = Cursors.WaitCursor
@@ -9717,4 +9719,28 @@ line1:
             Cursor.Current = Cursors.Default
         End Try
     End Sub
+
+
+
+    Function GETUNIQBALENO(ByVal rollNo As String) As Boolean
+
+        Dim bln As Boolean = False
+
+        Try
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & rollNo.Trim() & "'")
+
+            If DT.Rows.Count > 0 Then
+                bln = True
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Return bln
+    End Function
+
+
+
 End Module
