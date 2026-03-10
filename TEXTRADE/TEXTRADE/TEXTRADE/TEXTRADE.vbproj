@@ -732,6 +732,12 @@
     <Compile Include="Reports\Grid Reports\Agency\AgencyOutstandingGridReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Opening Bills\OpeningBillsGrid.Designer.vb">
+      <DependentUpon>OpeningBillsGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Opening Bills\OpeningBillsGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.Designer.vb">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
     </Compile>
@@ -9304,6 +9310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyOutstandingGridReport.resx">
       <DependentUpon>AgencyOutstandingGridReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Opening Bills\OpeningBillsGrid.resx">
+      <DependentUpon>OpeningBillsGrid.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.resx">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
