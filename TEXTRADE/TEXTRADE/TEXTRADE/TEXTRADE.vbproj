@@ -2731,6 +2731,12 @@
     <Compile Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Sale\Challan\SelectStockGDNGrid.Designer.vb">
+      <DependentUpon>SelectStockGDNGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Sale\Challan\SelectStockGDNGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Sale\Sale Invoice\AutoE-Invoice.Designer.vb">
       <DependentUpon>AutoE-Invoice.vb</DependentUpon>
     </Compile>
