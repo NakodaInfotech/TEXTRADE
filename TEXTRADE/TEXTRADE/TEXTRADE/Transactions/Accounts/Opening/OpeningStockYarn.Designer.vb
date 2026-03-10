@@ -209,7 +209,7 @@ Partial Class OpeningStockYarn
         Me.TXTGRIDREMARKS.Location = New System.Drawing.Point(1533, 5)
         Me.TXTGRIDREMARKS.Name = "TXTGRIDREMARKS"
         Me.TXTGRIDREMARKS.Size = New System.Drawing.Size(120, 22)
-        Me.TXTGRIDREMARKS.TabIndex = 36
+        Me.TXTGRIDREMARKS.TabIndex = 16
         '
         'TXTAMOUNT
         '
@@ -219,7 +219,7 @@ Partial Class OpeningStockYarn
         Me.TXTAMOUNT.Name = "TXTAMOUNT"
         Me.TXTAMOUNT.ReadOnly = True
         Me.TXTAMOUNT.Size = New System.Drawing.Size(80, 22)
-        Me.TXTAMOUNT.TabIndex = 35
+        Me.TXTAMOUNT.TabIndex = 19
         Me.TXTAMOUNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTRATE
@@ -229,7 +229,7 @@ Partial Class OpeningStockYarn
         Me.TXTRATE.Location = New System.Drawing.Point(1713, 5)
         Me.TXTRATE.Name = "TXTRATE"
         Me.TXTRATE.Size = New System.Drawing.Size(80, 22)
-        Me.TXTRATE.TabIndex = 34
+        Me.TXTRATE.TabIndex = 18
         Me.TXTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBPER
@@ -240,7 +240,7 @@ Partial Class OpeningStockYarn
         Me.CMBPER.Location = New System.Drawing.Point(1653, 4)
         Me.CMBPER.Name = "CMBPER"
         Me.CMBPER.Size = New System.Drawing.Size(60, 23)
-        Me.CMBPER.TabIndex = 33
+        Me.CMBPER.TabIndex = 17
         '
         'CMBRACK
         '
@@ -252,7 +252,7 @@ Partial Class OpeningStockYarn
         Me.CMBRACK.Location = New System.Drawing.Point(1453, 4)
         Me.CMBRACK.Name = "CMBRACK"
         Me.CMBRACK.Size = New System.Drawing.Size(80, 23)
-        Me.CMBRACK.TabIndex = 14
+        Me.CMBRACK.TabIndex = 15
         '
         'TXTBILLNO
         '
@@ -261,7 +261,7 @@ Partial Class OpeningStockYarn
         Me.TXTBILLNO.Location = New System.Drawing.Point(913, 4)
         Me.TXTBILLNO.Name = "TXTBILLNO"
         Me.TXTBILLNO.Size = New System.Drawing.Size(80, 23)
-        Me.TXTBILLNO.TabIndex = 8
+        Me.TXTBILLNO.TabIndex = 9
         Me.TXTBILLNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTREMARKS
@@ -271,7 +271,7 @@ Partial Class OpeningStockYarn
         Me.TXTREMARKS.Location = New System.Drawing.Point(683, 4)
         Me.TXTREMARKS.Name = "TXTREMARKS"
         Me.TXTREMARKS.Size = New System.Drawing.Size(150, 23)
-        Me.TXTREMARKS.TabIndex = 6
+        Me.TXTREMARKS.TabIndex = 7
         Me.TXTREMARKS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtsrno
@@ -294,7 +294,7 @@ Partial Class OpeningStockYarn
         Me.TXTCONES.Location = New System.Drawing.Point(1393, 4)
         Me.TXTCONES.Name = "TXTCONES"
         Me.TXTCONES.Size = New System.Drawing.Size(60, 23)
-        Me.TXTCONES.TabIndex = 13
+        Me.TXTCONES.TabIndex = 14
         Me.TXTCONES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTBAGS
@@ -304,7 +304,7 @@ Partial Class OpeningStockYarn
         Me.TXTBAGS.Location = New System.Drawing.Point(1273, 4)
         Me.TXTBAGS.Name = "TXTBAGS"
         Me.TXTBAGS.Size = New System.Drawing.Size(60, 23)
-        Me.TXTBAGS.TabIndex = 11
+        Me.TXTBAGS.TabIndex = 12
         Me.TXTBAGS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBYARNQUALITY
@@ -318,7 +318,7 @@ Partial Class OpeningStockYarn
         Me.CMBYARNQUALITY.Location = New System.Drawing.Point(103, 4)
         Me.CMBYARNQUALITY.Name = "CMBYARNQUALITY"
         Me.CMBYARNQUALITY.Size = New System.Drawing.Size(160, 23)
-        Me.CMBYARNQUALITY.TabIndex = 1
+        Me.CMBYARNQUALITY.TabIndex = 2
         '
         'TXTLRNO
         '
@@ -327,7 +327,7 @@ Partial Class OpeningStockYarn
         Me.TXTLRNO.Location = New System.Drawing.Point(833, 4)
         Me.TXTLRNO.Name = "TXTLRNO"
         Me.TXTLRNO.Size = New System.Drawing.Size(80, 23)
-        Me.TXTLRNO.TabIndex = 7
+        Me.TXTLRNO.TabIndex = 8
         Me.TXTLRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'gridstock
@@ -373,7 +373,7 @@ Partial Class OpeningStockYarn
         Me.gridstock.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridstock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.gridstock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gridstock.Size = New System.Drawing.Size(1946, 448)
+        Me.gridstock.Size = New System.Drawing.Size(2005, 448)
         Me.gridstock.TabIndex = 14
         Me.gridstock.TabStop = False
         '
@@ -609,7 +609,7 @@ Partial Class OpeningStockYarn
         Me.CMBSHADE.Location = New System.Drawing.Point(503, 4)
         Me.CMBSHADE.Name = "CMBSHADE"
         Me.CMBSHADE.Size = New System.Drawing.Size(80, 23)
-        Me.CMBSHADE.TabIndex = 4
+        Me.CMBSHADE.TabIndex = 5
         '
         'TXTLOTNO
         '
@@ -618,7 +618,7 @@ Partial Class OpeningStockYarn
         Me.TXTLOTNO.Location = New System.Drawing.Point(43, 4)
         Me.TXTLOTNO.Name = "TXTLOTNO"
         Me.TXTLOTNO.Size = New System.Drawing.Size(60, 23)
-        Me.TXTLOTNO.TabIndex = 0
+        Me.TXTLOTNO.TabIndex = 1
         Me.TXTLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBDESIGN
@@ -631,7 +631,7 @@ Partial Class OpeningStockYarn
         Me.CMBDESIGN.Location = New System.Drawing.Point(423, 4)
         Me.CMBDESIGN.Name = "CMBDESIGN"
         Me.CMBDESIGN.Size = New System.Drawing.Size(80, 23)
-        Me.CMBDESIGN.TabIndex = 3
+        Me.CMBDESIGN.TabIndex = 4
         '
         'CMBPROCESS
         '
@@ -643,7 +643,7 @@ Partial Class OpeningStockYarn
         Me.CMBPROCESS.Location = New System.Drawing.Point(583, 4)
         Me.CMBPROCESS.Name = "CMBPROCESS"
         Me.CMBPROCESS.Size = New System.Drawing.Size(100, 23)
-        Me.CMBPROCESS.TabIndex = 5
+        Me.CMBPROCESS.TabIndex = 6
         '
         'CMBMILL
         '
@@ -655,7 +655,7 @@ Partial Class OpeningStockYarn
         Me.CMBMILL.Location = New System.Drawing.Point(263, 4)
         Me.CMBMILL.Name = "CMBMILL"
         Me.CMBMILL.Size = New System.Drawing.Size(160, 23)
-        Me.CMBMILL.TabIndex = 2
+        Me.CMBMILL.TabIndex = 3
         '
         'TXTWT
         '
@@ -664,7 +664,7 @@ Partial Class OpeningStockYarn
         Me.TXTWT.Location = New System.Drawing.Point(1333, 4)
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWT.TabIndex = 12
+        Me.TXTWT.TabIndex = 13
         Me.TXTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBTONAME
@@ -677,7 +677,7 @@ Partial Class OpeningStockYarn
         Me.CMBTONAME.Location = New System.Drawing.Point(993, 4)
         Me.CMBTONAME.Name = "CMBTONAME"
         Me.CMBTONAME.Size = New System.Drawing.Size(160, 23)
-        Me.CMBTONAME.TabIndex = 9
+        Me.CMBTONAME.TabIndex = 10
         '
         'CMBGODOWN
         '
@@ -690,7 +690,7 @@ Partial Class OpeningStockYarn
         Me.CMBGODOWN.Location = New System.Drawing.Point(1153, 4)
         Me.CMBGODOWN.Name = "CMBGODOWN"
         Me.CMBGODOWN.Size = New System.Drawing.Size(120, 23)
-        Me.CMBGODOWN.TabIndex = 10
+        Me.CMBGODOWN.TabIndex = 11
         '
         'TXTFROM
         '
@@ -814,7 +814,7 @@ Partial Class OpeningStockYarn
         Me.cmdexit.Location = New System.Drawing.Point(597, 537)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 15
+        Me.cmdexit.TabIndex = 1
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
