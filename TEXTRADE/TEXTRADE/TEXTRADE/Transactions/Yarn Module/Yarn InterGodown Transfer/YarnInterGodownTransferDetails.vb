@@ -46,7 +46,7 @@ Public Class YarnInterGodownTransferDetails
             End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim objgdn As New InterGodownTransfer
+                Dim objgdn As New YarnInterGodownTransfer
                 objgdn.MdiParent = MDIMain
                 objgdn.EDIT = editval
                 objgdn.TEMPGODOWNNO = TEMPGODOWNNO
