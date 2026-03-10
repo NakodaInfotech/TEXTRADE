@@ -48,8 +48,13 @@ Public Class GroupDetails
         Me.Close()
     End Sub
 
-    Sub showform(ByVal editval As Boolean, ByVal name As String)
+    Sub showform(ByVal editval As Boolean, ByVal name As String, ByVal UNDERGROUP As String)
         Try
+            If UNDERGROUP = "Primary" Then
+                MsgBox("Unable To Modify Primary Groups", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
             If (editval = True And USEREDIT = False And USERVIEW = False) Or (editval = False And USERADD = False) Then
                 MsgBox("Insufficient Rights")
                 Exit Sub
@@ -65,10 +70,10 @@ Public Class GroupDetails
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-   
+
     Private Sub CMDADDNEW_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdadd.Click
         Try
-            showform(False, 0)
+            showform(False, "", "")
         Catch ex As Exception
             Throw ex
         End Try
@@ -76,7 +81,7 @@ Public Class GroupDetails
 
     Private Sub CMDEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdedit.Click
         Try
-            showform(True, GRIDGROUP.GetFocusedRowCellValue("GROUPNAME"))
+            showform(True, GRIDGROUP.GetFocusedRowCellValue("GROUPNAME"), GRIDGROUP.GetFocusedRowCellValue("UNDERGROUP"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -84,7 +89,7 @@ Public Class GroupDetails
 
     Private Sub GRIDGROUP_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles GRIDGROUP.DoubleClick
         Try
-            showform(True, GRIDGROUP.GetFocusedRowCellValue("GROUPNAME"))
+            showform(True, GRIDGROUP.GetFocusedRowCellValue("GROUPNAME"), GRIDGROUP.GetFocusedRowCellValue("UNDERGROUP"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -100,7 +105,7 @@ Public Class GroupDetails
 
     Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
-            showform(False, 0)
+            showform(False, "", "")
         Catch ex As Exception
             Throw ex
         End Try
