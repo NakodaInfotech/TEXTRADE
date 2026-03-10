@@ -187,13 +187,22 @@ Public Class YarnReturnJobber
             LBLTOTALCONES.Text = 0.0
             LBLTOTALWT.Text = 0.0
             lbltotalqty.Text = 0.0
+            LBLTOTALAMT.Text = 0.0
+            TXTAMOUNT.Text = 0.0
             For Each ROW As DataGridViewRow In GRIDYARN.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
                     lbltotalqty.Text = Format(Val(lbltotalqty.Text) + Val(ROW.Cells(GQTY.Index).EditedFormattedValue), "0.00")
                     LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
                     LBLTOTALCONES.Text = Format(Val(LBLTOTALCONES.Text) + Val(ROW.Cells(GCONES.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALAMT.Text = Format(Val(LBLTOTALAMT.Text) + Val(ROW.Cells(GAMOUNT.Index).EditedFormattedValue), "0.00")
+
                 End If
             Next
+            If CMBPER.Text = "Bags" Then
+                TXTAMOUNT.Text = Val(TXTQTY.Text) * Val(TXTRATE.Text)
+            Else
+                TXTAMOUNT.Text = Val(TXTWT.Text) * Val(TXTRATE.Text)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -295,6 +304,8 @@ Public Class YarnReturnJobber
             alParaval.Add(YearId)
             alParaval.Add(0)
             alParaval.Add(TXTVEHICLENO.Text.Trim)
+            alParaval.Add(Val(LBLTOTALAMT.Text.Trim))
+
 
 
             Dim GRIDSRNO As String = ""
@@ -310,6 +321,9 @@ Public Class YarnReturnJobber
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim RACK As String = ""
+            Dim RATE As String = ""
+            Dim PER As String = ""
+            Dim AMOUNT As String = ""
             Dim BARCODE As String = ""
             Dim OUTWT As String = ""
             Dim OUTBAGS As String = ""
@@ -318,8 +332,8 @@ Public Class YarnReturnJobber
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
                 If row.Cells(0).Value <> Nothing Then
-                    If gridsrno = "" Then
-                        gridsrno = row.Cells(gsrno.Index).Value.ToString
+                    If GRIDSRNO = "" Then
+                        GRIDSRNO = row.Cells(gsrno.Index).Value.ToString
                         YARNQUALITY = row.Cells(GYARNQUALITY.Index).Value.ToString
                         MILLNAME = row.Cells(GMILLNAME.Index).Value.ToString
                         DESIGN = row.Cells(GDESIGN.Index).Value.ToString
@@ -328,10 +342,13 @@ Public Class YarnReturnJobber
                         GRIDREMARKS = row.Cells(GGRIDREMARKS.Index).Value
                         QTY = row.Cells(GQTY.Index).Value.ToString
                         WT = row.Cells(GWT.Index).Value
-                        CONES = row.Cells(GCONES.Index).Value.ToString
+                        CONES = row.Cells(GCONES.Index).Value
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         RACK = row.Cells(GRACK.Index).Value.ToString
+                        RATE = Val(row.Cells(GRATE.Index).Value)
+                        PER = row.Cells(GPER.Index).Value.ToString
+                        AMOUNT = Val(row.Cells(GAMOUNT.Index).Value)
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
                         OUTWT = Val(row.Cells(GOUTWT.Index).Value)
                         OUTBAGS = Val(row.Cells(GOUTBAGS.Index).Value)
@@ -339,7 +356,7 @@ Public Class YarnReturnJobber
 
 
                     Else
-                        gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
+                        GRIDSRNO = GRIDSRNO & "|" & row.Cells(gsrno.Index).Value
 
                         YARNQUALITY = YARNQUALITY & "|" & row.Cells(GYARNQUALITY.Index).Value.ToString
                         MILLNAME = MILLNAME & "|" & row.Cells(GMILLNAME.Index).Value.ToString
@@ -353,6 +370,9 @@ Public Class YarnReturnJobber
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         RACK = RACK & "|" & row.Cells(GRACK.Index).Value.ToString
+                        RATE = RATE & "|" & Val(row.Cells(GRATE.Index).Value)
+                        PER = PER & "|" & row.Cells(GPER.Index).Value.ToString
+                        AMOUNT = AMOUNT & "|" & Val(row.Cells(GAMOUNT.Index).Value)
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
                         OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
                         OUTBAGS = OUTBAGS & "|" & Val(row.Cells(GOUTBAGS.Index).Value)
@@ -377,6 +397,9 @@ Public Class YarnReturnJobber
             alParaval.Add(LRNO)
             alParaval.Add(LRDATE)
             alParaval.Add(RACK)
+            alParaval.Add(RATE)
+            alParaval.Add(PER)
+            alParaval.Add(AMOUNT)
             alParaval.Add(BARCODE)
             alParaval.Add(OUTWT)
             alParaval.Add(OUTBAGS)
@@ -551,10 +574,10 @@ Public Class YarnReturnJobber
                         CMBTRANS.Text = dr("TRANSNAME").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
                         TXTVEHICLENO.Text = Convert.ToString(dr("VEHICLENO").ToString)
+                        LBLTOTALAMT.Text = Format(dr("TOTALAMOUNT"), "0.00")
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Val(dr("CONES")), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("RACK").ToString, Format(dr("RATE"), "0.00"), dr("PER").ToString, Format(dr("AMOUNT"), "0.00"), dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAG")), Val(dr("DONE")))
 
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("RACK").ToString, dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAG")), Val(dr("DONE")))
-
-                        If Val(dr("OUTBAGS")) > 0 Or Val(dr("OUTWT")) > 0 Then
+                        If Val(dr("OUTBAG")) > 0 Or Val(dr("OUTWT")) > 0 Then
                             GRIDYARN.Rows(GRIDYARN.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                             lbllocked.Visible = True
                             PBlock.Visible = True
@@ -660,7 +683,7 @@ Public Class YarnReturnJobber
         End Try
     End Sub
 
-    Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBRACK.Validated
+    Private Sub DTLRDATE_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTAMOUNT.Validated
         Try
 
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
@@ -710,7 +733,7 @@ Public Class YarnReturnJobber
                 TXTBARCODE.Text = "YR-" & Val(TXTKNITTINGRETURN.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, TXTGRIDREMARKS.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), CMBRACK.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, TXTGRIDREMARKS.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Val(TXTCONES.Text.Trim), TXTLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), CMBRACK.Text.Trim, Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), TXTBARCODE.Text.Trim, 0, 0, 0, 0)
             getsrno(GRIDYARN)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDYARN.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -726,10 +749,14 @@ Public Class YarnReturnJobber
             GRIDYARN.Item(GQTY.Index, TEMPROW).Value = Format(Val(TXTQTY.Text.Trim), "0.00")
             GRIDYARN.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
 
-            GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Format(Val(TXTCONES.Text.Trim), "0.00")
+            GRIDYARN.Item(GCONES.Index, TEMPROW).Value = Val(TXTCONES.Text.Trim)
             GRIDYARN.Item(GLRNO.Index, TEMPROW).Value = TXTLRNO.Text.Trim
             GRIDYARN.Item(GLRDATE.Index, TEMPROW).Value = Format(DTLRDATE.Value.Date, "dd/MM/yyyy")
             GRIDYARN.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
+            GRIDYARN.Item(GRATE.Index, TEMPROW).Value = Format(Val(TXTRATE.Text.Trim), "0.00")
+            GRIDYARN.Item(GPER.Index, TEMPROW).Value = CMBPER.Text.Trim
+            GRIDYARN.Item(GAMOUNT.Index, TEMPROW).Value = Format(Val(TXTAMOUNT.Text.Trim), "0.00")
+
             GRIDYARN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
 
 
@@ -756,7 +783,9 @@ Public Class YarnReturnJobber
         DTLRDATE.Value = Now.Date
         txtsrno.Text = Val(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(0).Value) + 1
         TXTBARCODE.Clear()
-
+        TXTRATE.Clear()
+        CMBPER.Text = ""
+        TXTAMOUNT.Clear()
         CMBYARNQUALITY.Focus()
         CMBRACK.Text = ""
 
@@ -1033,6 +1062,10 @@ LINE1:
                 TXTLRNO.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 DTLRDATE.Text = GRIDYARN.Item(GLRDATE.Index, GRIDYARN.CurrentRow.Index).Value
                 CMBRACK.Text = GRIDYARN.Item(GRACK.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTRATE.Text = GRIDYARN.Item(GRATE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                CMBPER.Text = GRIDYARN.Item(GPER.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTAMOUNT.Text = GRIDYARN.Item(GAMOUNT.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+
                 TXTBARCODE.Text = GRIDYARN.Item(GLRNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDYARN.CurrentRow.Index
@@ -1140,7 +1173,7 @@ LINE1:
         numkeypress(e, sender, Me)
     End Sub
 
-    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress
+    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress, TXTRATE.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
@@ -1189,5 +1222,9 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMBPER_Validating(sender As Object, e As CancelEventArgs) Handles CMBPER.Validating
+        total()
     End Sub
 End Class
