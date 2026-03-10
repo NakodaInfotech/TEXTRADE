@@ -79,7 +79,7 @@ Public Class YarnInterGodownTransferDetails
 
     Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
         Try
-            fillgrid(" and dbo.INTERGODOWNTRANSFER.TRANSFER_yearid=" & YearId & " order by dbo. INTERGODOWNTRANSFER_DESC.TRANSFER_GRIDSRNO ")
+            fillgrid(" and dbo.YARNINTERGODOWNTRANSFER.YTRANSFER_yearid=" & YearId & " order by dbo. YANRINTERGODOWNTRANSFER_DESC.YTRANSFER_GRIDSRNO ")
         Catch ex As Exception
             Throw ex
         End Try
@@ -120,7 +120,7 @@ Public Class YarnInterGodownTransferDetails
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-            fillgrid(" and dbo.INTERGODOWNTRANSFER.TRANSFER_yearid=" & YearId & " order by dbo. INTERGODOWNTRANSFER_DESC.TRANSFER_GRIDSRNO ")
+            fillgrid(" and dbo.YARNINTERGODOWNTRANSFER.YTRANSFER_yearid=" & YearId & " order by dbo. YARNINTERGODOWNTRANSFER_DESC.YTRANSFER_GRIDSRNO ")
 
         Catch ex As Exception
             Throw ex
