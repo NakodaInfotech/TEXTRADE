@@ -91,8 +91,8 @@ Partial Class YarnInterGodownTransfer
         Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCONES = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLIFTINGDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLIFTINGDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -415,7 +415,7 @@ Partial Class YarnInterGodownTransfer
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDJO.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDJO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDJO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.GCOLOR, Me.GLOTNO, Me.GLRNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GLIFTINGDATE, Me.GBARCODE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GOUTWT, Me.GOUTBAGS, Me.GDONE})
+        Me.GRIDJO.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GPCOLOR, Me.GCOLOR, Me.GLOTNO, Me.GLRNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GBARCODE, Me.GLIFTINGDATE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GOUTWT, Me.GOUTBAGS, Me.GDONE})
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -817,6 +817,14 @@ Partial Class YarnInterGodownTransfer
         Me.GCONES.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GCONES.Width = 80
         '
+        'GBARCODE
+        '
+        Me.GBARCODE.HeaderText = "Barcode"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.ReadOnly = True
+        Me.GBARCODE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBARCODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
         'GLIFTINGDATE
         '
         Me.GLIFTINGDATE.HeaderText = "Lift Date"
@@ -825,14 +833,6 @@ Partial Class YarnInterGodownTransfer
         Me.GLIFTINGDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GLIFTINGDATE.Visible = False
         Me.GLIFTINGDATE.Width = 80
-        '
-        'GBARCODE
-        '
-        Me.GBARCODE.HeaderText = "Barcode"
-        Me.GBARCODE.Name = "GBARCODE"
-        Me.GBARCODE.ReadOnly = True
-        Me.GBARCODE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBARCODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'GFROMNO
         '
@@ -956,8 +956,8 @@ Partial Class YarnInterGodownTransfer
     Friend WithEvents GQTY As DataGridViewTextBoxColumn
     Friend WithEvents GWT As DataGridViewTextBoxColumn
     Friend WithEvents GCONES As DataGridViewTextBoxColumn
-    Friend WithEvents GLIFTINGDATE As DataGridViewTextBoxColumn
     Friend WithEvents GBARCODE As DataGridViewTextBoxColumn
+    Friend WithEvents GLIFTINGDATE As DataGridViewTextBoxColumn
     Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
