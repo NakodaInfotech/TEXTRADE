@@ -18,6 +18,11 @@ Public Class SelectStockGDNGrid
         Try
             If e.KeyCode = Windows.Forms.Keys.Escape Then
                 Me.Close()
+            ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then
+                gridbill.Focus()
+                gridbill.FocusedColumn = gridbill.Columns("BALENO")
+                gridbill.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle
+                gridbill.ShowEditor()
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -57,6 +62,8 @@ Public Class SelectStockGDNGrid
         Try
             DTBARCODE.Columns.Add("BARCODE")
 
+            gridbill.ClearColumnsFilter()
+
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
@@ -83,8 +90,9 @@ Public Class SelectStockGDNGrid
 
     Private Sub gridbill_KeyDown(sender As Object, e As KeyEventArgs) Handles gridbill.KeyDown
         Try
-            If gridbill.FocusedRowHandle > 0 AndAlso (e.KeyCode = Keys.Space Or e.KeyCode = Keys.Enter) Then
-                'gridbill.FocusedRowHandle
+            If gridbill.FocusedRowHandle >= 0 AndAlso (e.KeyCode = Keys.Space Or e.KeyCode = Keys.Enter) Then
+                Dim DTROW As DataRow = gridbill.GetFocusedDataRow
+                DTROW("CHK") = 1
             End If
         Catch ex As Exception
             Throw ex

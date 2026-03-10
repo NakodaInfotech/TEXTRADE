@@ -2689,7 +2689,7 @@ NEXTLINE:
 
                     If Val(DTROWPS("PCS")) = 0 Then DTROWPS("PCS") = 1
                     If (ClientName <> "SAKARIA" And ClientName <> "ALENCOT" And ClientName <> "AVIS" And ClientName <> "MARKIN" And ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SHUBHI" And ClientName <> "SUBHLAXMI" And ClientName <> "SSC" And ClientName <> "RUCHITA" And ClientName <> "SARAYU" And ClientName <> "VALIANT" And ClientName <> "MBB" And ClientName <> "RADHA" And ClientName <> "MONOGRAM" And ClientName <> "SNCM" And ClientName <> "SHAILESHTRADING" And ClientName <> "CHINTAN") AndAlso Val(DTROWPS("CUT")) = 0 Then DTROWPS("CUT") = Val(DTROWPS("MTRS"))
-                    
+
                     Dim PER As String = "Mtrs"
                     Dim CCRATE As Double = 0
                     Dim CUT As Double = 0
@@ -3701,7 +3701,9 @@ LINE1:
 
     Private Sub TXTBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTBARCODE.KeyDown
         Try
-            If e.KeyCode = Keys.F1 Then
+            If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+                If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
+
                 If CMBGODOWN.Text.Trim = "" Then
                     MsgBox("Select Godown First", MsgBoxStyle.Critical)
                     Exit Sub
@@ -3764,6 +3766,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Private Sub CHKCHANGEADD_CheckedChanged(sender As Object, e As EventArgs) Handles CHKCHANGEADD.CheckedChanged
         Try
             TXTDELIVERYADDRESS.Enabled = CHKCHANGEADD.Checked
@@ -3772,4 +3775,5 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
 End Class
