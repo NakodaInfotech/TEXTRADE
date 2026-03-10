@@ -9728,7 +9728,7 @@ line1:
 
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & rollNo.Trim() & "'")
+            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & rollNo.Trim() & "'   And YEARID =   " & YearId)
 
             If DT.Rows.Count > 0 Then
                 bln = True
