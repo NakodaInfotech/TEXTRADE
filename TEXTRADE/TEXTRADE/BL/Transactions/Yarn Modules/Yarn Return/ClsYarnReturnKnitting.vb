@@ -63,6 +63,8 @@ Public Class ClsYarnReturnKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -93,6 +95,12 @@ Public Class ClsYarnReturnKnitting
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
@@ -161,7 +169,8 @@ Public Class ClsYarnReturnKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
+                I = I + 1
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
@@ -190,6 +199,12 @@ Public Class ClsYarnReturnKnitting
                 .Add(New SqlClient.SqlParameter("@lrdate", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
