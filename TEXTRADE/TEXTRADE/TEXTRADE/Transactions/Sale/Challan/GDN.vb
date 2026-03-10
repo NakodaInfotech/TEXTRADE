@@ -3699,6 +3699,28 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub TXTBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTBARCODE.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 Then
+                If CMBGODOWN.Text.Trim = "" Then
+                    MsgBox("Select Godown First", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
+                Dim OBJSTOCK As New SelectStockGDNGrid
+                OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
+                OBJSTOCK.ShowDialog()
+                Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                For Each DTROW As DataRow In DTBARCODE.Rows
+                    TXTBARCODE.Text = DTROW("BARCODE")
+                    TXTBARCODE_Validated(sender, e)
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub CMBSTOREITEMNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBSTOREITEMNAME.Validating
         Try
             If CMBSTOREITEMNAME.Text.Trim <> "" Then STOREITEMVALIDATE(CMBSTOREITEMNAME, e, Me)

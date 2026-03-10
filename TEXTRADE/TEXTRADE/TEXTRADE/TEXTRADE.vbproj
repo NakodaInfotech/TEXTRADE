@@ -10502,6 +10502,9 @@
     <EmbeddedResource Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.resx">
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Sale\Challan\SelectStockGDNGrid.resx">
+      <DependentUpon>SelectStockGDNGrid.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sale\Sale Invoice\AutoE-Invoice.resx">
       <DependentUpon>AutoE-Invoice.vb</DependentUpon>
     </EmbeddedResource>
