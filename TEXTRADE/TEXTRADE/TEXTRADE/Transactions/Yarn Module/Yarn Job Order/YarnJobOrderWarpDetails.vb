@@ -55,7 +55,7 @@ Public Class YarnJobOrderWarpDetails
                 Dim OBJBILL As New YarnJobOrder
                 OBJBILL.MdiParent = MDIMain
                 OBJBILL.EDIT = editval
-                OBJBILL.tempdesignno = billno
+                OBJBILL.TEMPJONO = billno
                 OBJBILL.Show()
             End If
         Catch ex As Exception
@@ -99,7 +99,7 @@ Public Class YarnJobOrderWarpDetails
     Private Sub InvoiceGridDetails_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'DESIGN MASTER'")
+            DTROW = USERRIGHTS.Select("FormName = 'YARN JOBORDER'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)

@@ -1235,14 +1235,14 @@ Public Class PaymentMaster
             GRIDBILL.Columns(4).Name = "INVBALAMT"
             GRIDBILL.Columns(4).HeaderText = "Bal. Amt"
             GRIDBILL.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            GRIDBILL.Columns(4).DefaultCellStyle.Format = "N2"
+            GRIDBILL.Columns(4).DefaultCellStyle.Format = "0.00"
             GRIDBILL.Columns(3).ReadOnly = True
 
             GRIDBILL.Columns(5).Width = 90
             GRIDBILL.Columns(5).Name = "INVBILLAMT"
             GRIDBILL.Columns(5).HeaderText = "Bill Amt"
             GRIDBILL.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            GRIDBILL.Columns(5).DefaultCellStyle.Format = "N2"
+            GRIDBILL.Columns(5).DefaultCellStyle.Format = "0.00"
             GRIDBILL.Columns(5).ReadOnly = True
 
             GRIDBILL.Columns(6).Visible = False
@@ -1261,7 +1261,7 @@ Public Class PaymentMaster
             GRIDBILL.Columns(10).Name = "INVTDSAMT"
             GRIDBILL.Columns(10).HeaderText = "TDS"
             GRIDBILL.Columns(10).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            GRIDBILL.Columns(10).DefaultCellStyle.Format = "N2"
+            GRIDBILL.Columns(10).DefaultCellStyle.Format = "0.00"
             GRIDBILL.Columns(10).ReadOnly = True
 
             GRIDBILL.Columns(11).Visible = False
@@ -1271,7 +1271,7 @@ Public Class PaymentMaster
             GRIDBILL.Columns(12).Name = "DISCAMT"
             GRIDBILL.Columns(12).HeaderText = "Disc"
             GRIDBILL.Columns(12).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            GRIDBILL.Columns(12).DefaultCellStyle.Format = "N2"
+            GRIDBILL.Columns(12).DefaultCellStyle.Format = "0.00"
             GRIDBILL.Columns(12).ReadOnly = True
 
 
