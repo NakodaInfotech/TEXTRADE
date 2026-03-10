@@ -382,7 +382,7 @@ Public Class YarnInterGodownTransfer
                         'Item Grid
 
 
-                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, dr("LRNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("BARCODE").ToString, dr("LIFTINGDATE").ToString, dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"), dr("OUTBAGS"), dr("OUTWT"), dr("DONE"))
+                        GRIDJO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, dr("LRNO").ToString, Format(dr("BAGS"), "0.00"), Format(dr("WT"), "0.00"), Val(dr("CONES")), dr("BARCODE").ToString, dr("LIFTINGDATE").ToString, dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"), dr("OUTBAGS"), dr("OUTWT"), dr("DONE"))
 
 
                     Next
@@ -635,7 +635,7 @@ LINE1:
                         If DTROWPS("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROWPS("BARCODE")) Then GoTo LINE1
                     Next
 
-                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), DTROWPS("LRNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Format(Val(DTROWPS("CONES")), "0.00"), Format(Convert.ToDateTime(TXTDATE.Text).Date, "dd/MM/yyyy"), DTROWPS("BARCODE"), Val(DTROWPS("FROMNO")), Val(DTROWPS("FROMSRNO")), DTROWPS("FROMTYPE"), 0, 0, 0)
+                    GRIDJO.Rows.Add(0, DTROWPS("YARNQUALITY"), DTROWPS("MILLNAME"), DTROWPS("DESIGNNO"), "", "", DTROWPS("COLOR"), DTROWPS("LOTNO"), DTROWPS("LRNO"), Val(DTROWPS("BAGS")), Format(Val(DTROWPS("WT")), "0.00"), Val(DTROWPS("CONES")), DTROWPS("BARCODE"), Format(Convert.ToDateTime(TXTDATE.Text).Date, "dd/MM/yyyy"), Val(DTROWPS("FROMNO")), Val(DTROWPS("FROMSRNO")), DTROWPS("FROMTYPE"), 0, 0, 0)
 LINE1:
                 Next
                 getsrno(GRIDJO)
