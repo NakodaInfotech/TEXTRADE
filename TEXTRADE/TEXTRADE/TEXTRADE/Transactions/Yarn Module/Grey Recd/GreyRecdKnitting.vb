@@ -1722,6 +1722,8 @@ LINE1:
             'cmbqtyunit.Text = ""
             TXTMTRS.Clear()
             TXTLOOMNO.Clear()
+            TXTROLLNO.Clear()
+
 
 
             CMBRACK.Text = ""
@@ -2073,10 +2075,9 @@ NEXTLINE:
                 If String.IsNullOrWhiteSpace(TXTROLLNO.Text) Then Exit Sub
 
                 If GETUNIQBALENO(TXTROLLNO.Text.Trim()) = True Then
-                    MessageBox.Show("Bale No [ " & TXTROLLNO.Text & " ] Already Present !",
-                                "Duplicate Bale No",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning)
+                    MessageBox.Show("Bale No  " & TXTROLLNO.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+
                     TXTROLLNO.Clear()
                     TXTROLLNO.Focus()
                 End If
@@ -2086,4 +2087,36 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub TXTROLLNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTROLLNO.Validating
+
+        If ClientName = "MMC" Then
+            If GRIDGREY.RowCount > 0 Then
+                If Not CHECKROLL() Then
+                    MsgBox("Bale No already Present in Grid below ")
+                    TXTROLLNO.Clear()
+                    TXTROLLNO.Focus()
+                    Exit Sub
+                End If
+            End If
+
+        End If
+    End Sub
+
+
+
+    Function CHECKROLL() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In GRIDGREY.Rows
+                If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
+                    If TXTROLLNO.Text.Trim = ROW.Cells(GROLLNO.Index).Value Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
 End Class
