@@ -6668,6 +6668,7 @@ SKIPLINE:
                         Dim OBJRACK As New ClsRackMaster
                         OBJRACK.alParaval.Add(UCase(DTROWSAVE("RACKNO")))
                         OBJRACK.alParaval.Add("")
+                        OBJRACK.alParaval.Add("")   'CATEGORY
                         OBJRACK.alParaval.Add(CmpId)
                         OBJRACK.alParaval.Add(Userid)
                         OBJRACK.alParaval.Add(YearId)
