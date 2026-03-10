@@ -240,6 +240,11 @@ line1:
                     '    Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
                     '    GoTo LINE1
                     'End If
+                ElseIf ClientName = "APPLE" Then
+                    If Now.Date > DateTime.Parse("15.03.2027 00:00") Then
+                        Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
+                        GoTo LINE1
+                    End If
                 ElseIf ClientName = "ARIHANT" Then  '(MAHIPAL BHAI)
                     If Now.Date > DateTime.Parse("15.04.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000'", "", "")
