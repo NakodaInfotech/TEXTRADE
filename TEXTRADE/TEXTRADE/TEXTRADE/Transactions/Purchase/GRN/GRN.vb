@@ -3,6 +3,7 @@ Imports BL
 Imports System.IO
 Imports System.ComponentModel
 Imports System.Net
+Imports DevExpress.XtraEditors
 
 Public Class GRN
 
@@ -396,12 +397,12 @@ Public Class GRN
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.SEARCH(" GRN_NO AS GRNNO", "", " GRN INNER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.Acc_id ", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND GRN_PARTYBILLNO = '" & TXTPARTYBILLNO.Text.Trim & "' AND GRN_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
-                MsgBox("Party Bill No Already Exists in Entry No " & DT.Rows(0).Item("GRNNO"))
-                e.Cancel = True
-                Exit Sub
+                        MsgBox("Party Bill No Already Exists in Entry No " & DT.Rows(0).Item("GRNNO"))
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
             End If
-        End If
-        End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -3426,6 +3427,8 @@ LINE1:
 
     Private Sub GRN_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
+            If HIDEGREY = True And cmbtype.Text = "Job Work" Then Me.Close()
+
             If ClientName = "SONU" Or ClientName = "ANMOL" Or ClientName = "LEEFABRICO" Or ClientName = "SNCM" Then
                 cmbtrans.TabStop = True
                 txtlrno.TabStop = True

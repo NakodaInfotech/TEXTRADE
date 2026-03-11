@@ -1977,7 +1977,7 @@ LINE1:
                 CMBFORWARD.TabStop = False
                 CMBQUALITY.TabStop = False
                 CMBDESIGN.TabStop = False
-                CMBGRIDREMARKS.TabStop = False
+                txtgridremarks.TabStop = False
                 TXTPARTYPONO.TabStop = False
                 TXTCUT.TabStop = False
             End If
