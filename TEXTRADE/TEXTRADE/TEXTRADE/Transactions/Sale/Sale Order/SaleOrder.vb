@@ -448,7 +448,7 @@ Public Class SaleOrder
             TXTRATE.Clear()
             lbltotalbale.Text = ""
 
-            txtsrno.Clear()
+            txtsrno.Text = 1
             CMBITEMCODE.Text = ""
             cmbitemname.Text = ""
             CMBQUALITY.Text = ""
@@ -463,7 +463,7 @@ Public Class SaleOrder
                 CHKFETCHDESC.CheckState = CheckState.Checked
             ElseIf ClientName = "AVIS" Then
                 cmbqtyunit.Text = "Mtrs"
-            ElseIf ClientName = "KRISHNA" Or ClientName = "SONU" Or ClientName = "SOFTAS" Or ClientName = "ANOX" Or ClientName = "MAHAVIRPOLYCOT" Then
+            ElseIf ClientName = "KRISHNA" Or ClientName = "SONU" Or ClientName = "SOFTAS" Or ClientName = "ANOX" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "APPLE" Then
                 cmbqtyunit.Text = "ROLL"
             Else
                 cmbqtyunit.Text = "PCS"
@@ -562,11 +562,7 @@ Public Class SaleOrder
 
             TXTSONO.ReadOnly = False
 
-            If GRIDSO.RowCount > 0 Then
-                txtsrno.Text = Val(GRIDSO.Rows(GRIDSO.RowCount - 1).Cells(0).Value) + 1
-            Else
-                txtsrno.Text = 1
-            End If
+
 
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then cmbqtyunit.Text = "Pcs"
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then CMBPER.Text = "Qty"
@@ -1973,7 +1969,7 @@ LINE1:
 
             If ClientName = "MNARESH" Or ClientName = "MSANCHITKUMAR" Or ClientName = "SNCM" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then LBLRATE.Visible = True
 
-            If ClientName = "AFW" Then
+            If ClientName = "APPLE" Then
                 CMBRISK.TabStop = False
                 cmbtrans2.TabStop = False
                 TXTREFNO.TabStop = False
@@ -1981,7 +1977,9 @@ LINE1:
                 CMBFORWARD.TabStop = False
                 CMBQUALITY.TabStop = False
                 CMBDESIGN.TabStop = False
+                CMBGRIDREMARKS.TabStop = False
                 TXTPARTYPONO.TabStop = False
+                TXTCUT.TabStop = False
             End If
 
             If ClientName = "SAFFRON" Then

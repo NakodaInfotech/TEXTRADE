@@ -1380,7 +1380,7 @@ NEXTLINE:
             gridbill.Columns(i).Name = "INVBALAMT"
             gridbill.Columns(i).HeaderText = "Bal. Amt"
             gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            gridbill.Columns(i).DefaultCellStyle.Format = "N2"
+            gridbill.Columns(i).DefaultCellStyle.Format = "0.00"
             gridbill.Columns(i).ReadOnly = True
             i += 1
 
@@ -1388,7 +1388,7 @@ NEXTLINE:
             gridbill.Columns(i).Name = "INVBILLAMT"
             gridbill.Columns(i).HeaderText = "Bill Amt"
             gridbill.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            gridbill.Columns(i).DefaultCellStyle.Format = "N2"
+            gridbill.Columns(i).DefaultCellStyle.Format = "0.00"
             gridbill.Columns(i).ReadOnly = True
             i += 1
 
