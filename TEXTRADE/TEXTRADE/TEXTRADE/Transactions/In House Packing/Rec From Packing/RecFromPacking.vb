@@ -1894,6 +1894,20 @@ LINE1:
                     Dim INT As Integer = OBJCONFIG.SAVE()
                 End If
             End If
+
+            If ClientName = "MMC" Then
+
+                If String.IsNullOrWhiteSpace(txtgridremarks.Text) Then Exit Sub
+
+                If GETUNIQBALENO(txtgridremarks.Text.Trim, YearId) = True Then
+                    MessageBox.Show("Bale No  " & txtgridremarks.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+
+                    txtgridremarks.Clear()
+                    txtgridremarks.Focus()
+                End If
+
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -2079,6 +2093,11 @@ LINE1:
 
             If ClientName = "SUPEEMA" Or ClientName = "SURYODAYA" Or ClientName = "SARAYU" Or ClientName = "AFW" Then HIDEALLISSUE = False
             HIDEVIEW()
+
+            If ClientName = "MMC" Then
+                gdesc.HeaderText = "Bale No"
+                txtgridremarks.BackColor = Color.LemonChiffon
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -2475,4 +2494,38 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub txtgridremarks_Validating(sender As Object, e As CancelEventArgs) Handles txtgridremarks.Validating
+        If ClientName = "MMC" Then
+
+            If String.IsNullOrWhiteSpace(txtgridremarks.Text) Then
+                MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtgridremarks.Focus()
+                Exit Sub
+            End If
+
+            If GRIDREC.RowCount > 0 Then
+                If Not CHECKROLL() Then
+                    MsgBox("Bale No already Present in Grid below ")
+                    txtgridremarks.Clear()
+                    txtgridremarks.Focus()
+                    Exit Sub
+                End If
+            End If
+
+        End If
+    End Sub
+
+    Function CHECKROLL() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In GRIDREC.Rows
+                If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
+                    If txtgridremarks.Text.Trim = ROW.Cells(gdesc.Index).Value Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class

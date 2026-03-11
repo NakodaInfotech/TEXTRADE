@@ -5393,8 +5393,6 @@ LINE1:
 
                 If GETUNIQBALENO(TXTBALENO.Text.Trim, YearId) = True Then
                     MessageBox.Show("Bale No  " & TXTBALENO.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-
                     TXTBALENO.Clear()
                     TXTBALENO.Focus()
                 End If
