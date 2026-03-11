@@ -1923,7 +1923,7 @@ line1:
                 Dim objcmn As New ClsCommon
                 Dim DT As DataTable = objcmn.SEARCH(" GROUP_SECONDARY", "", " GROUPMASTER", " AND GROUP_NAME = '" & cmbgroup.Text.Trim & "' AND GROUP_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
-                    If DT.Rows(0).Item(0) = "Sundry Creditors" Or DT.Rows(0).Item(0) = "Sundry Debtors" Or DT.Rows(0).Item(0) = "Provisions" Or DT.Rows(0).Item(0) = "Loans" Or DT.Rows(0).Item(0) = "Unsecured Loans" Or DT.Rows(0).Item(0) = "Secured Loans" Or DT.Rows(0).Item(0) = "Loans & Advances" Then
+                    If DT.Rows(0).Item(0) = "Sundry Creditors" Or DT.Rows(0).Item(0) = "Sundry Debtors" Or DT.Rows(0).Item(0) = "Provisions" Or DT.Rows(0).Item(0) = "Loans" Or DT.Rows(0).Item(0) = "Unsecured Loans" Or DT.Rows(0).Item(0) = "Secured Loans" Or DT.Rows(0).Item(0) = "Loans & Advances" Or DT.Rows(0).Item(0) = "Duties & Taxes" Then
                         GROUPTDS.Enabled = CHKTDSAPP.CheckState
                         'DONE BY GULKIT
                         'Else

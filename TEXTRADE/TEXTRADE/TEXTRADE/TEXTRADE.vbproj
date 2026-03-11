@@ -732,6 +732,12 @@
     <Compile Include="Reports\Grid Reports\Agency\AgencyOutstandingGridReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Opening Bills\OpeningBillsGrid.Designer.vb">
+      <DependentUpon>OpeningBillsGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Opening Bills\OpeningBillsGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.Designer.vb">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
     </Compile>
@@ -2729,6 +2735,12 @@
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Sale\Challan\SelectStockGDNGrid.Designer.vb">
+      <DependentUpon>SelectStockGDNGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Sale\Challan\SelectStockGDNGrid.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Sale\Sale Invoice\AutoE-Invoice.Designer.vb">
@@ -9299,6 +9311,9 @@
     <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyOutstandingGridReport.resx">
       <DependentUpon>AgencyOutstandingGridReport.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Opening Bills\OpeningBillsGrid.resx">
+      <DependentUpon>OpeningBillsGrid.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.resx">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
     </EmbeddedResource>
@@ -10495,6 +10510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Purchase\Purchase Return\PurchaseReturnGridDetails.resx">
       <DependentUpon>PurchaseReturnGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Sale\Challan\SelectStockGDNGrid.resx">
+      <DependentUpon>SelectStockGDNGrid.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sale\Sale Invoice\AutoE-Invoice.resx">
       <DependentUpon>AutoE-Invoice.vb</DependentUpon>

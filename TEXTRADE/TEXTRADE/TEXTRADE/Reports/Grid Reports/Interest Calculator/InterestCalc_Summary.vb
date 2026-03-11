@@ -11,7 +11,7 @@ Public Class InterestCalc_Summary
         fillgrid()
     End Sub
 
-    Sub fillgrid()
+    Sub FILLGRID()
         Try
             EP.Clear()
             If Val(TXTPERCENT.Text.Trim) = 0 Then
@@ -69,76 +69,76 @@ Public Class InterestCalc_Summary
                     'CHANGE INTPER IN NAMEDT
                     'GET INTPER FROM LEDGERS IF WE HAVE ENTERED THERE ELSE CONTINUEE
                     If NAMEROW("NAME") <> "" And CHKALL.CheckState = CheckState.Unchecked Then
-                        Dim DTPARTYINT As DataTable = OBJCMN.search(" ISNULL(ACC_INTPER,0.0) AS INTPER ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & NAMEROW("NAME") & "' AND ACC_YEARID = " & YearId)
+                        Dim DTPARTYINT As DataTable = OBJCMN.SEARCH(" ISNULL(ACC_INTPER,0.0) AS INTPER ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & NAMEROW("NAME") & "' AND ACC_YEARID = " & YearId)
                         If Val(DTPARTYINT.Rows(0).Item("INTPER")) > 0 Then NAMEROW("INTPER") = Val(DTPARTYINT.Rows(0).Item("INTPER"))
                     End If
 
                     'ADD SIDEDR OR SIDECR
                     If ClientName = "NVAHAN" Or ClientName = "SASKARIA" Then
-                        Dim DTPARTYSIDE As DataTable = OBJCMN.search(" ISNULL(SUM(T.AMT),0) AS SIDEAMTDR ", "", " (SELECT  ROUND(((SUM(INVOICE_GRANDTOTAL)* TERM_CRDAYS)/" & Val(TXTDAYS.Text.Trim) & ")*(" & Val(NAMEROW("INTPER")) / 100 & "),0) AS AMT FROM INVOICEMASTER INNER JOIN TERMMASTER ON INVOICE_TERMID = TERM_ID INNER JOIN LEDGERS ON INVOICE_LEDGERID = LEDGERS.ACC_ID WHERE INVOICE_YEARID = " & YearId & " AND LEDGERS.ACC_CMPNAME = '" & NAMEROW("NAME") & "' AND TERM_CRDAYS >0 GROUP BY TERM_CRDAYS ) AS T ", "")
+                        Dim DTPARTYSIDE As DataTable = OBJCMN.SEARCH(" ISNULL(SUM(T.AMT),0) AS SIDEAMTDR ", "", " (SELECT  ROUND(((SUM(INVOICE_GRANDTOTAL)* TERM_CRDAYS)/" & Val(TXTDAYS.Text.Trim) & ")*(" & Val(NAMEROW("INTPER")) / 100 & "),0) AS AMT FROM INVOICEMASTER INNER JOIN TERMMASTER ON INVOICE_TERMID = TERM_ID INNER JOIN LEDGERS ON INVOICE_LEDGERID = LEDGERS.ACC_ID WHERE INVOICE_YEARID = " & YearId & " AND LEDGERS.ACC_CMPNAME = '" & NAMEROW("NAME") & "' AND TERM_CRDAYS >0 GROUP BY TERM_CRDAYS ) AS T ", "")
                         If Val(DTPARTYSIDE.Rows(0).Item("SIDEAMTDR")) > 0 Then NAMEROW("SIDEINT") = Val(DTPARTYSIDE.Rows(0).Item("SIDEAMTDR"))
                     End If
 
                     Dim DT As New DataTable
                     If RBDUEDATE.Checked = True Then
-                        DT = OBJCMN.search("1 AS SORTNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE, TOTALBALES,DEBIT, CREDIT, ISNULL( DATEDIFF(DAY,(SELECT DUEDATE FROM (SELECT     ROW_NUMBER() OVER ( ORDER BY DUEDATE)AS ROWNO, DUEDATE FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND YEARID = " & YearId & WHERE & ")) AS T WHERE T.ROWNO = NEWT.ROWNO -1 ), NEWT.[DUEDATE]),0) AS [DAYS], 0 AS NETTBALANCE, 0 AS TOPAY, 0 AS TOREC  ", "", " (SELECT     ROW_NUMBER() OVER (ORDER BY DUEDATE)AS ROWNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE,TOTALBALES, DEBIT, CREDIT,  CMPID, LOCATIONID, YEARID FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND YEARID = " & YearId & WHERE & ")) AS NEWT ", WHERE & " ORDER BY NEWT.NAME, NEWT.DUEDATE  ")
+                        DT = OBJCMN.SEARCH("1 AS SORTNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE, TOTALBALES,DEBIT, CREDIT, ISNULL( DATEDIFF(DAY,(SELECT DUEDATE FROM (SELECT     ROW_NUMBER() OVER ( ORDER BY DUEDATE)AS ROWNO, DUEDATE FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND YEARID = " & YearId & WHERE & ")) AS T WHERE T.ROWNO = NEWT.ROWNO -1 ), NEWT.[DUEDATE]),0) AS [DAYS], 0 AS NETTBALANCE, 0 AS TOPAY, 0 AS TOREC  ", "", " (SELECT     ROW_NUMBER() OVER (ORDER BY DUEDATE)AS ROWNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE,TOTALBALES, DEBIT, CREDIT,  CMPID, LOCATIONID, YEARID FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND YEARID = " & YearId & WHERE & ")) AS NEWT ", WHERE & " ORDER BY NEWT.NAME, NEWT.DUEDATE  ")
                     Else
-                        DT = OBJCMN.search("1 AS SORTNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE, TOTALBALES,DEBIT, CREDIT, ISNULL( DATEDIFF(DAY,(SELECT DATE FROM (SELECT     ROW_NUMBER() OVER ( ORDER BY DATE)AS ROWNO, DATE FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND YEARID = " & YearId & WHERE & ")) AS T WHERE T.ROWNO = NEWT.ROWNO -1 ), NEWT.[DATE]),0) AS [DAYS], 0 AS NETTBALANCE, 0 AS TOPAY, 0 AS TOREC  ", "", " (SELECT     ROW_NUMBER() OVER (ORDER BY DATE)AS ROWNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE,TOTALBALES, DEBIT, CREDIT,  CMPID, LOCATIONID, YEARID FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND YEARID = " & YearId & WHERE & ")) AS NEWT ", WHERE & " ORDER BY NEWT.NAME, NEWT.DATE  ")
+                        DT = OBJCMN.SEARCH("1 AS SORTNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE, TOTALBALES,DEBIT, CREDIT, ISNULL( DATEDIFF(DAY,(SELECT DATE FROM (SELECT     ROW_NUMBER() OVER ( ORDER BY DATE)AS ROWNO, DATE FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND YEARID = " & YearId & WHERE & ")) AS T WHERE T.ROWNO = NEWT.ROWNO -1 ), NEWT.[DATE]),0) AS [DAYS], 0 AS NETTBALANCE, 0 AS TOPAY, 0 AS TOREC  ", "", " (SELECT     ROW_NUMBER() OVER (ORDER BY DATE)AS ROWNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE,TOTALBALES, DEBIT, CREDIT,  CMPID, LOCATIONID, YEARID FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND YEARID = " & YearId & WHERE & ")) AS NEWT ", WHERE & " ORDER BY NEWT.NAME, NEWT.DATE  ")
                     End If
                     Dim DTROW() As DataRow
 
-                    Dim DTOPENING As DataTable = OBJCMN.search(" (CASE WHEN (SUM(DEBIT) - SUM(CREDIT)> 0) THEN (SUM(DEBIT) - SUM(CREDIT)) ELSE 0 END )AS DEBITBAL, (CASE WHEN (SUM(CREDIT) - SUM(DEBIT)> 0 )THEN (SUM(CREDIT) - SUM(DEBIT)) ELSE 0 END)  AS CREDITBAL ", "", " INTERESTVIEW ", OPWHERE & " AND NAME = '" & NAMEROW("NAME") & "'")
+                    Dim DTOPENING As DataTable = OBJCMN.SEARCH(" (CASE WHEN (SUM(DEBIT) - SUM(CREDIT)> 0) THEN (SUM(DEBIT) - SUM(CREDIT)) ELSE 0 END )AS DEBITBAL, (CASE WHEN (SUM(CREDIT) - SUM(DEBIT)> 0 )THEN (SUM(CREDIT) - SUM(DEBIT)) ELSE 0 END)  AS CREDITBAL ", "", " INTERESTVIEW ", OPWHERE & " AND NAME = '" & NAMEROW("NAME") & "'")
                     If DTOPENING.Rows.Count > 0 Then
                         If CHKDATE.CheckState = CheckState.Checked Then
-                            If (Val(DTOPENING.Rows(0).Item("DEBITBAL")) > 0 Or Val(DTOPENING.Rows(0).Item("CREDITBAL")) > 0) Then dt.Rows.Add(0, 0, "", "OPENING", "", "", dtfrom.Value.Date, dtfrom.Value.Date, dtfrom.Value.Date, 0, Val(DTOPENING.Rows(0).Item("DEBITBAL")), Val(DTOPENING.Rows(0).Item("CREDITBAL")), 0, 0, 0, 0)
+                            If (Val(DTOPENING.Rows(0).Item("DEBITBAL")) > 0 Or Val(DTOPENING.Rows(0).Item("CREDITBAL")) > 0) Then DT.Rows.Add(0, 0, "", "OPENING", "", "", dtfrom.Value.Date, dtfrom.Value.Date, dtfrom.Value.Date, 0, Val(DTOPENING.Rows(0).Item("DEBITBAL")), Val(DTOPENING.Rows(0).Item("CREDITBAL")), 0, 0, 0, 0)
                         Else
-                            If (Val(DTOPENING.Rows(0).Item("DEBITBAL")) > 0 Or Val(DTOPENING.Rows(0).Item("CREDITBAL")) > 0) Then dt.Rows.Add(0, 0, "", "OPENING", "", "", AccFrom.Date, AccFrom.Date, AccFrom.Date, 0, Val(DTOPENING.Rows(0).Item("DEBITBAL")), Val(DTOPENING.Rows(0).Item("CREDITBAL")), 0, 0, 0, 0)
+                            If (Val(DTOPENING.Rows(0).Item("DEBITBAL")) > 0 Or Val(DTOPENING.Rows(0).Item("CREDITBAL")) > 0) Then DT.Rows.Add(0, 0, "", "OPENING", "", "", AccFrom.Date, AccFrom.Date, AccFrom.Date, 0, Val(DTOPENING.Rows(0).Item("DEBITBAL")), Val(DTOPENING.Rows(0).Item("CREDITBAL")), 0, 0, 0, 0)
                         End If
                     End If
 
 
-                    If dt.Rows.Count > 0 Then
+                    If DT.Rows.Count > 0 Then
 
                         Dim CLODAYS As Integer = 0
                         If RBDUEDATE.Checked = True Then
-                            DTROW = dt.Select("DUEDATE = MAX(DUEDATE)")
-                            Dim NETBAL As Double = dt.Compute("(SUM(DEBIT) - SUM(CREDIT))", "")
+                            DTROW = DT.Select("DUEDATE = MAX(DUEDATE)")
+                            Dim NETBAL As Double = DT.Compute("(SUM(DEBIT) - SUM(CREDIT))", "")
                             If Val(NETBAL) <> 0 Then CLODAYS = 1
                             If CHKDATE.CheckState = CheckState.Checked Then
                                 CLODAYS = CLODAYS + DateDiff(DateInterval.Day, DTROW(0).Item("DUEDATE"), dtto.Value.Date)
-                                If CLODAYS > 0 Then dt.Rows.Add(2, 0, "", "CLOSING", "", "", dtto.Value.Date, dtto.Value.Date, dtto.Value.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
+                                If CLODAYS > 0 Then DT.Rows.Add(2, 0, "", "CLOSING", "", "", dtto.Value.Date, dtto.Value.Date, dtto.Value.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
                             Else
                                 CLODAYS = CLODAYS + DateDiff(DateInterval.Day, DTROW(0).Item("DUEDATE"), AccTo.Date)
-                                If CLODAYS > 0 Then dt.Rows.Add(2, 0, "", "CLOSING", "", "", AccTo.Date, AccTo.Date, AccTo.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
+                                If CLODAYS > 0 Then DT.Rows.Add(2, 0, "", "CLOSING", "", "", AccTo.Date, AccTo.Date, AccTo.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
                             End If
 
                         ElseIf RBBILLDATE.Checked = True Then
-                            DTROW = dt.Select("DATE = MAX(DATE)")
-                            Dim NETBAL As Double = dt.Compute("(SUM(DEBIT) - SUM(CREDIT))", "")
+                            DTROW = DT.Select("DATE = MAX(DATE)")
+                            Dim NETBAL As Double = DT.Compute("(SUM(DEBIT) - SUM(CREDIT))", "")
                             If Val(NETBAL) <> 0 Then CLODAYS = 1
                             If CHKDATE.CheckState = CheckState.Checked Then
                                 CLODAYS = CLODAYS + DateDiff(DateInterval.Day, DTROW(0).Item("DATE"), dtto.Value.Date)
-                                If CLODAYS > 0 Then dt.Rows.Add(2, 0, "", "CLOSING", "", "", dtto.Value.Date, dtto.Value.Date, dtto.Value.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
+                                If CLODAYS > 0 Then DT.Rows.Add(2, 0, "", "CLOSING", "", "", dtto.Value.Date, dtto.Value.Date, dtto.Value.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
                             Else
                                 CLODAYS = CLODAYS + DateDiff(DateInterval.Day, DTROW(0).Item("DATE"), AccTo.Date)
-                                If CLODAYS > 0 Then dt.Rows.Add(2, 0, "", "CLOSING", "", "", AccTo.Date, AccTo.Date, AccTo.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
+                                If CLODAYS > 0 Then DT.Rows.Add(2, 0, "", "CLOSING", "", "", AccTo.Date, AccTo.Date, AccTo.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
                             End If
 
                         ElseIf RBPASSDATE.Checked = True Then
-                            DTROW = dt.Select("APPDATE = MAX(APPDATE)")
+                            DTROW = DT.Select("APPDATE = MAX(APPDATE)")
                             If CHKDATE.CheckState = CheckState.Checked Then
                                 CLODAYS = DateDiff(DateInterval.Day, DTROW(0).Item("APPDATE"), dtto.Value.Date)
-                                If CLODAYS > 0 Then dt.Rows.Add(2, 0, "", "CLOSING", "", "", dtto.Value.Date, dtto.Value.Date, dtto.Value.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
+                                If CLODAYS > 0 Then DT.Rows.Add(2, 0, "", "CLOSING", "", "", dtto.Value.Date, dtto.Value.Date, dtto.Value.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
                             Else
                                 CLODAYS = DateDiff(DateInterval.Day, DTROW(0).Item("APPDATE"), AccTo.Date)
-                                If CLODAYS > 0 Then dt.Rows.Add(2, 0, "", "CLOSING", "", "", AccTo.Date, AccTo.Date, AccTo.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
+                                If CLODAYS > 0 Then DT.Rows.Add(2, 0, "", "CLOSING", "", "", AccTo.Date, AccTo.Date, AccTo.Date, 0, 0, 0, CLODAYS, 0, 0, 0)
                             End If
 
                         End If
 
                     End If
 
-                    Dim DV As New DataView(dt)
+                    Dim DV As New DataView(DT)
                     If RBDUEDATE.Checked = True Then
                         DV.Sort = "SORTNO ASC, NAME ASC,DUEDATE ASC"
                     ElseIf RBBILLDATE.Checked = True Then
@@ -312,7 +312,7 @@ Public Class InterestCalc_Summary
         End Try
     End Sub
 
-    Sub showform()
+    Sub SHOWFORM()
         Try
             If GRIDNAMEREGISTER.RowCount > 0 Then
                 Dim dtrow As DataRow = GRIDNAMEREGISTER.GetFocusedDataRow
@@ -350,11 +350,11 @@ Public Class InterestCalc_Summary
     End Sub
 
     Private Sub TXTDAYS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTDAYS.KeyPress
-        numkeypress(e, TXTDAYS, Me)
+        numkeypress(e, sender, Me)
     End Sub
 
-    Private Sub TXTPERCENT_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTPERCENT.KeyPress
-        numdotkeypress(e, TXTPERCENT, Me)
+    Private Sub TXTPERCENT_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTPERCENT.KeyPress, TXTTDSPER.KeyPress
+        numdotkeypress(e, sender, Me)
     End Sub
 
     Private Sub GRIDNAMEREGISTER_CellValueChanged(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GRIDNAMEREGISTER.CellValueChanged
@@ -476,20 +476,82 @@ Public Class InterestCalc_Summary
         End Try
     End Sub
 
-    Sub fillcmb()
+    Sub FILLCMB()
         Try
-            Dim objclscommon As New ClsCommonMaster
-            Dim dt As DataTable
-            dt = objclscommon.search("group_name", "", "GroupMaster", " and group_cmpid = " & CmpId & " and group_Locationid = " & Locationid & " and group_Yearid = " & YearId)
+            Dim OBJCMN As New ClsCommonMaster
+            Dim dt As DataTable = OBJCMN.search("group_name", "", "GroupMaster", " and group_cmpid = " & CmpId & " and group_Locationid = " & Locationid & " and group_Yearid = " & YearId)
             If dt.Rows.Count > 0 Then
                 dt.DefaultView.Sort = "Group_name"
                 cmbgroup.DataSource = dt
                 cmbgroup.DisplayMember = "group_name"
                 cmbgroup.Text = ""
             End If
+
+            Dim WHERECLAUSE As String = ""
+            If cmbgroup.Text.Trim <> "" Then WHERECLAUSE = " AND GROUPMASTER.GROUP_SECONDARY = '" & cmbgroup.Text.Trim & "'"
+            Dim DTBUYER As DataTable = OBJCMN.search(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ,ISNULL(AGENCTLEDGERS.ACC_CMPNAME, '') AS AGENTNAME ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID", WHERECLAUSE & "  AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
+            GRIDBUYERDETAILS.DataSource = DTBUYER
+            If DTBUYER.Rows.Count > 0 Then GRIDBUYER.FocusedRowHandle = GRIDBUYER.RowCount - 1
+
+
+            FILLNAME(CMBINTEREST, False, " AND (GROUPMASTER.GROUP_SECONDARY = 'Indirect Expenses' OR GROUPMASTER.GROUP_SECONDARY = 'Indirect Income')")
+            FILLNAME(CMBTDS, False, " AND LEDGERS.ACC_TDSAC = 1")
+            fillregister(cmbregister, " and register_type = 'JOURNAL'")
+            cmbregister.Text = "JOURNAL REGISTER"
+
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub cmbregister_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbregister.Enter
+        Try
+            If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'JOURNAL'")
+            Dim clscommon As New ClsCommon
+            Dim dt As DataTable
+            dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'JOURNAL' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & Locationid & " and register_YEARid = " & YearId)
+            If dt.Rows.Count > 0 Then
+                cmbregister.Text = dt.Rows(0).Item(0).ToString
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbregister_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbregister.Validating
+        Try
+            If cmbregister.Text.Trim.Length > 0 Then
+                cmbregister.Text = UCase(cmbregister.Text)
+                Dim clscommon As New ClsCommon
+                Dim dt As DataTable = clscommon.SEARCH(" register_abbr, register_initials, register_id", "", " RegisterMaster", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'JOURNAL' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & Locationid & " and register_YEARid = " & YearId)
+                If dt.Rows.Count <= 0 Then
+                    MsgBox("Register Not Present, Add New from Master Module")
+                    e.Cancel = True
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTDS_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBTDS.Enter
+        Try
+            If CMBTDS.Text.Trim = "" Then FILLNAME(CMBTDS, "FALSE", " AND LEDGERS.ACC_TDSAC = 1")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTDS_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTDS.Validating
+        Try
+            If CMBTDS.Text.Trim <> "" Then NAMEVALIDATE(CMBTDS, CMBTDS, e, Me, TXTADD, " AND LEDGERS.ACC_TDSAC = 1")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTTDSPER_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTTDSPER.KeyPress
+        numdotkeypress(e, TXTTDSPER, Me)
     End Sub
 
     Private Sub InterestCalc_Summary_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -621,6 +683,43 @@ Public Class InterestCalc_Summary
     Private Sub InterestCalc_Summary_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If ClientName = "ANOX" Then TXTDAYS.Text = 365
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBTDS_Validated(sender As Object, e As EventArgs) Handles CMBTDS.Validated
+        Try
+            If CMBTDS.Text.Trim = "" Then Exit Sub
+
+            Dim OBJCMN As New ClsCommon
+            'GET TDS PERCENT
+            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ACCOUNTSMASTER_TDS.ACC_TDSPER,0) AS TDSPER, ISNULL(ACCOUNTSMASTER_TDS.ACC_TDSRATE,0) AS TDSRATE, ISNULL(ACCOUNTSMASTER_TDS.ACC_LIMIT,0) AS LIMIT ", "", " ACCOUNTSMASTER INNER JOIN ACCOUNTSMASTER_TDS ON ACCOUNTSMASTER.Acc_id = ACCOUNTSMASTER_TDS.ACC_ID ", " AND ACC_CMPNAME = '" & CMBTDS.Text.Trim & "' AND ACCOUNTSMASTER.ACC_YEARID  = " & YearId)
+            If DT.Rows.Count > 0 Then
+                Dim TDSPER As Double = Val(DT.Rows(0).Item("TDSPER"))
+                'FIRST CHECK WHETHER LOWER TDSRATE IS APPLICABE OR NOT 
+                'IF APPLICABLE THEN CHECK PARTY'S CURRENT YEAR'S TOTAL TRANSACTION DONE, 
+                'IF TOTAL TRANS OF THE YEAR EXCEEDS LIMIT THEN TDSPER WILL BE APPLIED OR ELSE TDSRATE WILL BE APPLIED
+                'If Val(DT.Rows(0).Item("LIMIT")) > 0 And Val(DT.Rows(0).Item("TDSRATE")) > 0 Then
+                '    Dim DTTDS As DataTable = OBJCMN.SEARCH(" ISNULL(SUM(T.TOTALAMT),0) AS TOTALAMT ", "", " (SELECT ISNULL(SUM(BILL_SUBTOTAL),0) AS TOTALAMT FROM PURCHASEMASTER INNER JOIN LEDGERS ON BILL_LEDGERID = LEDGERS.ACC_ID WHERE LEDGERS.ACC_CMPNAME = '" & TXTNAME.Text.Trim & "' AND BILL_YEARID = " & YearId & " UNION ALL SELECT ISNULL(SUM(NP_TOTALTAXABLEAMT),0) AS TOTALAMT FROM NONPURCHASE INNER JOIN LEDGERS ON NP_LEDGERID = LEDGERS.ACC_ID WHERE LEDGERS.ACC_CMPNAME = '" & TXTNAME.Text.Trim & "' AND NP_YEARID = " & YearId & ") AS T ", "")
+                '    If DTTDS.Rows.Count > 0 AndAlso Val(DTTDS.Rows(0).Item("TOTALAMT")) < Val(DT.Rows(0).Item("LIMIT")) Then TDSPER = Val(DT.Rows(0).Item("TDSRATE"))
+                'End If
+                TXTTDSPER.Text = Val(TDSPER)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbgroup_Validated(sender As Object, e As EventArgs) Handles cmbgroup.Validated
+        Try
+            If cmbgroup.Text.Trim = "" Then Exit Sub
+            Dim WHERECLAUSE As String = ""
+            If cmbgroup.Text.Trim <> "" Then WHERECLAUSE = " AND GROUPMASTER.GROUP_SECONDARY = '" & cmbgroup.Text.Trim & "'"
+            Dim OBJCMN As New ClsCommon
+            Dim DTBUYER As DataTable = OBJCMN.search(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ,ISNULL(AGENCTLEDGERS.ACC_CMPNAME, '') AS AGENTNAME ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID", WHERECLAUSE & "  AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
+            GRIDBUYERDETAILS.DataSource = DTBUYER
+            If DTBUYER.Rows.Count > 0 Then GRIDBUYER.FocusedRowHandle = GRIDBUYER.RowCount - 1
         Catch ex As Exception
             Throw ex
         End Try

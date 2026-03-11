@@ -29,25 +29,6 @@ Partial Class InterestCalc_Summary
         Me.CHKALL = New System.Windows.Forms.CheckBox()
         Me.cmbgroup = New System.Windows.Forms.ComboBox()
         Me.lblgroup = New System.Windows.Forms.Label()
-        Me.GRIDNAMEDETAILS = New DevExpress.XtraGrid.GridControl()
-        Me.GRIDNAMEREGISTER = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GNNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNDEBIT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNCREDIT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNNETTBAL = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNINTPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNTOPAY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNTOREC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNCLOSINGDR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCLOSINGCR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTDS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTDSAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNETTINT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPANNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTDSFORM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGROUPNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSIDEINT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALINT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.lbldrcrclosing = New System.Windows.Forms.Label()
         Me.txttotal = New System.Windows.Forms.TextBox()
         Me.lbln = New System.Windows.Forms.Label()
@@ -89,13 +70,62 @@ Partial Class InterestCalc_Summary
         Me.dtfrom = New System.Windows.Forms.DateTimePicker()
         Me.lblfrom = New System.Windows.Forms.Label()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TBDETAILS = New System.Windows.Forms.TabPage()
+        Me.GRIDNAMEDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDNAMEREGISTER = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GNNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNDEBIT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNCREDIT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNNETTBAL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNINTPER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNTOPAY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNTOREC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNCLOSINGDR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCLOSINGCR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTDSAMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNETTINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTDSFORM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGROUPNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSIDEINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TBFILTERS = New System.Windows.Forms.TabPage()
+        Me.CMBINTEREST = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TXTADD = New System.Windows.Forms.TextBox()
+        Me.cmbregister = New System.Windows.Forms.ComboBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.TXTTDSPER = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.CMBTDS = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.GPPARTYNAME = New System.Windows.Forms.GroupBox()
+        Me.GRIDBUYERDETAILS = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDBUYER = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.FCHK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.FNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.FAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.FCITYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.FSTATENAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.FAREA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHKBUYER = New System.Windows.Forms.CheckBox()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
-        CType(Me.GRIDNAMEDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDNAMEREGISTER, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.TBDETAILS.SuspendLayout()
+        CType(Me.GRIDNAMEDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDNAMEREGISTER, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TBFILTERS.SuspendLayout()
+        Me.GPPARTYNAME.SuspendLayout()
+        CType(Me.GRIDBUYERDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDBUYER, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EP
@@ -110,7 +140,6 @@ Partial Class InterestCalc_Summary
         Me.BlendPanel1.Controls.Add(Me.CHKALL)
         Me.BlendPanel1.Controls.Add(Me.cmbgroup)
         Me.BlendPanel1.Controls.Add(Me.lblgroup)
-        Me.BlendPanel1.Controls.Add(Me.GRIDNAMEDETAILS)
         Me.BlendPanel1.Controls.Add(Me.lbldrcrclosing)
         Me.BlendPanel1.Controls.Add(Me.txttotal)
         Me.BlendPanel1.Controls.Add(Me.lbln)
@@ -133,6 +162,7 @@ Partial Class InterestCalc_Summary
         Me.BlendPanel1.Controls.Add(Me.dtfrom)
         Me.BlendPanel1.Controls.Add(Me.lblfrom)
         Me.BlendPanel1.Controls.Add(Me.lbl)
+        Me.BlendPanel1.Controls.Add(Me.TabControl1)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
@@ -144,7 +174,7 @@ Partial Class InterestCalc_Summary
         Me.CHKALL.AutoSize = True
         Me.CHKALL.BackColor = System.Drawing.Color.Transparent
         Me.CHKALL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKALL.Location = New System.Drawing.Point(675, 35)
+        Me.CHKALL.Location = New System.Drawing.Point(1143, 28)
         Me.CHKALL.Name = "CHKALL"
         Me.CHKALL.Size = New System.Drawing.Size(95, 18)
         Me.CHKALL.TabIndex = 768
@@ -173,223 +203,6 @@ Partial Class InterestCalc_Summary
         Me.lblgroup.Size = New System.Drawing.Size(40, 14)
         Me.lblgroup.TabIndex = 767
         Me.lblgroup.Text = "Group"
-        '
-        'GRIDNAMEDETAILS
-        '
-        Me.GRIDNAMEDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDNAMEDETAILS.Location = New System.Drawing.Point(16, 91)
-        Me.GRIDNAMEDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.GRIDNAMEDETAILS.MainView = Me.GRIDNAMEREGISTER
-        Me.GRIDNAMEDETAILS.Name = "GRIDNAMEDETAILS"
-        Me.GRIDNAMEDETAILS.Size = New System.Drawing.Size(1206, 447)
-        Me.GRIDNAMEDETAILS.TabIndex = 765
-        Me.GRIDNAMEDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDNAMEREGISTER})
-        '
-        'GRIDNAMEREGISTER
-        '
-        Me.GRIDNAMEREGISTER.Appearance.HeaderPanel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDNAMEREGISTER.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GRIDNAMEREGISTER.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.GRIDNAMEREGISTER.Appearance.Row.Options.UseFont = True
-        Me.GRIDNAMEREGISTER.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GRIDNAMEREGISTER.Appearance.ViewCaption.Options.UseFont = True
-        Me.GRIDNAMEREGISTER.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNNAME, Me.GNDEBIT, Me.GNCREDIT, Me.GNNETTBAL, Me.GNINTPER, Me.GNTOPAY, Me.GNTOREC, Me.GNCLOSINGDR, Me.GCLOSINGCR, Me.GTDS, Me.GTDSAMT, Me.GNETTINT, Me.GPANNO, Me.GTDSFORM, Me.GGROUPNAME, Me.GSIDEINT, Me.GTOTALINT})
-        Me.GRIDNAMEREGISTER.GridControl = Me.GRIDNAMEDETAILS
-        Me.GRIDNAMEREGISTER.Name = "GRIDNAMEREGISTER"
-        Me.GRIDNAMEREGISTER.OptionsBehavior.AllowIncrementalSearch = True
-        Me.GRIDNAMEREGISTER.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GRIDNAMEREGISTER.OptionsBehavior.Editable = False
-        Me.GRIDNAMEREGISTER.OptionsMenu.EnableColumnMenu = False
-        Me.GRIDNAMEREGISTER.OptionsView.ColumnAutoWidth = False
-        Me.GRIDNAMEREGISTER.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
-        Me.GRIDNAMEREGISTER.OptionsView.ShowAutoFilterRow = True
-        Me.GRIDNAMEREGISTER.OptionsView.ShowFooter = True
-        Me.GRIDNAMEREGISTER.OptionsView.ShowGroupPanel = False
-        '
-        'GNNAME
-        '
-        Me.GNNAME.Caption = "Name"
-        Me.GNNAME.FieldName = "NAME"
-        Me.GNNAME.Name = "GNNAME"
-        Me.GNNAME.OptionsColumn.AllowEdit = False
-        Me.GNNAME.Visible = True
-        Me.GNNAME.VisibleIndex = 0
-        Me.GNNAME.Width = 250
-        '
-        'GNDEBIT
-        '
-        Me.GNDEBIT.Caption = "Debit"
-        Me.GNDEBIT.DisplayFormat.FormatString = "0.00"
-        Me.GNDEBIT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GNDEBIT.FieldName = "DEBIT"
-        Me.GNDEBIT.Name = "GNDEBIT"
-        Me.GNDEBIT.OptionsColumn.AllowEdit = False
-        Me.GNDEBIT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GNDEBIT.Visible = True
-        Me.GNDEBIT.VisibleIndex = 1
-        Me.GNDEBIT.Width = 110
-        '
-        'GNCREDIT
-        '
-        Me.GNCREDIT.Caption = "Credit"
-        Me.GNCREDIT.DisplayFormat.FormatString = "0.00"
-        Me.GNCREDIT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GNCREDIT.FieldName = "CREDIT"
-        Me.GNCREDIT.Name = "GNCREDIT"
-        Me.GNCREDIT.OptionsColumn.AllowEdit = False
-        Me.GNCREDIT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GNCREDIT.Visible = True
-        Me.GNCREDIT.VisibleIndex = 2
-        Me.GNCREDIT.Width = 110
-        '
-        'GNNETTBAL
-        '
-        Me.GNNETTBAL.Caption = "Nett Balance"
-        Me.GNNETTBAL.DisplayFormat.FormatString = "0.00"
-        Me.GNNETTBAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GNNETTBAL.FieldName = "NETTBALANCE"
-        Me.GNNETTBAL.Name = "GNNETTBAL"
-        Me.GNNETTBAL.OptionsColumn.AllowEdit = False
-        Me.GNNETTBAL.Visible = True
-        Me.GNNETTBAL.VisibleIndex = 3
-        Me.GNNETTBAL.Width = 110
-        '
-        'GNINTPER
-        '
-        Me.GNINTPER.Caption = "Int %"
-        Me.GNINTPER.DisplayFormat.FormatString = "0.00"
-        Me.GNINTPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GNINTPER.FieldName = "INTPER"
-        Me.GNINTPER.Name = "GNINTPER"
-        Me.GNINTPER.Visible = True
-        Me.GNINTPER.VisibleIndex = 4
-        Me.GNINTPER.Width = 50
-        '
-        'GNTOPAY
-        '
-        Me.GNTOPAY.Caption = "To Pay"
-        Me.GNTOPAY.DisplayFormat.FormatString = "0.00"
-        Me.GNTOPAY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GNTOPAY.FieldName = "TOPAY"
-        Me.GNTOPAY.Name = "GNTOPAY"
-        Me.GNTOPAY.OptionsColumn.AllowEdit = False
-        Me.GNTOPAY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOPAY", "{0:0.00}")})
-        Me.GNTOPAY.Visible = True
-        Me.GNTOPAY.VisibleIndex = 5
-        Me.GNTOPAY.Width = 110
-        '
-        'GNTOREC
-        '
-        Me.GNTOREC.Caption = "To Rec"
-        Me.GNTOREC.DisplayFormat.FormatString = "0.00"
-        Me.GNTOREC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GNTOREC.FieldName = "TOREC"
-        Me.GNTOREC.Name = "GNTOREC"
-        Me.GNTOREC.OptionsColumn.AllowEdit = False
-        Me.GNTOREC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOREC", "{0:0.00}")})
-        Me.GNTOREC.Visible = True
-        Me.GNTOREC.VisibleIndex = 6
-        Me.GNTOREC.Width = 110
-        '
-        'GNCLOSINGDR
-        '
-        Me.GNCLOSINGDR.Caption = "Int (Debit)"
-        Me.GNCLOSINGDR.DisplayFormat.FormatString = "0.00"
-        Me.GNCLOSINGDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GNCLOSINGDR.FieldName = "INTDR"
-        Me.GNCLOSINGDR.Name = "GNCLOSINGDR"
-        Me.GNCLOSINGDR.OptionsColumn.AllowEdit = False
-        Me.GNCLOSINGDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GNCLOSINGDR.Visible = True
-        Me.GNCLOSINGDR.VisibleIndex = 7
-        Me.GNCLOSINGDR.Width = 110
-        '
-        'GCLOSINGCR
-        '
-        Me.GCLOSINGCR.Caption = "Int (Credit)"
-        Me.GCLOSINGCR.DisplayFormat.FormatString = "0.00"
-        Me.GCLOSINGCR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GCLOSINGCR.FieldName = "INTCR"
-        Me.GCLOSINGCR.Name = "GCLOSINGCR"
-        Me.GCLOSINGCR.OptionsColumn.AllowEdit = False
-        Me.GCLOSINGCR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GCLOSINGCR.Visible = True
-        Me.GCLOSINGCR.VisibleIndex = 8
-        Me.GCLOSINGCR.Width = 110
-        '
-        'GTDS
-        '
-        Me.GTDS.Caption = "TDS %"
-        Me.GTDS.FieldName = "TDSPER"
-        Me.GTDS.Name = "GTDS"
-        Me.GTDS.Visible = True
-        Me.GTDS.VisibleIndex = 9
-        Me.GTDS.Width = 60
-        '
-        'GTDSAMT
-        '
-        Me.GTDSAMT.Caption = "TDS Amt"
-        Me.GTDSAMT.DisplayFormat.FormatString = "0.00"
-        Me.GTDSAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTDSAMT.FieldName = "TDSAMT"
-        Me.GTDSAMT.Name = "GTDSAMT"
-        Me.GTDSAMT.Visible = True
-        Me.GTDSAMT.VisibleIndex = 10
-        Me.GTDSAMT.Width = 100
-        '
-        'GNETTINT
-        '
-        Me.GNETTINT.Caption = "Nett Int"
-        Me.GNETTINT.DisplayFormat.FormatString = "0.00"
-        Me.GNETTINT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GNETTINT.FieldName = "NETTINT"
-        Me.GNETTINT.Name = "GNETTINT"
-        Me.GNETTINT.Visible = True
-        Me.GNETTINT.VisibleIndex = 11
-        Me.GNETTINT.Width = 110
-        '
-        'GPANNO
-        '
-        Me.GPANNO.Caption = "Pan No"
-        Me.GPANNO.FieldName = "PANNO"
-        Me.GPANNO.Name = "GPANNO"
-        Me.GPANNO.Visible = True
-        Me.GPANNO.VisibleIndex = 12
-        Me.GPANNO.Width = 100
-        '
-        'GTDSFORM
-        '
-        Me.GTDSFORM.Caption = "TDS Form"
-        Me.GTDSFORM.FieldName = "TDSFORM"
-        Me.GTDSFORM.Name = "GTDSFORM"
-        Me.GTDSFORM.Visible = True
-        Me.GTDSFORM.VisibleIndex = 13
-        '
-        'GGROUPNAME
-        '
-        Me.GGROUPNAME.Caption = "Group Name"
-        Me.GGROUPNAME.FieldName = "GROUPNAME"
-        Me.GGROUPNAME.Name = "GGROUPNAME"
-        Me.GGROUPNAME.Visible = True
-        Me.GGROUPNAME.VisibleIndex = 14
-        '
-        'GSIDEINT
-        '
-        Me.GSIDEINT.Caption = "Side Int"
-        Me.GSIDEINT.FieldName = "SIDEINT"
-        Me.GSIDEINT.Name = "GSIDEINT"
-        Me.GSIDEINT.Visible = True
-        Me.GSIDEINT.VisibleIndex = 15
-        Me.GSIDEINT.Width = 110
-        '
-        'GTOTALINT
-        '
-        Me.GTOTALINT.Caption = "Total Int"
-        Me.GTOTALINT.FieldName = "TOTALINT"
-        Me.GTOTALINT.Name = "GTOTALINT"
-        Me.GTOTALINT.Visible = True
-        Me.GTOTALINT.VisibleIndex = 16
-        Me.GTOTALINT.Width = 110
         '
         'lbldrcrclosing
         '
@@ -774,7 +587,7 @@ Partial Class InterestCalc_Summary
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(534, 545)
+        Me.cmdok.Location = New System.Drawing.Point(534, 552)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 7
@@ -788,7 +601,7 @@ Partial Class InterestCalc_Summary
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(620, 544)
+        Me.cmdexit.Location = New System.Drawing.Point(620, 551)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 9
@@ -851,6 +664,484 @@ Partial Class InterestCalc_Summary
         Me.lbl.TabIndex = 427
         Me.lbl.Text = "Interest Report"
         '
+        'TabControl1
+        '
+        Me.TabControl1.Controls.Add(Me.TBDETAILS)
+        Me.TabControl1.Controls.Add(Me.TBFILTERS)
+        Me.TabControl1.Location = New System.Drawing.Point(11, 67)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(1222, 483)
+        Me.TabControl1.TabIndex = 769
+        '
+        'TBDETAILS
+        '
+        Me.TBDETAILS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBDETAILS.Controls.Add(Me.GRIDNAMEDETAILS)
+        Me.TBDETAILS.Location = New System.Drawing.Point(4, 24)
+        Me.TBDETAILS.Name = "TBDETAILS"
+        Me.TBDETAILS.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBDETAILS.Size = New System.Drawing.Size(1214, 455)
+        Me.TBDETAILS.TabIndex = 0
+        Me.TBDETAILS.Text = "Interest Details"
+        '
+        'GRIDNAMEDETAILS
+        '
+        Me.GRIDNAMEDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDNAMEDETAILS.Location = New System.Drawing.Point(3, 3)
+        Me.GRIDNAMEDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDNAMEDETAILS.MainView = Me.GRIDNAMEREGISTER
+        Me.GRIDNAMEDETAILS.Name = "GRIDNAMEDETAILS"
+        Me.GRIDNAMEDETAILS.Size = New System.Drawing.Size(1206, 447)
+        Me.GRIDNAMEDETAILS.TabIndex = 765
+        Me.GRIDNAMEDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDNAMEREGISTER})
+        '
+        'GRIDNAMEREGISTER
+        '
+        Me.GRIDNAMEREGISTER.Appearance.HeaderPanel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDNAMEREGISTER.Appearance.HeaderPanel.Options.UseFont = True
+        Me.GRIDNAMEREGISTER.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.GRIDNAMEREGISTER.Appearance.Row.Options.UseFont = True
+        Me.GRIDNAMEREGISTER.Appearance.ViewCaption.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDNAMEREGISTER.Appearance.ViewCaption.Options.UseFont = True
+        Me.GRIDNAMEREGISTER.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNNAME, Me.GNDEBIT, Me.GNCREDIT, Me.GNNETTBAL, Me.GNINTPER, Me.GNTOPAY, Me.GNTOREC, Me.GNCLOSINGDR, Me.GCLOSINGCR, Me.GTDS, Me.GTDSAMT, Me.GNETTINT, Me.GPANNO, Me.GTDSFORM, Me.GGROUPNAME, Me.GSIDEINT, Me.GTOTALINT})
+        Me.GRIDNAMEREGISTER.GridControl = Me.GRIDNAMEDETAILS
+        Me.GRIDNAMEREGISTER.Name = "GRIDNAMEREGISTER"
+        Me.GRIDNAMEREGISTER.OptionsBehavior.AllowIncrementalSearch = True
+        Me.GRIDNAMEREGISTER.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GRIDNAMEREGISTER.OptionsBehavior.Editable = False
+        Me.GRIDNAMEREGISTER.OptionsMenu.EnableColumnMenu = False
+        Me.GRIDNAMEREGISTER.OptionsView.ColumnAutoWidth = False
+        Me.GRIDNAMEREGISTER.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GRIDNAMEREGISTER.OptionsView.ShowAutoFilterRow = True
+        Me.GRIDNAMEREGISTER.OptionsView.ShowFooter = True
+        Me.GRIDNAMEREGISTER.OptionsView.ShowGroupPanel = False
+        '
+        'GNNAME
+        '
+        Me.GNNAME.Caption = "Name"
+        Me.GNNAME.FieldName = "NAME"
+        Me.GNNAME.Name = "GNNAME"
+        Me.GNNAME.OptionsColumn.AllowEdit = False
+        Me.GNNAME.Visible = True
+        Me.GNNAME.VisibleIndex = 0
+        Me.GNNAME.Width = 250
+        '
+        'GNDEBIT
+        '
+        Me.GNDEBIT.Caption = "Debit"
+        Me.GNDEBIT.DisplayFormat.FormatString = "0.00"
+        Me.GNDEBIT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GNDEBIT.FieldName = "DEBIT"
+        Me.GNDEBIT.Name = "GNDEBIT"
+        Me.GNDEBIT.OptionsColumn.AllowEdit = False
+        Me.GNDEBIT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GNDEBIT.Visible = True
+        Me.GNDEBIT.VisibleIndex = 1
+        Me.GNDEBIT.Width = 110
+        '
+        'GNCREDIT
+        '
+        Me.GNCREDIT.Caption = "Credit"
+        Me.GNCREDIT.DisplayFormat.FormatString = "0.00"
+        Me.GNCREDIT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GNCREDIT.FieldName = "CREDIT"
+        Me.GNCREDIT.Name = "GNCREDIT"
+        Me.GNCREDIT.OptionsColumn.AllowEdit = False
+        Me.GNCREDIT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GNCREDIT.Visible = True
+        Me.GNCREDIT.VisibleIndex = 2
+        Me.GNCREDIT.Width = 110
+        '
+        'GNNETTBAL
+        '
+        Me.GNNETTBAL.Caption = "Nett Balance"
+        Me.GNNETTBAL.DisplayFormat.FormatString = "0.00"
+        Me.GNNETTBAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GNNETTBAL.FieldName = "NETTBALANCE"
+        Me.GNNETTBAL.Name = "GNNETTBAL"
+        Me.GNNETTBAL.OptionsColumn.AllowEdit = False
+        Me.GNNETTBAL.Visible = True
+        Me.GNNETTBAL.VisibleIndex = 3
+        Me.GNNETTBAL.Width = 110
+        '
+        'GNINTPER
+        '
+        Me.GNINTPER.Caption = "Int %"
+        Me.GNINTPER.DisplayFormat.FormatString = "0.00"
+        Me.GNINTPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GNINTPER.FieldName = "INTPER"
+        Me.GNINTPER.Name = "GNINTPER"
+        Me.GNINTPER.Visible = True
+        Me.GNINTPER.VisibleIndex = 4
+        Me.GNINTPER.Width = 50
+        '
+        'GNTOPAY
+        '
+        Me.GNTOPAY.Caption = "To Pay"
+        Me.GNTOPAY.DisplayFormat.FormatString = "0.00"
+        Me.GNTOPAY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GNTOPAY.FieldName = "TOPAY"
+        Me.GNTOPAY.Name = "GNTOPAY"
+        Me.GNTOPAY.OptionsColumn.AllowEdit = False
+        Me.GNTOPAY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOPAY", "{0:0.00}")})
+        Me.GNTOPAY.Visible = True
+        Me.GNTOPAY.VisibleIndex = 5
+        Me.GNTOPAY.Width = 110
+        '
+        'GNTOREC
+        '
+        Me.GNTOREC.Caption = "To Rec"
+        Me.GNTOREC.DisplayFormat.FormatString = "0.00"
+        Me.GNTOREC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GNTOREC.FieldName = "TOREC"
+        Me.GNTOREC.Name = "GNTOREC"
+        Me.GNTOREC.OptionsColumn.AllowEdit = False
+        Me.GNTOREC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOREC", "{0:0.00}")})
+        Me.GNTOREC.Visible = True
+        Me.GNTOREC.VisibleIndex = 6
+        Me.GNTOREC.Width = 110
+        '
+        'GNCLOSINGDR
+        '
+        Me.GNCLOSINGDR.Caption = "Int (Debit)"
+        Me.GNCLOSINGDR.DisplayFormat.FormatString = "0.00"
+        Me.GNCLOSINGDR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GNCLOSINGDR.FieldName = "INTDR"
+        Me.GNCLOSINGDR.Name = "GNCLOSINGDR"
+        Me.GNCLOSINGDR.OptionsColumn.AllowEdit = False
+        Me.GNCLOSINGDR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GNCLOSINGDR.Visible = True
+        Me.GNCLOSINGDR.VisibleIndex = 7
+        Me.GNCLOSINGDR.Width = 110
+        '
+        'GCLOSINGCR
+        '
+        Me.GCLOSINGCR.Caption = "Int (Credit)"
+        Me.GCLOSINGCR.DisplayFormat.FormatString = "0.00"
+        Me.GCLOSINGCR.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCLOSINGCR.FieldName = "INTCR"
+        Me.GCLOSINGCR.Name = "GCLOSINGCR"
+        Me.GCLOSINGCR.OptionsColumn.AllowEdit = False
+        Me.GCLOSINGCR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GCLOSINGCR.Visible = True
+        Me.GCLOSINGCR.VisibleIndex = 8
+        Me.GCLOSINGCR.Width = 110
+        '
+        'GTDS
+        '
+        Me.GTDS.Caption = "TDS %"
+        Me.GTDS.FieldName = "TDSPER"
+        Me.GTDS.Name = "GTDS"
+        Me.GTDS.Visible = True
+        Me.GTDS.VisibleIndex = 9
+        Me.GTDS.Width = 60
+        '
+        'GTDSAMT
+        '
+        Me.GTDSAMT.Caption = "TDS Amt"
+        Me.GTDSAMT.DisplayFormat.FormatString = "0.00"
+        Me.GTDSAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTDSAMT.FieldName = "TDSAMT"
+        Me.GTDSAMT.Name = "GTDSAMT"
+        Me.GTDSAMT.Visible = True
+        Me.GTDSAMT.VisibleIndex = 10
+        Me.GTDSAMT.Width = 100
+        '
+        'GNETTINT
+        '
+        Me.GNETTINT.Caption = "Nett Int"
+        Me.GNETTINT.DisplayFormat.FormatString = "0.00"
+        Me.GNETTINT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GNETTINT.FieldName = "NETTINT"
+        Me.GNETTINT.Name = "GNETTINT"
+        Me.GNETTINT.Visible = True
+        Me.GNETTINT.VisibleIndex = 11
+        Me.GNETTINT.Width = 110
+        '
+        'GPANNO
+        '
+        Me.GPANNO.Caption = "Pan No"
+        Me.GPANNO.FieldName = "PANNO"
+        Me.GPANNO.Name = "GPANNO"
+        Me.GPANNO.Visible = True
+        Me.GPANNO.VisibleIndex = 12
+        Me.GPANNO.Width = 100
+        '
+        'GTDSFORM
+        '
+        Me.GTDSFORM.Caption = "TDS Form"
+        Me.GTDSFORM.FieldName = "TDSFORM"
+        Me.GTDSFORM.Name = "GTDSFORM"
+        Me.GTDSFORM.Visible = True
+        Me.GTDSFORM.VisibleIndex = 13
+        '
+        'GGROUPNAME
+        '
+        Me.GGROUPNAME.Caption = "Group Name"
+        Me.GGROUPNAME.FieldName = "GROUPNAME"
+        Me.GGROUPNAME.Name = "GGROUPNAME"
+        Me.GGROUPNAME.Visible = True
+        Me.GGROUPNAME.VisibleIndex = 14
+        '
+        'GSIDEINT
+        '
+        Me.GSIDEINT.Caption = "Side Int"
+        Me.GSIDEINT.FieldName = "SIDEINT"
+        Me.GSIDEINT.Name = "GSIDEINT"
+        Me.GSIDEINT.Visible = True
+        Me.GSIDEINT.VisibleIndex = 15
+        Me.GSIDEINT.Width = 110
+        '
+        'GTOTALINT
+        '
+        Me.GTOTALINT.Caption = "Total Int"
+        Me.GTOTALINT.FieldName = "TOTALINT"
+        Me.GTOTALINT.Name = "GTOTALINT"
+        Me.GTOTALINT.Visible = True
+        Me.GTOTALINT.VisibleIndex = 16
+        Me.GTOTALINT.Width = 110
+        '
+        'TBFILTERS
+        '
+        Me.TBFILTERS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBFILTERS.Controls.Add(Me.CMBINTEREST)
+        Me.TBFILTERS.Controls.Add(Me.Label3)
+        Me.TBFILTERS.Controls.Add(Me.TXTADD)
+        Me.TBFILTERS.Controls.Add(Me.cmbregister)
+        Me.TBFILTERS.Controls.Add(Me.Label23)
+        Me.TBFILTERS.Controls.Add(Me.TXTTDSPER)
+        Me.TBFILTERS.Controls.Add(Me.Label4)
+        Me.TBFILTERS.Controls.Add(Me.CMBTDS)
+        Me.TBFILTERS.Controls.Add(Me.Label2)
+        Me.TBFILTERS.Controls.Add(Me.GPPARTYNAME)
+        Me.TBFILTERS.Location = New System.Drawing.Point(4, 24)
+        Me.TBFILTERS.Name = "TBFILTERS"
+        Me.TBFILTERS.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBFILTERS.Size = New System.Drawing.Size(1214, 455)
+        Me.TBFILTERS.TabIndex = 1
+        Me.TBFILTERS.Text = "Filters"
+        '
+        'CMBINTEREST
+        '
+        Me.CMBINTEREST.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBINTEREST.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBINTEREST.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBINTEREST.FormattingEnabled = True
+        Me.CMBINTEREST.Location = New System.Drawing.Point(879, 77)
+        Me.CMBINTEREST.MaxDropDownItems = 14
+        Me.CMBINTEREST.Name = "CMBINTEREST"
+        Me.CMBINTEREST.Size = New System.Drawing.Size(285, 23)
+        Me.CMBINTEREST.TabIndex = 575
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(807, 81)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(70, 15)
+        Me.Label3.TabIndex = 576
+        Me.Label3.Text = "Interest A/c"
+        '
+        'TXTADD
+        '
+        Me.TXTADD.BackColor = System.Drawing.Color.Linen
+        Me.TXTADD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTADD.Location = New System.Drawing.Point(980, 136)
+        Me.TXTADD.Name = "TXTADD"
+        Me.TXTADD.ReadOnly = True
+        Me.TXTADD.Size = New System.Drawing.Size(23, 23)
+        Me.TXTADD.TabIndex = 574
+        Me.TXTADD.TabStop = False
+        Me.TXTADD.Visible = False
+        '
+        'cmbregister
+        '
+        Me.cmbregister.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbregister.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbregister.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbregister.FormattingEnabled = True
+        Me.cmbregister.Items.AddRange(New Object() {""})
+        Me.cmbregister.Location = New System.Drawing.Point(879, 49)
+        Me.cmbregister.Name = "cmbregister"
+        Me.cmbregister.Size = New System.Drawing.Size(285, 22)
+        Me.cmbregister.TabIndex = 568
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.BackColor = System.Drawing.Color.Transparent
+        Me.Label23.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.Location = New System.Drawing.Point(811, 53)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(66, 14)
+        Me.Label23.TabIndex = 573
+        Me.Label23.Text = "JV Register"
+        '
+        'TXTTDSPER
+        '
+        Me.TXTTDSPER.BackColor = System.Drawing.Color.White
+        Me.TXTTDSPER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTDSPER.Location = New System.Drawing.Point(879, 135)
+        Me.TXTTDSPER.Name = "TXTTDSPER"
+        Me.TXTTDSPER.Size = New System.Drawing.Size(95, 23)
+        Me.TXTTDSPER.TabIndex = 570
+        Me.TXTTDSPER.Text = "0.00"
+        Me.TXTTDSPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(838, 139)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(39, 15)
+        Me.Label4.TabIndex = 572
+        Me.Label4.Text = "TDS %"
+        '
+        'CMBTDS
+        '
+        Me.CMBTDS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTDS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTDS.FormattingEnabled = True
+        Me.CMBTDS.Location = New System.Drawing.Point(879, 106)
+        Me.CMBTDS.MaxDropDownItems = 14
+        Me.CMBTDS.Name = "CMBTDS"
+        Me.CMBTDS.Size = New System.Drawing.Size(285, 23)
+        Me.CMBTDS.TabIndex = 569
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(829, 110)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(48, 15)
+        Me.Label2.TabIndex = 571
+        Me.Label2.Text = "TDS A/c"
+        '
+        'GPPARTYNAME
+        '
+        Me.GPPARTYNAME.BackColor = System.Drawing.Color.Transparent
+        Me.GPPARTYNAME.Controls.Add(Me.GRIDBUYERDETAILS)
+        Me.GPPARTYNAME.Controls.Add(Me.CHKBUYER)
+        Me.GPPARTYNAME.Location = New System.Drawing.Point(6, 3)
+        Me.GPPARTYNAME.Name = "GPPARTYNAME"
+        Me.GPPARTYNAME.Size = New System.Drawing.Size(761, 446)
+        Me.GPPARTYNAME.TabIndex = 5
+        Me.GPPARTYNAME.TabStop = False
+        Me.GPPARTYNAME.Text = "Party Name"
+        '
+        'GRIDBUYERDETAILS
+        '
+        Me.GRIDBUYERDETAILS.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDBUYERDETAILS.Location = New System.Drawing.Point(11, 46)
+        Me.GRIDBUYERDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDBUYERDETAILS.MainView = Me.GRIDBUYER
+        Me.GRIDBUYERDETAILS.Name = "GRIDBUYERDETAILS"
+        Me.GRIDBUYERDETAILS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GRIDBUYERDETAILS.Size = New System.Drawing.Size(721, 401)
+        Me.GRIDBUYERDETAILS.TabIndex = 2
+        Me.GRIDBUYERDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDBUYER})
+        '
+        'GRIDBUYER
+        '
+        Me.GRIDBUYER.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDBUYER.Appearance.Row.Options.UseFont = True
+        Me.GRIDBUYER.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.FCHK, Me.FNAME, Me.FAGENTNAME, Me.FCITYNAME, Me.FSTATENAME, Me.FAREA})
+        Me.GRIDBUYER.GridControl = Me.GRIDBUYERDETAILS
+        Me.GRIDBUYER.Name = "GRIDBUYER"
+        Me.GRIDBUYER.OptionsBehavior.AllowIncrementalSearch = True
+        Me.GRIDBUYER.OptionsView.ColumnAutoWidth = False
+        Me.GRIDBUYER.OptionsView.ShowAutoFilterRow = True
+        Me.GRIDBUYER.OptionsView.ShowGroupPanel = False
+        '
+        'FCHK
+        '
+        Me.FCHK.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.FCHK.FieldName = "CHK"
+        Me.FCHK.Name = "FCHK"
+        Me.FCHK.OptionsColumn.ShowCaption = False
+        Me.FCHK.Visible = True
+        Me.FCHK.VisibleIndex = 0
+        Me.FCHK.Width = 35
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'FNAME
+        '
+        Me.FNAME.Caption = "Name"
+        Me.FNAME.FieldName = "NAME"
+        Me.FNAME.ImageOptions.ImageIndex = 0
+        Me.FNAME.Name = "FNAME"
+        Me.FNAME.OptionsColumn.AllowEdit = False
+        Me.FNAME.Visible = True
+        Me.FNAME.VisibleIndex = 1
+        Me.FNAME.Width = 230
+        '
+        'FAGENTNAME
+        '
+        Me.FAGENTNAME.Caption = "Agent Name"
+        Me.FAGENTNAME.FieldName = "AGENTNAME"
+        Me.FAGENTNAME.Name = "FAGENTNAME"
+        Me.FAGENTNAME.Visible = True
+        Me.FAGENTNAME.VisibleIndex = 2
+        Me.FAGENTNAME.Width = 150
+        '
+        'FCITYNAME
+        '
+        Me.FCITYNAME.Caption = "City Name"
+        Me.FCITYNAME.FieldName = "CITY"
+        Me.FCITYNAME.Name = "FCITYNAME"
+        Me.FCITYNAME.OptionsColumn.AllowEdit = False
+        Me.FCITYNAME.Visible = True
+        Me.FCITYNAME.VisibleIndex = 3
+        '
+        'FSTATENAME
+        '
+        Me.FSTATENAME.Caption = "State Name"
+        Me.FSTATENAME.FieldName = "STATENAME"
+        Me.FSTATENAME.Name = "FSTATENAME"
+        Me.FSTATENAME.OptionsColumn.AllowEdit = False
+        Me.FSTATENAME.Visible = True
+        Me.FSTATENAME.VisibleIndex = 4
+        Me.FSTATENAME.Width = 80
+        '
+        'FAREA
+        '
+        Me.FAREA.Caption = "Area"
+        Me.FAREA.FieldName = "AREA"
+        Me.FAREA.Name = "FAREA"
+        Me.FAREA.OptionsColumn.AllowEdit = False
+        Me.FAREA.Visible = True
+        Me.FAREA.VisibleIndex = 5
+        Me.FAREA.Width = 100
+        '
+        'CHKBUYER
+        '
+        Me.CHKBUYER.AutoSize = True
+        Me.CHKBUYER.BackColor = System.Drawing.Color.Transparent
+        Me.CHKBUYER.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKBUYER.ForeColor = System.Drawing.Color.Black
+        Me.CHKBUYER.Location = New System.Drawing.Point(18, 22)
+        Me.CHKBUYER.Name = "CHKBUYER"
+        Me.CHKBUYER.Size = New System.Drawing.Size(77, 18)
+        Me.CHKBUYER.TabIndex = 0
+        Me.CHKBUYER.Text = "Select All"
+        Me.CHKBUYER.UseVisualStyleBackColor = False
+        '
         'InterestCalc_Summary
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -865,12 +1156,21 @@ Partial Class InterestCalc_Summary
         CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
-        CType(Me.GRIDNAMEDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDNAMEREGISTER, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridregister, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.TabControl1.ResumeLayout(False)
+        Me.TBDETAILS.ResumeLayout(False)
+        CType(Me.GRIDNAMEDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDNAMEREGISTER, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TBFILTERS.ResumeLayout(False)
+        Me.TBFILTERS.PerformLayout()
+        Me.GPPARTYNAME.ResumeLayout(False)
+        Me.GPPARTYNAME.PerformLayout()
+        CType(Me.GRIDBUYERDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDBUYER, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -939,4 +1239,27 @@ Partial Class InterestCalc_Summary
     Friend WithEvents GNETTINT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GSIDEINT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOTALINT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TBDETAILS As TabPage
+    Friend WithEvents TBFILTERS As TabPage
+    Friend WithEvents GPPARTYNAME As GroupBox
+    Private WithEvents GRIDBUYERDETAILS As DevExpress.XtraGrid.GridControl
+    Private WithEvents GRIDBUYER As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents FCHK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Private WithEvents FNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents FCITYNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents FSTATENAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents FAREA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents FAGENTNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKBUYER As CheckBox
+    Friend WithEvents cmbregister As ComboBox
+    Friend WithEvents Label23 As Label
+    Friend WithEvents TXTTDSPER As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents CMBTDS As ComboBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents TXTADD As TextBox
+    Friend WithEvents CMBINTEREST As ComboBox
+    Friend WithEvents Label3 As Label
 End Class
