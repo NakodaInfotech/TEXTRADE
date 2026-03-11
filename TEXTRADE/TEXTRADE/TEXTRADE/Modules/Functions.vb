@@ -27,7 +27,30 @@ Module Functions
             End If
 
 PRINTALL:
-            If ClientName = "SVS" Then
+
+            If ClientName = "APPLE" Then
+
+                oWrite.WriteLine("SIZE 101.6 mm, 101.6 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 794,763,""ROMAN.TTF"",180,1,78,""" & BALENO & """
+QRCODE 334,394,L,10,A,180,M2,S7,""" & BARCODE & """
+TEXT 778,534,""ROMAN.TTF"",180,1,24,""" & ITEMNAME & """
+TEXT 778,422,""ROMAN.TTF"",180,1,24,""" & DESIGNNO & """
+TEXT 778,222,""ROMAN.TTF"",180,1,48,""" & Format(Val(MTRS), "0.00") & """
+TEXT 778,310,""ROMAN.TTF"",180,1,24,""" & BARCODE & """
+PRINT 1,1")
+                oWrite.Dispose()
+
+
+            ElseIf ClientName = "SVS" Then
                 oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>I8,A")
                 oWrite.WriteLine("ZN")
                 oWrite.WriteLine("q400")
@@ -391,6 +414,9 @@ TEXT 217,285,""ROMAN.TTF"",180,1,12,"":""
 TEXT 193,285,""ROMAN.TTF"",180,1,12,""" & RACK & """
 PRINT 1,1")
                 oWrite.Dispose()
+
+
+
 
             ElseIf ClientName = "MBB" Then
 
