@@ -3296,7 +3296,7 @@ LINE1:
         CMBYESNO.SelectedIndex = 0
         TXTDIFF.Clear()
         TXTPCSNO.Clear()
-        If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Then
+        If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "VINAYAK" Then
             TXTRECDMTRS.Focus()
         ElseIf ClientName = "APPLE" Or ClientName = "MMC" Then
             TXTBALENO.Focus()
