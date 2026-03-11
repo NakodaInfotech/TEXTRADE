@@ -9722,13 +9722,13 @@ line1:
 
 
 
-    Function GETUNIQBALENO(ByVal rollNo As String) As Boolean
+    Function GETUNIQBALENO(ByVal rollNo As String, ByVal yearId As Integer) As Boolean
 
         Dim bln As Boolean = False
 
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & rollNo.Trim() & "'   And YEARID =   " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & rollNo.Trim() & "'   And YEARID =   " & yearId)
 
             If DT.Rows.Count > 0 Then
                 bln = True
