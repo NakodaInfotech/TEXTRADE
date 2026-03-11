@@ -1958,6 +1958,10 @@ LINE1:
             If ClientName = "MARKIN" Then Me.Text = "Grey Recd From Jobber"
             If ClientName = "RAKSHA" Then CMBQUALITY.TabStop = False
             If ClientName = "RAKSHA" Then CMBDESIGN.TabStop = False
+
+            If ClientName = "MMC" Then
+                TXTROLLNO.BackColor = Color.LemonChiffon
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -2074,8 +2078,8 @@ NEXTLINE:
 
                 If String.IsNullOrWhiteSpace(TXTROLLNO.Text) Then Exit Sub
 
-                If GETUNIQBALENO(TXTROLLNO.Text.Trim()) = True Then
-                    MessageBox.Show("Bale No  " & TXTROLLNO.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                If GETUNIQBALENO(TXTROLLNO.Text.Trim, YearId) = True Then
+                    MessageBox.Show("Bale No  " & TXTROLLNO.Text & "  Already Present !", "Duplicate Roll No", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
 
                     TXTROLLNO.Clear()
@@ -2091,9 +2095,17 @@ NEXTLINE:
     Private Sub TXTROLLNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTROLLNO.Validating
 
         If ClientName = "MMC" Then
+
+
+            If String.IsNullOrWhiteSpace(TXTROLLNO.Text) Then
+                MessageBox.Show("Please Enter Bale No !", "Roll No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                TXTROLLNO.Focus()
+                Exit Sub
+            End If
+
             If GRIDGREY.RowCount > 0 Then
                 If Not CHECKROLL() Then
-                    MsgBox("Bale No already Present in Grid below ")
+                    MsgBox("Roll No already Present in Grid below ")
                     TXTROLLNO.Clear()
                     TXTROLLNO.Focus()
                     Exit Sub
