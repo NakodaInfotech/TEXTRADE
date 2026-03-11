@@ -199,7 +199,7 @@ Public Class AgencyReceipt
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
             'OPEN ALL LEDGERS
-            If cmbname.Text.Trim = "" Then fillledger(cmbname, EDIT, " and groupmaster.group_SECONDARY = 'Sundry Debtors' and acc_YEARid = " & YearId)
+            If cmbname.Text.Trim = "" Then fillledger(cmbname, EDIT, " and groupmaster.group_SECONDARY <> 'Sundry Creditors' and acc_YEARid = " & YearId)
             'If cmbname.Text.Trim = "" Then fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
         Catch ex As Exception
             Throw ex
@@ -592,11 +592,13 @@ Public Class AgencyReceipt
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             'If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and (groupmaster.group_SECONDARY = 'Sundry Debtors' or groupmaster.group_SECONDARY = 'Indirect Income' or groupmaster.group_SECONDARY = 'Direct Income') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & 0 & " and acc_YEARid = " & YearId)
-            If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
-            If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" And cmbseller.Text.Trim <> "" Then
-                FILLGRIDINVOICE()
-                'Else
-                '    Call txtbillno_Validating(sender, e)
+            If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and groupmaster.group_SECONDARY <> 'Sundry Creditors' and acc_YEARid = " & YearId)
+            If e.Cancel = False Then
+                If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" And cmbseller.Text.Trim <> "" Then
+                    FILLGRIDINVOICE()
+                    'Else
+                    '    Call txtbillno_Validating(sender, e)
+                End If
             End If
         Catch ex As Exception
             Throw ex

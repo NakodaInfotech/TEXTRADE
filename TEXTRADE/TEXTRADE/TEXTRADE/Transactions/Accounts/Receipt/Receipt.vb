@@ -201,7 +201,7 @@ Public Class Receipt
             'OPEN ALL LEDGERS
             'If cmbname.Text.Trim = "" Then fillledger(cmbname, edit, " and groupmaster.group_SECONDARY = 'Sundry Debtors' and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             Dim WHERECLAUSE As String = ""
-            If ClientName = "ABHEE" Then WHERECLAUSE = " AND groupmaster.group_SECONDARY = 'Sundry Debtors' "
+            If ClientName = "ABHEE" Then WHERECLAUSE = " AND groupmaster.group_SECONDARY <> 'Sundry Creditors' "
             If cmbname.Text.Trim = "" Then fillledger(cmbname, EDIT, WHERECLAUSE & " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
         Catch ex As Exception
             Throw ex
@@ -597,11 +597,15 @@ Public Class Receipt
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             'If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and (groupmaster.group_SECONDARY = 'Sundry Debtors' or groupmaster.group_SECONDARY = 'Indirect Income' or groupmaster.group_SECONDARY = 'Direct Income') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-            If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
-            If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" Then
-                fillgridINVOICE()
-                'Else
-                '    Call txtbillno_Validating(sender, e)
+            Dim WHERECLAUSE As String = ""
+            If ClientName = "ABHEE" Then WHERECLAUSE = " AND groupmaster.group_SECONDARY <> 'Sundry Creditors' "
+            If cmbname.Text.Trim <> "" Then ledgervalidate(cmbname, CMBACCCODE, e, Me, txtadd, " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId & WHERECLAUSE)
+            If e.Cancel = False Then
+                If txtbillno.Text.Trim = "" And cmbname.Text.Trim <> "" Then
+                    fillgridINVOICE()
+                    'Else
+                    '    Call txtbillno_Validating(sender, e)
+                End If
             End If
         Catch ex As Exception
             Throw ex
