@@ -9,7 +9,7 @@ Public Class GroupDetails
         If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
             Me.Close()
         ElseIf (e.Control = True And e.KeyCode = Windows.Forms.Keys.N) Then
-            showform(False, "")
+            showform(False, "", "")
         End If
     End Sub
 
