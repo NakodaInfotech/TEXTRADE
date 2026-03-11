@@ -2219,7 +2219,8 @@ LINE1:
 
         gridgrn.FirstDisplayedScrollingRowIndex = gridgrn.RowCount - 1
 
-        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "BIGAPPLE" Or ClientName = "MASHOK" Or ClientName = "APPLE" Or ClientName = "SWPL" Or ClientName = "MMC" Then TXTBALENO.Clear()
+        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "BIGAPPLE" Or ClientName = "MASHOK" Or ClientName = "SWPL" Or ClientName = "MMC" Then TXTBALENO.Clear()
+        If ClientName = "APPLE" Then TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
         If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
 
         txtgridremarks.Clear()
