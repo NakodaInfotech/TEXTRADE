@@ -5020,6 +5020,9 @@ LINE1:
                         Exit Sub
                     End If
                 End If
+
+
+
                 FILLGRID()
 
             End If

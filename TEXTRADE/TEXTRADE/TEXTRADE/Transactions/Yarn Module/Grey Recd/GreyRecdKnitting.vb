@@ -1368,6 +1368,7 @@ LINE1:
     End Sub
 
     Private Sub GRIDGREY_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRIDGREY.CellDoubleClick
+
         EDITROW()
     End Sub
 
@@ -1923,6 +1924,12 @@ LINE1:
                         TXTBARCODE.Text = "GRK-" & Val(TXTGREYNO.Text.Trim) & "/" & GRIDGREY.RowCount + 1 & "/" & YearId
                     End If
                 End If
+
+                If ClientName = "MMC" Then
+                    TXTROLLNO_Validating(sender, New CancelEventArgs())
+                    TXTROLLNO_Validated(sender, e)
+                End If
+
                 fillgrid()
             Else
 
