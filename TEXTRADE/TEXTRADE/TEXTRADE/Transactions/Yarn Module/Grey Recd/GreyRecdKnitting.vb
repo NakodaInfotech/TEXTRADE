@@ -1368,6 +1368,7 @@ LINE1:
     End Sub
 
     Private Sub GRIDGREY_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRIDGREY.CellDoubleClick
+
         EDITROW()
     End Sub
 
@@ -1923,6 +1924,12 @@ LINE1:
                         TXTBARCODE.Text = "GRK-" & Val(TXTGREYNO.Text.Trim) & "/" & GRIDGREY.RowCount + 1 & "/" & YearId
                     End If
                 End If
+
+                If ClientName = "MMC" Then
+                    TXTROLLNO_Validating(sender, New CancelEventArgs())
+                    TXTROLLNO_Validated(sender, e)
+                End If
+
                 fillgrid()
             Else
 
@@ -2079,7 +2086,7 @@ NEXTLINE:
                 If String.IsNullOrWhiteSpace(TXTROLLNO.Text) Then Exit Sub
 
                 If GETUNIQBALENO(TXTROLLNO.Text.Trim, YearId) = True Then
-                    MessageBox.Show("Bale No  " & TXTROLLNO.Text & "  Already Present !", "Duplicate Roll No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    MessageBox.Show("Roll No  " & TXTROLLNO.Text & "  Already Present !", "Duplicate Roll No", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
 
                     TXTROLLNO.Clear()
@@ -2098,7 +2105,7 @@ NEXTLINE:
 
 
             If String.IsNullOrWhiteSpace(TXTROLLNO.Text) Then
-                MessageBox.Show("Please Enter Bale No !", "Roll No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Please Enter Roll No !", "Roll No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 TXTROLLNO.Focus()
                 Exit Sub
             End If

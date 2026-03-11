@@ -1694,6 +1694,11 @@ LINE1:
         If ClientName = "LAXMI" Then
             CMBPER.Text = "Pcs"
         End If
+
+        If ClientName = "MMC" Then
+            TXTBALENO.BackColor = Color.LemonChiffon
+        End If
+
     End Sub
 
 
@@ -2280,4 +2285,59 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub TXTBALENO_Validated(sender As Object, e As EventArgs) Handles TXTBALENO.Validated
+        Try
+            If ClientName = "MMC" Then
+
+                If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then Exit Sub
+
+                If GETUNIQBALENO(TXTBALENO.Text.Trim, YearId) = True Then
+                    MessageBox.Show("Bale No  " & TXTBALENO.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+
+                    TXTBALENO.Clear()
+                    TXTBALENO.Focus()
+                End If
+
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTNOOFENTRIES_Validating(sender As Object, e As CancelEventArgs) Handles TXTNOOFENTRIES.Validating
+        If ClientName = "MMC" Then
+
+            If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then
+                MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                TXTBALENO.Focus()
+                Exit Sub
+            End If
+
+            If GRIDSTOCKIN.RowCount > 0 Then
+                If Not CHECKROLL() Then
+                    MsgBox("Bale No already Present in Grid below ")
+                    TXTBALENO.Clear()
+                    TXTBALENO.Focus()
+                    Exit Sub
+                End If
+            End If
+
+        End If
+    End Sub
+
+    Function CHECKROLL() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In GRIDSTOCKIN.Rows
+                If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
+                    If TXTBALENO.Text.Trim = ROW.Cells(GBALENO.Index).Value Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class

@@ -3807,6 +3807,12 @@ LINE1:
             If ClientName = "MBB" Then
                 TXTCUT.TabStop = True
             End If
+
+
+            If ClientName = "MMC" Then
+                TXTBALENO.BackColor = Color.LemonChiffon
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -5017,6 +5023,9 @@ LINE1:
                         Exit Sub
                     End If
                 End If
+
+
+
                 FILLGRID()
 
             End If
