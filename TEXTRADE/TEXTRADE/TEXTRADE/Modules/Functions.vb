@@ -9720,27 +9720,16 @@ line1:
         End Try
     End Sub
 
-
-
-    Function GETUNIQBALENO(ByVal rollNo As String, ByVal yearId As Integer) As Boolean
-
-        Dim bln As Boolean = False
-
+    Function GETUNIQBALENO(ByVal BALENO As String) As Boolean
+        Dim bln As Boolean = True
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & rollNo.Trim() & "'   And YEARID =   " & yearId)
-
-            If DT.Rows.Count > 0 Then
-                bln = True
-            End If
-
+            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
+            If DT.Rows.Count > 0 Then bln = False
         Catch ex As Exception
             Throw ex
         End Try
-
         Return bln
     End Function
-
-
 
 End Module

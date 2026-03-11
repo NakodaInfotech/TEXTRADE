@@ -3,7 +3,6 @@ Imports BL
 Imports System.IO
 Imports System.ComponentModel
 Imports System.Net
-Imports DevExpress.XtraEditors
 
 Public Class GRN
 
@@ -21,6 +20,7 @@ Public Class GRN
     Public FRMSTRING As String
     Dim PARTYCHALLANNO As String
     Dim ALLOWMANUALGRNNO As Boolean = False
+    Dim TEMPBALENO As String = ""   'WE NEED TO THIS VARIALBLE TO VALIDATE BALENO FOR DUPLICATION IN STOCK
 
     Public Sub New()
 
@@ -48,6 +48,7 @@ Public Class GRN
         EP.Clear()
         GRIDBALESUMM.RowCount = 0
         GRIDORDER.RowCount = 0
+        TEMPBALENO = ""
 
         CHK30.CheckState = CheckState.Unchecked
         CHK32.CheckState = CheckState.Unchecked
@@ -2218,7 +2219,7 @@ LINE1:
 
         gridgrn.FirstDisplayedScrollingRowIndex = gridgrn.RowCount - 1
 
-        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "BIGAPPLE" Or ClientName = "MASHOK" Then TXTBALENO.Clear()
+        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "BIGAPPLE" Or ClientName = "MASHOK" Or ClientName = "APPLE" Or ClientName = "SWPL" Or ClientName = "MMC" Then TXTBALENO.Clear()
         If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
 
         txtgridremarks.Clear()
@@ -2233,7 +2234,7 @@ LINE1:
         TXTBARCODE.Clear()
         txtsrno.Text = gridgrn.RowCount + 1
 
-        If ClientName = "MASHOK" Or ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "BRILLANTO" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "REALCORPORATION" Or ClientName = "BIGAPPLE" Then
+        If ClientName = "MASHOK" Or ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "BRILLANTO" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "REALCORPORATION" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "APPLE" Then
             TXTBALENO.Focus()
         ElseIf ClientName = "MOMAI" Or ClientName = "KREEVE" Or ClientName = "BALAJI" Or ClientName = "TINUMINU" Then
             If FRMSTRING = "GRN FANCY" And (ClientName = "BALAJI") Then TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
@@ -2389,7 +2390,10 @@ LINE1:
                 cmbitemname.Text = gridgrn.Item(gitemname.Index, gridgrn.CurrentRow.Index).Value.ToString
                 txtgridremarks.Text = gridgrn.Item(gdesc.Index, gridgrn.CurrentRow.Index).Value.ToString
                 CMBQUALITY.Text = gridgrn.Item(GQUALITY.Index, gridgrn.CurrentRow.Index).Value.ToString
+
                 TXTBALENO.Text = gridgrn.Item(GBALENO.Index, gridgrn.CurrentRow.Index).Value.ToString
+                TEMPBALENO = gridgrn.Item(GBALENO.Index, gridgrn.CurrentRow.Index).Value
+
                 CMBDESIGN.Text = gridgrn.Item(GDESIGN.Index, gridgrn.CurrentRow.Index).Value.ToString
                 cmbcolor.Text = gridgrn.Item(gcolor.Index, gridgrn.CurrentRow.Index).Value.ToString
                 txtqty.Text = gridgrn.Item(gQty.Index, gridgrn.CurrentRow.Index).Value.ToString
@@ -3809,8 +3813,9 @@ LINE1:
             End If
 
 
-            If ClientName = "MMC" Then
+            If VALIDATEBALENO = True Then
                 TXTBALENO.BackColor = Color.LemonChiffon
+                GBALENO.ReadOnly = True
             End If
 
         Catch ex As Exception
@@ -3818,17 +3823,9 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTPURRATE_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTPURRATE.KeyPress
+    Private Sub TXTPURRATE_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTPURRATE.KeyPress, TXTSALERATE.KeyPress
         Try
-            numdot(e, TXTPURRATE, Me)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub TXTSALERATE_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTSALERATE.KeyPress
-        Try
-            numdot(e, TXTSALERATE, Me)
+            numdot(e, sender, Me)
         Catch ex As Exception
             Throw ex
         End Try
@@ -3844,8 +3841,6 @@ LINE1:
                     Exit Sub
                 End If
             End If
-
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -5024,7 +5019,11 @@ LINE1:
                     End If
                 End If
 
-
+                If VALIDATEBALENO = True And TXTBALENO.Text.Trim = "" And CMBPIECETYPE.Text = "FRESH" Then
+                    MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    TXTBALENO.Focus()
+                    Exit Sub
+                End If
 
                 FILLGRID()
 
@@ -5972,25 +5971,34 @@ SKIPLINE:
     End Sub
 
     Private Sub TXTBALENO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBALENO.Validating
+        Try
+            If TXTBALENO.Text.Trim = "" Then Exit Sub
 
-        If ClientName = "MMC" Then
+            If VALIDATEBALENO = True Then
+                If gridgrn.RowCount > 0 Then
+                    If Not CHECKROLL() Then
+                        MsgBox("Bale No already Present in Grid below")
+                        TXTBALENO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
 
-            If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then
-                MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                TXTBALENO.Focus()
-                Exit Sub
-            End If
 
-            If gridgrn.RowCount > 0 Then
-                If Not CHECKROLL() Then
-                    MsgBox("Bale No already Present in Grid below ")
-                    TXTBALENO.Clear()
-                    TXTBALENO.Focus()
-                    Exit Sub
+                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And TEMPBALENO <> TXTBALENO.Text.Trim) Then
+                    If Not GETUNIQBALENO(TXTBALENO.Text.Trim) Then
+                        MessageBox.Show("Bale No " & TXTBALENO.Text & " Already Present in Stock!", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        TXTBALENO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
                 End If
             End If
 
-        End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Function CHECKROLL() As Boolean
@@ -6007,23 +6015,4 @@ SKIPLINE:
         End Try
     End Function
 
-    Private Sub TXTBALENO_Validated(sender As Object, e As EventArgs) Handles TXTBALENO.Validated
-        Try
-            If ClientName = "MMC" Then
-
-                If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then Exit Sub
-
-                If GETUNIQBALENO(TXTBALENO.Text.Trim, YearId) = True Then
-                    MessageBox.Show("Bale No  " & TXTBALENO.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-
-                    TXTBALENO.Clear()
-                    TXTBALENO.Focus()
-                End If
-
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 End Class

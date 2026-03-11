@@ -2085,7 +2085,7 @@ NEXTLINE:
 
                 If String.IsNullOrWhiteSpace(TXTROLLNO.Text) Then Exit Sub
 
-                If GETUNIQBALENO(TXTROLLNO.Text.Trim, YearId) = True Then
+                If Not GETUNIQBALENO(TXTROLLNO.Text.Trim) Then
                     MessageBox.Show("Roll No  " & TXTROLLNO.Text & "  Already Present !", "Duplicate Roll No", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
 

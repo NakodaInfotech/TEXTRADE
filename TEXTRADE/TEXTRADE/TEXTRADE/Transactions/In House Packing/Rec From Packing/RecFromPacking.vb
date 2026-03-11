@@ -1899,7 +1899,7 @@ LINE1:
 
                 If String.IsNullOrWhiteSpace(txtgridremarks.Text) Then Exit Sub
 
-                If GETUNIQBALENO(txtgridremarks.Text.Trim, YearId) = True Then
+                If Not GETUNIQBALENO(txtgridremarks.Text.Trim) Then
                     MessageBox.Show("Bale No  " & txtgridremarks.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
 

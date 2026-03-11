@@ -2292,7 +2292,7 @@ LINE1:
 
                 If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then Exit Sub
 
-                If GETUNIQBALENO(TXTBALENO.Text.Trim, YearId) = True Then
+                If Not GETUNIQBALENO(TXTBALENO.Text.Trim) Then
                     MessageBox.Show("Bale No  " & TXTBALENO.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
 
