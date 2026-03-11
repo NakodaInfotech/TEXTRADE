@@ -1976,7 +1976,6 @@ LINE1:
                 CMBCURRENCY.TabStop = False
                 CMBFORWARD.TabStop = False
                 CMBQUALITY.TabStop = False
-                CMBDESIGN.TabStop = False
                 txtgridremarks.TabStop = False
                 TXTPARTYPONO.TabStop = False
                 TXTCUT.TabStop = False

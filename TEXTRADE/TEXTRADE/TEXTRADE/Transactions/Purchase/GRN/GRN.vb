@@ -150,7 +150,7 @@ Public Class GRN
         If ClientName = "MSANCHITKUMAR" Or ClientName = "KEMLINO" Or ClientName = "MOHATUL" Then txtqty.Clear() Else txtqty.Text = 1
         If ClientName = "YASHVI" Or ClientName = "KEMLINO" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "MANISH" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "RADHA" Then cmbqtyunit.Text = "LUMP" Else cmbqtyunit.Text = "Pcs"
         If ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "MAHAVIRPOLYCOT" Then cmbqtyunit.Text = "Mtrs"
-        If ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "APPLE" Then cmbqtyunit.Text = "ROLL"
+        If ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "SWPL" Then cmbqtyunit.Text = "ROLL"
 
         TXTCUT.Clear()
         If ClientName = "INDRANI" Then TXTMTRS.Text = 1 Else TXTMTRS.Clear()
@@ -3144,7 +3144,7 @@ LINE1:
     Private Sub TXTMTRS_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTMTRS.Validated
         Try
             CALC()
-            If ClientName = "MANIBHADRA" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VALIANT" Or ClientName = "AMAN" Or ClientName = "LEEFABRICO" Or ClientName = "MANISH" Or ClientName = "RADHA" Or ClientName = "AFW" Or ClientName = "MASHOK" Or ClientName = "APPLE" Then TXTAMOUNT_Validated(sender, e)
+            If ClientName = "MANIBHADRA" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VALIANT" Or ClientName = "AMAN" Or ClientName = "LEEFABRICO" Or ClientName = "MANISH" Or ClientName = "RADHA" Or ClientName = "AFW" Or ClientName = "MASHOK" Then TXTAMOUNT_Validated(sender, e)
 
             'GET WT AUTO CALCULATED, IF USER HAS WRITTEN TOTALWT IN ITEMMASTER
             If ClientName = "VINTAGEINDIA" And Val(TXTMTRS.Text.Trim) > 0 And cmbitemname.Text.Trim <> "" And Val(TXTWT.Text.Trim) = 0 Then
@@ -3483,7 +3483,6 @@ LINE1:
                 cmbGodown.TabStop = False
                 CMBBROKER.TabStop = False
                 CMBQUALITY.TabStop = False
-                CMBDESIGN.TabStop = False
                 TXTCUT.TabStop = False
             End If
 
@@ -5050,7 +5049,7 @@ LINE1:
 
     Private Sub CMBRACK_Validated(sender As Object, e As EventArgs) Handles CMBRACK.Validated
         Try
-            If ClientName = "SOFTAS" Or ClientName = "AARYA" Then TXTAMOUNT_Validated(sender, e)
+            If ClientName = "SOFTAS" Or ClientName = "AARYA" Or ClientName = "APPLE" Then TXTAMOUNT_Validated(sender, e)
         Catch ex As Exception
             Throw ex
         End Try

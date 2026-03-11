@@ -101,6 +101,8 @@ Public Class MaterialReceipt
         txtqty.Text = 1
         If ClientName = "YASHVI" Or ClientName = "BRILLANTO" Or ClientName = "AVIS" Or ClientName = "KEMLINO" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "VSTRADERS" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then cmbqtyunit.Text = "LUMP" Else cmbqtyunit.Text = "Pcs"
         If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Then cmbqtyunit.Text = "UNCHECK LUMP"
+        If ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "SWPL" Then cmbqtyunit.Text = "ROLL"
+
         TXTMTRS.Clear()
         TXTRATE.Clear()
         CMBPER.Text = "Mtrs"

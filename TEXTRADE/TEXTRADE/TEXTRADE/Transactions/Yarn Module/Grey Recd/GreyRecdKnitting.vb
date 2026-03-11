@@ -1,9 +1,6 @@
 ﻿
 Imports BL
-Imports System.Windows.Forms
-Imports System.IO
 Imports System.ComponentModel
-Imports DevExpress.XtraGrid.Accessibility
 
 Public Class GreyRecdKnitting
 
@@ -18,6 +15,7 @@ Public Class GreyRecdKnitting
     Dim TEMPMSG As Integer
     Dim PARTYCHALLANNO As String
     Public FRMSTRING As String
+    Dim TEMPBALENO As String = ""   'WE NEED TO THIS VARIALBLE TO VALIDATE BALENO FOR DUPLICATION IN STOCK
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Try
@@ -1115,6 +1113,8 @@ LINE1:
         TXTROLLNO.Clear()
         TXTWT.Clear()
         cmbqtyunit.Text = ""
+        If ClientName = "MMC" Or ClientName = "SWPL" Then cmbqtyunit.Text = "ROLL"
+
         TXTMTRS.Clear()
         CMBRACK.Text = ""
         CMBSHELF.Text = ""
@@ -1383,7 +1383,10 @@ LINE1:
                 CMBDESIGN.Text = GRIDGREY.Item(GDESIGN.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 cmbcolor.Text = GRIDGREY.Item(gcolor.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 TXTLOOMNO.Text = GRIDGREY.Item(GLOOMNO.Index, GRIDGREY.CurrentRow.Index).Value.ToString
+
                 TXTROLLNO.Text = GRIDGREY.Item(GROLLNO.Index, GRIDGREY.CurrentRow.Index).Value.ToString
+                TEMPBALENO = GRIDGREY.Item(GROLLNO.Index, GRIDGREY.CurrentRow.Index).Value.ToString
+
                 TXTQTY.Text = GRIDGREY.Item(gQty.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 cmbqtyunit.Text = GRIDGREY.Item(gqtyunit.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 TXTMTRS.Text = GRIDGREY.Item(GMTRS.Index, GRIDGREY.CurrentRow.Index).Value.ToString
@@ -1710,35 +1713,19 @@ LINE1:
 
             GRIDGREY.FirstDisplayedScrollingRowIndex = GRIDGREY.RowCount - 1
 
-            txtsrno.Clear()
-            'cmbitemname.Text = ""
-            ' CMBQUALITY.Text = ""
-            ' CMBDESIGN.Text = ""
-            ' cmbcolor.Text = ""
-
-
             TXTWT.Clear()
-            'TXTROLLNO.Clear()
-            'txtqty.Clear()
-            'cmbqtyunit.Text = ""
             TXTMTRS.Clear()
             TXTLOOMNO.Clear()
             TXTROLLNO.Clear()
-
-
-
             CMBRACK.Text = ""
             CMBSHELF.Text = ""
-            If GRIDGREY.RowCount > 0 Then
-                txtsrno.Text = Val(GRIDGREY.Rows(GRIDGREY.RowCount - 1).Cells(0).Value) + 1
-            Else
-                txtsrno.Text = 1
-            End If
+            txtsrno.Text = GRIDGREY.RowCount + 1
 
-            If ClientName = "RAKSHA" Then
-                TXTROLLNO.Text = Val(TXTROLLNO.Text.Trim) + 1
+            If ClientName = "MMC" Or ClientName = "SWPL" Then
+                TXTROLLNO.Focus()
+            Else
+                cmbitemname.Focus()
             End If
-            cmbitemname.Focus()
         Catch ex As Exception
             Throw ex
         End Try
@@ -1925,9 +1912,10 @@ LINE1:
                     End If
                 End If
 
-                If ClientName = "MMC" Then
-                    TXTROLLNO_Validating(sender, New CancelEventArgs())
-                    TXTROLLNO_Validated(sender, e)
+                If VALIDATEBALENO = True And TXTROLLNO.Text.Trim = "" Then
+                    MessageBox.Show("Please Enter Roll No !", "Roll No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    TXTROLLNO.Focus()
+                    Exit Sub
                 End If
 
                 fillgrid()
@@ -1966,8 +1954,10 @@ LINE1:
             If ClientName = "RAKSHA" Then CMBQUALITY.TabStop = False
             If ClientName = "RAKSHA" Then CMBDESIGN.TabStop = False
 
-            If ClientName = "MMC" Then
+
+            If VALIDATEBALENO = True Then
                 TXTROLLNO.BackColor = Color.LemonChiffon
+                TXTROLLNO.ReadOnly = True
             End If
         Catch ex As Exception
             Throw ex
@@ -2079,50 +2069,36 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Sub TXTROLLNO_Validated(sender As Object, e As EventArgs) Handles TXTROLLNO.Validated
+    Private Sub TXTROLLNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTROLLNO.Validating
         Try
-            If ClientName = "MMC" Then
+            If TXTROLLNO.Text.Trim = "" Then Exit Sub
 
-                If String.IsNullOrWhiteSpace(TXTROLLNO.Text) Then Exit Sub
-
-                If Not GETUNIQBALENO(TXTROLLNO.Text.Trim) Then
-                    MessageBox.Show("Roll No  " & TXTROLLNO.Text & "  Already Present !", "Duplicate Roll No", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-
-                    TXTROLLNO.Clear()
-                    TXTROLLNO.Focus()
+            If VALIDATEBALENO = True Then
+                If GRIDGREY.RowCount > 0 Then
+                    If Not CHECKROLL() Then
+                        MsgBox("Bale No already Present in Grid below")
+                        TXTROLLNO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
                 End If
 
+
+                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And TEMPBALENO <> TXTROLLNO.Text.Trim) Then
+                    If Not GETUNIQBALENO(TXTROLLNO.Text.Trim) Then
+                        MessageBox.Show("Bale No " & TXTROLLNO.Text & " Already Present in Stock!", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        TXTROLLNO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
             End If
+
+
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-
-    Private Sub TXTROLLNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTROLLNO.Validating
-
-        If ClientName = "MMC" Then
-
-
-            If String.IsNullOrWhiteSpace(TXTROLLNO.Text) Then
-                MessageBox.Show("Please Enter Roll No !", "Roll No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                TXTROLLNO.Focus()
-                Exit Sub
-            End If
-
-            If GRIDGREY.RowCount > 0 Then
-                If Not CHECKROLL() Then
-                    MsgBox("Roll No already Present in Grid below ")
-                    TXTROLLNO.Clear()
-                    TXTROLLNO.Focus()
-                    Exit Sub
-                End If
-            End If
-
-        End If
-    End Sub
-
-
 
     Function CHECKROLL() As Boolean
         Try

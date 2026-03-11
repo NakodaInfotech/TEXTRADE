@@ -1,7 +1,6 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
-Imports DevExpress.CodeParser
 
 Public Class StockReco
 
@@ -16,7 +15,7 @@ Public Class StockReco
     Public UNCHECKEDSTOCK As Boolean = False
     Public BARCODE As String
     Dim ALLOWMANUALRECNO As Boolean = False
-
+    Dim TEMPBALENO As String = ""   'WE NEED TO THIS VARIALBLE TO VALIDATE BALENO FOR DUPLICATION IN STOCK
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -255,6 +254,7 @@ Public Class StockReco
         txtqty.Text = 1
         TXTNOOFENTRIES.Clear()
         If ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Then cmbqtyunit.Text = "LUMP" Else cmbqtyunit.Text = ""
+        If ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "SWPL" Then cmbqtyunit.Text = "ROLL"
         If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
         TXTMTRS.Clear()
         TXTRATE.Clear()
@@ -1156,7 +1156,10 @@ LINE1:
                 CMBPIECETYPE.Text = GRIDSTOCKIN.Item(GINPIECETYPE.Index, GRIDSTOCKIN.CurrentRow.Index).Value.ToString
                 cmbitemname.Text = GRIDSTOCKIN.Item(GINITEMNAME.Index, GRIDSTOCKIN.CurrentRow.Index).Value.ToString
                 CMBQUALITY.Text = GRIDSTOCKIN.Item(GINQUALITY.Index, GRIDSTOCKIN.CurrentRow.Index).Value.ToString
+
                 TXTBALENO.Text = GRIDSTOCKIN.Item(GINBALENO.Index, GRIDSTOCKIN.CurrentRow.Index).Value.ToString
+                TEMPBALENO = GRIDSTOCKIN.Item(GINBALENO.Index, GRIDSTOCKIN.CurrentRow.Index).Value.ToString
+
                 TXTGRIDDESC.Text = GRIDSTOCKIN.Item(GINDESC.Index, GRIDSTOCKIN.CurrentRow.Index).Value.ToString
                 TXTLOTNO.Text = GRIDSTOCKIN.Item(GINLOTNO.Index, GRIDSTOCKIN.CurrentRow.Index).Value.ToString
                 CMBDESIGN.Text = GRIDSTOCKIN.Item(GINDESIGN.Index, GRIDSTOCKIN.CurrentRow.Index).Value.ToString
@@ -1216,6 +1219,14 @@ LINE1:
                         If Val(TXTNOOFENTRIES.Text.Trim) = 0 Then txtqty.Text = 1 Else txtqty.Text = Val(TXTNOOFENTRIES.Text.Trim)
                         If Val(TXTCUT.Text.Trim) > 0 Then TXTMTRS.Text = Val(TXTCUT.Text.Trim) * Val(txtqty.Text.Trim)
                     End If
+
+                    If VALIDATEBALENO = True And TXTBALENO.Text.Trim = "" And CMBPIECETYPE.Text = "FRESH" Then
+                        MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        TXTBALENO.Focus()
+                        Exit Sub
+                    End If
+
+
                     For I As Integer = 1 To Val(TEMPQTY)
                         If GRIDDOUBLECLICK = False Then
                             If EDIT = True Then
@@ -1695,8 +1706,9 @@ LINE1:
             CMBPER.Text = "Pcs"
         End If
 
-        If ClientName = "MMC" Then
+        If VALIDATEBALENO = True Then
             TXTBALENO.BackColor = Color.LemonChiffon
+            GBALENO.ReadOnly = True
         End If
 
     End Sub
@@ -2286,45 +2298,35 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTBALENO_Validated(sender As Object, e As EventArgs) Handles TXTBALENO.Validated
+    Private Sub TXTBALENO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBALENO.Validating
         Try
-            If ClientName = "MMC" Then
+            If TXTBALENO.Text.Trim = "" Then Exit Sub
 
-                If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then Exit Sub
-
-                If Not GETUNIQBALENO(TXTBALENO.Text.Trim) Then
-                    MessageBox.Show("Bale No  " & TXTBALENO.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-
-                    TXTBALENO.Clear()
-                    TXTBALENO.Focus()
+            If VALIDATEBALENO = True Then
+                If GRIDSTOCKIN.RowCount > 0 Then
+                    If Not CHECKROLL() Then
+                        MsgBox("Bale No already Present in Grid below")
+                        TXTBALENO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
                 End If
 
+
+                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And TEMPBALENO <> TXTBALENO.Text.Trim) Then
+                    If Not GETUNIQBALENO(TXTBALENO.Text.Trim) Then
+                        MessageBox.Show("Bale No " & TXTBALENO.Text & " Already Present in Stock!", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        TXTBALENO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
             End If
+
+
         Catch ex As Exception
             Throw ex
         End Try
-    End Sub
-
-    Private Sub TXTNOOFENTRIES_Validating(sender As Object, e As CancelEventArgs) Handles TXTNOOFENTRIES.Validating
-        If ClientName = "MMC" Then
-
-            If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then
-                MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                TXTBALENO.Focus()
-                Exit Sub
-            End If
-
-            If GRIDSTOCKIN.RowCount > 0 Then
-                If Not CHECKROLL() Then
-                    MsgBox("Bale No already Present in Grid below ")
-                    TXTBALENO.Clear()
-                    TXTBALENO.Focus()
-                    Exit Sub
-                End If
-            End If
-
-        End If
     End Sub
 
     Function CHECKROLL() As Boolean

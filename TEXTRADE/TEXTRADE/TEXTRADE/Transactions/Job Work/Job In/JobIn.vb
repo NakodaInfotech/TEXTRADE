@@ -91,6 +91,8 @@ Public Class JobIn
             cmbqtyunit.Text = "LUMP"
         ElseIf ClientName = "INDRANI" Or ClientName = "VINTAGEINDIA" Then
             cmbqtyunit.Text = "Pcs"
+        ElseIf ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "SWPL" Then
+            cmbqtyunit.Text = "ROLL"
         Else
             cmbqtyunit.Text = ""
         End If
