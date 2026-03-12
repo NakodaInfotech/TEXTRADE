@@ -464,6 +464,7 @@ SKIPINVOICE:
                     CRPO.ReportSource = RPTINVOICE_MAHAVIR
                 ElseIf ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MONOGRAM" Then
                     CRPO.ReportSource = RPTINVOICE_BARKHASHUBHI
+                    If BLANKPAPER = True Then RPTINVOICE_BARKHASHUBHI.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTINVOICE_BARKHASHUBHI.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     RPTINVOICE_BARKHASHUBHI.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
                     RPTINVOICE_BARKHASHUBHI.DataDefinition.FormulaFields("GODNAMETOP").Text = "'" & GODNAME & "'"
                 ElseIf ClientName = "DRDRAPES" Then
