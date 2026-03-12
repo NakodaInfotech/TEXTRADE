@@ -1,3 +1,66 @@
-﻿Public Class OpeningBillsGrid
+﻿Imports BL
 
+Public Class OpeningBillsGrid
+
+    Sub FILLGRIDOPENING()
+        Try
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH(" OPENINGBILL.BILL_GRIDSRNO AS GRIDSRNO, OPENINGBILL.BILL_TYPE AS BILLTYPE, OPENINGBILL.BILL_NO AS BILLNO, OPENINGBILL.BILL_YEAR AS YEAR, OPENINGBILL.BILL_DATE AS BILLDATE, OPENINGBILL.BILL_CRDAYS AS CRDAYS, OPENINGBILL.BILL_DUEDATE AS DUEDATE, ISNULL(AGENTLEDGERS.ACC_CMPNAME, '') AS AGENT, OPENINGBILL.BILL_NARRATION AS NARRATION, OPENINGBILL.BILL_DISPUTE AS DISPUTE, OPENINGBILL.BILL_AMT AS AMT, OPENINGBILL.BILL_AMTPAIDREC AS AMTPAIDREC, OPENINGBILL.BILL_EXTRAAMT AS EXTRAAMT, OPENINGBILL.BILL_RETURN AS [RETURN], OPENINGBILL.BILL_BALANCE AS BALANCE, ISNULL(REGISTER_NAME,'') AS REGNAME, ISNULL(BILL_PRINTINITIALS,'') AS PRINTINITIALS, ISNULL(DELIVERYLEDGERS.Acc_cmpname, '') AS DELIVERYAT, ISNULL(OPENINGBILL.BILL_PCS, 0) AS PCS, ISNULL(OPENINGBILL.BILL_MTRS, 0) AS MTRS, ISNULL(OPENINGBILL.BILL_TOTALAMT, 0) AS TOTALAMT, ISNULL(OPENINGBILL.BILL_CHARGES, 0) AS CHARGES, ISNULL(OPENINGBILL.BILL_TAXABLEAMT, 0) AS TAXABLEAMT, ISNULL(OPENINGBILL.BILL_CGSTPER, 0) AS CGSTPER, ISNULL(OPENINGBILL.BILL_CGSTAMT, 0) AS CGSTAMT, ISNULL(OPENINGBILL.BILL_SGSTPER, 0) AS SGSTPER, ISNULL(OPENINGBILL.BILL_SGSTAMT, 0) AS SGSTAMT, ISNULL(OPENINGBILL.BILL_IGSTPER, 0) AS IGSTPER, ISNULL(OPENINGBILL.BILL_IGSTAMT, 0) AS IGSTAMT, ISNULL(OPENINGBILL.BILL_GRANDTOTAL, 0) AS GRANDTOTAL, ISNULL(OPENINGBILL.BILL_CD, 0) AS CD, ISNULL(OPENINGBILL.BILL_HOLDINTCALC, 0) AS HOLDINTCALC, ISNULL(OPENINGBILL.BILL_COMPLAINT,'') AS COMPLAINT, ISNULL(OPENINGBILL.BILL_COMPLAINTBY,'') AS COMPLAINTBY, ISNULL(OPENINGBILL.BILL_COMPLAINTDATE,'') AS COMPLAINTDATE, ISNULL(OPENINGBILL.BILL_ORDERNO,'') AS ORDERNO, ISNULL(OPENINGBILL.BILL_CHANGEDATE,OPENINGBILL.BILL_DATE) AS CHANGEDATE  ", "", " OPENINGBILL INNER JOIN LEDGERS ON OPENINGBILL.BILL_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON OPENINGBILL.BILL_AGENTID = AGENTLEDGERS.Acc_id INNER JOIN REGISTERMASTER ON REGISTER_ID = BILL_REGISTERID LEFT OUTER JOIN LEDGERS AS DELIVERYLEDGERS ON OPENINGBILL.BILL_DELIVERYATID = DELIVERYLEDGERS.Acc_id", "  AND BILL_YEARID = " & YearId & "  ORDER BY OPENINGBILL.BILL_GRIDSRNO ")
+            gridbilldetails.DataSource = DT
+            If DT.Rows.Count > 0 Then
+                gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                gridbill.TopRowIndex = gridbill.RowCount - 15
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub OpeningBillsGrid_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Try
+            If e.KeyCode = Windows.Forms.Keys.Escape Then
+                Me.Close()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub OpeningBillsGrid_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Try
+            FILLGRIDOPENING()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
+        Me.Close()
+    End Sub
+
+    Private Sub CMDREFRESH_Click(sender As Object, e As EventArgs) Handles CMDREFRESH.Click
+        Try
+            FILLGRIDOPENING()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
+        Try
+            Dim PATH As String = ""
+            If FileIO.FileSystem.FileExists(PATH) = True Then FileIO.FileSystem.DeleteFile(PATH)
+            PATH = Application.StartupPath & "\Eway Entry Details.XLS"
+
+            Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
+            opti.ShowGridLines = True
+            Dim PERIOD As String = AccFrom & " - " & AccTo
+
+            opti.SheetName = "Eway Entry Details"
+            gridbill.ExportToXls(PATH, opti)
+            EXCELCMPHEADER(PATH, "Eway Entry Details", gridbill.VisibleColumns.Count + gridbill.GroupCount, "", PERIOD)
+        Catch ex As Exception
+            MsgBox("Eway Entry Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+        End Try
+    End Sub
 End Class

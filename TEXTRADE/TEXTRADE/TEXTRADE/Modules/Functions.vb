@@ -2030,8 +2030,8 @@ PRINT 1,1")
                 oWrite.WriteLine("BARCODE 556,122,""128M"",73,0,180,3,6,""" & BARCODE & """") 'BARCODE
                 oWrite.WriteLine("TEXT 373,44,""ROMAN.TTF"",180,10,11,""" & BARCODE & """")
                 oWrite.WriteLine("TEXT 298,238,""ROMAN.TTF"",180,14,14,""LOTNO""")
-                oWrite.WriteLine("TEXT 138,238,""ROMAN.TTF"",180,14,14,"":""")
-                oWrite.WriteLine("TEXT 167,238,""ROMAN.TTF"",180,14,14,""" & LOTNO & """")
+                oWrite.WriteLine("TEXT 138,238,""ROMAN.TTF"",180,14,14,""" & LOTNO & """")
+                oWrite.WriteLine("TEXT 167,238,""ROMAN.TTF"",180,14,14,"":""")
 
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
