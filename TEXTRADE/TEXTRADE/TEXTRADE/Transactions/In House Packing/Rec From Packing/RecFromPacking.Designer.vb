@@ -67,7 +67,7 @@ Partial Class RecFromPacking
         Me.TXTAMOUNT = New System.Windows.Forms.TextBox()
         Me.CMBPER = New System.Windows.Forms.ComboBox()
         Me.TXTRATE = New System.Windows.Forms.TextBox()
-        Me.txtgridremarks = New System.Windows.Forms.TextBox()
+        Me.TXTGRIDREMARKS = New System.Windows.Forms.TextBox()
         Me.CMBSHELF = New System.Windows.Forms.ComboBox()
         Me.CMBRACK = New System.Windows.Forms.ComboBox()
         Me.GRIDREC = New System.Windows.Forms.DataGridView()
@@ -395,7 +395,7 @@ Partial Class RecFromPacking
         Me.TabPage1.Controls.Add(Me.TXTAMOUNT)
         Me.TabPage1.Controls.Add(Me.CMBPER)
         Me.TabPage1.Controls.Add(Me.TXTRATE)
-        Me.TabPage1.Controls.Add(Me.txtgridremarks)
+        Me.TabPage1.Controls.Add(Me.TXTGRIDREMARKS)
         Me.TabPage1.Controls.Add(Me.CMBSHELF)
         Me.TabPage1.Controls.Add(Me.CMBRACK)
         Me.TabPage1.Controls.Add(Me.GRIDREC)
@@ -469,14 +469,14 @@ Partial Class RecFromPacking
         Me.TXTRATE.TabIndex = 11
         Me.TXTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'txtgridremarks
+        'TXTGRIDREMARKS
         '
-        Me.txtgridremarks.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtgridremarks.Location = New System.Drawing.Point(522, 2)
-        Me.txtgridremarks.MaxLength = 200
-        Me.txtgridremarks.Name = "txtgridremarks"
-        Me.txtgridremarks.Size = New System.Drawing.Size(110, 23)
-        Me.txtgridremarks.TabIndex = 5
+        Me.TXTGRIDREMARKS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTGRIDREMARKS.Location = New System.Drawing.Point(522, 2)
+        Me.TXTGRIDREMARKS.MaxLength = 200
+        Me.TXTGRIDREMARKS.Name = "TXTGRIDREMARKS"
+        Me.TXTGRIDREMARKS.Size = New System.Drawing.Size(110, 23)
+        Me.TXTGRIDREMARKS.TabIndex = 5
         '
         'CMBSHELF
         '
@@ -2512,7 +2512,7 @@ Partial Class RecFromPacking
     Friend WithEvents LBLRUNNINGBAL As System.Windows.Forms.Label
     Friend WithEvents cmbname As System.Windows.Forms.ComboBox
     Friend WithEvents LBLPARTYNAME As System.Windows.Forms.Label
-    Friend WithEvents txtgridremarks As System.Windows.Forms.TextBox
+    Friend WithEvents TXTGRIDREMARKS As System.Windows.Forms.TextBox
     Friend WithEvents CMBCODE As System.Windows.Forms.ComboBox
     Friend WithEvents txtadd As System.Windows.Forms.TextBox
     Friend WithEvents TXTLOTNO As TextBox

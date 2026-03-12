@@ -17,6 +17,7 @@ Public Class JobIn
     Dim PARTYCHALLANNO As String
     Dim ALLOWMANUALJINO As Boolean = False
     Public DT As New DataTable
+    Dim TEMPBALENO As String = ""   'WE NEED TO THIS VARIALBLE TO VALIDATE BALENO FOR DUPLICATION IN STOCK
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -90,6 +91,8 @@ Public Class JobIn
             cmbqtyunit.Text = "LUMP"
         ElseIf ClientName = "INDRANI" Or ClientName = "VINTAGEINDIA" Then
             cmbqtyunit.Text = "Pcs"
+        ElseIf ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "SWPL" Then
+            cmbqtyunit.Text = "ROLL"
         Else
             cmbqtyunit.Text = ""
         End If
@@ -3434,6 +3437,8 @@ NEXTLINE:
                 TXTMTRS.Focus()
             ElseIf ClientName = "VINTAGEINDIA" Or ClientName = "VALIANT" Then
                 CMBPCSNO.Focus()
+            ElseIf ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "SWPL" Then
+                TXTBALENO.Focus()
             Else
                 CMBPIECETYPE.Focus()
             End If
@@ -3720,7 +3725,10 @@ LINE1:
                 CMBPCSNO.Enabled = False
                 cmbitemname.Text = GRIDJOBIN.Item(gitemname.Index, GRIDJOBIN.CurrentRow.Index).Value.ToString
                 CMBQUALITY.Text = GRIDJOBIN.Item(GQUALITY.Index, GRIDJOBIN.CurrentRow.Index).Value.ToString
+
                 TXTBALENO.Text = GRIDJOBIN.Item(GBALENO.Index, GRIDJOBIN.CurrentRow.Index).Value.ToString
+                TEMPBALENO = GRIDJOBIN.Item(GBALENO.Index, GRIDJOBIN.CurrentRow.Index).Value
+
                 CMBOLDDESIGN.Text = GRIDJOBIN.Item(GOLDDESIGN.Index, GRIDJOBIN.CurrentRow.Index).Value.ToString
                 CMBDESIGN.Text = GRIDJOBIN.Item(GDESIGN.Index, GRIDJOBIN.CurrentRow.Index).Value.ToString
                 cmbcolor.Text = GRIDJOBIN.Item(gcolor.Index, GRIDJOBIN.CurrentRow.Index).Value.ToString
@@ -4274,8 +4282,9 @@ LINE1:
         End If
 
 
-        If ClientName = "MMC" Then
+        If VALIDATEBALENO = True Then
             TXTBALENO.BackColor = Color.LemonChiffon
+            GBALENO.ReadOnly = True
         End If
 
     End Sub
@@ -4421,7 +4430,11 @@ LINE1:
                     Exit Sub
                 End If
 
-
+                If VALIDATEBALENO = True And TXTBALENO.Text.Trim = "" And CMBPIECETYPE.Text = "FRESH" Then
+                    MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    TXTBALENO.Focus()
+                    Exit Sub
+                End If
 
                 If ClientName = "SBA" Or ClientName = "SHREENAKODA" Or ClientName = "SONU" Or ClientName = "KARAN" Or ClientName = "MBB" Or ClientName = "CHINTAN" Or ClientName = "SUPEEMA" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Then
                     Dim TEMPQTY As Integer = Val(txtqty.Text.Trim)
@@ -5113,25 +5126,34 @@ NEXTLINE:
     End Sub
 
     Private Sub TXTBALENO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBALENO.Validating
+        Try
+            If TXTBALENO.Text.Trim = "" Then Exit Sub
 
-        If ClientName = "MMC" Then
+            If VALIDATEBALENO = True Then
+                If GRIDJOBIN.RowCount > 0 Then
+                    If Not CHECKROLL() Then
+                        MsgBox("Bale No already Present in Grid below")
+                        TXTBALENO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
 
-            If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then
-                MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                TXTBALENO.Focus()
-                Exit Sub
-            End If
 
-            If GRIDJOBIN.RowCount > 0 Then
-                If Not CHECKROLL() Then
-                    MsgBox("Bale No already Present in Grid below ")
-                    TXTBALENO.Clear()
-                    TXTBALENO.Focus()
-                    Exit Sub
+                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And TEMPBALENO <> TXTBALENO.Text.Trim) Then
+                    If Not GETUNIQBALENO(TXTBALENO.Text.Trim) Then
+                        MessageBox.Show("Bale No " & TXTBALENO.Text & " Already Present in Stock!", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        TXTBALENO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
                 End If
             End If
 
-        End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Function CHECKROLL() As Boolean
@@ -5147,24 +5169,4 @@ NEXTLINE:
             Throw ex
         End Try
     End Function
-
-    Private Sub TXTBALENO_Validated(sender As Object, e As EventArgs) Handles TXTBALENO.Validated
-        Try
-            If ClientName = "MMC" Then
-
-                If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then Exit Sub
-
-                If GETUNIQBALENO(TXTBALENO.Text.Trim, YearId) = True Then
-                    MessageBox.Show("Bale No  " & TXTBALENO.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-
-                    TXTBALENO.Clear()
-                    TXTBALENO.Focus()
-                End If
-
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 End Class

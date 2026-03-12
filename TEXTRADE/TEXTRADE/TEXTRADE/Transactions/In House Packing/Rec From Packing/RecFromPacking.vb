@@ -13,6 +13,7 @@ Public Class RecFromPacking
     Dim HIDEALLISSUE As Boolean = True
     Dim ALLOWMANUALRECNO As Boolean = False
     Dim TEMPDATE As Date
+    Dim TEMPBALENO As String = ""   'WE NEED TO THIS VARIALBLE TO VALIDATE BALENO FOR DUPLICATION IN STOCK
 
     Public Sub New()
         InitializeComponent()
@@ -48,7 +49,7 @@ Public Class RecFromPacking
         TXTRUNNINGBAL.Clear()
         TXTLONGATIONPER.Clear()
 
-        txtgridremarks.Clear()
+        TXTGRIDREMARKS.Clear()
         TXTBARCODE.Clear()
         TXTFROMNO.Clear()
         TXTFROMSRNO.Clear()
@@ -68,7 +69,7 @@ Public Class RecFromPacking
             cmbqtyunit.Text = "PCS"
         ElseIf ClientName = "VALIANT" Then
             cmbqtyunit.Text = "TAKA"
-        ElseIf ClientName = "SONU" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
+        ElseIf ClientName = "SONU" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "SWPL" Then
             cmbqtyunit.Text = "ROLL"
         ElseIf ClientName = "SHREENAKODA" Then
             cmbqtyunit.Text = "LUMP"
@@ -225,7 +226,7 @@ Public Class RecFromPacking
             If ALLOWMANUALRECNO = True Then
                 If Val(TXTRECNO.Text.Trim) <> 0 And EDIT = False Then
                     Dim OBJCMNn As New ClsCommon
-                    Dim dttable As DataTable = OBJCMNn.search(" ISNULL(RECPACKING.REC_NO,0)  AS RECNO", "", " RECPACKING ", "  AND RECPACKING.REC_NO=" & Val(TXTRECNO.Text.Trim) & " AND RECPACKING.REC_YEARID = " & YearId)
+                    Dim dttable As DataTable = OBJCMNn.SEARCH(" ISNULL(RECPACKING.REC_NO,0)  AS RECNO", "", " RECPACKING ", "  AND RECPACKING.REC_NO=" & Val(TXTRECNO.Text.Trim) & " AND RECPACKING.REC_YEARID = " & YearId)
                     If dttable.Rows.Count > 0 Then
                         MsgBox("Rec No Already Exist")
                         bln = False
@@ -608,7 +609,7 @@ Public Class RecFromPacking
                 PRINTBARCODE()
             End If
             EDIT = False
-                clear()
+            clear()
             FILLBARCODE()
             If ClientName = "SOFTAS" Then CMBBARCODE.Focus() Else cmbGodown.Focus()
         Catch ex As Exception
@@ -655,7 +656,7 @@ Public Class RecFromPacking
 
 
                 Dim WHOLESALEBARCODE As Integer = 0
-                If ClientName = "CC"  Or ClientName = "C3" Or ClientName = "SHREEDEV" Then WHOLESALEBARCODE = MsgBox("Wish To Print Wholesale Barcode?", MsgBoxStyle.YesNo)
+                If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then WHOLESALEBARCODE = MsgBox("Wish To Print Wholesale Barcode?", MsgBoxStyle.YesNo)
 
 
                 Dim TEMPHEADER As String = ""
@@ -850,7 +851,7 @@ NEXTLINE:
     Private Sub RecFromPacking_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'JOB IN'")
-                        USERADD = DTROW(0).Item(1)
+            USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
@@ -978,7 +979,7 @@ NEXTLINE:
         Try
             CMBBARCODE.Items.Clear()
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search(" ISS_BARCODE AS BARCODE ", "", " ISSUEPACKING_DESC ", " AND ROUND(ISS_MTRS-ISS_OUTMTRS,2) > 0  AND ISS_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" ISS_BARCODE AS BARCODE ", "", " ISSUEPACKING_DESC ", " AND ROUND(ISS_MTRS-ISS_OUTMTRS,2) > 0  AND ISS_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 For Each DTROW As DataRow In DT.Rows
                     CMBBARCODE.Items.Add(DTROW("BARCODE"))
@@ -1106,10 +1107,10 @@ NEXTLINE:
                                 TXTBARCODE.Text = "P-" & Val(TXTRECNO.Text.Trim) & "/" & GRIDREC.RowCount + 1 & "/" & YearId
                             End If
                         End If
-                        GRIDREC.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, cmbcolor.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, Val(TXTFROMNO.Text.Trim), Val(TXTFROMSRNO.Text.Trim), TXTFROMTYPE.Text.Trim)
+                        GRIDREC.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, TXTGRIDREMARKS.Text.Trim, cmbcolor.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, Val(TXTFROMNO.Text.Trim), Val(TXTFROMSRNO.Text.Trim), TXTFROMTYPE.Text.Trim)
                     Next
                 Else
-                    GRIDREC.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, cmbcolor.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, Val(TXTFROMNO.Text.Trim), Val(TXTFROMSRNO.Text.Trim), TXTFROMTYPE.Text.Trim)
+                    GRIDREC.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, TXTGRIDREMARKS.Text.Trim, cmbcolor.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, Val(TXTFROMNO.Text.Trim), Val(TXTFROMSRNO.Text.Trim), TXTFROMTYPE.Text.Trim)
                 End If
                 getsrno(GRIDREC)
 
@@ -1119,7 +1120,7 @@ NEXTLINE:
                 GRIDREC.Item(gitemname.Index, TEMPROW).Value = cmbitemname.Text.Trim
                 GRIDREC.Item(GQUALITY.Index, TEMPROW).Value = CMBQUALITY.Text.Trim
                 GRIDREC.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
-                GRIDREC.Item(gdesc.Index, TEMPROW).Value = txtgridremarks.Text.Trim
+                GRIDREC.Item(gdesc.Index, TEMPROW).Value = TXTGRIDREMARKS.Text.Trim
                 GRIDREC.Item(gcolor.Index, TEMPROW).Value = cmbcolor.Text.Trim
                 GRIDREC.Item(gcut.Index, TEMPROW).Value = Format(Val(TXTCUT.Text.Trim), "0.00")
                 GRIDREC.Item(gQty.Index, TEMPROW).Value = Val(txtqty.Text.Trim)
@@ -1145,13 +1146,15 @@ NEXTLINE:
             txtsrno.Text = GRIDREC.RowCount + 1
             If ClientName = "YASHVI" Or ClientName = "SHREENAKODA" Then TXTCUT.Focus() Else CMBPIECETYPE.Focus()
             If ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then TXTMTRS.Focus()
-            If ClientName = "KCRAYON" Then txtgridremarks.Clear()
+            If ClientName = "KCRAYON" Or ClientName = "SWPL" Or ClientName = "APPLE" Or ClientName = "MMC" Then TXTGRIDREMARKS.Clear()
             If ClientName = "SUPRIYA" Or ClientName = "YASHVI" Then TXTCUT.Clear()
             'TXTRATE.Clear()
             TXTAMOUNT.Clear()
             If ClientName = "SUPRIYA" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "AVIS" Then
-                txtgridremarks.Clear()
+                TXTGRIDREMARKS.Clear()
                 TXTMTRS.Focus()
+            ElseIf ClientName = "APPLE" Or ClientName = "SWPL" Or ClientName = "MMC" Then
+                TXTGRIDREMARKS.Focus()
             End If
 
         Catch ex As Exception
@@ -1210,7 +1213,7 @@ NEXTLINE:
                     End If
 
                 End If
-                    getsrno(GRIDAREC)
+                getsrno(GRIDAREC)
 
             ElseIf GRIDDOUBLECLICK = True Then
                 GRIDAREC.Item(ASRNO.Index, TEMPROW).Value = Val(TXTASRNO.Text.Trim)
@@ -1413,7 +1416,10 @@ LINE1:
                 cmbitemname.Text = GRIDREC.Item(gitemname.Index, GRIDREC.CurrentRow.Index).Value.ToString
                 CMBQUALITY.Text = GRIDREC.Item(GQUALITY.Index, GRIDREC.CurrentRow.Index).Value.ToString
                 CMBDESIGN.Text = GRIDREC.Item(GDESIGN.Index, GRIDREC.CurrentRow.Index).Value.ToString
-                txtgridremarks.Text = GRIDREC.Item(gdesc.Index, GRIDREC.CurrentRow.Index).Value.ToString
+
+                TXTGRIDREMARKS.Text = GRIDREC.Item(gdesc.Index, GRIDREC.CurrentRow.Index).Value.ToString
+                TEMPBALENO = GRIDREC.Item(gdesc.Index, GRIDREC.CurrentRow.Index).Value.ToString
+
                 cmbcolor.Text = GRIDREC.Item(gcolor.Index, GRIDREC.CurrentRow.Index).Value.ToString
                 TXTCUT.Text = GRIDREC.Item(gcut.Index, GRIDREC.CurrentRow.Index).Value.ToString
                 txtqty.Text = GRIDREC.Item(gQty.Index, GRIDREC.CurrentRow.Index).Value.ToString
@@ -1521,10 +1527,10 @@ LINE1:
 
                 'GET DISPLAY NAME IN GRIDREMARKS
                 If ClientName = "RAJKRIPA" Then
-                    DT = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS DISPLAYNAME", "", " ITEMMASTER ", " AND ITEMMASTER.ITEM_NAME = '" & sender.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS DISPLAYNAME", "", " ITEMMASTER ", " AND ITEMMASTER.ITEM_NAME = '" & sender.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         For Each DTROW As DataRow In DT.Rows
-                            txtgridremarks.Text = (DT.Rows(0).Item("DISPLAYNAME"))
+                            TXTGRIDREMARKS.Text = (DT.Rows(0).Item("DISPLAYNAME"))
                         Next
                     End If
                 End If
@@ -1533,10 +1539,10 @@ LINE1:
                 Dim WHERECLAUSE As String = ""
                 If (ClientName = "YASHVI" Or ClientName = "SOFTAS") Then WHERECLAUSE = " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' "
                 If (ClientName = "RAJKRIPA" And CHKPRINTSERIES.CheckState = CheckState.Checked) Or ClientName = "YASHVI" Or ClientName = "SOFTAS" Then
-                    DT = OBJCMN.search(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & sender.Text.Trim & "' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & sender.Text.Trim & "' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         For Each DTROW As DataRow In DT.Rows
-                            txtgridremarks.Text = (DT.Rows(0).Item("STAMPING"))
+                            TXTGRIDREMARKS.Text = (DT.Rows(0).Item("STAMPING"))
                         Next
                     End If
                 End If
@@ -1722,7 +1728,7 @@ LINE1:
         Try
             Dim BLN As Boolean = True
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search(" ISNULL(REC_BARCODE,'') AS BARCODE ", "", " RECPACKING_DESC ", " AND RECPACKING_DESC.REC_YEARID =  " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(REC_BARCODE,'') AS BARCODE ", "", " RECPACKING_DESC ", " AND RECPACKING_DESC.REC_YEARID =  " & YearId)
             If DT.Rows.Count > 0 Then
                 For Each DTR As DataRow In DT.Rows
                     For Each ROW As Windows.Forms.DataGridViewRow In GRIDREC.Rows
@@ -1788,6 +1794,13 @@ LINE1:
                         End If
                     End If
                 Next
+
+                If VALIDATEBALENO = True And TXTGRIDREMARKS.Text.Trim = "" And CMBPIECETYPE.Text = "FRESH" Then
+                    MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    TXTGRIDREMARKS.Focus()
+                    Exit Sub
+                End If
+
                 fillgrid()
             Else
                 If ClientName <> "AVIS" And ClientName <> "SOFTAS" Then
@@ -1842,7 +1855,7 @@ LINE1:
                 CMBCONTRACTOR.Text = DT.Rows(0).Item("CONTRACTOR")
 
                 DT.Clear()
-                DT = OBJCMN.search("*", "", "OUTBARCODESTOCK", " AND BARCODE = '" & CMBBARCODE.Text.Trim & "' AND YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("*", "", "OUTBARCODESTOCK", " AND BARCODE = '" & CMBBARCODE.Text.Trim & "' AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     CMBPIECETYPE.Text = DT.Rows(0).Item("PIECETYPE")
                     If ClientName <> "KRISHNA" Then cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
@@ -1864,17 +1877,17 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub txtgridremarks_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtgridremarks.Validated
+    Private Sub txtgridremarks_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTGRIDREMARKS.Validated
         Try
             'MAKE THIS STAMPING DEFAULT FOR PARTY
-            If (ClientName = "YASHVI" Or ClientName = "SOFTAS") And txtgridremarks.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" Then
+            If (ClientName = "YASHVI" Or ClientName = "SOFTAS") And TXTGRIDREMARKS.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" Then
 
                 'FIRST CHECK WHETHER THIS STAMP FOR THIS PARTY AND ITEM IS PRESENT OR NOT, IF NOT THEN CREATE NEW OR ELSE UPDATE
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search("PAR_STAMPING AS STAMPING, PAR_NO AS PARNO", "", "PARTYITEMWISECHART INNER JOIN LEDGERS ON ACC_ID = PAR_LEDGERID INNER JOIN ITEMMASTER ON ITEM_ID = PAR_ITEMID", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND PAR_YEARID = " & YearId)
-                If DT.Rows.Count > 0 AndAlso DT.Rows(0).Item("STAMPING") <> txtgridremarks.Text.Trim Then
+                Dim DT As DataTable = OBJCMN.SEARCH("PAR_STAMPING AS STAMPING, PAR_NO AS PARNO", "", "PARTYITEMWISECHART INNER JOIN LEDGERS ON ACC_ID = PAR_LEDGERID INNER JOIN ITEMMASTER ON ITEM_ID = PAR_ITEMID", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND PAR_YEARID = " & YearId)
+                If DT.Rows.Count > 0 AndAlso DT.Rows(0).Item("STAMPING") <> TXTGRIDREMARKS.Text.Trim Then
                     If MsgBox("Wish to Make this Stamp Default for this Party & Item?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & txtgridremarks.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
+                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & TXTGRIDREMARKS.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
                 ElseIf DT.Rows.Count = 0 Then
                     'ADD NEW STAMPING
                     Dim ALPARAVAL As New ArrayList
@@ -1884,7 +1897,7 @@ LINE1:
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
                     ALPARAVAL.Add(0)
-                    ALPARAVAL.Add(txtgridremarks.Text.Trim)
+                    ALPARAVAL.Add(TXTGRIDREMARKS.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
                     ALPARAVAL.Add(YearId)
@@ -1895,19 +1908,7 @@ LINE1:
                 End If
             End If
 
-            If ClientName = "MMC" Then
 
-                If String.IsNullOrWhiteSpace(txtgridremarks.Text) Then Exit Sub
-
-                If GETUNIQBALENO(txtgridremarks.Text.Trim, YearId) = True Then
-                    MessageBox.Show("Bale No  " & txtgridremarks.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-
-                    txtgridremarks.Clear()
-                    txtgridremarks.Focus()
-                End If
-
-            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1950,7 +1951,7 @@ LINE1:
         Try
             'THEY CAN WRITE THE NAME MANUALLY FOR PRINTING BARCODE PURPOSE
             If ClientName <> "SHREENAKODA" And cmbname.Text.Trim <> "" Then
-                If ClientName = "KARAN" Or ClientName = "CC"  Or ClientName = "C3" Or ClientName = "SAKARIA" Then namevalidate(cmbname, CMBCODE, e, Me, txtadd, " And GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS") Else namevalidate(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+                If ClientName = "KARAN" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "SAKARIA" Then NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " And GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS") Else NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1995,7 +1996,7 @@ LINE1:
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
             If cmbname.Text.Trim = "" Then
-                If ClientName = "KARAN" Or ClientName = "CC"  Or ClientName = "C3" Or ClientName = "SAKARIA" Then fillname(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'") Else fillname(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'")
+                If ClientName = "KARAN" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "SAKARIA" Then FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'") Else FILLNAME(cmbname, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors'")
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -2010,8 +2011,11 @@ LINE1:
                 TXTAQTY.ReadOnly = False
             End If
 
-            If ClientName = "AFW" Then
-                CMBADESIGN.TabStop = False
+            If ClientName = "APPLE" Then
+                CMBQUALITY.TabStop = False
+                TXTCUT.TabStop = False
+                TXTRATE.TabStop = False
+                CMBPER.TabStop = False
             End If
 
 
@@ -2024,7 +2028,7 @@ LINE1:
                 cmbitemname.TabStop = False
                 CMBQUALITY.TabStop = False
                 CMBDESIGN.TabStop = False
-                txtgridremarks.TabStop = False
+                TXTGRIDREMARKS.TabStop = False
                 cmbcolor.TabStop = False
             End If
 
@@ -2037,7 +2041,7 @@ LINE1:
                 cmbname.TabStop = False
                 TXTREFNO.TabStop = False
                 CMBQUALITY.TabStop = False
-                txtgridremarks.TabStop = False
+                TXTGRIDREMARKS.TabStop = False
                 TXTCUT.TabStop = False
                 CMBRACK.TabStop = False
             End If
@@ -2047,7 +2051,7 @@ LINE1:
                 cmbname.Visible = False
                 cmbitemname.TabStop = False
                 CMBQUALITY.TabStop = False
-                txtgridremarks.TabStop = False
+                TXTGRIDREMARKS.TabStop = False
                 txtqty.ReadOnly = False
                 cmbqtyunit.Text = "LUMP"
                 CMBRACK.TabStop = False
@@ -2094,10 +2098,13 @@ LINE1:
             If ClientName = "SUPEEMA" Or ClientName = "SURYODAYA" Or ClientName = "SARAYU" Or ClientName = "AFW" Then HIDEALLISSUE = False
             HIDEVIEW()
 
-            If ClientName = "MMC" Then
+
+            If VALIDATEBALENO = True Then
                 gdesc.HeaderText = "Bale No"
-                txtgridremarks.BackColor = Color.LemonChiffon
+                TXTGRIDREMARKS.BackColor = Color.LemonChiffon
+                gdesc.ReadOnly = True
             End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -2133,7 +2140,7 @@ LINE1:
             'GET ITEMNAME AUTO
             If (ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "NTC") And sender.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.search("ISNULL(ITEM_NAME,'') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID", " AND DESIGN_NO = '" & sender.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(ITEM_NAME,'') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEM_ID", " AND DESIGN_NO = '" & sender.Text.Trim & "' AND DESIGN_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then ITEMOBJ.Text = DT.Rows(0).Item("ITEMNAME")
             End If
         Catch ex As Exception
@@ -2190,7 +2197,7 @@ LINE1:
     Private Sub TXTFROMSRNO_Validated(sender As Object, e As EventArgs) Handles TXTFROMSRNO.Validated
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search("ISSUEPACKING_DESC.ISS_NO AS FROMNO, ISSUEPACKING_DESC.ISS_GRIDSRNO AS FROMSRNO, ISSUEPACKING_DESC.ISS_BARCODE AS BARCODE, 'ISSUEPACKING' AS GRIDTYPE, ISNULL(ISSUEPACKING_DESC.ISS_LOTNO,'') AS LOTNO, ISSUEPACKING_DESC.ISS_MTRS AS ISSUEMTRS, ROUND(ISSUEPACKING_DESC.ISS_MTRS - ISSUEPACKING_DESC.ISS_OUTMTRS,2) AS PENDINGMTRS, ISNULL(LEDGERS.ACC_CMPNAME,'') AS NAME, ISNULL(ISSUEPACKING_DESC.ISS_RATE,0) AS RATE", "", " ISSUEPACKING_DESC INNER JOIN ISSUEPACKING ON ISSUEPACKING_DESC.ISS_NO = ISSUEPACKING.ISS_no AND ISSUEPACKING_DESC.ISS_YEARID = ISSUEPACKING.ISS_yearid LEFT OUTER JOIN LEDGERS ON ISSUEPACKING.ISS_WEAVERID = LEDGERS.Acc_id ", " AND ISSUEPACKING.ISS_NO=" & Val(TXTFROMNO.Text.Trim) & " AND ISSUEPACKING_DESC.ISS_GRIDSRNO = " & Val(TXTFROMSRNO.Text.Trim) & " AND ROUND(ISSUEPACKING_DESC.ISS_MTRS - ISSUEPACKING_DESC.ISS_OUTMTRS,2) > 0 AND ISSUEPACKING.ISS_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("ISSUEPACKING_DESC.ISS_NO AS FROMNO, ISSUEPACKING_DESC.ISS_GRIDSRNO AS FROMSRNO, ISSUEPACKING_DESC.ISS_BARCODE AS BARCODE, 'ISSUEPACKING' AS GRIDTYPE, ISNULL(ISSUEPACKING_DESC.ISS_LOTNO,'') AS LOTNO, ISSUEPACKING_DESC.ISS_MTRS AS ISSUEMTRS, ROUND(ISSUEPACKING_DESC.ISS_MTRS - ISSUEPACKING_DESC.ISS_OUTMTRS,2) AS PENDINGMTRS, ISNULL(LEDGERS.ACC_CMPNAME,'') AS NAME, ISNULL(ISSUEPACKING_DESC.ISS_RATE,0) AS RATE", "", " ISSUEPACKING_DESC INNER JOIN ISSUEPACKING ON ISSUEPACKING_DESC.ISS_NO = ISSUEPACKING.ISS_no AND ISSUEPACKING_DESC.ISS_YEARID = ISSUEPACKING.ISS_yearid LEFT OUTER JOIN LEDGERS ON ISSUEPACKING.ISS_WEAVERID = LEDGERS.Acc_id ", " AND ISSUEPACKING.ISS_NO=" & Val(TXTFROMNO.Text.Trim) & " AND ISSUEPACKING_DESC.ISS_GRIDSRNO = " & Val(TXTFROMSRNO.Text.Trim) & " AND ROUND(ISSUEPACKING_DESC.ISS_MTRS - ISSUEPACKING_DESC.ISS_OUTMTRS,2) > 0 AND ISSUEPACKING.ISS_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 CMBBARCODE.Text = DT.Rows(0).Item("BARCODE")
                 TXTFROMTYPE.Text = DT.Rows(0).Item("GRIDTYPE")
@@ -2205,7 +2212,7 @@ LINE1:
                 TXTFROMSRNO.ReadOnly = True
 
                 DT.Clear()
-                DT = OBJCMN.search("*", "", "OUTBARCODESTOCK", " AND BARCODE = '" & CMBBARCODE.Text.Trim & "' AND YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("*", "", "OUTBARCODESTOCK", " AND BARCODE = '" & CMBBARCODE.Text.Trim & "' AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     CMBPIECETYPE.Text = DT.Rows(0).Item("PIECETYPE")
                     cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
@@ -2216,7 +2223,7 @@ LINE1:
 
                 'FETCH RACK
                 DT.Clear()
-                DT = OBJCMN.search("ISNULL(RACK,'') AS RACK", "", "ALLBARCODESTOCK", " AND BARCODE = '" & CMBBARCODE.Text.Trim & "' AND YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("ISNULL(RACK,'') AS RACK", "", "ALLBARCODESTOCK", " AND BARCODE = '" & CMBBARCODE.Text.Trim & "' AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then CMBRACK.Text = DT.Rows(0).Item("RACK")
 
                 cmbitemname.Focus()
@@ -2384,7 +2391,7 @@ LINE1:
         Try
             If Val(TXTRECNO.Text.Trim) <> 0 And EDIT = False Then
                 Dim OBJCMN As New ClsCommon
-                Dim dttable As DataTable = OBJCMN.search(" ISNULL(RECPACKING.REC_NO,0)  AS RECNO", "", " RECPACKING ", "  AND RECPACKING.REC_NO=" & Val(TXTRECNO.Text.Trim) & " AND RECPACKING.REC_YEARID = " & YearId)
+                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(RECPACKING.REC_NO,0)  AS RECNO", "", " RECPACKING ", "  AND RECPACKING.REC_NO=" & Val(TXTRECNO.Text.Trim) & " AND RECPACKING.REC_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     MsgBox("Rec No Already Exist")
                     e.Cancel = True
@@ -2446,7 +2453,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub txtgridremarks_KeyDown(sender As Object, e As KeyEventArgs) Handles txtgridremarks.KeyDown
+    Private Sub txtgridremarks_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTGRIDREMARKS.KeyDown
         Try
             If ClientName = "MANSI" Then
                 If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
@@ -2456,7 +2463,7 @@ LINE1:
                     Dim OBJREMARKS As New SelectRemarks
                     OBJREMARKS.FRMSTRING = "NARRATION"
                     OBJREMARKS.ShowDialog()
-                    If OBJREMARKS.TEMPNAME <> "" Then txtgridremarks.Text = OBJREMARKS.TEMPNAME
+                    If OBJREMARKS.TEMPNAME <> "" Then TXTGRIDREMARKS.Text = OBJREMARKS.TEMPNAME
                 End If
             End If
         Catch ex As Exception
@@ -2494,25 +2501,35 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub txtgridremarks_Validating(sender As Object, e As CancelEventArgs) Handles txtgridremarks.Validating
-        If ClientName = "MMC" Then
+    Private Sub txtgridremarks_Validating(sender As Object, e As CancelEventArgs) Handles TXTGRIDREMARKS.Validating
+        Try
+            If TXTGRIDREMARKS.Text.Trim = "" Then Exit Sub
 
-            If String.IsNullOrWhiteSpace(txtgridremarks.Text) Then
-                MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                txtgridremarks.Focus()
-                Exit Sub
-            End If
+            If VALIDATEBALENO = True Then
+                If GRIDREC.RowCount > 0 Then
+                    If Not CHECKROLL() Then
+                        MsgBox("Bale No already Present in Grid below")
+                        TXTGRIDREMARKS.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
 
-            If GRIDREC.RowCount > 0 Then
-                If Not CHECKROLL() Then
-                    MsgBox("Bale No already Present in Grid below ")
-                    txtgridremarks.Clear()
-                    txtgridremarks.Focus()
-                    Exit Sub
+
+                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And TEMPBALENO <> TXTGRIDREMARKS.Text.Trim) Then
+                    If Not GETUNIQBALENO(TXTGRIDREMARKS.Text.Trim) Then
+                        MessageBox.Show("Bale No " & TXTGRIDREMARKS.Text & " Already Present in Stock!", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        TXTGRIDREMARKS.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
                 End If
             End If
 
-        End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Function CHECKROLL() As Boolean
@@ -2520,7 +2537,7 @@ LINE1:
             Dim bln As Boolean = True
             For Each ROW As DataGridViewRow In GRIDREC.Rows
                 If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
-                    If txtgridremarks.Text.Trim = ROW.Cells(gdesc.Index).Value Then bln = False
+                    If TXTGRIDREMARKS.Text.Trim = ROW.Cells(gdesc.Index).Value Then bln = False
                 End If
             Next
             Return bln

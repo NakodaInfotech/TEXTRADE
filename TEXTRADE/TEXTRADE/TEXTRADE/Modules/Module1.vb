@@ -201,6 +201,7 @@ Module Module1
     Public CATALOGPATH As String = ""
     Public CATALOGIP As String = ""
     Public ALLOWYARNBARCODEPRINT As Boolean
+    Public VALIDATEBALENO As Boolean
 
     Public HIDEACCOUNTSEXCEPTINVOICE As Boolean = False
     Public HIDEACCOUNTS As Boolean = False

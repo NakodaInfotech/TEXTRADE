@@ -21,6 +21,7 @@ Public Class MaterialReceipt
     'Dim TEMPDTMTRS As New DataTable
     Dim ALLOWMANUALMATRECNO As Boolean = False
     Public TEMPPRNO As Integer
+    Dim TEMPBALENO As String = ""   'WE NEED TO THIS VARIALBLE TO VALIDATE BALENO FOR DUPLICATION IN STOCK
 
     Public Sub New()
 
@@ -100,6 +101,8 @@ Public Class MaterialReceipt
         txtqty.Text = 1
         If ClientName = "YASHVI" Or ClientName = "BRILLANTO" Or ClientName = "AVIS" Or ClientName = "KEMLINO" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "VSTRADERS" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then cmbqtyunit.Text = "LUMP" Else cmbqtyunit.Text = "Pcs"
         If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Then cmbqtyunit.Text = "UNCHECK LUMP"
+        If ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "SWPL" Then cmbqtyunit.Text = "ROLL"
+
         TXTMTRS.Clear()
         TXTRATE.Clear()
         CMBPER.Text = "Mtrs"
@@ -3293,8 +3296,10 @@ LINE1:
         CMBYESNO.SelectedIndex = 0
         TXTDIFF.Clear()
         TXTPCSNO.Clear()
-        If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Then
+        If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "VINAYAK" Then
             TXTRECDMTRS.Focus()
+        ElseIf ClientName = "APPLE" Or ClientName = "MMC" Then
+            TXTBALENO.Focus()
         ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "SUBHLAXMI" Or ClientName = "OWAIS" Or ClientName = "MAHAJAN" Or ClientName = "SWPL" Then
             TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
             If ClientName = "SWPL" Then TXTBALENO.Focus() Else txtqty.Focus()
@@ -3618,7 +3623,10 @@ LINE1:
                 TXTGRIDDESC.Text = GRIDMATREC.Item(GGRIDDESC.Index, GRIDMATREC.CurrentRow.Index).Value.ToString
                 CMBQUALITY.Text = GRIDMATREC.Item(GQUALITY.Index, GRIDMATREC.CurrentRow.Index).Value.ToString
                 CMBBALENO.Text = GRIDMATREC.Item(GBALENO.Index, GRIDMATREC.CurrentRow.Index).Value.ToString
+
                 TXTBALENO.Text = GRIDMATREC.Item(GBALENO.Index, GRIDMATREC.CurrentRow.Index).Value.ToString
+                TEMPBALENO = GRIDMATREC.Item(GBALENO.Index, GRIDMATREC.CurrentRow.Index).Value
+
                 CMBDESIGN.Text = GRIDMATREC.Item(GDESIGN.Index, GRIDMATREC.CurrentRow.Index).Value.ToString
                 cmbcolor.Text = GRIDMATREC.Item(gcolor.Index, GRIDMATREC.CurrentRow.Index).Value.ToString
                 TXTCUT.Text = GRIDMATREC.Item(gcut.Index, GRIDMATREC.CurrentRow.Index).Value.ToString
@@ -4444,9 +4452,11 @@ LINE1:
             End If
 
 
-            If ClientName = "MMC" Then
+            If VALIDATEBALENO = True Then
                 TXTBALENO.BackColor = Color.LemonChiffon
+                GBALENO.ReadOnly = True
             End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -4590,6 +4600,8 @@ NEXTLINE:
 
     Private Sub TXTBALENO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBALENO.Validating
         Try
+            If TXTBALENO.Text.Trim = "" Then Exit Sub
+
             'CHECK DUPLICATION
             If ClientName = "DILIP" Or ClientName = "DILIPNEW" And TXTBALENO.Text.Trim.Length > 0 Then
                 Dim WHERECLAUSE As String = ""
@@ -4612,30 +4624,32 @@ NEXTLINE:
                 End If
             End If
 
-            If ClientName = "MMC" Then
 
-                If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then
-                    MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    TXTBALENO.Focus()
-                    Exit Sub
-                End If
-
+            If VALIDATEBALENO = True Then
                 If GRIDMATREC.RowCount > 0 Then
                     If Not CHECKROLL() Then
-                        MsgBox("Bale No already Present in Grid below ")
+                        MsgBox("Bale No already Present in Grid below")
                         TXTBALENO.Clear()
-                        TXTBALENO.Focus()
+                        e.Cancel = True
                         Exit Sub
                     End If
                 End If
 
+
+                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And TEMPBALENO <> TXTBALENO.Text.Trim) Then
+                    If Not GETUNIQBALENO(TXTBALENO.Text.Trim) Then
+                        MessageBox.Show("Bale No " & TXTBALENO.Text & " Already Present in Stock!", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        TXTBALENO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
             End If
 
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-
 
     Function CHECKROLL() As Boolean
         Try
@@ -4784,6 +4798,14 @@ NEXTLINE:
                         TXTBARCODE.Text = "D-" & Val(TXTMATRECNO.Text.Trim) & "/" & GRIDMATREC.RowCount + 1 & "/" & YearId
                     End If
                 End If
+
+                If VALIDATEBALENO = True And TXTBALENO.Text.Trim = "" And CMBPIECETYPE.Text = "FRESH" Then
+                    MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    TXTBALENO.Focus()
+                    Exit Sub
+                End If
+
+
                 If ClientName = "SNCM" And CMBPIECETYPE.Text = "FRESH" Then
                     If TXTBALENO.Text.Trim <> "" Then
                         FILLGRID()
@@ -4800,7 +4822,7 @@ NEXTLINE:
                         Exit Sub
                     End If
                 Else
-                        FILLGRID()
+                    FILLGRID()
                 End If
             Else
                 If ClientName <> "AVIS" And ClientName <> "SOFTAS" Then MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
@@ -5385,21 +5407,4 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTBALENO_Validated(sender As Object, e As EventArgs) Handles TXTBALENO.Validated
-        Try
-            If ClientName = "MMC" Then
-
-                If String.IsNullOrWhiteSpace(TXTBALENO.Text) Then Exit Sub
-
-                If GETUNIQBALENO(TXTBALENO.Text.Trim, YearId) = True Then
-                    MessageBox.Show("Bale No  " & TXTBALENO.Text & "  Already Present !", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    TXTBALENO.Clear()
-                    TXTBALENO.Focus()
-                End If
-
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
 End Class

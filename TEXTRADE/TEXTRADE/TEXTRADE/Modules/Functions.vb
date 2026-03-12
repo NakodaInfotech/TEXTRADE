@@ -27,7 +27,30 @@ Module Functions
             End If
 
 PRINTALL:
-            If ClientName = "SVS" Then
+
+            If ClientName = "APPLE" Then
+
+                oWrite.WriteLine("SIZE 101.6 mm, 101.6 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 794,763,""ROMAN.TTF"",180,1,78,""" & BALENO & """
+QRCODE 334,394,L,10,A,180,M2,S7,""" & BARCODE & """
+TEXT 778,534,""ROMAN.TTF"",180,1,24,""" & ITEMNAME & """
+TEXT 778,422,""ROMAN.TTF"",180,1,24,""" & DESIGNNO & """
+TEXT 778,222,""ROMAN.TTF"",180,1,48,""" & Format(Val(MTRS), "0.00") & """
+TEXT 778,310,""ROMAN.TTF"",180,1,24,""" & BARCODE & """
+PRINT 1,1")
+                oWrite.Dispose()
+
+
+            ElseIf ClientName = "SVS" Then
                 oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>I8,A")
                 oWrite.WriteLine("ZN")
                 oWrite.WriteLine("q400")
@@ -391,6 +414,9 @@ TEXT 217,285,""ROMAN.TTF"",180,1,12,"":""
 TEXT 193,285,""ROMAN.TTF"",180,1,12,""" & RACK & """
 PRINT 1,1")
                 oWrite.Dispose()
+
+
+
 
             ElseIf ClientName = "MBB" Then
 
@@ -1932,7 +1958,44 @@ PRINT 1,1")
 
             ElseIf ClientName = "VINAYAK" Then
 
-                oWrite.WriteLine("SIZE 72.5 mm, 45 mm")
+                'oWrite.WriteLine("SIZE 72.5 mm, 45 mm")
+                'oWrite.WriteLine("DIRECTION 0,0")
+                'oWrite.WriteLine("REFERENCE 0,0")
+                'oWrite.WriteLine("OFFSET 0 mm")
+                'oWrite.WriteLine("SET PEEL OFF")
+                'oWrite.WriteLine("SET CUTTER OFF")
+                'oWrite.WriteLine("SET PARTIAL_CUTTER OFF")
+                'oWrite.WriteLine("SET TEAR ON")
+                'oWrite.WriteLine("CLS")
+                'oWrite.WriteLine("CODEPAGE 1252")
+                'oWrite.WriteLine("TEXT 555,341,""ROMAN.TTF"",180,1,20,""" & ITEMNAME & """")
+                'oWrite.WriteLine("TEXT 555,268,""ROMAN.TTF"",180,1,14,""D.NO""")
+                'oWrite.WriteLine("TEXT 417,268,""ROMAN.TTF"",180,1,14,"":""")
+                'oWrite.WriteLine("TEXT 388,268,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """")
+                'oWrite.WriteLine("TEXT 555,213,""ROMAN.TTF"",180,1,14,""SHADE""")
+                'oWrite.WriteLine("TEXT 417,213,""ROMAN.TTF"",180,1,14,"":""")
+                'oWrite.WriteLine("TEXT 388,213,""ROMAN.TTF"",180,1,14,""" & SHADE & """")
+
+                ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                'Dim TEMPWIDTH As String
+                'Dim OBJCMN As New ClsCommon
+                'Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                'If DT.Rows.Count > 0 Then
+                '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                'End If
+
+                'oWrite.WriteLine("TEXT 555,156,""ROMAN.TTF"",180,1,14,""WIDTH""")
+                'oWrite.WriteLine("TEXT 417,156,""ROMAN.TTF"",180,1,14,"":""")
+                'oWrite.WriteLine("TEXT 388,156,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """")
+                'oWrite.WriteLine("TEXT 298,156,""ROMAN.TTF"",180,1,14,""MTRS""")
+                'oWrite.WriteLine("TEXT 179,156,""ROMAN.TTF"",180,1,14,"":""")
+                'oWrite.WriteLine("TEXT 156,161,""ROMAN.TTF"",180,1,18,""" & Format(Val(MTRS), "0.00") & """")
+                'oWrite.WriteLine("BARCODE 556,110,""128M"",66,0,180,3,6,""" & BARCODE & """") 'BARCODE
+                'oWrite.WriteLine("TEXT 373,38,""ROMAN.TTF"",180,1,10,""" & BARCODE & """")
+                'oWrite.WriteLine("PRINT 1,1")
+                'oWrite.Dispose()
+
+                oWrite.WriteLine("SIZE 72.5 mm, 50 mm")
                 oWrite.WriteLine("DIRECTION 0,0")
                 oWrite.WriteLine("REFERENCE 0,0")
                 oWrite.WriteLine("OFFSET 0 mm")
@@ -1942,13 +2005,13 @@ PRINT 1,1")
                 oWrite.WriteLine("SET TEAR ON")
                 oWrite.WriteLine("CLS")
                 oWrite.WriteLine("CODEPAGE 1252")
-                oWrite.WriteLine("TEXT 555,341,""ROMAN.TTF"",180,1,20,""" & ITEMNAME & """")
-                oWrite.WriteLine("TEXT 555,268,""ROMAN.TTF"",180,1,14,""D.NO""")
-                oWrite.WriteLine("TEXT 417,268,""ROMAN.TTF"",180,1,14,"":""")
-                oWrite.WriteLine("TEXT 388,268,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """")
-                oWrite.WriteLine("TEXT 555,213,""ROMAN.TTF"",180,1,14,""SHADE""")
-                oWrite.WriteLine("TEXT 417,213,""ROMAN.TTF"",180,1,14,"":""")
-                oWrite.WriteLine("TEXT 388,213,""ROMAN.TTF"",180,1,14,""" & SHADE & """")
+                oWrite.WriteLine("TEXT 555,377,""ROMAN.TTF"",180,20,20,""" & ITEMNAME & """")
+                oWrite.WriteLine("TEXT 555,299,""ROMAN.TTF"",180,14,14,""D.NO""")
+                oWrite.WriteLine("TEXT 417,299,""ROMAN.TTF"",180,14,14,"":""")
+                oWrite.WriteLine("TEXT 388,299,""ROMAN.TTF"",180,14,14,""" & DESIGNNO & """")
+                oWrite.WriteLine("TEXT 555,238,""ROMAN.TTF"",180,14,14,""SHADE""")
+                oWrite.WriteLine("TEXT 417,238,""ROMAN.TTF"",180,14,14,"":""")
+                oWrite.WriteLine("TEXT 388,238,""ROMAN.TTF"",180,14,14,""" & SHADE & """")
 
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                 Dim TEMPWIDTH As String
@@ -1958,14 +2021,18 @@ PRINT 1,1")
                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
                 End If
 
-                oWrite.WriteLine("TEXT 555,156,""ROMAN.TTF"",180,1,14,""WIDTH""")
-                oWrite.WriteLine("TEXT 417,156,""ROMAN.TTF"",180,1,14,"":""")
-                oWrite.WriteLine("TEXT 388,156,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """")
-                oWrite.WriteLine("TEXT 298,156,""ROMAN.TTF"",180,1,14,""MTRS""")
-                oWrite.WriteLine("TEXT 179,156,""ROMAN.TTF"",180,1,14,"":""")
-                oWrite.WriteLine("TEXT 156,161,""ROMAN.TTF"",180,1,18,""" & Format(Val(MTRS), "0.00") & """")
-                oWrite.WriteLine("BARCODE 556,110,""128M"",66,0,180,3,6,""" & BARCODE & """") 'BARCODE
-                oWrite.WriteLine("TEXT 373,38,""ROMAN.TTF"",180,1,10,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 555,172,""ROMAN.TTF"",180,14,14,""WIDTH""")
+                oWrite.WriteLine("TEXT 417,172,""ROMAN.TTF"",180,14,14,"":""")
+                oWrite.WriteLine("TEXT 388,172,""ROMAN.TTF"",180,14,14,""" & TEMPWIDTH & """")
+                oWrite.WriteLine("TEXT 298,172,""ROMAN.TTF"",180,14,14,""MTRS""")
+                oWrite.WriteLine("TEXT 179,172,""ROMAN.TTF"",180,14,14,"":""")
+                oWrite.WriteLine("TEXT 156,177,""ROMAN.TTF"",180,18,18,""" & Format(Val(MTRS), "0.00") & """")
+                oWrite.WriteLine("BARCODE 556,122,""128M"",73,0,180,3,6,""" & BARCODE & """") 'BARCODE
+                oWrite.WriteLine("TEXT 373,44,""ROMAN.TTF"",180,10,11,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 298,238,""ROMAN.TTF"",180,14,14,""LOTNO""")
+                oWrite.WriteLine("TEXT 138,238,""ROMAN.TTF"",180,14,14,"":""")
+                oWrite.WriteLine("TEXT 167,238,""ROMAN.TTF"",180,14,14,""" & LOTNO & """")
+
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
 
@@ -9720,27 +9787,16 @@ line1:
         End Try
     End Sub
 
-
-
-    Function GETUNIQBALENO(ByVal rollNo As String, ByVal yearId As Integer) As Boolean
-
-        Dim bln As Boolean = False
-
+    Function GETUNIQBALENO(ByVal BALENO As String) As Boolean
+        Dim bln As Boolean = True
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & rollNo.Trim() & "'   And YEARID =   " & yearId)
-
-            If DT.Rows.Count > 0 Then
-                bln = True
-            End If
-
+            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
+            If DT.Rows.Count > 0 Then bln = False
         Catch ex As Exception
             Throw ex
         End Try
-
         Return bln
     End Function
-
-
 
 End Module
