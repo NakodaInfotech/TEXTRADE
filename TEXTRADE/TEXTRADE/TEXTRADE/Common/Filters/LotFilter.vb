@@ -99,13 +99,14 @@ Public Class LotFilter
                 OBJLOTGRID.MdiParent = MDIMain
                 OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " AND YEARID = " & YearId
                 If chkdate.CheckState = CheckState.Checked Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and RECDATE <= '" & Format(dtto.Value.Date, "MM/dd/yyyy") & "'"
-                If CMBJOBBER.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and JOBBERNAME='" & CMBJOBBER.Text.Trim & "'"
-                If CMBGROUP.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and GROUPNAME='" & CMBGROUP.Text.Trim & "'"
-                If CMBITEMNAME.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and ITEMNAME='" & CMBITEMNAME.Text.Trim & "'"
-                If CMBQUALITY.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and QUALITY='" & CMBQUALITY.Text.Trim & "'"
-                If CMBCATEGORY.Text <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and CATEGORYNAME='" & CMBCATEGORY.Text.Trim & "'"
+                If CMBJOBBER.Text.Trim <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and JOBBERNAME='" & CMBJOBBER.Text.Trim & "'"
+                If CMBGROUP.Text.Trim <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and GROUPNAME='" & CMBGROUP.Text.Trim & "'"
+                If CMBITEMNAME.Text.Trim <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and ITEMNAME='" & CMBITEMNAME.Text.Trim & "'"
+                If CMBQUALITY.Text.Trim <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and QUALITY='" & CMBQUALITY.Text.Trim & "'"
+                If CMBCATEGORY.Text.Trim <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and CATEGORYNAME='" & CMBCATEGORY.Text.Trim & "'"
                 If CHKPENDINGPROG.Checked = True Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and PROGRAMDONE='FALSE' AND (TOTALMTRS - PROGRAMMTRS > 0)"
                 If CMBDYEINGJOB.Text.Trim <> "Both" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and (DYEINGJOB='" & CMBDYEINGJOB.Text.Trim & "' OR DYEINGJOB='')"
+                If CMBTRANSPORT.Text.Trim <> "" Then OBJLOTGRID.WHERECLAUSE = OBJLOTGRID.WHERECLAUSE & " and TRANSNAME='" & CMBTRANSPORT.Text.Trim & "'"
 
                 For i As Integer = 0 To gridbill.RowCount - 1
                     Dim dtrow As DataRow = gridbill.GetDataRow(i)
@@ -300,17 +301,18 @@ Public Class LotFilter
                 OBJGRN.PERIOD = Format(AccFrom, "dd/MM/yyyy") & " - " & Format(AccTo, "dd/MM/yyyy")
             End If
 
-            If CMBJOBBER.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.JOBBERNAME}='" & CMBJOBBER.Text.Trim & "'"
+            If CMBJOBBER.Text.Trim <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.JOBBERNAME}='" & CMBJOBBER.Text.Trim & "'"
             OBJGRN.JOBBERNAME = CMBJOBBER.Text.Trim
 
-            If CMBGROUP.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.GROUPNAME}='" & CMBGROUP.Text.Trim & "'"
-            If CMBITEMNAME.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.ITEMNAME}='" & CMBITEMNAME.Text.Trim & "'"
-            If CMBQUALITY.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.QUALITY}='" & CMBQUALITY.Text.Trim & "'"
-            If CMBCATEGORY.Text <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.CATEGORYNAME}='" & CMBCATEGORY.Text.Trim & "'"
+            If CMBGROUP.Text.Trim <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.GROUPNAME}='" & CMBGROUP.Text.Trim & "'"
+            If CMBITEMNAME.Text.Trim <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.ITEMNAME}='" & CMBITEMNAME.Text.Trim & "'"
+            If CMBQUALITY.Text.Trim <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.QUALITY}='" & CMBQUALITY.Text.Trim & "'"
+            If CMBCATEGORY.Text.Trim <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.CATEGORYNAME}='" & CMBCATEGORY.Text.Trim & "'"
             If CHKPENDINGPROG.Checked = True Then
                 If LOTSTATUSONMTRS = True Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.PROGRAMDONE}=FALSE AND ({LOT_VIEW.ACCEPTEDMTRS}-{LOT_VIEW.PROGRAMMTRS})>0 " Else OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.PROGRAMDONE}=FALSE AND ({LOT_VIEW.TOTALPCS}-{LOT_VIEW.PROGRAMMTRS})>0"
             End If
             If CMBDYEINGJOB.Text.Trim <> "Both" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and ({LOT_VIEW.DYEINGJOB}='" & CMBDYEINGJOB.Text.Trim & "' OR {LOT_VIEW.DYEINGJOB}='')"
+            If CMBTRANSPORT.Text.Trim <> "" Then OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & " and {LOT_VIEW.TRANSNAME}='" & CMBTRANSPORT.Text.Trim & "'"
 
             gridbill.ClearColumnsFilter()
             For i As Integer = 0 To gridbill.RowCount - 1
@@ -441,6 +443,7 @@ Public Class LotFilter
                 OBJGRN.PENDINGCOMPLETED = "FULL"
                 OBJGRN.PERIOD = "ALL LOTS - " & OBJGRN.PERIOD
             End If
+            OBJGRN.SHOWWEAVER = CHKSHOWWEAVER.Checked
             OBJGRN.Show()
         Catch ex As Exception
             Throw ex
@@ -491,6 +494,7 @@ Public Class LotFilter
             If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
             If CMBCATEGORY.Text.Trim = "" Then fillCATEGORY(CMBCATEGORY, False)
             If CMBGROUP.Text.Trim = "" Then FILLGROUP(CMBGROUP)
+            If CMBTRANSPORT.Text.Trim = "" Then FILLNAME(CMBTRANSPORT, edit, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and LEDGERS.ACC_TYPE = 'TRANSPORT' ")
 
             Dim DT As New DataTable
             If ClientName = "RADHA" Then
@@ -576,11 +580,13 @@ Public Class LotFilter
                 CMBDYEINGJOB.Text = "Dyeing"
             End If
 
-            If ClientName = "MSANCHITKUMAR" Then
+            If ClientName = "MSANCHITKUMAR" Or ClientName = "KENCOT" Then
                 RBSUMMVALUE.Visible = True
             End If
 
             If ClientName = "AVIS" Then RBLOTTAGGING.Visible = True
+            If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SUPEEMA" Or ClientName = "SIDDHGIRI" Or ClientName = "INDRAPUJAFABRICS" Then CHKSHOWWEAVER.CheckState = CheckState.Checked
+
 
         Catch ex As Exception
             Throw ex
