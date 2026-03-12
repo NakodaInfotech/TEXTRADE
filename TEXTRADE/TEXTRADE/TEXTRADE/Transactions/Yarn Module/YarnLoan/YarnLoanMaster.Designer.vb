@@ -23,14 +23,14 @@ Partial Class YarnLoanMaster
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnLoanMaster))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.txtbarcode = New System.Windows.Forms.TextBox()
@@ -144,13 +144,13 @@ Partial Class YarnLoanMaster
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1055, 581)
         Me.BlendPanel1.TabIndex = 7
         '
         'txtbarcode
         '
         Me.txtbarcode.ForeColor = System.Drawing.Color.DimGray
-        Me.txtbarcode.Location = New System.Drawing.Point(1099, 40)
+        Me.txtbarcode.Location = New System.Drawing.Point(943, 426)
         Me.txtbarcode.Multiline = True
         Me.txtbarcode.Name = "txtbarcode"
         Me.txtbarcode.Size = New System.Drawing.Size(20, 33)
@@ -160,7 +160,7 @@ Partial Class YarnLoanMaster
         'TXTTRANSADD
         '
         Me.TXTTRANSADD.ForeColor = System.Drawing.Color.DimGray
-        Me.TXTTRANSADD.Location = New System.Drawing.Point(1073, 39)
+        Me.TXTTRANSADD.Location = New System.Drawing.Point(917, 425)
         Me.TXTTRANSADD.Multiline = True
         Me.TXTTRANSADD.Name = "TXTTRANSADD"
         Me.TXTTRANSADD.Size = New System.Drawing.Size(20, 33)
@@ -260,7 +260,7 @@ Partial Class YarnLoanMaster
         Me.cmbrack.BackColor = System.Drawing.Color.White
         Me.cmbrack.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbrack.FormattingEnabled = True
-        Me.cmbrack.Location = New System.Drawing.Point(783, 2)
+        Me.cmbrack.Location = New System.Drawing.Point(782, 2)
         Me.cmbrack.Name = "cmbrack"
         Me.cmbrack.Size = New System.Drawing.Size(101, 23)
         Me.cmbrack.TabIndex = 9
@@ -280,28 +280,28 @@ Partial Class YarnLoanMaster
         Me.GRIDYARN.AllowUserToDeleteRows = False
         Me.GRIDYARN.AllowUserToResizeColumns = False
         Me.GRIDYARN.AllowUserToResizeRows = False
-        DataGridViewCellStyle33.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDYARN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDYARN.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle9
         Me.GRIDYARN.BackgroundColor = System.Drawing.Color.White
         Me.GRIDYARN.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDYARN.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle34.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDYARN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDYARN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
         Me.GRIDYARN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDYARN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GYARNQUALITY, Me.GMILLNAME, Me.GJOBBERLOTNO, Me.GQTY, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLRDATE, Me.GDONE, Me.GOUTPCS, Me.GOUTMTRS, Me.GPONO, Me.GGRIDSRNO, Me.GRACK, Me.GBARCODE})
-        DataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle39.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDYARN.DefaultCellStyle = DataGridViewCellStyle39
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDYARN.DefaultCellStyle = DataGridViewCellStyle15
         Me.GRIDYARN.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDYARN.Location = New System.Drawing.Point(2, 25)
         Me.GRIDYARN.MultiSelect = False
@@ -309,9 +309,9 @@ Partial Class YarnLoanMaster
         Me.GRIDYARN.RowHeadersVisible = False
         Me.GRIDYARN.RowHeadersWidth = 30
         Me.GRIDYARN.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDYARN.RowsDefaultCellStyle = DataGridViewCellStyle40
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDYARN.RowsDefaultCellStyle = DataGridViewCellStyle16
         Me.GRIDYARN.RowTemplate.Height = 20
         Me.GRIDYARN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDYARN.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -357,10 +357,10 @@ Partial Class YarnLoanMaster
         '
         'GQTY
         '
-        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle35.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle35.NullValue = Nothing
-        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.NullValue = Nothing
+        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle11
         Me.GQTY.HeaderText = "Bags"
         Me.GQTY.Name = "GQTY"
         Me.GQTY.ReadOnly = True
@@ -370,9 +370,9 @@ Partial Class YarnLoanMaster
         '
         'GWT
         '
-        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle36.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GWT.DefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GWT.DefaultCellStyle = DataGridViewCellStyle12
         Me.GWT.HeaderText = "Weight"
         Me.GWT.Name = "GWT"
         Me.GWT.ReadOnly = True
@@ -382,8 +382,8 @@ Partial Class YarnLoanMaster
         '
         'GCONES
         '
-        DataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GCONES.DefaultCellStyle = DataGridViewCellStyle37
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GCONES.DefaultCellStyle = DataGridViewCellStyle13
         Me.GCONES.HeaderText = "Cones"
         Me.GCONES.Name = "GCONES"
         Me.GCONES.ReadOnly = True
@@ -402,8 +402,8 @@ Partial Class YarnLoanMaster
         '
         'GLRDATE
         '
-        DataGridViewCellStyle38.NullValue = Nothing
-        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle38
+        DataGridViewCellStyle14.NullValue = Nothing
+        Me.GLRDATE.DefaultCellStyle = DataGridViewCellStyle14
         Me.GLRDATE.HeaderText = "L.R. Date"
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.ReadOnly = True
@@ -461,7 +461,7 @@ Partial Class YarnLoanMaster
         '
         Me.DTLRDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DTLRDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DTLRDATE.Location = New System.Drawing.Point(704, 2)
+        Me.DTLRDATE.Location = New System.Drawing.Point(703, 2)
         Me.DTLRDATE.Name = "DTLRDATE"
         Me.DTLRDATE.Size = New System.Drawing.Size(80, 23)
         Me.DTLRDATE.TabIndex = 8
@@ -470,7 +470,7 @@ Partial Class YarnLoanMaster
         '
         Me.TXTCONES.BackColor = System.Drawing.Color.White
         Me.TXTCONES.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCONES.Location = New System.Drawing.Point(584, 2)
+        Me.TXTCONES.Location = New System.Drawing.Point(583, 2)
         Me.TXTCONES.Name = "TXTCONES"
         Me.TXTCONES.Size = New System.Drawing.Size(50, 23)
         Me.TXTCONES.TabIndex = 6
@@ -492,7 +492,7 @@ Partial Class YarnLoanMaster
         '
         Me.TXTWT.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTWT.Location = New System.Drawing.Point(524, 2)
+        Me.TXTWT.Location = New System.Drawing.Point(523, 2)
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.Size = New System.Drawing.Size(60, 23)
         Me.TXTWT.TabIndex = 5
@@ -562,7 +562,7 @@ Partial Class YarnLoanMaster
         '
         Me.txtqty.BackColor = System.Drawing.Color.White
         Me.txtqty.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtqty.Location = New System.Drawing.Point(464, 2)
+        Me.txtqty.Location = New System.Drawing.Point(463, 2)
         Me.txtqty.Name = "txtqty"
         Me.txtqty.Size = New System.Drawing.Size(60, 23)
         Me.txtqty.TabIndex = 4
@@ -584,7 +584,7 @@ Partial Class YarnLoanMaster
         '
         Me.TXTGRIDLRNO.BackColor = System.Drawing.Color.White
         Me.TXTGRIDLRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTGRIDLRNO.Location = New System.Drawing.Point(634, 2)
+        Me.TXTGRIDLRNO.Location = New System.Drawing.Point(633, 2)
         Me.TXTGRIDLRNO.Name = "TXTGRIDLRNO"
         Me.TXTGRIDLRNO.Size = New System.Drawing.Size(70, 23)
         Me.TXTGRIDLRNO.TabIndex = 7
@@ -597,7 +597,7 @@ Partial Class YarnLoanMaster
         Me.CMBCODE.Enabled = False
         Me.CMBCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBCODE.FormattingEnabled = True
-        Me.CMBCODE.Location = New System.Drawing.Point(1057, 40)
+        Me.CMBCODE.Location = New System.Drawing.Point(901, 426)
         Me.CMBCODE.MaxDropDownItems = 14
         Me.CMBCODE.Name = "CMBCODE"
         Me.CMBCODE.Size = New System.Drawing.Size(10, 22)
@@ -846,7 +846,7 @@ Partial Class YarnLoanMaster
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1055, 25)
         Me.ToolStrip1.TabIndex = 14
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -925,7 +925,7 @@ Partial Class YarnLoanMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(1055, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
