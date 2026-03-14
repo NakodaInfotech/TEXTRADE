@@ -1155,6 +1155,8 @@ NEXTLINE:
                 TXTMTRS.Focus()
             ElseIf ClientName = "APPLE" Or ClientName = "SWPL" Or ClientName = "MMC" Then
                 TXTGRIDREMARKS.Focus()
+            ElseIf ClientName = "MIRANO" Then
+                TXTMTRS.Focus()
             End If
 
         Catch ex As Exception
