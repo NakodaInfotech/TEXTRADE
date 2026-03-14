@@ -14,6 +14,7 @@ Public Class GRNDesign
     Public HIDEDETAILS As Boolean   'FOR LOTREGISTER
     Public PRINTTRANS As Boolean = False   ' TO PRINT TRANSPORT NAME 
     Public JOBBERNAME As String = "" 'FOR WHERECLAUSE IN SUBREPORT OF LOTTSTAYUS
+    Public SHOWWEAVER As Boolean = False
 
     Dim RPTGRN As New GRNReport
     Dim RPTBARCODE As New GRNReport_CC
@@ -230,7 +231,7 @@ Public Class GRNDesign
             ElseIf FRMSTRING = "LOTSUMM" Then
                 crpo.ReportSource = RPTLOTREPORTSUMMARY
                 RPTLOTREPORTSUMMARY.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
-                'If JOBBERNAME <> "" Then RPTLOTREPORTSUMMARY.Subreports("GREYSTOCKPROCESS").RecordSelectionFormula = " {GREYSTOCKPROCESS.NAME} = '" & JOBBERNAME & "' AND {GREYSTOCKPROCESS.YEARID} = " & YearId
+                If SHOWWEAVER = True Then RPTLOTREPORTSUMMARY.DataDefinition.FormulaFields("SHOWWEAVER").Text = 1
 
             ElseIf FRMSTRING = "LOTREGISTER" Then
                 crpo.ReportSource = RPTLOTREGISTER

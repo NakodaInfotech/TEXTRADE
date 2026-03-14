@@ -3,6 +3,7 @@ Imports System.ComponentModel
 Imports System.IO
 Imports System.Windows.Forms
 Imports BL
+Imports DevExpress.XtraRichEdit.UI
 
 Public Class PurchaseOrder
 
@@ -116,6 +117,11 @@ Public Class PurchaseOrder
         LBLCLOSED.Visible = False
         PBlock.Visible = False
         txtremarks.Clear()
+
+        If ClientName = "KENCOT" Then
+            txtremarks.Text = "1. QUALITY : " & vbCrLf & "2. COUNT : " & vbCrLf & "3. REED X PICK : " & vbCrLf & "4. RS : " & vbCrLf & "5. WIDTH : " & vbCrLf & "6. GLM : " & vbCrLf & "7. DUE DAYS : "
+        End If
+
         txtinwordedu.Clear()
         txtinwordexcise.Clear()
         txtinwordhse.Clear()
@@ -163,7 +169,6 @@ Public Class PurchaseOrder
         txtinspchgs.Text = 0.0
         txtgrandtotal.Text = 0.0
         txtroundoff.Text = 0.0
-        txtremarks.Clear()
 
         LBLWHATSAPP.Visible = False
 

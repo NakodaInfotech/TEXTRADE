@@ -1,5 +1,6 @@
 ﻿
 Imports BL
+Imports DevExpress.XtraGrid.Views.Base
 
 Public Class InterestCalc_Summary
 
@@ -54,6 +55,27 @@ Public Class InterestCalc_Summary
 
             Dim GROUP As String = ""
             If cmbgroup.Text <> "" Then GROUP = GROUP & " AND GROUPMASTER.GROUP_NAME ='" & cmbgroup.Text.Trim & "'"
+
+
+            Dim NAMECLAUSE As String = ""
+            GRIDBUYER.ClearColumnsFilter()
+            For i As Integer = 0 To GRIDBUYER.RowCount - 1
+                Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    If NAMECLAUSE = "" Then
+                        NAMECLAUSE = " AND (NAME = '" & dtrow("NAME") & "'"
+                    Else
+                        NAMECLAUSE = NAMECLAUSE & " OR NAME = '" & dtrow("NAME") & "'"
+                    End If
+                End If
+            Next
+            If NAMECLAUSE <> "" Then
+                NAMECLAUSE = NAMECLAUSE & ")"
+                GROUP = GROUP & NAMECLAUSE
+            End If
+
+
+
 
             Dim NAMEDT As New DataTable
             If RBDUEDATE.Checked = True Then
@@ -161,6 +183,7 @@ Public Class InterestCalc_Summary
                     End If
 
                     If IsDBNull(NAMEROW("TDSPER")) = False Then
+                        If Val(NAMEROW("TDSPER")) = 0 And Val(TXTTDSPER.Text.Trim) > 0 Then NAMEROW("TDSPER") = Val(TXTTDSPER.Text.Trim)
                         If NAMEROW("TDSPER") > 0 Then
                             If Val(NAMEROW("INTDR")) > 0 Then NAMEROW("TDSAMT") = Format(((Val(NAMEROW("INTDR")) * Val(NAMEROW("TDSPER"))) / 100), "0") Else NAMEROW("TDSAMT") = Format(((Val(NAMEROW("INTCR")) * Val(NAMEROW("TDSPER"))) / 100), "0")
                         End If
@@ -489,7 +512,7 @@ Public Class InterestCalc_Summary
 
             Dim WHERECLAUSE As String = ""
             If cmbgroup.Text.Trim <> "" Then WHERECLAUSE = " AND GROUPMASTER.GROUP_SECONDARY = '" & cmbgroup.Text.Trim & "'"
-            Dim DTBUYER As DataTable = OBJCMN.search(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ,ISNULL(AGENCTLEDGERS.ACC_CMPNAME, '') AS AGENTNAME ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID", WHERECLAUSE & "  AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
+            Dim DTBUYER As DataTable = OBJCMN.search(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ,ISNULL(AGENTLEDGERS.ACC_CMPNAME, '') AS AGENTNAME ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID", WHERECLAUSE & "  AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
             GRIDBUYERDETAILS.DataSource = DTBUYER
             If DTBUYER.Rows.Count > 0 Then GRIDBUYER.FocusedRowHandle = GRIDBUYER.RowCount - 1
 
@@ -717,9 +740,22 @@ Public Class InterestCalc_Summary
             Dim WHERECLAUSE As String = ""
             If cmbgroup.Text.Trim <> "" Then WHERECLAUSE = " AND GROUPMASTER.GROUP_SECONDARY = '" & cmbgroup.Text.Trim & "'"
             Dim OBJCMN As New ClsCommon
-            Dim DTBUYER As DataTable = OBJCMN.search(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ,ISNULL(AGENCTLEDGERS.ACC_CMPNAME, '') AS AGENTNAME ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID", WHERECLAUSE & "  AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
+            Dim DTBUYER As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK, LEDGERS.Acc_cmpname AS NAME, ISNULL(CITYMASTER.CITY_NAME,'') AS CITY, ISNULL(STATEMASTER.STATE_NAME,'') AS STATENAME, ISNULL(AREA_NAME,'') AS AREA ,ISNULL(AGENTLEDGERS.ACC_CMPNAME, '') AS AGENTNAME ", " ", " LEDGERS INNER JOIN GROUPMASTER ON LEDGERS.Acc_groupid = GROUPMASTER.group_id LEFT OUTER JOIN CITYMASTER ON LEDGERS.ACC_CITYID = CITYMASTER.CITY_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID LEFT OUTER JOIN AREAMASTER ON LEDGERS.ACC_AREAID = AREAMASTER.AREA_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON LEDGERS.ACC_AGENTID = AGENTLEDGERS.ACC_ID", WHERECLAUSE & "  AND (LEDGERS.ACC_YEARID = '" & YearId & "') ORDER BY LEDGERS.Acc_cmpname")
             GRIDBUYERDETAILS.DataSource = DTBUYER
             If DTBUYER.Rows.Count > 0 Then GRIDBUYER.FocusedRowHandle = GRIDBUYER.RowCount - 1
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CHKBUYER_CheckedChanged(sender As Object, e As EventArgs) Handles CHKBUYER.CheckedChanged
+        Try
+            If GRIDBUYERDETAILS.Visible = True Then
+                For i As Integer = 0 To GRIDBUYER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDBUYER.GetDataRow(i)
+                    dtrow("CHK") = CHKBUYER.Checked
+                Next
+            End If
         Catch ex As Exception
             Throw ex
         End Try

@@ -23,11 +23,19 @@ Partial Class OpeningBillsGrid
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.lbldrcropening = New System.Windows.Forms.Label()
+        Me.txtopening = New System.Windows.Forms.TextBox()
+        Me.lblopbal = New System.Windows.Forms.Label()
+        Me.TXTADD = New System.Windows.Forms.TextBox()
+        Me.CMBACCCODE = New System.Windows.Forms.ComboBox()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBILLTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREGISTER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GYEAR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBILLDATE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -36,12 +44,8 @@ Partial Class OpeningBillsGrid
         Me.GAGENT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNARRATION = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDISPUTE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDELIVERYAT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CMBREASON = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
-        Me.cmdexit = New System.Windows.Forms.Button()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHARGES = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,9 +58,12 @@ Partial Class OpeningBillsGrid
         Me.GIGSTAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRANDTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBALANCE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREGISTER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDELIVERYAT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GHOLDINTCALC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMBREASON = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.cmdexit = New System.Windows.Forms.Button()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,6 +74,13 @@ Partial Class OpeningBillsGrid
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.lbldrcropening)
+        Me.BlendPanel1.Controls.Add(Me.txtopening)
+        Me.BlendPanel1.Controls.Add(Me.lblopbal)
+        Me.BlendPanel1.Controls.Add(Me.TXTADD)
+        Me.BlendPanel1.Controls.Add(Me.CMBACCCODE)
+        Me.BlendPanel1.Controls.Add(Me.Label33)
+        Me.BlendPanel1.Controls.Add(Me.CMBNAME)
         Me.BlendPanel1.Controls.Add(Me.CMDREFRESH)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
@@ -76,6 +90,91 @@ Partial Class OpeningBillsGrid
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'lbldrcropening
+        '
+        Me.lbldrcropening.AutoSize = True
+        Me.lbldrcropening.BackColor = System.Drawing.Color.Transparent
+        Me.lbldrcropening.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbldrcropening.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lbldrcropening.Location = New System.Drawing.Point(1145, 32)
+        Me.lbldrcropening.Name = "lbldrcropening"
+        Me.lbldrcropening.Size = New System.Drawing.Size(0, 14)
+        Me.lbldrcropening.TabIndex = 654
+        '
+        'txtopening
+        '
+        Me.txtopening.BackColor = System.Drawing.Color.Linen
+        Me.txtopening.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtopening.ForeColor = System.Drawing.Color.Black
+        Me.txtopening.Location = New System.Drawing.Point(1043, 28)
+        Me.txtopening.Name = "txtopening"
+        Me.txtopening.ReadOnly = True
+        Me.txtopening.Size = New System.Drawing.Size(100, 22)
+        Me.txtopening.TabIndex = 653
+        Me.txtopening.TabStop = False
+        Me.txtopening.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'lblopbal
+        '
+        Me.lblopbal.AutoSize = True
+        Me.lblopbal.BackColor = System.Drawing.Color.Transparent
+        Me.lblopbal.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblopbal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.lblopbal.Location = New System.Drawing.Point(993, 32)
+        Me.lblopbal.Name = "lblopbal"
+        Me.lblopbal.Size = New System.Drawing.Size(45, 14)
+        Me.lblopbal.TabIndex = 652
+        Me.lblopbal.Text = "O/P Bal"
+        '
+        'TXTADD
+        '
+        Me.TXTADD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTADD.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTADD.Location = New System.Drawing.Point(505, 23)
+        Me.TXTADD.MaxLength = 10
+        Me.TXTADD.Name = "TXTADD"
+        Me.TXTADD.Size = New System.Drawing.Size(30, 22)
+        Me.TXTADD.TabIndex = 651
+        Me.TXTADD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTADD.Visible = False
+        '
+        'CMBACCCODE
+        '
+        Me.CMBACCCODE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBACCCODE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBACCCODE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBACCCODE.FormattingEnabled = True
+        Me.CMBACCCODE.Items.AddRange(New Object() {""})
+        Me.CMBACCCODE.Location = New System.Drawing.Point(887, 24)
+        Me.CMBACCCODE.Name = "CMBACCCODE"
+        Me.CMBACCCODE.Size = New System.Drawing.Size(74, 22)
+        Me.CMBACCCODE.TabIndex = 650
+        Me.CMBACCCODE.Visible = False
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.BackColor = System.Drawing.Color.Transparent
+        Me.Label33.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label33.Location = New System.Drawing.Point(17, 32)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(89, 14)
+        Me.Label33.TabIndex = 644
+        Me.Label33.Text = "Party A/C Name"
+        '
+        'CMBNAME
+        '
+        Me.CMBNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBNAME.FormattingEnabled = True
+        Me.CMBNAME.Items.AddRange(New Object() {""})
+        Me.CMBNAME.Location = New System.Drawing.Point(108, 28)
+        Me.CMBNAME.Name = "CMBNAME"
+        Me.CMBNAME.Size = New System.Drawing.Size(269, 22)
+        Me.CMBNAME.TabIndex = 643
         '
         'CMDREFRESH
         '
@@ -135,6 +234,16 @@ Partial Class OpeningBillsGrid
         Me.GBILLTYPE.VisibleIndex = 1
         Me.GBILLTYPE.Width = 100
         '
+        'GREGISTER
+        '
+        Me.GREGISTER.Caption = "Register"
+        Me.GREGISTER.FieldName = "REGISTER"
+        Me.GREGISTER.Name = "GREGISTER"
+        Me.GREGISTER.OptionsColumn.AllowEdit = False
+        Me.GREGISTER.Visible = True
+        Me.GREGISTER.VisibleIndex = 2
+        Me.GREGISTER.Width = 120
+        '
         'GBILLNO
         '
         Me.GBILLNO.Caption = "Bill No"
@@ -156,7 +265,7 @@ Partial Class OpeningBillsGrid
         'GBILLDATE
         '
         Me.GBILLDATE.Caption = "Bill Date"
-        Me.GBILLDATE.DisplayFormat.FormatString = "dd/MM/YYYY"
+        Me.GBILLDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.GBILLDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GBILLDATE.FieldName = "BILLDATE"
         Me.GBILLDATE.Name = "GBILLDATE"
@@ -176,7 +285,7 @@ Partial Class OpeningBillsGrid
         'GDUEDATE
         '
         Me.GDUEDATE.Caption = "Due Date"
-        Me.GDUEDATE.DisplayFormat.FormatString = "dd/MM/YYYY"
+        Me.GDUEDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
         Me.GDUEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GDUEDATE.FieldName = "DUEDATE"
         Me.GDUEDATE.Name = "GDUEDATE"
@@ -213,6 +322,16 @@ Partial Class OpeningBillsGrid
         Me.GDISPUTE.Visible = True
         Me.GDISPUTE.VisibleIndex = 10
         '
+        'GDELIVERYAT
+        '
+        Me.GDELIVERYAT.Caption = "Delivery At"
+        Me.GDELIVERYAT.FieldName = "DELIVERYAT"
+        Me.GDELIVERYAT.Name = "GDELIVERYAT"
+        Me.GDELIVERYAT.OptionsColumn.AllowEdit = False
+        Me.GDELIVERYAT.Visible = True
+        Me.GDELIVERYAT.VisibleIndex = 11
+        Me.GDELIVERYAT.Width = 150
+        '
         'GPCS
         '
         Me.GPCS.Caption = "Pcs"
@@ -221,49 +340,6 @@ Partial Class OpeningBillsGrid
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Visible = True
         Me.GPCS.VisibleIndex = 12
-        '
-        'CMBREASON
-        '
-        Me.CMBREASON.AutoHeight = False
-        Me.CMBREASON.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CMBREASON.Name = "CMBREASON"
-        '
-        'cmdexit
-        '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(688, 541)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 6
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton, Me.toolStripSeparator})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
-        Me.ToolStrip1.TabIndex = 7
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'PrintToolStripButton
-        '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.PrintToolStripButton.Text = "&Print"
-        '
-        'toolStripSeparator
-        '
-        Me.toolStripSeparator.Name = "toolStripSeparator"
-        Me.toolStripSeparator.Size = New System.Drawing.Size(6, 25)
         '
         'GMTRS
         '
@@ -297,9 +373,12 @@ Partial Class OpeningBillsGrid
         'GTAXABLEAMT
         '
         Me.GTAXABLEAMT.Caption = "Taxable Amount"
+        Me.GTAXABLEAMT.DisplayFormat.FormatString = "0.00"
+        Me.GTAXABLEAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GTAXABLEAMT.FieldName = "TAXABLEAMT"
         Me.GTAXABLEAMT.Name = "GTAXABLEAMT"
         Me.GTAXABLEAMT.OptionsColumn.AllowEdit = False
+        Me.GTAXABLEAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTAXABLEAMT.Visible = True
         Me.GTAXABLEAMT.VisibleIndex = 16
         Me.GTAXABLEAMT.Width = 100
@@ -364,9 +443,12 @@ Partial Class OpeningBillsGrid
         'GGRANDTOTAL
         '
         Me.GGRANDTOTAL.Caption = "Grand Total"
+        Me.GGRANDTOTAL.DisplayFormat.FormatString = "0.00"
+        Me.GGRANDTOTAL.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GGRANDTOTAL.FieldName = "GRANDTOTAL"
         Me.GGRANDTOTAL.Name = "GGRANDTOTAL"
         Me.GGRANDTOTAL.OptionsColumn.AllowEdit = False
+        Me.GGRANDTOTAL.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GGRANDTOTAL.Visible = True
         Me.GGRANDTOTAL.VisibleIndex = 23
         Me.GGRANDTOTAL.Width = 100
@@ -374,32 +456,15 @@ Partial Class OpeningBillsGrid
         'GBALANCE
         '
         Me.GBALANCE.Caption = "Bal Amount"
+        Me.GBALANCE.DisplayFormat.FormatString = "0.00"
+        Me.GBALANCE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GBALANCE.FieldName = "BALANCE"
         Me.GBALANCE.Name = "GBALANCE"
         Me.GBALANCE.OptionsColumn.AllowEdit = False
+        Me.GBALANCE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALANCE.Visible = True
         Me.GBALANCE.VisibleIndex = 24
         Me.GBALANCE.Width = 100
-        '
-        'GREGISTER
-        '
-        Me.GREGISTER.Caption = "Register"
-        Me.GREGISTER.FieldName = "REGISTER"
-        Me.GREGISTER.Name = "GREGISTER"
-        Me.GREGISTER.OptionsColumn.AllowEdit = False
-        Me.GREGISTER.Visible = True
-        Me.GREGISTER.VisibleIndex = 2
-        Me.GREGISTER.Width = 120
-        '
-        'GDELIVERYAT
-        '
-        Me.GDELIVERYAT.Caption = "Delivery At"
-        Me.GDELIVERYAT.FieldName = "DELIVERYAT"
-        Me.GDELIVERYAT.Name = "GDELIVERYAT"
-        Me.GDELIVERYAT.OptionsColumn.AllowEdit = False
-        Me.GDELIVERYAT.Visible = True
-        Me.GDELIVERYAT.VisibleIndex = 11
-        Me.GDELIVERYAT.Width = 150
         '
         'GHOLDINTCALC
         '
@@ -408,6 +473,49 @@ Partial Class OpeningBillsGrid
         Me.GHOLDINTCALC.Name = "GHOLDINTCALC"
         Me.GHOLDINTCALC.Visible = True
         Me.GHOLDINTCALC.VisibleIndex = 25
+        '
+        'CMBREASON
+        '
+        Me.CMBREASON.AutoHeight = False
+        Me.CMBREASON.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.CMBREASON.Name = "CMBREASON"
+        '
+        'cmdexit
+        '
+        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
+        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdexit.FlatAppearance.BorderSize = 0
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.ForeColor = System.Drawing.Color.Black
+        Me.cmdexit.Location = New System.Drawing.Point(688, 541)
+        Me.cmdexit.Name = "cmdexit"
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
+        Me.cmdexit.TabIndex = 6
+        Me.cmdexit.Text = "E&xit"
+        Me.cmdexit.UseVisualStyleBackColor = False
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton, Me.toolStripSeparator})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
+        Me.ToolStrip1.TabIndex = 7
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'PrintToolStripButton
+        '
+        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.PrintToolStripButton.Name = "PrintToolStripButton"
+        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.PrintToolStripButton.Text = "&Print"
+        '
+        'toolStripSeparator
+        '
+        Me.toolStripSeparator.Name = "toolStripSeparator"
+        Me.toolStripSeparator.Size = New System.Drawing.Size(6, 25)
         '
         'OpeningBillsGrid
         '
@@ -466,4 +574,11 @@ Partial Class OpeningBillsGrid
     Friend WithEvents GREGISTER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDELIVERYAT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GHOLDINTCALC As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label33 As Label
+    Friend WithEvents CMBNAME As ComboBox
+    Friend WithEvents TXTADD As TextBox
+    Friend WithEvents CMBACCCODE As ComboBox
+    Friend WithEvents lbldrcropening As Label
+    Friend WithEvents txtopening As TextBox
+    Friend WithEvents lblopbal As Label
 End Class

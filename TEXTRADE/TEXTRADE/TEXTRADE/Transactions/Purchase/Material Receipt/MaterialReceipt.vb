@@ -3302,7 +3302,7 @@ LINE1:
             TXTBALENO.Focus()
         ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "SUBHLAXMI" Or ClientName = "OWAIS" Or ClientName = "MAHAJAN" Or ClientName = "SWPL" Then
             TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
-            If ClientName = "SWPL" Then TXTBALENO.Focus() Else txtqty.Focus()
+            If ClientName = "SWPL" Then TXTGRIDDESC.Focus() Else txtqty.Focus()
         ElseIf ClientName = "SNCM" Then
 
             GRIDMTRS.EndEdit() '
@@ -4746,7 +4746,7 @@ NEXTLINE:
 
     Private Sub CMBRACK_Validated(sender As Object, e As EventArgs) Handles CMBRACK.Validated
         Try
-            If ClientName = "SOFTAS" Then TXTDIFF_Validated(sender, e)
+            If ClientName = "SOFTAS" Or ClientName = "SWPL" Then TXTDIFF_Validated(sender, e)
         Catch ex As Exception
             Throw ex
         End Try

@@ -41,6 +41,7 @@ Partial Class LotFilter
         Me.dtfrom = New System.Windows.Forms.DateTimePicker()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
+        Me.CMBTRANSPORT = New System.Windows.Forms.ComboBox()
         Me.CHKPARTRECDLOT = New System.Windows.Forms.CheckBox()
         Me.CMBDYEINGJOB = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -59,6 +60,7 @@ Partial Class LotFilter
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.RDBLOTPIECETYPE = New System.Windows.Forms.RadioButton()
         Me.RBLOTTAGGING = New System.Windows.Forms.RadioButton()
         Me.RBREGISTERSUMM = New System.Windows.Forms.RadioButton()
         Me.RBREGISTER = New System.Windows.Forms.RadioButton()
@@ -90,7 +92,7 @@ Partial Class LotFilter
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.RDBLOTPIECETYPE = New System.Windows.Forms.RadioButton()
+        Me.CHKSHOWWEAVER = New System.Windows.Forms.CheckBox()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -316,6 +318,8 @@ Partial Class LotFilter
         'BlendPanel2
         '
         Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel2.Controls.Add(Me.CHKSHOWWEAVER)
+        Me.BlendPanel2.Controls.Add(Me.CMBTRANSPORT)
         Me.BlendPanel2.Controls.Add(Me.CHKPARTRECDLOT)
         Me.BlendPanel2.Controls.Add(Me.CMBDYEINGJOB)
         Me.BlendPanel2.Controls.Add(Me.Label6)
@@ -351,6 +355,19 @@ Partial Class LotFilter
         Me.BlendPanel2.Name = "BlendPanel2"
         Me.BlendPanel2.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel2.TabIndex = 0
+        '
+        'CMBTRANSPORT
+        '
+        Me.CMBTRANSPORT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTRANSPORT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTRANSPORT.BackColor = System.Drawing.Color.White
+        Me.CMBTRANSPORT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTRANSPORT.FormattingEnabled = True
+        Me.CMBTRANSPORT.Location = New System.Drawing.Point(376, 74)
+        Me.CMBTRANSPORT.MaxDropDownItems = 14
+        Me.CMBTRANSPORT.Name = "CMBTRANSPORT"
+        Me.CMBTRANSPORT.Size = New System.Drawing.Size(230, 22)
+        Me.CMBTRANSPORT.TabIndex = 4
         '
         'CHKPARTRECDLOT
         '
@@ -566,6 +583,16 @@ Partial Class LotFilter
         Me.GroupBox2.Size = New System.Drawing.Size(272, 204)
         Me.GroupBox2.TabIndex = 8
         Me.GroupBox2.TabStop = False
+        '
+        'RDBLOTPIECETYPE
+        '
+        Me.RDBLOTPIECETYPE.AutoSize = True
+        Me.RDBLOTPIECETYPE.Location = New System.Drawing.Point(10, 182)
+        Me.RDBLOTPIECETYPE.Name = "RDBLOTPIECETYPE"
+        Me.RDBLOTPIECETYPE.Size = New System.Drawing.Size(152, 18)
+        Me.RDBLOTPIECETYPE.TabIndex = 7
+        Me.RDBLOTPIECETYPE.Text = "Lot Piece Type Summary"
+        Me.RDBLOTPIECETYPE.UseVisualStyleBackColor = True
         '
         'RBLOTTAGGING
         '
@@ -859,11 +886,12 @@ Partial Class LotFilter
         Me.CMBQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBQUALITY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBQUALITY.FormattingEnabled = True
-        Me.CMBQUALITY.Location = New System.Drawing.Point(376, 74)
+        Me.CMBQUALITY.Location = New System.Drawing.Point(747, 0)
         Me.CMBQUALITY.MaxDropDownItems = 14
         Me.CMBQUALITY.Name = "CMBQUALITY"
-        Me.CMBQUALITY.Size = New System.Drawing.Size(230, 22)
+        Me.CMBQUALITY.Size = New System.Drawing.Size(45, 22)
         Me.CMBQUALITY.TabIndex = 4
+        Me.CMBQUALITY.Visible = False
         '
         'Label2
         '
@@ -871,11 +899,11 @@ Partial Class LotFilter
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(328, 78)
+        Me.Label2.Location = New System.Drawing.Point(316, 78)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(46, 14)
+        Me.Label2.Size = New System.Drawing.Size(58, 14)
         Me.Label2.TabIndex = 439
-        Me.Label2.Text = "Quality"
+        Me.Label2.Text = "Transport"
         '
         'cmdshow
         '
@@ -905,15 +933,17 @@ Partial Class LotFilter
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'RDBLOTPIECETYPE
+        'CHKSHOWWEAVER
         '
-        Me.RDBLOTPIECETYPE.AutoSize = True
-        Me.RDBLOTPIECETYPE.Location = New System.Drawing.Point(10, 182)
-        Me.RDBLOTPIECETYPE.Name = "RDBLOTPIECETYPE"
-        Me.RDBLOTPIECETYPE.Size = New System.Drawing.Size(152, 18)
-        Me.RDBLOTPIECETYPE.TabIndex = 7
-        Me.RDBLOTPIECETYPE.Text = "Lot Piece Type Summary"
-        Me.RDBLOTPIECETYPE.UseVisualStyleBackColor = True
+        Me.CHKSHOWWEAVER.AutoSize = True
+        Me.CHKSHOWWEAVER.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSHOWWEAVER.ForeColor = System.Drawing.Color.Black
+        Me.CHKSHOWWEAVER.Location = New System.Drawing.Point(201, 126)
+        Me.CHKSHOWWEAVER.Name = "CHKSHOWWEAVER"
+        Me.CHKSHOWWEAVER.Size = New System.Drawing.Size(100, 19)
+        Me.CHKSHOWWEAVER.TabIndex = 764
+        Me.CHKSHOWWEAVER.Text = "Show Weaver"
+        Me.CHKSHOWWEAVER.UseVisualStyleBackColor = False
         '
         'LotFilter
         '
@@ -1022,4 +1052,6 @@ Partial Class LotFilter
     Friend WithEvents RBLOTTAGGING As RadioButton
     Friend WithEvents CHKPARTRECDLOT As CheckBox
     Friend WithEvents RDBLOTPIECETYPE As RadioButton
+    Friend WithEvents CMBTRANSPORT As ComboBox
+    Friend WithEvents CHKSHOWWEAVER As CheckBox
 End Class
