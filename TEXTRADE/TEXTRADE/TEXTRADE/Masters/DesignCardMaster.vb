@@ -2202,7 +2202,11 @@ LINE1:
                         'row.Cells(WWT.Index).Value = Format(Val(row.Cells(WENDS.Index).Value) * Val(row.Cells(WDENIER.Index).Value) * Val(TXTWARPTL.Text) / 9000000, "0.000")
 
                         'THIS CALC IS WITH RESPECT TO COUNT
-                        row.Cells(WWT.Index).Value = Format(Val(row.Cells(WENDS.Index).Value) * Val(row.Cells(WDENIER.Index).Value) * Val(TXTWARPTL.Text) / 9000000, "0.000")
+                        If ClientName = "SWPL" Then
+                            row.Cells(WWT.Index).Value = Format(Val(row.Cells(WENDS.Index).Value) * Val(TXTWARPTL.Text) / 1850 / Val(row.Cells(WDENIER.Index).Value), "0.000")
+                        Else
+                            row.Cells(WWT.Index).Value = Format(Val(row.Cells(WENDS.Index).Value) * Val(row.Cells(WDENIER.Index).Value) * Val(TXTWARPTL.Text) / 9000000, "0.000")
+                        End If
                     End If
                 Next
             End If
@@ -2210,7 +2214,11 @@ LINE1:
             If TXTWEFTTL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTPICKS.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
-                        row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * Val(TXTREEDSPACE.Text.Trim) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text)) / 9000000, "0.000")
+                        If ClientName = "SWPL" Then
+                            row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * Val(TXTREEDSPACE.Text.Trim) * Val(TXTWEFTTL.Text)) / 1693 / Val(row.Cells(FDENIER.Index).Value), "0.000")
+                        Else
+                            row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * Val(TXTREEDSPACE.Text.Trim) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text)) / 9000000, "0.000")
+                        End If
                     End If
                 Next
             End If
