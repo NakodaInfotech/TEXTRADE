@@ -1801,7 +1801,7 @@ LINE1:
             DTSAVE.Columns.Add("PARTYLOTNO")
             'DTSAVE.Columns.Add("PARTYCOLOR")
             'DTSAVE.Columns.Add("COLOR")
-            'DTSAVE.Columns.Add("BAGS")
+            DTSAVE.Columns.Add("BAGS")
             DTSAVE.Columns.Add("WT")
             'DTSAVE.Columns.Add("CONES")   'MTRS
             DTSAVE.Columns.Add("BOXNO")
@@ -2073,13 +2073,13 @@ LINE1:
                 'End If
 
 
-                Dim LRDATE As String = ""
-                If DTROWSAVE("LRDATE").ToString <> "" Then
-                    LRDATE = Format(Convert.ToDateTime(DTROWSAVE("LRDATE")), "dd/MM/yyyy")
-                End If
+                'Dim LRDATE As String = ""
+                'If DTROWSAVE("LRDATE").ToString <> "" Then
+                '    LRDATE = Format(Convert.ToDateTime(DTROWSAVE("LRDATE")), "dd/MM/yyyy")
+                'End If
 
                 'TXTLOTNO.Text = DTROWSAVE("LOTNO")
-                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), "", "", DTROWSAVE("PARTYLOTNO"), "", "", "", Format(Val(DTROWSAVE("BAGS")), "0.00"), Format(Val(DTROWSAVE("WT")), "0.00"), 0, DTROWSAVE("BOXNO"), "", 0, 0, 0, 0, 0, "", "")
+                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), "", "", DTROWSAVE("PARTYLOTNO"), "", "", "", "", Format(Val(DTROWSAVE("BAGS")), "0.00"), Format(Val(DTROWSAVE("WT")), "0.00"), 0, DTROWSAVE("BOXNO"), Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", "")
 
                 DTROWSAVE = DTSAVE.NewRow()
 
