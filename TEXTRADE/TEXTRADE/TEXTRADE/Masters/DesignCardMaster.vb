@@ -2177,7 +2177,7 @@ LINE1:
             Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
             TXTTOTALENDS.Text = Format(totalDents * totalDrawEnds, "0.00")
         End If
-        If TXTTOTALENDS.Text <> "" Then TXTTOTALEXTRAENDS.Text = Format(Val(TXTTOTALENDS.Text) + Val(TXTEXTRAENDS.Text), "0.00")
+        If TXTTOTALENDS.Text <> "" Then TXTTOTALEXTRAENDS.Text = Format(Val(TXTTOTALENDS.Text) + Val(TXTEXTRAENDS.Text) + Val(TXTTOTALSELENDS.Text.Trim), "0.00")
         ' If TXTTOTALENDS.Text <> "" And TXTTOTALENDS.Text > 0 And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
         If TXTTOTALEXTRAENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALEXTRAENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
         If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
@@ -2198,6 +2198,10 @@ LINE1:
             If TXTWARPTL.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWARP.Rows
                     If row.Cells(WENDS.Index).Value IsNot DBNull.Value And row.Cells(WDENIER.Index).Value IsNot DBNull.Value Then
+                        'THIS CALC IS WITH RESPECT TO DENIER
+                        'row.Cells(WWT.Index).Value = Format(Val(row.Cells(WENDS.Index).Value) * Val(row.Cells(WDENIER.Index).Value) * Val(TXTWARPTL.Text) / 9000000, "0.000")
+
+                        'THIS CALC IS WITH RESPECT TO COUNT
                         row.Cells(WWT.Index).Value = Format(Val(row.Cells(WENDS.Index).Value) * Val(row.Cells(WDENIER.Index).Value) * Val(TXTWARPTL.Text) / 9000000, "0.000")
                     End If
                 Next
