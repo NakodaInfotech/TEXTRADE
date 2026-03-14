@@ -2079,7 +2079,7 @@ LINE1:
                 'End If
 
                 'TXTLOTNO.Text = DTROWSAVE("LOTNO")
-                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), "", "", DTROWSAVE("PARTYLOTNO"), "", "", "", "", Format(Val(DTROWSAVE("BAGS")), "0.00"), Format(Val(DTROWSAVE("WT")), "0.00"), 0, DTROWSAVE("BOXNO"), Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", "")
+                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), "", "", DTROWSAVE("PARTYLOTNO"), "", "", "", "", Format(Val(DTROWSAVE("BAGS")), "0.00"), Format(Val(DTROWSAVE("WT")), "0.00"), 0, DTROWSAVE("BOXNO"), Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", 0, "Wt", 0, "")
 
                 DTROWSAVE = DTSAVE.NewRow()
 
