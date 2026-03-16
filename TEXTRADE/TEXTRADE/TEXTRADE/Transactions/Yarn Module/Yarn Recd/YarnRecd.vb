@@ -1810,8 +1810,11 @@ LINE1:
             'DTSAVE.Columns.Add("COLOR")
             DTSAVE.Columns.Add("BAGS")
             DTSAVE.Columns.Add("WT")
+            DTSAVE.Columns.Add("RATE")
+
             'DTSAVE.Columns.Add("CONES")   'MTRS
             DTSAVE.Columns.Add("BOXNO")
+
             'DTSAVE.Columns.Add("LRDATE")
             'DTSAVE.Columns.Add("RACK")
 
@@ -1854,41 +1857,25 @@ LINE1:
                     DTROWSAVE("PARTYLOTNO") = ""
                 End If
 
-                'If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
-                '    DTROWSAVE("PARTYCOLOR") = oSheet.Range("E" & I.ToString).Text
-                'Else
-                '    DTROWSAVE("PARTYCOLOR") = ""
-                'End If
 
-                'If IsDBNull(oSheet.Range("F" & I.ToString).Text) = False Then
-                '    DTROWSAVE("COLOR") = oSheet.Range("F" & I.ToString).Text
-                'Else
-                '    DTROWSAVE("COLOR") = ""
-                'End If
-
-                'If IsDBNull(oSheet.Range("G" & I.ToString).Text) = False Then
-                '    DTROWSAVE("BAGS") = Val(oSheet.Range("G" & I.ToString).Text)
-                'Else
-                '    DTROWSAVE("BAGS") = 0
-                'End If
                 If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
                     DTROWSAVE("BOXNO") = oSheet.Range("C" & I.ToString).Text
                 Else
                     DTROWSAVE("BOXNO") = ""
                 End If
 
-                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
-                    DTROWSAVE("BAGS") = Val(oSheet.Range("D" & I.ToString).Text)
-                Else
-                    DTROWSAVE("BAGS") = 0
-                End If
 
-                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
-                    DTROWSAVE("WT") = Val(oSheet.Range("E" & I.ToString).Text)
+                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
+                    DTROWSAVE("WT") = Val(oSheet.Range("D" & I.ToString).Text)
                 Else
                     DTROWSAVE("WT") = 0
                 End If
 
+                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
+                    DTROWSAVE("RATE") = Val(oSheet.Range("E" & I.ToString).Text)
+                Else
+                    DTROWSAVE("RATE") = 0
+                End If
                 'If IsDBNull(oSheet.Range("I" & I.ToString).Text) = False Then
                 '    DTROWSAVE("CONES") = Val(oSheet.Range("I" & I.ToString).Text)
                 'Else
@@ -2086,15 +2073,16 @@ LINE1:
                 'End If
 
                 'TXTLOTNO.Text = DTROWSAVE("LOTNO")
-                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), "", "", DTROWSAVE("PARTYLOTNO"), "", "", "", "", Format(Val(DTROWSAVE("BAGS")), "0.00"), Format(Val(DTROWSAVE("WT")), "0.00"), 0, DTROWSAVE("BOXNO"), Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", 0, "Wt", 0, "")
+                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), "", "", DTROWSAVE("PARTYLOTNO"), "", "", "", "", 1, Format(Val(DTROWSAVE("WT")), "0.00"), 0, DTROWSAVE("BOXNO"), Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", Format(Val(DTROWSAVE("RATE")), "0.00"), "Wt", Format(Val(DTROWSAVE("WT")), "0.00") * Format(Val(DTROWSAVE("RATE")), "0.00"), "")
 
                 DTROWSAVE = DTSAVE.NewRow()
 
 SKIPLINE:
             Next
-
             oBook.Close()
             getsrno(GRIDYARN)
+            total()
+
 
             Exit Sub
 
