@@ -1146,14 +1146,14 @@ NEXTLINE:
             txtsrno.Text = GRIDREC.RowCount + 1
             If ClientName = "YASHVI" Or ClientName = "SHREENAKODA" Then TXTCUT.Focus() Else CMBPIECETYPE.Focus()
             If ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then TXTMTRS.Focus()
-            If ClientName = "KCRAYON" Or ClientName = "SWPL" Or ClientName = "APPLE" Or ClientName = "MMC" Then TXTGRIDREMARKS.Clear()
+            If ClientName = "KCRAYON" Or ClientName = "SWPL" Or ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "ANKUSH" Then TXTGRIDREMARKS.Clear()
             If ClientName = "SUPRIYA" Or ClientName = "YASHVI" Then TXTCUT.Clear()
             'TXTRATE.Clear()
             TXTAMOUNT.Clear()
             If ClientName = "SUPRIYA" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "AVIS" Then
                 TXTGRIDREMARKS.Clear()
                 TXTMTRS.Focus()
-            ElseIf ClientName = "APPLE" Or ClientName = "SWPL" Or ClientName = "MMC" Then
+            ElseIf ClientName = "APPLE" Or ClientName = "SWPL" Or ClientName = "MMC" Or ClientName = "ANKUSH" Then
                 TXTGRIDREMARKS.Focus()
             ElseIf ClientName = "MIRANO" Then
                 TXTMTRS.Focus()
@@ -2013,7 +2013,7 @@ LINE1:
                 TXTAQTY.ReadOnly = False
             End If
 
-            If ClientName = "APPLE" Then
+            If ClientName = "APPLE" Or ClientName = "ANKUSH" Then
                 CMBQUALITY.TabStop = False
                 TXTCUT.TabStop = False
                 TXTRATE.TabStop = False
