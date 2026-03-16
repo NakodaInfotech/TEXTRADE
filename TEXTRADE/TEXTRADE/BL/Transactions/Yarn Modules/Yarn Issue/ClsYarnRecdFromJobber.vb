@@ -72,6 +72,8 @@ Public Class ClsYarnRecdFromJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@MACHINE", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -219,7 +221,8 @@ Public Class ClsYarnRecdFromJobber
 
                 .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@MACHINE", alParaval(I)))
+                I = I + 1
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))

@@ -44,6 +44,7 @@ Partial Class YarnRecd
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLYARN = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TXTVEHICLENO = New System.Windows.Forms.TextBox()
         Me.TXTHAMALICHARGES = New System.Windows.Forms.TextBox()
@@ -190,7 +191,6 @@ Partial Class YarnRecd
         Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.LBLYARN = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -270,6 +270,18 @@ Partial Class YarnRecd
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 541)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'LBLYARN
+        '
+        Me.LBLYARN.AutoSize = True
+        Me.LBLYARN.BackColor = System.Drawing.Color.Transparent
+        Me.LBLYARN.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLYARN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LBLYARN.Location = New System.Drawing.Point(4, 24)
+        Me.LBLYARN.Name = "LBLYARN"
+        Me.LBLYARN.Size = New System.Drawing.Size(171, 23)
+        Me.LBLYARN.TabIndex = 431
+        Me.LBLYARN.Text = "Yarn Recd Purchaser"
         '
         'Label9
         '
@@ -1478,7 +1490,7 @@ Partial Class YarnRecd
         Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALWT.Location = New System.Drawing.Point(876, 231)
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(1076, 233)
         Me.LBLTOTALWT.Name = "LBLTOTALWT"
         Me.LBLTOTALWT.Size = New System.Drawing.Size(58, 15)
         Me.LBLTOTALWT.TabIndex = 643
@@ -1490,7 +1502,7 @@ Partial Class YarnRecd
         Me.LBLTOTALCONES.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALCONES.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALCONES.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALCONES.Location = New System.Drawing.Point(935, 231)
+        Me.LBLTOTALCONES.Location = New System.Drawing.Point(1135, 233)
         Me.LBLTOTALCONES.Name = "LBLTOTALCONES"
         Me.LBLTOTALCONES.Size = New System.Drawing.Size(58, 15)
         Me.LBLTOTALCONES.TabIndex = 642
@@ -1515,7 +1527,7 @@ Partial Class YarnRecd
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(787, 231)
+        Me.Label10.Location = New System.Drawing.Point(987, 233)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(31, 14)
         Me.Label10.TabIndex = 635
@@ -1536,7 +1548,7 @@ Partial Class YarnRecd
         Me.lbltotalqty.BackColor = System.Drawing.Color.Transparent
         Me.lbltotalqty.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltotalqty.ForeColor = System.Drawing.Color.Black
-        Me.lbltotalqty.Location = New System.Drawing.Point(817, 231)
+        Me.lbltotalqty.Location = New System.Drawing.Point(1017, 233)
         Me.lbltotalqty.Name = "lbltotalqty"
         Me.lbltotalqty.Size = New System.Drawing.Size(51, 15)
         Me.lbltotalqty.TabIndex = 634
@@ -1959,18 +1971,6 @@ Partial Class YarnRecd
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'LBLYARN
-        '
-        Me.LBLYARN.AutoSize = True
-        Me.LBLYARN.BackColor = System.Drawing.Color.Transparent
-        Me.LBLYARN.Font = New System.Drawing.Font("Calibri", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLYARN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.LBLYARN.Location = New System.Drawing.Point(4, 24)
-        Me.LBLYARN.Name = "LBLYARN"
-        Me.LBLYARN.Size = New System.Drawing.Size(171, 23)
-        Me.LBLYARN.TabIndex = 431
-        Me.LBLYARN.Text = "Yarn Recd Purchaser"
         '
         'YarnRecd
         '

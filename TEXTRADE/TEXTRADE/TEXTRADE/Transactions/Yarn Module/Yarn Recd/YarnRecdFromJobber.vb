@@ -34,6 +34,7 @@ Public Class YarnRecdFromJobber
         CMBTONAME.Text = ""
         CMBTONAME.Enabled = True
         CMBJONO.Text = ""
+        CMBMACHINE.Text = ""
         CMBJONO.Enabled = True
         TXTPROGNO.Clear()
         TXTPROGFROMTYPE.Clear()
@@ -327,6 +328,7 @@ CHECKNEXTLINE:
             alParaval.Add(YearId)
             alParaval.Add(0)
             alParaval.Add(LBLTOTALAMT.Text.Trim)
+            alParaval.Add(CMBMACHINE.Text.Trim)
 
 
             Dim GRIDSRNO As String = ""
@@ -766,6 +768,7 @@ LINE1:
                         cmbtrans.Text = dr("TRANSNAME").ToString
                         TXTVEHICLENO.Text = dr("VEHICLENO").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
+                        CMBMACHINE.Text = dr("MACHINE").ToString
 
                         GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"), dr("LRNO"), dr("RACK").ToString, Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAGS")), Val(dr("DONE")))
 
@@ -826,6 +829,7 @@ LINE1:
             FILLDESIGN(CMBDESIGN, "")
             FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, "")
             If CMBRACK.Text.Trim = "" Then FILLRACK(CMBRACK)
+            FILLMACHINE(CMBMACHINE)
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1006,28 +1010,34 @@ LINE1:
         GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 
 
-        'CMBYARNQUALITY.Text = ""
-        TXTJOBBERLOTNO.Clear()
-        CMBMILL.Text = ""
-        CMBDESIGN.Text = ""
-        cmbcolor.Text = ""
-        TXTLOTNO.Clear()
-        TXTGRIDREMARKS.Clear()
-        txtqty.Clear()
-        TXTWT.Clear()
-        TXTCONES.Clear()
-
-        txtPartyMtrs.Clear()
-        txtCheckPcs.Clear()
-        TXTBARCODE.Clear()
         txtsrno.Text = Val(GRIDYARN.RowCount) + 1
+
+        If ClientName <> "SWPL" Then
+            TXTJOBBERLOTNO.Clear()
+            CMBMILL.Text = ""
+            CMBDESIGN.Text = ""
+            cmbcolor.Text = ""
+            TXTLOTNO.Clear()
+            TXTGRIDREMARKS.Clear()
+            txtqty.Clear()
+            TXTWT.Clear()
+            TXTCONES.Clear()
+            txtPartyMtrs.Clear()
+            txtCheckPcs.Clear()
+
+
+
+            TXTLRNO.Clear()
+            CMBRACK.Text = ""
+            TXTBARCODE.Clear()
+            TXTRATE.Clear()
+            TXTAMT.Clear()
+            CMBRACK.Text = ""
+        End If
+
         CMBYARNQUALITY.Focus()
-        TXTLRNO.Clear()
-        CMBRACK.Text = ""
         TXTBARCODE.Clear()
-        TXTRATE.Clear()
-        TXTAMT.Clear()
-        CMBRACK.Text = ""
+
 
     End Sub
 
@@ -1879,5 +1889,20 @@ NEXTLINE:
             Throw ex
         End Try
 
+    End Sub
+    Private Sub CMBMACHINE_Validating(sender As Object, e As CancelEventArgs) Handles CMBMACHINE.Validating
+        Try
+            If CMBMACHINE.Text.Trim <> "" Then MACHINEVALIDATE(CMBMACHINE, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBMACHINE_Enter(sender As Object, e As EventArgs) Handles CMBMACHINE.Enter
+        Try
+            If CMBMACHINE.Text.Trim = "" Then FILLMACHINE(CMBMACHINE)
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class
