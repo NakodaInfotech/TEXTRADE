@@ -650,7 +650,7 @@ Public Class DesignCardMaster
         End If
     End Sub
 
-    Sub clear()
+    Sub CLEAR()
         getmax_SO_no()
         txtfinishmethod.Clear()
         CMBQUALITIES.Text = ""
@@ -659,21 +659,21 @@ Public Class DesignCardMaster
         CMBDESIGNNO.Text = ""
         CMBITEMNAME.Text = ""
         TXTREED.Clear()
-        TXTREEDSPACE.Text = "65"
+        TXTREEDSPACE.Clear()
         TXTREEDSPACECM.Clear()
         TXTPICKS.Clear()
         TXTMAINRS.Clear()
         TXTTHREADPERDENT.Clear()
         TXTFEPI.Clear()
-        TXTFWIDTH.Text = "58"
+        TXTFWIDTH.Clear()
         TXTFPPI.Clear()
         TXTFWT.Clear()
         TXTDENTS.Clear()
         TXTTOTALDENTSMAIN.Clear()
         TXTTOTALSELVEDGEDENTS.Clear()
         TXTTOTALDENTS.Clear()
-        TXTWARPTL.Text = "108"
-        TXTWEFTTL.Text = "102"
+        TXTWARPTL.Text = "106"
+        TXTWEFTTL.Text = "106"
         TXTGSM.Clear()
         CMBWEAVE.Text = ""
         TXTTOTALWT.Clear()
@@ -711,7 +711,7 @@ Public Class DesignCardMaster
         TXTNOOFPCS.Clear()            ' No of Pcs
         CMBLOOM.Text = ""                    ' Loom (ComboBox)
         TXTBEAMMTRS.Clear()           ' Beam Mtrs
-        TXTCOVERFACTOR.Clear()        ' Cover Factor
+        If ClientName = "SWPL" Then TXTCOVERFACTOR.Text = 1.2 Else TXTCOVERFACTOR.Clear()        ' Cover Factor
         TXTEFFICIENCY.Clear()         ' Efficiency
         TXTLOOMPROD.Clear()           ' Loom Prod
         TXTRPM.Clear()                ' RPM
@@ -1004,6 +1004,7 @@ Public Class DesignCardMaster
             Throw ex
         End Try
     End Sub
+
     Sub SHOWDATA(Optional ByVal CARDNO As Integer = -1)
         Try
             clear()
@@ -1364,6 +1365,7 @@ Public Class DesignCardMaster
         If CMBGREYDELAT.Text.Trim = "" Then FILLNAME(CMBGREYDELAT, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
         If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
     End Sub
+
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
             'If edit = False Then
@@ -1375,7 +1377,8 @@ Public Class DesignCardMaster
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-    Sub fillwarpgrid()
+
+    Sub FILLWARPGRID()
 
         If GRIDDOUBLECLICK = False Then
             GRIDWARP.Rows.Add(Val(TXTWARPSRNO.Text.Trim), CMBGRIDSYM.Text.Trim, CMBWARPQUALITY.Text.Trim, TXTWARPDENIER.Text.Trim, CMBWARPMILLNAME.Text.Trim, cmbgridshade.Text.Trim, Val(TXTWARPPE.Text.Trim), Val(TXTWARPBE.Text.Trim), Val(TXTWARPTE.Text.Trim), Format(Val(TXTWARPWT.Text.Trim), "0.000"), Val(TXTWARPCONS.Text.Trim), Val(TXTWARPRATE.Text.Trim), Val(TXTWARPCOST.Text.Trim))
@@ -1409,14 +1412,7 @@ LINE1:
                 Next
             End If
         End If
-        'If String.IsNullOrWhiteSpace(CMBGRIDSYM.Text) Then
-        '    ' Set to the first item in the list (top alphabet)
-        '    If CMBGRIDSYM.Items.Count > 0 Then
-        '        CMBGRIDSYM.Text = CMBGRIDSYM.Items(0).ToString()
-        '    End If
-        'Else
-        '    CMBGRIDSYM.Text = IncrementAlphabet(CMBGRIDSYM.Text, CMBGRIDSYM)
-        'End If
+
         GRIDWARPDESC.EndEdit() '
         For Each MTRSROW1 As DataGridViewRow In GRIDWARPDESC.Rows
             Dim currentMainSrNo As Object = MTRSROW1.Cells(WDMAINSRNO.Index).Value
@@ -1438,7 +1434,6 @@ LINE1:
             Next
         Next
 
-        CALC()
         POPULATEGRID()
         GRIDWARP.ClearSelection()
         CMBGRIDSYM.Focus()
@@ -1451,6 +1446,7 @@ LINE1:
             TXTWARPSRNO.Text = 1
         End If
     End Sub
+
     Sub POPULATEGRID()
         Dim maxShadeCount As Integer = 0
         For Each dr As DataRow In DT_WARPDETAILS.Rows
@@ -2054,81 +2050,6 @@ LINE1:
         TXTTOTALMAINENDS.Text = 0.00
         txtxvalue.Text = 0.00
 
-        ''================ MAIN CALCULATIONS =================
-        'If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTRIGHTSEL.Text <> "" Then
-        '    TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - Val(TXTLEFTSEL.Text) - Val(TXTRIGHTSEL.Text), "0.00")
-        'End If
-        'If TXTREED.Text <> "" Then
-        '    TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
-        'End If
-        'If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then
-        '    TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
-        'End If
-        ''================ SELVEDGE DENTS =================
-        'If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then
-        '    TXTLEFTSELDENTS.Text = Format(Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), "0.00")
-        'End If
-        'If TXTRIGHTSEL.Text <> "" And TXTDENTS.Text <> "" Then
-        '    TXTRIGHTSELDENTS.Text = Format(Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), "0.00")
-        'End If
-        'If TXTLEFTSELDENTS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then
-        '    TXTTOTALSELVEDGEDENTS.Text = Format(Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text), "0.00")
-        'End If
-        ''================ TOTAL DENTS =================
-        'If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then
-        '    TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
-        'End If
-        ''================ SELVEDGE ENDS =================
-        'If TXTTHREADPERDENT.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then
-        '    TXTLEFTSELTOTALENDS.Text =
-        'Format(Val(TXTTHREADPERDENT.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
-        'End If
-        'If TXTTHREADPERDENT.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then
-        '    TXTRIGHTSELTOTALENDS.Text =
-        'Format(Val(TXTTHREADPERDENT.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
-        'End If
-        'If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then
-        '    TXTTOTALSELENDS.Text =
-        'Format(Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text), "0.00")
-        'End If
-        ''================ FINAL TOTAL ENDS (CORRECT) =================
-        'If TXTTOTALDENTSMAIN.Text <> "" And TXTTHREADPERDENT.Text <> "" And TXTTOTALSELENDS.Text <> "" Then
-        '    Dim mainDents As Double = Val(TXTTOTALDENTSMAIN.Text)
-        '    Dim endsPerDent As Double = Val(TXTTHREADPERDENT.Text)   ' eg: 4
-        '    Dim selvedgeEnds As Double = Val(TXTTOTALSELENDS.Text)
-        '    Dim mainEnds As Double = mainDents * endsPerDent
-        '    Dim totalEnds As Double = Math.Ceiling(mainEnds + selvedgeEnds)
-        '    TXTTOTALENDS.Text = totalEnds.ToString()
-        'End If
-        '*************************************************************************************
-        'If TXTLEFTSEL.Text <> "" And TXTREEDSPACE.Text <> "" Then TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - (Val(TXTLEFTSEL.Text) + Val(TXTRIGHTSEL.Text)), "0.00")
-        'If TXTREED.Text <> "" Then TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
-        'If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
-        'If TXTLEFTSEL.Text <> "" And TXTDENTS.Text <> "" Then TXTLEFTSELDENTS.Text = Format(Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), "0.00")
-        'If TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "" Then TXTRIGHTSELDENTS.Text = Format(Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), "0.00")
-        'If TXTRIGHTSELDENTS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTTOTALSELVEDGEDENTS.Text = Format(Val(TXTLEFTSELDENTS.Text) + Val(TXTRIGHTSELDENTS.Text), "0.00")
-        ''If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELVEDGEDENTS.Text <> "" Then TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
-        'If TXTTOTALDENTSMAIN.Text <> "" Then TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELVEDGEDENTS.Text), "0.00")
-        ''If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
-        ''AS PER RANJAN
-        'If TXTLEFTSELENDS.Text <> "" And TXTLEFTSELDENTS.Text <> "" Then TXTLEFTSELTOTALENDS.Text = Format(Val(TXTLEFTSELENDS.Text) * Val(TXTLEFTSELDENTS.Text), "0.00")
-
-        ''If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTTOTALDRAWENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
-        ''RANJAN
-        'If TXTRIGHTSELENDS.Text <> "" And TXTRIGHTSELDENTS.Text <> "" Then TXTRIGHTSELTOTALENDS.Text = Format(Val(TXTRIGHTSELENDS.Text) * Val(TXTRIGHTSELDENTS.Text), "0.00")
-
-        'If TXTLEFTSELTOTALENDS.Text <> "" And TXTRIGHTSELTOTALENDS.Text <> "" Then TXTTOTALSELENDS.Text = Format(Val(TXTLEFTSELTOTALENDS.Text) + Val(TXTRIGHTSELTOTALENDS.Text), "0.00")
-        'If TXTTOTALDRAWDENTS.Text <> "" And TXTTOTALDENTS.Text <> "" Then txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
-        ''new code 
-        ''If TXTTOTALDENTSMAIN.Text <> "" And TXTTHREADPERDENT.Text <> "" Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTTOTALDENTSMAIN.Text) * Val(TXTTHREADPERDENT.Text), "0.00")
-        ''If TXTTOTALDENTSMAIN.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALENDS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + Val(TXTTOTALSELENDS.Text), "0.00")
-
-        'If txttotaldentsrepeat.Text <> "" And TXTTOTALDRAWENDS.Text <> "" Then
-        '    Dim totalDents As Double = Val(txttotaldentsrepeat.Text)
-        '    Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
-        '    Dim result As Double = Format(Val(totalDents) * Val(totalDrawEnds), "0.00")
-        '    TXTTOTALENDS.Text = Format((result), "0.00")
-        'End If
         '*******************************************************************************
         ' Main Reed Space - default selvedge to 0 if empty
         Dim leftSel As Double = If(TXTLEFTSEL.Text <> "", Val(TXTLEFTSEL.Text), 0)
@@ -2194,6 +2115,7 @@ LINE1:
                     row.Cells(WENDS.Index).Value = Format(Val(txtxvalue.Text) * Val(row.Cells(WPE.Index).Value), "0")
                 End If
             Next
+
             'WARP WT IN GRID
             If TXTWARPTL.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWARP.Rows
@@ -2203,37 +2125,45 @@ LINE1:
 
                         'THIS CALC IS WITH RESPECT TO COUNT
                         If ClientName = "SWPL" Then
-                            row.Cells(WWT.Index).Value = Format(Val(row.Cells(WENDS.Index).Value) * Val(TXTWARPTL.Text) / 1850 / Val(row.Cells(WDENIER.Index).Value), "0.000")
+                            row.Cells(WWT.Index).Value = Format(Val(row.Cells(WENDS.Index).Value) * Val(TXTCOVERFACTOR.Text.Trim) / 1850 / Val(row.Cells(WDENIER.Index).Value), "0.000")
                         Else
                             row.Cells(WWT.Index).Value = Format(Val(row.Cells(WENDS.Index).Value) * Val(row.Cells(WDENIER.Index).Value) * Val(TXTWARPTL.Text) / 9000000, "0.000")
                         End If
                     End If
                 Next
             End If
+
             'WEFT WT IN GRID
             If TXTWEFTTL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTPICKS.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
                         If ClientName = "SWPL" Then
-                            row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * Val(TXTREEDSPACE.Text.Trim) * Val(TXTWEFTTL.Text)) / 1693 / Val(row.Cells(FDENIER.Index).Value), "0.000")
+                            row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTGRIDPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * (Val(TXTREEDSPACE.Text.Trim) + Val(TXTLEFTSEL.Text.Trim) + Val(TXTRIGHTSEL.Text.Trim))) / 1693 / Val(row.Cells(FDENIER.Index).Value), "0.000")
                         Else
-                            row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * Val(TXTREEDSPACE.Text.Trim) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text)) / 9000000, "0.000")
+                            row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTGRIDPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * Val(TXTREEDSPACE.Text.Trim) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text)) / 9000000, "0.000")
                         End If
                     End If
                 Next
             End If
+
             'SELVEDGE WT IN GRID
             If TXTTOTALSELENDS.Text <> "" And TXTWARPTL.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDSELVEDGE.Rows
                     If row.Cells(SDENIER.Index).Value IsNot DBNull.Value Then
-                        row.Cells(SWT.Index).Value = Format(Val(row.Cells(SDENIER.Index).Value) * Val(TXTWARPTL.Text) * Val(TXTTOTALSELENDS.Text) / 9000000, "0.000")
+                        If ClientName = "SWPL" Then
+                            row.Cells(WWT.Index).Value = Format(Val(row.Cells(SENDS.Index).Value) * Val(TXTCOVERFACTOR.Text.Trim) / 1850 / Val(row.Cells(SDENIER.Index).Value), "0.000")
+                        Else
+                            row.Cells(SWT.Index).Value = Format(Val(row.Cells(SDENIER.Index).Value) * Val(TXTWARPTL.Text) * Val(TXTTOTALSELENDS.Text) / 9000000, "0.000")
+                        End If
+
                     End If
                 Next
             End If
+
             'WEFT ENDS IN GRID
             If TXTPICKS.Text <> "" And TXTREEDSPACE.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
-                    row.Cells(FENDS.Index).Value = Format(((Val(TXTREEDSPACE.Text) * Val(TXTPICKS.Text)) / Val(TXTTOTALWEFTPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value), "0.00")
+                    row.Cells(FENDS.Index).Value = Format((((Val(TXTREEDSPACE.Text) + Val(TXTLEFTSEL.Text.Trim) + Val(TXTRIGHTSEL.Text.Trim)) * Val(TXTPICKS.Text)) / Val(TXTTOTALWEFTGRIDPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value), "0.00")
                 Next
             End If
         End If
@@ -4182,9 +4112,9 @@ line1:
 
     Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
         Try
-
             If GRIDWARP.RowCount >= 0 And CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
                 fillwarpgrid()
+                CALC()
             End If
             GBWARP.Visible = False
         Catch ex As Exception
@@ -4197,6 +4127,7 @@ line1:
 
             If GRIDWEFT.RowCount >= 0 And CMBWEFTYARNQUALITY.Text <> "" And CMBWEFTGRIDSYMBOL.Text <> "" Then
                 FILLWEFTGRID()
+                CALC()
             End If
             GBWEFT.Visible = False
         Catch ex As Exception
@@ -4303,6 +4234,7 @@ line1:
 
     Private Sub TXTCOPYCARDNO_Validated(sender As Object, e As EventArgs) Handles TXTCOPYCARDNO.Validated
         Try
+            If Val(TXTCOPYCARDNO.Text.Trim) = 0 Then Exit Sub
             SHOWDATA(TXTCOPYCARDNO.Text.Trim)
             getmax_SO_no()
             TXTCOPYCARDNO.Enabled = False
