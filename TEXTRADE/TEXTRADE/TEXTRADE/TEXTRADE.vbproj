@@ -10739,6 +10739,9 @@
     <EmbeddedResource Include="Transactions\Yarn Module\YarnLoan\YarnLoanMaster.resx">
       <DependentUpon>YarnLoanMaster.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\YarnLoan\YarnLoanMasterDetails.resx">
+      <DependentUpon>YarnLoanMasterDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Merge Details\MergeLedgerDetails.resx">
       <DependentUpon>MergeLedgerDetails.vb</DependentUpon>
     </EmbeddedResource>

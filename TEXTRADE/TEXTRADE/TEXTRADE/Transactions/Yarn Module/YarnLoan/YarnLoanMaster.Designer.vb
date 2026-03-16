@@ -210,7 +210,7 @@ Partial Class YarnLoanMaster
         Me.cmbGodown.BackColor = System.Drawing.Color.LemonChiffon
         Me.cmbGodown.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbGodown.FormattingEnabled = True
-        Me.cmbGodown.Location = New System.Drawing.Point(606, 91)
+        Me.cmbGodown.Location = New System.Drawing.Point(601, 91)
         Me.cmbGodown.MaxDropDownItems = 14
         Me.cmbGodown.Name = "cmbGodown"
         Me.cmbGodown.Size = New System.Drawing.Size(204, 23)
@@ -612,7 +612,7 @@ Partial Class YarnLoanMaster
         Me.cmddelete.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmddelete.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmddelete.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmddelete.Location = New System.Drawing.Point(461, 491)
+        Me.cmddelete.Location = New System.Drawing.Point(567, 473)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(78, 27)
         Me.cmddelete.TabIndex = 7
@@ -627,7 +627,7 @@ Partial Class YarnLoanMaster
         Me.cmdclear.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdclear.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdclear.Location = New System.Drawing.Point(543, 462)
+        Me.cmdclear.Location = New System.Drawing.Point(483, 473)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(78, 27)
         Me.cmdclear.TabIndex = 6
@@ -642,7 +642,7 @@ Partial Class YarnLoanMaster
         Me.cmdok.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdok.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdok.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdok.Location = New System.Drawing.Point(461, 462)
+        Me.cmdok.Location = New System.Drawing.Point(401, 473)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(78, 27)
         Me.cmdok.TabIndex = 5
@@ -657,7 +657,7 @@ Partial Class YarnLoanMaster
         Me.cmdexit.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdexit.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdexit.Location = New System.Drawing.Point(543, 491)
+        Me.cmdexit.Location = New System.Drawing.Point(649, 473)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(78, 27)
         Me.cmdexit.TabIndex = 8
