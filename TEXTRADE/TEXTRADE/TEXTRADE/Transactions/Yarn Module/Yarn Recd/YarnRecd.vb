@@ -1093,32 +1093,39 @@ NEXTLINE:
         GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 
 
-        txtgridremarks.Clear()
-        If ClientName <> "VAISHALI" Then CMBYARNQUALITY.Text = ""
-        CMBMILL.Text = ""
-        CMBDESIGN.Text = ""
-        TXTPSHADE.Clear()
-        TXTJOBBERLOTNO.Clear()
-        cmbcolor.Text = ""
-        TXTGRIDLOTNO.Clear()
-        txtqty.Clear()
-        TXTWT.Clear()
-        TXTCONES.Clear()
-        TXTGRIDLRNO.Clear()
-        DTLRDATE.Value = Now.Date
-        TXTHSNCODE.Clear()
-        TXTGREMARKS.Clear()
-        txtPartyMtrs.Clear()
-        txtCheckPcs.Clear()
-        TXTBARCODE.Clear()
-        txtsrno.Text = Val(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(0).Value) + 1
-        CMBYARNQUALITY.Focus()
-        CMBRACK.Text = ""
-        TXTRATE.Clear()
-        CMBPER.Text = ""
-        TXTAMT.Clear()
+        If ClientName <> "SWPL" Then
+            txtgridremarks.Clear()
+            If ClientName <> "VAISHALI" Then CMBYARNQUALITY.Text = ""
+            CMBMILL.Text = ""
+            CMBDESIGN.Text = ""
+            TXTPSHADE.Clear()
+            TXTJOBBERLOTNO.Clear()
+            cmbcolor.Text = ""
+            TXTGRIDLOTNO.Clear()
+            txtqty.Clear()
+            TXTWT.Clear()
+            TXTCONES.Clear()
+            TXTGRIDLRNO.Clear()
+            DTLRDATE.Value = Now.Date
+            TXTHSNCODE.Clear()
+            TXTGREMARKS.Clear()
+            txtPartyMtrs.Clear()
+            txtCheckPcs.Clear()
+            TXTBARCODE.Clear()
+            txtsrno.Text = Val(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(0).Value) + 1
+            CMBYARNQUALITY.Focus()
+            CMBRACK.Text = ""
+            TXTRATE.Clear()
+            CMBPER.Text = ""
+            TXTAMT.Clear()
+        End If
+
 
         TXTBARCODE.Clear()
+
+        If ClientName = "SWPL" Then
+            TXTWT.Focus()
+        End If
 
 
     End Sub

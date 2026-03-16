@@ -1006,28 +1006,34 @@ LINE1:
         GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 
 
-        'CMBYARNQUALITY.Text = ""
-        TXTJOBBERLOTNO.Clear()
-        CMBMILL.Text = ""
-        CMBDESIGN.Text = ""
-        cmbcolor.Text = ""
-        TXTLOTNO.Clear()
-        TXTGRIDREMARKS.Clear()
-        txtqty.Clear()
-        TXTWT.Clear()
-        TXTCONES.Clear()
-
-        txtPartyMtrs.Clear()
-        txtCheckPcs.Clear()
-        TXTBARCODE.Clear()
         txtsrno.Text = Val(GRIDYARN.RowCount) + 1
+
+        If ClientName <> "SWPL" Then
+            TXTJOBBERLOTNO.Clear()
+            CMBMILL.Text = ""
+            CMBDESIGN.Text = ""
+            cmbcolor.Text = ""
+            TXTLOTNO.Clear()
+            TXTGRIDREMARKS.Clear()
+            txtqty.Clear()
+            TXTWT.Clear()
+            TXTCONES.Clear()
+            txtPartyMtrs.Clear()
+            txtCheckPcs.Clear()
+
+
+
+            TXTLRNO.Clear()
+            CMBRACK.Text = ""
+            TXTBARCODE.Clear()
+            TXTRATE.Clear()
+            TXTAMT.Clear()
+            CMBRACK.Text = ""
+        End If
+
         CMBYARNQUALITY.Focus()
-        TXTLRNO.Clear()
-        CMBRACK.Text = ""
         TXTBARCODE.Clear()
-        TXTRATE.Clear()
-        TXTAMT.Clear()
-        CMBRACK.Text = ""
+
 
     End Sub
 
