@@ -8101,7 +8101,7 @@ UPDATE VERSION SET VERSION_VALIDATEBALENO = 0
 
 **************************************************************************************
 VERSION TO 2.0.006
-
+DONE IN REAL CORP NEXT UPDATE ME APRIL KARNA HAI
 DONE IN SWPL
 DONE IN CHANDRA
 DONE IN ABHI

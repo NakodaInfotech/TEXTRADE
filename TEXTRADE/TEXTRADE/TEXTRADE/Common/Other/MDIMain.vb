@@ -11212,4 +11212,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub SECURITYINWARDOUTWARDADD_Click(sender As Object, e As EventArgs) Handles SECURITYINWARDOUTWARDADD.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New SecurityInwardOutward
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub SECURITYINWARDOUTWARDEDIT_Click(sender As Object, e As EventArgs) Handles SECURITYINWARDOUTWARDEDIT.Click
+        Try
+            Dim OBJROLLSTOCKWARPER As New SecurityInwardOutwardDetails
+            OBJROLLSTOCKWARPER.MdiParent = Me
+            OBJROLLSTOCKWARPER.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
