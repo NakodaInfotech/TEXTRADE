@@ -4125,11 +4125,11 @@ Partial Class DesignCardMaster
         Me.Label42.AutoSize = True
         Me.Label42.BackColor = System.Drawing.Color.Transparent
         Me.Label42.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.Location = New System.Drawing.Point(1071, 105)
+        Me.Label42.Location = New System.Drawing.Point(1058, 105)
         Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(76, 15)
+        Me.Label42.Size = New System.Drawing.Size(87, 15)
         Me.Label42.TabIndex = 1019
-        Me.Label42.Text = "Cover Factor"
+        Me.Label42.Text = "Take Up Factor"
         '
         'TXTFFABCOST
         '
@@ -4884,10 +4884,10 @@ Partial Class DesignCardMaster
         Me.TSELVEDGEMAIN.Controls.Add(Me.TXTRIGHTSELTOTALENDS)
         Me.TSELVEDGEMAIN.Controls.Add(Me.Label23)
         Me.TSELVEDGEMAIN.Controls.Add(Me.Label25)
-        Me.TSELVEDGEMAIN.Location = New System.Drawing.Point(4, 22)
+        Me.TSELVEDGEMAIN.Location = New System.Drawing.Point(4, 24)
         Me.TSELVEDGEMAIN.Name = "TSELVEDGEMAIN"
         Me.TSELVEDGEMAIN.Padding = New System.Windows.Forms.Padding(3)
-        Me.TSELVEDGEMAIN.Size = New System.Drawing.Size(1353, 207)
+        Me.TSELVEDGEMAIN.Size = New System.Drawing.Size(1353, 205)
         Me.TSELVEDGEMAIN.TabIndex = 1
         Me.TSELVEDGEMAIN.Text = "2. Selvedge Details"
         '
@@ -5171,10 +5171,10 @@ Partial Class DesignCardMaster
         Me.TBPARTY.Controls.Add(Me.DELDATE)
         Me.TBPARTY.Controls.Add(Me.CMBGREY)
         Me.TBPARTY.Controls.Add(Me.Label31)
-        Me.TBPARTY.Location = New System.Drawing.Point(4, 22)
+        Me.TBPARTY.Location = New System.Drawing.Point(4, 24)
         Me.TBPARTY.Name = "TBPARTY"
         Me.TBPARTY.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBPARTY.Size = New System.Drawing.Size(1353, 207)
+        Me.TBPARTY.Size = New System.Drawing.Size(1353, 205)
         Me.TBPARTY.TabIndex = 2
         Me.TBPARTY.Text = "Party & Other Ledger "
         '
@@ -5384,10 +5384,10 @@ Partial Class DesignCardMaster
         Me.TBOTHER.Controls.Add(Me.CMBGREYDELAT)
         Me.TBOTHER.Controls.Add(Me.Label45)
         Me.TBOTHER.Controls.Add(Me.TXTLOOMPROD)
-        Me.TBOTHER.Location = New System.Drawing.Point(4, 22)
+        Me.TBOTHER.Location = New System.Drawing.Point(4, 24)
         Me.TBOTHER.Name = "TBOTHER"
         Me.TBOTHER.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBOTHER.Size = New System.Drawing.Size(1353, 207)
+        Me.TBOTHER.Size = New System.Drawing.Size(1353, 205)
         Me.TBOTHER.TabIndex = 3
         Me.TBOTHER.Text = "Other Details"
         '
