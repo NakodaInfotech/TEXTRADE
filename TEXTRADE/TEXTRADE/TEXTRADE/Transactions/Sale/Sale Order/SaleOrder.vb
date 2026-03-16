@@ -2713,7 +2713,7 @@ LINESINGLE:
                     End If
                     If DTITEM.Rows.Count > 0 Then
                         For Each DTROWPS As DataRow In DTITEM.Rows
-                            GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), cmbqtyunit.Text.Trim, Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("ORDERMTRS")), "0.00"), Val(TXTRATE.Text.Trim), "Mtrs", 0, 0, 0, 0, 0, 0)
+                            GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), cmbqtyunit.Text.Trim, Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("ORDERMTRS")), "0.00"), Val(TXTRATE.Text.Trim), "Mtrs", 0, Format(Convert.ToDateTime(SODATE.Text).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                         Next
                         GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
                         getsrno(GRIDSO)
