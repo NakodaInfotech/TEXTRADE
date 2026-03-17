@@ -739,7 +739,7 @@ Public Class RecFromPacking
                     'IF barcode is used the BARCODE printING WILL BE BLOCKED
                     If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
                     Dim BALENO As String = ""
-                    If ClientName = "SSC" Or ClientName = "REALCORPORATION" Then BALENO = ROW.Cells(gdesc.Index).Value
+                    If ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "ANKUSH" Then BALENO = ROW.Cells(gdesc.Index).Value
 
                     'FOR AVIS GET LOTNO FROM ISSUE TO PACK FOR EACH ENTRY NO
                     Dim OBJCMN As New ClsCommon
@@ -748,7 +748,7 @@ Public Class RecFromPacking
                         If DTLOT.Rows.Count > 0 Then TXTLOTNO.Text = DTLOT.Rows(0).Item("LOTNO")
                     End If
 
-                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gdesc.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, TXTLOTNO.Text.Trim, BALENO, ROW.Cells(gdesc.Index).Value, Val(ROW.Cells(GMTRS.Index).Value), Val(ROW.Cells(gQty.Index).Value), Val(ROW.Cells(gcut.Index).Value), ROW.Cells(GRACK.Index).Value, TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, "", cmbname.Text.Trim, ROW.Cells(GSHELF.Index).Value)
+                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, TXTLOTNO.Text.Trim, BALENO, ROW.Cells(gdesc.Index).Value, Val(ROW.Cells(GMTRS.Index).Value), Val(ROW.Cells(gQty.Index).Value), Val(ROW.Cells(gcut.Index).Value), ROW.Cells(GRACK.Index).Value, TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, "", cmbname.Text.Trim, ROW.Cells(GSHELF.Index).Value)
                     dttable = OBJCMN.Execute_Any_String("UPDATE RECPACKING SET REC_BARCODEPRINTED = 1 WHERE REC_NO = " & TEMPRECNO & " And REC_YEARID = " & YearId, "", "")
                     LBLBARCODEPRINTED.Visible = True
 
