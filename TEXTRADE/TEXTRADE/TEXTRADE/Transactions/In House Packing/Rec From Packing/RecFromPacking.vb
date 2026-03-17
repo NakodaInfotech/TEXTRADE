@@ -739,7 +739,7 @@ Public Class RecFromPacking
                     'IF barcode is used the BARCODE printING WILL BE BLOCKED
                     If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
                     Dim BALENO As String = ""
-                    If ClientName = "SSC" Or ClientName = "REALCORPORATION" Then BALENO = ROW.Cells(gdesc.Index).Value
+                    If ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "ANKUSH" Then BALENO = ROW.Cells(gdesc.Index).Value
 
                     'FOR AVIS GET LOTNO FROM ISSUE TO PACK FOR EACH ENTRY NO
                     Dim OBJCMN As New ClsCommon
