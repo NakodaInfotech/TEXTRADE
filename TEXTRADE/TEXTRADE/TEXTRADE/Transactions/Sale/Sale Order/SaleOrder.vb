@@ -1232,7 +1232,7 @@ line1:
             'GET BALANCE BALES AND GETSTOCK
             If e.RowIndex >= 0 Then
                 GETPENDINGBALES(e.RowIndex)
-                If ClientName <> "AVIS" And ClientName <> "SHEETAL" Then
+                If ClientName <> "AVIS" And ClientName <> "SHEETAL" And ClientName <> "MSANCHITKUMAR" Then
                     GETSTOCK(GRIDSO.CurrentRow.Cells(gitemname.Index).Value, GRIDSO.CurrentRow.Cells(GDESIGN.Index).Value, GRIDSO.CurrentRow.Cells(gcolor.Index).Value)
                 End If
             End If
