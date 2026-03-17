@@ -9,13 +9,14 @@ Imports DevExpress.Diagram.Core.Native
 Imports DevExpress.Utils.CommonDialogs
 Public Class SecurityInwardOutward
     'following two variables is only for used in edit mode....
-    Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
+    Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean, GRIDUPLOADDOUBLECLICK As Boolean     'USED FOR RIGHT MANAGEMAENT
     Dim gridDoubleClick As Boolean
     Dim tempRow As Integer
 
     Public edit As Boolean
     Public TEMPSECNO As String
     Public tempMsg As Integer
+    Dim TEMPUPLOADROW, TEMPPARAMETERROW As Integer
 
     Private Sub SecurityInwardOutward_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -548,6 +549,72 @@ LINE1:
         End Try
     End Sub
 
+    'FOR IMAGE
+    Sub FILLGRIDSCAN()
+        Try
+            Dim sourcePath As String = TXTPHOTOIMAGEUPLOADPATH.Text.Trim
+            Dim targetPath As String = TXTUPLOADPATH.Text.Trim
+
+            'Dim resizedPath As String = ResizeAndSaveFromFile(sourcePath, targetPath)
 
 
+            If GRIDUPLOADDOUBLECLICK = False Then
+
+                'gridupload.Rows.Add(Val(TXTUPLOADSRNO.Text.Trim), txtuploadname.Text.Trim, PBIMG.Image, Val(GRIDQC.CurrentRow.Cells(gsrno.Index).Value))
+                gridupload.Rows.Add(Val(TXTUPLOADSRNO.Text.Trim), txtuploadname.Text.Trim, TXTUPLOADPATH.Text.Trim, Val(GRIDUPLOADDESC.CurrentRow.Cells(DSRNO.Index).Value), TXTPHOTOIMAGEUPLOADPATH.Text.Trim)
+
+                'GRIDUPLOADDESC.Rows.Add(Val(TXTUPLOADSRNO.Text.Trim), txtuploadname.Text.Trim, PBIMG.Image, Val(GRIDQC.CurrentRow.Cells(gsrno.Index).Value))
+                GRIDUPLOADDESC.Rows.Add(Val(TXTUPLOADSRNO.Text.Trim), txtuploadname.Text.Trim, TXTUPLOADPATH.Text.Trim, Val(GRIDUPLOADDESC.CurrentRow.Cells(DSRNO.Index).Value), TXTPHOTOIMAGEUPLOADPATH.Text.Trim)
+
+                uploadgetsrno(gridupload)
+
+            ElseIf GRIDUPLOADDOUBLECLICK = True Then
+
+
+                'FIRST GETTING ROWNO WITH RESPECT TO GRIDPAYDESC'S SRNO AND PAYMENT'S GRIDSRNO
+                Dim ROWNO As Integer = 0
+                For Each ROW As DataGridViewRow In GRIDUPLOADDESC.Rows
+                    If ROW.Cells(DSRNO.Index).Value = gridupload.CurrentRow.Cells(GGRIDUPLOADSRNO.Index).Value And ROW.Cells(DMAINSRNO.Index).Value = (GRIDUPLOADDESC.CurrentRow.Index + 1) Then
+                        ROWNO = ROW.Index
+                        Exit For
+                    End If
+                Next
+
+                GRIDUPLOADDESC.Item(DSRNO.Index, ROWNO).Value = TXTUPLOADSRNO.Text.Trim
+                GRIDUPLOADDESC.Item(DNAME.Index, ROWNO).Value = txtuploadname.Text.Trim
+                'GRIDUPLOADDESC.Item(DIMGPATH.Index, ROWNO).Value = PBIMG.Image
+                GRIDUPLOADDESC.Item(DIMGPATH.Index, ROWNO).Value = TXTUPLOADPATH.Text.Trim
+
+
+                gridupload.Item(GGRIDUPLOADSRNO.Index, TEMPUPLOADROW).Value = TXTUPLOADSRNO.Text.Trim
+                gridupload.Item(GNAME.Index, TEMPUPLOADROW).Value = txtuploadname.Text.Trim
+                'gridupload.Item(GIMGPATH.Index, TEMPUPLOADROW).Value = PBIMG.Image
+                gridupload.Item(GIMGPATH.Index, TEMPUPLOADROW).Value = TXTUPLOADPATH.Text.Trim
+
+                GRIDUPLOADDOUBLECLICK = False
+
+            End If
+            gridupload.FirstDisplayedScrollingRowIndex = gridupload.RowCount - 1
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+
+
+    Sub uploadgetsrno(ByRef grid As System.Windows.Forms.DataGridView)
+        Try
+            'If edit = False Then
+            Dim i As Integer = 0
+            For Each row As DataGridViewRow In grid.Rows
+                If row.Visible = True Then
+                    row.Cells(GGRIDUPLOADSRNO.Index).Value = i + 1
+                    i = i + 1
+                End If
+            Next
+            'End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 End Class
