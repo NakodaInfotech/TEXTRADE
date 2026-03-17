@@ -1189,16 +1189,21 @@ NEXTLINE:
                     CMBAGENT.Text = Convert.ToString(dr("AGENT").ToString)
 
                     txtpono.Text = Convert.ToString(dr("PONO").ToString)
-                    podate.Text = Format(Convert.ToDateTime(dr("PODATE")).Date, "dd/MM/yyyy")
+                    podate.Text = If(IsDBNull(dr("PODATE")), "",
+                 Convert.ToDateTime(dr("PODATE")).ToString("dd/MM/yyyy"))
+                    'podate.Text = Format(Convert.ToDateTime(dr("PODATE")).Date, "dd/MM/yyyy")
                     TXTSONO.Text = Convert.ToString(dr("SONO").ToString)
                     TXTMULTISONO.Text = Convert.ToString(dr("MULTISONO").ToString)
-                    SODATE.Text = Format(Convert.ToDateTime(dr("SODATE")).Date, "dd/MM/yyyy")
-
+                    'SODATE.Text = Format(Convert.ToDateTime(dr("SODATE")).Date, "dd/MM/yyyy")
+                    SODATE.Text = If(IsDBNull(dr("SODATE")), "",
+                 Convert.ToDateTime(dr("SODATE")).ToString("dd/MM/yyyy"))
 
                     CMBTRANS.Text = dr("TRANSNAME").ToString
                     cmbcity.Text = dr("CITY").ToString
                     TXTLRNO.Text = dr("LRNO").ToString
-                    LRDATE.Text = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
+                    'LRDATE.Text = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
+                    LRDATE.Text = If(IsDBNull(dr("LRDATE")), "",
+                 Convert.ToDateTime(dr("LRDATE")).ToString("dd/MM/yyyy"))
                     CMBRISK.Text = dr("RISK").ToString
                     TXTBALENOFROM.Text = Val(dr("BALENOFROM"))
                     TXTBALENOTO.Text = Val(dr("BALENOTO"))
