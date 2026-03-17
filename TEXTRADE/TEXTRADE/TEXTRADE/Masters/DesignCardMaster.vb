@@ -3824,7 +3824,22 @@ line1:
     End Sub
 
     Private Sub CMBSELSHADE_Validated(sender As Object, e As EventArgs) Handles CMBSELSHADE.Validated
-        If CMBSELSHADE.Text <> "" Then FILLGRIDSELDESC()
+        If CMBSELSHADE.Text <> "" Then
+            Dim shadeToAdd As String = CMBSELSHADE.Text
+            Dim shadeExists As Boolean = False
+            ' Loop through GRIDSELDESC to check if the shade already exists
+            For Each row As DataGridViewRow In GRIDSELDESC.Rows
+                If row.Cells("SDSHADE").Value IsNot Nothing AndAlso
+           row.Cells("SDSHADE").Value.ToString() = shadeToAdd Then
+                    shadeExists = True
+                    Exit For
+                End If
+            Next
+            ' Only add if it doesn't exist
+            If Not shadeExists Then
+                FILLGRIDSELDESC()
+            End If
+        End If
     End Sub
     Sub EDITGRIDSELDESCROW()
 
@@ -3959,8 +3974,24 @@ line1:
 
     Private Sub CMBWARPSHADE_Validated(sender As Object, e As EventArgs) Handles CMBWARPSHADE.Validated
         If CMBWARPSHADE.Text <> "" Then
-            cmbgridshade.Text = CMBWARPSHADE.Text
-            FILLGRIDWARPDESC()
+            Dim shadeToAdd As String = CMBWARPSHADE.Text
+            Dim shadeExists As Boolean = False
+
+            ' Loop through the grid to see if the shade already exists
+            For Each row As DataGridViewRow In GRIDWARPDESC.Rows
+                If row.Cells("WDSHADE").Value IsNot Nothing AndAlso
+           row.Cells("WDSHADE").Value.ToString() = shadeToAdd Then
+                    shadeExists = True
+                    Exit For
+                End If
+            Next
+
+            ' Only add if it doesn't exist
+            If Not shadeExists Then
+                cmbgridshade.Text = shadeToAdd
+                FILLGRIDWARPDESC()
+            End If
+
             CMDWARPCLOSE.Focus()
         End If
     End Sub
@@ -4083,8 +4114,23 @@ line1:
 
     Private Sub cmbweftshade_Validated(sender As Object, e As EventArgs) Handles cmbweftshade.Validated
         If cmbweftshade.Text <> "" Then
-            cmbweftgridshade.Text = cmbweftshade.Text
-            FILLGRIDWEFTDESC()
+            Dim shadeToAdd As String = cmbweftshade.Text
+            Dim shadeExists As Boolean = False
+
+            ' Loop through GRIDWEFTDESC to check if shade already exists
+            For Each row As DataGridViewRow In GRIDWEFTDESC.Rows
+                If row.Cells("FDSHADE").Value IsNot Nothing AndAlso
+           row.Cells("FDSHADE").Value.ToString() = shadeToAdd Then
+                    shadeExists = True
+                    Exit For
+                End If
+            Next
+
+            ' Only add if it doesn't exist
+            If Not shadeExists Then
+                cmbweftgridshade.Text = shadeToAdd
+                FILLGRIDWEFTDESC()
+            End If
         End If
     End Sub
     Sub EDITGRIDWEFTDESCROW()
@@ -4626,7 +4672,7 @@ line1:
                 If DT.Rows.Count > 0 Then alParaval.Add(DT.Rows(0).Item("HSNCODE")) Else alParaval.Add(DT.Rows(0).Item("")) 'HSN CODE
                 alParaval.Add(Val(TXTWARPTL.Text.Trim))
                 alParaval.Add("0.000")
-                alParaval.Add(Format(Val(TXTTOTALWARPPE.Text.Trim), "0"))
+                alParaval.Add(Format(Val(TXTTOTALEXTRAENDS.Text.Trim), "0"))
                 alParaval.Add(Format(Val(TXTTOTALWARPWT.Text.Trim), "0.000"))
                 alParaval.Add(CmpId)
                 alParaval.Add(Userid)
