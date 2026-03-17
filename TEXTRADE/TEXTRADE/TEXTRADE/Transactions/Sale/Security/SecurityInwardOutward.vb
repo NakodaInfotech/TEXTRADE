@@ -388,7 +388,7 @@ LINE1:
             objVIEW.MaximizeBox = False
             objVIEW.MinimizeBox = False
             objVIEW.Size = New Size(900, 600)   ' 👈 adjust if needed
-            'objVIEW.LoadImage(imgPath)
+            objVIEW.LoadImage(imgPath)
             objVIEW.ShowDialog()
 
 
