@@ -8,4 +8,7 @@ Public Class ViewImage
             Throw ex
         End Try
     End Sub
+    Public Sub LoadImage(path As String)
+        pbsoftcopy.ImageLocation = path
+    End Sub
 End Class

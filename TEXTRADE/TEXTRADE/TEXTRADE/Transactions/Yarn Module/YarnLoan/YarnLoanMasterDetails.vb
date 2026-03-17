@@ -117,19 +117,19 @@ Public Class YarnLoanMasterDetails
             End Try
         End Sub
 
-    'Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
-    '    Try
+    Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLEXCEL.Click
+        Try
 
-    '        Dim PATH As String = Application.StartupPath & "\Grey Recd Details.XLS"
-    '        Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
-    '        opti.ShowGridLines = True
-    '        opti.SheetName = "Grey Recd Details"
-    '        gridbill.ExportToXls(PATH, opti)
-    '    EXCELCMPHEADER(PATH, "Yarn Loan Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
-    'Catch ex As Exception
-    '        MsgBox("Grey Recd Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
-    '    End Try
-    'End Sub
+            Dim PATH As String = Application.StartupPath & "\Yarn loan Details.XLS"
+            Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
+            opti.ShowGridLines = True
+            opti.SheetName = "Grey Recd Details"
+            gridbill.ExportToXls(PATH, opti)
+            EXCELCMPHEADER(PATH, "Yarn Loan Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+        Catch ex As Exception
+            MsgBox("Yarn loan Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+        End Try
+    End Sub
 
     Private Sub CMDREFRESH_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDREFRESH.Click
             fillgrid(" and dbo.GREYRECDJOBBER.GREY_yearid=" & YearId & " order by dbo.GREYRECDJOBBER.GREY_no ")
