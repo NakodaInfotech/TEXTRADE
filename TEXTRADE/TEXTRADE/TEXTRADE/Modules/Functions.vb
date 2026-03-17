@@ -28,7 +28,56 @@ Module Functions
 
 PRINTALL:
 
-            If ClientName = "APPLE" Then
+            If ClientName = "ANKUSH" Then
+
+                'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                Dim TEMPCATEGORY As String = ""
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
+                End If
+
+                oWrite.WriteLine("I8,A
+ZN
+q799
+O
+JF
+KIZZQ0
+KI9+0.0
+ZT
+Q800,25
+Arglabel 1000 31
+exit
+N
+A756,448,2,2,2,2,N,""SHADE""
+A756,621,2,2,2,2,N,""QUALITY""
+A530,448,2,2,2,2,N,""" & SHADE & """
+A530,621,2,2,2,2,N,""" & TEMPCATEGORY & """
+A756,534,2,2,2,2,N,""DESIGN""
+A572,621,2,2,2,2,N,"":""
+A530,534,2,2,2,2,N,""" & ITEMNAME & """
+A572,534,2,2,2,2,N,"":""
+A756,725,2,2,3,3,N,""" & UCase(CmpName) & """
+A756,275,2,2,2,2,N,""ROLLNO""
+A756,188,2,2,2,2,N,""UNIT""
+A756,361,2,2,2,2,N,""MTRS""
+A530,275,2,2,2,2,N,""" & BALENO & """ 
+A530,188,2,2,2,2,N,""" & UNIT & """
+A530,361,2,2,2,2,N,""" & Format(Val(MTRS), "0.00") & """
+A576,361,2,2,2,2,N,"":""
+A572,448,2,2,2,2,N,"":""
+A572,188,2,2,2,2,N,"":""
+A756,101,2,2,2,2,N,""BARCODE""
+A529,101,2,2,2,2,N,""" & BARCODE & """
+A572,275,2,2,2,2,N,"":""
+A572,101,2,2,2,2,N,"":""
+b57,238,Q,m2,s10,eL,iA,""" & BARCODE & """
+A270,188,2,2,2,2,N,""" & RACK & """
+P1")
+                oWrite.Dispose()
+
+            ElseIf ClientName = "APPLE" Then
 
                 oWrite.WriteLine("SIZE 101.6 mm, 101.6 mm
 DIRECTION 0,0

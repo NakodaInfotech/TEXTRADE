@@ -117,7 +117,7 @@ Public Class GreyRecdFromJobberDetails
         End Try
     End Sub
 
-    Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
+    Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) 
         Try
 
             Dim PATH As String = Application.StartupPath & "\Grey Recd Details.XLS"

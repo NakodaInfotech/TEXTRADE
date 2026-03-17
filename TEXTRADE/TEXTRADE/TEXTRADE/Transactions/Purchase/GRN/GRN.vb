@@ -2220,7 +2220,7 @@ LINE1:
         gridgrn.FirstDisplayedScrollingRowIndex = gridgrn.RowCount - 1
 
         If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "BIGAPPLE" Or ClientName = "MASHOK" Or ClientName = "SWPL" Or ClientName = "MMC" Then TXTBALENO.Clear()
-        If ClientName = "APPLE" Then TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
+        If ClientName = "APPLE" Or ClientName = "ANKUSH" Then TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
         If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
 
         txtgridremarks.Clear()
@@ -2235,7 +2235,7 @@ LINE1:
         TXTBARCODE.Clear()
         txtsrno.Text = gridgrn.RowCount + 1
 
-        If ClientName = "MASHOK" Or ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "BRILLANTO" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "REALCORPORATION" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "APPLE" Then
+        If ClientName = "MASHOK" Or ClientName = "AXIS" Or ClientName = "SUCCESS" Or ClientName = "BRILLANTO" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "REALCORPORATION" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "APPLE" Or ClientName = "ANKUSH" Then
             TXTBALENO.Focus()
         ElseIf ClientName = "MOMAI" Or ClientName = "KREEVE" Or ClientName = "BALAJI" Or ClientName = "TINUMINU" Then
             If FRMSTRING = "GRN FANCY" And (ClientName = "BALAJI") Then TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
@@ -3479,12 +3479,13 @@ LINE1:
                 TXTGREYKNITTINGNO.Visible = True
             End If
 
-            If ClientName = "APPLE" Then
+            If ClientName = "APPLE" Or ClientName = "ANKUSH" Then
                 cmdselectPO.TabStop = False
                 cmbGodown.TabStop = False
                 CMBBROKER.TabStop = False
                 CMBQUALITY.TabStop = False
                 TXTCUT.TabStop = False
+                GBALENO.HeaderText = "Roll No"
             End If
 
             If ClientName = "BALAJI" Then

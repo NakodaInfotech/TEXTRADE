@@ -22,7 +22,6 @@ Partial Class GreyRecdFromJobberDetails
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GreyRecdFromJobberDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
@@ -30,8 +29,7 @@ Partial Class GreyRecdFromJobberDetails
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripdelete = New System.Windows.Forms.ToolStripButton()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,7 +45,6 @@ Partial Class GreyRecdFromJobberDetails
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,7 +109,7 @@ Partial Class GreyRecdFromJobberDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.ToolStripdelete, Me.PrintToolStripButton})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1153, 25)
@@ -132,23 +129,14 @@ Partial Class GreyRecdFromJobberDetails
         Me.toolStripSeparator.Name = "toolStripSeparator"
         Me.toolStripSeparator.Size = New System.Drawing.Size(6, 25)
         '
-        'ToolStripdelete
+        'TOOLREFRESH
         '
-        Me.ToolStripdelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripdelete.Image = CType(resources.GetObject("ToolStripdelete.Image"), System.Drawing.Image)
-        Me.ToolStripdelete.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripdelete.Name = "ToolStripdelete"
-        Me.ToolStripdelete.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripdelete.Text = "C&ut"
-        '
-        'PrintToolStripButton
-        '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = CType(resources.GetObject("PrintToolStripButton.Image"), System.Drawing.Image)
-        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.PrintToolStripButton.Text = "&Print"
+        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
+        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLREFRESH.Name = "TOOLREFRESH"
+        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLREFRESH.Text = "&Refresh"
         '
         'gridbilldetails
         '
@@ -208,7 +196,7 @@ Partial Class GreyRecdFromJobberDetails
         '
         Me.GNAME.Caption = "Jobber Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
@@ -302,15 +290,6 @@ Partial Class GreyRecdFromJobberDetails
         Me.GREMARKS.VisibleIndex = 12
         Me.GREMARKS.Width = 180
         '
-        'TOOLREFRESH
-        '
-        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
-        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLREFRESH.Name = "TOOLREFRESH"
-        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLREFRESH.Text = "&Refresh"
-        '
         'GreyRecdFromJobberDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -349,8 +328,6 @@ Partial Class GreyRecdFromJobberDetails
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolStripSeparator As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ToolStripdelete As System.Windows.Forms.ToolStripButton
-    Friend WithEvents PrintToolStripButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents GCHALLANDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDREFRESH As System.Windows.Forms.Button
     Friend WithEvents cmdexit As System.Windows.Forms.Button
