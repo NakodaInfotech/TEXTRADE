@@ -1,7 +1,12 @@
-﻿Imports System.Runtime.Remoting.Metadata.W3cXsd2001
-Imports System.Windows.Forms
+﻿Imports System.IO
+Imports System.Net
+Imports System.Net.Http
 Imports System.ComponentModel
+Imports System.Runtime.Remoting.Metadata.W3cXsd2001
+Imports System.Windows.Forms
 Imports BL
+Imports DevExpress.Diagram.Core.Native
+Imports DevExpress.Utils.CommonDialogs
 Public Class SecurityInwardOutward
     'following two variables is only for used in edit mode....
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -46,26 +51,25 @@ Public Class SecurityInwardOutward
                         cmbname.Text = dr("NAME")
                         TXTMATRERIAL.Text = dr("MATERIAL")
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
-                        TXTQUANTITY.Text = dr("QUANTITY")
+                        TXTQUANTITY.Text = dr("QTY")
 
 
 
                     Next
 
-                    Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(STORESTOCKADJUSTMENT_INDESC.SA_INGRIDSRNO, 0) AS GRIDSRNO,  ISNULL(STORESTOCKADJUSTMENT_INDESC.SA_INDESC, '') AS INDESC, ISNULL(STORESTOCKADJUSTMENT_INDESC.SA_INQTY, 0) AS INQTY, ISNULL(UNITMASTER.unit_abbr, '') AS INUNIT,  ISNULL(STORESTOCKADJUSTMENT_INDESC.SA_INRATE, 0) AS INRATE,  ISNULL(STOREITEMMASTER.STOREITEM_NAME, '') AS INITEMNAME ", "", " STORESTOCKADJUSTMENT LEFT OUTER JOIN STORESTOCKADJUSTMENT_INDESC ON STORESTOCKADJUSTMENT.SA_no = STORESTOCKADJUSTMENT_INDESC.SA_NO AND STORESTOCKADJUSTMENT.SA_yearid = STORESTOCKADJUSTMENT_INDESC.SA_YEARID LEFT OUTER JOIN UNITMASTER ON STORESTOCKADJUSTMENT_INDESC.SA_INUNITID = UNITMASTER.unit_id LEFT OUTER JOIN STOREITEMMASTER ON STORESTOCKADJUSTMENT_INDESC.SA_INITEMID = STOREITEMMASTER.STOREITEM_ID  ", " AND STORESTOCKADJUSTMENT.SA_NO = " & TEMPSECNO & " AND STORESTOCKADJUSTMENT_INDESC.SA_YEARID = " & YearId & " ORDER BY STORESTOCKADJUSTMENT_INDESC.SA_INGRIDSRNO")
-
-                    For Each DR As DataRow In DT.Rows
-                        'Item Grid
-                        gridupload.Rows.Add(DR("GRIDSRNO").ToString, DR("INITEMNAME").ToString, DR("INDESC").ToString, Format(Val(DR("INQTY")), "0.00"), DR("INUNIT"), Format(Val(DR("INRATE")), "0.00"))
-
-
-                        TabControl1.SelectedIndex = 1
-
-                    Next
+                    Dim OBJCM As New ClsCommon
+                    dttable = OBJCM.SEARCH(" SEC_GRIDSRNO AS GRIDSRNO, SEC_NAME AS NAME, SEC_IMGPATH AS IMGPATH, SEC_MAINSRNO AS MAINSRNO, ISNULL(SEC_IMGUPLOADPATH, '') AS IMAGEUPLOADPATH ", "", " SECURITYINOUT_UPLOAD ", " AND SEC_NO = " & TEMPSECNO & " AND SEC_YEARID = " & YearId)
+                    If dttable.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable.Rows
+                            'If IsDBNull(DTR("IMGPATH")) = False Then GRIDUPLOADDESC.Rows.Add(Val(DTR("GRIDSRNO")), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))), Val(DTR("MAINSRNO"))) Else GRIDUPLOADDESC.Rows.Add(Val(DTR("GRIDSRNO")), DTR("NAME"), Nothing, Val(DTR("MAINSRNO")))
+                            If IsDBNull(DTR("IMGPATH")) = False Then GRIDUPLOADDESC.Rows.Add(Val(DTR("GRIDSRNO")), DTR("NAME"), DTR("IMGPATH"), Val(DTR("MAINSRNO")), DTR("IMAGEUPLOADPATH")) Else GRIDUPLOADDESC.Rows.Add(Val(DTR("GRIDSRNO")), DTR("NAME"), Nothing, Val(DTR("MAINSRNO")))
+                            TXTUPLOADPATH.Text = DTR("IMGPATH")
+                            PBIMG.ImageLocation = TXTUPLOADPATH.Text.Trim
+                        Next
+                    End If
                 Else
-                    EDIT = False
-                    CLEAR()
+                    edit = False
+                    clear()
                 End If
 
             End If
@@ -99,6 +103,7 @@ Public Class SecurityInwardOutward
         gridupload.RowCount = 0
         gridDoubleClick = False
         getmaxno()
+        TXTUPLOADPATH.Clear()
 
 
         'EP.Clear()
@@ -144,7 +149,7 @@ Public Class SecurityInwardOutward
 
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(SA_no),0) + 1 ", " STORESTOCKADJUSTMENT ", " AND SA_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(SEC_NO),0) + 1 ", " SECURITYINOUT ", " AND SEC_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTSECNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -162,6 +167,7 @@ Public Class SecurityInwardOutward
         Try
 
             Cursor.Current = Cursors.WaitCursor
+            Dim IntResult As Integer
             EP.Clear()
             If Not ERRORVALID() Then
                 Exit Sub
@@ -169,11 +175,8 @@ Public Class SecurityInwardOutward
 
             Dim alParaval As New ArrayList
 
-            If TXTSECNO.ReadOnly = False Then
-                alParaval.Add(Val(TXTSECNO.Text.Trim))
-            Else
-                alParaval.Add(0)
-            End If
+            alParaval.Add(Val(TXTSECNO.Text.Trim))
+
             alParaval.Add(Format(Convert.ToDateTime(DTSECDATE.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(cmbname.Text.Trim)
             alParaval.Add(TXTWT.Text.Trim)
@@ -186,7 +189,37 @@ Public Class SecurityInwardOutward
             alParaval.Add(Userid)
             alParaval.Add(YearId)
 
+            Dim objclsPurord As New ClsSecurityInwardOutward()
+            objclsPurord.alParaval = alParaval
 
+            If edit = False Then
+                If USERADD = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+
+                Dim DT As DataTable = objclsPurord.SAVE()
+                TXTSECNO.Text = DT.Rows(0).Item(0)
+                MessageBox.Show("Details Added")
+
+            Else
+
+
+                If USEREDIT = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                alParaval.Add(TEMPSECNO)
+                IntResult = objclsPurord.UPDATE()
+                MessageBox.Show("Details Updated")
+                edit = False
+            End If
+
+            If GRIDUPLOADDESC.RowCount > 0 Then SAVEIMAGE()
+            ' PRINTBARCODE()
+
+            clear()
+            'CMDSELECTSTOCK.Visible = True
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -217,7 +250,7 @@ LINE1:
             End If
             If gridupload.RowCount = 0 And GRIDUPLOADDESC.RowCount = 0 And TEMPSECNO > 1 Then
                 TXTSECNO.Text = TEMPSECNO
-                GoTo LINE1
+                'GoTo LINE1
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -244,7 +277,7 @@ LINE1:
             End If
             If gridupload.RowCount = 0 And GRIDUPLOADDESC.RowCount = 0 And TEMPSECNO < MAXNO Then
                 TXTSECNO.Text = TEMPSECNO
-                GoTo LINE1
+                'GoTo LINE1
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -271,7 +304,149 @@ LINE1:
         If cmbname.Text.Trim = "" Then FILLNAME(cmbname, edit, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' or GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')")
     End Sub
 
+    Private Sub cmddelete_Click(sender As Object, e As EventArgs) Handles cmddelete.Click
+        Try
+            If edit = True Then
+                If MsgBox("Wish to Delete Security In/Out?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+
+
+                Dim ALPARAVAL As New ArrayList
+                Dim OBSTOCK As New ClsSecurityInwardOutward
+
+                ALPARAVAL.Add(TEMPSECNO)
+                ALPARAVAL.Add(CmpId)
+                ALPARAVAL.Add(Locationid)
+                ALPARAVAL.Add(Userid)
+                ALPARAVAL.Add(YearId)
+                OBSTOCK.alParaval = ALPARAVAL
+                Dim INTRES As Integer = OBSTOCK.DELETE()
+                MsgBox("Security In/Out Deleted Succesfully")
+                clear()
+                edit = False
+                DTSECDATE.Focus()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmdupload_Click(sender As Object, e As EventArgs) Handles cmdupload.Click
+        OpenFileDialog1.Filter = "Pictures (*.jpg;*.jpeg)|*.jpg;*.jpeg"
+        If OpenFileDialog1.ShowDialog() = DialogResult.OK Then TXTPHOTOIMAGEUPLOADPATH.Text = OpenFileDialog1.FileName
+        On Error Resume Next
+        If TXTPHOTOIMAGEUPLOADPATH.Text.Trim.Length <> 0 Then
+            PBIMG.ImageLocation = TXTPHOTOIMAGEUPLOADPATH.Text.Trim
+            txtuploadname.Text = TXTSECNO.Text & "-" & GRIDUPLOADDESC.Item(DSRNO.Index, GRIDUPLOADDESC.CurrentRow.Index).Value.ToString & "-" & TXTUPLOADSRNO.Text & "-" & YearId & ".jpg"
+            'TXTFILENAME.Text = TXTFILENAME.Text & "_" & Val(TXTITEMNO.Text.Trim) & "_" & CMBDESIGNNAME.Text.Trim & ".jpg"
+            TXTUPLOADPATH.Text = CATALOGPATH & "\" & txtuploadname.Text.Trim
+            'GRIDUPLOADDESC.Item(DIMGPATH.Index, GRIDQC.CurrentRow.Index).Value = CATALOGPATH & "\" & txtuploadname.Text.Trim
+        End If
+    End Sub
+
+    Private Sub CMDREMOVE_Click(sender As Object, e As EventArgs) Handles CMDREMOVE.Click
+        Try
+            PBIMG.Image = Nothing
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDVIEW_Click(sender As Object, e As EventArgs) Handles CMDVIEW.Click
+        Try
+            'If gridupload.SelectedRows.Count > 0 Then
+            '    Dim OBJCM As New ClsCommon
+            '    Dim DTTABLE As DataTable
+            '    DTTABLE = OBJCM.SEARCH(" FQC_GRIDSRNO AS GRIDSRNO, FQC_NAME AS NAME, FQC_IMGPATH AS IMGPATH, FQC_MAINSRNO AS MAINSRNO", "", " FINALQUALITYCHECK_UPLOAD", " AND FQC_NO = " & TEMPQCNO & " AND  FQC_MAINSRNO =   " & gridupload.Item(GQCSRNO.Index, gridupload.CurrentRow.Index).Value & "   AND   FQC_GRIDSRNO = " & gridupload.Item(GGRIDUPLOADSRNO.Index, gridupload.CurrentRow.Index).Value & " AND FQC_YEARID = " & YearId)
+            '    If DTTABLE.Rows.Count > 0 Then
+            '        For Each DTR As DataRow In DTTABLE.Rows
+            '            'If IsDBNull(DTR("IMGPATH")) = False Then GRIDUPLOADDESC.Rows.Add(Val(DTR("GRIDSRNO")), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))), Val(DTR("MAINSRNO"))) Else GRIDUPLOADDESC.Rows.Add(Val(DTR("GRIDSRNO")), DTR("NAME"), Nothing, Val(DTR("MAINSRNO")))
+            '            If IsDBNull(DTR("IMGPATH")) = False Then GRIDUPLOADDESC.Rows.Add(Val(DTR("GRIDSRNO")), DTR("NAME"), DTR("IMGPATH"), Val(DTR("MAINSRNO"))) Else GRIDUPLOADDESC.Rows.Add(Val(DTR("GRIDSRNO")), DTR("NAME"), Nothing, Val(DTR("MAINSRNO")))
+            '            TXTUPLOADPATH.Text = DTR("IMGPATH")
+            '            PBIMG.ImageLocation = TXTUPLOADPATH.Text.Trim
+            '            If Path.GetExtension(DTR("IMGPATH")) = ".pdf" Then
+            '                System.Diagnostics.Process.Start(DTR("IMGPATH"))
+            '            Else
+            '                Dim objVIEW As New ViewImage
+            '                objVIEW.LoadImage(PBIMG.ImageLocation)
+            '                'objVIEW.pbsoftcopy.Image = PBIMG.ImageLocation
+            '                objVIEW.ShowDialog()
+            '            End If
+            '        Next
+            '    End If
+            'End If
+
+            Dim imgPath As String = PBIMG.ImageLocation
+
+            If imgPath.StartsWith("http", StringComparison.OrdinalIgnoreCase) Then
+                imgPath = DownloadImageToTemp(imgPath)
+            End If
+
+            Dim objVIEW As New ViewImage
+            objVIEW.StartPosition = FormStartPosition.CenterScreen
+            objVIEW.FormBorderStyle = FormBorderStyle.FixedSingle
+            objVIEW.MaximizeBox = False
+            objVIEW.MinimizeBox = False
+            objVIEW.Size = New Size(900, 600)   ' 👈 adjust if needed
+            'objVIEW.LoadImage(imgPath)
+            objVIEW.ShowDialog()
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Function DownloadImageToTemp(url As String) As String
+        Dim tempPath As String = Path.Combine(Path.GetTempPath(), Path.GetFileName(url))
+        Using wc As New Net.WebClient()
+            wc.DownloadFile(url, tempPath)
+        End Using
+        Return tempPath
+    End Function
+
+    Private Sub CMDRMV_Click(sender As Object, e As EventArgs) Handles CMDRMV.Click
+        'If Convert.ToBoolean(GRIDQC.Rows(GRIDQC.CurrentRow.Index).Cells(GDONE.Index).Value) = True Or lbllocked.Visible = True Then
+        '    MsgBox("Item Locked", MsgBoxStyle.Critical)
+        '    Exit Sub
+        'End If
+
+        'If GRIDDOUBLECLICK = True Then
+        '    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
+        '    Exit Sub
+        'End If
+        Dim qcSrno As Integer = Val(GRIDUPLOADDESC.Rows(GRIDUPLOADDESC.CurrentRow.Index).Cells(DSRNO.Index).Value)
+
+        'Loop backward to avoid skipping rows
+        For i As Integer = GRIDUPLOADDESC.Rows.Count - 1 To 0 Step -1
+
+
+
+            If Val(GRIDUPLOADDESC.Rows(i).Cells("DMAINSRNO").Value) = qcSrno Then
+
+                Dim imgPath As String = Convert.ToString(GRIDUPLOADDESC.Rows(i).Cells(DIMGPATH.Index).Value)
+
+                'Delete image from mapped drive
+                If Not String.IsNullOrWhiteSpace(imgPath) Then
+                    If File.Exists(imgPath) Then
+                        File.Delete(imgPath)
+                    End If
+                End If
+
+                'Remove row from grid
+                GRIDUPLOADDESC.Rows.RemoveAt(i)
+                gridupload.Rows.Clear()
+                'gridupload.Refresh()
+                'Application.DoEvents()
+
+
+            End If
+
+        Next
+    End Sub
+
     Private Sub SecurityInwardOutward_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+
         If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
             If ERRORVALID() = True Then
                 Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
@@ -312,10 +487,10 @@ LINE1:
 
 
 
-            If gridupload.RowCount = 0 And GRIDUPLOADDESC.RowCount = 0 Then
-                EP.SetError(TabControl1, "Fill Item Details")
-                bln = False
-            End If
+            'If gridupload.RowCount = 0 And GRIDUPLOADDESC.RowCount = 0 Then
+            '    EP.SetError(TabControl1, "Fill Item Details")
+            '    bln = False
+            'End If
             'CHEKC BARCODE IS PRESENT IN DATABASE OR NOT
 
             If Not datecheck(DTSECDATE.Text) Then
@@ -333,4 +508,46 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Function
+
+    Sub SAVEIMAGE()
+        Try
+            'UPLOAD IMAGE
+            Dim OBJQC As New ClsSecurityInwardOutward
+            For Each row As Windows.Forms.DataGridViewRow In GRIDUPLOADDESC.Rows
+                Dim ALPARAVAL As New ArrayList
+                If row.Cells(0).Value <> Nothing Then
+
+                    ALPARAVAL.Add(Val(TXTSECNO.Text.Trim))
+                    ALPARAVAL.Add(Val(row.Cells(DSRNO.Index).Value))
+                    ALPARAVAL.Add(row.Cells(DNAME.Index).Value.ToString)
+                    ALPARAVAL.Add(row.Cells(DIMGPATH.Index).Value.ToString)
+
+                    'If row.Cells(DIMGPATH.Index).Value IsNot Nothing Then
+                    '    Dim MS As New IO.MemoryStream
+                    '    PBIMG.Image = row.Cells(DIMGPATH.Index).Value
+                    '    Dim IMG As New Bitmap(PBIMG.Image)
+                    '    IMG.Save(MS, Drawing.Imaging.ImageFormat.Png)
+                    '    ALPARAVAL.Add(MS.ToArray)
+                    'Else
+                    '    ALPARAVAL.Add(DBNull.Value)
+                    'End If
+
+                    ALPARAVAL.Add(Val(row.Cells(DMAINSRNO.Index).Value))
+                    ALPARAVAL.Add(row.Cells(DIMAGEUPLOADPATH.Index).Value.ToString)
+                    ALPARAVAL.Add(CmpId)
+                    ALPARAVAL.Add(YearId)
+
+                    OBJQC.alParaval = ALPARAVAL
+                    Dim INTRES As Integer = OBJQC.SAVEIMAGE()
+
+                End If
+            Next
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+
 End Class
