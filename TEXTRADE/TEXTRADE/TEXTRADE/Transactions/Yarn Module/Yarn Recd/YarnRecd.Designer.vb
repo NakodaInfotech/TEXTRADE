@@ -191,6 +191,10 @@ Partial Class YarnRecd
         Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.TXTFILENO = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TXTEWAYBILLNO = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -209,6 +213,10 @@ Partial Class YarnRecd
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTEWAYBILLNO)
+        Me.BlendPanel1.Controls.Add(Me.Label17)
+        Me.BlendPanel1.Controls.Add(Me.TXTFILENO)
+        Me.BlendPanel1.Controls.Add(Me.Label13)
         Me.BlendPanel1.Controls.Add(Me.LBLYARN)
         Me.BlendPanel1.Controls.Add(Me.Label9)
         Me.BlendPanel1.Controls.Add(Me.TXTVEHICLENO)
@@ -436,7 +444,7 @@ Partial Class YarnRecd
         Me.cmbGodown.MaxDropDownItems = 14
         Me.cmbGodown.Name = "cmbGodown"
         Me.cmbGodown.Size = New System.Drawing.Size(204, 23)
-        Me.cmbGodown.TabIndex = 8
+        Me.cmbGodown.TabIndex = 9
         '
         'YARNDATE
         '
@@ -460,7 +468,7 @@ Partial Class YarnRecd
         Me.TXTLOTNO.Location = New System.Drawing.Point(832, 77)
         Me.TXTLOTNO.Name = "TXTLOTNO"
         Me.TXTLOTNO.Size = New System.Drawing.Size(70, 23)
-        Me.TXTLOTNO.TabIndex = 9
+        Me.TXTLOTNO.TabIndex = 10
         Me.TXTLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LBLLOTNO
@@ -647,7 +655,7 @@ Partial Class YarnRecd
         Me.cmddelete.Location = New System.Drawing.Point(577, 484)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 15
+        Me.cmddelete.TabIndex = 17
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -661,7 +669,7 @@ Partial Class YarnRecd
         Me.cmdselectPO.Location = New System.Drawing.Point(534, 450)
         Me.cmdselectPO.Name = "cmdselectPO"
         Me.cmdselectPO.Size = New System.Drawing.Size(80, 28)
-        Me.cmdselectPO.TabIndex = 12
+        Me.cmdselectPO.TabIndex = 14
         Me.cmdselectPO.Text = "Select &P.O"
         Me.cmdselectPO.UseVisualStyleBackColor = False
         '
@@ -675,7 +683,7 @@ Partial Class YarnRecd
         Me.cmdclear.Location = New System.Drawing.Point(491, 484)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 14
+        Me.cmdclear.TabIndex = 16
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
@@ -689,7 +697,7 @@ Partial Class YarnRecd
         Me.cmdok.Location = New System.Drawing.Point(620, 450)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 13
+        Me.cmdok.TabIndex = 15
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -703,7 +711,7 @@ Partial Class YarnRecd
         Me.cmdexit.Location = New System.Drawing.Point(663, 484)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 16
+        Me.cmdexit.TabIndex = 18
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -860,7 +868,7 @@ Partial Class YarnRecd
         Me.GroupBox5.Location = New System.Drawing.Point(27, 422)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(187, 107)
-        Me.GroupBox5.TabIndex = 11
+        Me.GroupBox5.TabIndex = 13
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Remarks"
         '
@@ -1029,7 +1037,7 @@ Partial Class YarnRecd
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1199, 295)
-        Me.TabControl1.TabIndex = 10
+        Me.TabControl1.TabIndex = 12
         '
         'TabPage1
         '
@@ -1972,6 +1980,50 @@ Partial Class YarnRecd
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'TXTFILENO
+        '
+        Me.TXTFILENO.BackColor = System.Drawing.Color.White
+        Me.TXTFILENO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTFILENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFILENO.Location = New System.Drawing.Point(967, 107)
+        Me.TXTFILENO.Name = "TXTFILENO"
+        Me.TXTFILENO.Size = New System.Drawing.Size(101, 23)
+        Me.TXTFILENO.TabIndex = 11
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.BackColor = System.Drawing.Color.Transparent
+        Me.Label13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.ForeColor = System.Drawing.Color.Black
+        Me.Label13.Location = New System.Drawing.Point(919, 111)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(45, 15)
+        Me.Label13.TabIndex = 678
+        Me.Label13.Text = "File No"
+        '
+        'TXTEWAYBILLNO
+        '
+        Me.TXTEWAYBILLNO.BackColor = System.Drawing.Color.White
+        Me.TXTEWAYBILLNO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTEWAYBILLNO.Location = New System.Drawing.Point(650, 109)
+        Me.TXTEWAYBILLNO.Name = "TXTEWAYBILLNO"
+        Me.TXTEWAYBILLNO.Size = New System.Drawing.Size(132, 22)
+        Me.TXTEWAYBILLNO.TabIndex = 8
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.BackColor = System.Drawing.Color.Transparent
+        Me.Label17.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.Black
+        Me.Label17.Location = New System.Drawing.Point(587, 113)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(62, 14)
+        Me.Label17.TabIndex = 845
+        Me.Label17.Text = "E-Way Bill"
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'YarnRecd
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2153,4 +2205,8 @@ Partial Class YarnRecd
     Friend WithEvents CMBPER As ComboBox
     Friend WithEvents LBLTOTALAMT As Label
     Friend WithEvents LBLYARN As Label
+    Friend WithEvents TXTFILENO As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents TXTEWAYBILLNO As TextBox
+    Friend WithEvents Label17 As Label
 End Class
