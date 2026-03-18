@@ -1294,6 +1294,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.OPENINGBEAMSTOCK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -3523,7 +3524,7 @@ Partial Class MDIMain
         '
         'OPENST_MASTER
         '
-        Me.OPENST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.INHOUSEST, Me.ATPARTYST, Me.ToolStripSeparator81, Me.OPSTOCKGREYTRANS_MASTER, Me.OPSTOCKGREYPROCESS_MASTER, Me.ToolStripSeparator323, Me.OPENING_STORESTOCK, Me.ToolStripSeparator119, Me.YARNSTOCK_GODOWN, Me.YARNSTOCK_JOBBER, Me.ToolStripSeparator338, Me.ROLLSTOCK_GODOWN, Me.ROLLSTOCK_WARPER, Me.YARNSTOCKJOBBER_TOOL})
+        Me.OPENST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.INHOUSEST, Me.ATPARTYST, Me.ToolStripSeparator81, Me.OPSTOCKGREYTRANS_MASTER, Me.OPSTOCKGREYPROCESS_MASTER, Me.ToolStripSeparator323, Me.OPENING_STORESTOCK, Me.ToolStripSeparator119, Me.YARNSTOCK_GODOWN, Me.YARNSTOCK_JOBBER, Me.ToolStripSeparator338, Me.ROLLSTOCK_GODOWN, Me.ROLLSTOCK_WARPER, Me.YARNSTOCKJOBBER_TOOL, Me.OPENINGBEAMSTOCK_MASTER})
         Me.OPENST_MASTER.Enabled = False
         Me.OPENST_MASTER.Name = "OPENST_MASTER"
         Me.OPENST_MASTER.Size = New System.Drawing.Size(184, 22)
@@ -4365,13 +4366,13 @@ Partial Class MDIMain
         'SECURITYINWARDOUTWARDADD
         '
         Me.SECURITYINWARDOUTWARDADD.Name = "SECURITYINWARDOUTWARDADD"
-        Me.SECURITYINWARDOUTWARDADD.Size = New System.Drawing.Size(180, 22)
+        Me.SECURITYINWARDOUTWARDADD.Size = New System.Drawing.Size(168, 22)
         Me.SECURITYINWARDOUTWARDADD.Text = "Add New Entry"
         '
         'SECURITYINWARDOUTWARDEDIT
         '
         Me.SECURITYINWARDOUTWARDEDIT.Name = "SECURITYINWARDOUTWARDEDIT"
-        Me.SECURITYINWARDOUTWARDEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.SECURITYINWARDOUTWARDEDIT.Size = New System.Drawing.Size(168, 22)
         Me.SECURITYINWARDOUTWARDEDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator22
@@ -9437,6 +9438,12 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
+        'OPENINGBEAMSTOCK_MASTER
+        '
+        Me.OPENINGBEAMSTOCK_MASTER.Name = "OPENINGBEAMSTOCK_MASTER"
+        Me.OPENINGBEAMSTOCK_MASTER.Size = New System.Drawing.Size(246, 22)
+        Me.OPENINGBEAMSTOCK_MASTER.Text = "Opening Beam Stock"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10734,4 +10741,5 @@ Partial Class MDIMain
     Friend WithEvents SECURITYINWARDOUTWARD_MASTER As ToolStripMenuItem
     Friend WithEvents SECURITYINWARDOUTWARDADD As ToolStripMenuItem
     Friend WithEvents SECURITYINWARDOUTWARDEDIT As ToolStripMenuItem
+    Friend WithEvents OPENINGBEAMSTOCK_MASTER As ToolStripMenuItem
 End Class

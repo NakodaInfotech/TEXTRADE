@@ -95,6 +95,8 @@ Public Class YarnRecd
         getmaxno()
 
         TXTVEHICLENO.Clear()
+        TXTEWAYBILLNO.Clear()
+        TXTFILENO.Clear()
         LBLTOTALCONES.Text = 0
         lbltotalqty.Text = 0
         LBLTOTALWT.Text = 0
@@ -325,6 +327,9 @@ CHECKNEXTLINE:
             alParaval.Add(TXTLRNO.Text.Trim)
             alParaval.Add(TXTVEHICLENO.Text.Trim)
             alParaval.Add(Val(LBLTOTALAMT.Text.Trim))
+            alParaval.Add(TXTFILENO.Text.Trim)
+            alParaval.Add(TXTEWAYBILLNO.Text.Trim)
+
 
 
             Dim gridsrno As String = ""
@@ -779,7 +784,8 @@ LINE1:
                         TXTHAMALICHARGES.Text = Convert.ToString(dr("HAMALICHARGES").ToString)
                         TXTLRNO.Text = Convert.ToString(dr("TRANSPORTLRNO").ToString)
                         TXTVEHICLENO.Text = Convert.ToString(dr("VEHICLENO").ToString)
-
+                        TXTEWAYBILLNO.Text = Convert.ToString(dr("EWAYBILLNO").ToString)
+                        TXTFILENO.Text = Convert.ToString(dr("FILENO").ToString)
 
 
                         cmbtrans.Text = dr("TRANSNAME").ToString
@@ -1803,14 +1809,14 @@ LINE1:
             Dim DTSAVE As New System.Data.DataTable
             'DTSAVE.Columns.Add("LOTNO")
             DTSAVE.Columns.Add("ITEMNAME")
-            'DTSAVE.Columns.Add("MILLNAME")
+            DTSAVE.Columns.Add("MILLNAME")
             'DTSAVE.Columns.Add("DESIGNNO")
             DTSAVE.Columns.Add("PARTYLOTNO")
-            'DTSAVE.Columns.Add("PARTYCOLOR")
-            'DTSAVE.Columns.Add("COLOR")
+            DTSAVE.Columns.Add("PARTYCOLOR")
+            DTSAVE.Columns.Add("COLOR")
             DTSAVE.Columns.Add("BAGS")
             DTSAVE.Columns.Add("WT")
-            DTSAVE.Columns.Add("RATE")
+            'DTSAVE.Columns.Add("RATE")
 
             'DTSAVE.Columns.Add("CONES")   'MTRS
             DTSAVE.Columns.Add("BOXNO")
@@ -1839,43 +1845,50 @@ LINE1:
                     DTROWSAVE("ITEMNAME") = ""
                 End If
 
-                'If IsDBNull(oSheet.Range("B" & I.ToString).Text) = False Then
-                '    DTROWSAVE("MILLNAME") = oSheet.Range("B" & I.ToString).Text
-                'Else
-                '    DTROWSAVE("MILLNAME") = ""
-                'End If
+                If IsDBNull(oSheet.Range("B" & I.ToString).Text) = False Then
+                    DTROWSAVE("MILLNAME") = oSheet.Range("B" & I.ToString).Text
+                Else
+                    DTROWSAVE("MILLNAME") = ""
+                End If
 
                 'If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
                 '    DTROWSAVE("DESIGNNO") = oSheet.Range("C" & I.ToString).Text
                 'Else
                 '    DTROWSAVE("DESIGNNO") = ""
                 'End If
+                If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
+                    DTROWSAVE("PARTYCOLOR") = oSheet.Range("C" & I.ToString).Text
+                Else
+                    DTROWSAVE("PARTYCOLOR") = ""
+                End If
 
-                If IsDBNull(oSheet.Range("B" & I.ToString).Text) = False Then
-                    DTROWSAVE("PARTYLOTNO") = oSheet.Range("B" & I.ToString).Text
+                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
+                    DTROWSAVE("COLOR") = oSheet.Range("D" & I.ToString).Text
+                Else
+                    DTROWSAVE("COLOR") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
+                    DTROWSAVE("PARTYLOTNO") = oSheet.Range("E" & I.ToString).Text
                 Else
                     DTROWSAVE("PARTYLOTNO") = ""
                 End If
 
 
-                If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
-                    DTROWSAVE("BOXNO") = oSheet.Range("C" & I.ToString).Text
+                If IsDBNull(oSheet.Range("F" & I.ToString).Text) = False Then
+                    DTROWSAVE("BOXNO") = oSheet.Range("F" & I.ToString).Text
                 Else
                     DTROWSAVE("BOXNO") = ""
                 End If
 
 
-                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
-                    DTROWSAVE("WT") = Val(oSheet.Range("D" & I.ToString).Text)
+                If IsDBNull(oSheet.Range("G" & I.ToString).Text) = False Then
+                    DTROWSAVE("WT") = Val(oSheet.Range("G" & I.ToString).Text)
                 Else
                     DTROWSAVE("WT") = 0
                 End If
 
-                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
-                    DTROWSAVE("RATE") = Val(oSheet.Range("E" & I.ToString).Text)
-                Else
-                    DTROWSAVE("RATE") = 0
-                End If
+
                 'If IsDBNull(oSheet.Range("I" & I.ToString).Text) = False Then
                 '    DTROWSAVE("CONES") = Val(oSheet.Range("I" & I.ToString).Text)
                 'Else
@@ -1951,28 +1964,28 @@ LINE1:
 
 
 
-                ''DESIGN SAVE
-                'If DTROWSAVE("MILLNAME") <> "" Then
-                '    DTTABLE = OBJCMN.SEARCH("MILL_ID AS MILLID", "", "MILLMASTER", " AND MILL_NAME = '" & DTROWSAVE("MILLNAME") & "' AND MILL_YEARID = " & YearId)
+                'MILL SAVE
+                If DTROWSAVE("MILLNAME") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("MILL_ID AS MILLID", "", "MILLMASTER", " AND MILL_NAME = '" & DTROWSAVE("MILLNAME") & "' AND MILL_YEARID = " & YearId)
 
-                '    If DTTABLE.Rows.Count = 0 Then
-                '        'ADD NEW DESIGN
-                '        Dim OBJDESIGN As New ClsMillMaster
-                '        OBJDESIGN.alParaval.Add(UCase(DTROWSAVE("MILLNAME")))
-                '        OBJDESIGN.alParaval.Add("") 'REMARKS
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJDESIGN As New ClsMillMaster
+                        OBJDESIGN.alParaval.Add(UCase(DTROWSAVE("MILLNAME")))
+                        OBJDESIGN.alParaval.Add("") 'REMARKS
 
-                '        OBJDESIGN.alParaval.Add(CmpId)
-                '        OBJDESIGN.alParaval.Add(Userid)
-                '        OBJDESIGN.alParaval.Add(YearId)
+                        OBJDESIGN.alParaval.Add(CmpId)
+                        OBJDESIGN.alParaval.Add(Userid)
+                        OBJDESIGN.alParaval.Add(YearId)
 
-                '        OBJDESIGN.alParaval.Add("") 'CONTACT PERSON
-                '        OBJDESIGN.alParaval.Add("") 'CONTACTNO
+                        OBJDESIGN.alParaval.Add("") 'CONTACT PERSON
+                        OBJDESIGN.alParaval.Add("") 'CONTACTNO
 
 
 
-                '        Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
-                '    End If
-                'End If
+                        Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
+                    End If
+                End If
 
                 ''DESIGN SAVE
                 'If DTROWSAVE("DESIGNNO") <> "" Then
@@ -2026,23 +2039,23 @@ LINE1:
                 'End If
 
 
-                ''COLOR SAVE
-                'If DTROWSAVE("COLOR") <> "" Then
-                '    DTTABLE = OBJCMN.SEARCH("COLOR_ID AS COLORID", "", "COLORMASTER", " AND COLOR_NAME = '" & DTROWSAVE("COLOR") & "' AND COLOR_YEARID = " & YearId)
-                '    If DTTABLE.Rows.Count = 0 Then
-                '        'ADD NEW DESIGN
-                '        Dim OBJCOLOR As New ClsColorMaster
-                '        OBJCOLOR.alParaval.Add(UCase(DTROWSAVE("COLOR")))
-                '        OBJCOLOR.alParaval.Add("")
-                '        OBJCOLOR.alParaval.Add(CmpId)
-                '        OBJCOLOR.alParaval.Add(Locationid)
-                '        OBJCOLOR.alParaval.Add(Userid)
-                '        OBJCOLOR.alParaval.Add(YearId)
-                '        OBJCOLOR.alParaval.Add(0)
+                'COLOR SAVE
+                If DTROWSAVE("COLOR") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("COLOR_ID AS COLORID", "", "COLORMASTER", " AND COLOR_NAME = '" & DTROWSAVE("COLOR") & "' AND COLOR_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJCOLOR As New ClsColorMaster
+                        OBJCOLOR.alParaval.Add(UCase(DTROWSAVE("COLOR")))
+                        OBJCOLOR.alParaval.Add("")
+                        OBJCOLOR.alParaval.Add(CmpId)
+                        OBJCOLOR.alParaval.Add(Locationid)
+                        OBJCOLOR.alParaval.Add(Userid)
+                        OBJCOLOR.alParaval.Add(YearId)
+                        OBJCOLOR.alParaval.Add(0)
 
-                '        Dim INTRESCAT As Integer = OBJCOLOR.save()
-                '    End If
-                'End If
+                        Dim INTRESCAT As Integer = OBJCOLOR.save()
+                    End If
+                End If
 
 
 
@@ -2073,7 +2086,7 @@ LINE1:
                 'End If
 
                 'TXTLOTNO.Text = DTROWSAVE("LOTNO")
-                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), "", "", DTROWSAVE("PARTYLOTNO"), "", "", "", "", 1, Format(Val(DTROWSAVE("WT")), "0.00"), 0, DTROWSAVE("BOXNO"), Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", Format(Val(DTROWSAVE("RATE")), "0.00"), "Wt", Format(Val(DTROWSAVE("WT")), "0.00") * Format(Val(DTROWSAVE("RATE")), "0.00"), "")
+                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), DTROWSAVE("MILLNAME"), "", DTROWSAVE("PARTYLOTNO"), DTROWSAVE("PARTYCOLOR"), DTROWSAVE("COLOR"), "", "", 1, Format(Val(DTROWSAVE("WT")), "0.00"), 0, DTROWSAVE("BOXNO"), Format(Convert.ToDateTime(YARNDATE.Text).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", 0, "Wt", 0, "")
 
                 DTROWSAVE = DTSAVE.NewRow()
 

@@ -135,11 +135,7 @@ Public Class YarnPurchaseOrderClose
         End Try
     End Sub
 
-    Private Sub RBPENDING_Click(sender As Object, e As EventArgs) Handles RBPENDING.Click
-        fillgrid()
-    End Sub
-
-    Private Sub RBENTERED_Click(sender As Object, e As EventArgs) Handles RBENTERED.Click
+    Private Sub RBPENDING_Click(sender As Object, e As EventArgs) Handles RBPENDING.Click, RBENTERED.Click
         fillgrid()
     End Sub
 End Class

@@ -516,7 +516,8 @@ Public Class YarnPurchaseOrder
     Private Sub GRIDPO_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRIDPO.CellDoubleClick
         If e.RowIndex >= 0 And GRIDPO.Item(gsrno.Index, e.RowIndex).Value <> Nothing Then
 
-            If Convert.ToBoolean(GRIDPO.Rows(e.RowIndex).Cells(GDONE.Index).Value) = True Or Convert.ToBoolean(GRIDPO.Rows(e.RowIndex).Cells(GCLOSED.Index).Value) = True Then
+
+            If (ClientName = "SWPL" And UserName <> "Admin") Or Convert.ToBoolean(GRIDPO.Rows(e.RowIndex).Cells(GDONE.Index).Value) = True Or Convert.ToBoolean(GRIDPO.Rows(e.RowIndex).Cells(GCLOSED.Index).Value) = True Then
                 MsgBox("Item Locked", MsgBoxStyle.Critical)
                 Exit Sub
             End If
