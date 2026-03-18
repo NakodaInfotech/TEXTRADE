@@ -1173,6 +1173,11 @@ LINE1:
 
             If ClientName = "SWPL" Then
                 GLRNO.HeaderText = "Box No."
+                LBLITEMNAME.Visible = False
+                CMBITEMNAME.Visible = False
+                LBLCHALLAN.Visible = False
+                TXTCHALLANNO.Visible = False
+                CHKYARNRECD.Visible = False
             End If
 
 
