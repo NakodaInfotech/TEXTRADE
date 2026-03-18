@@ -27,17 +27,19 @@ Partial Class YarnBeamStock
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALCONES = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.GBEAMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGAMANO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSCETIONNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GROLLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBREAKAGE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,7 +57,7 @@ Partial Class YarnBeamStock
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(800, 450)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 12
         '
         'CMDREFRESH
@@ -103,7 +105,7 @@ Partial Class YarnBeamStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GYARNQUALITY, Me.GCATEGORY, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GGODOWN, Me.GTOTALCONES, Me.GTOTALWT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GGODOWN, Me.GMILLNAME, Me.GBEAMNO, Me.GBEAMNAME, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GGAMANO, Me.GSCETIONNO, Me.GROLLNO, Me.GBEAMWT, Me.GBREAKAGE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -114,98 +116,45 @@ Partial Class YarnBeamStock
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         '
-        'GYARNQUALITY
-        '
-        Me.GYARNQUALITY.Caption = "Yarn Quality"
-        Me.GYARNQUALITY.FieldName = "YARNQUALITY"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.Visible = True
-        Me.GYARNQUALITY.VisibleIndex = 0
-        Me.GYARNQUALITY.Width = 150
-        '
-        'GCATEGORY
-        '
-        Me.GCATEGORY.Caption = "Category"
-        Me.GCATEGORY.FieldName = "CATEGORY"
-        Me.GCATEGORY.Name = "GCATEGORY"
-        Me.GCATEGORY.Visible = True
-        Me.GCATEGORY.VisibleIndex = 1
-        Me.GCATEGORY.Width = 120
-        '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.Caption = "Mill Name"
-        Me.GMILLNAME.FieldName = "MILLNAME"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 2
-        Me.GMILLNAME.Width = 200
-        '
-        'GDESIGNNO
-        '
-        Me.GDESIGNNO.Caption = "Design"
-        Me.GDESIGNNO.FieldName = "DESIGNNO"
-        Me.GDESIGNNO.Name = "GDESIGNNO"
-        Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 3
-        Me.GDESIGNNO.Width = 150
-        '
-        'GCOLOR
-        '
-        Me.GCOLOR.Caption = "Shade"
-        Me.GCOLOR.FieldName = "COLOR"
-        Me.GCOLOR.Name = "GCOLOR"
-        Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 4
-        Me.GCOLOR.Width = 150
-        '
-        'GLOTNO
-        '
-        Me.GLOTNO.Caption = "Lot No"
-        Me.GLOTNO.FieldName = "LOTNO"
-        Me.GLOTNO.Name = "GLOTNO"
-        Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 5
-        '
         'GGODOWN
         '
         Me.GGODOWN.Caption = "Godown"
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
         Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 6
+        Me.GGODOWN.VisibleIndex = 0
         Me.GGODOWN.Width = 140
         '
-        'GTOTALCONES
+        'GTOTALENDS
         '
-        Me.GTOTALCONES.Caption = "Total Cones"
-        Me.GTOTALCONES.DisplayFormat.FormatString = "0"
-        Me.GTOTALCONES.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALCONES.FieldName = "CONES"
-        Me.GTOTALCONES.Name = "GTOTALCONES"
-        Me.GTOTALCONES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALCONES.Visible = True
-        Me.GTOTALCONES.VisibleIndex = 7
-        Me.GTOTALCONES.Width = 80
+        Me.GTOTALENDS.Caption = "Total Ends"
+        Me.GTOTALENDS.DisplayFormat.FormatString = "0"
+        Me.GTOTALENDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALENDS.FieldName = "TOTALENDS"
+        Me.GTOTALENDS.Name = "GTOTALENDS"
+        Me.GTOTALENDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GTOTALENDS.Visible = True
+        Me.GTOTALENDS.VisibleIndex = 4
+        Me.GTOTALENDS.Width = 80
         '
-        'GTOTALWT
+        'GTOTALMTRS
         '
-        Me.GTOTALWT.Caption = "Total Wt"
-        Me.GTOTALWT.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALWT.FieldName = "WT"
-        Me.GTOTALWT.Name = "GTOTALWT"
-        Me.GTOTALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALWT.Visible = True
-        Me.GTOTALWT.VisibleIndex = 8
-        Me.GTOTALWT.Width = 90
+        Me.GTOTALMTRS.Caption = "Total Mtrs"
+        Me.GTOTALMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
+        Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GTOTALMTRS.Visible = True
+        Me.GTOTALMTRS.VisibleIndex = 5
+        Me.GTOTALMTRS.Width = 90
         '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(800, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 255
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -218,14 +167,88 @@ Partial Class YarnBeamStock
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
+        'GBEAMNAME
+        '
+        Me.GBEAMNAME.Caption = "Beam Name"
+        Me.GBEAMNAME.FieldName = "BEAMNAME"
+        Me.GBEAMNAME.Name = "GBEAMNAME"
+        Me.GBEAMNAME.Visible = True
+        Me.GBEAMNAME.VisibleIndex = 3
+        Me.GBEAMNAME.Width = 200
+        '
+        'GBEAMNO
+        '
+        Me.GBEAMNO.Caption = "Beam No"
+        Me.GBEAMNO.FieldName = "BEAMNO"
+        Me.GBEAMNO.Name = "GBEAMNO"
+        Me.GBEAMNO.Visible = True
+        Me.GBEAMNO.VisibleIndex = 2
+        Me.GBEAMNO.Width = 100
+        '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.Caption = "Mill Name"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.Visible = True
+        Me.GMILLNAME.VisibleIndex = 1
+        Me.GMILLNAME.Width = 150
+        '
+        'GGAMANO
+        '
+        Me.GGAMANO.Caption = "Gama No"
+        Me.GGAMANO.FieldName = "GAMANO"
+        Me.GGAMANO.Name = "GGAMANO"
+        Me.GGAMANO.Visible = True
+        Me.GGAMANO.VisibleIndex = 6
+        Me.GGAMANO.Width = 80
+        '
+        'GSCETIONNO
+        '
+        Me.GSCETIONNO.Caption = "Section No"
+        Me.GSCETIONNO.FieldName = "SECTIONNO"
+        Me.GSCETIONNO.Name = "GSCETIONNO"
+        Me.GSCETIONNO.Visible = True
+        Me.GSCETIONNO.VisibleIndex = 7
+        Me.GSCETIONNO.Width = 80
+        '
+        'GROLLNO
+        '
+        Me.GROLLNO.Caption = "Roll No"
+        Me.GROLLNO.FieldName = "ROLLNO"
+        Me.GROLLNO.Name = "GROLLNO"
+        Me.GROLLNO.Visible = True
+        Me.GROLLNO.VisibleIndex = 8
+        Me.GROLLNO.Width = 80
+        '
+        'GBEAMWT
+        '
+        Me.GBEAMWT.Caption = "Beam Wt"
+        Me.GBEAMWT.FieldName = "BEAMWT"
+        Me.GBEAMWT.Name = "GBEAMWT"
+        Me.GBEAMWT.Visible = True
+        Me.GBEAMWT.VisibleIndex = 9
+        Me.GBEAMWT.Width = 80
+        '
+        'GBREAKAGE
+        '
+        Me.GBREAKAGE.Caption = "Breakage"
+        Me.GBREAKAGE.FieldName = "BREAKAGE"
+        Me.GBREAKAGE.Name = "GBREAKAGE"
+        Me.GBREAKAGE.Visible = True
+        Me.GBREAKAGE.VisibleIndex = 10
+        Me.GBREAKAGE.Width = 80
+        '
         'YarnBeamStock
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
+        Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "YarnBeamStock"
-        Me.Text = "YarnBeamStock"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.Text = "Yarn Beam Stock"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
@@ -242,15 +265,17 @@ Partial Class YarnBeamStock
     Friend WithEvents cmdexit As Button
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GYARNQUALITY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLOTNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents GTOTALCONES As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents GTOTALWT As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GTOTALENDS As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents PrintToolStripButton As ToolStripButton
+    Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGAMANO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GSCETIONNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GROLLNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBREAKAGE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
