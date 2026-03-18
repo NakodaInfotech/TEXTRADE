@@ -11232,4 +11232,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub OPENINGBEAMSTOCK_MASTER_Click(sender As Object, e As EventArgs) Handles OPENINGBEAMSTOCK_MASTER.Click
+        Try
+            Dim OBJOPENING As New OpeningBeamStock
+            OBJOPENING.MdiParent = Me
+            OBJOPENING.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

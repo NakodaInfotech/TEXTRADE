@@ -85,7 +85,10 @@ Public Class ClsYarnRecd
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@FILENO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@EWAYBILLNO", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -240,6 +243,10 @@ Public Class ClsYarnRecd
                 .Add(New SqlClient.SqlParameter("@VEHICLENO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FILENO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@EWAYBILLNO", alParaval(I)))
                 I = I + 1
 
                 'grid parameters

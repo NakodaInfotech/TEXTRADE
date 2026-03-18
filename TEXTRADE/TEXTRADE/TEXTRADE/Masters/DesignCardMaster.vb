@@ -2802,6 +2802,8 @@ LINE1:
                 GRIDSELVEDGE.Rows.RemoveAt(GRIDSELVEDGE.CurrentRow.Index)
                 TOTALSELVEDGE()
                 getsrno(GRIDSELVEDGE)
+                CALC()
+                TOTAL()
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITSELVEDGEROW()
             End If
@@ -2856,6 +2858,8 @@ LINE1:
                 TOTALWARPPATTERN()
                 getsrno(GRIDWARP)
                 getsrno(GRIDWARPPATTERN)
+                CALC()
+                TOTAL()
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITWARPROW()
             End If
@@ -2981,6 +2985,8 @@ LINE1:
 
                 TOTALWEFT()
                 getsrno(GRIDWEFT)
+                CALC()
+                TOTAL()
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITWEFTROW()
             End If
@@ -4305,16 +4311,7 @@ line1:
         End Try
     End Sub
 
-    Private Sub GRIDWEFT_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWEFT.CellValidating
-        Try
-            CALC()
-            TOTAL()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub GRIDWARP_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARP.CellValidating
+    Private Sub GRIDWARP_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDWARP.CellValidating, GRIDWEFT.CellValidating, GRIDSELVEDGE.CellValidating
         Try
             CALC()
             TOTAL()

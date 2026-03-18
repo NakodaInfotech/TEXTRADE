@@ -58,13 +58,15 @@ Partial Class YarnRecdDetails
         Me.GGREYFINISH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GHAMALICHARGES = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALAMOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GTOTALAMOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFILENO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GEWAYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,7 +144,7 @@ Partial Class YarnRecdDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GPONO, Me.GPODATE, Me.GCHALLAN, Me.GCHALLANDATE, Me.GTONAME, Me.GYARN, Me.gmill, Me.gcolor, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GLOTNO, Me.GLOTDATE, Me.GQTY, Me.GTOTALQTY, Me.gwt, Me.GTOTALWT, Me.GCONES, Me.GTOTALCONES, Me.GTRANSNAME, Me.GGRIDLRNO, Me.GRACK, Me.GBARCODE, Me.GREMARKS, Me.GGREYFINISH, Me.GLRNO, Me.GHAMALICHARGES, Me.GTOTALAMOUNT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GPONO, Me.GPODATE, Me.GCHALLAN, Me.GCHALLANDATE, Me.GTONAME, Me.GYARN, Me.gmill, Me.gcolor, Me.GDESIGN, Me.GJOBBERLOTNO, Me.GLOTNO, Me.GLOTDATE, Me.GQTY, Me.GTOTALQTY, Me.gwt, Me.GTOTALWT, Me.GCONES, Me.GTOTALCONES, Me.GTRANSNAME, Me.GGRIDLRNO, Me.GRACK, Me.GBARCODE, Me.GREMARKS, Me.GGREYFINISH, Me.GLRNO, Me.GHAMALICHARGES, Me.GTOTALAMOUNT, Me.GFILENO, Me.GEWAYBILLNO})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -429,6 +431,19 @@ Partial Class YarnRecdDetails
         Me.GHAMALICHARGES.VisibleIndex = 27
         Me.GHAMALICHARGES.Width = 100
         '
+        'GTOTALAMOUNT
+        '
+        Me.GTOTALAMOUNT.Caption = "Total Amount"
+        Me.GTOTALAMOUNT.DisplayFormat.FormatString = "0.00"
+        Me.GTOTALAMOUNT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALAMOUNT.FieldName = "TOTALAMOUNT"
+        Me.GTOTALAMOUNT.Name = "GTOTALAMOUNT"
+        Me.GTOTALAMOUNT.OptionsColumn.AllowEdit = False
+        Me.GTOTALAMOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GTOTALAMOUNT.Visible = True
+        Me.GTOTALAMOUNT.VisibleIndex = 28
+        Me.GTOTALAMOUNT.Width = 100
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.PrintToolStripButton, Me.ToolStripSeparator1})
@@ -474,18 +489,25 @@ Partial Class YarnRecdDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'GTOTALAMOUNT
+        'GFILENO
         '
-        Me.GTOTALAMOUNT.Caption = "Total Amount"
-        Me.GTOTALAMOUNT.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALAMOUNT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALAMOUNT.FieldName = "TOTALAMOUNT"
-        Me.GTOTALAMOUNT.Name = "GTOTALAMOUNT"
-        Me.GTOTALAMOUNT.OptionsColumn.AllowEdit = False
-        Me.GTOTALAMOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALAMOUNT.Visible = True
-        Me.GTOTALAMOUNT.VisibleIndex = 28
-        Me.GTOTALAMOUNT.Width = 100
+        Me.GFILENO.Caption = "File No"
+        Me.GFILENO.FieldName = "FILENO"
+        Me.GFILENO.Name = "GFILENO"
+        Me.GFILENO.OptionsColumn.AllowEdit = False
+        Me.GFILENO.Visible = True
+        Me.GFILENO.VisibleIndex = 29
+        Me.GFILENO.Width = 120
+        '
+        'GEWAYBILLNO
+        '
+        Me.GEWAYBILLNO.Caption = "Eway Bill No"
+        Me.GEWAYBILLNO.FieldName = "EWAYBILLNO"
+        Me.GEWAYBILLNO.Name = "GEWAYBILLNO"
+        Me.GEWAYBILLNO.OptionsColumn.AllowEdit = False
+        Me.GEWAYBILLNO.Visible = True
+        Me.GEWAYBILLNO.VisibleIndex = 30
+        Me.GEWAYBILLNO.Width = 120
         '
         'YarnRecdDetails
         '
@@ -550,4 +572,6 @@ Partial Class YarnRecdDetails
     Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
     Friend WithEvents GTOTALAMOUNT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GFILENO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GEWAYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

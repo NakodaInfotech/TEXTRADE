@@ -2359,6 +2359,8 @@ LINE1:
 
                 GRIDWEFT.RowCount = 0
                 GRIDWEFTDOUBLECLICK = False
+                If IsNothing(GRIDCOLOR.CurrentRow) Then Exit Sub
+
                 For i As Integer = 0 To DT_WEFTDETAILS.Rows.Count - 1
 
                     If DT_WEFTDETAILS.Rows(i).Item("SHADESRNO") = GRIDCOLOR.Rows(GRIDCOLOR.CurrentRow.Index).Cells(0).Value Then
