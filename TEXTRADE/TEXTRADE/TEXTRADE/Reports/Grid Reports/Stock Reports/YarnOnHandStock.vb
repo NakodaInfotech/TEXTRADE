@@ -34,11 +34,20 @@ Public Class YarnOnHandStock
     Sub fillgrid(ByVal TEMPCONDITION)
         Try
             Dim OBJCMN As New ClsCommon
-            Dim dt As DataTable = OBJCMN.search(" GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO,  SUM(ISNULL(CONES,0)) AS CONES, SUM(BAGS) AS BAGS, SUM(WT) AS WT ", "", "  YARNSTOCKVIEW ", TEMPCONDITION & " GROUP BY GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO HAVING SUM(WT) > 0")
-            gridbilldetails.DataSource = dt
-            If dt.Rows.Count > 0 Then
-                gridbill.FocusedRowHandle = gridbill.RowCount - 1
-                gridbill.TopRowIndex = gridbill.RowCount - 15
+            If ALLOWYARNBARCODEPRINT = True Then
+                Dim dt As DataTable = OBJCMN.SEARCH(" GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO,  SUM(ISNULL(CONES,0)) AS CONES, SUM(BAGS) AS BAGS, SUM(WT) AS WT, BARCODE , BILLNO , JOBBERNAME , RACK ", "", "  YARNBARCODESTOCK ", TEMPCONDITION & " GROUP BY GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO , BARCODE , BILLNO , JOBBERNAME , RACK HAVING SUM(WT) > 0")
+                gridbilldetails.DataSource = dt
+                If dt.Rows.Count > 0 Then
+                    gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                    gridbill.TopRowIndex = gridbill.RowCount - 15
+                End If
+            Else
+                Dim dt As DataTable = OBJCMN.SEARCH(" GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO,  SUM(ISNULL(CONES,0)) AS CONES, SUM(BAGS) AS BAGS, SUM(WT) AS WT ", "", "  YARNSTOCKVIEW ", TEMPCONDITION & " GROUP BY GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO HAVING SUM(WT) > 0")
+                gridbilldetails.DataSource = dt
+                If dt.Rows.Count > 0 Then
+                    gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                    gridbill.TopRowIndex = gridbill.RowCount - 15
+                End If
             End If
         Catch ex As Exception
             Throw ex
