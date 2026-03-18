@@ -23,6 +23,7 @@ Partial Class PaymentReceiptFilter
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
+        Me.CHKNARR = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.RDBREGISTER = New System.Windows.Forms.RadioButton()
         Me.RDBMONTHLY = New System.Windows.Forms.RadioButton()
@@ -49,7 +50,7 @@ Partial Class PaymentReceiptFilter
         Me.chkdate = New System.Windows.Forms.CheckBox()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.CHKNARR = New System.Windows.Forms.CheckBox()
+        Me.GAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel2.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GPPARTYNAME.SuspendLayout()
@@ -77,8 +78,21 @@ Partial Class PaymentReceiptFilter
         Me.BlendPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
-        Me.BlendPanel2.Size = New System.Drawing.Size(897, 561)
+        Me.BlendPanel2.Size = New System.Drawing.Size(1184, 561)
         Me.BlendPanel2.TabIndex = 0
+        '
+        'CHKNARR
+        '
+        Me.CHKNARR.AutoSize = True
+        Me.CHKNARR.BackColor = System.Drawing.Color.Transparent
+        Me.CHKNARR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKNARR.ForeColor = System.Drawing.Color.Black
+        Me.CHKNARR.Location = New System.Drawing.Point(793, 209)
+        Me.CHKNARR.Name = "CHKNARR"
+        Me.CHKNARR.Size = New System.Drawing.Size(111, 19)
+        Me.CHKNARR.TabIndex = 304
+        Me.CHKNARR.Text = "Show Narration"
+        Me.CHKNARR.UseVisualStyleBackColor = False
         '
         'GroupBox2
         '
@@ -86,9 +100,9 @@ Partial Class PaymentReceiptFilter
         Me.GroupBox2.Controls.Add(Me.RDBREGISTER)
         Me.GroupBox2.Controls.Add(Me.RDBMONTHLY)
         Me.GroupBox2.Controls.Add(Me.RDBPARTYWISESUMM)
-        Me.GroupBox2.Location = New System.Drawing.Point(576, 246)
+        Me.GroupBox2.Location = New System.Drawing.Point(781, 246)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(200, 128)
+        Me.GroupBox2.Size = New System.Drawing.Size(200, 112)
         Me.GroupBox2.TabIndex = 303
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Reports"
@@ -135,7 +149,7 @@ Partial Class PaymentReceiptFilter
         Me.CMBNAME.BackColor = System.Drawing.Color.White
         Me.CMBNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBNAME.FormattingEnabled = True
-        Me.CMBNAME.Location = New System.Drawing.Point(576, 66)
+        Me.CMBNAME.Location = New System.Drawing.Point(781, 66)
         Me.CMBNAME.MaxDropDownItems = 14
         Me.CMBNAME.Name = "CMBNAME"
         Me.CMBNAME.Size = New System.Drawing.Size(298, 22)
@@ -146,7 +160,7 @@ Partial Class PaymentReceiptFilter
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(515, 70)
+        Me.Label3.Location = New System.Drawing.Point(720, 70)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(59, 14)
         Me.Label3.TabIndex = 300
@@ -159,7 +173,7 @@ Partial Class PaymentReceiptFilter
         Me.CMBREGISTER.BackColor = System.Drawing.Color.White
         Me.CMBREGISTER.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBREGISTER.FormattingEnabled = True
-        Me.CMBREGISTER.Location = New System.Drawing.Point(576, 38)
+        Me.CMBREGISTER.Location = New System.Drawing.Point(781, 38)
         Me.CMBREGISTER.MaxDropDownItems = 14
         Me.CMBREGISTER.Name = "CMBREGISTER"
         Me.CMBREGISTER.Size = New System.Drawing.Size(298, 22)
@@ -170,7 +184,7 @@ Partial Class PaymentReceiptFilter
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(522, 42)
+        Me.Label2.Location = New System.Drawing.Point(727, 42)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 14)
         Me.Label2.TabIndex = 298
@@ -183,7 +197,7 @@ Partial Class PaymentReceiptFilter
         Me.CMBGROUPNAME.BackColor = System.Drawing.Color.White
         Me.CMBGROUPNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBGROUPNAME.FormattingEnabled = True
-        Me.CMBGROUPNAME.Location = New System.Drawing.Point(576, 94)
+        Me.CMBGROUPNAME.Location = New System.Drawing.Point(781, 94)
         Me.CMBGROUPNAME.MaxDropDownItems = 14
         Me.CMBGROUPNAME.Name = "CMBGROUPNAME"
         Me.CMBGROUPNAME.Size = New System.Drawing.Size(298, 22)
@@ -194,7 +208,7 @@ Partial Class PaymentReceiptFilter
         Me.lblgroup.AutoSize = True
         Me.lblgroup.BackColor = System.Drawing.Color.Transparent
         Me.lblgroup.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblgroup.Location = New System.Drawing.Point(534, 98)
+        Me.lblgroup.Location = New System.Drawing.Point(739, 98)
         Me.lblgroup.Name = "lblgroup"
         Me.lblgroup.Size = New System.Drawing.Size(40, 14)
         Me.lblgroup.TabIndex = 296
@@ -207,7 +221,7 @@ Partial Class PaymentReceiptFilter
         Me.GPPARTYNAME.Controls.Add(Me.gridbilldetails)
         Me.GPPARTYNAME.Location = New System.Drawing.Point(21, 16)
         Me.GPPARTYNAME.Name = "GPPARTYNAME"
-        Me.GPPARTYNAME.Size = New System.Drawing.Size(481, 485)
+        Me.GPPARTYNAME.Size = New System.Drawing.Size(688, 533)
         Me.GPPARTYNAME.TabIndex = 9
         Me.GPPARTYNAME.TabStop = False
         Me.GPPARTYNAME.Text = "Party Name"
@@ -233,7 +247,7 @@ Partial Class PaymentReceiptFilter
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.gridbilldetails.Size = New System.Drawing.Size(467, 436)
+        Me.gridbilldetails.Size = New System.Drawing.Size(671, 484)
         Me.gridbilldetails.TabIndex = 1
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -241,7 +255,7 @@ Partial Class PaymentReceiptFilter
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GGROUPNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GAGENTNAME, Me.GGROUPNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -269,7 +283,7 @@ Partial Class PaymentReceiptFilter
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -282,7 +296,7 @@ Partial Class PaymentReceiptFilter
         Me.GGROUPNAME.FieldName = "GROUPNAME"
         Me.GGROUPNAME.Name = "GGROUPNAME"
         Me.GGROUPNAME.Visible = True
-        Me.GGROUPNAME.VisibleIndex = 2
+        Me.GGROUPNAME.VisibleIndex = 3
         Me.GGROUPNAME.Width = 150
         '
         'GroupBox1
@@ -294,7 +308,7 @@ Partial Class PaymentReceiptFilter
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.chkdate)
         Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(576, 122)
+        Me.GroupBox1.Location = New System.Drawing.Point(781, 122)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(285, 53)
         Me.GroupBox1.TabIndex = 5
@@ -362,7 +376,7 @@ Partial Class PaymentReceiptFilter
         Me.cmdshow.FlatAppearance.BorderSize = 0
         Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdshow.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdshow.Location = New System.Drawing.Point(351, 521)
+        Me.cmdshow.Location = New System.Drawing.Point(787, 380)
         Me.cmdshow.Name = "cmdshow"
         Me.cmdshow.Size = New System.Drawing.Size(88, 28)
         Me.cmdshow.TabIndex = 6
@@ -376,30 +390,26 @@ Partial Class PaymentReceiptFilter
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(445, 521)
+        Me.cmdexit.Location = New System.Drawing.Point(881, 380)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(88, 28)
         Me.cmdexit.TabIndex = 7
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'CHKNARR
+        'GAGENTNAME
         '
-        Me.CHKNARR.AutoSize = True
-        Me.CHKNARR.BackColor = System.Drawing.Color.Transparent
-        Me.CHKNARR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKNARR.ForeColor = System.Drawing.Color.Black
-        Me.CHKNARR.Location = New System.Drawing.Point(588, 209)
-        Me.CHKNARR.Name = "CHKNARR"
-        Me.CHKNARR.Size = New System.Drawing.Size(111, 19)
-        Me.CHKNARR.TabIndex = 304
-        Me.CHKNARR.Text = "Show Narration"
-        Me.CHKNARR.UseVisualStyleBackColor = False
+        Me.GAGENTNAME.Caption = "Agent Name"
+        Me.GAGENTNAME.FieldName = "AGENTNAME"
+        Me.GAGENTNAME.Name = "GAGENTNAME"
+        Me.GAGENTNAME.Visible = True
+        Me.GAGENTNAME.VisibleIndex = 2
+        Me.GAGENTNAME.Width = 200
         '
         'PaymentReceiptFilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(897, 561)
+        Me.ClientSize = New System.Drawing.Size(1184, 561)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "PaymentReceiptFilter"
@@ -449,4 +459,5 @@ Partial Class PaymentReceiptFilter
     Friend WithEvents lblgroup As Label
     Friend WithEvents RDBREGISTER As RadioButton
     Friend WithEvents CHKNARR As CheckBox
+    Friend WithEvents GAGENTNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class
