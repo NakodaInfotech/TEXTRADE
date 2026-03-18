@@ -46,6 +46,8 @@ Partial Class YarnStockFilter
         Me.CMBGODOWN = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RDBFINISHSUMM = New System.Windows.Forms.RadioButton()
+        Me.RDBFINISHDETAIL = New System.Windows.Forms.RadioButton()
         Me.RDBSHADEDETAIL = New System.Windows.Forms.RadioButton()
         Me.RDBMILLDETAIL = New System.Windows.Forms.RadioButton()
         Me.RDBYARNDESIGNDETAIL = New System.Windows.Forms.RadioButton()
@@ -57,8 +59,7 @@ Partial Class YarnStockFilter
         Me.RBDESIGNSUMM = New System.Windows.Forms.RadioButton()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.RDBFINISHDETAIL = New System.Windows.Forms.RadioButton()
-        Me.RDBFINISHSUMM = New System.Windows.Forms.RadioButton()
+        Me.RBYARNBEAMSTOCK = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -113,7 +114,7 @@ Partial Class YarnStockFilter
         Me.Label5.ForeColor = System.Drawing.Color.Black
         Me.Label5.Location = New System.Drawing.Point(52, 189)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(50, 14)
+        Me.Label5.Size = New System.Drawing.Size(53, 14)
         Me.Label5.TabIndex = 758
         Me.Label5.Text = "Category"
         '
@@ -158,7 +159,7 @@ Partial Class YarnStockFilter
         Me.Label9.ForeColor = System.Drawing.Color.Black
         Me.Label9.Location = New System.Drawing.Point(43, 77)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(59, 14)
+        Me.Label9.Size = New System.Drawing.Size(64, 14)
         Me.Label9.TabIndex = 754
         Me.Label9.Text = "Mill Name"
         '
@@ -194,7 +195,7 @@ Partial Class YarnStockFilter
         Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.Location = New System.Drawing.Point(161, 24)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(24, 14)
+        Me.Label1.Size = New System.Drawing.Size(25, 14)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "To :"
         '
@@ -206,7 +207,7 @@ Partial Class YarnStockFilter
         Me.chkdate.ForeColor = System.Drawing.Color.Black
         Me.chkdate.Location = New System.Drawing.Point(12, -2)
         Me.chkdate.Name = "chkdate"
-        Me.chkdate.Size = New System.Drawing.Size(49, 18)
+        Me.chkdate.Size = New System.Drawing.Size(52, 18)
         Me.chkdate.TabIndex = 0
         Me.chkdate.Text = "Date"
         Me.chkdate.UseVisualStyleBackColor = False
@@ -228,7 +229,7 @@ Partial Class YarnStockFilter
         Me.Label7.ForeColor = System.Drawing.Color.Black
         Me.Label7.Location = New System.Drawing.Point(9, 24)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(39, 14)
+        Me.Label7.Size = New System.Drawing.Size(40, 14)
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "From :"
         '
@@ -252,7 +253,7 @@ Partial Class YarnStockFilter
         Me.Label8.ForeColor = System.Drawing.Color.Black
         Me.Label8.Location = New System.Drawing.Point(37, 161)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(65, 14)
+        Me.Label8.Size = New System.Drawing.Size(68, 14)
         Me.Label8.TabIndex = 752
         Me.Label8.Text = "Party Name"
         '
@@ -276,7 +277,7 @@ Partial Class YarnStockFilter
         Me.Label6.ForeColor = System.Drawing.Color.Black
         Me.Label6.Location = New System.Drawing.Point(70, 133)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(32, 14)
+        Me.Label6.Size = New System.Drawing.Size(35, 14)
         Me.Label6.TabIndex = 750
         Me.Label6.Text = "Color"
         '
@@ -300,7 +301,7 @@ Partial Class YarnStockFilter
         Me.Label4.ForeColor = System.Drawing.Color.Black
         Me.Label4.Location = New System.Drawing.Point(62, 105)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(40, 14)
+        Me.Label4.Size = New System.Drawing.Size(45, 14)
         Me.Label4.TabIndex = 748
         Me.Label4.Text = "Design"
         '
@@ -324,7 +325,7 @@ Partial Class YarnStockFilter
         Me.Label3.ForeColor = System.Drawing.Color.Black
         Me.Label3.Location = New System.Drawing.Point(36, 49)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(66, 14)
+        Me.Label3.Size = New System.Drawing.Size(72, 14)
         Me.Label3.TabIndex = 746
         Me.Label3.Text = "Yarn Quality"
         '
@@ -348,13 +349,14 @@ Partial Class YarnStockFilter
         Me.Label2.ForeColor = System.Drawing.Color.Black
         Me.Label2.Location = New System.Drawing.Point(54, 21)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(48, 14)
+        Me.Label2.Size = New System.Drawing.Size(52, 14)
         Me.Label2.TabIndex = 744
         Me.Label2.Text = "Godown"
         '
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RBYARNBEAMSTOCK)
         Me.GroupBox3.Controls.Add(Me.RDBFINISHSUMM)
         Me.GroupBox3.Controls.Add(Me.RDBFINISHDETAIL)
         Me.GroupBox3.Controls.Add(Me.RDBSHADEDETAIL)
@@ -373,12 +375,32 @@ Partial Class YarnStockFilter
         Me.GroupBox3.TabIndex = 7
         Me.GroupBox3.TabStop = False
         '
+        'RDBFINISHSUMM
+        '
+        Me.RDBFINISHSUMM.AutoSize = True
+        Me.RDBFINISHSUMM.Location = New System.Drawing.Point(224, 117)
+        Me.RDBFINISHSUMM.Name = "RDBFINISHSUMM"
+        Me.RDBFINISHSUMM.Size = New System.Drawing.Size(112, 18)
+        Me.RDBFINISHSUMM.TabIndex = 9
+        Me.RDBFINISHSUMM.Text = "Finish Box Stock"
+        Me.RDBFINISHSUMM.UseVisualStyleBackColor = True
+        '
+        'RDBFINISHDETAIL
+        '
+        Me.RDBFINISHDETAIL.AutoSize = True
+        Me.RDBFINISHDETAIL.Location = New System.Drawing.Point(20, 117)
+        Me.RDBFINISHDETAIL.Name = "RDBFINISHDETAIL"
+        Me.RDBFINISHDETAIL.Size = New System.Drawing.Size(149, 18)
+        Me.RDBFINISHDETAIL.TabIndex = 4
+        Me.RDBFINISHDETAIL.Text = "Finish Box Detail Stock"
+        Me.RDBFINISHDETAIL.UseVisualStyleBackColor = True
+        '
         'RDBSHADEDETAIL
         '
         Me.RDBSHADEDETAIL.AutoSize = True
         Me.RDBSHADEDETAIL.Location = New System.Drawing.Point(20, 93)
         Me.RDBSHADEDETAIL.Name = "RDBSHADEDETAIL"
-        Me.RDBSHADEDETAIL.Size = New System.Drawing.Size(168, 18)
+        Me.RDBSHADEDETAIL.Size = New System.Drawing.Size(184, 18)
         Me.RDBSHADEDETAIL.TabIndex = 3
         Me.RDBSHADEDETAIL.Text = "Yarn Shade Wise Detail Stock"
         Me.RDBSHADEDETAIL.UseVisualStyleBackColor = True
@@ -388,7 +410,7 @@ Partial Class YarnStockFilter
         Me.RDBMILLDETAIL.AutoSize = True
         Me.RDBMILLDETAIL.Location = New System.Drawing.Point(20, 45)
         Me.RDBMILLDETAIL.Name = "RDBMILLDETAIL"
-        Me.RDBMILLDETAIL.Size = New System.Drawing.Size(157, 18)
+        Me.RDBMILLDETAIL.Size = New System.Drawing.Size(172, 18)
         Me.RDBMILLDETAIL.TabIndex = 1
         Me.RDBMILLDETAIL.Text = "Yarn Mill Wise Detail Stock"
         Me.RDBMILLDETAIL.UseVisualStyleBackColor = True
@@ -398,7 +420,7 @@ Partial Class YarnStockFilter
         Me.RDBYARNDESIGNDETAIL.AutoSize = True
         Me.RDBYARNDESIGNDETAIL.Location = New System.Drawing.Point(20, 69)
         Me.RDBYARNDESIGNDETAIL.Name = "RDBYARNDESIGNDETAIL"
-        Me.RDBYARNDESIGNDETAIL.Size = New System.Drawing.Size(171, 18)
+        Me.RDBYARNDESIGNDETAIL.Size = New System.Drawing.Size(188, 18)
         Me.RDBYARNDESIGNDETAIL.TabIndex = 2
         Me.RDBYARNDESIGNDETAIL.Text = "Yarn Design Wise Detail Stock"
         Me.RDBYARNDESIGNDETAIL.UseVisualStyleBackColor = True
@@ -409,7 +431,7 @@ Partial Class YarnStockFilter
         Me.RBYARNQUALITYDETAIL.Checked = True
         Me.RBYARNQUALITYDETAIL.Location = New System.Drawing.Point(20, 21)
         Me.RBYARNQUALITYDETAIL.Name = "RBYARNQUALITYDETAIL"
-        Me.RBYARNQUALITYDETAIL.Size = New System.Drawing.Size(173, 18)
+        Me.RBYARNQUALITYDETAIL.Size = New System.Drawing.Size(189, 18)
         Me.RBYARNQUALITYDETAIL.TabIndex = 0
         Me.RBYARNQUALITYDETAIL.TabStop = True
         Me.RBYARNQUALITYDETAIL.Text = "Yarn Quality Wise Detail Stock"
@@ -420,7 +442,7 @@ Partial Class YarnStockFilter
         Me.RBSTOCKONHAND.AutoSize = True
         Me.RBSTOCKONHAND.Location = New System.Drawing.Point(224, 141)
         Me.RBSTOCKONHAND.Name = "RBSTOCKONHAND"
-        Me.RBSTOCKONHAND.Size = New System.Drawing.Size(96, 18)
+        Me.RBSTOCKONHAND.Size = New System.Drawing.Size(103, 18)
         Me.RBSTOCKONHAND.TabIndex = 10
         Me.RBSTOCKONHAND.Text = "Stock On Hand"
         Me.RBSTOCKONHAND.UseVisualStyleBackColor = True
@@ -430,7 +452,7 @@ Partial Class YarnStockFilter
         Me.RBMILLSUMM.AutoSize = True
         Me.RBMILLSUMM.Location = New System.Drawing.Point(224, 45)
         Me.RBMILLSUMM.Name = "RBMILLSUMM"
-        Me.RBMILLSUMM.Size = New System.Drawing.Size(101, 18)
+        Me.RBMILLSUMM.Size = New System.Drawing.Size(109, 18)
         Me.RBMILLSUMM.TabIndex = 6
         Me.RBMILLSUMM.Text = "Mill Wise Stock"
         Me.RBMILLSUMM.UseVisualStyleBackColor = True
@@ -440,7 +462,7 @@ Partial Class YarnStockFilter
         Me.RBSHADESUMM.AutoSize = True
         Me.RBSHADESUMM.Location = New System.Drawing.Point(224, 93)
         Me.RBSHADESUMM.Name = "RBSHADESUMM"
-        Me.RBSHADESUMM.Size = New System.Drawing.Size(112, 18)
+        Me.RBSHADESUMM.Size = New System.Drawing.Size(121, 18)
         Me.RBSHADESUMM.TabIndex = 8
         Me.RBSHADESUMM.Text = "Shade Wise Stock"
         Me.RBSHADESUMM.UseVisualStyleBackColor = True
@@ -450,7 +472,7 @@ Partial Class YarnStockFilter
         Me.RBYARNQUALITYSUMM.AutoSize = True
         Me.RBYARNQUALITYSUMM.Location = New System.Drawing.Point(224, 21)
         Me.RBYARNQUALITYSUMM.Name = "RBYARNQUALITYSUMM"
-        Me.RBYARNQUALITYSUMM.Size = New System.Drawing.Size(141, 18)
+        Me.RBYARNQUALITYSUMM.Size = New System.Drawing.Size(152, 18)
         Me.RBYARNQUALITYSUMM.TabIndex = 5
         Me.RBYARNQUALITYSUMM.Text = "Yarn Quality Wise Stock"
         Me.RBYARNQUALITYSUMM.UseVisualStyleBackColor = True
@@ -460,7 +482,7 @@ Partial Class YarnStockFilter
         Me.RBDESIGNSUMM.AutoSize = True
         Me.RBDESIGNSUMM.Location = New System.Drawing.Point(224, 69)
         Me.RBDESIGNSUMM.Name = "RBDESIGNSUMM"
-        Me.RBDESIGNSUMM.Size = New System.Drawing.Size(115, 18)
+        Me.RBDESIGNSUMM.Size = New System.Drawing.Size(125, 18)
         Me.RBDESIGNSUMM.TabIndex = 7
         Me.RBDESIGNSUMM.Text = "Design Wise Stock"
         Me.RBDESIGNSUMM.UseVisualStyleBackColor = True
@@ -493,25 +515,15 @@ Partial Class YarnStockFilter
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'RDBFINISHDETAIL
+        'RBYARNBEAMSTOCK
         '
-        Me.RDBFINISHDETAIL.AutoSize = True
-        Me.RDBFINISHDETAIL.Location = New System.Drawing.Point(20, 117)
-        Me.RDBFINISHDETAIL.Name = "RDBFINISHDETAIL"
-        Me.RDBFINISHDETAIL.Size = New System.Drawing.Size(136, 18)
-        Me.RDBFINISHDETAIL.TabIndex = 4
-        Me.RDBFINISHDETAIL.Text = "Finish Box Detail Stock"
-        Me.RDBFINISHDETAIL.UseVisualStyleBackColor = True
-        '
-        'RDBFINISHSUMM
-        '
-        Me.RDBFINISHSUMM.AutoSize = True
-        Me.RDBFINISHSUMM.Location = New System.Drawing.Point(224, 117)
-        Me.RDBFINISHSUMM.Name = "RDBFINISHSUMM"
-        Me.RDBFINISHSUMM.Size = New System.Drawing.Size(104, 18)
-        Me.RDBFINISHSUMM.TabIndex = 9
-        Me.RDBFINISHSUMM.Text = "Finish Box Stock"
-        Me.RDBFINISHSUMM.UseVisualStyleBackColor = True
+        Me.RBYARNBEAMSTOCK.AutoSize = True
+        Me.RBYARNBEAMSTOCK.Location = New System.Drawing.Point(20, 141)
+        Me.RBYARNBEAMSTOCK.Name = "RBYARNBEAMSTOCK"
+        Me.RBYARNBEAMSTOCK.Size = New System.Drawing.Size(113, 18)
+        Me.RBYARNBEAMSTOCK.TabIndex = 11
+        Me.RBYARNBEAMSTOCK.Text = "Yarn Beam Stock"
+        Me.RBYARNBEAMSTOCK.UseVisualStyleBackColor = True
         '
         'YarnStockFilter
         '
@@ -570,4 +582,5 @@ Partial Class YarnStockFilter
     Friend WithEvents Label5 As Label
     Friend WithEvents RDBFINISHSUMM As RadioButton
     Friend WithEvents RDBFINISHDETAIL As RadioButton
+    Friend WithEvents RBYARNBEAMSTOCK As RadioButton
 End Class

@@ -72,6 +72,11 @@ Public Class YarnStockFilter
                 OBJYARNSTOCK.MdiParent = MDIMain
                 OBJYARNSTOCK.Show()
                 Exit Sub
+            ElseIf RBYARNBEAMSTOCK.Checked = True Then
+                Dim OBJYARNBEAMSTOCK As New YarnOnHandStock
+                OBJYARNBEAMSTOCK.MdiParent = MDIMain
+                OBJYARNBEAMSTOCK.Show()
+                Exit Sub
             End If
 
 
