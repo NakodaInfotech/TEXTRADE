@@ -5171,6 +5171,7 @@ SKIPLINE:
                     YARNRECDGODOWN_MASTER.Visible = True
                 End If
                 YARNDYEINGPROGRAM_MASTER.Visible = True
+                TOOLSTRIPYARNDYEINGPROGRAM.Visible = True
             End If
 
             If ClientName = "AMAN" Then
@@ -5197,6 +5198,10 @@ SKIPLINE:
                 GREYISSUEPROCESS_MASTER.Text = "Grey Rec In Godown"
                 GRNGREY_TOOL.Text = "Grey Iss Process"
                 GRNGREY_MASTER.Text = "Grey Issue To Process"
+            End If
+
+            If ClientName = "SWPL" Then
+                WARPING_MASTER.Visible = False
             End If
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then
