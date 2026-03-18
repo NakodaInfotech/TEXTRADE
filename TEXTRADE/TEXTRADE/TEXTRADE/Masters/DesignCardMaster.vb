@@ -11,6 +11,8 @@ Imports DevExpress.DashboardCommon.Native
 Imports DevExpress.DashboardWin.Native
 Imports DevExpress.Pdf.ContentGeneration
 Imports DevExpress.UIAutomation
+Imports DevExpress.Xpo.Logger.Transport
+Imports DevExpress.XtraCharts.Native
 Imports DevExpress.XtraGauges.Core.Model
 Imports DevExpress.XtraGrid.Drawing
 Imports DevExpress.XtraGrid.Views.Grid
@@ -634,7 +636,7 @@ Public Class DesignCardMaster
             End If
             EDIT = False
 
-            clear()
+            CLEAR()
             EDIT = False
             CMBDESIGNNO.Focus()
 
@@ -987,8 +989,8 @@ Public Class DesignCardMaster
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
             Cursor.Current = Cursors.WaitCursor
-            fillcmb()
-            clear()
+            FILLCMB()
+            CLEAR()
             FILLPEGPLAN()
 
             If EDIT = True Then
@@ -1007,7 +1009,7 @@ Public Class DesignCardMaster
 
     Sub SHOWDATA(Optional ByVal CARDNO As Integer = -1)
         Try
-            clear()
+            CLEAR()
             If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
                 Exit Sub
@@ -1296,6 +1298,45 @@ Public Class DesignCardMaster
     End Sub
 
     Sub TOTAL()
+        TXTTOTALWARPPE.Text = 0.0
+        TXTTOTALWARPBE.Text = 0.0
+        TXTTOTALWARPTE.Text = 0.0
+        TXTTOTALWARPWT.Text = 0.0
+        TXTTOTALWARPCONS.Text = 0.0
+        TXTTOTALWARPRATE.Text = 0.0
+        TXTTOTALWARPCOST.Text = 0.0
+
+        TXTTOTALWEFTPE.Text = 0.0
+        TXTTOTALWEFTBE.Text = 0.0
+        TXTTOTALWEFTTE.Text = 0.0
+        TXTTOTALWEFTWT.Text = 0.0
+        TXTTOTALWEFTCONS.Text = 0.0
+        TXTTOTALWEFTRATE.Text = 0.0
+        TXTTOTALWEFTCOST.Text = 0.0
+
+        For Each row As DataGridViewRow In GRIDWARP.Rows
+            TXTTOTALWARPPE.Text += Val(row.Cells(WPE.Index).Value)
+            TXTTOTALWARPBE.Text += Val(row.Cells(WBE.Index).Value)
+            TXTTOTALWARPTE.Text += Val(row.Cells(WENDS.Index).Value)
+            TXTTOTALWARPWT.Text += Val(row.Cells(WWT.Index).Value)
+            TXTTOTALWARPCONS.Text += Val(row.Cells(WCONS.Index).Value)
+            TXTTOTALWARPRATE.Text += Val(row.Cells(WRATE.Index).Value)
+            TXTTOTALWARPCOST.Text += Val(row.Cells(WCOST.Index).Value)
+        Next
+
+
+
+        For Each row As DataGridViewRow In GRIDWEFT.Rows
+            TXTTOTALWEFTPE.Text += Val(row.Cells(FPE.Index).Value)
+            TXTTOTALWEFTBE.Text += Val(row.Cells(FBE.Index).Value)
+            TXTTOTALWEFTTE.Text += Val(row.Cells(FENDS.Index).Value)
+            TXTTOTALWEFTWT.Text += Val(row.Cells(FWT.Index).Value)
+            TXTTOTALWEFTCONS.Text += Val(row.Cells(FCONS.Index).Value)
+            TXTTOTALWEFTRATE.Text += Val(row.Cells(FRATE.Index).Value)
+            TXTTOTALWEFTCOST.Text += Val(row.Cells(FCOST.Index).Value)
+        Next
+
+
         TOTALSELVEDGE()
         TOTALSELVEDGEPATTERN()
         GETSELPE()
@@ -1439,7 +1480,7 @@ LINE1:
         GRIDWARP.ClearSelection()
         CMBGRIDSYM.Focus()
         clearwarp()
-        TOTALWARP()
+        TOTAL()
 
         If GRIDWARP.RowCount > 0 Then
             TXTWARPSRNO.Text = Val(GRIDWARP.Rows(GRIDWARP.RowCount - 1).Cells(0).Value) + 1
@@ -2196,10 +2237,8 @@ LINE1:
         If TXTFWT.Text <> "" And Val(TXTFWIDTH.Text) > 0 Then
             TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0")
         End If
-        If TXTGSM.Text <> "" Then
-            TXTGLM.Text = Format((Val(TXTGSM.Text) * Val(TXTFWT.Text)) / (39.37 / 10), "0.000")
-            TXTGLM.Text = TXTFINISHWT.Text
-        End If
+        TXTGLM.Text = TXTFINISHWT.Text
+
         '************* EPI ******************
         If Val(TXTTOTALDRAWDENTS.Text) > 0 And TXTREED.Text <> "" Then
             Dim x As Decimal = TXTREED.Text.Trim / 2
@@ -2219,48 +2258,6 @@ LINE1:
         GETWARPPE()
         GETWEFTPE()
         BLENDPERCENTAGE(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
-    End Sub
-
-    Sub TOTALWARP()
-        Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
-        PE = 0.00
-        BE = 0.00
-        TE = 0.00
-        WT = 0.00
-        CONS = 0.00
-        RATE = 0.00
-        COST = 0.00
-        GRIDPE = 0.00
-        For Each row As DataGridViewRow In GRIDWARP.Rows
-            If row.Cells(WPE.Index).Value IsNot DBNull.Value Then
-                PE = PE + Val(row.Cells(WPE.Index).Value)
-            End If
-            If row.Cells(WBE.Index).Value IsNot DBNull.Value Then
-                BE = BE + Val(row.Cells(WBE.Index).Value)
-            End If
-            If row.Cells(WENDS.Index).Value IsNot DBNull.Value Then
-                TE = TE + Val(row.Cells(WENDS.Index).Value)
-            End If
-            If row.Cells(WWT.Index).Value IsNot DBNull.Value Then
-                WT = WT + Val(row.Cells(WWT.Index).Value)
-            End If
-            If row.Cells(WCONS.Index).Value IsNot DBNull.Value Then
-                CONS = CONS + Val(row.Cells(WCONS.Index).Value)
-            End If
-            If row.Cells(WRATE.Index).Value IsNot DBNull.Value Then
-                RATE = RATE + Val(row.Cells(WRATE.Index).Value)
-            End If
-            If row.Cells(WCOST.Index).Value IsNot DBNull.Value Then
-                COST = COST + Val(row.Cells(WCOST.Index).Value)
-            End If
-        Next
-        TXTTOTALWARPPE.Text = Format(PE, "0.00")
-        TXTTOTALWARPBE.Text = Format(BE, "0.00")
-        TXTTOTALWARPTE.Text = Format(TE, "0.00")
-        TXTTOTALWARPWT.Text = Format(WT, "0.000")
-        TXTTOTALWARPCONS.Text = Format(CONS, "0.00")
-        TXTTOTALWARPRATE.Text = Format(RATE, "0.00")
-        TXTTOTALWARPCOST.Text = Format(COST, "0.00")
     End Sub
 
     Sub TOTALWARPPATTERN()
@@ -2333,48 +2330,6 @@ LINE1:
         If GRIDSELVEDGE IsNot Nothing AndAlso GRIDSELVEDGE.RowCount > 0 Then
             GETSELPE()
         End If
-    End Sub
-
-    Sub TOTALWEFT()
-        Dim PE, BE, TE, WT, CONS, RATE, COST, GRIDPE As Double
-        PE = 0.00
-        BE = 0.00
-        TE = 0.00
-        WT = 0.00
-        CONS = 0.00
-        RATE = 0.00
-        COST = 0.00
-        GRIDPE = 0.00
-        For Each row As DataGridViewRow In GRIDWEFT.Rows
-            If row.Cells(FPE.Index).Value IsNot DBNull.Value Then
-                PE = PE + Val(row.Cells(FPE.Index).Value)
-            End If
-            If row.Cells(FBE.Index).Value IsNot DBNull.Value Then
-                BE = BE + Val(row.Cells(FBE.Index).Value)
-            End If
-            If row.Cells(FENDS.Index).Value IsNot DBNull.Value Then
-                TE = TE + Val(row.Cells(FENDS.Index).Value)
-            End If
-            If row.Cells(FWT.Index).Value IsNot DBNull.Value Then
-                WT = WT + Val(row.Cells(FWT.Index).Value)
-            End If
-            If row.Cells(FCONS.Index).Value IsNot DBNull.Value Then
-                CONS = CONS + Val(row.Cells(FCONS.Index).Value)
-            End If
-            If row.Cells(FRATE.Index).Value IsNot DBNull.Value Then
-                RATE = RATE + Val(row.Cells(FRATE.Index).Value)
-            End If
-            If row.Cells(FCOST.Index).Value IsNot DBNull.Value Then
-                COST = COST + Val(row.Cells(FCOST.Index).Value)
-            End If
-        Next
-        TXTTOTALWEFTPE.Text = Format(PE, "0.00")
-        TXTTOTALWEFTBE.Text = Format(BE, "0.00")
-        TXTTOTALWEFTTE.Text = Format(TE, "0.00")
-        TXTTOTALWEFTWT.Text = Format(WT, "0.000")
-        TXTTOTALWEFTCONS.Text = Format(CONS, "0.00")
-        TXTTOTALWEFTRATE.Text = Format(RATE, "0.00")
-        TXTTOTALWEFTCOST.Text = Format(COST, "0.00")
     End Sub
 
     Sub TOTALWEFTPATTERN()
@@ -2574,7 +2529,7 @@ LINE1:
                 row.Cells(WPE.Index).Value = peSumBySym(symVal)
             End If
         Next
-        TOTALWARP()
+        TOTAL()
     End Sub
 
     Sub GETWEFTPE()
@@ -2602,7 +2557,7 @@ LINE1:
                 row.Cells(FPE.Index).Value = peSumBySym(symVal)
             End If
         Next
-        TOTALWEFT()
+        TOTAL()
     End Sub
     Sub GETSELPE()
         ' --- Step 1: Create a dictionary to sum P.E. per Sym from warppattern grid ---
@@ -2862,12 +2817,11 @@ LINE1:
                 ' Remove row from main grid
                 GRIDWARP.Rows.RemoveAt(GRIDWARP.CurrentRow.Index)
                 ' Refresh totals and serial numbers
-                TOTALWARP()
+                TOTAL()
                 TOTALWARPPATTERN()
                 getsrno(GRIDWARP)
                 getsrno(GRIDWARPPATTERN)
                 CALC()
-                TOTAL()
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITWARPROW()
             End If
@@ -2916,6 +2870,7 @@ LINE1:
             End If
         Next
     End Sub
+
     Private Sub CopyGridEntries(sourceGrid As DataGridView, targetGrid As DataGridView)
 
         ' Clear existing rows
@@ -2948,9 +2903,6 @@ LINE1:
 
     End Sub
 
-
-
-
     Private Sub GRIDWARPPATTERN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDWARPPATTERN.KeyDown
         Try
             If e.KeyCode = Keys.Delete And GRIDWARPPATTERN.CurrentRow.Cells(WPENDS.Index).Value <> "" Then
@@ -2960,7 +2912,7 @@ LINE1:
                 End If
                 GRIDWARPPATTERN.Rows.RemoveAt(GRIDWARPPATTERN.CurrentRow.Index)
                 TOTALWARPPATTERN()
-                TOTALWARP()
+                TOTAL()
                 getsrno(GRIDWARPPATTERN)
             End If
         Catch ex As Exception
@@ -2991,10 +2943,9 @@ LINE1:
 
                 GRIDWEFT.Rows.RemoveAt(GRIDWEFT.CurrentRow.Index)
 
-                TOTALWEFT()
+                TOTAL()
                 getsrno(GRIDWEFT)
                 CALC()
-                TOTAL()
             ElseIf e.KeyCode = Keys.F5 Then
                 EDITWEFTROW()
             End If
@@ -3012,7 +2963,7 @@ LINE1:
                 End If
                 GRIDWEFTPATTERN.Rows.RemoveAt(GRIDWEFTPATTERN.CurrentRow.Index)
                 TOTALWEFTPATTERN()
-                TOTALWEFT()
+                TOTAL()
                 getsrno(GRIDWEFTPATTERN)
             End If
         Catch ex As Exception
@@ -3565,15 +3516,15 @@ LINE1:
 
         End If
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'CalculateTotalsForGrid(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles CMDCALCWARP.Click, Button1.Click
         TOTALWARPPATTERN()
-        TOTALWARP()
+        TOTAL()
     End Sub
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        'CalculateTotalsForGrid(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles CMDCALCWEFT.Click, Button2.Click
         TOTALWEFTPATTERN()
-        TOTALWEFT()
+        TOTAL()
     End Sub
 
     Private Sub GRIDDRAWING_DefaultValuesNeeded(ByVal sender As Object, ByVal e As DataGridViewRowEventArgs) Handles GRIDDRAWING.DefaultValuesNeeded
@@ -3775,12 +3726,17 @@ LINE1:
             Throw ex
         End Try
     End Sub
-    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTSHRINKAGEPER.KeyPress, TXTPICKS.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTFWIDTH.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
+
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTTHREADPERDENT.KeyPress, TXTPICKS.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTSHRINKAGEPER.KeyPress, TXTFWIDTH.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TXTLEFTSEL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREEDSPACE.KeyPress, TXTLEFTSEL.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTNOOFPCS.KeyPress, TXTCOVERFACTOR.KeyPress
+        numdotkeypress(e, sender, Me)
     End Sub
 
     Private Sub CMDCLOSESEL_Validated(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Validated
@@ -4309,11 +4265,9 @@ line1:
     Private Sub GRIDDRAWING_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDDRAWING.KeyDown
         Try
             If e.KeyCode = Keys.Delete And GRIDDRAWING.RowCount > 1 Then
-
                 GRIDDRAWING.Rows.RemoveAt(GRIDDRAWING.CurrentRow.Index)
-                TOTALWARP()
+                TOTAL()
                 getsrno(GRIDDRAWING)
-
             End If
         Catch ex As Exception
             Throw ex
@@ -4489,7 +4443,7 @@ line1:
             If e.KeyCode = Keys.Delete And GRIDPEG.RowCount > 0 Then
 
                 GRIDPEG.Rows.RemoveAt(GRIDPEG.CurrentRow.Index)
-                TOTALWARP()
+                TOTAL()
                 getsrno(GRIDPEG)
                 GRIDPEGPLAN.RowCount = 0
                 FILLPEGPLAN()
@@ -4654,10 +4608,6 @@ line1:
         End Try
     End Sub
 
-    Private Sub TXTLEFTSEL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTLEFTSEL.KeyPress, TXTNOOFPCS.KeyPress
-        numdotkeypress(e, sender, Me)
-    End Sub
-
     Private Sub TXTGWIDTH_Validated(sender As Object, e As EventArgs) Handles TXTGWIDTH.Validated
         Try
             If TXTGWIDTH.Text <> "" Then TXTGWIDTHCM.Text = Format(Val(TXTGWIDTH.Text.Trim) * 2.54, "0.00")
@@ -4665,6 +4615,7 @@ line1:
             Throw ex
         End Try
     End Sub
+
     Sub SAVEBEAMDESIGN(EDIT As Boolean)
         Try
             Dim IntResult As Integer

@@ -2219,4 +2219,15 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub GRIDORDER_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDORDER.KeyDown
+        Try
+            If e.KeyCode = Keys.Delete And GRIDYARN.RowCount > 0 Then
+                GRIDORDER.Rows.RemoveAt(GRIDORDER.CurrentRow.Index)
+                getsrno(GRIDORDER)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
