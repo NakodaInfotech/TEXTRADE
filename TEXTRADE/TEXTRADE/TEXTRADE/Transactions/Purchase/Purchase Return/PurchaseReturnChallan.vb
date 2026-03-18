@@ -1350,7 +1350,12 @@ LINE1:
                     Dim PCS As Double = 0
                     If ClientName = "TCOT" Then PCS = Val(DT.Rows(0).Item("PCS")) Else PCS = 1
 
-                    GRIDPR.Rows.Add(GRIDPR.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("BALENO"), Format(Val(DT.Rows(0).Item("CUT")), "0.00"), PCS, DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), 0, "Mtrs", 0, DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0)
+                    Dim RATE As Double = 0.0
+                    Dim DTRATE As DataTable = OBJCMN.SEARCH("DESIGN_PURRATE AS PURRATE ", "", "DESIGNMASTER", " AND DESIGN_NO = '" & DT.Rows(0).Item("DESIGNNO") & "' AND DESIGN_YEARID = " & YearId)
+                    If DTRATE.Rows.Count > 0 Then RATE = Val(DTRATE.Rows(0).Item("PURRATE"))
+
+
+                    GRIDPR.Rows.Add(GRIDPR.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("BALENO"), Format(Val(DT.Rows(0).Item("CUT")), "0.00"), PCS, DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), Val(RATE), "Mtrs", Format(Val(RATE) * Val(DT.Rows(0).Item("MTRS")), "0.00"), DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), 0)
                     TOTAL()
                     GRIDPR.FirstDisplayedScrollingRowIndex = GRIDPR.RowCount - 1
 
