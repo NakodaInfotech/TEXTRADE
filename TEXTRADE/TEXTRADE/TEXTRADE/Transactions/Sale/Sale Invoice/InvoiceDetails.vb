@@ -292,7 +292,7 @@ Public Class InvoiceDetails
 
                 End If
             Next
-            If CHKMERGEDPDF.CheckState = True Then
+            If CHKMERGEDPDF.Checked = True Then
                 If INVOICEMAIL Then
                     If ALATTACHMENT.Count = 0 Then Exit Sub
 

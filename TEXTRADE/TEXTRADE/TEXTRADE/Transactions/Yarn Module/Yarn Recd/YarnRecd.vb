@@ -232,6 +232,7 @@ Public Class YarnRecd
                                 TEMPORDERROWNO = ORDROW.Index
                                 GoTo CHECKNEXTLINE
                             End If
+                            ROW.Cells(GRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
                             ORDROW.Cells(ORECDBAGS.Index).Value = Val(ORDROW.Cells(ORECDBAGS.Index).Value) + Val(ROW.Cells(GQTY.Index).Value)
                             ORDROW.Cells(ORECDWT.Index).Value = Val(ORDROW.Cells(ORECDWT.Index).Value) + Val(ROW.Cells(GWT.Index).Value)
                             TEMPORDERROWNO = -1
@@ -241,6 +242,7 @@ CHECKNEXTLINE:
                     Next
                     'IF NO FURTHER MACHING IS FOUND BUT WE HAVE TEMPORDERROWNO THEN ADD VALUE IN THAT ROW
                     If TEMPORDERROWNO >= 0 Then
+                        ROW.Cells(GRATE.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORATE.Index).Value)
                         GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORECDBAGS.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORECDBAGS.Index).Value) + Val(ROW.Cells(GQTY.Index).Value)
                         GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORECDWT.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORECDWT.Index).Value) + Val(ROW.Cells(GWT.Index).Value)
                         TEMPORDERROWNO = -1
@@ -272,11 +274,9 @@ CHECKNEXTLINE:
                 End If
             End If
 
-            If ClientName = "SWPL" Then
-                If GRIDORDER.RowCount = 0 Then
-                    EP.SetError(cmbname, "Please Select  Purchase Order")
-                    bln = False
-                End If
+            If ClientName = "SWPL" And GRIDORDER.RowCount = 0 Then
+                EP.SetError(cmbname, "Please Select  Purchase Order")
+                bln = False
             End If
 
 
