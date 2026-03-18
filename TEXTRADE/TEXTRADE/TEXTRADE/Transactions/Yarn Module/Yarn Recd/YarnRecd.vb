@@ -869,6 +869,7 @@ LINE1:
             FILLMILL(CMBMILL, EDIT)
             FILLDESIGN(CMBDESIGN, "")
             FILLCOLOR(cmbcolor, CMBDESIGN.Text.Trim, "")
+            FILLRACK(CMBRACK)
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
