@@ -434,6 +434,11 @@ Public Class ItemMaster
             bln = False
         End If
 
+        If Val(TXTRATE.Text.Trim) = 0 And ClientName = "SHEETAL" Then
+            Ep.SetError(TXTRATE, "Enter Rate")
+            bln = False
+        End If
+
         If (ClientName = "LEEFABRICO" Or ClientName = "SOFTAS" Or ClientName = "RADHA") And TXTWIDTH.Text.Trim.Length = 0 Then
             Ep.SetError(TXTWIDTH, "Fill Width")
             bln = False

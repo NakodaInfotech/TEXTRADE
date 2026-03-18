@@ -1,6 +1,7 @@
 ﻿
 Imports BL
 Imports DevExpress.CodeParser
+Imports DevExpress.DashboardCommon.Viewer
 Imports System.ComponentModel
 Imports System.IO
 
@@ -721,6 +722,11 @@ Public Class SaleOrder
             For Each row As DataGridViewRow In GRIDSO.Rows
                 If (Val(row.Cells(gQty.Index).Value) = 0 And Val(row.Cells(GMTRS.Index).Value) = 0) Then
                     EP.SetError(cmbname, "Qty and Mtrs Cannot be 0")
+                    bln = False
+                End If
+
+                If Val(row.Cells(GRATE.Index).Value) = 0 And ClientName = "SHEETAL" Then
+                    EP.SetError(cmbname, "Rate Cannot be 0")
                     bln = False
                 End If
             Next

@@ -28,6 +28,8 @@ Partial Class YarnOnHandStock
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GJOBBERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -35,9 +37,11 @@ Partial Class YarnOnHandStock
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,7 +107,7 @@ Partial Class YarnOnHandStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GYARNQUALITY, Me.GCATEGORY, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GGODOWN, Me.GTOTALCONES, Me.GTOTALWT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GYARNQUALITY, Me.GCATEGORY, Me.GJOBBERNAME, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GGODOWN, Me.GTOTALCONES, Me.GTOTALWT, Me.GBILLNO, Me.GRACK, Me.GBARCODE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -123,13 +127,31 @@ Partial Class YarnOnHandStock
         Me.GYARNQUALITY.VisibleIndex = 0
         Me.GYARNQUALITY.Width = 150
         '
+        'GCATEGORY
+        '
+        Me.GCATEGORY.Caption = "Category"
+        Me.GCATEGORY.FieldName = "CATEGORY"
+        Me.GCATEGORY.Name = "GCATEGORY"
+        Me.GCATEGORY.Visible = True
+        Me.GCATEGORY.VisibleIndex = 1
+        Me.GCATEGORY.Width = 120
+        '
+        'GJOBBERNAME
+        '
+        Me.GJOBBERNAME.Caption = "Jobber Name"
+        Me.GJOBBERNAME.FieldName = "JOBBERNAME"
+        Me.GJOBBERNAME.Name = "GJOBBERNAME"
+        Me.GJOBBERNAME.Visible = True
+        Me.GJOBBERNAME.VisibleIndex = 2
+        Me.GJOBBERNAME.Width = 200
+        '
         'GMILLNAME
         '
         Me.GMILLNAME.Caption = "Mill Name"
         Me.GMILLNAME.FieldName = "MILLNAME"
         Me.GMILLNAME.Name = "GMILLNAME"
         Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 2
+        Me.GMILLNAME.VisibleIndex = 3
         Me.GMILLNAME.Width = 200
         '
         'GDESIGNNO
@@ -138,7 +160,7 @@ Partial Class YarnOnHandStock
         Me.GDESIGNNO.FieldName = "DESIGNNO"
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 3
+        Me.GDESIGNNO.VisibleIndex = 4
         Me.GDESIGNNO.Width = 150
         '
         'GCOLOR
@@ -147,7 +169,7 @@ Partial Class YarnOnHandStock
         Me.GCOLOR.FieldName = "COLOR"
         Me.GCOLOR.Name = "GCOLOR"
         Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 4
+        Me.GCOLOR.VisibleIndex = 5
         Me.GCOLOR.Width = 150
         '
         'GLOTNO
@@ -156,7 +178,7 @@ Partial Class YarnOnHandStock
         Me.GLOTNO.FieldName = "LOTNO"
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 5
+        Me.GLOTNO.VisibleIndex = 6
         '
         'GGODOWN
         '
@@ -164,7 +186,7 @@ Partial Class YarnOnHandStock
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
         Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 6
+        Me.GGODOWN.VisibleIndex = 7
         Me.GGODOWN.Width = 140
         '
         'GTOTALCONES
@@ -176,7 +198,7 @@ Partial Class YarnOnHandStock
         Me.GTOTALCONES.Name = "GTOTALCONES"
         Me.GTOTALCONES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALCONES.Visible = True
-        Me.GTOTALCONES.VisibleIndex = 7
+        Me.GTOTALCONES.VisibleIndex = 8
         Me.GTOTALCONES.Width = 80
         '
         'GTOTALWT
@@ -188,8 +210,32 @@ Partial Class YarnOnHandStock
         Me.GTOTALWT.Name = "GTOTALWT"
         Me.GTOTALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALWT.Visible = True
-        Me.GTOTALWT.VisibleIndex = 8
+        Me.GTOTALWT.VisibleIndex = 9
         Me.GTOTALWT.Width = 90
+        '
+        'GBILLNO
+        '
+        Me.GBILLNO.Caption = "Bill No"
+        Me.GBILLNO.FieldName = "BILLNO"
+        Me.GBILLNO.Name = "GBILLNO"
+        Me.GBILLNO.Visible = True
+        Me.GBILLNO.VisibleIndex = 10
+        '
+        'GRACK
+        '
+        Me.GRACK.Caption = "Rack"
+        Me.GRACK.FieldName = "RACK"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.Visible = True
+        Me.GRACK.VisibleIndex = 11
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 12
         '
         'ToolStrip1
         '
@@ -208,15 +254,6 @@ Partial Class YarnOnHandStock
         Me.PrintToolStripButton.Name = "PrintToolStripButton"
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
-        '
-        'GCATEGORY
-        '
-        Me.GCATEGORY.Caption = "Category"
-        Me.GCATEGORY.FieldName = "CATEGORY"
-        Me.GCATEGORY.Name = "GCATEGORY"
-        Me.GCATEGORY.Visible = True
-        Me.GCATEGORY.VisibleIndex = 1
-        Me.GCATEGORY.Width = 120
         '
         'YarnOnHandStock
         '
@@ -255,4 +292,8 @@ Partial Class YarnOnHandStock
     Friend WithEvents PrintToolStripButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents CMDREFRESH As Button
     Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GJOBBERNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBILLNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRACK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
