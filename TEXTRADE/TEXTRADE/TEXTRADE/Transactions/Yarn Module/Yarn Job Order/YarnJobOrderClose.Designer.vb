@@ -37,14 +37,6 @@ Partial Class YarnJobOrderClose
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPARTYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPARTYBILLDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GHSNCODE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALQTY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSOLD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTEMPSOLD = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -145,7 +137,7 @@ Partial Class YarnJobOrderClose
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBILLNO, Me.GGRIDSRNO, Me.GBILLDATE, Me.GREGNAME, Me.GBILLINITIALS, Me.GNAME, Me.GTRANSNAME, Me.GPARTYBILLNO, Me.GPARTYBILLDATE, Me.GITEMNAME, Me.GHSNCODE, Me.GTOTALQTY, Me.GUNIT, Me.GTOTALMTRS, Me.GRATE, Me.GCATEGORY, Me.GTYPE, Me.GSOLD, Me.GTEMPSOLD})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBILLNO, Me.GGRIDSRNO, Me.GBILLDATE, Me.GREGNAME, Me.GBILLINITIALS, Me.GPARTYBILLNO, Me.GNAME, Me.GTRANSNAME, Me.GTYPE, Me.GSOLD, Me.GTEMPSOLD})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 40
@@ -158,7 +150,7 @@ Partial Class YarnJobOrderClose
         '
         'GBILLNO
         '
-        Me.GBILLNO.Caption = "Bill No"
+        Me.GBILLNO.Caption = "Sr No."
         Me.GBILLNO.DisplayFormat.FormatString = "0"
         Me.GBILLNO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GBILLNO.FieldName = "BILLNO"
@@ -189,7 +181,7 @@ Partial Class YarnJobOrderClose
         '
         'GREGNAME
         '
-        Me.GREGNAME.Caption = "Reg Name"
+        Me.GREGNAME.Caption = "Quality Name"
         Me.GREGNAME.FieldName = "REGNAME"
         Me.GREGNAME.Name = "GREGNAME"
         Me.GREGNAME.OptionsColumn.AllowEdit = False
@@ -199,120 +191,44 @@ Partial Class YarnJobOrderClose
         '
         'GBILLINITIALS
         '
-        Me.GBILLINITIALS.Caption = "Bill Initials"
+        Me.GBILLINITIALS.Caption = "Party Name"
         Me.GBILLINITIALS.FieldName = "BILLINITIALS"
         Me.GBILLINITIALS.Name = "GBILLINITIALS"
         Me.GBILLINITIALS.OptionsColumn.AllowEdit = False
         Me.GBILLINITIALS.Visible = True
         Me.GBILLINITIALS.VisibleIndex = 4
-        Me.GBILLINITIALS.Width = 100
+        Me.GBILLINITIALS.Width = 207
         '
         'GNAME
         '
-        Me.GNAME.Caption = "Name"
+        Me.GNAME.Caption = "Shade"
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 5
-        Me.GNAME.Width = 210
+        Me.GNAME.VisibleIndex = 6
+        Me.GNAME.Width = 168
         '
         'GTRANSNAME
         '
-        Me.GTRANSNAME.Caption = "Trans Name"
+        Me.GTRANSNAME.Caption = "Total Mtrs"
         Me.GTRANSNAME.FieldName = "TRANSNAME"
         Me.GTRANSNAME.Name = "GTRANSNAME"
         Me.GTRANSNAME.OptionsColumn.AllowEdit = False
         Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 6
-        Me.GTRANSNAME.Width = 200
+        Me.GTRANSNAME.VisibleIndex = 7
+        Me.GTRANSNAME.Width = 125
         '
         'GPARTYBILLNO
         '
-        Me.GPARTYBILLNO.Caption = "Party Bill No"
+        Me.GPARTYBILLNO.Caption = "Design No"
         Me.GPARTYBILLNO.FieldName = "PARTYBILLNO"
         Me.GPARTYBILLNO.Name = "GPARTYBILLNO"
         Me.GPARTYBILLNO.OptionsColumn.AllowEdit = False
         Me.GPARTYBILLNO.Visible = True
-        Me.GPARTYBILLNO.VisibleIndex = 7
-        Me.GPARTYBILLNO.Width = 100
-        '
-        'GPARTYBILLDATE
-        '
-        Me.GPARTYBILLDATE.Caption = "Party Bill Date"
-        Me.GPARTYBILLDATE.FieldName = "PARTYBILLDATE"
-        Me.GPARTYBILLDATE.Name = "GPARTYBILLDATE"
-        Me.GPARTYBILLDATE.OptionsColumn.AllowEdit = False
-        Me.GPARTYBILLDATE.Visible = True
-        Me.GPARTYBILLDATE.VisibleIndex = 8
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BALES", "")})
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 9
-        Me.GITEMNAME.Width = 210
-        '
-        'GHSNCODE
-        '
-        Me.GHSNCODE.Caption = "Hsn Code"
-        Me.GHSNCODE.FieldName = "HSNCODE"
-        Me.GHSNCODE.Name = "GHSNCODE"
-        Me.GHSNCODE.Visible = True
-        Me.GHSNCODE.VisibleIndex = 10
-        '
-        'GTOTALQTY
-        '
-        Me.GTOTALQTY.Caption = "Total Qty"
-        Me.GTOTALQTY.FieldName = "TOTALQTY"
-        Me.GTOTALQTY.Name = "GTOTALQTY"
-        Me.GTOTALQTY.OptionsColumn.AllowEdit = False
-        Me.GTOTALQTY.Visible = True
-        Me.GTOTALQTY.VisibleIndex = 11
-        '
-        'GUNIT
-        '
-        Me.GUNIT.Caption = "UNIT"
-        Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.OptionsColumn.AllowEdit = False
-        Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 12
-        '
-        'GTOTALMTRS
-        '
-        Me.GTOTALMTRS.Caption = "Total Mtrs"
-        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
-        Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 13
-        Me.GTOTALMTRS.Width = 120
-        '
-        'GRATE
-        '
-        Me.GRATE.Caption = "Rate"
-        Me.GRATE.DisplayFormat.FormatString = "0.00"
-        Me.GRATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GRATE.FieldName = "RATE"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.OptionsColumn.AllowEdit = False
-        Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 14
-        '
-        'GCATEGORY
-        '
-        Me.GCATEGORY.Caption = "Category"
-        Me.GCATEGORY.FieldName = "CATEGORY"
-        Me.GCATEGORY.Name = "GCATEGORY"
-        Me.GCATEGORY.OptionsColumn.AllowEdit = False
-        Me.GCATEGORY.Visible = True
-        Me.GCATEGORY.VisibleIndex = 15
+        Me.GPARTYBILLNO.VisibleIndex = 5
+        Me.GPARTYBILLNO.Width = 148
         '
         'GTYPE
         '
@@ -436,14 +352,6 @@ Partial Class YarnJobOrderClose
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTRANSNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPARTYBILLDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GHSNCODE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALQTY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTYPE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GSOLD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTEMPSOLD As DevExpress.XtraGrid.Columns.GridColumn
