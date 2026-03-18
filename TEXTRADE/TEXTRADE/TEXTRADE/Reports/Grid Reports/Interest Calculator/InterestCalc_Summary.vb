@@ -1,15 +1,18 @@
 ﻿
 Imports BL
-Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.CodeParser
+Imports DevExpress.Pdf.Xmp
 
 Public Class InterestCalc_Summary
+
+    Dim TEMPJVNO As Integer = 0
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
 
     Private Sub cmdshowdetails_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdshowdetails.Click
-        fillgrid()
+        FILLGRID()
     End Sub
 
     Sub FILLGRID()
@@ -238,7 +241,7 @@ Public Class InterestCalc_Summary
                 'CHECKING WHETHER INTPER IS PRESENT IN MASTER OR NOT
                 'IF PRESEN THEN CALCULATE PERCENTCAL WITH THAT PERCENT ELSE CONTINUE
                 Dim PARTYINTPER As Double = 0
-                Dim DTPARTYINT As DataTable = OBJCMN.search(" isnull(ACC_INTPER,0) AS INTPER ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & LEDGERNAME & "' AND ACC_YEARID = " & YearId)
+                Dim DTPARTYINT As DataTable = OBJCMN.SEARCH(" isnull(ACC_INTPER,0) AS INTPER ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & LEDGERNAME & "' AND ACC_YEARID = " & YearId)
                 If CHKALL.CheckState = CheckState.Checked Then PARTYINTPER = PERCENTCAL Else PARTYINTPER = Val(DTPARTYINT.Rows(0).Item("INTPER"))
 
 
@@ -272,7 +275,7 @@ Public Class InterestCalc_Summary
                 End If
 
 
-                    If Val(dtrow("DAYS")) > 0 Then
+                If Val(dtrow("DAYS")) > 0 Then
                     If Val(RUNNINGBAL) > 0 Then
                         If Val(DTPARTYINT.Rows(0).Item("INTPER")) > 0 Then dtrow("TOREC") = (((PARTYINTPER * RUNNINGBAL) / 100) / Val(TXTDAYS.Text.Trim) * Val(dtrow("DAYS"))) Else dtrow("TOREC") = (((Val(PERCENTCAL) * RUNNINGBAL) / 100) / Val(TXTDAYS.Text.Trim) * Val(dtrow("DAYS")))
                     Else
@@ -321,7 +324,7 @@ Public Class InterestCalc_Summary
 
     Private Sub gridregister_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridregister.DoubleClick
         Try
-            showform()
+            SHOWFORM()
         Catch ex As Exception
             Throw ex
         End Try
@@ -329,7 +332,7 @@ Public Class InterestCalc_Summary
 
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
-            showform()
+            SHOWFORM()
         Catch ex As Exception
             Throw ex
         End Try
@@ -416,10 +419,10 @@ Public Class InterestCalc_Summary
                 Dim NAMEROW As DataRow = GRIDNAMEREGISTER.GetFocusedDataRow
 
 
-                Dim dt As DataTable = OBJCMN.search("1 AS SORTNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE, TOTALBALES,DEBIT, CREDIT, ISNULL( DATEDIFF(DAY,(SELECT DUEDATE FROM (SELECT     ROW_NUMBER() OVER ( ORDER BY DUEDATE)AS ROWNO, DUEDATE FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId & WHERE & ")) AS T WHERE T.ROWNO = NEWT.ROWNO -1 ), NEWT.[DUEDATE]),0) AS [DAYS], 0 AS NETTBALANCE, 0 AS TOPAY, 0 AS TOREC  ", "", " (SELECT     ROW_NUMBER() OVER (ORDER BY DUEDATE)AS ROWNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE,TOTALBALES, DEBIT, CREDIT,  CMPID, LOCATIONID, YEARID FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId & WHERE & ")) AS NEWT ", WHERE & " ORDER BY NEWT.NAME, NEWT.DUEDATE  ")
+                Dim dt As DataTable = OBJCMN.SEARCH("1 AS SORTNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE, TOTALBALES,DEBIT, CREDIT, ISNULL( DATEDIFF(DAY,(SELECT DUEDATE FROM (SELECT     ROW_NUMBER() OVER ( ORDER BY DUEDATE)AS ROWNO, DUEDATE FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId & WHERE & ")) AS T WHERE T.ROWNO = NEWT.ROWNO -1 ), NEWT.[DUEDATE]),0) AS [DAYS], 0 AS NETTBALANCE, 0 AS TOPAY, 0 AS TOREC  ", "", " (SELECT     ROW_NUMBER() OVER (ORDER BY DUEDATE)AS ROWNO, SRNO, REGTYPE, BILLINITIALS, TYPE, NAME, DATE, APPDATE, DUEDATE,TOTALBALES, DEBIT, CREDIT,  CMPID, LOCATIONID, YEARID FROM INTERESTVIEW WHERE (NAME = '" & NAMEROW("NAME") & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId & WHERE & ")) AS NEWT ", WHERE & " ORDER BY NEWT.NAME, NEWT.DUEDATE  ")
                 Dim DTROW() As DataRow
 
-                Dim DTOPENING As DataTable = OBJCMN.search(" (CASE WHEN (SUM(DEBIT) - SUM(CREDIT)> 0) THEN (SUM(DEBIT) - SUM(CREDIT)) ELSE 0 END )AS DEBITBAL, (CASE WHEN (SUM(CREDIT) - SUM(DEBIT)> 0 )THEN (SUM(CREDIT) - SUM(DEBIT)) ELSE 0 END)  AS CREDITBAL ", "", " INTERESTVIEW ", OPWHERE & " AND NAME = '" & NAMEROW("NAME") & "'")
+                Dim DTOPENING As DataTable = OBJCMN.SEARCH(" (CASE WHEN (SUM(DEBIT) - SUM(CREDIT)> 0) THEN (SUM(DEBIT) - SUM(CREDIT)) ELSE 0 END )AS DEBITBAL, (CASE WHEN (SUM(CREDIT) - SUM(DEBIT)> 0 )THEN (SUM(CREDIT) - SUM(DEBIT)) ELSE 0 END)  AS CREDITBAL ", "", " INTERESTVIEW ", OPWHERE & " AND NAME = '" & NAMEROW("NAME") & "'")
                 If DTOPENING.Rows.Count > 0 Then
                     If CHKDATE.CheckState = CheckState.Checked Then
                         If (Val(DTOPENING.Rows(0).Item("DEBITBAL")) > 0 Or Val(DTOPENING.Rows(0).Item("CREDITBAL")) > 0) Then dt.Rows.Add(0, 0, "", "OPENING", "", "", dtfrom.Value.Date, dtfrom.Value.Date, dtfrom.Value.Date, 0, Val(DTOPENING.Rows(0).Item("DEBITBAL")), Val(DTOPENING.Rows(0).Item("CREDITBAL")), 0, 0, 0, 0)
@@ -579,7 +582,7 @@ Public Class InterestCalc_Summary
 
     Private Sub InterestCalc_Summary_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            fillcmb()
+            FILLCMB()
         Catch ex As Exception
             Throw ex
         End Try
@@ -616,7 +619,7 @@ Public Class InterestCalc_Summary
 
                 Dim DTROW As DataRow = GRIDNAMEREGISTER.GetDataRow(I)
                 'GET TDS FROM LEDGERS
-                DTTDS = OBJCMN.search("ISNULL(ACC_TDSPER,0) AS TDSPER, ISNULL(ACC_TDSFORM,'TDS') AS TDSFORM ", "", " LEDGERS INNER JOIN ACCOUNTSMASTER_TDS ON LEDGERS.Acc_id = ACCOUNTSMASTER_TDS.ACC_ID  ", " AND ACC_CMPNAME = '" & DTROW("NAME") & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                DTTDS = OBJCMN.SEARCH("ISNULL(ACC_TDSPER,0) AS TDSPER, ISNULL(ACC_TDSFORM,'TDS') AS TDSFORM ", "", " LEDGERS INNER JOIN ACCOUNTSMASTER_TDS ON LEDGERS.Acc_id = ACCOUNTSMASTER_TDS.ACC_ID  ", " AND ACC_CMPNAME = '" & DTROW("NAME") & "' AND LEDGERS.ACC_YEARID = " & YearId)
 
                 If NAME = "" Then
                     INTPER = Val(DTROW("INTPER"))
@@ -697,7 +700,7 @@ Public Class InterestCalc_Summary
 
     Private Sub GRIDNAMEDETAILS_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles GRIDNAMEDETAILS.DoubleClick
         Try
-            showform()
+            SHOWFORM()
         Catch ex As Exception
             Throw ex
         End Try
@@ -756,6 +759,297 @@ Public Class InterestCalc_Summary
                     dtrow("CHK") = CHKBUYER.Checked
                 Next
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDAUTOPOST_Click(sender As Object, e As EventArgs) Handles CMDAUTOPOST.Click
+        Try
+            If GRIDNAMEREGISTER.RowCount <= 0 Then Exit Sub
+            If MsgBox("Auto Post Interest - TDS JV?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            If Not datecheck(POSTINGDATE.Value.Date) Then
+                MsgBox("Date Not in Current Accounting Year", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+            If cmbregister.Text.Trim <> "" And CMBINTEREST.Text.Trim <> "" And CMBTDS.Text.Trim <> "" Then
+                GRIDNAMEREGISTER.ClearColumnsFilter()
+
+                For i As Integer = 0 To GRIDNAMEREGISTER.RowCount - 1
+                    Dim dtrow As DataRow = GRIDNAMEREGISTER.GetDataRow(i)
+                    AUTOJVINTEREST(dtrow("NAME"), Val(dtrow("INTDR")), Val(dtrow("INTCR")))
+                    ACCOUNTSENTRYLEDGER(TEMPJVNO, dtrow("NAME"), Val(dtrow("INTDR")), Val(dtrow("INTCR")))
+                    AUTOJVDEDUCTION(dtrow("NAME"), Val(dtrow("TDSAMT")), If(Val(dtrow("INTCR")) > 0, "CR", "DR"))
+                Next
+                MsgBox("Auto Posting Done Successfully")
+                Me.Close()
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub AUTOJVINTEREST(PARTYNAME As String, INTDR As Double, INTCR As Double)
+        Try
+            TEMPJVNO = 0
+            'save entry in journal
+            Dim alParaval As New ArrayList
+            alParaval.Add(0)
+            alParaval.Add(cmbregister.Text.Trim)
+            alParaval.Add(Format(POSTINGDATE.Value.Date, "MM/dd/yyyy"))
+            If Val(INTCR) > 0 Then alParaval.Add(Val(INTCR)) Else alParaval.Add(Val(INTDR))    'TOTALDR
+            If Val(INTCR) > 0 Then alParaval.Add(Val(INTCR)) Else alParaval.Add(Val(INTDR))    'TOTALCR
+            alParaval.Add("Interest JV")   'FOR REMARKS
+            alParaval.Add("")   'FOR BILLREMARKS
+            alParaval.Add(CmpId)
+            alParaval.Add(Locationid)
+            alParaval.Add(Userid)
+            alParaval.Add(YearId)
+            alParaval.Add(0)
+
+            Dim type As String = ""
+            Dim name As String = ""
+            Dim paytype As String = ""
+            Dim refno As String = ""
+            Dim debit As String = ""
+            Dim credit As String = ""
+            Dim gridsrno As String = ""
+
+
+            If Val(INTCR) > 0 Then
+                'INT A/C DEBIT AND PARTY NAME CREDIT
+                For I As Integer = 0 To 1
+                    If type = "" Then
+                        type = "Dr"
+                        name = CMBINTEREST.Text.Trim
+                        paytype = "On Account"
+                        refno = ""
+                        debit = Val(INTCR)
+                        credit = 0
+                        gridsrno = 1
+                    Else
+                        type = type & "|" & "Cr"
+                        name = name & "|" & PARTYNAME
+                        paytype = paytype & "|" & "New Ref."
+
+                        'GET THE LATEST JOURNALNO
+                        Dim OBJCMN As New ClsCommon
+                        Dim DTJV As DataTable = OBJCMN.SEARCH("isnull(MAX(JOURNAL_NO), 0) + 1 AS JVNO", "", " JOURNALMASTER INNER JOIN REGISTERMASTER ON JOURNAL_REGISTERID = REGISTERMASTER.REGISTER_ID ", " AND REGISTERMASTER.REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND JOURNALMASTER.JOURNAL_YEARID = " & YearId)
+
+                        refno = refno & "|JV-" & Val(DTJV.Rows(0).Item("JVNO"))
+                        debit = debit & "|" & 0
+                        credit = credit & "|" & Val(INTCR)
+                        gridsrno = gridsrno & "|" & 2
+                    End If
+                Next
+            Else
+                'PARTYNAME DEBIT AND INT A/C CREDIT
+                For I As Integer = 0 To 1
+                    If type = "" Then
+                        type = "Dr"
+                        name = PARTYNAME
+                        paytype = "New Ref."
+
+                        'GET THE LATEST JOURNALNO
+                        Dim OBJCMN As New ClsCommon
+                        Dim DTJV As DataTable = OBJCMN.SEARCH("isnull(MAX(JOURNAL_NO), 0) + 1 AS JVNO", "", " JOURNALMASTER INNER JOIN REGISTERMASTER ON JOURNAL_REGISTERID = REGISTERMASTER.REGISTER_ID ", " AND REGISTERMASTER.REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND JOURNALMASTER.JOURNAL_YEARID = " & YearId)
+
+                        refno = "JV-" & Val(DTJV.Rows(0).Item("JVNO"))
+                        debit = Val(INTDR)
+                        credit = 0
+                        gridsrno = 1
+                    Else
+                        type = type & "|" & "Cr"
+                        name = name & "|" & CMBINTEREST.Text.Trim
+                        paytype = paytype & "|" & "On Account"
+                        refno = refno & "|"
+                        debit = debit & "|" & 0
+                        credit = credit & "|" & Val(INTDR)
+                        gridsrno = gridsrno & "|" & 2
+                    End If
+                Next
+            End If
+
+
+            alParaval.Add(type)
+            alParaval.Add(name)
+            alParaval.Add(paytype)
+            alParaval.Add(refno)
+            alParaval.Add(debit)
+            alParaval.Add(credit)
+            alParaval.Add(gridsrno)
+            alParaval.Add("")   'SPECIAL REMARKS
+            alParaval.Add("")   'PARTYBILLNO
+            alParaval.Add("")   'COSTCENTER
+
+            Dim objclsjvmaster As New ClsJournalMaster()
+            objclsjvmaster.alParaval = alParaval
+            Dim DT As DataTable = objclsjvmaster.save()
+
+            TEMPJVNO = Val(DT.Rows(0).Item(0))
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ACCOUNTSENTRYLEDGER(ByVal JVNO As Integer, PARTYNAME As String, INTDR As Double, INTCR As Double)
+        Try
+            Dim OBJJV As New ClsJournalMaster
+            Dim INTRESULT As Integer
+            Dim ALPARAVAL As New ArrayList
+
+            If Val(INTCR) > 0 Then
+                ALPARAVAL.Add(PARTYNAME)    'CRLEDGER
+                ALPARAVAL.Add(Val(INTCR))    'CRAMT
+                ALPARAVAL.Add(CMBINTEREST.Text.Trim)    'DRLEDGER
+            Else
+                ALPARAVAL.Add(CMBINTEREST.Text.Trim)    'CRLEDGER
+                ALPARAVAL.Add(Val(INTDR))    'CRAMT
+                ALPARAVAL.Add(PARTYNAME)    'DRLEDGER
+            End If
+
+            ALPARAVAL.Add(JVNO)            'JOURNAL NO
+            ALPARAVAL.Add(Format(POSTINGDATE.Value.Date, "MM/dd/yyyy"))            'JOURNAL DATE
+            ALPARAVAL.Add("")        'REMARKS
+            ALPARAVAL.Add(cmbregister.Text.Trim)        'REGISTER
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+            ALPARAVAL.Add("")   'partybillno
+
+            OBJJV.alParaval = ALPARAVAL
+            INTRESULT = OBJJV.ACCOUNTS()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub AUTOJVDEDUCTION(PARTYNAME As String, TDSAMT As Double, PARTYDRCR As String)
+        Try
+
+            'save entry in journal
+            Dim alParaval As New ArrayList
+            alParaval.Add(0)
+            alParaval.Add(cmbregister.Text.Trim)
+            alParaval.Add(Format(POSTINGDATE.Value.Date, "MM/dd/yyyy"))
+            alParaval.Add(Val(TDSAMT))    'TOTALDR
+            alParaval.Add(Val(TDSAMT))    'TOTALCR
+            alParaval.Add("Against Bill No JV-" & TEMPJVNO & " Bill Dt. " & POSTINGDATE.Text)   'FOR REMARKS
+            alParaval.Add("Against Bill No JV-" & TEMPJVNO & " Bill Dt. " & POSTINGDATE.Text)   'FOR BILLREMARKS
+            alParaval.Add(CmpId)
+            alParaval.Add(Locationid)
+            alParaval.Add(Userid)
+            alParaval.Add(YearId)
+            alParaval.Add(0)
+
+            Dim type As String = ""
+            Dim name As String = ""
+            Dim paytype As String = ""
+            Dim refno As String = ""
+            Dim debit As String = ""
+            Dim credit As String = ""
+            Dim gridsrno As String = ""
+
+            If PARTYDRCR = "CR" Then
+                For I As Integer = 0 To 1
+                    If type = "" Then
+                        type = "Dr"
+                        name = PARTYNAME
+                        paytype = "Against Bill"
+                        refno = "JV-" & Val(TEMPJVNO)
+                        debit = Val(TDSAMT)
+                        credit = 0
+                        gridsrno = 1
+                    Else
+                        type = type & "|" & "Cr"
+                        name = name & "|" & CMBTDS.Text.Trim
+                        paytype = paytype & "|" & "On Account"
+                        refno = refno & "|" & "JV-" & Val(TEMPJVNO)
+                        debit = debit & "|" & 0
+                        credit = credit & "|" & Val(TDSAMT)
+                        gridsrno = gridsrno & "|" & I + 1
+                    End If
+                Next
+            Else
+                For I As Integer = 0 To 1
+                    If type = "" Then
+                        type = "Dr"
+                        name = CMBTDS.Text.Trim
+                        paytype = "On Account"
+                        refno = "JV-" & Val(TEMPJVNO)
+                        debit = Val(TDSAMT)
+                        credit = 0
+                        gridsrno = 1
+                    Else
+                        type = type & "|" & "Cr"
+                        name = name & "|" & PARTYNAME
+                        paytype = paytype & "|" & "Against Bill"
+                        refno = refno & "|JV-" & Val(TEMPJVNO)
+                        debit = debit & "|" & 0
+                        credit = credit & "|" & Val(TDSAMT)
+                        gridsrno = gridsrno & "|" & I + 1
+                    End If
+                Next
+            End If
+
+            alParaval.Add(type)
+            alParaval.Add(name)
+            alParaval.Add(paytype)
+            alParaval.Add(refno)
+            alParaval.Add(debit)
+            alParaval.Add(credit)
+            alParaval.Add(gridsrno)
+            alParaval.Add("")   'SPECIAL REMARKS
+            alParaval.Add(TEMPJVNO)   'PARTYBILLNO
+            alParaval.Add("")   'COSTCENTER
+
+            Dim objclsjvmaster As New ClsJournalMaster()
+            objclsjvmaster.alParaval = alParaval
+            Dim DT As DataTable = objclsjvmaster.save()
+
+            ACCOUNTSENTRYDEDUCTION(DT.Rows(0).Item(0), PARTYNAME, TDSAMT, PARTYDRCR)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub ACCOUNTSENTRYDEDUCTION(ByVal JVNO As Integer, PARTYNAME As String, TDSAMT As Double, PARTYDRCR As String)
+        Try
+            Dim OBJJV As New ClsJournalMaster
+            Dim INTRESULT As Integer
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Clear()
+            If PARTYDRCR = "CR" Then
+                ALPARAVAL.Add(CMBTDS.Text.Trim)    'CRLEDGER
+                ALPARAVAL.Add(Val(TDSAMT))    'DEDAMT
+                ALPARAVAL.Add(PARTYNAME)    'DRLEDGER
+            Else
+                ALPARAVAL.Add(PARTYNAME)    'CRLEDGER
+                ALPARAVAL.Add(Val(TDSAMT))    'DEDAMT
+                ALPARAVAL.Add(CMBTDS.Text.Trim)    'DRLEDGER
+            End If
+
+            ALPARAVAL.Add(JVNO)            'JOURNAL NO
+            ALPARAVAL.Add(Format(POSTINGDATE.Value.Date, "MM/dd/yyyy"))            'JOURNAL DATE
+            ALPARAVAL.Add("")        'REMARKS
+            ALPARAVAL.Add(cmbregister.Text.Trim)        'REGISTER
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+            ALPARAVAL.Add(Val(JVNO))   'partybillno
+
+            OBJJV.alParaval = ALPARAVAL
+            INTRESULT = OBJJV.ACCOUNTS()
+
         Catch ex As Exception
             Throw ex
         End Try

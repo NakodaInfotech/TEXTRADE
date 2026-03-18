@@ -92,6 +92,9 @@ Partial Class InterestCalc_Summary
         Me.GSIDEINT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALINT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TBFILTERS = New System.Windows.Forms.TabPage()
+        Me.POSTINGDATE = New System.Windows.Forms.DateTimePicker()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.CMDAUTOPOST = New System.Windows.Forms.Button()
         Me.CMBINTEREST = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TXTADD = New System.Windows.Forms.TextBox()
@@ -191,7 +194,7 @@ Partial Class InterestCalc_Summary
         Me.cmbgroup.MaxDropDownItems = 14
         Me.cmbgroup.Name = "cmbgroup"
         Me.cmbgroup.Size = New System.Drawing.Size(161, 22)
-        Me.cmbgroup.TabIndex = 5
+        Me.cmbgroup.TabIndex = 0
         '
         'lblgroup
         '
@@ -434,7 +437,7 @@ Partial Class InterestCalc_Summary
         Me.TXTDAYS.Location = New System.Drawing.Point(627, 59)
         Me.TXTDAYS.Name = "TXTDAYS"
         Me.TXTDAYS.Size = New System.Drawing.Size(37, 22)
-        Me.TXTDAYS.TabIndex = 4
+        Me.TXTDAYS.TabIndex = 5
         Me.TXTDAYS.Text = "360"
         Me.TXTDAYS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -458,7 +461,7 @@ Partial Class InterestCalc_Summary
         Me.TXTPERCENT.Location = New System.Drawing.Point(627, 33)
         Me.TXTPERCENT.Name = "TXTPERCENT"
         Me.TXTPERCENT.Size = New System.Drawing.Size(37, 22)
-        Me.TXTPERCENT.TabIndex = 3
+        Me.TXTPERCENT.TabIndex = 4
         Me.TXTPERCENT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label28
@@ -590,7 +593,7 @@ Partial Class InterestCalc_Summary
         Me.cmdok.Location = New System.Drawing.Point(534, 552)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 7
+        Me.cmdok.TabIndex = 8
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -616,7 +619,7 @@ Partial Class InterestCalc_Summary
         Me.dtto.Location = New System.Drawing.Point(504, 59)
         Me.dtto.Name = "dtto"
         Me.dtto.Size = New System.Drawing.Size(79, 22)
-        Me.dtto.TabIndex = 2
+        Me.dtto.TabIndex = 3
         '
         'lblto
         '
@@ -638,7 +641,7 @@ Partial Class InterestCalc_Summary
         Me.dtfrom.Location = New System.Drawing.Point(503, 33)
         Me.dtfrom.Name = "dtfrom"
         Me.dtfrom.Size = New System.Drawing.Size(80, 22)
-        Me.dtfrom.TabIndex = 1
+        Me.dtfrom.TabIndex = 2
         '
         'lblfrom
         '
@@ -672,7 +675,7 @@ Partial Class InterestCalc_Summary
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1222, 483)
-        Me.TabControl1.TabIndex = 769
+        Me.TabControl1.TabIndex = 7
         '
         'TBDETAILS
         '
@@ -905,6 +908,9 @@ Partial Class InterestCalc_Summary
         'TBFILTERS
         '
         Me.TBFILTERS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBFILTERS.Controls.Add(Me.POSTINGDATE)
+        Me.TBFILTERS.Controls.Add(Me.Label5)
+        Me.TBFILTERS.Controls.Add(Me.CMDAUTOPOST)
         Me.TBFILTERS.Controls.Add(Me.CMBINTEREST)
         Me.TBFILTERS.Controls.Add(Me.Label3)
         Me.TBFILTERS.Controls.Add(Me.TXTADD)
@@ -922,6 +928,42 @@ Partial Class InterestCalc_Summary
         Me.TBFILTERS.TabIndex = 1
         Me.TBFILTERS.Text = "Filters"
         '
+        'POSTINGDATE
+        '
+        Me.POSTINGDATE.CustomFormat = "dd/MM/yyyy"
+        Me.POSTINGDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.POSTINGDATE.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.POSTINGDATE.Location = New System.Drawing.Point(1074, 135)
+        Me.POSTINGDATE.Name = "POSTINGDATE"
+        Me.POSTINGDATE.Size = New System.Drawing.Size(90, 23)
+        Me.POSTINGDATE.TabIndex = 4
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label5.Location = New System.Drawing.Point(1007, 139)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(62, 15)
+        Me.Label5.TabIndex = 771
+        Me.Label5.Text = "Posting Dt"
+        '
+        'CMDAUTOPOST
+        '
+        Me.CMDAUTOPOST.BackColor = System.Drawing.Color.Transparent
+        Me.CMDAUTOPOST.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDAUTOPOST.FlatAppearance.BorderSize = 0
+        Me.CMDAUTOPOST.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDAUTOPOST.ForeColor = System.Drawing.Color.Black
+        Me.CMDAUTOPOST.Location = New System.Drawing.Point(879, 164)
+        Me.CMDAUTOPOST.Name = "CMDAUTOPOST"
+        Me.CMDAUTOPOST.Size = New System.Drawing.Size(81, 28)
+        Me.CMDAUTOPOST.TabIndex = 5
+        Me.CMDAUTOPOST.Text = "&Auto Post JV"
+        Me.CMDAUTOPOST.UseVisualStyleBackColor = False
+        '
         'CMBINTEREST
         '
         Me.CMBINTEREST.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -932,7 +974,7 @@ Partial Class InterestCalc_Summary
         Me.CMBINTEREST.MaxDropDownItems = 14
         Me.CMBINTEREST.Name = "CMBINTEREST"
         Me.CMBINTEREST.Size = New System.Drawing.Size(285, 23)
-        Me.CMBINTEREST.TabIndex = 575
+        Me.CMBINTEREST.TabIndex = 1
         '
         'Label3
         '
@@ -950,7 +992,7 @@ Partial Class InterestCalc_Summary
         '
         Me.TXTADD.BackColor = System.Drawing.Color.Linen
         Me.TXTADD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTADD.Location = New System.Drawing.Point(980, 136)
+        Me.TXTADD.Location = New System.Drawing.Point(980, 135)
         Me.TXTADD.Name = "TXTADD"
         Me.TXTADD.ReadOnly = True
         Me.TXTADD.Size = New System.Drawing.Size(23, 23)
@@ -968,7 +1010,7 @@ Partial Class InterestCalc_Summary
         Me.cmbregister.Location = New System.Drawing.Point(879, 49)
         Me.cmbregister.Name = "cmbregister"
         Me.cmbregister.Size = New System.Drawing.Size(285, 22)
-        Me.cmbregister.TabIndex = 568
+        Me.cmbregister.TabIndex = 0
         '
         'Label23
         '
@@ -988,7 +1030,7 @@ Partial Class InterestCalc_Summary
         Me.TXTTDSPER.Location = New System.Drawing.Point(879, 135)
         Me.TXTTDSPER.Name = "TXTTDSPER"
         Me.TXTTDSPER.Size = New System.Drawing.Size(95, 23)
-        Me.TXTTDSPER.TabIndex = 570
+        Me.TXTTDSPER.TabIndex = 3
         Me.TXTTDSPER.Text = "0.00"
         Me.TXTTDSPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -1014,7 +1056,7 @@ Partial Class InterestCalc_Summary
         Me.CMBTDS.MaxDropDownItems = 14
         Me.CMBTDS.Name = "CMBTDS"
         Me.CMBTDS.Size = New System.Drawing.Size(285, 23)
-        Me.CMBTDS.TabIndex = 569
+        Me.CMBTDS.TabIndex = 2
         '
         'Label2
         '
@@ -1262,4 +1304,7 @@ Partial Class InterestCalc_Summary
     Friend WithEvents TXTADD As TextBox
     Friend WithEvents CMBINTEREST As ComboBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents CMDAUTOPOST As Button
+    Friend WithEvents POSTINGDATE As DateTimePicker
+    Friend WithEvents Label5 As Label
 End Class

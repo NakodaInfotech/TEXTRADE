@@ -1178,6 +1178,10 @@ LINE1:
                 LBLCHALLAN.Visible = False
                 TXTCHALLANNO.Visible = False
                 CHKYARNRECD.Visible = False
+                CMDCLOSE.Visible = False
+                GLRDATE.Visible = False
+                GLIFTINGDATE.Visible = False
+                GLRNO.Width = 120
             End If
 
 
