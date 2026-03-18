@@ -1336,7 +1336,8 @@ Public Class DesignCardMaster
             Throw ex
         End Try
     End Sub
-    Sub fillcmb()
+
+    Sub FILLCMB()
         Dim OBJCMN As New ClsCommon
         'Dim DT As DataTable = OBJCMN.SEARCH("DESIGN_NO", "", " DESIGNMASTER ", " and DESIGN_cmpid = " & CmpId & " and DESIGN_locationid = " & Locationid & " and DESIGN_yearid = " & YearId)
         'If DT.Rows.Count > 0 Then
@@ -1351,7 +1352,7 @@ Public Class DesignCardMaster
         FILLCOLOR(CMBSELSHADE, "", "")
         FILLCOLOR(cmbweftshade, "", "")
         FILLCOLOR(CMBSHADE, "", "")
-        If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " AND ITEM_FRMSTRING = 'MERCHANT'")
+        If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " AND ITEMMASTER.ITEM_HIDEINDESIGN = 'FALSE' AND ITEM_FRMSTRING = 'MERCHANT'")
         FILLMILL(CMBWARPMILLNAME, EDIT)
         FILLMILL(CMBWEFTMILLNAME, EDIT)
         FILLMILL(CMBSELMILLNAME, EDIT)
@@ -1646,6 +1647,7 @@ LINE1:
         TXTSELRATE.Clear()
         TXTSELCOST.Clear()
     End Sub
+
     Sub FILLWEFTGRID()
         If GRIDWEFTDOUBLECLICK = False Then
             GRIDWEFT.Rows.Add(Val(TXTWEFTSRNO.Text.Trim), CMBWEFTGRIDSYMBOL.Text.Trim, CMBWEFTYARNQUALITY.Text.Trim, Val(TXTWEFTDEN.Text.Trim), CMBWEFTMILLNAME.Text.Trim, cmbweftgridshade.Text.Trim, Val(TXTWEFTPE.Text.Trim), Val(TXTWEFTBE.Text.Trim), Val(TXTWEFTTE.Text.Trim), Val(TXTWEFTWT.Text.Trim), Val(TXTWEFTCONS.Text.Trim), Val(TXTWEFTRATE.Text.Trim), Val(TXTWEFTCOST.Text.Trim))
@@ -1784,6 +1786,7 @@ LINE1:
             CMBWEFTGRIDSYMBOL.Items.Add(symVal)
         Next
     End Sub
+
     Sub CLEARWEFT()
         'TXTWEFTSRNO.Clear()
         'CMBWEFTGRIDSYMBOL.Clear()
@@ -1800,9 +1803,10 @@ LINE1:
         TXTWEFTRATE.Clear()
         TXTWEFTCOST.Clear()
     End Sub
+
     Private Sub CMBITEMNAME_Enter(sender As Object, e As EventArgs) Handles CMBITEMNAME.Enter
         Try
-            If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
+            If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " AND ITEMMASTER.ITEM_HIDEINDESIGN = 'FALSE' AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -1810,7 +1814,7 @@ LINE1:
 
     Private Sub CMBITEMNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBITEMNAME.Validating
         Try
-            If CMBITEMNAME.Text.Trim <> "" Then itemvalidate(CMBITEMNAME, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'", "MERCHANT")
+            If CMBITEMNAME.Text.Trim <> "" Then itemvalidate(CMBITEMNAME, e, Me, " AND ITEMMASTER.ITEM_HIDEINDESIGN = 'FALSE' AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'", "MERCHANT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -2016,6 +2020,7 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Private Sub CMBLOOM_Validating(sender As Object, e As CancelEventArgs) Handles CMBLOOM.Validating
         Try
             If CMBLOOM.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOM, CMBNAME.Text.Trim, e, Me)
@@ -2033,6 +2038,9 @@ LINE1:
     End Sub
 
     Sub CALC()
+
+        TOTAL()
+
         TXTMAINRS.Text = 0.00
         TXTDENTS.Text = 0.00
         TXTTOTALDENTSMAIN.Text = 0.00
@@ -2098,9 +2106,9 @@ LINE1:
             Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
             TXTTOTALENDS.Text = Format(totalDents * totalDrawEnds, "0.00")
         End If
-        If TXTTOTALENDS.Text <> "" Then TXTTOTALEXTRAENDS.Text = Format(Val(TXTTOTALENDS.Text) + Val(TXTEXTRAENDS.Text) + Val(TXTTOTALSELENDS.Text.Trim), "0.00")
+        TXTTOTALEXTRAENDS.Text = Format(Val(TXTTOTALENDS.Text) + Val(TXTEXTRAENDS.Text) + Val(TXTTOTALSELENDS.Text.Trim), "0.00")
         ' If TXTTOTALENDS.Text <> "" And TXTTOTALENDS.Text > 0 And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
-        If TXTTOTALEXTRAENDS.Text <> "" And TXTTOTALSELENDS.Text <> "" Then TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALEXTRAENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
+        TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALEXTRAENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
         If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
             Dim totalMainEnds As Double = Val(TXTTOTALMAINENDS.Text)
             Dim pcs As Double = Val(TXTTOTALWARPGRIDPE.Text)
@@ -3277,6 +3285,8 @@ LINE1:
         Try
             If GRIDSELVEDGE.RowCount >= 0 And CMBSELYARNQUALITY.Text <> "" And CMBSELGSYM.Text <> "" Then
                 fillselvedgegrid()
+                CALC()
+                TOTAL()
             End If
             CMBSELGSYM.Focus()
             GBSSHADEDETAILS.Visible = False
@@ -4161,12 +4171,12 @@ line1:
         End Try
     End Sub
 
-
     Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
         Try
             If GRIDWARP.RowCount >= 0 And CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
                 fillwarpgrid()
                 CALC()
+                TOTAL()
             End If
             GBWARP.Visible = False
         Catch ex As Exception
@@ -4176,17 +4186,16 @@ line1:
 
     Private Sub CMDWEFTCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWEFTCLOSE.Click
         Try
-
             If GRIDWEFT.RowCount >= 0 And CMBWEFTYARNQUALITY.Text <> "" And CMBWEFTGRIDSYMBOL.Text <> "" Then
                 FILLWEFTGRID()
                 CALC()
+                TOTAL()
             End If
             GBWEFT.Visible = False
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
-
 
     Private Sub TXTLEFTSELENDS_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSELENDS.Validated
         Try
