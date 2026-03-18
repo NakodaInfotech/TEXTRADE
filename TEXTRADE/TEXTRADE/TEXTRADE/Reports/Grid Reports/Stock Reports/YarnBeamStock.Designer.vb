@@ -158,7 +158,7 @@ Partial Class YarnBeamStock
         Me.GTOTALENDS.Caption = "Total Ends"
         Me.GTOTALENDS.DisplayFormat.FormatString = "0"
         Me.GTOTALENDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALENDS.FieldName = "ENDS"
+        Me.GTOTALENDS.FieldName = "TOTALENDS"
         Me.GTOTALENDS.Name = "GTOTALENDS"
         Me.GTOTALENDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALENDS.Visible = True
@@ -189,7 +189,7 @@ Partial Class YarnBeamStock
         'GSCETIONNO
         '
         Me.GSCETIONNO.Caption = "Section No"
-        Me.GSCETIONNO.FieldName = "SECTIONNO"
+        Me.GSCETIONNO.FieldName = "SECTION"
         Me.GSCETIONNO.Name = "GSCETIONNO"
         Me.GSCETIONNO.Visible = True
         Me.GSCETIONNO.VisibleIndex = 8
@@ -247,6 +247,7 @@ Partial Class YarnBeamStock
         Me.gname.Name = "gname"
         Me.gname.Visible = True
         Me.gname.VisibleIndex = 1
+        Me.gname.Width = 200
         '
         'YarnBeamStock
         '
