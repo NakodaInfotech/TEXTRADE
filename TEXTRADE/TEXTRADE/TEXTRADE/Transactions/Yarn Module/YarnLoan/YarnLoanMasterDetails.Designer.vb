@@ -45,6 +45,7 @@ Partial Class YarnLoanMasterDetails
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,7 +110,7 @@ Partial Class YarnLoanMasterDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.TOOLREFRESH, Me.TOOLEXCEL})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1157, 25)
@@ -290,6 +291,15 @@ Partial Class YarnLoanMasterDetails
         Me.GREMARKS.VisibleIndex = 12
         Me.GREMARKS.Width = 180
         '
+        'TOOLEXCEL
+        '
+        Me.TOOLEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.TOOLEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLEXCEL.Name = "TOOLEXCEL"
+        Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLEXCEL.Text = "Print"
+        '
         'YarnLoanMasterDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -332,4 +342,5 @@ Partial Class YarnLoanMasterDetails
     Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLRDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TOOLEXCEL As ToolStripButton
 End Class

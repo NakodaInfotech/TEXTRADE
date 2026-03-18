@@ -62,6 +62,7 @@ Partial Class SecurityInwardOutward
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GBIMAGE = New System.Windows.Forms.GroupBox()
+        Me.TXTUPLOADPATH = New System.Windows.Forms.TextBox()
         Me.CMDRMV = New System.Windows.Forms.Button()
         Me.TXTPHOTOIMAGEUPLOADPATH = New System.Windows.Forms.TextBox()
         Me.GRIDUPLOADDESC = New System.Windows.Forms.DataGridView()
@@ -195,7 +196,6 @@ Partial Class SecurityInwardOutward
         Me.TXTWT.Size = New System.Drawing.Size(95, 22)
         Me.TXTWT.TabIndex = 652
         Me.TXTWT.TabStop = False
-        Me.TXTWT.Visible = False
         '
         'TXTQUANTITY
         '
@@ -206,7 +206,6 @@ Partial Class SecurityInwardOutward
         Me.TXTQUANTITY.Size = New System.Drawing.Size(95, 22)
         Me.TXTQUANTITY.TabIndex = 651
         Me.TXTQUANTITY.TabStop = False
-        Me.TXTQUANTITY.Visible = False
         '
         'TXTMATRERIAL
         '
@@ -217,7 +216,6 @@ Partial Class SecurityInwardOutward
         Me.TXTMATRERIAL.Size = New System.Drawing.Size(215, 22)
         Me.TXTMATRERIAL.TabIndex = 650
         Me.TXTMATRERIAL.TabStop = False
-        Me.TXTMATRERIAL.Visible = False
         '
         'TXTSECNO
         '
@@ -438,6 +436,7 @@ Partial Class SecurityInwardOutward
         'GBIMAGE
         '
         Me.GBIMAGE.BackColor = System.Drawing.Color.Transparent
+        Me.GBIMAGE.Controls.Add(Me.TXTUPLOADPATH)
         Me.GBIMAGE.Controls.Add(Me.CMDRMV)
         Me.GBIMAGE.Controls.Add(Me.TXTPHOTOIMAGEUPLOADPATH)
         Me.GBIMAGE.Controls.Add(Me.GRIDUPLOADDESC)
@@ -455,6 +454,20 @@ Partial Class SecurityInwardOutward
         Me.GBIMAGE.TabIndex = 30
         Me.GBIMAGE.TabStop = False
         Me.GBIMAGE.Text = "Images"
+        '
+        'TXTUPLOADPATH
+        '
+        Me.TXTUPLOADPATH.BackColor = System.Drawing.Color.Linen
+        Me.TXTUPLOADPATH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTUPLOADPATH.ForeColor = System.Drawing.Color.Black
+        Me.TXTUPLOADPATH.Location = New System.Drawing.Point(275, 21)
+        Me.TXTUPLOADPATH.MaxLength = 100
+        Me.TXTUPLOADPATH.Name = "TXTUPLOADPATH"
+        Me.TXTUPLOADPATH.ReadOnly = True
+        Me.TXTUPLOADPATH.Size = New System.Drawing.Size(99, 23)
+        Me.TXTUPLOADPATH.TabIndex = 1088
+        Me.TXTUPLOADPATH.TabStop = False
+        Me.TXTUPLOADPATH.Visible = False
         '
         'CMDRMV
         '
@@ -906,4 +919,6 @@ Partial Class SecurityInwardOutward
     Friend WithEvents TXTMATRERIAL As TextBox
     Friend WithEvents TXTWT As TextBox
     Friend WithEvents TXTQUANTITY As TextBox
+    Friend WithEvents TXTUPLOADPATH As TextBox
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class

@@ -54,7 +54,8 @@ Public Class UpdateItemRates
                 End If
             Next
             MsgBox("Rate Updated Successfully")
-            Me.Close()
+            'Me.Close()
+            fillgriditem()
 
         Catch ex As Exception
             Throw ex
