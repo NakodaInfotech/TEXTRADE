@@ -2227,6 +2227,12 @@
     <Compile Include="Reports\Grid Reports\Stock Reports\Sample Booket Stock\SampleBookletStockPartyGridReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Stock Reports\YarnBeamStock.Designer.vb">
+      <DependentUpon>YarnBeamStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Stock Reports\YarnBeamStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Update And Delete\LogsDelete.Designer.vb">
       <DependentUpon>LogsDelete.vb</DependentUpon>
     </Compile>
@@ -10261,6 +10267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Stock Reports\Sample Booket Stock\SampleBookletStockPartyGridReport.resx">
       <DependentUpon>SampleBookletStockPartyGridReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Stock Reports\YarnBeamStock.resx">
+      <DependentUpon>YarnBeamStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Update And Delete\LogsDelete.resx">
       <DependentUpon>LogsDelete.vb</DependentUpon>
