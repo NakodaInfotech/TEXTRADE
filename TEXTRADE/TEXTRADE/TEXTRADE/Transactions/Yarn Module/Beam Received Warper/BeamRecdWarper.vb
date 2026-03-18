@@ -1156,12 +1156,26 @@ LINE1:
     End Sub
 
     Private Sub TXTNARR_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTBREAKAGE.Validating
+
         If TXTBEAMNO.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And Val(TXTBEAMWT.Text.Trim) > 0 And Val(TXTMTRS.Text.Trim) > 0 Then
             If Val(TXTBEAMNO.Text) = 0 Then
                 MessageBox.Show("Please Enter Beam No !", "Beam No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 TXTBEAMNO.Focus()
                 Exit Sub
             End If
+
+            If CMBROLLNO.Text <> "" Then
+                If GRIDBEAM.RowCount > 0 Then
+                    If Not CHECKROLL() Then
+                        MsgBox("Roll No already Present in Grid below")
+                        CMBROLLNO.Text = ""
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
+            End If
+
+
             FILLGRID()
         Else
             MsgBox("Please Enter proper details")
@@ -1381,4 +1395,33 @@ LINE1:
             Throw ex
         End Try
     End Function
+
+
+
+    Function CHECKROLL() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In GRIDBEAM.Rows
+                If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
+                    If CMBROLLNO.Text.Trim = ROW.Cells(GROLLNO.Index).Value Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Private Sub CMBROLLNO_Validating(sender As Object, e As CancelEventArgs) Handles CMBROLLNO.Validating
+        If CMBROLLNO.Text <> "" Then
+            If GRIDBEAM.RowCount > 0 Then
+                If Not CHECKROLL() Then
+                    MsgBox("Roll No already Present in Grid below")
+                    CMBROLLNO.Text = ""
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        End If
+    End Sub
 End Class
