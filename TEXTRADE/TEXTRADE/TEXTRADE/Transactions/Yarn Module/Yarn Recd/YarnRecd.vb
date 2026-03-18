@@ -20,7 +20,7 @@ Public Class YarnRecd
         Me.Close()
     End Sub
 
-    Sub clear()
+    Sub CLEAR()
 
         tstxtbillno.Clear()
         EP.Clear()
@@ -274,9 +274,15 @@ CHECKNEXTLINE:
                 End If
             End If
 
-            If ClientName = "SWPL" And GRIDORDER.RowCount = 0 Then
-                EP.SetError(cmbname, "Please Select  Purchase Order")
-                bln = False
+            If ClientName = "SWPL" Then
+                If GRIDORDER.RowCount = 0 Then
+                    EP.SetError(cmbname, "Please Select Purchase Order")
+                    bln = False
+                End If
+                If TXTFILENO.Text.Trim = "" Then
+                    EP.SetError(cmbname, "Please Enter File No")
+                    bln = False
+                End If
             End If
 
 
@@ -1038,7 +1044,7 @@ NEXTLINE:
         End Try
     End Sub
 
-    Sub fillgrid()
+    Sub FILLGRID()
 
         GRIDYARN.Enabled = True
         'GULKIT HAS REMOVED THIS CODE
@@ -1118,7 +1124,7 @@ NEXTLINE:
             txtPartyMtrs.Clear()
             txtCheckPcs.Clear()
             TXTBARCODE.Clear()
-            txtsrno.Text = Val(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(0).Value) + 1
+            txtsrno.Text = Val(GRIDYARN.RowCount) + 1
             CMBYARNQUALITY.Focus()
             CMBRACK.Text = ""
             TXTRATE.Clear()
@@ -1130,6 +1136,7 @@ NEXTLINE:
         TXTBARCODE.Clear()
 
         If ClientName = "SWPL" Then
+            TXTLRNO.Text = Val(TXTLRNO.Text.Trim) + 1
             TXTWT.Focus()
         End If
 

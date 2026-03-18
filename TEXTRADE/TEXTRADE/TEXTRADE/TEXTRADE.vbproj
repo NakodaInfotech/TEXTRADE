@@ -3205,6 +3205,30 @@
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockInDetails.Designer.vb">
+      <DependentUpon>YarnStockInDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockInDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockOutDetails.Designer.vb">
+      <DependentUpon>YarnStockOutDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockOutDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockReco.Designer.vb">
+      <DependentUpon>YarnStockReco.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockReco.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockRecoDetails.Designer.vb">
+      <DependentUpon>YarnStockRecoDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockRecoDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\YarnLoan\YarnLoanMaster.Designer.vb">
       <DependentUpon>YarnLoanMaster.vb</DependentUpon>
     </Compile>
@@ -10753,6 +10777,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockInDetails.resx">
+      <DependentUpon>YarnStockInDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockOutDetails.resx">
+      <DependentUpon>YarnStockOutDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockReco.resx">
+      <DependentUpon>YarnStockReco.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Stock Reco\YarnStockRecoDetails.resx">
+      <DependentUpon>YarnStockRecoDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\YarnLoan\YarnLoanMaster.resx">
       <DependentUpon>YarnLoanMaster.vb</DependentUpon>
