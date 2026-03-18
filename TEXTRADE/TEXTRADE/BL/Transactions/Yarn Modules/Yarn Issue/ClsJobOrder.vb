@@ -58,6 +58,7 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
+
                 'warp gridmatching data serializations
                 .Add(New SqlClient.SqlParameter("@WARPGRIDSRNO", alParaval(I)))
                 I += 1
@@ -181,6 +182,7 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
+
                 'warp gridmatching data serializations
                 .Add(New SqlClient.SqlParameter("@WARPGRIDSRNO", alParaval(I)))
                 I += 1

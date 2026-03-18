@@ -1241,6 +1241,7 @@ LINE1:
                 TXTPICS.Text = Val(DT.Rows(0).Item("PICS"))
                 TXTFROMTYPE.Text = DT.Rows(0).Item("FROMTYPE")
                 TXTREFNO.Text = DT.Rows(0).Item("REFNO")
+                CMBBEAMNAME.Text = DT.Rows(0).Item("ITEMNAME")
 
 
                 CMDSELECTYARNISSUE.Enabled = False
@@ -1316,13 +1317,7 @@ LINE1:
     End Sub
 
 
-    Sub GetLastBeamNo()
 
-        Dim OBJCMN As New ClsCommon
-        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMREC_BEAMNO),0)+1 AS LASTNO ", "", "BEAMRECEIVEDWARPER_DESC")
-        If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
-
-    End Sub
 
 
     Public Function GetGridMaxBeamNo() As Integer

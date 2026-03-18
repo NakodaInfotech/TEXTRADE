@@ -9895,4 +9895,14 @@ line1:
         Return bln
     End Function
 
+
+    Sub GetLastBeamNo()
+        Dim NextBeamNo As Integer
+
+        Dim OBJCMN As New ClsCommon
+        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMNO),0)+1 AS LASTNO ", "", "BEAMSTOCK")
+        If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
+
+    End Sub
+
 End Module

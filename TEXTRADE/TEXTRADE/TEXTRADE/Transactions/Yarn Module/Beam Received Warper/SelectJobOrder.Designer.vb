@@ -28,10 +28,11 @@ Partial Class SelectJobOrder
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GJOBNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPICS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -39,7 +40,6 @@ Partial Class SelectJobOrder
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,6 +114,15 @@ Partial Class SelectJobOrder
         Me.GJOBNO.Visible = True
         Me.GJOBNO.VisibleIndex = 1
         '
+        'GREFNO
+        '
+        Me.GREFNO.Caption = "Ref No"
+        Me.GREFNO.FieldName = "REFNO"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.Visible = True
+        Me.GREFNO.VisibleIndex = 2
+        Me.GREFNO.Width = 90
+        '
         'GDATE
         '
         Me.GDATE.Caption = "Date"
@@ -124,6 +133,16 @@ Partial Class SelectJobOrder
         Me.GDATE.OptionsColumn.AllowEdit = False
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 3
+        '
+        'GNAME
+        '
+        Me.GNAME.Caption = "Name"
+        Me.GNAME.FieldName = "NAME"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
+        Me.GNAME.Visible = True
+        Me.GNAME.VisibleIndex = 4
+        Me.GNAME.Width = 220
         '
         'GREED
         '
@@ -145,23 +164,13 @@ Partial Class SelectJobOrder
         Me.GREEDSPACE.VisibleIndex = 6
         Me.GREEDSPACE.Width = 80
         '
-        'GNAME
-        '
-        Me.GNAME.Caption = "Name"
-        Me.GNAME.FieldName = "NAME"
-        Me.GNAME.Name = "GNAME"
-        Me.GNAME.OptionsColumn.AllowEdit = False
-        Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 4
-        Me.GNAME.Width = 220
-        '
         'GMTRS
         '
         Me.GMTRS.Caption = "Mtrs"
         Me.GMTRS.FieldName = "MTRS"
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.OptionsColumn.AllowEdit = False
-        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, DevExpress.Data.SummaryMode.Selection)})
+        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
         Me.GMTRS.VisibleIndex = 7
         Me.GMTRS.Width = 80
@@ -226,15 +235,6 @@ Partial Class SelectJobOrder
         Me.cmdok.TabIndex = 8
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'GREFNO
-        '
-        Me.GREFNO.Caption = "Ref No"
-        Me.GREFNO.FieldName = "REFNO"
-        Me.GREFNO.Name = "GREFNO"
-        Me.GREFNO.Visible = True
-        Me.GREFNO.VisibleIndex = 2
-        Me.GREFNO.Width = 90
         '
         'SelectJobOrder
         '
