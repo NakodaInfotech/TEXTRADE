@@ -1191,14 +1191,14 @@ LINE1:
 
     Private Sub CMBBEAMNAME_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBBEAMNAME.Validated
         Try
-            'If CMBBEAMNAME.Text.Trim <> "" Then
-            '    Dim OBJCMN As New ClsCommon
-            '    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(BEAM_TAPLINE, 0) AS TAPLINE, ISNULL(BEAM_TOTALENDS, 0) AS TOTALENDS", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
-            '    If DT.Rows.Count > 0 Then
-            '        TXTENDS.Text = DT.Rows(0).Item("TOTALENDS")
-            '        TXTMTRS.Text = DT.Rows(0).Item("TAPLINE")
-            '    End If
-            'End If
+            If CMBBEAMNAME.Text.Trim <> "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(BEAM_TAPLINE, 0) AS TAPLINE, ISNULL(BEAM_TOTALENDS, 0) AS TOTALENDS", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TXTENDS.Text = DT.Rows(0).Item("TOTALENDS")
+                    'TXTMTRS.Text = DT.Rows(0).Item("TAPLINE")
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1242,6 +1242,7 @@ LINE1:
                 TXTFROMTYPE.Text = DT.Rows(0).Item("FROMTYPE")
                 TXTREFNO.Text = DT.Rows(0).Item("REFNO")
                 CMBBEAMNAME.Text = DT.Rows(0).Item("ITEMNAME")
+                CMBBEAMNAME_Validated(sender, e)
 
 
                 CMDSELECTYARNISSUE.Enabled = False
@@ -1330,6 +1331,15 @@ LINE1:
         Next
     End Function
 
+
+    Sub GetLastBeamNo()
+        Dim NextBeamNo As Integer
+
+        Dim OBJCMN As New ClsCommon
+        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMNO),0)+1 AS LASTNO ", "", "BEAMSTOCK")
+        If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
+
+    End Sub
 
 
 
