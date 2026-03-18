@@ -28,18 +28,19 @@ Partial Class YarnBeamStock
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GBEAMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGAMANO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSCETIONNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GROLLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBEAMWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBREAKAGE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.gname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,7 +106,7 @@ Partial Class YarnBeamStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GGODOWN, Me.GMILLNAME, Me.GBEAMNO, Me.GBEAMNAME, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GGAMANO, Me.GSCETIONNO, Me.GROLLNO, Me.GBEAMWT, Me.GBREAKAGE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GGODOWN, Me.gname, Me.GMILLNAME, Me.GBEAMNO, Me.GBEAMNAME, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GGAMANO, Me.GSCETIONNO, Me.GROLLNO, Me.GBEAMWT, Me.GBREAKAGE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -125,16 +126,43 @@ Partial Class YarnBeamStock
         Me.GGODOWN.VisibleIndex = 0
         Me.GGODOWN.Width = 140
         '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.Caption = "Mill Name"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.Visible = True
+        Me.GMILLNAME.VisibleIndex = 2
+        Me.GMILLNAME.Width = 150
+        '
+        'GBEAMNO
+        '
+        Me.GBEAMNO.Caption = "Beam No"
+        Me.GBEAMNO.FieldName = "BEAMNO"
+        Me.GBEAMNO.Name = "GBEAMNO"
+        Me.GBEAMNO.Visible = True
+        Me.GBEAMNO.VisibleIndex = 3
+        Me.GBEAMNO.Width = 100
+        '
+        'GBEAMNAME
+        '
+        Me.GBEAMNAME.Caption = "Beam Name"
+        Me.GBEAMNAME.FieldName = "BEAMNAME"
+        Me.GBEAMNAME.Name = "GBEAMNAME"
+        Me.GBEAMNAME.Visible = True
+        Me.GBEAMNAME.VisibleIndex = 4
+        Me.GBEAMNAME.Width = 200
+        '
         'GTOTALENDS
         '
         Me.GTOTALENDS.Caption = "Total Ends"
         Me.GTOTALENDS.DisplayFormat.FormatString = "0"
         Me.GTOTALENDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALENDS.FieldName = "TOTALENDS"
+        Me.GTOTALENDS.FieldName = "ENDS"
         Me.GTOTALENDS.Name = "GTOTALENDS"
         Me.GTOTALENDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALENDS.Visible = True
-        Me.GTOTALENDS.VisibleIndex = 4
+        Me.GTOTALENDS.VisibleIndex = 5
         Me.GTOTALENDS.Width = 80
         '
         'GTOTALMTRS
@@ -146,8 +174,53 @@ Partial Class YarnBeamStock
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
         Me.GTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 5
+        Me.GTOTALMTRS.VisibleIndex = 6
         Me.GTOTALMTRS.Width = 90
+        '
+        'GGAMANO
+        '
+        Me.GGAMANO.Caption = "Gama No"
+        Me.GGAMANO.FieldName = "GAMANO"
+        Me.GGAMANO.Name = "GGAMANO"
+        Me.GGAMANO.Visible = True
+        Me.GGAMANO.VisibleIndex = 7
+        Me.GGAMANO.Width = 80
+        '
+        'GSCETIONNO
+        '
+        Me.GSCETIONNO.Caption = "Section No"
+        Me.GSCETIONNO.FieldName = "SECTIONNO"
+        Me.GSCETIONNO.Name = "GSCETIONNO"
+        Me.GSCETIONNO.Visible = True
+        Me.GSCETIONNO.VisibleIndex = 8
+        Me.GSCETIONNO.Width = 80
+        '
+        'GROLLNO
+        '
+        Me.GROLLNO.Caption = "Roll No"
+        Me.GROLLNO.FieldName = "ROLLNO"
+        Me.GROLLNO.Name = "GROLLNO"
+        Me.GROLLNO.Visible = True
+        Me.GROLLNO.VisibleIndex = 9
+        Me.GROLLNO.Width = 80
+        '
+        'GBEAMWT
+        '
+        Me.GBEAMWT.Caption = "Beam Wt"
+        Me.GBEAMWT.FieldName = "BEAMWT"
+        Me.GBEAMWT.Name = "GBEAMWT"
+        Me.GBEAMWT.Visible = True
+        Me.GBEAMWT.VisibleIndex = 10
+        Me.GBEAMWT.Width = 80
+        '
+        'GBREAKAGE
+        '
+        Me.GBREAKAGE.Caption = "Breakage"
+        Me.GBREAKAGE.FieldName = "BREAKAGE"
+        Me.GBREAKAGE.Name = "GBREAKAGE"
+        Me.GBREAKAGE.Visible = True
+        Me.GBREAKAGE.VisibleIndex = 11
+        Me.GBREAKAGE.Width = 80
         '
         'ToolStrip1
         '
@@ -167,77 +240,13 @@ Partial Class YarnBeamStock
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
-        'GBEAMNAME
+        'gname
         '
-        Me.GBEAMNAME.Caption = "Beam Name"
-        Me.GBEAMNAME.FieldName = "BEAMNAME"
-        Me.GBEAMNAME.Name = "GBEAMNAME"
-        Me.GBEAMNAME.Visible = True
-        Me.GBEAMNAME.VisibleIndex = 3
-        Me.GBEAMNAME.Width = 200
-        '
-        'GBEAMNO
-        '
-        Me.GBEAMNO.Caption = "Beam No"
-        Me.GBEAMNO.FieldName = "BEAMNO"
-        Me.GBEAMNO.Name = "GBEAMNO"
-        Me.GBEAMNO.Visible = True
-        Me.GBEAMNO.VisibleIndex = 2
-        Me.GBEAMNO.Width = 100
-        '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.Caption = "Mill Name"
-        Me.GMILLNAME.FieldName = "MILLNAME"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 1
-        Me.GMILLNAME.Width = 150
-        '
-        'GGAMANO
-        '
-        Me.GGAMANO.Caption = "Gama No"
-        Me.GGAMANO.FieldName = "GAMANO"
-        Me.GGAMANO.Name = "GGAMANO"
-        Me.GGAMANO.Visible = True
-        Me.GGAMANO.VisibleIndex = 6
-        Me.GGAMANO.Width = 80
-        '
-        'GSCETIONNO
-        '
-        Me.GSCETIONNO.Caption = "Section No"
-        Me.GSCETIONNO.FieldName = "SECTIONNO"
-        Me.GSCETIONNO.Name = "GSCETIONNO"
-        Me.GSCETIONNO.Visible = True
-        Me.GSCETIONNO.VisibleIndex = 7
-        Me.GSCETIONNO.Width = 80
-        '
-        'GROLLNO
-        '
-        Me.GROLLNO.Caption = "Roll No"
-        Me.GROLLNO.FieldName = "ROLLNO"
-        Me.GROLLNO.Name = "GROLLNO"
-        Me.GROLLNO.Visible = True
-        Me.GROLLNO.VisibleIndex = 8
-        Me.GROLLNO.Width = 80
-        '
-        'GBEAMWT
-        '
-        Me.GBEAMWT.Caption = "Beam Wt"
-        Me.GBEAMWT.FieldName = "BEAMWT"
-        Me.GBEAMWT.Name = "GBEAMWT"
-        Me.GBEAMWT.Visible = True
-        Me.GBEAMWT.VisibleIndex = 9
-        Me.GBEAMWT.Width = 80
-        '
-        'GBREAKAGE
-        '
-        Me.GBREAKAGE.Caption = "Breakage"
-        Me.GBREAKAGE.FieldName = "BREAKAGE"
-        Me.GBREAKAGE.Name = "GBREAKAGE"
-        Me.GBREAKAGE.Visible = True
-        Me.GBREAKAGE.VisibleIndex = 10
-        Me.GBREAKAGE.Width = 80
+        Me.gname.Caption = "Name"
+        Me.gname.FieldName = "NAME"
+        Me.gname.Name = "gname"
+        Me.gname.Visible = True
+        Me.gname.VisibleIndex = 1
         '
         'YarnBeamStock
         '
@@ -278,4 +287,5 @@ Partial Class YarnBeamStock
     Friend WithEvents GROLLNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBEAMWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBREAKAGE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents gname As DevExpress.XtraGrid.Columns.GridColumn
 End Class
