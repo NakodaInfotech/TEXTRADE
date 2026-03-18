@@ -1,8 +1,9 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Net
 Imports System.Net.Http
-Imports System.ComponentModel
 Imports System.Runtime.Remoting.Metadata.W3cXsd2001
+Imports System.Threading.Tasks
 Imports System.Windows.Forms
 Imports BL
 Imports DevExpress.Diagram.Core.Native
@@ -446,6 +447,24 @@ LINE1:
         Next
     End Sub
 
+    Sub GETDESCDATA(ByVal ROWNO As Integer)
+        Try
+            gridupload.RowCount = 0
+            PBIMG.Image = Nothing
+            txtuploadname.Clear()
+            For Each ROW As DataGridViewRow In GRIDUPLOADDESC.Rows
+                If ROW.Cells(DMAINSRNO.Index).Value = ROWNO Then
+                    gridupload.Rows.Add(ROW.Cells(DSRNO.Index).Value, ROW.Cells(DNAME.Index).Value, ROW.Cells(DIMGPATH.Index).Value, Val(ROW.Cells(DMAINSRNO.Index).Value), ROW.Cells(DIMAGEUPLOADPATH.Index).Value)
+                End If
+            Next
+            GETSRNO(gridupload)
+            TXTUPLOADSRNO.Text = gridupload.RowCount + 1
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub SecurityInwardOutward_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
         If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
@@ -487,7 +506,26 @@ LINE1:
             End If
 
 
+            For Each ROW1 As DataGridViewRow In GRIDUPLOADDESC.Rows
+                If DIMGPATH.Index.ToString <> "" Then
 
+                    TXTUPLOADPATH.Text = CATALOGPATH & "\" & ROW1.Cells(DNAME.Index).Value.ToString()
+                End If
+            Next
+
+            'COPY IMAGE TO THE LOCATION
+            For Each ROW As DataGridViewRow In GRIDUPLOADDESC.Rows
+                If DriveInfo.GetDrives().Any(Function(drive) drive.Name = CATALOGPATH & "\") Then
+                    If ROW.Cells(DIMGPATH.Index).Value.ToString() <> "" And ROW.Cells(DNAME.Index).Value.ToString() <> "" And ROW.Cells(DIMAGEUPLOADPATH.Index).Value.ToString() <> "" Then
+                        If File.Exists(ROW.Cells(DIMGPATH.Index).Value.ToString()) = False Then File.Copy(ROW.Cells(DIMAGEUPLOADPATH.Index).Value.ToString(), ROW.Cells(DIMGPATH.Index).Value.ToString(), True)
+                    End If
+                Else
+                    TXTUPLOADPATH.Text = CATALOGIP & ROW.Cells(DNAME.Index).Value.ToString
+                    If ROW.Cells(DIMGPATH.Index).Value.ToString <> "" And ROW.Cells(DNAME.Index).Value.ToString <> "" And ROW.Cells(DIMAGEUPLOADPATH.Index).Value <> "" Then
+                        If File.Exists(ROW.Cells(DIMAGEUPLOADPATH.Index).Value) Then UPLOADIMAGE(ROW.Cells(DIMAGEUPLOADPATH.Index).Value, CATALOGIP)
+                    End If
+                End If
+            Next
             'If gridupload.RowCount = 0 And GRIDUPLOADDESC.RowCount = 0 Then
             '    EP.SetError(TabControl1, "Fill Item Details")
             '    bln = False
@@ -615,6 +653,205 @@ LINE1:
             'End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Async Sub UPLOADIMAGE(FILEPATH, UPLOADPATH)
+        Await UploadFileAsync(FILEPATH, UPLOADPATH)
+    End Sub
+
+    Private Sub SaveToolStripButton_Click(sender As Object, e As EventArgs) Handles SaveToolStripButton.Click
+        Call cmdok_Click(sender, e)
+    End Sub
+
+    Private Sub tooldelete_Click(sender As Object, e As EventArgs) Handles tooldelete.Click
+        Dim IntResult As Integer
+        Try
+
+            If edit = True Then
+
+                If USERDELETE = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+
+                If MsgBox("Delete Security Entry?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                Dim alParaval As New ArrayList
+                alParaval.Add(TEMPSECNO)
+                alParaval.Add(YearId)
+
+                Dim clspo As New ClsSecurityInwardOutward
+                clspo.alParaval = alParaval
+                IntResult = clspo.DELETE()
+                MsgBox("Security Entry Deleted")
+                clear()
+                edit = False
+
+            Else
+                MsgBox("Delete is only in Edit Mode")
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Public Shared Async Function UploadFileAsync(filePath As String, uploadUrl As String) As Task
+        Try
+            Using client As New HttpClient()
+                Using content As New MultipartFormDataContent()
+                    ' Read the JPG into memory
+                    Dim fileContent As New ByteArrayContent(File.ReadAllBytes(filePath))
+                    fileContent.Headers.ContentType = New System.Net.Http.Headers.MediaTypeHeaderValue("image/jpeg")
+
+                    ' "file" here is the form field name expected by the server-side script
+                    content.Add(fileContent, "image", Path.GetFileName(filePath))
+
+                    ' Send the POST
+                    Dim response = Await client.PostAsync(uploadUrl, content)
+
+                    ' Check result
+                    If response.IsSuccessStatusCode Then
+                        Dim serverReply = Await response.Content.ReadAsStringAsync()
+                        Console.WriteLine("Upload successful! Server said: " & serverReply)
+                    Else
+                        Console.WriteLine("Upload failed: " & response.StatusCode)
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Upload failed: " & ex.Message)
+        End Try
+    End Function
+
+
+    Private Async Function gridupload_CellClickAsync(sender As Object, e As DataGridViewCellEventArgs) As Task Handles gridupload.CellClick
+        Try
+
+            If e.RowIndex >= 0 Then
+
+                'GET DESIGN FROM PATH
+                If DriveInfo.GetDrives().Any(Function(drive) drive.Name = CATALOGPATH & "\") Then
+                    Dim imgPath As String = Convert.ToString(gridupload.Rows(e.RowIndex).Cells("GIMGPATH").Value)
+                    If IO.File.Exists(imgPath) Then
+                        PBIMG.ImageLocation = imgPath
+                    Else
+                        PBIMG.Image = Nothing
+                    End If
+                Else
+                    '    'Get design from database BLOB
+                    '    Dim OBJCMN As New ClsCommon
+                    '    Dim DT As New DataTable
+
+                    '    Dim designNo As Integer = Val(gridupload.Rows(e.RowIndex).Cells("ITEMDESIGNNO").Value)
+
+                    '    DT = OBJCMN.SEARCH(
+                    '    "FINALQUALITYCHECK_UPDLOAD.FQC_IMAGEPATH AS IMAGEPATH",
+                    '    "",
+                    '    " FINALQUALITYCHECK_UPDLOAD ",
+                    '    " AND FINALQUALITYCHECK_UPDLOAD.FQC_NO = " & TEMPQCNO &
+                    '    " AND FINALQUALITYCHECK_UPDLOAD.FQC_YEARID = " & YearId &
+                    '    "AND FINALQUALITYCHECK_UPDLOAD.FQC_GRIDSRNO = " & Convert.ToString(gridupload.Rows(e.RowIndex).Cells("GGRIDUPLOADSRNO").Value) &
+                    '    " ORDER BY FINALQUALITYCHECK_UPDLOAD.FQC_NO "
+                    ')
+
+                    '    If DT.Rows.Count > 0 AndAlso Not IsDBNull(DT.Rows(0)("IMAGEPATH")) Then
+                    '        PBIMG.Image = Image.FromStream(New IO.MemoryStream(CType(DT.Rows(0)("IMAGEPATH"), Byte())))
+                    '    Else
+                    '        PBIMG.Image = Nothing
+                    '    End If
+
+
+                    Dim imgPath As String = CATALOGIP & Convert.ToString(gridupload.Rows(e.RowIndex).Cells("GNAME").Value)
+                    If Await ImageExistsAsync(imgPath) Then
+                        PBIMG.ImageLocation = imgPath
+                    Else
+                        'IF STILL THE IMAGE IS BLANK THEN OPENB IT FROM LOCAL PATH
+                        PBIMG.ImageLocation = gridupload.Rows(e.RowIndex).Cells("GIMAGEUPLOADPATH").Value
+                    End If
+                End If
+            End If
+
+
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message)
+        End Try
+    End Function
+
+    Public Async Function ImageExistsAsync(imageUrl As String) As Task(Of Boolean)
+        Try
+            Using client As New HttpClient()
+                Using response = Await client.SendAsync(New HttpRequestMessage(HttpMethod.Head, imageUrl))
+                    Return response.IsSuccessStatusCode
+                End Using
+            End Using
+        Catch
+            Return False
+        End Try
+    End Function
+
+
+    Function ResizeAndSaveFromFile(originalPath As String, savePath As String) As String
+        Try
+            'Safely load file into memory
+            Dim imgBytes() As Byte = File.ReadAllBytes(originalPath)
+            Dim ms As New MemoryStream(imgBytes)
+            Dim original As Image = Image.FromStream(ms)
+
+            Dim targetWidth As Integer = 700
+            Dim ratio As Double = targetWidth / original.Width
+            Dim newHeight As Integer = CInt(original.Height * ratio)
+
+            Using bmp As New Bitmap(targetWidth, newHeight)
+                Using g As Graphics = Graphics.FromImage(bmp)
+                    g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+                    g.DrawImage(original, 0, 0, targetWidth, newHeight)
+                End Using
+
+                Dim folder As String = Path.GetDirectoryName(savePath)
+                If Not Directory.Exists(folder) Then Directory.CreateDirectory(folder)
+                bmp.Save(savePath, Imaging.ImageFormat.Jpeg)
+            End Using
+
+            original.Dispose()
+            ms.Dispose()
+
+            Return savePath
+
+        Catch ex As Exception
+            MsgBox("Resize Error: " & ex.Message)
+            Return ""
+        End Try
+    End Function
+
+    Private Sub txtuploadname_Validating(sender As Object, e As CancelEventArgs) Handles txtuploadname.Validating
+        Try
+            If PBIMG.ImageLocation <> "" And txtuploadname.Text.Trim <> "" And GRIDUPLOADDESC.RowCount > 0 Then
+                FILLGRIDSCAN()
+                txtuploadname.Clear()
+                'PBIMG.ImageLocation = ""
+                TXTUPLOADPATH.Clear() 'NEW CODE
+                TXTPHOTOIMAGEUPLOADPATH.Clear()
+                txtuploadname.Focus()
+                TXTUPLOADSRNO.Text = gridupload.RowCount + 1
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub txtremarks_KeyDown(sender As Object, e As KeyEventArgs) Handles txtremarks.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class

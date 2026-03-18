@@ -1,4 +1,5 @@
 ﻿
+Imports System.ComponentModel
 Imports BL
 Imports DevExpress.Diagram.Core.Native
 
@@ -109,7 +110,7 @@ Public Class BeamRecdWarper
         TXTREFNO.Clear()
         TXTPICS.Clear()
         GetLastBeamNo()
-        TXTBEAMNO.Text = NextBeamNo
+        'TXTBEAMNO.Text = NextBeamNo
         GRIDYARNDETAILS.RowCount = 0
 
         fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
@@ -167,7 +168,7 @@ Public Class BeamRecdWarper
         Try
             Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'BEAM RECD'")
             USERADD = DTROW(0).Item(1)
-        USEREDIT = DTROW(0).Item(2)
+            USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
 
@@ -395,7 +396,7 @@ Public Class BeamRecdWarper
 LINE1:
             If gridupload.RowCount > 0 Then SAVEUPLOAD()
 
-            'CLEAR()
+            CLEAR()
             'SHOW NEXT BILL ON EDIT MODE DONT CLEAR
             Call toolnext_Click(sender, e)
             DTBEAMRECDDATE.Focus()
@@ -1155,7 +1156,30 @@ LINE1:
     End Sub
 
     Private Sub TXTNARR_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTBREAKAGE.Validating
-        If TXTBEAMNO.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And Val(TXTBEAMWT.Text.Trim) > 0 And Val(TXTMTRS.Text.Trim) > 0 Then FILLGRID() Else MsgBox("Please Enter proper details")
+
+        If TXTBEAMNO.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And Val(TXTBEAMWT.Text.Trim) > 0 And Val(TXTMTRS.Text.Trim) > 0 Then
+            If Val(TXTBEAMNO.Text) = 0 Then
+                MessageBox.Show("Please Enter Beam No !", "Beam No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                TXTBEAMNO.Focus()
+                Exit Sub
+            End If
+
+            If CMBROLLNO.Text <> "" Then
+                If GRIDBEAM.RowCount > 0 Then
+                    If Not CHECKROLL() Then
+                        MsgBox("Roll No already Present in Grid below")
+                        CMBROLLNO.Text = ""
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
+            End If
+
+
+            FILLGRID()
+        Else
+            MsgBox("Please Enter proper details")
+        End If
     End Sub
 
     Private Sub TXTCUT_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTGAMANO.Validating, TXTBEAMWT.Validating, TXTMTRS.Validating
@@ -1191,14 +1215,14 @@ LINE1:
 
     Private Sub CMBBEAMNAME_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBBEAMNAME.Validated
         Try
-            'If CMBBEAMNAME.Text.Trim <> "" Then
-            '    Dim OBJCMN As New ClsCommon
-            '    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(BEAM_TAPLINE, 0) AS TAPLINE, ISNULL(BEAM_TOTALENDS, 0) AS TOTALENDS", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
-            '    If DT.Rows.Count > 0 Then
-            '        TXTENDS.Text = DT.Rows(0).Item("TOTALENDS")
-            '        TXTMTRS.Text = DT.Rows(0).Item("TAPLINE")
-            '    End If
-            'End If
+            If CMBBEAMNAME.Text.Trim <> "" Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(BEAM_TAPLINE, 0) AS TAPLINE, ISNULL(BEAM_TOTALENDS, 0) AS TOTALENDS", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TXTENDS.Text = DT.Rows(0).Item("TOTALENDS")
+                    'TXTMTRS.Text = DT.Rows(0).Item("TAPLINE")
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1241,6 +1265,8 @@ LINE1:
                 TXTPICS.Text = Val(DT.Rows(0).Item("PICS"))
                 TXTFROMTYPE.Text = DT.Rows(0).Item("FROMTYPE")
                 TXTREFNO.Text = DT.Rows(0).Item("REFNO")
+                CMBBEAMNAME.Text = DT.Rows(0).Item("ITEMNAME")
+                CMBBEAMNAME_Validated(sender, e)
 
 
                 CMDSELECTYARNISSUE.Enabled = False
@@ -1296,7 +1322,7 @@ LINE1:
         DTCHALLANDATE.Select(0, 0)
     End Sub
 
-    Private Sub TXTTAPLINE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTENDS.KeyPress
+    Private Sub TXTTAPLINE_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTENDS.KeyPress, TXTBEAMNO.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
@@ -1316,13 +1342,7 @@ LINE1:
     End Sub
 
 
-    Sub GetLastBeamNo()
 
-        Dim OBJCMN As New ClsCommon
-        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMREC_BEAMNO),0)+1 AS LASTNO ", "", "BEAMRECEIVEDWARPER_DESC")
-        If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
-
-    End Sub
 
 
     Public Function GetGridMaxBeamNo() As Integer
@@ -1336,8 +1356,72 @@ LINE1:
     End Function
 
 
+    Sub GetLastBeamNo()
+        Dim NextBeamNo As Integer
+        Dim OBJCMN As New ClsCommon
+        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMNO),0)+1 AS LASTNO ", "", "BEAMSTOCK")
+        If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
+        TXTBEAMNO.Text = NextBeamNo
+    End Sub
 
 
 
+    Private Sub TXTBEAMNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBEAMNO.Validating
 
+        If Val(TXTBEAMNO.Text) <> 0 Then
+            If GRIDBEAM.RowCount > 0 Then
+                If Not CHECKBEAM() Then
+                    MsgBox("Beam No already Present in Grid below")
+                    TXTBEAMNO.Clear()
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        End If
+
+    End Sub
+
+
+    Function CHECKBEAM() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In GRIDBEAM.Rows
+                If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
+                    If TXTBEAMNO.Text.Trim = ROW.Cells(GBEAMNO.Index).Value Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+
+
+    Function CHECKROLL() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In GRIDBEAM.Rows
+                If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
+                    If CMBROLLNO.Text.Trim = ROW.Cells(GROLLNO.Index).Value Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Private Sub CMBROLLNO_Validating(sender As Object, e As CancelEventArgs) Handles CMBROLLNO.Validating
+        If CMBROLLNO.Text <> "" Then
+            If GRIDBEAM.RowCount > 0 Then
+                If Not CHECKROLL() Then
+                    MsgBox("Roll No already Present in Grid below")
+                    CMBROLLNO.Text = ""
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        End If
+    End Sub
 End Class
