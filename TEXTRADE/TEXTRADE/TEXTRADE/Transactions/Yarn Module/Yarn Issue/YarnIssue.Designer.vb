@@ -43,7 +43,7 @@ Partial Class YarnIssue
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TXTVEHICLENO = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.LBLITEMNAME = New System.Windows.Forms.Label()
         Me.CMBITEMNAME = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TXTBEAMDESC = New System.Windows.Forms.TextBox()
@@ -167,7 +167,7 @@ Partial Class YarnIssue
         Me.BlendPanel1.Controls.Add(Me.Label11)
         Me.BlendPanel1.Controls.Add(Me.TXTVEHICLENO)
         Me.BlendPanel1.Controls.Add(Me.Label7)
-        Me.BlendPanel1.Controls.Add(Me.Label5)
+        Me.BlendPanel1.Controls.Add(Me.LBLITEMNAME)
         Me.BlendPanel1.Controls.Add(Me.CMBITEMNAME)
         Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.TXTBEAMDESC)
@@ -281,17 +281,17 @@ Partial Class YarnIssue
         Me.Label7.TabIndex = 761
         Me.Label7.Text = "Vehicle No"
         '
-        'Label5
+        'LBLITEMNAME
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(785, 52)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(65, 15)
-        Me.Label5.TabIndex = 759
-        Me.Label5.Text = "Item Name"
+        Me.LBLITEMNAME.AutoSize = True
+        Me.LBLITEMNAME.BackColor = System.Drawing.Color.Transparent
+        Me.LBLITEMNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLITEMNAME.ForeColor = System.Drawing.Color.Black
+        Me.LBLITEMNAME.Location = New System.Drawing.Point(785, 52)
+        Me.LBLITEMNAME.Name = "LBLITEMNAME"
+        Me.LBLITEMNAME.Size = New System.Drawing.Size(65, 15)
+        Me.LBLITEMNAME.TabIndex = 759
+        Me.LBLITEMNAME.Text = "Item Name"
         '
         'CMBITEMNAME
         '
@@ -1581,7 +1581,7 @@ Partial Class YarnIssue
     Friend WithEvents Label4 As Label
     Friend WithEvents TXTBEAMDESC As TextBox
     Friend WithEvents CMBITEMNAME As ComboBox
-    Friend WithEvents Label5 As Label
+    Friend WithEvents LBLITEMNAME As Label
     Friend WithEvents TXTEWBNO As TextBox
     Friend WithEvents Label11 As Label
     Friend WithEvents TXTVEHICLENO As TextBox
