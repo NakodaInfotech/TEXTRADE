@@ -24,7 +24,7 @@ Public Class YarnBeamStock
     Sub fillgrid(ByVal TEMPCONDITION)
         Try
             Dim OBJCMN As New ClsCommon
-            Dim dt As DataTable = OBJCMN.SEARCH(" GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO,  SUM(ISNULL(CONES,0)) AS CONES, SUM(BAGS) AS BAGS, SUM(WT) AS WT ", "", "  YARNSTOCKVIEW ", TEMPCONDITION & " GROUP BY GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO HAVING SUM(WT) > 0")
+            Dim dt As DataTable = OBJCMN.SEARCH(" GODOWN,NAME, MILLNAME , BEAMNAME,BEAMNO,TOTALENDS,TOTALMTRS,GAMANO, SECTION, ROLLNO ,BEAMWT , BREAKAGE ", "", "  BEAMSTOCK ", TEMPCONDITION)
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
