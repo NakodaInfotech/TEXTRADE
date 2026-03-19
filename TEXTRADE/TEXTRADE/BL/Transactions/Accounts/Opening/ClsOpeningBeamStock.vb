@@ -23,21 +23,33 @@ Public Class ClsOpeningBeamStock
             With alParameter
 
                 Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
-                I += 1
                 .Add(New SqlClient.SqlParameter("@MILL", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@ENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNO", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@ROLLS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GAMANO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SECTION", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@ROLLNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@BEAMWT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@BREAKAGE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
@@ -72,21 +84,33 @@ Public Class ClsOpeningBeamStock
             With alParameter
 
                 Dim I As Integer = 0
+                .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
-                I += 1
                 .Add(New SqlClient.SqlParameter("@MILL", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@ENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNO", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@ROLLS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@PROGRAMNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GAMANO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SECTION", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@ROLLNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@BEAMWT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@BREAKAGE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
@@ -98,7 +122,7 @@ Public Class ClsOpeningBeamStock
                 .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
                 I += 1
 
-                .Add(New SqlClient.SqlParameter("@OPROLLSTOCKNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@OPBEAMSTOCKNO", alParaval(I)))
                 I += 1
             End With
 
@@ -137,7 +161,7 @@ Public Class ClsOpeningBeamStock
 
     End Function
 
-    Public Function GETSTOCKROLLS() As DataTable
+    Public Function GETSTOCKBEAM() As DataTable
         Dim dtTable As DataTable
         Dim strcommand As String = ""
         Try
@@ -145,7 +169,7 @@ Public Class ClsOpeningBeamStock
 
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@OPROLLSTOCKNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@OPBEAMSTOCKNO", alParaval(0)))
                 .Add(New SqlClient.SqlParameter("@YEARID", alParaval(1)))
             End With
             dtTable = objDBOperation.execute(strcommand, alParameter).Tables(0)
