@@ -429,6 +429,174 @@ PRINT 1,1")
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
 
+            ElseIf ClientName = "SWPL" Then
+
+
+                Dim TEMPWIDTH As String = ""
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                End If
+
+                If TEMPHEADER = "YARN" Then
+
+                    'FOR YARN QUALITY IS MILLNAME
+                    'FOR YARN BALENO IS BOXNO
+                    'FOR YARN MTRS IS WT
+                    oWrite.WriteLine("SIZE 99.1 mm, 76.2 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 743,580,""ROMAN.TTF"",180,1,18,""" & ITEMNAME & """
+QRCODE 283,296,L,10,A,180,M2,S7,""" & BARCODE & """
+TEXT 258,57,""ROMAN.TTF"",180,1,11,""" & BARCODE & """
+TEXT 743,357,""ROMAN.TTF"",180,1,14,""SHADE""
+TEXT 565,358,""ROMAN.TTF"",180,1,14,"":""
+TEXT 529,362,""ROMAN.TTF"",180,1,18,""" & SHADE & """
+TEXT 743,482,""ROMAN.TTF"",180,1,14,""MILL""
+TEXT 565,482,""ROMAN.TTF"",180,1,14,"":""
+TEXT 529,482,""ROMAN.TTF"",180,1,14,""" & QUALITY & """ 
+TEXT 743,420,""ROMAN.TTF"",180,1,14,""BOX NO""
+TEXT 565,420,""ROMAN.TTF"",180,1,14,"":""
+TEXT 529,420,""ROMAN.TTF"",180,1,14,""" & BALENO & """
+TEXT 691,148,""ROMAN.TTF"",180,1,36,""SWPL""
+BAR 40,512, 718, 3
+TEXT 743,233,""ROMAN.TTF"",180,1,14,""NETT WT""
+TEXT 565,233,""ROMAN.TTF"",180,1,14,"":""
+TEXT 529,233,""ROMAN.TTF"",180,1,14,""" & FORMAT(Val(MTRS), "0.00") & """
+TEXT 743,295,""ROMAN.TTF"",180,1,14,""LOT NO""
+TEXT 565,295,""ROMAN.TTF"",180,1,14,"":""
+TEXT 529,295,""ROMAN.TTF"",180,1,14,""" & LOTNO & """
+PRINT 1,1")
+                    oWrite.Dispose()
+
+                ElseIf TEMPHEADER = "GREY" Then
+
+                    'QTY IS USED AS WT 
+                    oWrite.WriteLine("SIZE 101.6 mm, 152.4 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 624,467,""ROMAN.TTF"",270,1,60,""" & BALENO & """
+TEXT 70,1160,""ROMAN.TTF"",270,1,36,""D.NO""
+TEXT 70,924,""ROMAN.TTF"",270,1,36,"":""
+TEXT 70,877,""ROMAN.TTF"",270,1,36,""" & ITEMNAME & """
+TEXT 216,1159,""ROMAN.TTF"",270,1,36,""MTR""
+TEXT 216,924,""ROMAN.TTF"",270,1,36,"":""
+TEXT 216,878,""ROMAN.TTF"",270,1,36,""" & Format(Val(MTRS), "0.00") & """
+QRCODE 258,362,L,10,A,270,M2,S7,""" & BARCODE & """
+TEXT 498,347,""ROMAN.TTF"",270,1,12,""" & BARCODE & """
+TEXT 362,1161,""ROMAN.TTF"",270,1,36,""WT""
+TEXT 362,924,""ROMAN.TTF"",270,1,36,"":""
+TEXT 362,875,""ROMAN.TTF"",270,1,36,""" & FORMAT(Val(QTY), "0.00") & """
+TEXT 508,1165,""ROMAN.TTF"",270,1,36,""WD""
+TEXT 508,924,""ROMAN.TTF"",270,1,36,"":""
+TEXT 508,875,""ROMAN.TTF"",270,1,36,""" & TEMPWIDTH & """
+TEXT 654,1161,""ROMAN.TTF"",270,1,36,""COL""
+TEXT 654,924,""ROMAN.TTF"",270,1,36,"":""
+TEXT 654,875,""ROMAN.TTF"",270,1,36,""" & SHADE & """
+TEXT 38,462,""ROMAN.TTF"",270,1,60,""SWPL""
+BAR 0,506, 811, 3
+BAR 581,34, 3, 475
+PRINT 1,1")
+                    oWrite.Dispose()
+
+
+                ElseIf TEMPHEADER = "GREYWITHOUTCOLOR" Then
+
+                    'QTY IS USED AS WT 
+                    oWrite.WriteLine("SIZE 101.6 mm, 152.4 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 624,467,""ROMAN.TTF"",270,1,60,""" & BALENO & """
+TEXT 139,1160,""ROMAN.TTF"",270,1,36,""D.NO""
+TEXT 139,924,""ROMAN.TTF"",270,1,36,"":""
+TEXT 139,877,""ROMAN.TTF"",270,1,36,""" & ITEMNAME & """
+TEXT 285,1159,""ROMAN.TTF"",270,1,36,""MTR""
+TEXT 285,924,""ROMAN.TTF"",270,1,36,"":""
+TEXT 285,878,""ROMAN.TTF"",270,1,36,""" & Format(Val(MTRS),"0.00") & """
+QRCODE 258,362,L,10,A,270,M2,S7,""" & BARCODE & """
+TEXT 498,347,""ROMAN.TTF"",270,1,12,""" & BARCODE & """
+TEXT 431,1161,""ROMAN.TTF"",270,1,36,""WT""
+TEXT 431,924,""ROMAN.TTF"",270,1,36,"":""
+TEXT 431,875,""ROMAN.TTF"",270,1,36,""" & FORMAT(Val(QTY),"0.00") & """
+TEXT 577,1165,""ROMAN.TTF"",270,1,36,""WD""
+TEXT 577,924,""ROMAN.TTF"",270,1,36,"":""
+TEXT 577,875,""ROMAN.TTF"",270,1,36,""" & TEMPWIDTH & """
+TEXT 38,462,""ROMAN.TTF"",270,1,60,""SWPL""
+BAR 0,506, 811, 3
+BAR 581,34, 3, 475
+PRINT 1,1")
+                    oWrite.Dispose()
+
+
+                ElseIf TEMPHEADER = "" Then
+
+                    oWrite.WriteLine("SIZE 101.6 mm, 152.4 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 624,714,""ROMAN.TTF"",270,1,60,""" & BALENO & """
+TEXT 765,1158,""ROMAN.TTF"",180,1,26,""D.NO""
+TEXT 578,1158,""ROMAN.TTF"",180,1,26,"":""
+TEXT 524,1158,""ROMAN.TTF"",180,1,26,""" & ITEMNAME & """
+TEXT 763,1073,""ROMAN.TTF"",180,1,26,""MTR""
+TEXT 578,1073,""ROMAN.TTF"",180,1,26,"":""
+TEXT 524,1073,""ROMAN.TTF"",180,1,26,""" & Format(Val(MTRS),"0.00") & """
+QRCODE 267,488,L,10,A,270,M2,S7,""" & BARCODE & """
+TEXT 506,473,""ROMAN.TTF"",270,1,12,""" & BARCODE & """
+TEXT 763,989,""ROMAN.TTF"",180,1,26,""WT""
+TEXT 578,989,""ROMAN.TTF"",180,1,26,"":""
+TEXT 524,989,""ROMAN.TTF"",180,1,26,""" & Format(Val(QTY),"0.00") & """
+TEXT 278,989,""ROMAN.TTF"",180,1,26,""WD""
+TEXT 160,989,""ROMAN.TTF"",180,1,26,"":""
+TEXT 115,989,""ROMAN.TTF"",180,1,26,""" & TEMPWIDTH & """
+TEXT 763,820,""ROMAN.TTF"",180,1,26,""COL""
+TEXT 578,820,""ROMAN.TTF"",180,1,26,"":""
+TEXT 524,820,""ROMAN.TTF"",180,1,26,""" & SHADE & """
+TEXT 56,631,""ROMAN.TTF"",270,1,72,""SWPL""
+BAR 0,741, 811, 3
+BAR 581,35, 3, 707
+TEXT 763,905,""ROMAN.TTF"",180,1,26,""LOT""
+TEXT 578,905,""ROMAN.TTF"",180,1,26,"":""
+TEXT 524,905,""ROMAN.TTF"",180,1,26,""" & LOTNO & """
+PRINT 1,1")
+                    oWrite.Dispose()
+
+                End If
+
+
+
             ElseIf ClientName = "SHEETAL" Then
 
                 oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
@@ -3418,48 +3586,46 @@ PRINT 1,1")
 
             ElseIf ClientName = "KENCOT" Then
 
-                oWrite.WriteLine("<xpml><page quantity='0' pitch='50.8 mm'></xpml>SIZE 101.6 mm, 50.8 mm")
-                oWrite.WriteLine("GAP 3 mm, 0 mm")
-                oWrite.WriteLine("SPEED 4")
-                oWrite.WriteLine("DENSITY 10")
-                oWrite.WriteLine("DIRECTION 0,0")
-                oWrite.WriteLine("REFERENCE 0,0")
-                oWrite.WriteLine("OFFSET 0 mm")
-                oWrite.WriteLine("SET PEEL OFF")
-                oWrite.WriteLine("SET CUTTER OFF")
-                oWrite.WriteLine("SET PARTIAL_CUTTER OFF")
-                oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='50.8 mm'></xpml>SET TEAR ON")
-                oWrite.WriteLine("ON")
-                oWrite.WriteLine("CLS")
-                oWrite.WriteLine("CODEPAGE 1252")
-                oWrite.WriteLine("TEXT 506,377,""ROMAN.TTF"",180,1,17,""" & ITEMNAME & """")
-                oWrite.WriteLine("BARCODE 780,140,""128M"",85,0,180,4,8,""" & BARCODE & """") 'BARCODE
-                oWrite.WriteLine("TEXT 484,50,""ROMAN.TTF"",180,1,9,""" & BARCODE & """") 'BARCODE
-                oWrite.WriteLine("TEXT 780,298,""ROMAN.TTF"",180,1,14,""DESIGN NO""")
-                oWrite.WriteLine("TEXT 321,298,""ROMAN.TTF"",180,1,14,""SHADE NO""")
-                oWrite.WriteLine("TEXT 585,302,""ROMAN.TTF"",180,1,17,"":""")
-                oWrite.WriteLine("TEXT 125,302,""ROMAN.TTF"",180,1,17,"":""")
-                oWrite.WriteLine("TEXT 555,311,""ROMAN.TTF"",180,1,24,""" & DESIGNNO & """")
-                oWrite.WriteLine("TEXT 95,305,""ROMAN.TTF"",180,1,17,""" & SHADE & """")
-                oWrite.WriteLine("TEXT 382,209,""ROMAN.TTF"",180,1,14,""WIDTH""")
-                oWrite.WriteLine("TEXT 266,214,""ROMAN.TTF"",180,1,17,"":""")
-
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                 Dim TEMPWIDTH As String = ""
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
                 End If
 
-                oWrite.WriteLine("TEXT 243,213,""0"",180,17,17,""" & TEMPWIDTH & """")
-
-                oWrite.WriteLine("TEXT 677,214,""ROMAN.TTF"",180,1,17,"":""")
-                oWrite.WriteLine("TEXT 780,209,""ROMAN.TTF"",180,1,14,""MTRS""")
-                oWrite.WriteLine("TEXT 625,223,""ROMAN.TTF"",180,1,24,""" & Format(Val(MTRS), "0.00") & """")
-                oWrite.WriteLine("TEXT 780,373,""ROMAN.TTF"",180,1,14,""MERCHANT NO :""")
-                oWrite.WriteLine("PRINT 1,1")
-                oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
+                oWrite.WriteLine("SIZE 101.6 mm, 50.8 mm
+GAP 3 mm, 0 mm
+SPEED 4
+DENSITY 10
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+ON
+CLS
+CODEPAGE 1252
+TEXT 548,377,""ROMAN.TTF"",180,1,17,""" & ITEMNAME & """
+QRCODE 252,285,L,10,A,180,M2,S7,""" & BARCODE & """
+TEXT 229,70,""ROMAN.TTF"",180,1,9,""" & BARCODE & """
+TEXT 780,295,""ROMAN.TTF"",180,1,14,""DESIGN NO""
+TEXT 780,139,""ROMAN.TTF"",180,1,14,""SHADE NO""
+TEXT 573,300,""ROMAN.TTF"",180,1,17,"":""
+TEXT 573,144,""ROMAN.TTF"",180,1,17,"":""
+TEXT 548,308,""ROMAN.TTF"",180,1,24,""" & DESIGNNO & """
+TEXT 548,144,""ROMAN.TTF"",180,1,17,""" & SHADE & """
+TEXT 780,61,""ROMAN.TTF"",180,1,14,""WIDTH""
+TEXT 573,65,""ROMAN.TTF"",180,1,17,"":""
+TEXT 548,65,""0"",180,17,17,""" & TEMPWIDTH & """
+TEXT 573,222,""ROMAN.TTF"",180,1,17,"":""
+TEXT 780,217,""ROMAN.TTF"",180,1,14,""MTRS""
+TEXT 548,230,""ROMAN.TTF"",180,1,24,""" & FORMAT(VAL(MTRS),"0.00") & """
+TEXT 780,373,""ROMAN.TTF"",180,1,14,""ITEM NAME""
+TEXT 571,373,""ROMAN.TTF"",180,1,14,"":""
+PRINT 1,1")
                 oWrite.Dispose()
 
             ElseIf ClientName = "DRDRAPES" Then
