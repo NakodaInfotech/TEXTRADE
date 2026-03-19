@@ -1141,6 +1141,7 @@ Public Class DesignCardMaster
                         GRIDWARP.Rows.Add(Val(DTR("WARPGRIDSRNO")), DTR("WARPGRIDSYM").ToString, DTR("WARPYARNQUALITY").ToString, Format(DTR("WARPDENIER"), "0.00"), DTR("WARPMILLNAME").ToString, DTR("WARPSHADE").ToString, Format(DTR("WARPPE"), "0.00"), Format(DTR("WARPBE"), "0.00"), Format(DTR("WARPTE"), "0.00"), Format(DTR("WARPWT"), "0.000"), Format(DTR("WARPCONS"), "0.00"), Format(DTR("WARPRATE"), "0.00"), Format(DTR("WARPCOST"), "0.00"))
                     Next
                 End If
+
                 ' Warp Gridpattern data serializations
                 Dim dttable2 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WARPPATTERNGRIDSRNO, ISNULL(DESIGN_WARPPE, '') AS WARPPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WARPPATTERNGRIDSYM", "", " DESIGNCARD_WARPPATTERN  ", " AND  DESIGNCARD_WARPPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WARPPATTERNGRIDSRNO")
                 If dttable2.Rows.Count > 0 Then
@@ -1148,6 +1149,7 @@ Public Class DesignCardMaster
                         GRIDWARPPATTERN.Rows.Add(DTR("WARPPATTERNGRIDSRNO"), DTR("WARPPATTERNGRIDPE"), DTR("WARPPATTERNGRIDSYM").ToString)
                     Next
                 End If
+
                 'WARP grid shade data serializations
                 Dim dttableWARPshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_WDSRNO, 0) AS WDSRNO, ISNULL(COLORMASTER.COLOR_name,'') AS WDSHADE, ISNULL(DESIGN_WDMAINSRNO, 0) AS WDMAINSRNO", "", " DESIGNCARD_WARPSHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WARPSHADE.DESIGN_WDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_WARPSHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid  ", " AND  DESIGNCARD_WARPSHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WARPSHADE.DESIGN_YEARID = " & YearId & " ORDER BY WDSRNO")
                 If dttableWARPshade.Rows.Count > 0 Then
@@ -1161,9 +1163,10 @@ Public Class DesignCardMaster
                 Dim dttable3 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESRNO, 0) AS SELVEDGEGRIDSRNO, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGESYM, '') AS SELVEDGEGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS SELVEDGEYARNQUALITY, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDENIER, 0) AS SELVEDGEDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS SELVEDGEMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS SELVEDGESHADE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEPE, 0) AS SELVEDGEPE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEBE, 0) AS SELVEDGEBE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEDTE, 0) AS SELVEDGETE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEWT, 0) AS SELVEDGEWT, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECONS, 0) AS SELVEDGECONS, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGERATE, 0) AS SELVEDGERATE, ISNULL(DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOST, 0) AS SELVEDGECOST ", "", " DESIGNCARD_SELVEDGEMATCHING LEFT OUTER JOIN YARNQUALITYMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEYARNQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN MILLMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGEMILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_SELVEDGEMATCHING.DESIGN_SELVEDGECOLORID = COLORMASTER.COLOR_id   ", " AND  DESIGNCARD_SELVEDGEMATCHING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEMATCHING.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEGRIDSRNO")
                 If dttable3.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable3.Rows
-                        GRIDSELVEDGE.Rows.Add(DTR("SELVEDGEGRIDSRNO"), DTR("SELVEDGEGRIDSYM").ToString, DTR("SELVEDGEYARNQUALITY").ToString, Format(DTR("SELVEDGEDENIER"), "0.00"), DTR("SELVEDGEMILLNAME").ToString, DTR("SELVEDGESHADE").ToString, Format(DTR("SELVEDGEPE"), "0.00"), Format(DTR("SELVEDGEBE"), "0.00"), Format(DTR("SELVEDGETE"), "0.00"), Format(DTR("SELVEDGEWT"), "0.00"), Format(DTR("SELVEDGECONS"), "0.00"), Format(DTR("SELVEDGERATE"), "0.00"), Format(DTR("SELVEDGECOST"), "0.00"))
+                        GRIDSELVEDGE.Rows.Add(DTR("SELVEDGEGRIDSRNO"), DTR("SELVEDGEGRIDSYM").ToString, DTR("SELVEDGEYARNQUALITY").ToString, Format(DTR("SELVEDGEDENIER"), "0.00"), DTR("SELVEDGEMILLNAME").ToString, DTR("SELVEDGESHADE").ToString, Format(DTR("SELVEDGEPE"), "0.00"), Format(DTR("SELVEDGEBE"), "0.00"), Format(DTR("SELVEDGETE"), "0.00"), Format(DTR("SELVEDGEWT"), "0.000"), Format(DTR("SELVEDGECONS"), "0.00"), Format(DTR("SELVEDGERATE"), "0.00"), Format(DTR("SELVEDGECOST"), "0.00"))
                     Next
                 End If
+
                 ' Selvedge Gridpattern data serializations
                 Dim dttable4 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS SELVEDGEPATTERNGRIDSRNO, ISNULL(DESIGN_SELVEDGEPE, '') AS SELVEDGEPATTERNGRIDPE, ISNULL(DESIGN_SELVEDGESYM, '') AS SELVEDGEPATTERNGRIDSYM", "", " DESIGNCARD_SELVEDGEPATTERN  ", " AND  DESIGNCARD_SELVEDGEPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGEPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY SELVEDGEPATTERNGRIDSRNO")
                 If dttable4.Rows.Count > 0 Then
@@ -1173,7 +1176,6 @@ Public Class DesignCardMaster
                 End If
 
                 'selvedge grid shade data serializations
-
                 Dim dttableshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_sdSRNO, 0) AS SDSRNO,ISNULL(COLORMASTER.COLOR_name,'') AS  SDSHADE, ISNULL(DESIGN_sdMAINSRNO, 0) AS SDMAINSRNO", "", " DESIGNCARD_SELVEDGESHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_SELVEDGESHADE.DESIGN_SDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid   ", " AND  DESIGNCARD_SELVEDGESHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_SELVEDGESHADE.DESIGN_YEARID = " & YearId & " ORDER BY SDSRNO")
                 If dttableshade.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttableshade.Rows
@@ -1189,6 +1191,7 @@ Public Class DesignCardMaster
                         GRIDWEFT.Rows.Add(DTR("WEFTGRIDSRNO"), DTR("WEFTGRIDSYM").ToString, DTR("WEFTYARNQUALITY").ToString, Format(DTR("WEFTDENIER"), "0.00"), DTR("WEFTMILLNAME").ToString, DTR("WEFTSHADE").ToString, Format(DTR("WEFTPE"), "0.00"), Format(DTR("WEFTBE"), "0.00"), Format(DTR("WEFTTE"), "0.00"), Format(DTR("WEFTWT"), "0.000"), Format(DTR("WEFTCONS"), "0.00"), Format(DTR("WEFTRATE"), "0.00"), Format(DTR("WEFTCOST"), "0.00"))
                     Next
                 End If
+
                 ' Weft GridPattern data serialization
                 Dim dttable6 As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_SRNO, 0) AS WEFTPATTERNGRIDSRNO, ISNULL(DESIGN_WEFTPE, '') AS WEFTPATTERNGRIDPE, ISNULL(DESIGN_WARPSYM, '') AS WEFTPATTERNGRIDSYM", "", " DESIGNCARD_WEFTPATTERN  ", " AND  DESIGNCARD_WEFTPATTERN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTPATTERN.DESIGN_YEARID = " & YearId & " ORDER BY WEFTPATTERNGRIDSRNO")
                 If dttable6.Rows.Count > 0 Then
@@ -1196,8 +1199,8 @@ Public Class DesignCardMaster
                         GRIDWEFTPATTERN.Rows.Add(DTR("WEFTPATTERNGRIDSRNO"), DTR("WEFTPATTERNGRIDPE"), DTR("WEFTPATTERNGRIDSYM").ToString)
                     Next
                 End If
-                'WEFT grid shade data serializations
 
+                'WEFT grid shade data serializations
                 Dim dttableWEFTshade As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGN_FDSRNO, 0) AS FDSRNO,ISNULL(COLORMASTER.COLOR_name,'') AS FDSHADE, ISNULL(DESIGN_FDMAINSRNO, 0) AS FDMAINSRNO", "", " DESIGNCARD_WEFTSHADE LEFT OUTER JOIN COLORMASTER ON DESIGNCARD_WEFTSHADE.DESIGN_FDSHADE = COLORMASTER.COLOR_id AND DESIGNCARD_WEFTSHADE.DESIGN_YEARID = COLORMASTER.COLOR_yearid   ", " AND  DESIGNCARD_WEFTSHADE.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_WEFTSHADE.DESIGN_YEARID = " & YearId & " ORDER BY FDSRNO")
                 If dttableWEFTshade.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttableWEFTshade.Rows
@@ -1205,22 +1208,23 @@ Public Class DesignCardMaster
                     Next
                     POPULATEWEFTGRID()
                 End If
+
                 'DRAWING FIELD
                 Dim dttable7 As DataTable = OBJCMN.SEARCH("  ISNULL(DESIGN_DRAWINGSRNO, 0) AS DRAWINGSRNO, ISNULL(DESIGN_DRAWINGENDS, 0) AS DRAWINGENDS, ISNULL(DESIGN_DRAWINGREPEATMARK, '') AS DRAWINGREPEATMARK, ISNULL(DESIGN_DRAWINGREPEAT, 0) AS DRAWINGREPEAT, ISNULL(DESIGN_DRAWINGREPEATMARK1, '') AS DRAWINGGRIDREPEATMARK1, ISNULL(DESIGN_DRAWINGREPEAT1, 0) AS DRAWINGREPEAT1, ISNULL(DESIGN_DRAWINGREPEATMARK2, '') AS DRAWINGREPEATMARK2, ISNULL(DESIGN_DRAWINGREPEAT2, 0) AS DRAWINGREPEAT2 ", "", " DESIGNCARD_DRAWING  ", " AND  DESIGNCARD_DRAWING.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_DRAWING.DESIGN_YEARID = " & YearId & " ORDER BY DRAWINGSRNO")
                 If dttable7.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable7.Rows
                         GRIDDRAWING.Rows.Add(DTR("DRAWINGSRNO"), DTR("DRAWINGENDS").ToString, DTR("DRAWINGREPEATMARK").ToString, DTR("DRAWINGREPEAT"), DTR("DRAWINGGRIDREPEATMARK1").ToString, DTR("DRAWINGREPEAT1"), DTR("DRAWINGREPEATMARK2").ToString, DTR("DRAWINGREPEAT2"))
                     Next
-
                 End If
+
                 'PEGPLAN FIELD
                 Dim dttable8 As DataTable = OBJCMN.SEARCH("  ISNULL(DESIGN_PPSRNO, 0) AS PPSRNO, ISNULL(DESIGN_PPENDS, 0) AS PPENDS, ISNULL(DESIGN_PPREPEATMARK, '') AS PPREPEATMARK, ISNULL(DESIGN_PPREPEAT, 0) AS PPREPEAT, ISNULL(DESIGN_PPREPEATMARK1, '') AS PPGRIDREPEATMARK1, ISNULL(DESIGN_PPREPEAT1, 0) AS PPREPEAT1, ISNULL(DESIGN_PPREPEATMARK2, '') AS PPREPEATMARK2, ISNULL(DESIGN_PPREPEAT2, 0) AS PPREPEAT2, ISNULL(DESIGN_PPSYM, '') AS PPSYM ", "", " DESIGNCARD_PEGPLAN  ", " AND  DESIGNCARD_PEGPLAN.DESIGN_CARDNO = " & tempdesignno & " AND DESIGNCARD_PEGPLAN.DESIGN_YEARID = " & YearId & " ORDER BY PPSRNO")
                 If dttable8.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable8.Rows
                         GRIDPEG.Rows.Add(DTR("PPSRNO"), DTR("PPENDS").ToString, DTR("PPREPEATMARK").ToString, DTR("PPREPEAT"), 0, 0, DTR("PPGRIDREPEATMARK1").ToString, DTR("PPREPEAT1"), 0, 0, DTR("PPREPEATMARK2").ToString, DTR("PPREPEAT2"), 0, 0, DTR("PPSYM").ToString)
                     Next
-                    ' GRIDPEG_CellValidating(Nothing, Nothing)
                 End If
+
                 CALC()
                 TOTAL()
                 'CMDDRAWCALC_Click(Nothing, Nothing, GRIDPEG)
@@ -1489,6 +1493,7 @@ LINE1:
         GRIDWARP.ClearSelection()
         CMBGRIDSYM.Focus()
         clearwarp()
+        CALC()
         TOTAL()
 
         If GRIDWARP.RowCount > 0 Then
@@ -1557,7 +1562,8 @@ LINE1:
         TXTWARPCOST.Clear()
     End Sub
 
-    Sub fillselvedgegrid()
+    Sub FILLSELVEDGEGRID()
+
         If GRIDSELDOUBLECLICK = False Then
             GRIDSELVEDGE.Rows.Add(Val(TXTSELSRNO.Text.Trim), CMBSELGSYM.Text.Trim, CMBSELYARNQUALITY.Text.Trim, TXTSELDEN.Text.Trim, CMBSELMILLNAME.Text.Trim, CMBSELSHADE.Text.Trim, Val(TXTSELPE.Text.Trim), Val(TXTSELBE.Text.Trim), Val(TXTSELTE.Text.Trim), Val(TXTSELWT.Text.Trim), Val(TXTSELCONS.Text.Trim), Val(TXTSELRATE.Text.Trim), Val(TXTSELCOST.Text.Trim))
 
@@ -1623,6 +1629,7 @@ LINE1:
         GRIDSELVEDGE.ClearSelection()
         CLEARSELVEDGE()
         COPYSELSYM()
+        CALC()
         TOTAL()
 
         If GRIDSELVEDGE.RowCount > 0 Then
@@ -1777,7 +1784,11 @@ LINE1:
         End If
         GRIDWEFTDESC.RowCount = 0
         TXTFDSRNO.Text = GRIDWEFTDESC.RowCount + 1
+        CALC()
+        TOTAL()
+
     End Sub
+
     Sub POPULATEWEFTGRID()
         Dim maxShadeCount As Integer = 0
         For Each dr As DataRow In DT_WEFTDETAILS.Rows
@@ -2118,45 +2129,34 @@ LINE1:
         Dim leftSel As Double = If(TXTLEFTSEL.Text <> "", Val(TXTLEFTSEL.Text), 0)
         Dim rightSel As Double = If(TXTRIGHTSEL.Text <> "", Val(TXTRIGHTSEL.Text), 0)
 
-        If TXTREEDSPACE.Text <> "" Then
-            TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - (leftSel + rightSel), "0.00")
-        End If
-
-        If TXTREED.Text <> "" Then TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
-
-        If TXTDENTS.Text <> "" And TXTMAINRS.Text <> "" Then
-            TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
-        End If
+        If Val(TXTREEDSPACE.Text) > 0 Then TXTMAINRS.Text = Format(Val(TXTREEDSPACE.Text) - (leftSel + rightSel), "0.00")
+        If Val(TXTREED.Text) > 0 Then TXTDENTS.Text = Format(Val(TXTREED.Text) / 2, "0.00")
+        If Val(TXTDENTS.Text) > 0 And Val(TXTMAINRS.Text) > 0 Then TXTTOTALDENTSMAIN.Text = Format(Val(TXTDENTS.Text) * Val(TXTMAINRS.Text), "0.00")
 
         ' Selvedge Dents - default to 0 if empty
-        Dim leftSelDents As Double = If(TXTDENTS.Text <> "" And TXTLEFTSEL.Text <> "", Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), 0)
-        Dim rightSelDents As Double = If(TXTDENTS.Text <> "" And TXTRIGHTSEL.Text <> "", Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), 0)
+        Dim leftSelDents As Double = If(Val(TXTDENTS.Text) > 0 And Val(TXTLEFTSEL.Text) > 0, Val(TXTLEFTSEL.Text) * Val(TXTDENTS.Text), 0)
+        Dim rightSelDents As Double = If(Val(TXTDENTS.Text) > 0 And Val(TXTRIGHTSEL.Text) > 0, Val(TXTRIGHTSEL.Text) * Val(TXTDENTS.Text), 0)
 
         TXTLEFTSELDENTS.Text = Format(leftSelDents, "0.00")
         TXTRIGHTSELDENTS.Text = Format(rightSelDents, "0.00")
 
         ' Total Selvedge Dents - always calculated (0 if no selvedge)
         TXTTOTALSELVEDGEDENTS.Text = Format(leftSelDents + rightSelDents, "0.00")
-
-        If TXTTOTALDENTSMAIN.Text <> "" Then
-            TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + (leftSelDents + rightSelDents), "0.00")
-        End If
+        If Val(TXTTOTALDENTSMAIN.Text) > 0 Then TXTTOTALDENTS.Text = Format(Val(TXTTOTALDENTSMAIN.Text) + (leftSelDents + rightSelDents), "0.00")
 
         ' Selvedge Ends - default to 0 if empty
-        Dim leftSelEnds As Double = If(TXTLEFTSELENDS.Text <> "", Val(TXTLEFTSELENDS.Text) * leftSelDents, 0)
-        Dim rightSelEnds As Double = If(TXTRIGHTSELENDS.Text <> "", Val(TXTRIGHTSELENDS.Text) * rightSelDents, 0)
+        Dim leftSelEnds As Double = If(Val(TXTLEFTSELENDS.Text) > 0, Val(TXTLEFTSELENDS.Text) * leftSelDents, 0)
+        Dim rightSelEnds As Double = If(Val(TXTRIGHTSELENDS.Text) > 0, Val(TXTRIGHTSELENDS.Text) * rightSelDents, 0)
 
         TXTLEFTSELTOTALENDS.Text = Format(leftSelEnds, "0.00")
         TXTRIGHTSELTOTALENDS.Text = Format(rightSelEnds, "0.00")
         TXTTOTALSELENDS.Text = Format(leftSelEnds + rightSelEnds, "0.00")
 
         ' Dents Repeat
-        If TXTTOTALDRAWDENTS.Text <> "" And Val(TXTTOTALDRAWDENTS.Text) <> 0 And TXTTOTALDENTS.Text <> "" Then
-            txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTSMAIN.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
-        End If
+        If Val(TXTTOTALDRAWDENTS.Text) > 0 And Val(TXTTOTALDRAWDENTS.Text) > 0 And Val(TXTTOTALDENTS.Text) > 0 Then txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTSMAIN.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
 
         ' Total Ends
-        If txttotaldentsrepeat.Text <> "" And TXTTOTALDRAWENDS.Text <> "" Then
+        If Val(txttotaldentsrepeat.Text) > 0 And Val(TXTTOTALDRAWENDS.Text) > 0 Then
             Dim totalDents As Double = Val(txttotaldentsrepeat.Text)
             Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
             TXTTOTALENDS.Text = Format(totalDents * totalDrawEnds, "0.00")
@@ -2167,14 +2167,14 @@ LINE1:
 
         ' If TXTTOTALENDS.Text <> "" And TXTTOTALENDS.Text > 0 And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
         TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
-        If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
+        If Val(TXTTOTALMAINENDS.Text) > 0 And Val(TXTTOTALWARPGRIDPE.Text) > 0 Then
             Dim totalMainEnds As Double = Val(TXTTOTALMAINENDS.Text)
             Dim pcs As Double = Val(TXTTOTALWARPGRIDPE.Text)
             Dim result As Double = totalMainEnds / pcs
             txtxvalue.Text = Math.Ceiling(result).ToString()
         End If
-        If TXTTOTALSELENDS.Text <> "" Then TXTSELTE.Text = Format(Val(TXTTOTALSELENDS.Text), "0.00")
-        If txtxvalue.Text <> "" Then
+        If Val(TXTTOTALSELENDS.Text) > 0 Then TXTSELTE.Text = Format(Val(TXTTOTALSELENDS.Text), "0.00")
+        If Val(txtxvalue.Text) > 0 Then
             'WARP ENDS IN GRID
             For Each row As DataGridViewRow In GRIDWARP.Rows
                 If row.Cells(WPE.Index).Value IsNot DBNull.Value Then
@@ -2227,7 +2227,7 @@ LINE1:
             End If
 
             'WEFT ENDS IN GRID
-            If TXTPICKS.Text <> "" And TXTREEDSPACE.Text <> "" Then
+            If Val(TXTPICKS.Text) > 0 And Val(TXTREEDSPACE.Text) > 0 Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     row.Cells(FENDS.Index).Value = Format((((Val(TXTREEDSPACE.Text)) * Val(TXTPICKS.Text)) / Val(TXTTOTALWEFTGRIDPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value), "0.00")
                 Next
@@ -2251,31 +2251,29 @@ LINE1:
         Dim shrinkage As Double = If(TXTSHRINKAGEPER.Text <> "", Val(TXTSHRINKAGEPER.Text), 0)
         TXTFINISHWT.Text = Format(Val(TXTFWT.Text) * (1 + (shrinkage / 100) * 0.6), "0.000")
         'If TXTSHRINKAGEPER.Text <> "" Then TXTFINISHWT.Text = Format(Val(TXTFWT.Text) * (1 + (Val(TXTSHRINKAGEPER.Text) / 100) * 0.6), "0.000")
-        If TXTNOOFPCS.Text <> "" And TXTPCSL.Text <> "" Then
+        If Val(TXTNOOFPCS.Text) > 0 And Val(TXTPCSL.Text) > 0 Then
             Dim pcs As Double = Val(TXTNOOFPCS.Text)
             Dim pcsl As Double = Val(TXTPCSL.Text)
             Dim result As Double = pcs * pcsl
             TXTBEAMMTRS.Text = Format(Val(result), "0.00")
         End If
-        If TXTFWT.Text <> "" And Val(TXTFWIDTH.Text) > 0 Then
-            TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0")
-        End If
+        If Val(TXTFWT.Text) > 0 And Val(TXTFWIDTH.Text) > 0 Then TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0")
         TXTGLM.Text = TXTFINISHWT.Text
 
         '************* EPI ******************
-        If Val(TXTTOTALDRAWDENTS.Text) > 0 And TXTREED.Text <> "" Then
+        If Val(TXTTOTALDRAWDENTS.Text) > 0 And Val(TXTREED.Text) > 0 Then
             Dim x As Decimal = TXTREED.Text.Trim / 2
             Dim I As Decimal = Format(Val(x / TXTTOTALDRAWDENTS.Text.Trim), "0.00")
             TXTENDPERINCH.Text = Format(Val(I * TXTTOTALDRAWENDS.Text.Trim), "0.00")
-            If TXTREEDSPACE.Text.Trim <> "" And TXTFWIDTH.Text.Trim <> "" Then
-                Dim y As Decimal = TXTENDPERINCH.Text.Trim * TXTREEDSPACE.Text.Trim
-                TXTFEPI.Text = Format(Val(y / TXTFWIDTH.Text.Trim), "0.00")
+            If Val(TXTREEDSPACE.Text.Trim) > 0 And Val(TXTFWIDTH.Text.Trim) > 0 Then
+                Dim y As Decimal = Val(TXTENDPERINCH.Text.Trim) * Val(TXTREEDSPACE.Text.Trim)
+                TXTFEPI.Text = Format(Val(y / Val(TXTFWIDTH.Text.Trim)), "0.00")
             End If
         End If
         '************* PPI ******************
-        If TXTSHRINKAGEPER.Text <> "" Then
-            Dim X As Decimal = TXTPICKS.Text.Trim * (TXTSHRINKAGEPER.Text.Trim / 100)
-            TXTFPPI.Text = Format(Val(X + TXTPICKS.Text.Trim), "0")
+        If Val(TXTSHRINKAGEPER.Text) > 0 Then
+            Dim X As Decimal = Val(TXTPICKS.Text.Trim) * (Val(TXTSHRINKAGEPER.Text.Trim) / 100)
+            TXTFPPI.Text = Format(Val(X + Val(TXTPICKS.Text.Trim)), "0")
         End If
 
     End Sub

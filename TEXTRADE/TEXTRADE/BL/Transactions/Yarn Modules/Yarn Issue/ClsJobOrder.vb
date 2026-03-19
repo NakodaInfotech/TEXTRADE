@@ -115,6 +115,36 @@ Public Class ClsJobOrder
                 .Add(New SqlClient.SqlParameter("@WEFTCOST", alParaval(I)))
                 I += 1
 
+
+                'SELVEDGE Grid data serialization
+                .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSYM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEYARNQUALITY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEDENIER", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEMILLNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGESHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEBE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGETE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEWT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGECONS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGERATE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGECOST", alParaval(I)))
+                I += 1
+
+
                 ' Company and user details
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
                 I += 1
@@ -237,6 +267,35 @@ Public Class ClsJobOrder
                 .Add(New SqlClient.SqlParameter("@WEFTRATE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WEFTCOST", alParaval(I)))
+                I += 1
+
+
+                'SELVEDGE Grid data serialization
+                .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSRNO", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSYM", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEYARNQUALITY", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEDENIER", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEMILLNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGESHADE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEPE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEBE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGETE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGEWT", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGECONS", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGERATE", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@SELVEDGECOST", alParaval(I)))
                 I += 1
 
                 ' Company and user details
