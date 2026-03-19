@@ -1,24 +1,8 @@
 ﻿
 
 Imports System.ComponentModel
-Imports System.IO
 Imports System.Text.RegularExpressions
-Imports System.Web.UI.WebControls
 Imports BL
-Imports DevExpress.Charts.Native
-Imports DevExpress.CodeParser
-Imports DevExpress.DashboardCommon.Native
-Imports DevExpress.DashboardWin.Native
-Imports DevExpress.Pdf.ContentGeneration
-Imports DevExpress.UIAutomation
-Imports DevExpress.Xpo.Logger.Transport
-Imports DevExpress.XtraCharts.Native
-Imports DevExpress.XtraGauges.Core.Model
-Imports DevExpress.XtraGrid.Drawing
-Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraPivotGrid.Design
-Imports DevExpress.XtraRichEdit.Commands
-Imports DevExpress.XtraRichEdit.Model
 
 Public Class DesignCardMaster
 
