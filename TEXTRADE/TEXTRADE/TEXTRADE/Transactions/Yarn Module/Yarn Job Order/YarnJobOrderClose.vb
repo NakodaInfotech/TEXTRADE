@@ -1,7 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports System.Windows.Forms.VisualStyles
-Imports BL
-Imports DevExpress.XtraGrid.Views.Grid
+﻿Imports BL
 
 Public Class YarnJobOrderClose
 
@@ -13,7 +10,7 @@ Public Class YarnJobOrderClose
     Private Sub YarnJobOrderClose_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'SALE ORDER'")
+            DTROW = USERRIGHTS.Select("FormName = 'YARN JOBORDER'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)

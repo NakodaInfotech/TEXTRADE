@@ -22,7 +22,6 @@ Public Class DesignCardMaster
     Public TEMPBEAMID As Integer
     Public TEMPITEMID As Integer
 
-
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Try
             Ep.Clear()
@@ -641,7 +640,49 @@ Public Class DesignCardMaster
     End Sub
 
     Sub CLEAR()
+
         getmax_SO_no()
+
+        'GRID WARP
+        GRIDWARP.RowCount = 0
+        GRIDWARPDESC.RowCount = 0
+
+        'GRID WARP PATTERN
+        GRIDWARPPATTERN.RowCount = 1
+        GRIDWEFTDESC.RowCount = 0
+
+        'GRID SLEVAGE
+        GRIDSELVEDGE.RowCount = 0
+        GRIDSELDESC.RowCount = 0
+
+        GRIDSELVEDGEPATTERN.RowCount = 1
+        'GRID WEFT
+        GRIDWEFT.RowCount = 0
+        'GRID WEFT PATTERN
+        GRIDWEFTPATTERN.RowCount = 1
+        'GRID DRAWING
+        GRIDDRAWING.RowCount = 1
+        'GRIDPEG PLAN
+        GRIDPEG.RowCount = 1
+        TXTTOTALPEG.Clear()
+        'GRID PEGPLAN 
+        GRIDPEGPLAN.RowCount = 0
+        'DT TABLE FOR SELVEDGE 
+        DT_SELDETAILS.Reset()
+        DT_SELDETAILS.Columns.Add("SDSRNO")
+        DT_SELDETAILS.Columns.Add("SDSHADE")
+        DT_SELDETAILS.Columns.Add("SDMAINSRNO")
+        'DT TABLE FOR WARP
+        DT_WARPDETAILS.Reset()
+        DT_WARPDETAILS.Columns.Add("WDSRNO")
+        DT_WARPDETAILS.Columns.Add("WDSHADE")
+        DT_WARPDETAILS.Columns.Add("WDMAINSRNO")
+        'DT TABLE FOR WEFT
+        DT_WEFTDETAILS.Reset()
+        DT_WEFTDETAILS.Columns.Add("FDSRNO")
+        DT_WEFTDETAILS.Columns.Add("FDSHADE")
+        DT_WEFTDETAILS.Columns.Add("FDMAINSRNO")
+
         txtfinishmethod.Clear()
         CMBQUALITIES.Text = ""
         CMBQUALITYTYPE.Text = ""
@@ -696,6 +737,7 @@ Public Class DesignCardMaster
         CMBAGENTNAME.Text = ""
         CMBDELAT.Text = ""
         DELDATE.Text = Now.Date
+
         'OTHERS
         TXTMTRS.Clear()          ' Piece Mtrs
         TXTNOOFPCS.Clear()            ' No of Pcs
@@ -711,6 +753,7 @@ Public Class DesignCardMaster
         ORDERDATE.Text = Now.Date
         CMBGREY.Text = ""
         TXTBLENDPER.Clear()
+
         'TOTAL
         TXTTOTALWARPPE.Clear()       ' P.E. (Possible: Ends per repeat)
         TXTTOTALWARPBE.Clear()       ' B.E. (Possible: Ends for Border)
@@ -720,6 +763,7 @@ Public Class DesignCardMaster
         TXTTOTALWARPRATE.Clear()    ' Rate (Rate per unit)
         TXTTOTALWARPCOST.Clear()    ' Cost (Warp Cost)
         TXTTOTALWARPGRIDPE.Clear()
+
         'Selvedge Total
         TXTTOTALSELPE.Clear()       ' P.E. (Selvedge)
         TXTTOTALSELBE.Clear()       ' B.E. (Selvedge)
@@ -738,10 +782,12 @@ Public Class DesignCardMaster
         TXTTOTALWEFTRATE.Clear()     ' Rate (Weft Rate)
         TXTTOTALWEFTCOST.Clear()     ' Cost (Weft Cost)
         TXTTOTALWEFTGRIDPE.Clear()       ' P.E. (Repeated for field order continuity)
+
         'drawing total
         TXTTOTALDRAWDENTS.Clear()
         TXTTOTALDRAWENDS.Clear()
         TXTFINISHWT.Clear()
+
         'WARPMATCHING TEXTBOXES
         TXTGRIDPE.Clear()
         TXTWARPSRNO.Text = 1
@@ -758,6 +804,7 @@ Public Class DesignCardMaster
         TXTWARPCONS.Clear()
         TXTWARPRATE.Clear()
         TXTWARPCOST.Clear()
+
         'SELVMATCHING TEXTBOXES
         TXTSELSRNO.Text = 1
         CMBSELGSYM.Text = ""
@@ -774,6 +821,7 @@ Public Class DesignCardMaster
         TXTSELCOST.Clear()
         TXTSELGSRNO.Clear()
         TXTSELGPE.Clear()
+
         'WEFTMATCHING TEXTBOXES
         TXTWEFTSRNO.Text = 1
         CMBWEFTGRIDSYMBOL.Text = ""
@@ -800,43 +848,7 @@ Public Class DesignCardMaster
         'DRAWING TEXTBOXES
         TXTDRAWSRNO.Clear()
         TXTDRAWENDS.Clear()
-        'GRID WARP
-        GRIDWARP.RowCount = 0
-        GRIDWARPDESC.RowCount = 0
-        'GRID WARP PATTERN
-        GRIDWARPPATTERN.RowCount = 1
-        GRIDWEFTDESC.RowCount = 0
-        'GRID SLEVAGE
-        GRIDSELVEDGE.RowCount = 0
-        GRIDSELDESC.RowCount = 0
 
-        GRIDSELVEDGEPATTERN.RowCount = 1
-        'GRID WEFT
-        GRIDWEFT.RowCount = 0
-        'GRID WEFT PATTERN
-        GRIDWEFTPATTERN.RowCount = 1
-        'GRID DRAWING
-        GRIDDRAWING.RowCount = 1
-        'GRIDPEG PLAN
-        GRIDPEG.RowCount = 1
-        TXTTOTALPEG.Clear()
-        'GRID PEGPLAN 
-        GRIDPEGPLAN.RowCount = 0
-        'DT TABLE FOR SELVEDGE 
-        DT_SELDETAILS.Reset()
-        DT_SELDETAILS.Columns.Add("SDSRNO")
-        DT_SELDETAILS.Columns.Add("SDSHADE")
-        DT_SELDETAILS.Columns.Add("SDMAINSRNO")
-        'DT TABLE FOR WARP
-        DT_WARPDETAILS.Reset()
-        DT_WARPDETAILS.Columns.Add("WDSRNO")
-        DT_WARPDETAILS.Columns.Add("WDSHADE")
-        DT_WARPDETAILS.Columns.Add("WDMAINSRNO")
-        'DT TABLE FOR WEFT
-        DT_WEFTDETAILS.Reset()
-        DT_WEFTDETAILS.Columns.Add("FDSRNO")
-        DT_WEFTDETAILS.Columns.Add("FDSHADE")
-        DT_WEFTDETAILS.Columns.Add("FDMAINSRNO")
 
         Ep.Clear()
         TXTCOPYCARDNO.Clear()
@@ -850,16 +862,9 @@ Public Class DesignCardMaster
     Private Function errorvalid() As Boolean
 
         Dim bln As Boolean = True
-        If ClientName = "AADHAR" Then
-            If CMBDESIGNNO.Text.Trim.Length = 0 Then
-                Ep.SetError(CMBDESIGNNO, "Fill Design No")
-                bln = False
-            End If
-        Else
-            If CMBSHADE.Text.Trim.Length = 0 Then
-                Ep.SetError(CMBSHADE, "Fill Shade ")
-                bln = False
-            End If
+        If CMBSHADE.Text.Trim.Length = 0 Then
+            Ep.SetError(CMBSHADE, "Fill Shade ")
+            bln = False
         End If
         If DTDATE.Text = "__/__/____" Then
             Ep.SetError(DTDATE, " Please Enter Proper Date")
@@ -966,7 +971,6 @@ Public Class DesignCardMaster
         Next
         Return True ' Return True if all validations pass
     End Function
-
 
     Private Sub DesignCardMaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -1217,12 +1221,19 @@ Public Class DesignCardMaster
                     Next
                     ' GRIDPEG_CellValidating(Nothing, Nothing)
                 End If
-                CMDDRAWCALC_Click(Nothing, Nothing, GRIDPEG)
-                CMDDRAWCALC_Click(Nothing, Nothing, GRIDDRAWING)
+                CALC()
+                TOTAL()
+                'CMDDRAWCALC_Click(Nothing, Nothing, GRIDPEG)
+                'CMDDRAWCALC_Click(Nothing, Nothing, GRIDDRAWING)
+
+                'FILLPEGPLAN()
+                'pegplan()
+                'fillMATCHINGcmb()
+
+
                 'TOTAL()
                 'CALC()
-                FILLPEGPLAN()
-                pegplan()
+
                 'GRIDDRAWING_CellValidating(Nothing, Nothing)
                 'srno(GRIDWARP, TXTWARPSRNO)
                 'srno(GRIDSELVEDGE, TXTSELSRNO)
@@ -1230,7 +1241,6 @@ Public Class DesignCardMaster
                 'srno(GRIDWEFTDESC, TXTFDSRNO)
                 'srno(GRIDWARPDESC, TXTWDSRNO)
                 'srno(GRIDSELDESC, TXTSDNO)
-                fillMATCHINGcmb()
             End If
         Catch ex As Exception
             Throw ex
@@ -2142,7 +2152,7 @@ LINE1:
 
         ' Dents Repeat
         If TXTTOTALDRAWDENTS.Text <> "" And Val(TXTTOTALDRAWDENTS.Text) <> 0 And TXTTOTALDENTS.Text <> "" Then
-            txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTS.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
+            txttotaldentsrepeat.Text = Format(Val(TXTTOTALDENTSMAIN.Text) / Val(TXTTOTALDRAWDENTS.Text), "0.00")
         End If
 
         ' Total Ends
@@ -2151,9 +2161,12 @@ LINE1:
             Dim totalDrawEnds As Double = Val(TXTTOTALDRAWENDS.Text)
             TXTTOTALENDS.Text = Format(totalDents * totalDrawEnds, "0.00")
         End If
-        TXTTOTALEXTRAENDS.Text = Format(Val(TXTTOTALENDS.Text) + Val(TXTEXTRAENDS.Text) + Val(TXTTOTALSELENDS.Text.Trim), "0.00")
+
+
+        TXTTOTALENDS.Text = Format(Val(TXTTOTALENDS.Text) + Val(TXTEXTRAENDS.Text) + Val(TXTTOTALSELENDS.Text.Trim), "0")
+
         ' If TXTTOTALENDS.Text <> "" And TXTTOTALENDS.Text > 0 And TXTREEDSPACE.Text <> "" Then TXTENDPERINCH.Text = Format(Val(TXTTOTALENDS.Text) / Val(TXTREEDSPACE.Text), "0")
-        TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALEXTRAENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
+        TXTTOTALMAINENDS.Text = Format(Val(TXTTOTALENDS.Text) - Val(TXTTOTALSELENDS.Text), "0.00")
         If TXTTOTALMAINENDS.Text <> "" And TXTTOTALWARPGRIDPE.Text <> "" Then
             Dim totalMainEnds As Double = Val(TXTTOTALMAINENDS.Text)
             Dim pcs As Double = Val(TXTTOTALWARPGRIDPE.Text)
@@ -2191,7 +2204,7 @@ LINE1:
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
                         If ClientName = "SWPL" Then
-                            row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTGRIDPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * (Val(TXTREEDSPACE.Text.Trim) + Val(TXTLEFTSEL.Text.Trim) + Val(TXTRIGHTSEL.Text.Trim))) / 1693 / Val(row.Cells(FDENIER.Index).Value), "0.000")
+                            row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTGRIDPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * (Val(TXTREEDSPACE.Text.Trim))) / 1693 / Val(row.Cells(FDENIER.Index).Value), "0.000")
                         Else
                             row.Cells(FWT.Index).Value = Format(((Val(TXTPICKS.Text) / Val(TXTTOTALWEFTGRIDPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value) * Val(TXTREEDSPACE.Text.Trim) * Val(row.Cells(FDENIER.Index).Value) * Val(TXTWEFTTL.Text)) / 9000000, "0.000")
                         End If
@@ -2216,7 +2229,7 @@ LINE1:
             'WEFT ENDS IN GRID
             If TXTPICKS.Text <> "" And TXTREEDSPACE.Text <> "" Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
-                    row.Cells(FENDS.Index).Value = Format((((Val(TXTREEDSPACE.Text) + Val(TXTLEFTSEL.Text.Trim) + Val(TXTRIGHTSEL.Text.Trim)) * Val(TXTPICKS.Text)) / Val(TXTTOTALWEFTGRIDPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value), "0.00")
+                    row.Cells(FENDS.Index).Value = Format((((Val(TXTREEDSPACE.Text)) * Val(TXTPICKS.Text)) / Val(TXTTOTALWEFTGRIDPE.Text.Trim)) * Val(row.Cells(FPE.Index).Value), "0.00")
                 Next
             End If
         End If
@@ -2224,6 +2237,12 @@ LINE1:
         TXTFINISHWT.Text = "0.000"
         TXTGSM.Text = "0"
         TXTGLM.Text = "0.000"
+
+
+        TOTALSELVEDGEPATTERN()
+        TOTALWARPPATTERN()
+        TOTALWEFTPATTERN()
+        BLENDPERCENTAGE(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
 
         ' Fabric Weight
         TXTFWT.Text = Format(Val(TXTTOTALWARPWT.Text) + Val(TXTTOTALWEFTWT.Text) + Val(TXTTOTALSELWT.Text), "0.000")
@@ -2258,14 +2277,12 @@ LINE1:
             Dim X As Decimal = TXTPICKS.Text.Trim * (TXTSHRINKAGEPER.Text.Trim / 100)
             TXTFPPI.Text = Format(Val(X + TXTPICKS.Text.Trim), "0")
         End If
-        GETSELPE()
-        GETWARPPE()
-        GETWEFTPE()
-        BLENDPERCENTAGE(GRIDWARP, WQUALITY.Index, WWT.Index, GRIDWEFT, FQUALITY.Index, FWT.Index)
+
     End Sub
 
     Sub TOTALWARPPATTERN()
         CalculateTotalsForGridPATTERN(GRIDWARPPATTERN, "WPENDS", "WPR", "WPR1", "WPR2", "WPTR", "WPTR1", "WPTR2")
+        TXTTOTALWARPGRIDPE.Text = 0
         For Each row As DataGridViewRow In GRIDWARPPATTERN.Rows
             If row.Cells(WPTR2.Index).EditedFormattedValue IsNot DBNull.Value Then
                 TXTTOTALWARPGRIDPE.Text += Val(row.Cells(WPTR2.Index).EditedFormattedValue)
@@ -2276,6 +2293,7 @@ LINE1:
 
     Sub TOTALSELVEDGEPATTERN()
         CalculateTotalsForGridPATTERN(GRIDSELVEDGEPATTERN, "SPENDS", "SPREPEAT", "SPREPEAT1", "SPREPEAT2", "SPTR", "SPTR1", "SPTR2")
+        TXTTOTALSELGPE.Text = 0
         For Each row As DataGridViewRow In GRIDSELVEDGEPATTERN.Rows
             If row.Cells(SPTR2.Index).EditedFormattedValue IsNot DBNull.Value Then
                 TXTTOTALSELGPE.Text += Val(row.Cells(SPTR2.Index).EditedFormattedValue)
@@ -2286,6 +2304,7 @@ LINE1:
 
     Sub TOTALWEFTPATTERN()
         CalculateTotalsForGridPATTERN(GRIDWEFTPATTERN, "FPENDS", "FPR", "FPR1", "FPR2", "FPTR", "FPTR1", "FPTR2")
+        TXTTOTALWEFTGRIDPE.Text = 0
         For Each row As DataGridViewRow In GRIDWEFTPATTERN.Rows
             If row.Cells(FPTR2.Index).EditedFormattedValue IsNot DBNull.Value Then
                 TXTTOTALWEFTGRIDPE.Text += Val(row.Cells(FPTR2.Index).EditedFormattedValue)
@@ -2874,19 +2893,19 @@ LINE1:
             End If
             Cursor.Current = Cursors.WaitCursor
 
-            GRIDSELVEDGE.RowCount = 0
+            GRIDWARP.RowCount = 0
 LINE1:
             'temptypename = cmbtype.Text.Trim
             tempdesignno = Val(txtcardno.Text) - 1
             If tempdesignno > 0 Then
                 EDIT = True
-                'DesignCardMaster_Load(sender, e)
-                SHOWDATA()
+                DesignCardMaster_Load(sender, e)
+                Exit Sub
             Else
                 clear()
                 EDIT = False
             End If
-            If GRIDSELVEDGE.RowCount = 0 And tempdesignno > 1 Then
+            If GRIDWARP.RowCount = 0 And tempdesignno > 1 Then
                 txtcardno.Text = tempdesignno
                 GoTo LINE1
             End If
@@ -2903,7 +2922,7 @@ LINE1:
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-            GRIDSELVEDGE.RowCount = 0
+            GRIDWARP.RowCount = 0
 LINE1:
             tempdesignno = Val(txtcardno.Text) + 1
             'temptypename = cmbtype.Text.Trim
@@ -2912,13 +2931,13 @@ LINE1:
             clear()
             If Val(txtcardno.Text) - 1 >= tempdesignno Then
                 EDIT = True
-                'DesignCardMaster_Load(sender, e)
-                SHOWDATA()
+                DesignCardMaster_Load(sender, e)
+                Exit Sub
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
-            If GRIDSELVEDGE.RowCount = 0 And tempdesignno < MAXNO Then
+            If GRIDWARP.RowCount = 0 And tempdesignno < MAXNO Then
                 txtcardno.Text = tempdesignno
                 GoTo LINE1
             End If
@@ -2926,6 +2945,7 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
     Sub getmaxno()
         Dim DTTABLE As New DataTable
         DTTABLE = getmax(" isnull(max(DESIGN_CARDNO),0) + 1 ", "DESIGNCARD", " AND  DESIGN_CMPID=" & CmpId & " and DESIGN_LOCATIONID=" & Locationid & " and DESIGN_YEARID=" & YearId)
@@ -4205,29 +4225,7 @@ line1:
     Private Sub GRIDPEG_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDPEG.CellValidating
         Try
             If GRIDPEG.RowCount > 1 Then
-                'If GRIDPEG.Columns(e.ColumnIndex).Name = "PPENDS" OrElse GRIDPEG.Columns(e.ColumnIndex).Name = "SPSYM" Then
 
-                '    Dim cellValue As String = e.FormattedValue.ToString()
-                '    If GRIDPEG.Columns(e.ColumnIndex).Name = "PPENDS" Then
-                '        ' Allow empty value if needed
-                '        If String.IsNullOrWhiteSpace(e.FormattedValue.ToString()) Then Return
-
-                '        ' Validate numeric input
-                '        'ADDim cellValue As String = e.FormattedValue.ToString()
-
-                '        ' Split the input based on periods
-                '        Dim parts As String() = cellValue.Split(".")
-
-                '        ' Validate each part
-                '        For Each part As String In parts
-                '            If Not IsNumeric(part) Then
-                '                MessageBox.Show("Please enter valid numbers separated by periods (e.g., 1.2.3).", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                '                e.Cancel = True
-                '                Return
-                '            End If
-                '        Next
-                '    End If
-                'End If
                 ' Assume Shaft value is in a control called numShafts (or you can store it in a variable)
                 Dim maxShaft As Integer = 0
                 If Integer.TryParse(CMBSHAFTS.Text.Trim(), maxShaft) Then
