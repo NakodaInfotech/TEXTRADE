@@ -5202,6 +5202,7 @@ SKIPLINE:
 
             If ClientName = "SWPL" Then
                 WARPING_MASTER.Visible = False
+                BEAMRECDSIZER_MASTER.Visible = False
             End If
 
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then

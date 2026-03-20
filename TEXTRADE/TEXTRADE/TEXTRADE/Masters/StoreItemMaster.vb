@@ -131,10 +131,11 @@ Public Class StoreItemMaster
                 BLN = False
             End If
 
-            If CMBHSNCODE.Text.Trim = "" Then
-                EP.SetError(CMBHSNCODE, "Fill HSN Code")
-                BLN = False
-            End If
+
+            'If CMBHSNCODE.Text.Trim = "" Then
+            '    EP.SetError(CMBHSNCODE, "Fill HSN Code")
+            '    BLN = False
+            'End If
 
 
             Return BLN
