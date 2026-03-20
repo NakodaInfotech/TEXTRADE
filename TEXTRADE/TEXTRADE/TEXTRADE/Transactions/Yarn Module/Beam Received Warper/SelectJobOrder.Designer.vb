@@ -30,6 +30,7 @@ Partial Class SelectJobOrder
         Me.GJOBNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -40,7 +41,7 @@ Partial Class SelectJobOrder
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,7 +60,7 @@ Partial Class SelectJobOrder
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1188, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1275, 581)
         Me.BlendPanel1.TabIndex = 9
         '
         'gridbilldetails
@@ -70,7 +71,7 @@ Partial Class SelectJobOrder
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHKEDIT, Me.APPROXDATE, Me.RepositoryItemCheckEdit1})
-        Me.gridbilldetails.Size = New System.Drawing.Size(1162, 514)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1251, 514)
         Me.gridbilldetails.TabIndex = 648
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -80,7 +81,7 @@ Partial Class SelectJobOrder
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GJOBNO, Me.GREFNO, Me.GDATE, Me.GITEMNAME, Me.GNAME, Me.GREED, Me.GREEDSPACE, Me.GMTRS, Me.GPICS, Me.GTYPE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GJOBNO, Me.GDATE, Me.GNAME, Me.GITEMNAME, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GENDS, Me.GPICS, Me.GMTRS, Me.GTYPE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -120,8 +121,9 @@ Partial Class SelectJobOrder
         Me.GREFNO.Caption = "Ref No"
         Me.GREFNO.FieldName = "REFNO"
         Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.OptionsColumn.AllowEdit = False
         Me.GREFNO.Visible = True
-        Me.GREFNO.VisibleIndex = 2
+        Me.GREFNO.VisibleIndex = 5
         Me.GREFNO.Width = 90
         '
         'GDATE
@@ -133,16 +135,26 @@ Partial Class SelectJobOrder
         Me.GDATE.Name = "GDATE"
         Me.GDATE.OptionsColumn.AllowEdit = False
         Me.GDATE.Visible = True
-        Me.GDATE.VisibleIndex = 3
+        Me.GDATE.VisibleIndex = 2
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 4
+        Me.GITEMNAME.Width = 180
         '
         'GNAME
         '
-        Me.GNAME.Caption = "Name"
+        Me.GNAME.Caption = "Jobber Name"
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 5
+        Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 220
         '
         'GREED
@@ -173,7 +185,7 @@ Partial Class SelectJobOrder
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 8
+        Me.GMTRS.VisibleIndex = 10
         Me.GMTRS.Width = 80
         '
         'GPICS
@@ -194,7 +206,7 @@ Partial Class SelectJobOrder
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 10
+        Me.GTYPE.VisibleIndex = 11
         Me.GTYPE.Width = 120
         '
         'APPROXDATE
@@ -216,7 +228,7 @@ Partial Class SelectJobOrder
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(493, 541)
+        Me.cmdexit.Location = New System.Drawing.Point(640, 541)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 9
@@ -230,27 +242,26 @@ Partial Class SelectJobOrder
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(407, 541)
+        Me.cmdok.Location = New System.Drawing.Point(554, 541)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 8
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GITEMNAME
+        'GENDS
         '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 4
-        Me.GITEMNAME.Width = 180
+        Me.GENDS.Caption = "Ends"
+        Me.GENDS.FieldName = "ENDS"
+        Me.GENDS.Name = "GENDS"
+        Me.GENDS.OptionsColumn.AllowEdit = False
+        Me.GENDS.Visible = True
+        Me.GENDS.VisibleIndex = 8
         '
         'SelectJobOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1188, 581)
+        Me.ClientSize = New System.Drawing.Size(1275, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -288,4 +299,5 @@ Partial Class SelectJobOrder
     Friend WithEvents cmdok As Button
     Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn
 End Class

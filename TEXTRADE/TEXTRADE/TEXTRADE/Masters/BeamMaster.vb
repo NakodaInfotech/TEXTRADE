@@ -215,15 +215,40 @@ Public Class BeamMaster
             Throw ex
         End Try
     End Sub
-
     Sub TOTAL()
-        TXTTOTALENDS.Text = "0"
-        TXTTOTALWT.Text = "0.000"
+        Try
+            Dim OBJCMN As New ClsCommon
 
-        For Each r As DataGridViewRow In GRIDBEAM.Rows
-            TXTTOTALENDS.Text = Val(TXTTOTALENDS.Text) + Val(r.Cells(GENDS.Index).Value)
-            TXTTOTALWT.Text = Val(TXTTOTALWT.Text) + Val(r.Cells(GWTPER.Index).Value)
-        Next
+            ' Fetch TOTALENDS and TOTALWT from DESIGNCARD via BEAMMASTER → ITEMMASTER join
+            Dim DT As DataTable = OBJCMN.SEARCH(
+            "DESIGNCARD.DESIGN_TOTALWARPWT, DESIGNCARD.DESIGN_TOTALENDS",
+            "",
+            "BEAMMASTER " &
+            "INNER JOIN ITEMMASTER ON BEAMMASTER.BEAM_NAME = ITEMMASTER.ITEM_NAME " &
+            "AND BEAMMASTER.BEAM_YEARID = ITEMMASTER.ITEM_YEARID " &
+            "INNER JOIN DESIGNCARD ON ITEMMASTER.ITEM_ID = DESIGNCARD.DESIGN_ITEMID " &
+            "AND ITEMMASTER.ITEM_YEARID = DESIGNCARD.DESIGN_YEARID",
+            " AND BEAMMASTER.BEAM_YEARID = " & YearId &
+            " AND ITEMMASTER.ITEM_NAME = '" & TXTBEAMDESC.Text.Trim & "'"
+        )
+
+            If DT.Rows.Count > 0 Then
+                ' Use DesignCard values
+                TXTTOTALENDS.Text = Format(Val(DT.Rows(0).Item("DESIGN_TOTALENDS")), "0")
+                TXTTOTALWT.Text = Format(Val(DT.Rows(0).Item("DESIGN_TOTALWARPWT")), "0.000")
+            Else
+                TXTTOTALENDS.Text = "0"
+                TXTTOTALWT.Text = "0.000"
+
+                For Each r As DataGridViewRow In GRIDBEAM.Rows
+                    TXTTOTALENDS.Text = Val(TXTTOTALENDS.Text) + Val(r.Cells(GENDS.Index).Value)
+                    TXTTOTALWT.Text = Val(TXTTOTALWT.Text) + Val(r.Cells(GWTPER.Index).Value)
+                Next
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error calculating totals: " & ex.Message)
+        End Try
     End Sub
 
 

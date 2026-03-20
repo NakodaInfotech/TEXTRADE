@@ -213,11 +213,13 @@ Public Class BeamRecdWarper
                     TXTPICS.Text = dttable.Rows(0).Item("PICS").ToString
 
 
-
+                    CMDSELECTYARNISSUE.Enabled = False
 
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
                         GRIDBEAM.Rows.Add(Val(ROW("SRNO")), ROW("BEAMNO"), ROW("BEAMNAME"), Val(ROW("ENDS")), Val(ROW("MTRS")), Val(ROW("GAMANO")), Val(ROW("SECTION")), Val(ROW("ROLLNO")), Val(ROW("BEAMWT")), Val(ROW("BREAKAGE")), ROW("GRIDDONE"))
+                        CMBBEAMNAME.Text = ROW("BEAMNAME")
+                        TXTENDS.Text = ROW("ENDS")
                         If Convert.ToBoolean(ROW("GRIDDONE")) = True Then
                             lbllocked.Visible = True
                             PBlock.Visible = True
@@ -1095,7 +1097,7 @@ LINE1:
     Sub FILLGRID()
         Try
             If GRIDDOUBLECLICK = False Then
-                GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), TXTBEAMNO.Text.Trim, CMBBEAMNAME.Text.Trim, Val(TXTENDS.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTGAMANO.Text.Trim), Val(TXTSECTION.Text.Trim), Val(CMBROLLNO.Text.Trim), Val(TXTBEAMWT.Text.Trim), Val(TXTBREAKAGE.Text.Trim))
+                GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), TXTBEAMNO.Text.Trim, CMBBEAMNAME.Text.Trim, Val(TXTENDS.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTGAMANO.Text.Trim), Val(TXTSECTION.Text.Trim), CMBROLLNO.Text.Trim, Val(TXTBEAMWT.Text.Trim), Val(TXTBREAKAGE.Text.Trim))
 
                 TXTBEAMNO.Text = TXTBEAMNO.Text + 1
                 'NextBeamNo += 1
@@ -1108,7 +1110,7 @@ LINE1:
                 GRIDBEAM.Item(GTOTALMTRS.Index, TEMPROW).Value = Val(TXTMTRS.Text.Trim)
                 GRIDBEAM.Item(GGAMANO.Index, TEMPROW).Value = Val(TXTGAMANO.Text.Trim)
                 GRIDBEAM.Item(GSECTION.Index, TEMPROW).Value = Val(TXTSECTION.Text.Trim)
-                GRIDBEAM.Item(GROLLNO.Index, TEMPROW).Value = Val(CMBROLLNO.Text.Trim)
+                GRIDBEAM.Item(GROLLNO.Index, TEMPROW).Value = CMBROLLNO.Text.Trim
                 GRIDBEAM.Item(GBEAMWT.Index, TEMPROW).Value = Val(TXTBEAMWT.Text.Trim)
                 GRIDBEAM.Item(GBREAKAGE.Index, TEMPROW).Value = Val(TXTBREAKAGE.Text.Trim)
 
@@ -1215,14 +1217,14 @@ LINE1:
 
     Private Sub CMBBEAMNAME_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBBEAMNAME.Validated
         Try
-            If CMBBEAMNAME.Text.Trim <> "" Then
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(BEAM_TAPLINE, 0) AS TAPLINE, ISNULL(BEAM_TOTALENDS, 0) AS TOTALENDS", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then
-                    TXTENDS.Text = DT.Rows(0).Item("TOTALENDS")
-                    'TXTMTRS.Text = DT.Rows(0).Item("TAPLINE")
-                End If
-            End If
+            'If CMBBEAMNAME.Text.Trim <> "" Then
+            '    Dim OBJCMN As New ClsCommon
+            '    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(BEAM_TAPLINE, 0) AS TAPLINE, ISNULL(BEAM_TOTALENDS, 0) AS TOTALENDS", "", "BEAMMASTER", "AND BEAMMASTER.BEAM_NAME = '" & CMBBEAMNAME.Text.Trim & "' AND BEAM_YEARID = " & YearId)
+            '    If DT.Rows.Count > 0 Then
+            '        TXTENDS.Text = DT.Rows(0).Item("TOTALENDS")
+            '        'TXTMTRS.Text = DT.Rows(0).Item("TAPLINE")
+            '    End If
+            'End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1255,7 +1257,6 @@ LINE1:
             'End If
 
             Dim OBJYARNISSUE As New SelectJobOrder
-            OBJYARNISSUE.SIZERNAME = CMBNAME.Text.Trim
             Dim DT As DataTable = OBJYARNISSUE.DT
             OBJYARNISSUE.ShowDialog()
             If DT.Rows.Count > 0 Then
@@ -1263,6 +1264,7 @@ LINE1:
                 TXTREED.Text = Val(DT.Rows(0).Item("REED"))
                 TXTREEDSPACE.Text = Val(DT.Rows(0).Item("REEDSPACE"))
                 TXTPICS.Text = Val(DT.Rows(0).Item("PICS"))
+                TXTENDS.Text = Val(DT.Rows(0).Item("ENDS"))
                 TXTFROMTYPE.Text = DT.Rows(0).Item("FROMTYPE")
                 TXTREFNO.Text = DT.Rows(0).Item("REFNO")
                 CMBBEAMNAME.Text = DT.Rows(0).Item("ITEMNAME")
@@ -1364,8 +1366,6 @@ LINE1:
         TXTBEAMNO.Text = NextBeamNo
     End Sub
 
-
-
     Private Sub TXTBEAMNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBEAMNO.Validating
 
         If Val(TXTBEAMNO.Text) <> 0 Then
@@ -1381,7 +1381,6 @@ LINE1:
 
     End Sub
 
-
     Function CHECKBEAM() As Boolean
         Try
             Dim bln As Boolean = True
@@ -1395,8 +1394,6 @@ LINE1:
             Throw ex
         End Try
     End Function
-
-
 
     Function CHECKROLL() As Boolean
         Try
