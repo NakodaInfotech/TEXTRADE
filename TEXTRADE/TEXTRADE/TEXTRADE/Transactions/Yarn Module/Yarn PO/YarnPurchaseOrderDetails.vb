@@ -1,14 +1,13 @@
 ﻿
 Imports BL
 Imports DevExpress.XtraGrid.Views.Grid
-Imports iTextSharp.text
-Imports iTextSharp.text.pdf
-Imports System.IO
+
 Public Class YarnPurchaseOrderDetails
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim DTMAIL As New DataTable
     Dim DTWHATSAPP As New DataTable
+
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
@@ -28,7 +27,7 @@ Public Class YarnPurchaseOrderDetails
     Private Sub YarnPurchaseOrderDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'PURCHASE ORDER'")
+            DTROW = USERRIGHTS.Select("FormName = 'YARN PURCHASE ORDER'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)

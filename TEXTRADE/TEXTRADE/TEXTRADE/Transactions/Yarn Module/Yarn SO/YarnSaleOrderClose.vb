@@ -29,7 +29,7 @@ Public Class YarnSaleOrderClose
     Private Sub YarnSaleOrderClose_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'SALE ORDER'")
+            DTROW = USERRIGHTS.Select("FormName = 'YARN SALE ORDER'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)

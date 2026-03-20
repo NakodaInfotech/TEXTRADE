@@ -477,11 +477,9 @@ Public Class BeamIssueWeaver
         '    bln = False
         'End If
 
-        If ClientName <> "SWPL" Then
-            If cmbtrans.Text.Trim.Length = 0 Then
-                EP.SetError(cmbtrans, " Please Select Transport")
-                bln = False
-            End If
+        If ClientName <> "SWPL" And cmbtrans.Text.Trim.Length = 0 Then
+            EP.SetError(cmbtrans, " Please Select Transport")
+            bln = False
         End If
 
         'DONE TEMPORARILY
