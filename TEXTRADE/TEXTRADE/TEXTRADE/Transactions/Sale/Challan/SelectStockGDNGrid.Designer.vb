@@ -27,6 +27,8 @@ Partial Class SelectStockGDNGrid
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GITEMCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,8 +58,6 @@ Partial Class SelectStockGDNGrid
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDISPLAYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,254 +128,11 @@ Partial Class SelectStockGDNGrid
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
-        Me.gridbill.OptionsBehavior.Editable = False
         Me.gridbill.OptionsView.ColumnAutoWidth = False
         Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
-        '
-        'GITEMCODE
-        '
-        Me.GITEMCODE.Caption = "Item Code"
-        Me.GITEMCODE.FieldName = "ITEMCODE"
-        Me.GITEMCODE.Name = "GITEMCODE"
-        '
-        'GCATEGORY
-        '
-        Me.GCATEGORY.Caption = "Category"
-        Me.GCATEGORY.FieldName = "CATEGORY"
-        Me.GCATEGORY.Name = "GCATEGORY"
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 1
-        Me.GITEMNAME.Width = 200
-        '
-        'GQUALITY
-        '
-        Me.GQUALITY.Caption = "Quality"
-        Me.GQUALITY.FieldName = "QUALITY"
-        Me.GQUALITY.Name = "GQUALITY"
-        Me.GQUALITY.Width = 150
-        '
-        'GDESIGNNO
-        '
-        Me.GDESIGNNO.Caption = "Design"
-        Me.GDESIGNNO.FieldName = "DESIGNNO"
-        Me.GDESIGNNO.Name = "GDESIGNNO"
-        Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 2
-        Me.GDESIGNNO.Width = 150
-        '
-        'GCOLOR
-        '
-        Me.GCOLOR.Caption = "Shade"
-        Me.GCOLOR.FieldName = "COLOR"
-        Me.GCOLOR.Name = "GCOLOR"
-        Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 3
-        Me.GCOLOR.Width = 150
-        '
-        'GTOTALPCS
-        '
-        Me.GTOTALPCS.Caption = "Pcs"
-        Me.GTOTALPCS.DisplayFormat.FormatString = "0"
-        Me.GTOTALPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALPCS.FieldName = "TOTALPCS"
-        Me.GTOTALPCS.Name = "GTOTALPCS"
-        Me.GTOTALPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALPCS.Visible = True
-        Me.GTOTALPCS.VisibleIndex = 4
-        Me.GTOTALPCS.Width = 80
-        '
-        'GUNIT
-        '
-        Me.GUNIT.Caption = "Unit"
-        Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 5
-        '
-        'GTOTALMTRS
-        '
-        Me.GTOTALMTRS.Caption = "Mtrs."
-        Me.GTOTALMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 6
-        Me.GTOTALMTRS.Width = 90
-        '
-        'GPIECETYPE
-        '
-        Me.GPIECETYPE.Caption = "Piece Type"
-        Me.GPIECETYPE.FieldName = "PIECETYPE"
-        Me.GPIECETYPE.Name = "GPIECETYPE"
-        Me.GPIECETYPE.Visible = True
-        Me.GPIECETYPE.VisibleIndex = 7
-        Me.GPIECETYPE.Width = 90
-        '
-        'GLOTNO
-        '
-        Me.GLOTNO.Caption = "Lot No"
-        Me.GLOTNO.FieldName = "LOTNO"
-        Me.GLOTNO.Name = "GLOTNO"
-        Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 8
-        '
-        'GBALENO
-        '
-        Me.GBALENO.Caption = "Bale No"
-        Me.GBALENO.FieldName = "BALENO"
-        Me.GBALENO.Name = "GBALENO"
-        Me.GBALENO.Visible = True
-        Me.GBALENO.VisibleIndex = 9
-        Me.GBALENO.Width = 100
-        '
-        'GCHALLANNO
-        '
-        Me.GCHALLANNO.Caption = "Challan No"
-        Me.GCHALLANNO.FieldName = "CHALLANNO"
-        Me.GCHALLANNO.Name = "GCHALLANNO"
-        '
-        'GBARCODE
-        '
-        Me.GBARCODE.Caption = "Barcode"
-        Me.GBARCODE.FieldName = "BARCODE"
-        Me.GBARCODE.Name = "GBARCODE"
-        Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 10
-        Me.GBARCODE.Width = 140
-        '
-        'GSALERATE
-        '
-        Me.GSALERATE.Caption = "Sale Rate"
-        Me.GSALERATE.DisplayFormat.FormatString = "0.00"
-        Me.GSALERATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GSALERATE.FieldName = "SALERATE"
-        Me.GSALERATE.Name = "GSALERATE"
-        '
-        'gdesignrate
-        '
-        Me.gdesignrate.Caption = "Design Rate"
-        Me.gdesignrate.DisplayFormat.FormatString = "0.00"
-        Me.gdesignrate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.gdesignrate.FieldName = "DESIGNRATE"
-        Me.gdesignrate.Name = "gdesignrate"
-        '
-        'GRACK
-        '
-        Me.GRACK.Caption = "Rack"
-        Me.GRACK.FieldName = "RACK"
-        Me.GRACK.Name = "GRACK"
-        Me.GRACK.Visible = True
-        Me.GRACK.VisibleIndex = 11
-        '
-        'GSHELF
-        '
-        Me.GSHELF.Caption = "Shelf"
-        Me.GSHELF.FieldName = "SHELF"
-        Me.GSHELF.Name = "GSHELF"
-        Me.GSHELF.Visible = True
-        Me.GSHELF.VisibleIndex = 12
-        '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.Caption = "Mill Name"
-        Me.GMILLNAME.FieldName = "MILLNAME"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        '
-        'GDATE
-        '
-        Me.GDATE.Caption = "Date"
-        Me.GDATE.FieldName = "DATE"
-        Me.GDATE.Name = "GDATE"
-        Me.GDATE.Visible = True
-        Me.GDATE.VisibleIndex = 13
-        '
-        'GNAME
-        '
-        Me.GNAME.Caption = "Jobber Name"
-        Me.GNAME.FieldName = "JOBBERNAME"
-        Me.GNAME.Name = "GNAME"
-        Me.GNAME.Width = 200
-        '
-        'GFROMTYPE
-        '
-        Me.GFROMTYPE.Caption = "From Type"
-        Me.GFROMTYPE.FieldName = "TYPE"
-        Me.GFROMTYPE.Name = "GFROMTYPE"
-        Me.GFROMTYPE.Visible = True
-        Me.GFROMTYPE.VisibleIndex = 14
-        '
-        'GGRIDREMARKS
-        '
-        Me.GGRIDREMARKS.Caption = "Grid Remarks"
-        Me.GGRIDREMARKS.FieldName = "GRIDREMARKS"
-        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
-        Me.GGRIDREMARKS.Visible = True
-        Me.GGRIDREMARKS.VisibleIndex = 15
-        Me.GGRIDREMARKS.Width = 120
-        '
-        'GPURNAME
-        '
-        Me.GPURNAME.Caption = "Pur Name"
-        Me.GPURNAME.FieldName = "PURNAME"
-        Me.GPURNAME.Name = "GPURNAME"
-        Me.GPURNAME.Width = 200
-        '
-        'GPURRATE
-        '
-        Me.GPURRATE.Caption = "Pur Rate"
-        Me.GPURRATE.DisplayFormat.FormatString = "0.00"
-        Me.GPURRATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPURRATE.FieldName = "PURRATE"
-        Me.GPURRATE.Name = "GPURRATE"
-        Me.GPURRATE.Visible = True
-        Me.GPURRATE.VisibleIndex = 16
-        Me.GPURRATE.Width = 100
-        '
-        'GAMT
-        '
-        Me.GAMT.Caption = "Amount"
-        Me.GAMT.DisplayFormat.FormatString = "0.00"
-        Me.GAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GAMT.FieldName = "AMOUNT"
-        Me.GAMT.Name = "GAMT"
-        Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GAMT.Visible = True
-        Me.GAMT.VisibleIndex = 17
-        Me.GAMT.Width = 100
-        '
-        'GGODOWN
-        '
-        Me.GGODOWN.Caption = "Godown"
-        Me.GGODOWN.FieldName = "GODOWN"
-        Me.GGODOWN.Name = "GGODOWN"
-        Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 18
-        Me.GGODOWN.Width = 150
-        '
-        'GDISPLAYNAME
-        '
-        Me.GDISPLAYNAME.Caption = "Display Name"
-        Me.GDISPLAYNAME.FieldName = "DISPLAYNAME"
-        Me.GDISPLAYNAME.Name = "GDISPLAYNAME"
-        '
-        'GWT
-        '
-        Me.GWT.Caption = "Wt"
-        Me.GWT.DisplayFormat.FormatString = "0.00"
-        Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GWT.FieldName = "WT"
-        Me.GWT.Name = "GWT"
         '
         'GCHK
         '
@@ -392,6 +149,277 @@ Partial Class SelectStockGDNGrid
         Me.RepositoryItemCheckEdit1.AutoHeight = False
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'GITEMCODE
+        '
+        Me.GITEMCODE.Caption = "Item Code"
+        Me.GITEMCODE.FieldName = "ITEMCODE"
+        Me.GITEMCODE.Name = "GITEMCODE"
+        Me.GITEMCODE.OptionsColumn.AllowEdit = False
+        '
+        'GCATEGORY
+        '
+        Me.GCATEGORY.Caption = "Category"
+        Me.GCATEGORY.FieldName = "CATEGORY"
+        Me.GCATEGORY.Name = "GCATEGORY"
+        Me.GCATEGORY.OptionsColumn.AllowEdit = False
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 1
+        Me.GITEMNAME.Width = 200
+        '
+        'GQUALITY
+        '
+        Me.GQUALITY.Caption = "Quality"
+        Me.GQUALITY.FieldName = "QUALITY"
+        Me.GQUALITY.Name = "GQUALITY"
+        Me.GQUALITY.OptionsColumn.AllowEdit = False
+        Me.GQUALITY.Width = 150
+        '
+        'GDESIGNNO
+        '
+        Me.GDESIGNNO.Caption = "Design"
+        Me.GDESIGNNO.FieldName = "DESIGNNO"
+        Me.GDESIGNNO.Name = "GDESIGNNO"
+        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
+        Me.GDESIGNNO.Visible = True
+        Me.GDESIGNNO.VisibleIndex = 2
+        Me.GDESIGNNO.Width = 150
+        '
+        'GCOLOR
+        '
+        Me.GCOLOR.Caption = "Shade"
+        Me.GCOLOR.FieldName = "COLOR"
+        Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.OptionsColumn.AllowEdit = False
+        Me.GCOLOR.Visible = True
+        Me.GCOLOR.VisibleIndex = 3
+        Me.GCOLOR.Width = 150
+        '
+        'GTOTALPCS
+        '
+        Me.GTOTALPCS.Caption = "Pcs"
+        Me.GTOTALPCS.DisplayFormat.FormatString = "0"
+        Me.GTOTALPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALPCS.FieldName = "TOTALPCS"
+        Me.GTOTALPCS.Name = "GTOTALPCS"
+        Me.GTOTALPCS.OptionsColumn.AllowEdit = False
+        Me.GTOTALPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GTOTALPCS.Visible = True
+        Me.GTOTALPCS.VisibleIndex = 4
+        Me.GTOTALPCS.Width = 80
+        '
+        'GUNIT
+        '
+        Me.GUNIT.Caption = "Unit"
+        Me.GUNIT.FieldName = "UNIT"
+        Me.GUNIT.Name = "GUNIT"
+        Me.GUNIT.OptionsColumn.AllowEdit = False
+        Me.GUNIT.Visible = True
+        Me.GUNIT.VisibleIndex = 5
+        '
+        'GTOTALMTRS
+        '
+        Me.GTOTALMTRS.Caption = "Mtrs."
+        Me.GTOTALMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
+        Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
+        Me.GTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GTOTALMTRS.Visible = True
+        Me.GTOTALMTRS.VisibleIndex = 6
+        Me.GTOTALMTRS.Width = 90
+        '
+        'GPIECETYPE
+        '
+        Me.GPIECETYPE.Caption = "Piece Type"
+        Me.GPIECETYPE.FieldName = "PIECETYPE"
+        Me.GPIECETYPE.Name = "GPIECETYPE"
+        Me.GPIECETYPE.OptionsColumn.AllowEdit = False
+        Me.GPIECETYPE.Visible = True
+        Me.GPIECETYPE.VisibleIndex = 7
+        Me.GPIECETYPE.Width = 90
+        '
+        'GLOTNO
+        '
+        Me.GLOTNO.Caption = "Lot No"
+        Me.GLOTNO.FieldName = "LOTNO"
+        Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.OptionsColumn.AllowEdit = False
+        Me.GLOTNO.Visible = True
+        Me.GLOTNO.VisibleIndex = 8
+        '
+        'GBALENO
+        '
+        Me.GBALENO.Caption = "Bale No"
+        Me.GBALENO.FieldName = "BALENO"
+        Me.GBALENO.Name = "GBALENO"
+        Me.GBALENO.OptionsColumn.AllowEdit = False
+        Me.GBALENO.Visible = True
+        Me.GBALENO.VisibleIndex = 9
+        Me.GBALENO.Width = 100
+        '
+        'GCHALLANNO
+        '
+        Me.GCHALLANNO.Caption = "Challan No"
+        Me.GCHALLANNO.FieldName = "CHALLANNO"
+        Me.GCHALLANNO.Name = "GCHALLANNO"
+        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.OptionsColumn.AllowEdit = False
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 10
+        Me.GBARCODE.Width = 140
+        '
+        'GSALERATE
+        '
+        Me.GSALERATE.Caption = "Sale Rate"
+        Me.GSALERATE.DisplayFormat.FormatString = "0.00"
+        Me.GSALERATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GSALERATE.FieldName = "SALERATE"
+        Me.GSALERATE.Name = "GSALERATE"
+        Me.GSALERATE.OptionsColumn.AllowEdit = False
+        '
+        'gdesignrate
+        '
+        Me.gdesignrate.Caption = "Design Rate"
+        Me.gdesignrate.DisplayFormat.FormatString = "0.00"
+        Me.gdesignrate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.gdesignrate.FieldName = "DESIGNRATE"
+        Me.gdesignrate.Name = "gdesignrate"
+        Me.gdesignrate.OptionsColumn.AllowEdit = False
+        '
+        'GRACK
+        '
+        Me.GRACK.Caption = "Rack"
+        Me.GRACK.FieldName = "RACK"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.OptionsColumn.AllowEdit = False
+        Me.GRACK.Visible = True
+        Me.GRACK.VisibleIndex = 11
+        '
+        'GSHELF
+        '
+        Me.GSHELF.Caption = "Shelf"
+        Me.GSHELF.FieldName = "SHELF"
+        Me.GSHELF.Name = "GSHELF"
+        Me.GSHELF.OptionsColumn.AllowEdit = False
+        Me.GSHELF.Visible = True
+        Me.GSHELF.VisibleIndex = 12
+        '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.Caption = "Mill Name"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.OptionsColumn.AllowEdit = False
+        '
+        'GDATE
+        '
+        Me.GDATE.Caption = "Date"
+        Me.GDATE.FieldName = "DATE"
+        Me.GDATE.Name = "GDATE"
+        Me.GDATE.OptionsColumn.AllowEdit = False
+        Me.GDATE.Visible = True
+        Me.GDATE.VisibleIndex = 13
+        '
+        'GNAME
+        '
+        Me.GNAME.Caption = "Jobber Name"
+        Me.GNAME.FieldName = "JOBBERNAME"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
+        Me.GNAME.Width = 200
+        '
+        'GFROMTYPE
+        '
+        Me.GFROMTYPE.Caption = "From Type"
+        Me.GFROMTYPE.FieldName = "TYPE"
+        Me.GFROMTYPE.Name = "GFROMTYPE"
+        Me.GFROMTYPE.OptionsColumn.AllowEdit = False
+        Me.GFROMTYPE.Visible = True
+        Me.GFROMTYPE.VisibleIndex = 14
+        '
+        'GGRIDREMARKS
+        '
+        Me.GGRIDREMARKS.Caption = "Grid Remarks"
+        Me.GGRIDREMARKS.FieldName = "GRIDREMARKS"
+        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
+        Me.GGRIDREMARKS.OptionsColumn.AllowEdit = False
+        Me.GGRIDREMARKS.Visible = True
+        Me.GGRIDREMARKS.VisibleIndex = 15
+        Me.GGRIDREMARKS.Width = 120
+        '
+        'GPURNAME
+        '
+        Me.GPURNAME.Caption = "Pur Name"
+        Me.GPURNAME.FieldName = "PURNAME"
+        Me.GPURNAME.Name = "GPURNAME"
+        Me.GPURNAME.OptionsColumn.AllowEdit = False
+        Me.GPURNAME.Width = 200
+        '
+        'GPURRATE
+        '
+        Me.GPURRATE.Caption = "Pur Rate"
+        Me.GPURRATE.DisplayFormat.FormatString = "0.00"
+        Me.GPURRATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GPURRATE.FieldName = "PURRATE"
+        Me.GPURRATE.Name = "GPURRATE"
+        Me.GPURRATE.OptionsColumn.AllowEdit = False
+        Me.GPURRATE.Visible = True
+        Me.GPURRATE.VisibleIndex = 16
+        Me.GPURRATE.Width = 100
+        '
+        'GAMT
+        '
+        Me.GAMT.Caption = "Amount"
+        Me.GAMT.DisplayFormat.FormatString = "0.00"
+        Me.GAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAMT.FieldName = "AMOUNT"
+        Me.GAMT.Name = "GAMT"
+        Me.GAMT.OptionsColumn.AllowEdit = False
+        Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GAMT.Visible = True
+        Me.GAMT.VisibleIndex = 17
+        Me.GAMT.Width = 100
+        '
+        'GGODOWN
+        '
+        Me.GGODOWN.Caption = "Godown"
+        Me.GGODOWN.FieldName = "GODOWN"
+        Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.OptionsColumn.AllowEdit = False
+        Me.GGODOWN.Visible = True
+        Me.GGODOWN.VisibleIndex = 18
+        Me.GGODOWN.Width = 150
+        '
+        'GDISPLAYNAME
+        '
+        Me.GDISPLAYNAME.Caption = "Display Name"
+        Me.GDISPLAYNAME.FieldName = "DISPLAYNAME"
+        Me.GDISPLAYNAME.Name = "GDISPLAYNAME"
+        Me.GDISPLAYNAME.OptionsColumn.AllowEdit = False
+        '
+        'GWT
+        '
+        Me.GWT.Caption = "Wt"
+        Me.GWT.DisplayFormat.FormatString = "0.00"
+        Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GWT.FieldName = "WT"
+        Me.GWT.Name = "GWT"
+        Me.GWT.OptionsColumn.AllowEdit = False
         '
         'SelectStockGDNGrid
         '
