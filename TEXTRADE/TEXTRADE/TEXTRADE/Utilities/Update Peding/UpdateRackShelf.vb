@@ -735,4 +735,22 @@ NEXTLINE:
         End Try
     End Sub
 
+    Private Sub TXTBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTBARCODE.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+                If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
+
+                Dim OBJSTOCK As New SelectStockGDNGrid
+                ' OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
+                OBJSTOCK.ShowDialog()
+                Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                For Each DTROW As DataRow In DTBARCODE.Rows
+                    TXTBARCODE.Text = DTROW("BARCODE")
+                    TXTBARCODE_Validated(sender, e)
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
