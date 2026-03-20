@@ -425,7 +425,7 @@ CHECKNEXTLINE:
 
     Private Sub GRN_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN RECD'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN CHALLAN'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)

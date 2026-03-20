@@ -28,29 +28,25 @@ Partial Class YarnJobOrderDetails
         Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPICKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.TOOLWARPGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
-        Me.TOOLWEFTGRIDDETAILS = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
-        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,7 +56,7 @@ Partial Class YarnJobOrderDetails
         '
         'BlendPanel1
         '
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.SystemColors.InactiveCaption, System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
@@ -132,16 +128,6 @@ Partial Class YarnJobOrderDetails
         Me.GNAME.VisibleIndex = 2
         Me.GNAME.Width = 200
         '
-        'GREFNO
-        '
-        Me.GREFNO.Caption = "Ref No"
-        Me.GREFNO.FieldName = "REFNO"
-        Me.GREFNO.Name = "GREFNO"
-        Me.GREFNO.OptionsColumn.AllowEdit = False
-        Me.GREFNO.Visible = True
-        Me.GREFNO.VisibleIndex = 5
-        Me.GREFNO.Width = 100
-        '
         'GITEMNAME
         '
         Me.GITEMNAME.Caption = "Item Name"
@@ -169,6 +155,16 @@ Partial Class YarnJobOrderDetails
         Me.GCOLOR.Visible = True
         Me.GCOLOR.VisibleIndex = 4
         Me.GCOLOR.Width = 120
+        '
+        'GREFNO
+        '
+        Me.GREFNO.Caption = "Ref No"
+        Me.GREFNO.FieldName = "REFNO"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.OptionsColumn.AllowEdit = False
+        Me.GREFNO.Visible = True
+        Me.GREFNO.VisibleIndex = 5
+        Me.GREFNO.Width = 100
         '
         'GREED
         '
@@ -221,6 +217,15 @@ Partial Class YarnJobOrderDetails
         Me.GTOTALMTRS.VisibleIndex = 10
         Me.GTOTALMTRS.Width = 100
         '
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 11
+        Me.GREMARKS.Width = 200
+        '
         'CHKDONE
         '
         Me.CHKDONE.AutoHeight = False
@@ -228,7 +233,7 @@ Partial Class YarnJobOrderDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.TOOLWARPGRIDDETAILS, Me.ToolStripSeparator1, Me.ToolStripSeparator4, Me.TOOLWEFTGRIDDETAILS, Me.ToolStripSeparator3})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator4})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -258,26 +263,10 @@ Partial Class YarnJobOrderDetails
         Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
         Me.TOOLREFRESH.Text = "ToolStripButton1"
         '
-        'ToolStripSeparator1
+        'ToolStripSeparator4
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'TOOLWARPGRIDDETAILS
-        '
-        Me.TOOLWARPGRIDDETAILS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TOOLWARPGRIDDETAILS.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLWARPGRIDDETAILS.Name = "TOOLWARPGRIDDETAILS"
-        Me.TOOLWARPGRIDDETAILS.Size = New System.Drawing.Size(109, 22)
-        Me.TOOLWARPGRIDDETAILS.Text = "Warp Grid Details"
-        '
-        'TOOLWEFTGRIDDETAILS
-        '
-        Me.TOOLWEFTGRIDDETAILS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TOOLWEFTGRIDDETAILS.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLWEFTGRIDDETAILS.Name = "TOOLWEFTGRIDDETAILS"
-        Me.TOOLWEFTGRIDDETAILS.Size = New System.Drawing.Size(105, 22)
-        Me.TOOLWEFTGRIDDETAILS.Text = "Weft Grid Details"
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
         '
         'CMDEXIT
         '
@@ -306,25 +295,6 @@ Partial Class YarnJobOrderDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
-        'GREMARKS
-        '
-        Me.GREMARKS.Caption = "Remarks"
-        Me.GREMARKS.FieldName = "REMARKS"
-        Me.GREMARKS.Name = "GREMARKS"
-        Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 11
-        Me.GREMARKS.Width = 200
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
-        '
         'YarnJobOrderDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -334,7 +304,7 @@ Partial Class YarnJobOrderDetails
         Me.KeyPreview = True
         Me.Name = "YarnJobOrderDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "JobOrderDetails"
+        Me.Text = "Job Order Details"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -362,7 +332,6 @@ Partial Class YarnJobOrderDetails
     Friend WithEvents TOOLEXCEL As ToolStripButton
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents TOOLREFRESH As ToolStripButton
-    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
@@ -371,9 +340,6 @@ Partial Class YarnJobOrderDetails
     Friend WithEvents GTOTALENDS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TOOLWARPGRIDDETAILS As ToolStripButton
-    Friend WithEvents TOOLWEFTGRIDDETAILS As ToolStripButton
     Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
-    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
 End Class
