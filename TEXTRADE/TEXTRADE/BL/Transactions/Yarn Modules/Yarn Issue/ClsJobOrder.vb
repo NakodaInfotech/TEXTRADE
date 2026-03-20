@@ -27,138 +27,50 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@DESIGNNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@REED", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@REEDSPACE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@PICKS", alParaval(I)))
-                I += 1
-
-
-
-                ' Reference and names
-                .Add(New SqlClient.SqlParameter("@REFNO", alParaval(I)))
-                I += 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I += 1
-
-                '.Add(New SqlClient.SqlParameter("@ORDERNO", alParaval(I)))
-                'I += 1
-
-                ' Other details
-                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PONO", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
+                I = I + 1
 
-                'warp gridmatching data serializations
-                .Add(New SqlClient.SqlParameter("@WARPGRIDSRNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPGRIDSYM", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPYARNQUALITY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPDENIER", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPMILLNAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPSHADE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPPE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPBE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPTE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPWT", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPCONS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPRATE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPCOST", alParaval(I)))
-                I += 1
+                'warp grid matching data serializations
 
-                ' Weft Grid data serialization
-                .Add(New SqlClient.SqlParameter("@WEFTGRIDSRNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTGRIDSYM", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTYARNQUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTDENIER", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@OTHERITEMNAME", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTMILLNAME", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@REFNO", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTSHADE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@REED", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PICKS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTBE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@RS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTTE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@ENDS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTWT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTCONS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTRATE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTCOST", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@DESCRIPTION", alParaval(I)))
                 I += 1
 
-
-                'SELVEDGE Grid data serialization
-                .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSRNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSYM", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEYARNQUALITY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEDENIER", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEMILLNAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGESHADE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEPE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEBE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGETE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEWT", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGECONS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGERATE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGECOST", alParaval(I)))
-                I += 1
-
-
-                ' Company and user details
-                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
-                I += 1
-                ' Additional flags or reserved parameter
-                .Add(New SqlClient.SqlParameter("@TRANSFER", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
-                I += 1
 
 
             End With
@@ -177,142 +89,56 @@ Public Class ClsJobOrder
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
+                ' Add parameters in the exact order of alParaval
                 .Add(New SqlClient.SqlParameter("@JOBNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@DESIGNNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@REED", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@REEDSPACE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@PICKS", alParaval(I)))
-                I += 1
-
-
-
-                ' Reference and names
-                .Add(New SqlClient.SqlParameter("@REFNO", alParaval(I)))
-                I += 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I += 1
-
-                '.Add(New SqlClient.SqlParameter("@ORDERNO", alParaval(I)))
-                'I += 1
-
-                ' Other details
                 .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
+                I = I + 1
 
-                'warp gridmatching data serializations
-                .Add(New SqlClient.SqlParameter("@WARPGRIDSRNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPGRIDSYM", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPYARNQUALITY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPDENIER", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPMILLNAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPSHADE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPPE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPBE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPTE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPWT", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPCONS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPRATE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WARPCOST", alParaval(I)))
-                I += 1
+                'warp grid matching data serializations
 
-                ' Weft Grid data serialization
-                .Add(New SqlClient.SqlParameter("@WEFTGRIDSRNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTGRIDSYM", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTYARNQUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTDENIER", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@OTHERITEMNAME", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTMILLNAME", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@REFNO", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTSHADE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@REED", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PICKS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTBE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@RS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTTE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@ENDS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTWT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTCONS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTRATE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@WEFTCOST", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@DESCRIPTION", alParaval(I)))
                 I += 1
 
 
-                'SELVEDGE Grid data serialization
-                .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSRNO", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEGRIDSYM", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEYARNQUALITY", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEDENIER", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEMILLNAME", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGESHADE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEPE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEBE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGETE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGEWT", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGECONS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGERATE", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@SELVEDGECOST", alParaval(I)))
-                I += 1
 
-                ' Company and user details
-                .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@LOCATIONID", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@USERID", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
-                I += 1
-                ' Additional flags or reserved parameter
-                .Add(New SqlClient.SqlParameter("@TRANSFER", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@TEMPDESIGNNO", alParaval(I))) ' Adjust if needed
+                .Add(New SqlClient.SqlParameter("@TEMPJOBNO", alParaval(I))) ' Adjust if needed
                 I += 1
 
 

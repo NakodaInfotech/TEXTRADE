@@ -1159,6 +1159,8 @@ NEXTLINE:
                 TXTMTRS.Focus()
             End If
 
+
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -2547,4 +2549,28 @@ LINE1:
             Throw ex
         End Try
     End Function
+
+    Private Sub CMBBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBBARCODE.KeyDown
+        Try
+            If ClientName = "ANKUSH" Then
+
+                If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+                    If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
+
+
+                    Dim OBJSTOCK As New SelectIssueBarcodeGrid
+                    OBJSTOCK.ShowDialog()
+                    Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                    For Each DTROW As DataRow In DTBARCODE.Rows
+                        CMBBARCODE.Text = DTROW("BARCODE")
+                        CMBBARCODE_Validated(sender, e)
+                    Next
+                End If
+
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
