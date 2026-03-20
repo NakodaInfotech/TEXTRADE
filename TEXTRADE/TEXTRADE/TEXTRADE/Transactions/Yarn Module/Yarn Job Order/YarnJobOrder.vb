@@ -122,28 +122,12 @@ Public Class YarnJobOrder
                     TXTJONO.Text = TEMPJONO
                     TXTJONO.ReadOnly = True
                     DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
-
-                    CMBITEMNAME.Text = Convert.ToString(dr("ITEMNAME").ToString)
                     CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
-                    TXTSHADE.Text = dr("COLOR")
-
-                    TXTREED.Text = dr("REED").ToString
-                    TXTREEDSPACE.Text = dr("REEDSPACE").ToString
-                    TXTPICKS.Text = dr("PICKS").ToString
-
+                    TXTPONO.Text = dr("PONO")
                     ' Reference and names
-                    TXTREFNO.Text = dr("REFNO").ToString
                     TXTMTRS.Text = Val(dr("TOTALMTRS"))
-                    TXTTOTALENDS.Text = Val(dr("TOTALENDS"))
                     txtremarks.Text = dr("REMARKS").ToString
-                    If Val(dr("OUTMTRS")) > 0 Then
-                        lbllocked.Visible = True
-                        PBlock.Visible = True
-                    End If
-                    If Convert.ToBoolean(dr("DONE")) = True Then
-                        LBLCLOSED.Visible = True
-                        PBlock.Visible = True
-                    End If
+
                 Next
 
                 'warp gridmatching data serializations
