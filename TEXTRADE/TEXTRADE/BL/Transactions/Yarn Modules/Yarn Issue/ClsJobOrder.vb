@@ -70,10 +70,6 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DESCRIPTION", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
-                I += 1
 
 
 
@@ -139,11 +135,6 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DESCRIPTION", alParaval(I)))
                 I += 1
-                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
-                I += 1
-                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
-                I += 1
-
 
 
 
