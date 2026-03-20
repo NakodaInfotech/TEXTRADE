@@ -1159,6 +1159,8 @@ NEXTLINE:
                 TXTMTRS.Focus()
             End If
 
+
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -2550,23 +2552,23 @@ LINE1:
 
     Private Sub CMBBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBBARCODE.KeyDown
         Try
-            If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
-                If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
+            If ClientName = "ANKUSH" Then
 
-                'If cmbGodown.Text.Trim = "" Then
-                '    MsgBox("Select Godown First", MsgBoxStyle.Critical)
-                '    Exit Sub
-                'End If
+                If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+                    If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
 
-                Dim OBJSTOCK As New SelectStockGDNGrid
-                OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & cmbGodown.Text.Trim & "'"
-                OBJSTOCK.ShowDialog()
-                Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
-                For Each DTROW As DataRow In DTBARCODE.Rows
-                    TXTBARCODE.Text = DTROW("BARCODE")
-                    CMBBARCODE_Validated(sender, e)
-                Next
+
+                    Dim OBJSTOCK As New SelectIssueBarcodeGrid
+                    OBJSTOCK.ShowDialog()
+                    Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                    For Each DTROW As DataRow In DTBARCODE.Rows
+                        CMBBARCODE.Text = DTROW("BARCODE")
+                        CMBBARCODE_Validated(sender, e)
+                    Next
+                End If
+
             End If
+
         Catch ex As Exception
             Throw ex
         End Try
