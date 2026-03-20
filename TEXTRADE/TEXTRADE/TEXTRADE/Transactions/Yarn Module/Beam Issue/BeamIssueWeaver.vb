@@ -20,6 +20,7 @@ Public Class BeamIssueWeaver
         EDIT = False
         CMBOURGODOWN.Focus()
     End Sub
+
     Sub CLEAR()
         LBLWHATSAPP.Visible = False
         TXTISSUENO.Clear()
@@ -476,7 +477,7 @@ Public Class BeamIssueWeaver
         '    bln = False
         'End If
 
-        If ClientName <> "SONU" Then
+        If ClientName <> "SWPL" Then
             If cmbtrans.Text.Trim.Length = 0 Then
                 EP.SetError(cmbtrans, " Please Select Transport")
                 bln = False
