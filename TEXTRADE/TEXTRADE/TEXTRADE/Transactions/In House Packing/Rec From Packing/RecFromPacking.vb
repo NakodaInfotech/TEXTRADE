@@ -2547,4 +2547,28 @@ LINE1:
             Throw ex
         End Try
     End Function
+
+    Private Sub CMBBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBBARCODE.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+                If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
+
+                'If cmbGodown.Text.Trim = "" Then
+                '    MsgBox("Select Godown First", MsgBoxStyle.Critical)
+                '    Exit Sub
+                'End If
+
+                Dim OBJSTOCK As New SelectStockGDNGrid
+                OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & cmbGodown.Text.Trim & "'"
+                OBJSTOCK.ShowDialog()
+                Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                For Each DTROW As DataRow In DTBARCODE.Rows
+                    TXTBARCODE.Text = DTROW("BARCODE")
+                    CMBBARCODE_Validated(sender, e)
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

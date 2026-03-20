@@ -2419,6 +2419,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\In House Packing\Issue To Packing\SelectIssueBarcodeGrid.Designer.vb">
+      <DependentUpon>SelectIssueBarcodeGrid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\In House Packing\Issue To Packing\SelectIssueBarcodeGrid.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Magic Box\SelectAdjustBills.Designer.vb">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
     </Compile>
@@ -10393,6 +10399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.resx">
       <DependentUpon>OpeningStockRollsWarper.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\In House Packing\Issue To Packing\SelectIssueBarcodeGrid.resx">
+      <DependentUpon>SelectIssueBarcodeGrid.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Magic Box\SelectAdjustBills.resx">
       <DependentUpon>SelectAdjustBills.vb</DependentUpon>
