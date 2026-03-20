@@ -256,11 +256,6 @@ Public Class YarnJobOrder
             alParaval.Add(OutMtrs)
             alParaval.Add(Done)
 
-
-
-
-
-
             '*************************************************************************
 
 

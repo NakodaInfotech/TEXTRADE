@@ -29,6 +29,8 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@PONO", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
