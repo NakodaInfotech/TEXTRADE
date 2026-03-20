@@ -68,6 +68,7 @@ Partial Class RecFromPackingDetails
         Me.GPIECE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -85,6 +86,7 @@ Partial Class RecFromPackingDetails
         Me.GWHATSAAP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPARTYEMAIL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCONTRACTOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gusername = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LBLFROM = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.TXTFROM = New System.Windows.Forms.TextBox()
@@ -98,7 +100,6 @@ Partial Class RecFromPackingDetails
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.gusername = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDREC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -404,7 +405,7 @@ Partial Class RecFromPackingDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GRECNO, Me.gdate, Me.GGODOWN, Me.GREFNO, Me.GLOTNO, Me.GPIECE, Me.GITEM, Me.GDESIGNNO, Me.GSHADE, Me.GUNIT, Me.GPCS, Me.GMTR, Me.GBALMTRS, Me.GBC, Me.GREMARKS, Me.GFROMNO, Me.GOUTBARCODE, Me.GISSUEDATE, Me.GNAME, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GWHATSAAP, Me.GPARTYEMAIL, Me.GCONTRACTOR, Me.gusername})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GRECNO, Me.gdate, Me.GGODOWN, Me.GREFNO, Me.GLOTNO, Me.GPIECE, Me.GITEM, Me.GDESIGNNO, Me.GBALENO, Me.GSHADE, Me.GUNIT, Me.GPCS, Me.GMTR, Me.GBALMTRS, Me.GBC, Me.GREMARKS, Me.GFROMNO, Me.GOUTBARCODE, Me.GISSUEDATE, Me.GNAME, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GWHATSAAP, Me.GPARTYEMAIL, Me.GCONTRACTOR, Me.gusername})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsView.ColumnAutoWidth = False
@@ -500,6 +501,15 @@ Partial Class RecFromPackingDetails
         Me.GDESIGNNO.VisibleIndex = 8
         Me.GDESIGNNO.Width = 120
         '
+        'GBALENO
+        '
+        Me.GBALENO.Caption = "Desc"
+        Me.GBALENO.FieldName = "GRIDREMARKS"
+        Me.GBALENO.Name = "GBALENO"
+        Me.GBALENO.Visible = True
+        Me.GBALENO.VisibleIndex = 9
+        Me.GBALENO.Width = 100
+        '
         'GSHADE
         '
         Me.GSHADE.Caption = "Shade"
@@ -507,7 +517,7 @@ Partial Class RecFromPackingDetails
         Me.GSHADE.Name = "GSHADE"
         Me.GSHADE.OptionsColumn.AllowEdit = False
         Me.GSHADE.Visible = True
-        Me.GSHADE.VisibleIndex = 9
+        Me.GSHADE.VisibleIndex = 10
         '
         'GUNIT
         '
@@ -516,7 +526,7 @@ Partial Class RecFromPackingDetails
         Me.GUNIT.Name = "GUNIT"
         Me.GUNIT.OptionsColumn.AllowEdit = False
         Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 10
+        Me.GUNIT.VisibleIndex = 11
         '
         'GPCS
         '
@@ -528,7 +538,7 @@ Partial Class RecFromPackingDetails
         Me.GPCS.OptionsColumn.AllowEdit = False
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 11
+        Me.GPCS.VisibleIndex = 12
         '
         'GMTR
         '
@@ -540,7 +550,7 @@ Partial Class RecFromPackingDetails
         Me.GMTR.OptionsColumn.AllowEdit = False
         Me.GMTR.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTR.Visible = True
-        Me.GMTR.VisibleIndex = 12
+        Me.GMTR.VisibleIndex = 13
         Me.GMTR.Width = 90
         '
         'GBALMTRS
@@ -553,7 +563,7 @@ Partial Class RecFromPackingDetails
         Me.GBALMTRS.OptionsColumn.AllowEdit = False
         Me.GBALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BALMTRS", "SUM={0:0.00}")})
         Me.GBALMTRS.Visible = True
-        Me.GBALMTRS.VisibleIndex = 13
+        Me.GBALMTRS.VisibleIndex = 14
         Me.GBALMTRS.Width = 90
         '
         'GBC
@@ -563,7 +573,7 @@ Partial Class RecFromPackingDetails
         Me.GBC.Name = "GBC"
         Me.GBC.OptionsColumn.AllowEdit = False
         Me.GBC.Visible = True
-        Me.GBC.VisibleIndex = 14
+        Me.GBC.VisibleIndex = 15
         Me.GBC.Width = 120
         '
         'GREMARKS
@@ -573,7 +583,7 @@ Partial Class RecFromPackingDetails
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 15
+        Me.GREMARKS.VisibleIndex = 16
         Me.GREMARKS.Width = 250
         '
         'GFROMNO
@@ -585,7 +595,7 @@ Partial Class RecFromPackingDetails
         Me.GFROMNO.Name = "GFROMNO"
         Me.GFROMNO.OptionsColumn.AllowEdit = False
         Me.GFROMNO.Visible = True
-        Me.GFROMNO.VisibleIndex = 16
+        Me.GFROMNO.VisibleIndex = 17
         '
         'GOUTBARCODE
         '
@@ -594,7 +604,7 @@ Partial Class RecFromPackingDetails
         Me.GOUTBARCODE.Name = "GOUTBARCODE"
         Me.GOUTBARCODE.OptionsColumn.AllowEdit = False
         Me.GOUTBARCODE.Visible = True
-        Me.GOUTBARCODE.VisibleIndex = 17
+        Me.GOUTBARCODE.VisibleIndex = 18
         Me.GOUTBARCODE.Width = 120
         '
         'GISSUEDATE
@@ -604,7 +614,7 @@ Partial Class RecFromPackingDetails
         Me.GISSUEDATE.Name = "GISSUEDATE"
         Me.GISSUEDATE.OptionsColumn.AllowEdit = False
         Me.GISSUEDATE.Visible = True
-        Me.GISSUEDATE.VisibleIndex = 18
+        Me.GISSUEDATE.VisibleIndex = 19
         Me.GISSUEDATE.Width = 85
         '
         'GNAME
@@ -614,7 +624,7 @@ Partial Class RecFromPackingDetails
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 19
+        Me.GNAME.VisibleIndex = 20
         Me.GNAME.Width = 250
         '
         'GRATE
@@ -624,7 +634,7 @@ Partial Class RecFromPackingDetails
         Me.GRATE.Name = "GRATE"
         Me.GRATE.OptionsColumn.AllowEdit = False
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 20
+        Me.GRATE.VisibleIndex = 21
         '
         'GPER
         '
@@ -633,7 +643,7 @@ Partial Class RecFromPackingDetails
         Me.GPER.Name = "GPER"
         Me.GPER.OptionsColumn.AllowEdit = False
         Me.GPER.Visible = True
-        Me.GPER.VisibleIndex = 21
+        Me.GPER.VisibleIndex = 22
         '
         'GAMOUNT
         '
@@ -643,7 +653,7 @@ Partial Class RecFromPackingDetails
         Me.GAMOUNT.OptionsColumn.AllowEdit = False
         Me.GAMOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GAMOUNT.Visible = True
-        Me.GAMOUNT.VisibleIndex = 22
+        Me.GAMOUNT.VisibleIndex = 23
         '
         'GWHATSAAP
         '
@@ -651,7 +661,7 @@ Partial Class RecFromPackingDetails
         Me.GWHATSAAP.FieldName = "PARTYWHATSAAP"
         Me.GWHATSAAP.Name = "GWHATSAAP"
         Me.GWHATSAAP.Visible = True
-        Me.GWHATSAAP.VisibleIndex = 23
+        Me.GWHATSAAP.VisibleIndex = 24
         '
         'GPARTYEMAIL
         '
@@ -659,7 +669,7 @@ Partial Class RecFromPackingDetails
         Me.GPARTYEMAIL.FieldName = "PARTYEMAIL"
         Me.GPARTYEMAIL.Name = "GPARTYEMAIL"
         Me.GPARTYEMAIL.Visible = True
-        Me.GPARTYEMAIL.VisibleIndex = 24
+        Me.GPARTYEMAIL.VisibleIndex = 25
         '
         'GCONTRACTOR
         '
@@ -667,8 +677,16 @@ Partial Class RecFromPackingDetails
         Me.GCONTRACTOR.FieldName = "CONTRACTOR"
         Me.GCONTRACTOR.Name = "GCONTRACTOR"
         Me.GCONTRACTOR.Visible = True
-        Me.GCONTRACTOR.VisibleIndex = 25
+        Me.GCONTRACTOR.VisibleIndex = 26
         Me.GCONTRACTOR.Width = 150
+        '
+        'gusername
+        '
+        Me.gusername.Caption = "User Name"
+        Me.gusername.FieldName = "USERNAME"
+        Me.gusername.Name = "gusername"
+        Me.gusername.Visible = True
+        Me.gusername.VisibleIndex = 27
         '
         'LBLFROM
         '
@@ -797,14 +815,6 @@ Partial Class RecFromPackingDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'gusername
-        '
-        Me.gusername.Caption = "User Name"
-        Me.gusername.FieldName = "USERNAME"
-        Me.gusername.Name = "gusername"
-        Me.gusername.Visible = True
-        Me.gusername.VisibleIndex = 26
-        '
         'RecFromPackingDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -894,4 +904,5 @@ Partial Class RecFromPackingDetails
     Friend WithEvents GPARTYEMAIL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCONTRACTOR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gusername As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBALENO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

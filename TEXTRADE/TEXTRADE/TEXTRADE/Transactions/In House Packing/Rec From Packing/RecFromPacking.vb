@@ -1141,7 +1141,7 @@ NEXTLINE:
             If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
 
             If ClientName = "YASHVI" Then TXTMTRS.Text = Val(TXTRUNNINGBAL.Text.Trim) Else TXTMTRS.Clear()
-            If ClientName <> "SHREENAKODA" And ClientName <> "SOFTAS" And ClientName <> "MOHATUL" Then CMBRACK.Text = ""
+            If ClientName <> "SHREENAKODA" And ClientName <> "SOFTAS" And ClientName <> "MOHATUL" And ClientName <> "ANKUSH" Then CMBRACK.Text = ""
             CMBSHELF.Text = ""
             txtsrno.Text = GRIDREC.RowCount + 1
             If ClientName = "YASHVI" Or ClientName = "SHREENAKODA" Then TXTCUT.Focus() Else CMBPIECETYPE.Focus()
