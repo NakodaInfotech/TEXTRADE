@@ -23,7 +23,7 @@ Public Class YarnChallanDetails
 
     Private Sub GRNDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN CHALLAN'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'GDN'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)

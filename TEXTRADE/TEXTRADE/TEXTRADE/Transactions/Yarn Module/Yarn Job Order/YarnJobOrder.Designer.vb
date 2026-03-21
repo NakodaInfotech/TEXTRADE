@@ -119,7 +119,6 @@ Partial Class YarnJobOrder
         'BlendPanel1
         '
         Me.BlendPanel1.AutoSize = True
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.Label2)
         Me.BlendPanel1.Controls.Add(Me.TXTTOTALMTRS)
         Me.BlendPanel1.Controls.Add(Me.Label1)
@@ -254,7 +253,6 @@ Partial Class YarnJobOrder
         Me.TXTDESCRIPTION.Name = "TXTDESCRIPTION"
         Me.TXTDESCRIPTION.Size = New System.Drawing.Size(170, 23)
         Me.TXTDESCRIPTION.TabIndex = 1044
-        Me.TXTDESCRIPTION.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTOTHERITEMNAME
         '

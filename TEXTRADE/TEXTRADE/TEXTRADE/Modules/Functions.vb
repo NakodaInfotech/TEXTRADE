@@ -1218,7 +1218,7 @@ PRINT 1,1")
 
             ElseIf ClientName = "RAJKRIPA" Then
 
-                If GRIDDESC = "" Then GRIDDESC = ITEMNAME
+                'If GRIDDESC = "" Then GRIDDESC = ITEMNAME
                 If TEMPHEADER = 1 Then  'FOR LUMP
                     oWrite.WriteLine("<xpml><page quantity='0' pitch='75.1 mm'></xpml>^XA")
                     oWrite.WriteLine("^MCY^PMN")
@@ -1239,7 +1239,7 @@ PRINT 1,1")
                         TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
                     End If
 
-                    oWrite.WriteLine("^A0N,45,61^FD" & GRIDDESC & "^FS")
+                    oWrite.WriteLine("^A0N,45,61^FD" & ITEMNAME & "^FS")
                     oWrite.WriteLine("^FT22,211")
                     oWrite.WriteLine("^ADN,36,20^FDSHADE^FS")
                     oWrite.WriteLine("^FT170,211")

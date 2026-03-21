@@ -350,7 +350,7 @@ Partial Class OpeningBeamStock
         '
         'TXTBEAMNO
         '
-        Me.TXTBEAMNO.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTBEAMNO.BackColor = System.Drawing.Color.White
         Me.TXTBEAMNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBEAMNO.Location = New System.Drawing.Point(564, 3)
         Me.TXTBEAMNO.Name = "TXTBEAMNO"
@@ -386,7 +386,7 @@ Partial Class OpeningBeamStock
         '
         Me.CMBMILL.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBMILL.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBMILL.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBMILL.BackColor = System.Drawing.Color.White
         Me.CMBMILL.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBMILL.FormattingEnabled = True
         Me.CMBMILL.Location = New System.Drawing.Point(364, 3)
@@ -406,7 +406,7 @@ Partial Class OpeningBeamStock
         '
         'TXTTOTALENDS
         '
-        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.White
         Me.TXTTOTALENDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTTOTALENDS.Location = New System.Drawing.Point(864, 3)
         Me.TXTTOTALENDS.Name = "TXTTOTALENDS"
