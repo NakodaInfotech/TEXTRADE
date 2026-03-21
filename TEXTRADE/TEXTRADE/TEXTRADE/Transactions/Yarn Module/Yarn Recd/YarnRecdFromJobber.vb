@@ -495,7 +495,6 @@ CHECKNEXTLINE:
                 TXTYARNNO.Text = Val(DTTABLE.Rows(0).Item(0))
                 MsgBox("Details Added")
 
-                If FRMSTRING = "GRN FANCY" Then PRINTREPORT(DTTABLE.Rows(0).Item(0))
 
             ElseIf EDIT = True Then
                 If USEREDIT = False Then
@@ -509,6 +508,8 @@ CHECKNEXTLINE:
 
             End If
 
+            PRINTBARCODE()
+            PRINTREPORT(Val(TXTYARNNO.Text.Trim))
 
 
             If EDIT = False And (ClientName = "VAISHALI" Or ClientName = "KARAN" Or ClientName = "NAYRA" Or ClientName = "AKASHDEEP") Then
@@ -533,6 +534,44 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
             Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Sub PRINTBARCODE()
+        Try
+            If ALLOWYARNBARCODEPRINT Then
+
+                'PRINT BARCODE
+                Dim TEMPMSG As Integer = MsgBox("Wish to Print Barcode?", MsgBoxStyle.YesNo)
+                If TEMPMSG = vbNo Then Exit Sub
+
+                'GET FRESH DATA FROM DATABASE (ONLY GRID)
+                'THIS IS DONE COZ FOR MULTIUSER THE NOS WILL BE SAME
+                'SO WE WILL ADD BARCODE IN SP AND THEN FETCH THAT DATA HERE AFTER THAT WE WILL PRINT BARCODES
+                GRIDYARN.RowCount = 0
+                Dim OBJYARN As New ClsYarnRecdFromJobber
+                Dim DTTABLE As DataTable = OBJYARN.selectYARN(Val(TXTYARNNO.Text.Trim), CmpId, Locationid, YearId, FRMSTRING)
+                For Each dr As DataRow In DTTABLE.Rows
+                    GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("JOBBERLOTNO"), dr("COLOR"), dr("LOTNO"), dr("GRIDREMARKS"), Format(Val(dr("qty")), "0.00"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("CONES")), "0"), dr("LRNO"), dr("RACK").ToString, Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE").ToString, Val(dr("OUTWT")), Val(dr("OUTBAGS")), Val(dr("DONE")))
+                Next
+
+                For Each ROW As DataGridViewRow In GRIDYARN.Rows
+
+                    'TO PRINT BARCODE FROM SELECTED SRNO
+                    If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then
+                        If Val(ROW.Cells(gsrno.Index).Value) < Val(TXTFROM.Text.Trim) Or Val(ROW.Cells(gsrno.Index).Value) > Val(TXTTO.Text.Trim) Then GoTo NEXTLINE
+                    End If
+
+                    'IF barcode is used the BARCODE printING WILL BE BLOCKED
+                    If Val(ROW.Cells(GOUTWT.Index).Value) > 0 Then GoTo NEXTLINE
+
+                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(GYARNQUALITY.Index).Value, ROW.Cells(GMILLNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, "BOXES", ROW.Cells(GLOTNO.Index).Value, ROW.Cells(GLRNO.Index).Value, ROW.Cells(GGRIDREMARKS.Index).Value, Val(ROW.Cells(GWT.Index).Value), Val(ROW.Cells(GQTY.Index).Value), 0, ROW.Cells(GRACK.Index).Value, "YARN", "", "", "", "", "", YARNDATE.Text)
+NEXTLINE:
+
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
@@ -1421,11 +1460,8 @@ LINE1:
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
             If EDIT = True Then
-                If ClientName = "CC"  Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
-                    PRINTREPORT(tempYARNno)
-                Else
-                    'PRINTBARCODE()
-                End If
+                PRINTBARCODE()
+                PRINTREPORT(tempYARNno)
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex

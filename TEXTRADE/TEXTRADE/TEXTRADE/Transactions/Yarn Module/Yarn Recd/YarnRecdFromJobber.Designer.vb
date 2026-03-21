@@ -42,7 +42,9 @@ Partial Class YarnRecdFromJobber
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.LBLYARN = New System.Windows.Forms.Label()
+        Me.CMBMACHINE = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TXTVEHICLENO = New System.Windows.Forms.TextBox()
         Me.LBLTOTALMTRS = New System.Windows.Forms.Label()
@@ -181,8 +183,10 @@ Partial Class YarnRecdFromJobber
         Me.PBSoftCopy = New System.Windows.Forms.PictureBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.CMBMACHINE = New System.Windows.Forms.ComboBox()
+        Me.TXTTO = New System.Windows.Forms.TextBox()
+        Me.LBLTO = New System.Windows.Forms.Label()
+        Me.LBLFROM = New System.Windows.Forms.Label()
+        Me.TXTFROM = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -201,6 +205,10 @@ Partial Class YarnRecdFromJobber
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTTO)
+        Me.BlendPanel1.Controls.Add(Me.LBLTO)
+        Me.BlendPanel1.Controls.Add(Me.LBLFROM)
+        Me.BlendPanel1.Controls.Add(Me.TXTFROM)
         Me.BlendPanel1.Controls.Add(Me.Label11)
         Me.BlendPanel1.Controls.Add(Me.LBLYARN)
         Me.BlendPanel1.Controls.Add(Me.CMBMACHINE)
@@ -265,6 +273,18 @@ Partial Class YarnRecdFromJobber
         Me.BlendPanel1.Size = New System.Drawing.Size(1134, 545)
         Me.BlendPanel1.TabIndex = 0
         '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.Black
+        Me.Label11.Location = New System.Drawing.Point(337, 114)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(73, 15)
+        Me.Label11.TabIndex = 756
+        Me.Label11.Text = "Machine No"
+        '
         'LBLYARN
         '
         Me.LBLYARN.AutoSize = True
@@ -276,6 +296,19 @@ Partial Class YarnRecdFromJobber
         Me.LBLYARN.Size = New System.Drawing.Size(224, 23)
         Me.LBLYARN.TabIndex = 432
         Me.LBLYARN.Text = "Yarn Received From Jobber"
+        '
+        'CMBMACHINE
+        '
+        Me.CMBMACHINE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBMACHINE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBMACHINE.BackColor = System.Drawing.Color.White
+        Me.CMBMACHINE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBMACHINE.FormattingEnabled = True
+        Me.CMBMACHINE.Location = New System.Drawing.Point(411, 110)
+        Me.CMBMACHINE.MaxDropDownItems = 14
+        Me.CMBMACHINE.Name = "CMBMACHINE"
+        Me.CMBMACHINE.Size = New System.Drawing.Size(104, 23)
+        Me.CMBMACHINE.TabIndex = 755
         '
         'Label9
         '
@@ -1904,30 +1937,53 @@ Partial Class YarnRecdFromJobber
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Label11
+        'TXTTO
         '
-        Me.Label11.AutoSize = True
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.Black
-        Me.Label11.Location = New System.Drawing.Point(337, 114)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(73, 15)
-        Me.Label11.TabIndex = 756
-        Me.Label11.Text = "Machine No"
+        Me.TXTTO.BackColor = System.Drawing.Color.White
+        Me.TXTTO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTO.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.TXTTO.Location = New System.Drawing.Point(863, 2)
+        Me.TXTTO.Name = "TXTTO"
+        Me.TXTTO.Size = New System.Drawing.Size(41, 23)
+        Me.TXTTO.TabIndex = 853
+        Me.TXTTO.Text = " "
+        Me.TXTTO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'CMBMACHINE
+        'LBLTO
         '
-        Me.CMBMACHINE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBMACHINE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBMACHINE.BackColor = System.Drawing.Color.White
-        Me.CMBMACHINE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBMACHINE.FormattingEnabled = True
-        Me.CMBMACHINE.Location = New System.Drawing.Point(411, 110)
-        Me.CMBMACHINE.MaxDropDownItems = 14
-        Me.CMBMACHINE.Name = "CMBMACHINE"
-        Me.CMBMACHINE.Size = New System.Drawing.Size(104, 23)
-        Me.CMBMACHINE.TabIndex = 755
+        Me.LBLTO.AutoSize = True
+        Me.LBLTO.BackColor = System.Drawing.SystemColors.Control
+        Me.LBLTO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTO.ForeColor = System.Drawing.Color.Black
+        Me.LBLTO.Location = New System.Drawing.Point(843, 6)
+        Me.LBLTO.Name = "LBLTO"
+        Me.LBLTO.Size = New System.Drawing.Size(19, 15)
+        Me.LBLTO.TabIndex = 852
+        Me.LBLTO.Text = "To"
+        '
+        'LBLFROM
+        '
+        Me.LBLFROM.AutoSize = True
+        Me.LBLFROM.BackColor = System.Drawing.SystemColors.Control
+        Me.LBLFROM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLFROM.ForeColor = System.Drawing.Color.Black
+        Me.LBLFROM.Location = New System.Drawing.Point(687, 6)
+        Me.LBLFROM.Name = "LBLFROM"
+        Me.LBLFROM.Size = New System.Drawing.Size(113, 15)
+        Me.LBLFROM.TabIndex = 851
+        Me.LBLFROM.Text = "Print Barcode From"
+        '
+        'TXTFROM
+        '
+        Me.TXTFROM.BackColor = System.Drawing.Color.White
+        Me.TXTFROM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTFROM.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.TXTFROM.Location = New System.Drawing.Point(799, 2)
+        Me.TXTFROM.Name = "TXTFROM"
+        Me.TXTFROM.Size = New System.Drawing.Size(41, 23)
+        Me.TXTFROM.TabIndex = 850
+        Me.TXTFROM.Text = " "
+        Me.TXTFROM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'YarnRecdFromJobber
         '
@@ -2103,4 +2159,8 @@ Partial Class YarnRecdFromJobber
     Friend WithEvents LBLTOTALAMT As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents CMBMACHINE As ComboBox
+    Friend WithEvents TXTTO As TextBox
+    Friend WithEvents LBLTO As Label
+    Friend WithEvents LBLFROM As Label
+    Friend WithEvents TXTFROM As TextBox
 End Class

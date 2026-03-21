@@ -60,7 +60,7 @@ Public Class YarnStockReco
     Private Sub YarnStockReco_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'YARN ISSUE'")
+            DTROW = USERRIGHTS.Select("FormName = 'GDN'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -286,6 +286,7 @@ Public Class YarnStockReco
             alParaval.Add(Locationid)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
+            alParaval.Add(0)
 
 
             Dim gridsrno As String = ""
@@ -406,6 +407,9 @@ Public Class YarnStockReco
             Dim INPER As String = ""
             Dim INAMOUNT As String = ""
             Dim INBARCODE As String = ""
+            Dim DONE As String = ""
+            Dim OUTBAGS As String = ""
+            Dim OUTWT As String = ""
 
 
 
@@ -430,6 +434,9 @@ Public Class YarnStockReco
                         INPER = row.Cells(GPER.Index).Value.ToString
                         INAMOUNT = row.Cells(GAMOUNT.Index).Value
                         INBARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        If row.Cells(GDONE.Index).Value = True Then DONE = 1 Else DONE = 0
+                        OUTBAGS = row.Cells(GOUTBAGS.Index).Value
+                        OUTWT = row.Cells(GOUTWT.Index).Value
 
 
 
@@ -452,6 +459,10 @@ Public Class YarnStockReco
                         INPER = INPER & "|" & row.Cells(GPER.Index).Value.ToString
                         INAMOUNT = INAMOUNT & "|" & row.Cells(GAMOUNT.Index).Value
                         INBARCODE = INBARCODE & "|" & row.Cells(GBARCODE.Index).Value
+                        If row.Cells(GDONE.Index).Value = True Then DONE = DONE & "|" & "1" Else DONE = DONE & "|" & "0"
+                        OUTBAGS = OUTBAGS & "|" & row.Cells(GOUTBAGS.Index).Value
+                        OUTWT = OUTWT & "|" & row.Cells(GOUTWT.Index).Value
+
 
 
                     End If
@@ -475,10 +486,13 @@ Public Class YarnStockReco
             alParaval.Add(INPER)
             alParaval.Add(INAMOUNT)
             alParaval.Add(INBARCODE)
+            alParaval.Add(DONE)
+            alParaval.Add(OUTBAGS)
+            alParaval.Add(OUTWT)
 
 
 
-            Dim objSTOCK As New ClsStoreStockAdjustment()
+            Dim objSTOCK As New ClsYarnStockAdjustment()
             objSTOCK.alParaval = alParaval
             If EDIT = False Then
                 If USERADD = False Then
