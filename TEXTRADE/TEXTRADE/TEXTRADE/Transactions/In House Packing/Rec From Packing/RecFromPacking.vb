@@ -1149,9 +1149,9 @@ NEXTLINE:
             If ClientName = "YASHVI" Or ClientName = "SHREENAKODA" Then TXTCUT.Focus() Else CMBPIECETYPE.Focus()
             If ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then TXTMTRS.Focus()
 
-            If ClientName = "ANKUSH" Then
-                IncrementBaleNo(TXTGRIDREMARKS.Text.Trim)
-            End If
+            'If ClientName = "ANKUSH" Then
+            '    IncrementBaleNo(TXTGRIDREMARKS.Text.Trim)
+            'End If
             If ClientName = "KCRAYON" Or ClientName = "SWPL" Or ClientName = "APPLE" Or ClientName = "MMC" Then TXTGRIDREMARKS.Clear()
             If ClientName = "SUPRIYA" Or ClientName = "YASHVI" Then TXTCUT.Clear()
             'TXTRATE.Clear()
@@ -2591,24 +2591,24 @@ LINE1:
     End Sub
 
 
-    Function IncrementBaleNo(baleNo As String) As String
-        If String.IsNullOrEmpty(baleNo) Then Return baleNo
+    'Function IncrementBaleNo(baleNo As String) As String
+    '    If String.IsNullOrEmpty(baleNo) Then Return baleNo
 
-        ' Last numeric sequence dhundo using Regex
-        Dim match As Match = Regex.Match(baleNo, "^(.*?)(\d+)(\D*)$")
+    '    ' Last numeric sequence dhundo using Regex
+    '    Dim match As Match = Regex.Match(baleNo, "^(.*?)(\d+)(\D*)$")
 
-        If match.Success Then
-            Dim prefix As String = match.Groups(1).Value      ' e.g. "ASD", "ASD7485/"
-            Dim numStr As String = match.Groups(2).Value      ' e.g. "45263", "01"
-            Dim suffix As String = match.Groups(3).Value      ' e.g. "" (usually empty)
+    '    If match.Success Then
+    '        Dim prefix As String = match.Groups(1).Value      ' e.g. "ASD", "ASD7485/"
+    '        Dim numStr As String = match.Groups(2).Value      ' e.g. "45263", "01"
+    '        Dim suffix As String = match.Groups(3).Value      ' e.g. "" (usually empty)
 
-            ' Increment karo, leading zeros maintain karo
-            Dim incremented As String = (CInt(numStr) + 1).ToString().PadLeft(numStr.Length, "0"c)
+    '        ' Increment karo, leading zeros maintain karo
+    '        Dim incremented As String = (CInt(numStr) + 1).ToString().PadLeft(numStr.Length, "0"c)
 
-            Return prefix & incremented & suffix
-        End If
+    '        Return prefix & incremented & suffix
+    '    End If
 
-        Return baleNo ' Koi digit nahi mili toh as-is return
-    End Function
+    '    Return baleNo ' Koi digit nahi mili toh as-is return
+    'End Function
 
 End Class
