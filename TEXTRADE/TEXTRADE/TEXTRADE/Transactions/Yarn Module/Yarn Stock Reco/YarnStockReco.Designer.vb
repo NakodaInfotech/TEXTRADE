@@ -43,6 +43,9 @@ Partial Class YarnStockReco
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnStockReco))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTBARCODE = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TXTWTDIFF = New System.Windows.Forms.TextBox()
         Me.LBLYARN = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TBSTOCKOUT = New System.Windows.Forms.TabPage()
@@ -78,15 +81,15 @@ Partial Class YarnStockReco
         Me.CMBPER = New System.Windows.Forms.ComboBox()
         Me.TXTAMT = New System.Windows.Forms.TextBox()
         Me.TXTRATE = New System.Windows.Forms.TextBox()
-        Me.TXTGREMARKS = New System.Windows.Forms.TextBox()
-        Me.TXTJOBBERLOTNO = New System.Windows.Forms.TextBox()
-        Me.TXTPSHADE = New System.Windows.Forms.TextBox()
-        Me.TXTGRIDLOTNO = New System.Windows.Forms.TextBox()
+        Me.TXTDESC = New System.Windows.Forms.TextBox()
+        Me.TXTPARTYLOTNO = New System.Windows.Forms.TextBox()
+        Me.TXTPARTYCOLOR = New System.Windows.Forms.TextBox()
+        Me.TXTLOTNO = New System.Windows.Forms.TextBox()
         Me.TXTCONES = New System.Windows.Forms.TextBox()
         Me.TXTWT = New System.Windows.Forms.TextBox()
         Me.txtsrno = New System.Windows.Forms.TextBox()
         Me.TXTBAGS = New System.Windows.Forms.TextBox()
-        Me.TXTGRIDLRNO = New System.Windows.Forms.TextBox()
+        Me.TXTLRNO = New System.Windows.Forms.TextBox()
         Me.CMBRACK = New System.Windows.Forms.ComboBox()
         Me.GRIDSTOCKIN = New System.Windows.Forms.DataGridView()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -153,8 +156,6 @@ Partial Class YarnStockReco
         Me.lblgrndate = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TXTMTRSDIFF = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TBSTOCKOUT.SuspendLayout()
@@ -171,8 +172,9 @@ Partial Class YarnStockReco
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTBARCODE)
         Me.BlendPanel1.Controls.Add(Me.Label3)
-        Me.BlendPanel1.Controls.Add(Me.TXTMTRSDIFF)
+        Me.BlendPanel1.Controls.Add(Me.TXTWTDIFF)
         Me.BlendPanel1.Controls.Add(Me.LBLYARN)
         Me.BlendPanel1.Controls.Add(Me.TabControl1)
         Me.BlendPanel1.Controls.Add(Me.TXTTRANSADD)
@@ -208,6 +210,39 @@ Partial Class YarnStockReco
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 2
         '
+        'TXTBARCODE
+        '
+        Me.TXTBARCODE.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTBARCODE.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBARCODE.Location = New System.Drawing.Point(852, 30)
+        Me.TXTBARCODE.Name = "TXTBARCODE"
+        Me.TXTBARCODE.Size = New System.Drawing.Size(29, 21)
+        Me.TXTBARCODE.TabIndex = 934
+        Me.TXTBARCODE.TabStop = False
+        Me.TXTBARCODE.Visible = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(950, 486)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(46, 14)
+        Me.Label3.TabIndex = 933
+        Me.Label3.Text = "WT Diff"
+        '
+        'TXTWTDIFF
+        '
+        Me.TXTWTDIFF.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTWTDIFF.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTWTDIFF.Location = New System.Drawing.Point(999, 481)
+        Me.TXTWTDIFF.Name = "TXTWTDIFF"
+        Me.TXTWTDIFF.ReadOnly = True
+        Me.TXTWTDIFF.Size = New System.Drawing.Size(80, 22)
+        Me.TXTWTDIFF.TabIndex = 932
+        '
         'LBLYARN
         '
         Me.LBLYARN.AutoSize = True
@@ -229,7 +264,7 @@ Partial Class YarnStockReco
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1199, 295)
-        Me.TabControl1.TabIndex = 930
+        Me.TabControl1.TabIndex = 5
         '
         'TBSTOCKOUT
         '
@@ -440,7 +475,6 @@ Partial Class YarnStockReco
         Me.OBAGS.DefaultCellStyle = DataGridViewCellStyle3
         Me.OBAGS.HeaderText = "Bags"
         Me.OBAGS.Name = "OBAGS"
-        Me.OBAGS.ReadOnly = True
         Me.OBAGS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.OBAGS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.OBAGS.Width = 60
@@ -452,7 +486,6 @@ Partial Class YarnStockReco
         Me.OWT.DefaultCellStyle = DataGridViewCellStyle4
         Me.OWT.HeaderText = "Weight"
         Me.OWT.Name = "OWT"
-        Me.OWT.ReadOnly = True
         Me.OWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.OWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.OWT.Width = 60
@@ -559,15 +592,15 @@ Partial Class YarnStockReco
         Me.TBSTOCKIN.Controls.Add(Me.CMBPER)
         Me.TBSTOCKIN.Controls.Add(Me.TXTAMT)
         Me.TBSTOCKIN.Controls.Add(Me.TXTRATE)
-        Me.TBSTOCKIN.Controls.Add(Me.TXTGREMARKS)
-        Me.TBSTOCKIN.Controls.Add(Me.TXTJOBBERLOTNO)
-        Me.TBSTOCKIN.Controls.Add(Me.TXTPSHADE)
-        Me.TBSTOCKIN.Controls.Add(Me.TXTGRIDLOTNO)
+        Me.TBSTOCKIN.Controls.Add(Me.TXTDESC)
+        Me.TBSTOCKIN.Controls.Add(Me.TXTPARTYLOTNO)
+        Me.TBSTOCKIN.Controls.Add(Me.TXTPARTYCOLOR)
+        Me.TBSTOCKIN.Controls.Add(Me.TXTLOTNO)
         Me.TBSTOCKIN.Controls.Add(Me.TXTCONES)
         Me.TBSTOCKIN.Controls.Add(Me.TXTWT)
         Me.TBSTOCKIN.Controls.Add(Me.txtsrno)
         Me.TBSTOCKIN.Controls.Add(Me.TXTBAGS)
-        Me.TBSTOCKIN.Controls.Add(Me.TXTGRIDLRNO)
+        Me.TBSTOCKIN.Controls.Add(Me.TXTLRNO)
         Me.TBSTOCKIN.Controls.Add(Me.CMBRACK)
         Me.TBSTOCKIN.Controls.Add(Me.GRIDSTOCKIN)
         Me.TBSTOCKIN.Controls.Add(Me.CMBMILL)
@@ -633,43 +666,43 @@ Partial Class YarnStockReco
         Me.TXTRATE.TabIndex = 14
         Me.TXTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TXTGREMARKS
+        'TXTDESC
         '
-        Me.TXTGREMARKS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTGREMARKS.Location = New System.Drawing.Point(823, 2)
-        Me.TXTGREMARKS.Name = "TXTGREMARKS"
-        Me.TXTGREMARKS.Size = New System.Drawing.Size(200, 23)
-        Me.TXTGREMARKS.TabIndex = 7
+        Me.TXTDESC.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTDESC.Location = New System.Drawing.Point(823, 2)
+        Me.TXTDESC.Name = "TXTDESC"
+        Me.TXTDESC.Size = New System.Drawing.Size(200, 23)
+        Me.TXTDESC.TabIndex = 8
         '
-        'TXTJOBBERLOTNO
+        'TXTPARTYLOTNO
         '
-        Me.TXTJOBBERLOTNO.BackColor = System.Drawing.Color.White
-        Me.TXTJOBBERLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTJOBBERLOTNO.Location = New System.Drawing.Point(453, 2)
-        Me.TXTJOBBERLOTNO.Name = "TXTJOBBERLOTNO"
-        Me.TXTJOBBERLOTNO.Size = New System.Drawing.Size(100, 23)
-        Me.TXTJOBBERLOTNO.TabIndex = 3
+        Me.TXTPARTYLOTNO.BackColor = System.Drawing.Color.White
+        Me.TXTPARTYLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPARTYLOTNO.Location = New System.Drawing.Point(453, 2)
+        Me.TXTPARTYLOTNO.Name = "TXTPARTYLOTNO"
+        Me.TXTPARTYLOTNO.Size = New System.Drawing.Size(100, 23)
+        Me.TXTPARTYLOTNO.TabIndex = 4
         '
-        'TXTPSHADE
+        'TXTPARTYCOLOR
         '
-        Me.TXTPSHADE.BackColor = System.Drawing.Color.White
-        Me.TXTPSHADE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPSHADE.Location = New System.Drawing.Point(553, 2)
-        Me.TXTPSHADE.Name = "TXTPSHADE"
-        Me.TXTPSHADE.Size = New System.Drawing.Size(100, 23)
-        Me.TXTPSHADE.TabIndex = 4
+        Me.TXTPARTYCOLOR.BackColor = System.Drawing.Color.White
+        Me.TXTPARTYCOLOR.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPARTYCOLOR.Location = New System.Drawing.Point(553, 2)
+        Me.TXTPARTYCOLOR.Name = "TXTPARTYCOLOR"
+        Me.TXTPARTYCOLOR.Size = New System.Drawing.Size(100, 23)
+        Me.TXTPARTYCOLOR.TabIndex = 5
         '
-        'TXTGRIDLOTNO
+        'TXTLOTNO
         '
-        Me.TXTGRIDLOTNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTGRIDLOTNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTGRIDLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTGRIDLOTNO.Location = New System.Drawing.Point(753, 2)
-        Me.TXTGRIDLOTNO.Name = "TXTGRIDLOTNO"
-        Me.TXTGRIDLOTNO.ReadOnly = True
-        Me.TXTGRIDLOTNO.Size = New System.Drawing.Size(70, 23)
-        Me.TXTGRIDLOTNO.TabIndex = 6
-        Me.TXTGRIDLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTLOTNO.BackColor = System.Drawing.Color.Linen
+        Me.TXTLOTNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTLOTNO.Location = New System.Drawing.Point(753, 2)
+        Me.TXTLOTNO.Name = "TXTLOTNO"
+        Me.TXTLOTNO.ReadOnly = True
+        Me.TXTLOTNO.Size = New System.Drawing.Size(70, 23)
+        Me.TXTLOTNO.TabIndex = 7
+        Me.TXTLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTCONES
         '
@@ -678,7 +711,7 @@ Partial Class YarnStockReco
         Me.TXTCONES.Location = New System.Drawing.Point(1143, 2)
         Me.TXTCONES.Name = "TXTCONES"
         Me.TXTCONES.Size = New System.Drawing.Size(50, 23)
-        Me.TXTCONES.TabIndex = 10
+        Me.TXTCONES.TabIndex = 11
         Me.TXTCONES.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTWT
@@ -688,7 +721,7 @@ Partial Class YarnStockReco
         Me.TXTWT.Location = New System.Drawing.Point(1083, 2)
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWT.TabIndex = 9
+        Me.TXTWT.TabIndex = 10
         Me.TXTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtsrno
@@ -705,23 +738,23 @@ Partial Class YarnStockReco
         '
         'TXTBAGS
         '
-        Me.TXTBAGS.BackColor = System.Drawing.Color.White
+        Me.TXTBAGS.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTBAGS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBAGS.Location = New System.Drawing.Point(1023, 2)
         Me.TXTBAGS.Name = "TXTBAGS"
         Me.TXTBAGS.Size = New System.Drawing.Size(60, 23)
-        Me.TXTBAGS.TabIndex = 8
+        Me.TXTBAGS.TabIndex = 9
         Me.TXTBAGS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TXTGRIDLRNO
+        'TXTLRNO
         '
-        Me.TXTGRIDLRNO.BackColor = System.Drawing.Color.White
-        Me.TXTGRIDLRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTGRIDLRNO.Location = New System.Drawing.Point(1193, 2)
-        Me.TXTGRIDLRNO.Name = "TXTGRIDLRNO"
-        Me.TXTGRIDLRNO.Size = New System.Drawing.Size(70, 23)
-        Me.TXTGRIDLRNO.TabIndex = 11
-        Me.TXTGRIDLRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTLRNO.BackColor = System.Drawing.Color.White
+        Me.TXTLRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTLRNO.Location = New System.Drawing.Point(1193, 2)
+        Me.TXTLRNO.Name = "TXTLRNO"
+        Me.TXTLRNO.Size = New System.Drawing.Size(70, 23)
+        Me.TXTLRNO.TabIndex = 12
+        Me.TXTLRNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBRACK
         '
@@ -777,7 +810,7 @@ Partial Class YarnStockReco
         Me.GRIDSTOCKIN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSTOCKIN.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDSTOCKIN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDSTOCKIN.Size = New System.Drawing.Size(1817, 204)
+        Me.GRIDSTOCKIN.Size = New System.Drawing.Size(1695, 204)
         Me.GRIDSTOCKIN.TabIndex = 12
         Me.GRIDSTOCKIN.TabStop = False
         '
@@ -867,7 +900,6 @@ Partial Class YarnStockReco
         Me.GBAGS.DefaultCellStyle = DataGridViewCellStyle12
         Me.GBAGS.HeaderText = "Bags"
         Me.GBAGS.Name = "GBAGS"
-        Me.GBAGS.ReadOnly = True
         Me.GBAGS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GBAGS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GBAGS.Width = 60
@@ -879,7 +911,6 @@ Partial Class YarnStockReco
         Me.GWT.DefaultCellStyle = DataGridViewCellStyle13
         Me.GWT.HeaderText = "Weight"
         Me.GWT.Name = "GWT"
-        Me.GWT.ReadOnly = True
         Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GWT.Width = 60
@@ -979,7 +1010,7 @@ Partial Class YarnStockReco
         Me.CMBMILL.Location = New System.Drawing.Point(213, 2)
         Me.CMBMILL.Name = "CMBMILL"
         Me.CMBMILL.Size = New System.Drawing.Size(150, 23)
-        Me.CMBMILL.TabIndex = 1
+        Me.CMBMILL.TabIndex = 2
         '
         'CMBDESIGN
         '
@@ -990,7 +1021,7 @@ Partial Class YarnStockReco
         Me.CMBDESIGN.Location = New System.Drawing.Point(363, 2)
         Me.CMBDESIGN.Name = "CMBDESIGN"
         Me.CMBDESIGN.Size = New System.Drawing.Size(90, 23)
-        Me.CMBDESIGN.TabIndex = 2
+        Me.CMBDESIGN.TabIndex = 3
         '
         'CMBYARNQUALITY
         '
@@ -1002,7 +1033,7 @@ Partial Class YarnStockReco
         Me.CMBYARNQUALITY.Location = New System.Drawing.Point(33, 2)
         Me.CMBYARNQUALITY.Name = "CMBYARNQUALITY"
         Me.CMBYARNQUALITY.Size = New System.Drawing.Size(180, 23)
-        Me.CMBYARNQUALITY.TabIndex = 0
+        Me.CMBYARNQUALITY.TabIndex = 1
         '
         'LBLTOTALINWT
         '
@@ -1061,7 +1092,7 @@ Partial Class YarnStockReco
         Me.cmbcolor.Location = New System.Drawing.Point(653, 2)
         Me.cmbcolor.Name = "cmbcolor"
         Me.cmbcolor.Size = New System.Drawing.Size(100, 23)
-        Me.cmbcolor.TabIndex = 5
+        Me.cmbcolor.TabIndex = 6
         '
         'TXTTRANSADD
         '
@@ -1104,6 +1135,7 @@ Partial Class YarnStockReco
         Me.TXTBAGSDIFF.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBAGSDIFF.Location = New System.Drawing.Point(999, 453)
         Me.TXTBAGSDIFF.Name = "TXTBAGSDIFF"
+        Me.TXTBAGSDIFF.ReadOnly = True
         Me.TXTBAGSDIFF.Size = New System.Drawing.Size(80, 22)
         Me.TXTBAGSDIFF.TabIndex = 926
         '
@@ -1454,27 +1486,6 @@ Partial Class YarnStockReco
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(939, 486)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(58, 14)
-        Me.Label3.TabIndex = 933
-        Me.Label3.Text = "MTRS Diff"
-        '
-        'TXTMTRSDIFF
-        '
-        Me.TXTMTRSDIFF.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTMTRSDIFF.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTMTRSDIFF.Location = New System.Drawing.Point(999, 481)
-        Me.TXTMTRSDIFF.Name = "TXTMTRSDIFF"
-        Me.TXTMTRSDIFF.Size = New System.Drawing.Size(80, 22)
-        Me.TXTMTRSDIFF.TabIndex = 932
-        '
         'YarnStockReco
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1547,15 +1558,15 @@ Partial Class YarnStockReco
     Friend WithEvents CMBPER As ComboBox
     Friend WithEvents TXTAMT As TextBox
     Friend WithEvents TXTRATE As TextBox
-    Friend WithEvents TXTGREMARKS As TextBox
-    Friend WithEvents TXTJOBBERLOTNO As TextBox
-    Friend WithEvents TXTPSHADE As TextBox
-    Friend WithEvents TXTGRIDLOTNO As TextBox
+    Friend WithEvents TXTDESC As TextBox
+    Friend WithEvents TXTPARTYLOTNO As TextBox
+    Friend WithEvents TXTPARTYCOLOR As TextBox
+    Friend WithEvents TXTLOTNO As TextBox
     Friend WithEvents TXTCONES As TextBox
     Friend WithEvents TXTWT As TextBox
     Friend WithEvents txtsrno As TextBox
     Friend WithEvents TXTBAGS As TextBox
-    Friend WithEvents TXTGRIDLRNO As TextBox
+    Friend WithEvents TXTLRNO As TextBox
     Friend WithEvents CMBRACK As ComboBox
     Friend WithEvents GRIDSTOCKIN As DataGridView
     Friend WithEvents CMBMILL As ComboBox
@@ -1575,6 +1586,9 @@ Partial Class YarnStockReco
     Friend WithEvents LBLTOTALOUTBAGS As Label
     Friend WithEvents LBLYARN As Label
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TXTWTDIFF As TextBox
+    Friend WithEvents TXTBARCODE As TextBox
     Friend WithEvents OSRNO As DataGridViewTextBoxColumn
     Friend WithEvents OYARNQUALITY As DataGridViewTextBoxColumn
     Friend WithEvents OMILLNAME As DataGridViewTextBoxColumn
@@ -1617,6 +1631,4 @@ Partial Class YarnStockReco
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
     Friend WithEvents GOUTBAGS As DataGridViewTextBoxColumn
     Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
-    Friend WithEvents Label3 As Label
-    Friend WithEvents TXTMTRSDIFF As TextBox
 End Class

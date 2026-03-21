@@ -43,21 +43,13 @@ Public Class ClsYarnStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALINCONES", alParaval(I)))
                 I = I + 1
-
                 .Add(New SqlClient.SqlParameter("@TOTALOUTBAGS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALOUTWT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALOUTCONES", alParaval(I)))
                 I = I + 1
-
-                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALINPCS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALINMTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
@@ -67,14 +59,13 @@ Public Class ClsYarnStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
+
 
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
@@ -158,7 +149,7 @@ Public Class ClsYarnStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@OUTBAGS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
                 I = I + 1
 
             End With
@@ -181,32 +172,30 @@ Public Class ClsYarnStockAdjustment
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@MANUALRECNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@RECONO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@TRANSNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALINBAGS", alParaval(I)))
                 I = I + 1
-
-
-                .Add(New SqlClient.SqlParameter("@TOTALPCS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALINWT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALINCONES", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALINPCS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALOUTBAGS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALINMTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALOUTWT", alParaval(I)))
                 I = I + 1
-                '.Add(New SqlClient.SqlParameter("@TOTALRATE", alParaval(I)))
-                'I = I + 1
-
-                .Add(New SqlClient.SqlParameter("@remarks", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALOUTCONES", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
@@ -215,38 +204,43 @@ Public Class ClsYarnStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
+
 
 
                 'grid parameters
-                .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PIECETYPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@itemname", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PARTYLOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PARTYCOLOR", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PCS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@DESC", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BAGS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BALENO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
                 I = I + 1
@@ -262,29 +256,31 @@ Public Class ClsYarnStockAdjustment
                 'INGRID PARAMETERS
                 .Add(New SqlClient.SqlParameter("@INGRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INPIECETYPE", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@INITEMNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INQUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INMILLNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INBALENO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("IN@DESIGN", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INGRIDDESC", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INPARTYLOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@INPARTYCOLOR", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@INSHADE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@INLOTNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INDESIGNNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INDESC", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INCOLOR", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INBAGS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INCUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INWT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INPCS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INCONES", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INQTYUNIT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INLRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INMTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INRACK", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@INRATE", alParaval(I)))
                 I = I + 1
@@ -292,29 +288,13 @@ Public Class ClsYarnStockAdjustment
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@INAMOUNT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INRACK", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@INSHELF", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@INBARCODE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INGRIDDONE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INOUTPCS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@OUTBAGS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INOUTMTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALAMOUNT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALINAMOUNT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@MANUALRATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@AVGRATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CONTRACTOR", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@SANO", alParaval(I)))

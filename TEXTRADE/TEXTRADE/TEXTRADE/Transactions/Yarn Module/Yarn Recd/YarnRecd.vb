@@ -547,7 +547,7 @@ LINE1:
             If gridupload.RowCount > 0 Then SAVEUPLOAD()
             EDIT = False
 
-            clear()
+            CLEAR()
             cmbname.Focus()
 
         Catch ex As Exception
@@ -571,7 +571,7 @@ LINE1:
                 GRIDYARN.RowCount = 0
                 Dim OBJYARN As New ClsYarnRecd
                 Dim DTTABLE As DataTable = OBJYARN.selectYARN(Val(TXTYARNNO.Text.Trim), CmpId, Locationid, YearId, FRMSTRING)
-                For Each dr As DataRow In dttable.Rows
+                For Each dr As DataRow In DTTABLE.Rows
                     GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNQUALITY"), dr("MILLNAME"), dr("DESIGNNO"), dr("JOBBERLOTNO"), dr("PCOLOR"), dr("COLOR"), dr("GRIDLOTNO"), dr("GRIDREMARKS"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, Val(dr("OUTPCS")), Val(dr("OUTMTRS")), dr("GRIDPONO").ToString, dr("POGRIDSRNO").ToString, dr("RACK").ToString, Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE").ToString)
                 Next
 
@@ -795,7 +795,7 @@ NEXTLINE:
 
             Cursor.Current = Cursors.WaitCursor
             fillcmb()
-            clear()
+            CLEAR()
             If TYPE = "" Then TYPE = "FINISH"
 
             If EDIT = True Then
@@ -851,7 +851,7 @@ NEXTLINE:
                     Validate()
                 Else
                     EDIT = False
-                    clear()
+                    CLEAR()
                 End If
 
                 Dim OBJCMN As New ClsCommon
@@ -1078,7 +1078,7 @@ NEXTLINE:
                     EDIT = True
                     GRN_Load(sender, e)
                 Else
-                    clear()
+                    CLEAR()
                     EDIT = False
                 End If
             End If
@@ -1346,7 +1346,7 @@ LINE1:
                 EDIT = True
                 GRN_Load(sender, e)
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
             If GRIDYARN.RowCount = 0 And TEMPYARNNO > 1 Then
@@ -1372,12 +1372,12 @@ LINE1:
             temptypename = FRMSTRING
             getmaxno()
             Dim MAXNO As Integer = TXTYARNNO.Text.Trim
-            clear()
+            CLEAR()
             If Val(TXTYARNNO.Text) - 1 >= TEMPYARNNO Then
                 EDIT = True
                 GRN_Load(sender, e)
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
             If GRIDYARN.RowCount = 0 And TEMPYARNNO < MAXNO Then
@@ -1434,7 +1434,7 @@ LINE1:
                     Clsgrn.alParaval = alParaval
                     IntResult = Clsgrn.Delete()
                     MsgBox("Yarn Deleted")
-                    clear()
+                    CLEAR()
                     EDIT = False
                 End If
             Else
