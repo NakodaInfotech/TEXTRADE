@@ -1309,7 +1309,7 @@ PRINT 1,1")
                         TEMPCATEGORY = DT.Rows(0).Item("CATEGORY")
                     End If
 
-                    oWrite.WriteLine("^A0N,51,69^FD" & GRIDDESC & "^FS")
+                    oWrite.WriteLine("^A0N,51,69^FD" & ITEMNAME & "^FS")
                     oWrite.WriteLine("^FT20,301")
                     oWrite.WriteLine("^ADN,36,20^FDSHADE^FS")
                     oWrite.WriteLine("^FT194,301")
