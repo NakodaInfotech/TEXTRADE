@@ -445,7 +445,6 @@ CHECKNEXTLINE:
                 Dim DTTABLE As DataTable = objCUTTING.SAVE()
                 MsgBox("Details Added")
                 TXTGREYNO.Text = DTTABLE.Rows(0).Item(0)
-                PRINTREPORT(DTTABLE.Rows(0).Item(0))
 
             ElseIf EDIT = True Then
                 If USEREDIT = False Then
@@ -461,6 +460,8 @@ CHECKNEXTLINE:
                 EDIT = False
             End If
 
+            If ClientName = "SWPL" Then PRINTBARCODE()
+            PRINTREPORT(Val(TXTGREYNO.Text.Trim))
 
 
             If EDIT = False And (ClientName = "KARAN" Or ClientName = "VALIANT") Then
@@ -484,6 +485,55 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
             Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Sub PRINTBARCODE()
+        Try
+            If ALLOWBARCODEPRINT Then
+
+                'PRINT BARCODE
+                Dim TEMPMSG As Integer = MsgBox("Wish to Print Barcode?", MsgBoxStyle.YesNo)
+                If TEMPMSG = vbNo Then Exit Sub
+
+                'GET FRESH DATA FROM DATABASE (ONLY GRID)
+                'THIS IS DONE COZ FOR MULTIUSER THE NOS WILL BE SAME
+                'SO WE WILL ADD BARCODE IN SP AND THEN FETCH THAT DATA HERE AFTER THAT WE WILL PRINT BARCODES
+                GRIDGREY.RowCount = 0
+                Dim OBJGREY As New ClsGreyRecdKnitting
+                Dim DTTABLE As DataTable = OBJGREY.selectGREY(Val(TXTGREYNO.Text.Trim), CmpId, YearId)
+                For Each dr As DataRow In DTTABLE.Rows
+                    GRIDGREY.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("DESIGNNO").ToString, dr("COLOR").ToString, dr("LOOMNO"), dr("ROLLNO"), Format(dr("qty"), "0.00"), dr("UNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("WT"), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"))
+                Next
+
+
+                Dim TEMPHEADER As String = ""
+                Dim QTY As Double = 0.0
+
+                For Each ROW As DataGridViewRow In GRIDGREY.Rows
+
+                    'TO PRINT BARCODE FROM SELECTED SRNO
+                    If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then
+                        If Val(ROW.Cells(gsrno.Index).Value) < Val(TXTFROM.Text.Trim) Or Val(ROW.Cells(gsrno.Index).Value) > Val(TXTTO.Text.Trim) Then GoTo NEXTLINE
+                    End If
+
+                    'IF barcode is used the BARCODE printING WILL BE BLOCKED
+                    If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
+
+                    QTY = Val(ROW.Cells(gQty.Index).Value)
+                    If ClientName = "SWPL" Then
+                        If ROW.Cells(gcolor.Index).Value = "" Then TEMPHEADER = "GREYWITHOUTCOLOR" Else TEMPHEADER = "GREY"
+                        QTY = Val(ROW.Cells(GWT.Index).Value)
+                    End If
+
+
+                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, "", ROW.Cells(GROLLNO.Index).Value, "", Val(ROW.Cells(GMTRS.Index).Value), Val(QTY), 0, ROW.Cells(GRACK.Index).Value, TEMPHEADER, "", "", "", "", ROW.Cells(GSHELF.Index).Value, GREYDATE.Text)
+NEXTLINE:
+
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 
