@@ -38,8 +38,8 @@ Public Class YarnJobOrderClose
                 For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                     Dim DTROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
 
-                    If DTROW("TYPE") = "PURCHASE" Then DT = OBJCMN.Execute_Any_String(" UPDATE PURCHASEMASTER SET BILL_TEMPSOLD = 1 WHERE BILL_NO = " & Val(DTROW("BILLNO")) & " AND  BILL_YEARID = " & YearId, "", "")
-                    If DTROW("TYPE") = "OPENINGPUR" Then DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER SET SM_TEMPSOLD = 1 WHERE SM_NO = " & Val(DTROW("BILLNO")) & " AND  SM_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "JOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 1 WHERE JOB_NO = " & Val(DTROW("JOBNO")) & " AND  JOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "OPENINGJOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGJOBORDER_DESC SET OPJOB_CLOSED = 1 WHERE OPJOB_NO = " & Val(DTROW("JOBNO")) & " AND  OPJOB_YEARID = " & YearId, "", "")
 
                 Next
                 MsgBox("Details Updated Successfully")
@@ -49,12 +49,12 @@ Public Class YarnJobOrderClose
 
             'ENTERED
             If RBENTERED.Checked = True Then
-                If MsgBox("You have trying to Re-Open Close Job Docket Batch, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                If MsgBox("You have trying to Re-Open Close Yarn Job Order, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                 Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
                 For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                     Dim DTROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
-                    If DTROW("TYPE") = "PURCHASE" Then DT = OBJCMN.Execute_Any_String(" UPDATE PURCHASEMASTER SET BILL_TEMPSOLD = 0 WHERE BILL_NO = " & Val(DTROW("BILLNO")) & " AND  BILL_YEARID = " & YearId, "", "")
-                    If DTROW("TYPE") = "OPENINGPUR" Then DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER SET SM_TEMPSOLD = 0 WHERE SM_NO = " & Val(DTROW("BILLNO")) & " AND  SM_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "JOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 0 WHERE JOB_NO = " & Val(DTROW("JOBNO")) & " AND  JOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "OPENINGJOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGJOBORDER_DESC SET OPJOB_CLOSED = 0 WHERE OPJOB_NO = " & Val(DTROW("JOBNO")) & " AND  OPJOB_YEARID = " & YearId, "", "")
                 Next
                 MsgBox("Details Updated Successfully")
                 fillgrid(" and yearid=" & YearId)
@@ -80,9 +80,9 @@ Public Class YarnJobOrderClose
             Dim dt As New DataTable
             If RBPENDING.Checked = True Then
 
-                dt = OBJCMN.search(" * ", "", "  PURCHASELRSTOCK ", TEMPCONDITION & "and TEMPSOLD = 0")
+                dt = OBJCMN.search(" * ", "", "  ALLJOBORDER_DESC ", TEMPCONDITION & "and CLOSED = 0")
             Else
-                dt = OBJCMN.search(" * ", "", "  PURCHASELRSTOCK ", TEMPCONDITION & "and TEMPSOLD = 1")
+                dt = OBJCMN.search(" * ", "", "  ALLJOBORDER_DESC ", TEMPCONDITION & "and CLOSED = 1")
 
             End If
 
