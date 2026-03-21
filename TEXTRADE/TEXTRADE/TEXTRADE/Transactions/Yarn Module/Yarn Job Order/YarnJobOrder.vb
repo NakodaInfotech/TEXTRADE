@@ -292,11 +292,12 @@ LINE1:
                     For Each dr As DataRow In dttable.Rows
                         cardno = Val(dr("CARDNO"))
 
-                        TXTREED.Text = dr("REED").ToString
-                        TXTREEDSPACE.Text = dr("REEDSPACE").ToString
-                        TXTPICKS.Text = dr("PICKS").ToString
+                        TXTREED.Text = Val(dr("REED"))
+                        TXTREEDSPACE.Text = Val(dr("REEDSPACE"))
+                        TXTPICKS.Text = Val(dr("PICKS"))
                         TXTSHADE.Text = dr("SHADE")
                         TXTOTHERITEMNAME.Text = dr("PARENTITEM")
+                        TXTTOTALENDS.Text = Val(dr("TOTALENDS"))
                     Next
 
 
@@ -484,21 +485,11 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
     Sub FILLGRID()
         If GRIDDOUBLECLICK = False Then
-            GRIDBEAM.Rows.Add(
-        Val(TXTSRNO.Text.Trim),
-        CMBITEMNAME.Text.Trim,
-        TXTSHADE.Text.Trim,
-        TXTOTHERITEMNAME.Text.Trim,
-        TXTREFNO.Text.Trim,
-        Format(Val(TXTREED.Text.Trim), "0.00"),
-        Format(Val(TXTPICKS.Text.Trim), "0.00"),
-        Format(Val(TXTREEDSPACE.Text.Trim), "0.00"),
-        Format(Val(TXTTOTALENDS.Text.Trim), "0.00"),
-        Format(Val(TXTMTRS.Text.Trim), "0.00"),
-        TXTDESCRIPTION.Text.Trim
-    )
+
+            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, TXTSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
             getsrno(GRIDBEAM)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDBEAM.Item(GSRNO.Index, TEMPROW).Value = Val(TXTSRNO.Text.Trim)
@@ -525,10 +516,12 @@ LINE1:
         TXTMTRS.Clear()
         TXTDESCRIPTION.Clear()
         CMBITEMNAME.Enabled = True
+        CMBITEMNAME.Focus()
 
         GRIDBEAM.FirstDisplayedScrollingRowIndex = GRIDBEAM.RowCount - 1
         TXTSRNO.Text = GRIDBEAM.RowCount + 1
     End Sub
+
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
             For Each row As DataGridViewRow In grid.Rows
@@ -571,6 +564,7 @@ LINE1:
     Private Sub GRIDBEAM_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDBEAM.CellDoubleClick
         EDITROW()
     End Sub
+
     Sub EDITROW()
         Try
             If GRIDBEAM.CurrentRow.Index >= 0 And GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value <> Nothing Then
@@ -594,7 +588,7 @@ LINE1:
                 TXTDESCRIPTION.Text = GRIDBEAM.Item(GDESC.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDBEAM.CurrentRow.Index
-                TXTSRNO.Focus()
+                CMBITEMNAME.Focus()
             End If
         Catch ex As Exception
             Throw ex

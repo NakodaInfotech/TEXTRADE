@@ -104,7 +104,7 @@ Public Class SelectItemSO
 
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
-                If Val(dtrow("ORDERPCS")) > 0 Then
+                If Val(dtrow("ORDERPCS")) > 0 Or Val(dtrow("ORDERMTRS")) > 0 Then
                     DT.Rows.Add(dtrow("COLOR"), Val(dtrow("CUT")), Val(dtrow("ORDERPCS")), Val(dtrow("ORDERMTRS")))
                 End If
             Next
@@ -183,7 +183,7 @@ Public Class SelectItemSO
 
     Private Sub SelectItemSO_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            If ClientName = "RAJKRIPA" Then GCUT.OptionsColumn.TabStop = False
+            If ClientName = "RAJKRIPA" Or ClientName = "ANKUSH" Then GCUT.OptionsColumn.TabStop = False
             If ClientName = "MAHAVIRPOLYCOT" Then GORDERMTRS.OptionsColumn.TabStop = True
         Catch ex As Exception
             Throw ex
