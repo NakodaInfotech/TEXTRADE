@@ -219,13 +219,59 @@ Public Class OpeningBeamStock
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
+    Private Function errorvalid() As Boolean
+        Dim bln As Boolean = True
 
+        'If GRIDSTOCK.RowCount = 0 Then
+        '    EP.SetError(txtpcs, "Enter Item Details")
+        '    bln = False
+        'End If
+
+        'For Each row As DataGridViewRow In GRIDSTOCK.Rows
+        '    If Val(row.Cells(GTOTALMTRS.Index).Value) = 0 Then
+        '        EP.SetError(TXTTOTALMTRS, "Mtrs Cannot be 0")
+        '        bln = False
+        '    End If
+        '    If Val(row.Cells(gMtrs.Index).Value) = 0 Then
+        '        EP.SetError(cmbtype, "Mtrs Cannot be 0")
+        '        bln = False
+        '    End If
+        '    If row.Cells(gQuality.Index).Value = "" Then
+        '        EP.SetError(cmbtype, "Quality cannot be Blank")
+        '        bln = False
+        '    End If
+        '    If row.Cells(GMERCHANT.Index).Value = "" Then
+        '        EP.SetError(cmbtype, "Item Name cannot be Blank")
+        '        bln = False
+        '    End If
+        '    If row.Cells(Gunit.Index).Value = "" Then
+        '        EP.SetError(cmbtype, "Unit cannot be Blank")
+        '        bln = False
+        '    End If
+        '    If cmbtype.Text = "INHOUSE" Then
+        '        If row.Cells(GDESIGN.Index).Value = "" Then
+        '            EP.SetError(cmbtype, "Design cannot be Blank")
+        '            bln = False
+        '        End If
+        '    ElseIf cmbtype.Text = "JOBBERSTOCK" Then
+        '        If row.Cells(gtoname.Index).Value = "" Then
+        '            EP.SetError(cmbtype, "Jobber Name cannot be Blank")
+        '            bln = False
+        '        End If
+        '    End If
+        'Next
+        Return bln
+    End Function
     Private Sub TXTREMARKS_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTREMARKS.Validating
 
-        If CMBOURGODOWN.Text.Trim <> "" And CMBNAME.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And CMBMILL.Text.Trim <> "" And Val(TXTTOTALENDS.Text.Trim) > 0 And Val(TXTTOTALENDS.Text.Trim) > 0 And Val(TXTTOTALMTRS.Text.Trim) > 0 Then
+        If CMBOURGODOWN.Text.Trim <> "" And CMBNAME.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And CMBMILL.Text.Trim <> "" And Val(TXTTOTALENDS.Text.Trim) > 0 And Val(TXTTOTALMTRS.Text.Trim) > 0 Then
 
             If USERADD = False Then
                 MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+
+            If Not errorvalid() Then
                 Exit Sub
             End If
 
@@ -289,8 +335,8 @@ Public Class OpeningBeamStock
             edit = False
             'CLEAR()
             CMBOURGODOWN.Focus()
-            Else
-                MsgBox("Enter Proper Details")
+        Else
+            MsgBox("Enter Proper Details")
         End If
     End Sub
 
@@ -318,7 +364,7 @@ Public Class OpeningBeamStock
         'OBJOPSTOCK.alParaval.Add(YearId)
         'OBJOPSTOCK.GETSTOCKBEAM()
         Dim OBJCMN As New ClsCommon
-        Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT ISNULL(STOCKMASTER_BEAM.SMBEAM_NO, 0) AS OPBEAMSTOCKNO, ISNULL(STOCKMASTER_BEAM.SMBEAM_GRIDSRNO, 0)AS GRIDSRNO ,ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(MILLMASTER.MILL_NAME, '') AS MILL, ISNULL(STOCKMASTER_BEAM.SMBEAM_BEAMNO, '0') AS BEAMNO, ISNULL(BEAMMASTER.BEAM_NAME, '') AS BEAMNAME, ISNULL(STOCKMASTER_BEAM.SMBEAM_TOTALENDS, 0) AS TOTALENDS,  ISNULL(STOCKMASTER_BEAM.SMBEAM_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(STOCKMASTER_BEAM.SMBEAM_GAMANO, 0) AS GAMANO, ISNULL(STOCKMASTER_BEAM.SMBEAM_SECTION, 0) AS SECTION,  ISNULL(STOCKMASTER_BEAM.SMBEAM_ROLLNO, 0) AS INT, ISNULL(STOCKMASTER_BEAM.SMBEAM_BEAMWT, 0) AS BEAMWT, ISNULL(STOCKMASTER_BEAM.SMBEAM_REMARKS, '') AS REMARKS,  ISNULL(STOCKMASTER_BEAM.SMBEAM_OUTWT, 0) AS OUTWT, ISNULL(STOCKMASTER_BEAM.SMBEAM_OUTMTRS, 0) AS OUTMTRS, ISNULL(STOCKMASTER_BEAM.SMBEAM_DONE, 0) AS DONE,  ISNULL(STOCKMASTER_BEAM.SMBEAM_ROLLNO, 0) AS ROLLNO, ISNULL(STOCKMASTER_BEAM.SMBEAM_BREAKAGE, 0) AS BREAKAGE, STOCKMASTER_BEAM.SMBEAM_DATE AS DATE FROM            STOCKMASTER_BEAM INNER JOIN GODOWNMASTER ON STOCKMASTER_BEAM.SMBEAM_GODOWNID = GODOWNMASTER.GODOWN_id INNER JOIN LEDGERS ON STOCKMASTER_BEAM.SMBEAM_SIZERID = LEDGERS.Acc_id INNER JOIN MILLMASTER ON STOCKMASTER_BEAM.SMBEAM_MILLID = MILLMASTER.MILL_ID INNER JOIN BEAMMASTER ON STOCKMASTER_BEAM.SMBEAM_BEAMID = BEAMMASTER.BEAM_ID  WHERE  STOCKMASTER_BEAM.SMBEAM_YEARID = " & YearId & " ORDER BY SMBEAM_NO", "", "")
+        Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT        ISNULL(STOCKMASTER_BEAM.SMBEAM_NO, 0) AS OPBEAMSTOCKNO, ISNULL(STOCKMASTER_BEAM.SMBEAM_GRIDSRNO, 0) AS GRIDSRNO, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(MILLMASTER.MILL_NAME, '') AS MILL, ISNULL(STOCKMASTER_BEAM.SMBEAM_BEAMNO, '0') AS BEAMNO, ISNULL(BEAMMASTER.BEAM_NAME, '') AS BEAMNAME, ISNULL(STOCKMASTER_BEAM.SMBEAM_TOTALENDS, 0) AS TOTALENDS, ISNULL(STOCKMASTER_BEAM.SMBEAM_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(STOCKMASTER_BEAM.SMBEAM_GAMANO, 0) AS GAMANO, ISNULL(STOCKMASTER_BEAM.SMBEAM_SECTION, 0) AS SECTION, ISNULL(STOCKMASTER_BEAM.SMBEAM_ROLLNO, 0) AS INT, ISNULL(STOCKMASTER_BEAM.SMBEAM_BEAMWT, 0) AS BEAMWT, ISNULL(STOCKMASTER_BEAM.SMBEAM_REMARKS, '') AS REMARKS, ISNULL(STOCKMASTER_BEAM.SMBEAM_OUTWT, 0) AS OUTWT, ISNULL(STOCKMASTER_BEAM.SMBEAM_OUTMTRS, 0) AS OUTMTRS, ISNULL(STOCKMASTER_BEAM.SMBEAM_DONE, 0) AS DONE, ISNULL(STOCKMASTER_BEAM.SMBEAM_BREAKAGE, 0) AS BREAKAGE, STOCKMASTER_BEAM.SMBEAM_DATE AS DATE, ISNULL(STOREITEMMASTER.STOREITEM_NAME, '') AS ROLLNO FROM            STOCKMASTER_BEAM INNER JOIN GODOWNMASTER ON STOCKMASTER_BEAM.SMBEAM_GODOWNID = GODOWNMASTER.GODOWN_id INNER JOIN LEDGERS ON STOCKMASTER_BEAM.SMBEAM_SIZERID = LEDGERS.Acc_id INNER JOIN MILLMASTER ON STOCKMASTER_BEAM.SMBEAM_MILLID = MILLMASTER.MILL_ID INNER JOIN BEAMMASTER ON STOCKMASTER_BEAM.SMBEAM_BEAMID = BEAMMASTER.BEAM_ID LEFT OUTER JOIN STOREITEMMASTER ON STOCKMASTER_BEAM.SMBEAM_ROLLNO = STOREITEMMASTER.STOREITEM_ID  WHERE  STOCKMASTER_BEAM.SMBEAM_YEARID = " & YearId & " ORDER BY SMBEAM_NO", "", "")
         If dttable.Rows.Count > 0 Then
             For Each ROW As DataRow In dttable.Rows
                 openingdate.Value = Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy")

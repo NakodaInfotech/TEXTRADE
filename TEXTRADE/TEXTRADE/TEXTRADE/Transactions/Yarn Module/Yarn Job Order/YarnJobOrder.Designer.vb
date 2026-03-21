@@ -242,7 +242,7 @@ Partial Class YarnJobOrder
         Me.TBWEFT.Padding = New System.Windows.Forms.Padding(3)
         Me.TBWEFT.Size = New System.Drawing.Size(1152, 239)
         Me.TBWEFT.TabIndex = 2
-        Me.TBWEFT.Text = "1. Warp Matching && Weft Matching"
+        Me.TBWEFT.Text = "Item Details"
         '
         'TXTDESCRIPTION
         '
@@ -254,7 +254,6 @@ Partial Class YarnJobOrder
         Me.TXTDESCRIPTION.Name = "TXTDESCRIPTION"
         Me.TXTDESCRIPTION.Size = New System.Drawing.Size(170, 23)
         Me.TXTDESCRIPTION.TabIndex = 1044
-        Me.TXTDESCRIPTION.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTOTHERITEMNAME
         '

@@ -442,6 +442,7 @@
     <Compile Include="Transactions\Yarn Modules\Yarn Return\ClsYarnReturnKnitting.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Return\ClsYarnReturnPurchase.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn SO\ClsYarnSaleOrder.vb" />
+    <Compile Include="Transactions\Yarn Modules\Yarn Stock Adjustment\ClsYarnStockAdjustment.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Wastage\ClsYarnWastageGodown.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Wastage\ClsYarnWastageJobber.vb" />
     <Compile Include="Utilities\ClsAutoWhatsapp.vb" />

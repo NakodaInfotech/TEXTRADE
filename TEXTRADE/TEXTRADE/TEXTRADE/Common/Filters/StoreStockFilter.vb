@@ -84,6 +84,7 @@ Public Class StoreStockFilter
                 If CMBSTOREITEMNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.ITEMNAME}='" & CMBSTOREITEMNAME.Text.Trim & "'"
                 If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
                 If CMBPARTYNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.NAME}='" & CMBPARTYNAME.Text.Trim & "'"
+                If CMBCATEGORY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.CATEGORY}='" & CMBCATEGORY.Text.Trim & "'"
             End If
 
 
@@ -92,6 +93,8 @@ Public Class StoreStockFilter
                 If CMBSTOREITEMNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYREPAIRSTOCK.ITEMNAME}='" & CMBSTOREITEMNAME.Text.Trim & "'"
                 If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYREPAIRSTOCK.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
                 If CMBPARTYNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYREPAIRSTOCK.NAME}='" & CMBPARTYNAME.Text.Trim & "'"
+                If CMBCATEGORY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYREPAIRSTOCK.CATEGORY}='" & CMBCATEGORY.Text.Trim & "'"
+
             End If
 
             If RBLOANTAKENFROMPARTY.Checked = True Then
@@ -99,6 +102,7 @@ Public Class StoreStockFilter
                 If CMBSTOREITEMNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESLOANTAKENFROMPARTY.ITEMNAME}='" & CMBSTOREITEMNAME.Text.Trim & "'"
                 If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESLOANTAKENFROMPARTY.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
                 If CMBPARTYNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESLOANTAKENFROMPARTY.NAME}='" & CMBPARTYNAME.Text.Trim & "'"
+                If CMBCATEGORY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESLOANTAKENFROMPARTY.CATEGORY}='" & CMBCATEGORY.Text.Trim & "'"
             End If
 
             If RBPARTYTAKINGLOAN.Checked = True Then
@@ -106,9 +110,14 @@ Public Class StoreStockFilter
                 If CMBSTOREITEMNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYTAKENLOAN.ITEMNAME}='" & CMBSTOREITEMNAME.Text.Trim & "'"
                 If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYTAKENLOAN.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
                 If CMBPARTYNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYTAKENLOAN.NAME}='" & CMBPARTYNAME.Text.Trim & "'"
+                If CMBCATEGORY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESPARTYTAKENLOAN.CATEGORY}='" & CMBCATEGORY.Text.Trim & "'"
             End If
 
-
+            OBJSTOCK.WHERECLAUSE = " {STORESTOCKREGISTER.YEARID}=" & YearId
+            If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
+            If CMBSTOREITEMNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.ITEMNAME}='" & CMBSTOREITEMNAME.Text.Trim & "'"
+            If CMBPARTYNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.NAME}='" & CMBPARTYNAME.Text.Trim & "'"
+            If CMBCATEGORY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {STORESTOCKREGISTER.NAME}='" & CMBCATEGORY.Text.Trim & "'"
 
 
             If RBITEMSUMM.Checked = True Then
@@ -179,6 +188,22 @@ Public Class StoreStockFilter
             If CMBPARTYNAME.Text.Trim = "" Then FILLNAME(CMBPARTYNAME, False, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBCATEGORY_Enter(sender As Object, e As EventArgs) Handles CMBCATEGORY.Enter
+        Try
+            If CMBCATEGORY.Text.Trim = "" Then fillCATEGORY(CMBCATEGORY, False)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBCATEGORY_Validating(sender As Object, e As CancelEventArgs) Handles CMBCATEGORY.Validating
+        Try
+            If CMBCATEGORY.Text.Trim <> "" Then CATEGORYVALIDATE(CMBCATEGORY, e, Me)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 End Class
