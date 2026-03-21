@@ -902,9 +902,19 @@ Public Class MDIMain
                         POADD.Enabled = True
                         OPPO_MASTER.Enabled = True
                         OPPOADD.Enabled = True
+
+
+                        '' FOR YARN 
+                        YARNPO_MASTER.Enabled = True
+                        YARNPOADD.Enabled = True
+                        YARNPOCLOSE.Enabled = True
                     Else
                         POADD.Enabled = False
                         OPPOADD.Enabled = False
+
+
+                        '' FOR YARN 
+                        YARNPOADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         PO_MASTER.Enabled = True
@@ -913,9 +923,20 @@ Public Class MDIMain
                         POEDIT.Enabled = True
                         OPPO_MASTER.Enabled = True
                         OPPOEDIT.Enabled = True
+
+
+                        '' FOR YARN 
+                        YARNPO_MASTER.Enabled = True
+                        YARNPOEDIT.Enabled = True
+                        YARNPOCLOSE.Enabled = True
                     Else
+
+
                         POEDIT.Enabled = False
                         OPPOEDIT.Enabled = False
+
+                        '' FOR YARN 
+                        YARNPOEDIT.Enabled = False
                     End If
 
 
@@ -995,6 +1016,13 @@ Public Class MDIMain
 
                         GREYRECADD.Enabled = True
                         GREYISSUEPROCESSADD.Enabled = True
+
+                        '' FOR YARN 
+                        GREYRECDJOBBER_MASTER.Enabled = True
+                        GREYRECDKNITTING_MASTER.Enabled = True
+                        GREYRECDJOBBERADD.Enabled = True
+                        GREYRECDKNITTINGADD.Enabled = True
+
                     Else
                         GRNADD.Enabled = False
                         GRNGREYADD.Enabled = False
@@ -1004,6 +1032,11 @@ Public Class MDIMain
                         GREYRECADD.Enabled = False
                         GREYISSUEPROCESSADD.Enabled = False
                         DYEINGPRICELISTADD.Enabled = False
+
+                        '' FOR YARN 
+                        GREYRECDJOBBERADD.Enabled = False
+                        GREYRECDKNITTINGADD.Enabled = False
+
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         GRN_MASTER.Enabled = True
@@ -1025,6 +1058,12 @@ Public Class MDIMain
                         DYEINGPRICELISTEDIT.Enabled = True
                         GREYRECEDIT.Enabled = True
                         GREYISSUEPROCESSEDIT.Enabled = True
+
+                        '' FOR YARN 
+                        GREYRECDJOBBER_MASTER.Enabled = True
+                        GREYRECDKNITTING_MASTER.Enabled = True
+                        GREYRECDJOBBEREDIT.Enabled = True
+                        GREYRECDKNITTINGEDIT.Enabled = True
                     Else
                         GRNEDIT.Enabled = False
                         GRNGREYEDIT.Enabled = False
@@ -1034,6 +1073,10 @@ Public Class MDIMain
                         GREYRECEDIT.Enabled = False
                         GREYISSUEPROCESSEDIT.Enabled = False
                         DYEINGPRICELISTEDIT.Enabled = False
+
+                        '' FOR YARN 
+                        GREYRECDJOBBEREDIT.Enabled = False
+                        GREYRECDKNITTINGEDIT.Enabled = False
                     End If
 
                 ElseIf DTROW(0).ToString = "GRN CHECKING" Then
@@ -1112,11 +1155,20 @@ Public Class MDIMain
                         SOCLOSE.Enabled = True
                         REASON_MASTER.Enabled = True
                         REASONADD.Enabled = True
+
+
+                        '' FOR YARN 
+                        YARNSO_MASTER.Enabled = True
+                        YARNSOADD.Enabled = True
+                        YARNSOCLOSE.Enabled = True
                     Else
                         SOADD.Enabled = False
                         SCHEDULEADD.Enabled = False
                         OPSOADD.Enabled = False
                         REASONADD.Enabled = False
+
+                        '' FOR YARN 
+                        YARNSOADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         SO_MASTER.Enabled = True
@@ -1128,11 +1180,19 @@ Public Class MDIMain
                         SOCLOSE.Enabled = True
                         REASON_MASTER.Enabled = True
                         REASONEDIT.Enabled = True
+
+                        '' FOR YARN 
+                        YARNSO_MASTER.Enabled = True
+                        YARNSOEDIT.Enabled = True
+                        YARNSOCLOSE.Enabled = True
                     Else
                         SOEDIT.Enabled = False
                         SCHEDULEEDIT.Enabled = False
                         OPSOEDIT.Enabled = False
                         REASONEDIT.Enabled = False
+
+                        '' FOR YARN 
+                        YARNSOEDIT.Enabled = False
                     End If
 
                 ElseIf DTROW(0).ToString = "SAMPLE MODULE" Then
@@ -1204,6 +1264,8 @@ Public Class MDIMain
                         TRANSCHALLAN_MASTER.Enabled = True
                         TRANSCHALLANADD.Enabled = True
                         OPGDN_MASTER.Enabled = True
+                        YARNCHALLAN_MASTER.Enabled = True
+                        YARNCHALLANADD.Enabled = True
 
                         If ClientName = "SBA" And UserName = "Admin" Then
                             PROFORMA_MASTER.Enabled = True
@@ -1232,6 +1294,7 @@ Public Class MDIMain
                         PROFORMAADD.Enabled = False
                         INTERGODOWNADD.Enabled = False
                         GATEPASSADD.Enabled = False
+                        YARNCHALLANADD.Enabled = False
                         'If ClientName = "AVIS" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SUPRIYA" Or ClientName = "YASHVI" Or ClientName = "RMANILAL" Or ClientName = "SONU" Or ClientName = "KOTHARI" Or ClientName = "MVIKASKUMAR" Or ClientName = "KARAN" Then STOCKADJUSTMENTADD.Enabled = False
                         STOCKTAKINGADD.Enabled = False
                         OPGDNADD.Enabled = False
@@ -1245,6 +1308,9 @@ Public Class MDIMain
                         TRANSCHALLAN_MASTER.Enabled = True
                         TRANSCHALLANEDIT.Enabled = True
                         OPGDN_MASTER.Enabled = True
+
+                        YARNCHALLAN_MASTER.Enabled = True
+                        YARNCHALLANEDIT.Enabled = True
 
                         If ClientName = "SBA" And UserName = "Admin" Then
                             PROFORMA_MASTER.Enabled = True
@@ -1275,6 +1341,7 @@ Public Class MDIMain
                         'If ClientName = "AVIS" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SUPRIYA" Or ClientName = "YASHVI" Or ClientName = "RMANILAL" Or ClientName = "SONU" Or ClientName = "KOTHARI" Or ClientName = "MVIKASKUMAR" Or ClientName = "KARAN" Then STOCKADJUSTMENTEDIT.Enabled = False
                         STOCKTAKINGEDIT.Enabled = False
                         OPGDNEDIT.Enabled = False
+                        YARNCHALLANEDIT.Enabled = False
                     End If
 
 
@@ -1401,22 +1468,22 @@ Public Class MDIMain
 
 
 
-                    'YARN MODULE
-                ElseIf DTROW(0).ToString = "YARN PURCHASE ORDER" Then
-                    If DTROW(1).ToString = True Then
-                        YARNPO_MASTER.Enabled = True
-                        YARNPOADD.Enabled = True
-                        YARNPOCLOSE.Enabled = True
-                    Else
-                        YARNPOADD.Enabled = False
-                    End If
-                    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
-                        YARNPO_MASTER.Enabled = True
-                        YARNPOEDIT.Enabled = True
-                        YARNPOCLOSE.Enabled = True
-                    Else
-                        YARNPOEDIT.Enabled = False
-                    End If
+                    '    'YARN MODULE
+                    'ElseIf DTROW(0).ToString = "YARN PURCHASE ORDER" Then
+                    '    If DTROW(1).ToString = True Then
+                    '        YARNPO_MASTER.Enabled = True
+                    '        YARNPOADD.Enabled = True
+                    '        YARNPOCLOSE.Enabled = True
+                    '    Else
+                    '        YARNPOADD.Enabled = False
+                    '    End If
+                    '    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
+                    '        YARNPO_MASTER.Enabled = True
+                    '        YARNPOEDIT.Enabled = True
+                    '        YARNPOCLOSE.Enabled = True
+                    '    Else
+                    '        YARNPOEDIT.Enabled = False
+                    '    End If
 
                 ElseIf DTROW(0).ToString = "YARN RECD" Then
                     If DTROW(1).ToString = True Then
@@ -1601,57 +1668,57 @@ Public Class MDIMain
                     End If
 
 
-                ElseIf DTROW(0).ToString = "GREY RECD" Then
-                    If DTROW(1).ToString = True Then
-                        GREYRECDJOBBER_MASTER.Enabled = True
-                        GREYRECDKNITTING_MASTER.Enabled = True
-                        GREYRECDJOBBERADD.Enabled = True
-                        GREYRECDKNITTINGADD.Enabled = True
-                    Else
-                        GREYRECDJOBBERADD.Enabled = False
-                        GREYRECDKNITTINGADD.Enabled = False
-                    End If
-                    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
-                        GREYRECDJOBBER_MASTER.Enabled = True
-                        GREYRECDKNITTING_MASTER.Enabled = True
-                        GREYRECDJOBBEREDIT.Enabled = True
-                        GREYRECDKNITTINGEDIT.Enabled = True
-                    Else
-                        GREYRECDJOBBEREDIT.Enabled = False
-                        GREYRECDKNITTINGEDIT.Enabled = False
-                    End If
+                    'ElseIf DTROW(0).ToString = "GREY RECD" Then
+                    '    If DTROW(1).ToString = True Then
+                    '        GREYRECDJOBBER_MASTER.Enabled = True
+                    '        GREYRECDKNITTING_MASTER.Enabled = True
+                    '        GREYRECDJOBBERADD.Enabled = True
+                    '        GREYRECDKNITTINGADD.Enabled = True
+                    '    Else
+                    '        GREYRECDJOBBERADD.Enabled = False
+                    '        GREYRECDKNITTINGADD.Enabled = False
+                    '    End If
+                    '    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
+                    '        GREYRECDJOBBER_MASTER.Enabled = True
+                    '        GREYRECDKNITTING_MASTER.Enabled = True
+                    '        GREYRECDJOBBEREDIT.Enabled = True
+                    '        GREYRECDKNITTINGEDIT.Enabled = True
+                    '    Else
+                    '        GREYRECDJOBBEREDIT.Enabled = False
+                    '        GREYRECDKNITTINGEDIT.Enabled = False
+                    '    End If
 
 
-                ElseIf DTROW(0).ToString = "YARN SALE ORDER" Then
-                    If DTROW(1).ToString = True Then
-                        YARNSO_MASTER.Enabled = True
-                        YARNSOADD.Enabled = True
-                        YARNSOCLOSE.Enabled = True
-                    Else
-                        YARNSOADD.Enabled = False
-                    End If
-                    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
-                        YARNSO_MASTER.Enabled = True
-                        YARNSOEDIT.Enabled = True
-                        YARNSOCLOSE.Enabled = True
-                    Else
-                        YARNSOEDIT.Enabled = False
-                    End If
+                    'ElseIf DTROW(0).ToString = "YARN SALE ORDER" Then
+                    '    If DTROW(1).ToString = True Then
+                    '        YARNSO_MASTER.Enabled = True
+                    '        YARNSOADD.Enabled = True
+                    '        YARNSOCLOSE.Enabled = True
+                    '    Else
+                    '        YARNSOADD.Enabled = False
+                    '    End If
+                    '    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
+                    '        YARNSO_MASTER.Enabled = True
+                    '        YARNSOEDIT.Enabled = True
+                    '        YARNSOCLOSE.Enabled = True
+                    '    Else
+                    '        YARNSOEDIT.Enabled = False
+                    '    End If
 
 
-                ElseIf DTROW(0).ToString = "YARN CHALLAN" Then
-                    If DTROW(1).ToString = True Then
-                        YARNCHALLAN_MASTER.Enabled = True
-                        YARNCHALLANADD.Enabled = True
-                    Else
-                        YARNCHALLANADD.Enabled = False
-                    End If
-                    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
-                        YARNCHALLAN_MASTER.Enabled = True
-                        YARNCHALLANEDIT.Enabled = True
-                    Else
-                        YARNCHALLANEDIT.Enabled = False
-                    End If
+                    'ElseIf DTROW(0).ToString = "YARN CHALLAN" Then
+                    '    If DTROW(1).ToString = True Then
+                    '        YARNCHALLAN_MASTER.Enabled = True
+                    '        YARNCHALLANADD.Enabled = True
+                    '    Else
+                    '        YARNCHALLANADD.Enabled = False
+                    '    End If
+                    '    If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
+                    '        YARNCHALLAN_MASTER.Enabled = True
+                    '        YARNCHALLANEDIT.Enabled = True
+                    '    Else
+                    '        YARNCHALLANEDIT.Enabled = False
+                    '    End If
 
 
                     'PRODUCTION

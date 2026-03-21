@@ -86,13 +86,18 @@ Public Class SelectIssueBarcodeGrid
     End Sub
 
     Private Sub gridbill_KeyDown(sender As Object, e As KeyEventArgs) Handles gridbill.KeyDown
-            Try
-                If gridbill.FocusedRowHandle >= 0 AndAlso (e.KeyCode = Keys.Space Or e.KeyCode = Keys.Enter) Then
-                    Dim DTROW As DataRow = gridbill.GetFocusedDataRow
-                    DTROW("CHK") = 1
-                End If
-            Catch ex As Exception
-                Throw ex
-            End Try
-        End Sub
-    End Class
+        Try
+            If gridbill.FocusedRowHandle >= 0 AndAlso (e.KeyCode = Keys.Space Or e.KeyCode = Keys.Enter) Then
+                Dim DTROW As DataRow = gridbill.GetFocusedDataRow
+                DTROW("CHK") = 1
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
+
+
+
+End Class
