@@ -2424,7 +2424,7 @@ LINESINGLE:
                 End If
                 If DTITEM.Rows.Count > 0 Then
                     For Each DTROWPS As DataRow In DTITEM.Rows
-                        GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", "", "", DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), DTROWPS("UNIT"), 0, Format(Val(DTROWPS("ORDERMTRS")), "0.00"), 0, "Mtrs", 0, 0, 0, 0, 0, 0)
+                        GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", "", "", DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), DTROWPS("UNIT"), 0, Format(Val(DTROWPS("ORDERMTRS")), "0.00"), 0, "Mtrs", 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                         'GRIDSO.Rows.Add(Val(txtsrno.Text.Trim), cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, cmbcolor.Text.Trim, Format(Val(txtQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), 0, 0)
                     Next
                     GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
@@ -2719,7 +2719,7 @@ LINESINGLE:
                     End If
                     If DTITEM.Rows.Count > 0 Then
                         For Each DTROWPS As DataRow In DTITEM.Rows
-                            GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), cmbqtyunit.Text.Trim, Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("ORDERMTRS")), "0.00"), Val(TXTRATE.Text.Trim), "Mtrs", 0, Format(Convert.ToDateTime(SODATE.Text).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
+                            GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), cmbqtyunit.Text.Trim, Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("ORDERMTRS")), "0.00"), Val(TXTRATE.Text.Trim), "Mtrs", 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                         Next
                         GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
                         getsrno(GRIDSO)
@@ -2828,7 +2828,7 @@ LINESINGLE:
                 End If
                 If DTITEM.Rows.Count > 0 Then
                     For Each DTROWPS As DataRow In DTITEM.Rows
-                        GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), cmbqtyunit.Text.Trim, Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("ORDERMTRS")), "0.00"), Val(TXTRATE.Text.Trim), "Mtrs", 0, 0, 0, 0, 0, 0)
+                        GRIDSO.Rows.Add(0, cmbitemname.Text.Trim, "", CMBDESIGN.Text.Trim, txtgridremarks.Text.Trim, DTROWPS("COLOR"), "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), cmbqtyunit.Text.Trim, Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("ORDERMTRS")), "0.00"), Val(TXTRATE.Text.Trim), "Mtrs", 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                     Next
                     GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
                     getsrno(GRIDSO)
@@ -2954,7 +2954,7 @@ LINESINGLE:
                         CMBFORWARD.Text = dr("FORWARD")
                         CMBORDERON.Text = dr("ORDERON")
 
-                        GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR").ToString, dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), 0, 0, 0, 0, 0)
+                        GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR").ToString, dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), Format(Convert.ToDateTime(dr("SCHEDULEDATE")).Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
 
 
 
@@ -3324,7 +3324,7 @@ NEXTLINE:
 
 
 INSERTDATA:
-                            If TEMPSIZE <> "" Then GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", TEMPSIZE, "", 1, cmbqtyunit.Text.Trim, 0, 0, Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, 0, 0, 0, 0, 0)
+                            If TEMPSIZE <> "" Then GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", TEMPSIZE, "", 1, cmbqtyunit.Text.Trim, 0, 0, Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                             TEMPSIZE = ""
                         Next
                         GoTo LINE1
@@ -3345,11 +3345,11 @@ INSERTDATA:
                                         GoTo NEXTLINE
                                     End If
                                 Next
-                                GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DTROW("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, 0, 0, 0, 0, 0)
+                                GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DTROW("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
 NEXTLINE:
 
                                 If GRIDSO.RowCount = 0 Then
-                                    GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DTROW("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, 0, 0, 0, 0, 0)
+                                    GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DTROW("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                                 End If
                             Next
                             GoTo LINE1
@@ -3362,11 +3362,11 @@ NEXTLINE:
                                     GoTo NEXTLINE1
                                 End If
                             Next
-                            GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, 0, 0, 0, 0, 0)
+                            GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
 NEXTLINE1:
 
                             If GRIDSO.RowCount = 0 Then
-                                GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, 0, 0, 0, 0, 0)
+                                GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                             End If
                             GoTo LINE1
 
@@ -3375,7 +3375,7 @@ NEXTLINE1:
 
 
 
-                    GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, 0, 0, 0, 0, 0)
+                    GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                     GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
 
 LINE1:
@@ -3693,7 +3693,7 @@ LINE1:
                         CMBSAMPLE.Text = dr("SAMPLE")
 
 
-                        GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR").ToString, dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), 0, 0, 0, 0, 0)
+                        GRIDSO.Rows.Add(dr("SRNO").ToString, dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR").ToString, dr("PARTYPONO"), Format(Val(dr("QTY")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                     Next
                     TOTAL()
                     GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
