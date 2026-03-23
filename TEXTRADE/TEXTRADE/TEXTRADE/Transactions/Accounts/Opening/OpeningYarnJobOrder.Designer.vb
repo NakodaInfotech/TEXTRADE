@@ -22,6 +22,7 @@ Partial Class OpeningYarnJobOrder
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -104,6 +105,8 @@ Partial Class OpeningYarnJobOrder
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
+        Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BlendPanel1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
         Me.TBWEFT.SuspendLayout()
@@ -111,6 +114,7 @@ Partial Class OpeningYarnJobOrder
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
+        CType(Me.Ep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -1034,6 +1038,16 @@ Partial Class OpeningYarnJobOrder
         Me.CMBNAME.Size = New System.Drawing.Size(233, 23)
         Me.CMBNAME.TabIndex = 0
         '
+        'Ep
+        '
+        Me.Ep.BlinkRate = 0
+        Me.Ep.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
+        Me.Ep.ContainerControl = Me
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
         'OpeningYarnJobOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1056,6 +1070,7 @@ Partial Class OpeningYarnJobOrder
         Me.GroupBox5.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        CType(Me.Ep, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1138,4 +1153,6 @@ Partial Class OpeningYarnJobOrder
     Friend WithEvents toolnext As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents CMBNAME As ComboBox
+    Friend WithEvents Ep As ErrorProvider
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class

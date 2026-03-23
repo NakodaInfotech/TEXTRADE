@@ -140,10 +140,10 @@ Public Class YarnJobOrder
                 'End If
 
                 Dim OBJCMN As New ClsCommon
-                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_DESC.JOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(JOBORDER_DESC.JOB_PARENTITEM, '') AS PARENTITEM, ISNULL(JOBORDER_DESC.JOB_REFNO, '') AS REFNO, ISNULL(JOBORDER_DESC.JOB_REED, 0) AS REED, ISNULL(JOBORDER_DESC.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER_DESC.JOB_REEDSPACE,  0) AS REEDSPACE, ISNULL(JOBORDER_DESC.JOB_ENDS, 0) AS ENDS, ISNULL(JOBORDER_DESC.JOB_MTRS, 0) AS MTRS, ISNULL(JOBORDER_DESC.JOB_DESCRIPTION, '') AS DESCRIPTION,  ISNULL(JOBORDER_DESC.JOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(JOBORDER_DESC.JOB_DONE, 0) AS DONE  ", "", " JOBORDER_DESC LEFT OUTER JOIN COLORMASTER ON JOBORDER_DESC.JOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id ", " AND  JOBORDER_DESC.JOB_NO = " & TEMPJONO & " AND JOBORDER_DESC.JOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
+                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_DESC.JOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(JOBORDER_DESC.JOB_PARENTITEM, '') AS PARENTITEM, ISNULL(JOBORDER_DESC.JOB_REFNO, '') AS REFNO, ISNULL(JOBORDER_DESC.JOB_REED, 0) AS REED, ISNULL(JOBORDER_DESC.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER_DESC.JOB_REEDSPACE,  0) AS REEDSPACE, ISNULL(JOBORDER_DESC.JOB_ENDS, 0) AS ENDS, ISNULL(JOBORDER_DESC.JOB_MTRS, 0) AS MTRS, ISNULL(JOBORDER_DESC.JOB_DESCRIPTION, '') AS DESCRIPTION,  ISNULL(JOBORDER_DESC.JOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(JOBORDER_DESC.JOB_DONE, 0) AS DONE ,ISNULL(JOBORDER_DESC.JOB_CLOSED, 0) AS CLOSED ", "", " JOBORDER_DESC LEFT OUTER JOIN COLORMASTER ON JOBORDER_DESC.JOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id ", " AND  JOBORDER_DESC.JOB_NO = " & TEMPJONO & " AND JOBORDER_DESC.JOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
                 If dttable1.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable1.Rows
-                        GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")))
+                        GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")), Val(DTR("CLOSED")))
                     Next
                 End If
 
@@ -192,6 +192,12 @@ Public Class YarnJobOrder
             Dim Ends As String = ""
             Dim Mtrs As String = ""
             Dim Description As String = ""
+            Dim OUTMTRS As String = ""
+            Dim DONE As String = ""
+            Dim CLOSED As String = ""
+
+
+
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDBEAM.Rows
                 If row.IsNewRow Then Continue For
@@ -208,6 +214,10 @@ Public Class YarnJobOrder
                         Ends = Val(row.Cells(GENDS.Index).Value)
                         Mtrs = Val(row.Cells(GMTRS.Index).Value)
                         Description = row.Cells(GDESC.Index).Value.ToString
+                        OUTMTRS = Val(row.Cells(GOUTMTRS.Index).Value)
+                        DONE = row.Cells(GDONE.Index).Value
+                        CLOSED = row.Cells(GCLOSED.Index).Value
+
                     Else
                         SrNo = SrNo & "|" & Val(row.Cells(GSRNO.Index).Value)
                         ItemName = ItemName & "|" & row.Cells(GITEMNAME.Index).Value.ToString
@@ -220,6 +230,11 @@ Public Class YarnJobOrder
                         Ends = Ends & "|" & Val(row.Cells(GENDS.Index).Value)
                         Mtrs = Mtrs & "|" & Val(row.Cells(GMTRS.Index).Value)
                         Description = Description & "|" & row.Cells(GDESC.Index).Value.ToString
+                        OUTMTRS = OUTMTRS & "|" & Val(row.Cells(GOUTMTRS.Index).Value)
+                        DONE = DONE & "|" & row.Cells(GDONE.Index).Value
+                        CLOSED = CLOSED & "|" & row.Cells(GCLOSED.Index).Value
+
+
                     End If
                 End If
             Next
@@ -235,6 +250,12 @@ Public Class YarnJobOrder
             alParaval.Add(Ends)
             alParaval.Add(Mtrs)
             alParaval.Add(Description)
+            alParaval.Add(OUTMTRS)
+            alParaval.Add(DONE)
+            alParaval.Add(CLOSED)
+
+
+
 
             '*************************************************************************
 

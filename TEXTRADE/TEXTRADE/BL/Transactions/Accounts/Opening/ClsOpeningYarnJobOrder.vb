@@ -1,6 +1,5 @@
 ﻿Imports DB
-
-Public Class ClsJobOrder
+Public Class ClsOpeningYarnJobOrder
     Private objDBOperation As DBOperation
     Public alParaval As New ArrayList
     Dim intResult As Integer
@@ -18,7 +17,7 @@ Public Class ClsJobOrder
 #Region "Functions"
     Public Function SAVE() As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_YARNJOBORDER_SAVE"
+            Dim strCommand As String = "SP_TRANS_OPENINGYARNJOBORDER_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
@@ -90,7 +89,7 @@ Public Class ClsJobOrder
         Dim intResult As Integer
 
         Try
-            Dim strCommand As String = "SP_TRANS_YARNJOBORDER_UPDATE"
+            Dim strCommand As String = "SP_TRANS_OPENINGYARNJOBORDER_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
@@ -166,7 +165,7 @@ Public Class ClsJobOrder
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_YARNJOBORDER_DELETE"
+            Dim strCommand As String = "SP_TRANS_OPENINGYARNJOBORDER_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JOBNO", alParaval(0))) ' Or correct index
@@ -204,7 +203,7 @@ Public Class ClsJobOrder
         Dim dtTable As DataTable
 
         Try
-            Dim strCommand As String = "SP_SELECTYARNJOBORDER_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTOPENINGYARNJOBORDER_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JOBNO", JOBNO))
@@ -218,4 +217,5 @@ Public Class ClsJobOrder
 
     End Function
 #End Region
+
 End Class
