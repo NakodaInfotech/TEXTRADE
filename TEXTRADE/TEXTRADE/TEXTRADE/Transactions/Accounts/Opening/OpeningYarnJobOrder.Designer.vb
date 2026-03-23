@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class YarnJobOrder
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class OpeningYarnJobOrder
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,24 +20,14 @@ Partial Class YarnJobOrder
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnJobOrder))
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(OpeningYarnJobOrder))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TXTTOTALMTRS = New System.Windows.Forms.TextBox()
@@ -50,6 +40,20 @@ Partial Class YarnJobOrder
         Me.TXTSHADE = New System.Windows.Forms.TextBox()
         Me.TXTSRNO = New System.Windows.Forms.TextBox()
         Me.GRIDBEAM = New System.Windows.Forms.DataGridView()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPARENTITEM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GREFNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GREED = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPICKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GREEDSPACE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDESC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOUTMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCLOSED = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTTOTALWEFTCOST = New System.Windows.Forms.TextBox()
         Me.TXTREED = New System.Windows.Forms.TextBox()
         Me.TXTTOTALENDS = New System.Windows.Forms.TextBox()
@@ -103,20 +107,6 @@ Partial Class YarnJobOrder
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPARENTITEM = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GREFNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GREED = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPICKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GREEDSPACE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDESC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GOUTMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCLOSED = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
         Me.TBWEFT.SuspendLayout()
@@ -159,8 +149,8 @@ Partial Class YarnJobOrder
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1184, 581)
-        Me.BlendPanel1.TabIndex = 0
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel1.TabIndex = 1
         '
         'Label2
         '
@@ -275,6 +265,7 @@ Partial Class YarnJobOrder
         Me.TXTOTHERITEMNAME.Size = New System.Drawing.Size(150, 23)
         Me.TXTOTHERITEMNAME.TabIndex = 1043
         Me.TXTOTHERITEMNAME.TabStop = False
+        Me.TXTOTHERITEMNAME.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTSHADE
         '
@@ -285,6 +276,7 @@ Partial Class YarnJobOrder
         Me.TXTSHADE.Size = New System.Drawing.Size(120, 23)
         Me.TXTSHADE.TabIndex = 1042
         Me.TXTSHADE.TabStop = False
+        Me.TXTSHADE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTSRNO
         '
@@ -319,14 +311,14 @@ Partial Class YarnJobOrder
         Me.GRIDBEAM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDBEAM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDBEAM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GITEMNAME, Me.GSHADE, Me.GPARENTITEM, Me.GREFNO, Me.GREED, Me.GPICKS, Me.GREEDSPACE, Me.GENDS, Me.GMTRS, Me.GDESC, Me.GOUTMTRS, Me.GDONE, Me.GCLOSED})
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDBEAM.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDBEAM.DefaultCellStyle = DataGridViewCellStyle3
         Me.GRIDBEAM.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDBEAM.Location = New System.Drawing.Point(3, 28)
         Me.GRIDBEAM.MultiSelect = False
@@ -335,9 +327,9 @@ Partial Class YarnJobOrder
         Me.GRIDBEAM.RowHeadersVisible = False
         Me.GRIDBEAM.RowHeadersWidth = 30
         Me.GRIDBEAM.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDBEAM.RowsDefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDBEAM.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDBEAM.RowTemplate.Height = 20
         Me.GRIDBEAM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDBEAM.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -345,6 +337,132 @@ Partial Class YarnJobOrder
         Me.GRIDBEAM.Size = New System.Drawing.Size(1143, 208)
         Me.GRIDBEAM.TabIndex = 901
         Me.GRIDBEAM.TabStop = False
+        '
+        'GSRNO
+        '
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 30
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.HeaderText = "Item Name"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.ReadOnly = True
+        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GITEMNAME.Width = 150
+        '
+        'GSHADE
+        '
+        Me.GSHADE.HeaderText = "Shade"
+        Me.GSHADE.Name = "GSHADE"
+        Me.GSHADE.ReadOnly = True
+        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSHADE.Width = 120
+        '
+        'GPARENTITEM
+        '
+        Me.GPARENTITEM.HeaderText = "Other Item Name"
+        Me.GPARENTITEM.Name = "GPARENTITEM"
+        Me.GPARENTITEM.ReadOnly = True
+        Me.GPARENTITEM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPARENTITEM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPARENTITEM.Width = 150
+        '
+        'GREFNO
+        '
+        Me.GREFNO.HeaderText = "Ref No"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.ReadOnly = True
+        Me.GREFNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GREFNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GREFNO.Width = 120
+        '
+        'GREED
+        '
+        Me.GREED.HeaderText = "Reed"
+        Me.GREED.Name = "GREED"
+        Me.GREED.ReadOnly = True
+        Me.GREED.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GREED.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GREED.Width = 70
+        '
+        'GPICKS
+        '
+        Me.GPICKS.HeaderText = "Picks"
+        Me.GPICKS.Name = "GPICKS"
+        Me.GPICKS.ReadOnly = True
+        Me.GPICKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPICKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPICKS.Width = 70
+        '
+        'GREEDSPACE
+        '
+        Me.GREEDSPACE.HeaderText = "R.S."
+        Me.GREEDSPACE.Name = "GREEDSPACE"
+        Me.GREEDSPACE.ReadOnly = True
+        Me.GREEDSPACE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GREEDSPACE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GREEDSPACE.Width = 70
+        '
+        'GENDS
+        '
+        Me.GENDS.HeaderText = "Ends"
+        Me.GENDS.Name = "GENDS"
+        Me.GENDS.ReadOnly = True
+        Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GENDS.Width = 80
+        '
+        'GMTRS
+        '
+        Me.GMTRS.HeaderText = "Mtrs"
+        Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.ReadOnly = True
+        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMTRS.Width = 80
+        '
+        'GDESC
+        '
+        Me.GDESC.HeaderText = "Description"
+        Me.GDESC.Name = "GDESC"
+        Me.GDESC.ReadOnly = True
+        Me.GDESC.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDESC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDESC.Width = 170
+        '
+        'GOUTMTRS
+        '
+        Me.GOUTMTRS.HeaderText = "Out Mtrs"
+        Me.GOUTMTRS.Name = "GOUTMTRS"
+        Me.GOUTMTRS.ReadOnly = True
+        Me.GOUTMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GOUTMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GOUTMTRS.Visible = False
+        '
+        'GDONE
+        '
+        Me.GDONE.HeaderText = "Done"
+        Me.GDONE.Name = "GDONE"
+        Me.GDONE.ReadOnly = True
+        Me.GDONE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDONE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDONE.Visible = False
+        '
+        'GCLOSED
+        '
+        Me.GCLOSED.HeaderText = "Closed"
+        Me.GCLOSED.Name = "GCLOSED"
+        Me.GCLOSED.ReadOnly = True
+        Me.GCLOSED.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCLOSED.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCLOSED.Visible = False
         '
         'TXTTOTALWEFTCOST
         '
@@ -838,7 +956,7 @@ Partial Class YarnJobOrder
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1184, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 610
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -930,162 +1048,16 @@ Partial Class YarnJobOrder
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'GSRNO
-        '
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 30
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.HeaderText = "Item Name"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.ReadOnly = True
-        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GITEMNAME.Width = 150
-        '
-        'GSHADE
-        '
-        Me.GSHADE.HeaderText = "Shade"
-        Me.GSHADE.Name = "GSHADE"
-        Me.GSHADE.ReadOnly = True
-        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSHADE.Width = 120
-        '
-        'GPARENTITEM
-        '
-        Me.GPARENTITEM.HeaderText = "Other Item Name"
-        Me.GPARENTITEM.Name = "GPARENTITEM"
-        Me.GPARENTITEM.ReadOnly = True
-        Me.GPARENTITEM.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPARENTITEM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPARENTITEM.Width = 150
-        '
-        'GREFNO
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GREFNO.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GREFNO.HeaderText = "Ref No"
-        Me.GREFNO.Name = "GREFNO"
-        Me.GREFNO.ReadOnly = True
-        Me.GREFNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GREFNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GREFNO.Width = 120
-        '
-        'GREED
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GREED.DefaultCellStyle = DataGridViewCellStyle4
-        Me.GREED.HeaderText = "Reed"
-        Me.GREED.Name = "GREED"
-        Me.GREED.ReadOnly = True
-        Me.GREED.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GREED.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GREED.Width = 70
-        '
-        'GPICKS
-        '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GPICKS.DefaultCellStyle = DataGridViewCellStyle5
-        Me.GPICKS.HeaderText = "Picks"
-        Me.GPICKS.Name = "GPICKS"
-        Me.GPICKS.ReadOnly = True
-        Me.GPICKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPICKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPICKS.Width = 70
-        '
-        'GREEDSPACE
-        '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GREEDSPACE.DefaultCellStyle = DataGridViewCellStyle6
-        Me.GREEDSPACE.HeaderText = "R.S."
-        Me.GREEDSPACE.Name = "GREEDSPACE"
-        Me.GREEDSPACE.ReadOnly = True
-        Me.GREEDSPACE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GREEDSPACE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GREEDSPACE.Width = 70
-        '
-        'GENDS
-        '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GENDS.DefaultCellStyle = DataGridViewCellStyle7
-        Me.GENDS.HeaderText = "Ends"
-        Me.GENDS.Name = "GENDS"
-        Me.GENDS.ReadOnly = True
-        Me.GENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GENDS.Width = 80
-        '
-        'GMTRS
-        '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle8
-        Me.GMTRS.HeaderText = "Mtrs"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.ReadOnly = True
-        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMTRS.Width = 80
-        '
-        'GDESC
-        '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GDESC.DefaultCellStyle = DataGridViewCellStyle9
-        Me.GDESC.HeaderText = "Description"
-        Me.GDESC.Name = "GDESC"
-        Me.GDESC.ReadOnly = True
-        Me.GDESC.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDESC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDESC.Width = 170
-        '
-        'GOUTMTRS
-        '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GOUTMTRS.DefaultCellStyle = DataGridViewCellStyle10
-        Me.GOUTMTRS.HeaderText = "Out Mtrs"
-        Me.GOUTMTRS.Name = "GOUTMTRS"
-        Me.GOUTMTRS.ReadOnly = True
-        Me.GOUTMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GOUTMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GOUTMTRS.Visible = False
-        '
-        'GDONE
-        '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GDONE.DefaultCellStyle = DataGridViewCellStyle11
-        Me.GDONE.HeaderText = "Done"
-        Me.GDONE.Name = "GDONE"
-        Me.GDONE.ReadOnly = True
-        Me.GDONE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDONE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDONE.Visible = False
-        '
-        'GCLOSED
-        '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GCLOSED.DefaultCellStyle = DataGridViewCellStyle12
-        Me.GCLOSED.HeaderText = "Closed"
-        Me.GCLOSED.Name = "GCLOSED"
-        Me.GCLOSED.ReadOnly = True
-        Me.GCLOSED.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GCLOSED.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GCLOSED.Visible = False
-        '
-        'YarnJobOrder
+        'OpeningYarnJobOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1184, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "YarnJobOrder"
+        Me.Name = "OpeningYarnJobOrder"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Job Order"
+        Me.Text = "OpeningYarnJobOrder"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -1105,9 +1077,54 @@ Partial Class YarnJobOrder
     End Sub
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
+    Friend WithEvents Label2 As Label
+    Friend WithEvents TXTTOTALMTRS As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents TXTPONO As TextBox
+    Friend WithEvents TABCONTROLDETAILS As TabControl
+    Friend WithEvents TBWEFT As TabPage
+    Friend WithEvents TXTDESCRIPTION As TextBox
+    Friend WithEvents TXTOTHERITEMNAME As TextBox
+    Friend WithEvents TXTSHADE As TextBox
+    Friend WithEvents TXTSRNO As TextBox
+    Friend WithEvents GRIDBEAM As DataGridView
+    Friend WithEvents GSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GSHADE As DataGridViewTextBoxColumn
+    Friend WithEvents GPARENTITEM As DataGridViewTextBoxColumn
+    Friend WithEvents GREFNO As DataGridViewTextBoxColumn
+    Friend WithEvents GREED As DataGridViewTextBoxColumn
+    Friend WithEvents GPICKS As DataGridViewTextBoxColumn
+    Friend WithEvents GREEDSPACE As DataGridViewTextBoxColumn
+    Friend WithEvents GENDS As DataGridViewTextBoxColumn
+    Friend WithEvents GMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents GDESC As DataGridViewTextBoxColumn
+    Friend WithEvents GOUTMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents GDONE As DataGridViewTextBoxColumn
+    Friend WithEvents GCLOSED As DataGridViewTextBoxColumn
+    Friend WithEvents TXTTOTALWEFTCOST As TextBox
+    Friend WithEvents TXTREED As TextBox
+    Friend WithEvents TXTTOTALENDS As TextBox
+    Friend WithEvents TXTTOTALWEFTRATE As TextBox
+    Friend WithEvents TXTTOTALWEFTCONS As TextBox
     Friend WithEvents TXTMTRS As TextBox
-    Friend WithEvents Label4 As Label
+    Friend WithEvents TXTPICKS As TextBox
+    Friend WithEvents TXTTOTALWEFTBE As TextBox
+    Friend WithEvents TXTTOTALWEFTPE As TextBox
+    Friend WithEvents TXTTOTALWEFTWT As TextBox
+    Friend WithEvents TXTTOTALWEFTTE As TextBox
+    Friend WithEvents TXTREEDSPACE As TextBox
+    Friend WithEvents TXTWEFTCOST As TextBox
+    Friend WithEvents TXTWEFTRATE As TextBox
+    Friend WithEvents TXTWEFTCONS As TextBox
+    Friend WithEvents TXTWEFTBE As TextBox
+    Friend WithEvents TXTWEFTPE As TextBox
     Friend WithEvents TXTREFNO As TextBox
+    Friend WithEvents CMBITEMNAME As ComboBox
+    Friend WithEvents TXTWEFTWT As TextBox
+    Friend WithEvents TXTWEFTTE As TextBox
+    Friend WithEvents Label51 As Label
+    Friend WithEvents Label4 As Label
     Friend WithEvents DTDATE As MaskedTextBox
     Friend WithEvents LBLPARTYNAME As Label
     Friend WithEvents TXTADD As TextBox
@@ -1136,51 +1153,6 @@ Partial Class YarnJobOrder
     Friend WithEvents toolnext As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents CMBNAME As ComboBox
-    Friend WithEvents CMBITEMNAME As ComboBox
-    Friend WithEvents TXTREEDSPACE As TextBox
-    Friend WithEvents TXTPICKS As TextBox
-    Friend WithEvents TXTTOTALENDS As TextBox
-    Friend WithEvents TXTREED As TextBox
-    Friend WithEvents TABCONTROLDETAILS As TabControl
-    Friend WithEvents TBWEFT As TabPage
-    Friend WithEvents TXTTOTALWEFTCOST As TextBox
-    Friend WithEvents TXTTOTALWEFTRATE As TextBox
-    Friend WithEvents TXTTOTALWEFTCONS As TextBox
-    Friend WithEvents TXTTOTALWEFTBE As TextBox
-    Friend WithEvents TXTTOTALWEFTPE As TextBox
-    Friend WithEvents TXTTOTALWEFTWT As TextBox
-    Friend WithEvents TXTTOTALWEFTTE As TextBox
-    Friend WithEvents TXTWEFTCOST As TextBox
-    Friend WithEvents TXTWEFTRATE As TextBox
-    Friend WithEvents TXTWEFTCONS As TextBox
-    Friend WithEvents TXTWEFTBE As TextBox
-    Friend WithEvents TXTWEFTPE As TextBox
-    Friend WithEvents TXTWEFTWT As TextBox
-    Friend WithEvents TXTWEFTTE As TextBox
-    Friend WithEvents Label51 As Label
     Friend WithEvents Ep As ErrorProvider
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
-    Friend WithEvents GRIDBEAM As DataGridView
-    Friend WithEvents TXTSRNO As TextBox
-    Friend WithEvents TXTDESCRIPTION As TextBox
-    Friend WithEvents TXTOTHERITEMNAME As TextBox
-    Friend WithEvents TXTSHADE As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents TXTPONO As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents TXTTOTALMTRS As TextBox
-    Friend WithEvents GSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GSHADE As DataGridViewTextBoxColumn
-    Friend WithEvents GPARENTITEM As DataGridViewTextBoxColumn
-    Friend WithEvents GREFNO As DataGridViewTextBoxColumn
-    Friend WithEvents GREED As DataGridViewTextBoxColumn
-    Friend WithEvents GPICKS As DataGridViewTextBoxColumn
-    Friend WithEvents GREEDSPACE As DataGridViewTextBoxColumn
-    Friend WithEvents GENDS As DataGridViewTextBoxColumn
-    Friend WithEvents GMTRS As DataGridViewTextBoxColumn
-    Friend WithEvents GDESC As DataGridViewTextBoxColumn
-    Friend WithEvents GOUTMTRS As DataGridViewTextBoxColumn
-    Friend WithEvents GDONE As DataGridViewTextBoxColumn
-    Friend WithEvents GCLOSED As DataGridViewTextBoxColumn
 End Class
