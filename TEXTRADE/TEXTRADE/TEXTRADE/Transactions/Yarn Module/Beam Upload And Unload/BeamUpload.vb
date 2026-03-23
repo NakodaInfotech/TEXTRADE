@@ -71,32 +71,32 @@ Public Class BeamUpload
 
 
 
-            'Dim objCUTTING As New ClsBeamUpload()
-            'objCUTTING.alParaval = alParaval
-            'If EDIT = False Then
-            '    If USERADD = False Then
-            '        MsgBox("Insufficient Rights")
-            '        Exit Sub
-            '    End If
-            '    Dim DTTABLE As DataTable = objCUTTING.SAVE()
-            '    MsgBox("Details Added")
-            '    TXTGREYNO.Text = DTTABLE.Rows(0).Item(0)
-            '    'PRINTREPORT(DTTABLE.Rows(0).Item(0))
+            Dim objCUTTING As New ClsBeamUpload()
+            objCUTTING.alParaval = alParaval
+            If EDIT = False Then
+                If USERADD = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                Dim DTTABLE As DataTable = objCUTTING.SAVE()
+                MsgBox("Details Added")
+                TXTGREYNO.Text = DTTABLE.Rows(0).Item(0)
+                'PRINTREPORT(DTTABLE.Rows(0).Item(0))
 
-            'ElseIf EDIT = True Then
-            '    If USEREDIT = False Then
-            '        MsgBox("Insufficient Rights")
-            '        Exit Sub
-            '    End If
+            ElseIf EDIT = True Then
+                If USEREDIT = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
 
-            '    alParaval.Add(TEMPGREYNO)
-            '    IntResult = objCUTTING.UPDATE()
-            '    MsgBox("Details Updated")
+                alParaval.Add(TEMPGREYNO)
+                IntResult = objCUTTING.UPDATE()
+                MsgBox("Details Updated")
 
-            '    EDIT = False
-            'End If
-            'clear()
-            'GREYDATE.Focus()
+                EDIT = False
+            End If
+            clear()
+            GREYDATE.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -160,28 +160,28 @@ Public Class BeamUpload
     End Sub
 
     Private Sub cmddelete_Click(sender As Object, e As EventArgs) Handles cmddelete.Click
-        'Try
-        '    If EDIT = True Then
+        Try
+            If EDIT = True Then
 
-        '        Dim TEMPMSG As Integer = MsgBox("Wish to Delete This Beam Upload Entry ...?", MsgBoxStyle.YesNo)
-        '        If TEMPMSG = vbNo Then Exit Sub
+                Dim TEMPMSG As Integer = MsgBox("Wish to Delete This Beam Upload Entry ...?", MsgBoxStyle.YesNo)
+                If TEMPMSG = vbNo Then Exit Sub
 
-        '        Dim ALPARAVAL As New ArrayList
-        '        Dim OBJEMB As New ClsBeamUplaod
+                Dim ALPARAVAL As New ArrayList
+                Dim OBJEMB As New ClsBeamUpload
 
-        '        ALPARAVAL.Add(TEMPGREYNO)
-        '        ALPARAVAL.Add(CmpId)
-        '        ALPARAVAL.Add(YearId)
-        '        OBJEMB.alParaval = ALPARAVAL
-        '        Dim INTRES As Integer = OBJEMB.Delete()
-        '        MsgBox("Beam Upload Entry Deleted Succesfully")
-        '        clear()
-        '        EDIT = False
-        '        CMBNAME.Focus()
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+                ALPARAVAL.Add(TEMPGREYNO)
+                ALPARAVAL.Add(CmpId)
+                ALPARAVAL.Add(YearId)
+                OBJEMB.alParaval = ALPARAVAL
+                Dim INTRES As Integer = OBJEMB.Delete()
+                MsgBox("Beam Upload Entry Deleted Succesfully")
+                clear()
+                EDIT = False
+                CMBNAME.Focus()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub CMBNAME_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBNAME.KeyDown
