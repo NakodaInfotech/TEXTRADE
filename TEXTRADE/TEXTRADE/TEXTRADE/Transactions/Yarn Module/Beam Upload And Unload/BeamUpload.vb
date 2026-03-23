@@ -230,9 +230,38 @@ Public Class BeamUpload
 
     Private Sub CMBNAME_Validated(sender As Object, e As EventArgs) Handles CMBNAME.Validated
         Try
-
+            If CMBNAME.Text.Trim <> "" AndAlso CMBCODE.Text.Trim <> "" Then
+                LoadLoomsByWeaver(CMBCODE.Text.Trim)
+            End If
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub LoadLoomsByWeaver(weaverAccId As String)
+        Try
+            CMBLOOM.Items.Clear()
+            CMBLOOM.Text = ""
+            CMBBEAM.Items.Clear()
+            CMBBEAM.Text = ""
+
+            Dim dttable As DataTable
+            Dim OBJCMN As New ClsCommon
+            dttable = OBJCMN.SEARCH(" LOOMMASTER_DESC.LOOM_NO ", "", " LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID LEFT OUTER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " LOOMMASTER.LOOM_YEARID= " & YearId & " LEDGERS.Acc_id = " & weaverAccId & "ORDER BY LOOMMASTER_DESC.LOOM_NO")
+
+            If DTTABLE.Rows.Count > 0 Then
+                For Each row As DataRow In DTTABLE.Rows
+                    If Not IsDBNull(row("LOOM_NO")) Then
+                        CMBLOOM.Items.Add(row("LOOM_NO").ToString())
+                    End If
+                Next
+                CMBLOOM.SelectedIndex = 0
+            Else
+                MsgBox("No Looms found for selected Weaver.", MsgBoxStyle.Information)
+            End If
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 End Class
