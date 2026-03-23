@@ -11414,4 +11414,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem8_Click_2(sender As Object, e As EventArgs) Handles BEAMUPLOADADD.Click
+        Try
+            Dim OBJYARNJO As New BeamUpload
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
