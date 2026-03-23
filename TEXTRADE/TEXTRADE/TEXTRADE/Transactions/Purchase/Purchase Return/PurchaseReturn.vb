@@ -1798,7 +1798,7 @@ LINE1:
 NORATE:
                                 TXTCGSTPER.Text = Val(dt.Rows(0).Item("CGSTPER"))
                                 TXTSGSTPER.Text = Val(dt.Rows(0).Item("SGSTPER"))
-                            End If
+                        End If
 
 
                     Else
@@ -3061,15 +3061,44 @@ NORATE1:
                         GRIDPURRET.Rows.Add(0, dr("ITEM"), dr("HSNCODE"), dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, dr("BALENO"), Format(Val(dr("PCS")), "0.00"), dr("UNIT"), Format(Val(dr("MTRS")), "0.00"), 0, INVRATE, PER, 0, "", dr("PRCHNO"), 0, "", 0)
 
                         If dr("ITEM").ToString <> "" And Convert.ToDateTime(PRDATE.Text).Date >= "01/07/2017" Then
-                            Dim DTHSN As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER_DESC.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER_DESC.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS IGSTPER,  ISNULL(HSNMASTER_DESC.HSN_EXPCGST, 0) AS EXPCGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPSGST, 0) AS EXPSGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPIGST, 0) AS EXPIGSTPER ", "", "HSNMASTER INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(ACTUALINVDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME= '" & dr("ITEM") & "' AND HSNMASTER.HSN_YEARID=" & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+                            'Dim DTHSN As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE, ISNULL(HSNMASTER_DESC.HSN_CGST, 0) AS CGSTPER, ISNULL(HSNMASTER_DESC.HSN_SGST, 0) AS SGSTPER, ISNULL(HSNMASTER_DESC.HSN_IGST, 0) AS IGSTPER,  ISNULL(HSNMASTER_DESC.HSN_EXPCGST, 0) AS EXPCGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPSGST, 0) AS EXPSGSTPER, ISNULL(HSNMASTER_DESC.HSN_EXPIGST, 0) AS EXPIGSTPER ", "", "HSNMASTER INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID INNER JOIN ITEMMASTER ON HSNMASTER.HSN_ID = ITEMMASTER.ITEM_HSNCODEID AND HSNMASTER.HSN_YEARID = ITEMMASTER.item_yearid ", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(ACTUALINVDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME= '" & dr("ITEM") & "' AND HSNMASTER.HSN_YEARID=" & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+                            Dim DTHSN = OBJCMN.SEARCH(" TOP 1 ISNULL(HSNMASTER.HSN_CODE, '') AS HSNCODE,ISNULL(HSNMASTER_DESC.HSN_CGST,0) AS CGSTPER, ISNULL(HSNMASTER_DESC.HSN_SGST,0) AS SGSTPER, ISNULL(HSNMASTER_DESC.HSN_IGST,0) AS IGSTPER, ISNULL(HSNMASTER_DESC.HSN_RATE1,0) AS RATE, ISNULL(HSNMASTER_DESC.HSN_CGST1,0) AS CGST1, ISNULL(HSNMASTER_DESC.HSN_SGST1,0) AS SGST1, ISNULL(HSNMASTER_DESC.HSN_IGST1,0) AS IGST1, ISNULL(HSNMASTER_DESC.HSN_EXPCGST,0) AS EXPCGST, ISNULL(HSNMASTER_DESC.HSN_EXPSGST,0) AS EXPSGST, ISNULL(HSNMASTER_DESC.HSN_EXPIGST,0) AS EXPIGST", "", "ITEMMASTER INNER JOIN HSNMASTER ON ITEM_HSNCODEID = HSNMASTER.HSN_ID INNER JOIN HSNMASTER_DESC ON HSNMASTER.HSN_ID = HSNMASTER_DESC.HSN_ID", " AND HSNMASTER_DESC.HSN_WEFDATE <= '" & Format(Convert.ToDateTime(ACTUALINVDATE.Text).Date, "MM/dd/yyyy") & "' AND ITEMMASTER.ITEM_NAME = '" & dr("ITEM").ToString & "' AND HSNMASTER.HSN_YEARID = " & YearId & " ORDER BY HSNMASTER_DESC.HSN_WEFDATE DESC")
+
+                            Dim CALCON As Double = 0.0
+                            CALCON = INVRATE
                             If TXTSTATECODE.Text.Trim = CMPSTATECODE Then
-                                TXTCGSTPER.Text = Val(DTHSN.Rows(0).Item("CGSTPER"))
-                                TXTSGSTPER.Text = Val(DTHSN.Rows(0).Item("SGSTPER"))
+                                'TXTCGSTPER.Text = Val(DTHSN.Rows(0).Item("CGSTPER"))
+                                'TXTSGSTPER.Text = Val(DTHSN.Rows(0).Item("SGSTPER"))
+                                'TXTIGSTPER.Text = 0
+                                If Val(DTHSN.Rows(0).Item("RATE")) = 0 Then GoTo NORATE
+
                                 TXTIGSTPER.Text = 0
+
+                                If Val(DTHSN.Rows(0).Item("RATE")) <= CALCON Then
+                                    TXTCGSTPER.Text = Val(DTHSN.Rows(0).Item("CGST1"))
+                                    TXTSGSTPER.Text = Val(DTHSN.Rows(0).Item("SGST1"))
+
+                                Else
+NORATE:
+                                    TXTCGSTPER.Text = Val(DTHSN.Rows(0).Item("CGSTPER"))
+                                    TXTSGSTPER.Text = Val(DTHSN.Rows(0).Item("SGSTPER"))
+                                End If
                             Else
+                                'TXTCGSTPER.Text = 0
+                                'TXTSGSTPER.Text = 0
+                                'TXTIGSTPER.Text = Val(DTHSN.Rows(0).Item("IGSTPER"))
                                 TXTCGSTPER.Text = 0
                                 TXTSGSTPER.Text = 0
-                                TXTIGSTPER.Text = Val(DTHSN.Rows(0).Item("IGSTPER"))
+                                If Val(DTHSN.Rows(0).Item("RATE")) = 0 Then GoTo NORATE1
+
+                                If Val(DTHSN.Rows(0).Item("RATE")) <= CALCON Then
+                                    TXTIGSTPER.Text = Val(DTHSN.Rows(0).Item("IGST1"))
+
+                                Else
+NORATE1:
+                                    TXTIGSTPER.Text = Val(DTHSN.Rows(0).Item("IGSTPER"))
+                                End If
+
                             End If
                         End If
                     Next

@@ -2371,6 +2371,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningBeamStock.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtWeaver.Designer.vb">
+      <DependentUpon>OpeningBeamStockAtWeaver.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtWeaver.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Accounts\Opening\OpeningGDN.Designer.vb">
       <DependentUpon>OpeningGDN.vb</DependentUpon>
     </Compile>
@@ -2417,6 +2423,12 @@
       <DependentUpon>OpeningStockRollsWarper.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningYarnJobOrder.Designer.vb">
+      <DependentUpon>OpeningYarnJobOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningYarnJobOrder.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\In House Packing\Issue To Packing\SelectIssueBarcodeGrid.Designer.vb">
@@ -3107,6 +3119,12 @@
       <DependentUpon>SelectRollIssue.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.Designer.vb">
+      <DependentUpon>BeamUpload.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.Designer.vb">
@@ -10364,6 +10382,9 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningBeamStock.resx">
       <DependentUpon>OpeningBeamStock.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningBeamStockAtWeaver.resx">
+      <DependentUpon>OpeningBeamStockAtWeaver.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningGDN.resx">
       <DependentUpon>OpeningGDN.vb</DependentUpon>
     </EmbeddedResource>
@@ -10387,6 +10408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockRollsWarper.resx">
       <DependentUpon>OpeningStockRollsWarper.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningYarnJobOrder.resx">
+      <DependentUpon>OpeningYarnJobOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\In House Packing\Issue To Packing\SelectIssueBarcodeGrid.resx">
       <DependentUpon>SelectIssueBarcodeGrid.vb</DependentUpon>
@@ -10729,6 +10753,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.resx">
       <DependentUpon>SelectRollIssue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.resx">
+      <DependentUpon>BeamUpload.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.resx">
       <DependentUpon>DirectIssueToSizer.vb</DependentUpon>

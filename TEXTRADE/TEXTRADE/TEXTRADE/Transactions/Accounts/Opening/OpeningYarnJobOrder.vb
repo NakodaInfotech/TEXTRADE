@@ -1,8 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
-
-Public Class YarnJobOrder
+Public Class OpeningYarnJobOrder
     Dim GRIDDOUBLECLICK As Boolean
     Dim TEMPROW As Integer
     Public EDIT As Boolean
@@ -125,7 +124,7 @@ Public Class YarnJobOrder
                     CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
                     TXTPONO.Text = dr("PONO")
                     ' Reference and names
-                    TXTTOTALMTRS.Text = Val(dr("TOTALMTRS"))
+                    TXTMTRS.Text = Val(dr("TOTALMTRS"))
                     txtremarks.Text = dr("REMARKS").ToString
 
                 Next
@@ -215,8 +214,8 @@ Public Class YarnJobOrder
                         Mtrs = Val(row.Cells(GMTRS.Index).Value)
                         Description = row.Cells(GDESC.Index).Value.ToString
                         OUTMTRS = Val(row.Cells(GOUTMTRS.Index).Value)
-                        DONE = Val(row.Cells(GDONE.Index).Value)
-                        CLOSED = Val(row.Cells(GCLOSED.Index).Value)
+                        DONE = row.Cells(GDONE.Index).Value
+                        CLOSED = row.Cells(GCLOSED.Index).Value
 
                     Else
                         SrNo = SrNo & "|" & Val(row.Cells(GSRNO.Index).Value)
@@ -231,8 +230,8 @@ Public Class YarnJobOrder
                         Mtrs = Mtrs & "|" & Val(row.Cells(GMTRS.Index).Value)
                         Description = Description & "|" & row.Cells(GDESC.Index).Value.ToString
                         OUTMTRS = OUTMTRS & "|" & Val(row.Cells(GOUTMTRS.Index).Value)
-                        DONE = DONE & "|" & Val(row.Cells(GDONE.Index).Value)
-                        CLOSED = CLOSED & "|" & Val(row.Cells(GCLOSED.Index).Value)
+                        DONE = DONE & "|" & row.Cells(GDONE.Index).Value
+                        CLOSED = CLOSED & "|" & row.Cells(GCLOSED.Index).Value
 
 
                     End If
@@ -526,9 +525,6 @@ LINE1:
             GRIDBEAM.Item(GDESC.Index, TEMPROW).Value = TXTDESCRIPTION.Text.Trim
             GRIDDOUBLECLICK = False
         End If
-
-        TOTAL()
-
         CMBITEMNAME.Text = ""
         TXTSHADE.Clear()
         TXTOTHERITEMNAME.Clear()
@@ -612,8 +608,7 @@ LINE1:
                 TXTDESCRIPTION.Text = GRIDBEAM.Item(GDESC.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDBEAM.CurrentRow.Index
-                'CMBITEMNAME.Focus()
-                TXTREFNO.Focus()
+                CMBITEMNAME.Focus()
             End If
         Catch ex As Exception
             Throw ex
