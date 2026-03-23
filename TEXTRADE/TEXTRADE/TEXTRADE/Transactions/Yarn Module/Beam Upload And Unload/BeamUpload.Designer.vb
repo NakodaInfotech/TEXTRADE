@@ -23,10 +23,10 @@ Partial Class BeamUpload
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamUpload))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.GRIDLOOMBEAM = New System.Windows.Forms.DataGridView()
@@ -108,28 +108,28 @@ Partial Class BeamUpload
         Me.GRIDLOOMBEAM.AllowUserToDeleteRows = False
         Me.GRIDLOOMBEAM.AllowUserToResizeColumns = False
         Me.GRIDLOOMBEAM.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDLOOMBEAM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDLOOMBEAM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.GRIDLOOMBEAM.BackgroundColor = System.Drawing.Color.White
         Me.GRIDLOOMBEAM.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDLOOMBEAM.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDLOOMBEAM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDLOOMBEAM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.GRIDLOOMBEAM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDLOOMBEAM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.GBEAMNO})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDLOOMBEAM.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDLOOMBEAM.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRIDLOOMBEAM.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDLOOMBEAM.Location = New System.Drawing.Point(72, 159)
         Me.GRIDLOOMBEAM.MultiSelect = False
@@ -138,9 +138,9 @@ Partial Class BeamUpload
         Me.GRIDLOOMBEAM.RowHeadersVisible = False
         Me.GRIDLOOMBEAM.RowHeadersWidth = 30
         Me.GRIDLOOMBEAM.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDLOOMBEAM.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDLOOMBEAM.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDLOOMBEAM.RowTemplate.Height = 20
         Me.GRIDLOOMBEAM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDLOOMBEAM.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -196,7 +196,7 @@ Partial Class BeamUpload
         Me.CMBBEAM.MaxDropDownItems = 14
         Me.CMBBEAM.Name = "CMBBEAM"
         Me.CMBBEAM.Size = New System.Drawing.Size(147, 22)
-        Me.CMBBEAM.TabIndex = 676
+        Me.CMBBEAM.TabIndex = 3
         '
         'Label1
         '
@@ -221,7 +221,7 @@ Partial Class BeamUpload
         Me.CMBLOOM.MaxDropDownItems = 14
         Me.CMBLOOM.Name = "CMBLOOM"
         Me.CMBLOOM.Size = New System.Drawing.Size(147, 22)
-        Me.CMBLOOM.TabIndex = 674
+        Me.CMBLOOM.TabIndex = 2
         '
         'Label2
         '
@@ -246,7 +246,7 @@ Partial Class BeamUpload
         Me.CMBGODOWN.MaxDropDownItems = 14
         Me.CMBGODOWN.Name = "CMBGODOWN"
         Me.CMBGODOWN.Size = New System.Drawing.Size(226, 23)
-        Me.CMBGODOWN.TabIndex = 1
+        Me.CMBGODOWN.TabIndex = 0
         '
         'GREYDATE
         '
@@ -321,7 +321,7 @@ Partial Class BeamUpload
         Me.cmddelete.Location = New System.Drawing.Point(118, 523)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 11
+        Me.cmddelete.TabIndex = 6
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -335,7 +335,7 @@ Partial Class BeamUpload
         Me.cmdclear.Location = New System.Drawing.Point(204, 489)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 10
+        Me.cmdclear.TabIndex = 5
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
@@ -349,7 +349,7 @@ Partial Class BeamUpload
         Me.cmdok.Location = New System.Drawing.Point(118, 489)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 9
+        Me.cmdok.TabIndex = 4
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -363,7 +363,7 @@ Partial Class BeamUpload
         Me.cmdexit.Location = New System.Drawing.Point(204, 523)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 12
+        Me.cmdexit.TabIndex = 7
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -437,7 +437,7 @@ Partial Class BeamUpload
         Me.CMBNAME.MaxDropDownItems = 14
         Me.CMBNAME.Name = "CMBNAME"
         Me.CMBNAME.Size = New System.Drawing.Size(226, 22)
-        Me.CMBNAME.TabIndex = 2
+        Me.CMBNAME.TabIndex = 1
         '
         'ToolStrip1
         '
