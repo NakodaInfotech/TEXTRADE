@@ -3109,6 +3109,12 @@
     <Compile Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.Designer.vb">
+      <DependentUpon>BeamUpload.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.Designer.vb">
       <DependentUpon>DirectIssueToSizer.vb</DependentUpon>
     </Compile>
@@ -10729,6 +10735,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.resx">
       <DependentUpon>SelectRollIssue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.resx">
+      <DependentUpon>BeamUpload.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.resx">
       <DependentUpon>DirectIssueToSizer.vb</DependentUpon>
