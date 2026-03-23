@@ -11424,4 +11424,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub OPENINGYARNJOBORDER_MASTER_Click(sender As Object, e As EventArgs) Handles OPENINGYARNJOBORDER_MASTER.Click
+        Try
+            Dim OBJYARNJO As New OpeningYarnJobOrder
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
