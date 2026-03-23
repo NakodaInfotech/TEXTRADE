@@ -11425,7 +11425,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub OpeningYarnJobOrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpeningYarnJobOrderToolStripMenuItem.Click
+    Private Sub OPENINGYARNJOBORDER_MASTER_Click(sender As Object, e As EventArgs) Handles OPENINGYARNJOBORDER_MASTER.Click
         Try
             Dim OBJYARNJO As New OpeningYarnJobOrder
             OBJYARNJO.MdiParent = Me

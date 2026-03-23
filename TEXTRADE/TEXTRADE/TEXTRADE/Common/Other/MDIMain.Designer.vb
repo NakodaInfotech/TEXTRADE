@@ -371,6 +371,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator139 = New System.Windows.Forms.ToolStripSeparator()
         Me.PROVISIONALBS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator207 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OPENINGYARNJOBORDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.OPENST_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.INHOUSEST = New System.Windows.Forms.ToolStripMenuItem()
         Me.ATPARTYST = New System.Windows.Forms.ToolStripMenuItem()
@@ -1310,7 +1311,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.OpeningYarnJobOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -3374,7 +3374,7 @@ Partial Class MDIMain
         '
         'OPENING_MASTER
         '
-        Me.OPENING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPENINGBILL_MASTER, Me.OPENINGBALANCE, Me.OPENINGBANKRECO_MASTER, Me.OPENINGSTOCKVALUE, Me.ToolStripSeparator21, Me.OPPO_MASTER, Me.OPSO_MASTER, Me.OPPROGRAM_MASTER, Me.OPGDN_MASTER, Me.ToolStripSeparator139, Me.PROVISIONALBS_MASTER, Me.ToolStripSeparator207, Me.OpeningYarnJobOrderToolStripMenuItem})
+        Me.OPENING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPENINGBILL_MASTER, Me.OPENINGBALANCE, Me.OPENINGBANKRECO_MASTER, Me.OPENINGSTOCKVALUE, Me.ToolStripSeparator21, Me.OPPO_MASTER, Me.OPSO_MASTER, Me.OPPROGRAM_MASTER, Me.OPGDN_MASTER, Me.ToolStripSeparator139, Me.PROVISIONALBS_MASTER, Me.ToolStripSeparator207, Me.OPENINGYARNJOBORDER_MASTER})
         Me.OPENING_MASTER.Name = "OPENING_MASTER"
         Me.OPENING_MASTER.Size = New System.Drawing.Size(184, 22)
         Me.OPENING_MASTER.Text = "Openings"
@@ -3537,6 +3537,12 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator207.Name = "ToolStripSeparator207"
         Me.ToolStripSeparator207.Size = New System.Drawing.Size(227, 6)
+        '
+        'OPENINGYARNJOBORDER_MASTER
+        '
+        Me.OPENINGYARNJOBORDER_MASTER.Name = "OPENINGYARNJOBORDER_MASTER"
+        Me.OPENINGYARNJOBORDER_MASTER.Size = New System.Drawing.Size(230, 22)
+        Me.OPENINGYARNJOBORDER_MASTER.Text = "Opening Yarn Job Order"
         '
         'OPENST_MASTER
         '
@@ -9552,12 +9558,6 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'OpeningYarnJobOrderToolStripMenuItem
-        '
-        Me.OpeningYarnJobOrderToolStripMenuItem.Name = "OpeningYarnJobOrderToolStripMenuItem"
-        Me.OpeningYarnJobOrderToolStripMenuItem.Size = New System.Drawing.Size(230, 22)
-        Me.OpeningYarnJobOrderToolStripMenuItem.Text = "Opening Yarn Job Order"
-        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10871,5 +10871,5 @@ Partial Class MDIMain
     Friend WithEvents BeamUploadUnload_MASTER As ToolStripMenuItem
     Friend WithEvents BEAMUPLOADADD As ToolStripMenuItem
     Friend WithEvents BEAMUPLOADEDIT As ToolStripMenuItem
-    Friend WithEvents OpeningYarnJobOrderToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OPENINGYARNJOBORDER_MASTER As ToolStripMenuItem
 End Class
