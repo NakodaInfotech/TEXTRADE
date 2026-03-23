@@ -11424,4 +11424,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub OpeningYarnJobOrderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpeningYarnJobOrderToolStripMenuItem.Click
+        Try
+            Dim OBJYARNJO As New OpeningYarnJobOrder
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
