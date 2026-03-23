@@ -1,8 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
-
-Public Class YarnJobOrder
+Public Class OpeningYarnJobOrder
     Dim GRIDDOUBLECLICK As Boolean
     Dim TEMPROW As Integer
     Public EDIT As Boolean
