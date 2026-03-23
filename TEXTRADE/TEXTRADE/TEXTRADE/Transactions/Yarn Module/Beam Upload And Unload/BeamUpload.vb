@@ -227,4 +227,12 @@ Public Class BeamUpload
             YarnRecd.Focus()
         End If
     End Sub
+
+    Private Sub CMBNAME_Validated(sender As Object, e As EventArgs) Handles CMBNAME.Validated
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
