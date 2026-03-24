@@ -3538,7 +3538,7 @@ Public Class MDIMain
     Private Sub PendingJoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PendingJoToolStripMenuItem.Click
         Try
             Dim ObjpendingJO As New JobOutDetails
-            ObjpendingJO.Where = " AND (JO_TOTALMTRS-JO_RECDMTRS)>0"
+            ObjpendingJO.Where = " AND (JO_TOTALMTRS-JO_RECDMTRS)>0 AND JO_LOTCOMPLETED = 0"
             ObjpendingJO.MdiParent = Me
             ObjpendingJO.Show()
         Catch ex As Exception

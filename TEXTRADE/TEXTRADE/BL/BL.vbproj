@@ -235,6 +235,7 @@
     <Compile Include="Masters\ClsVehicleMaster.vb" />
     <Compile Include="Masters\ClsWeaveMaster.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningBeamStock.vb" />
+    <Compile Include="Transactions\Accounts\Opening\ClsOpeningBeamStockAtJobber.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningGreyStockAtProcess.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningGreyStockAtTransport.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningStockRolls.vb" />
