@@ -2,7 +2,7 @@
 Imports BL
 Imports DevExpress.Utils.CommonDialogs
 
-Public Class OpeningBeamStockAtWeaver
+Public Class OpeningBeamStockAtJobber
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK, GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPROW, TEMPUPLOADROW, PURREGID As Integer
