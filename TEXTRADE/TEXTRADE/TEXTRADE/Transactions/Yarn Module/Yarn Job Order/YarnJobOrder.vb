@@ -7,6 +7,7 @@ Public Class YarnJobOrder
     Dim TEMPROW As Integer
     Public EDIT As Boolean
     Public TEMPJONO As Integer           'Used for edit name
+    Dim ALLOWMANUALJOBORDER As Boolean = False
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
@@ -14,6 +15,13 @@ Public Class YarnJobOrder
     End Sub
 
     Sub CLEAR()
+        If ALLOWMANUALJOBORDER = True Then
+            TXTJONO.ReadOnly = False
+            TXTJONO.BackColor = Color.LemonChiffon
+        Else
+            TXTJONO.ReadOnly = True
+            TXTJONO.BackColor = Color.Linen
+        End If
         GETMAXNO()
         getsrno(GRIDBEAM)
         TXTSHADE.Clear()
@@ -60,7 +68,9 @@ Public Class YarnJobOrder
             Cursor.Current = Cursors.WaitCursor
             'fillcmb()
             CLEAR()
-
+            If ClientName = "SWPL" Then
+                ALLOWMANUALJOBORDER = True
+            End If
             If EDIT = True Then
                 SHOWDATA()
             Else
@@ -98,7 +108,16 @@ Public Class YarnJobOrder
             End If
         End If
 
-
+        Dim OBJCMN As New ClsCommon
+        If ALLOWMANUALJOBORDER = True Then
+            If TXTJONO.Text <> "" And CMBNAME.Text.Trim <> "" And EDIT = False Then
+                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER.JOB_no,0) AS JONO ", "", " JOBORDER ", "  AND JOBORDER.JOB_no=" & TXTJONO.Text.Trim & "  AND JOBORDER.JOB_cmpid = " & CmpId & " AND JOBORDER.JOB_locationid = " & Locationid & " AND JOBORDER.JOB_yearid = " & YearId)
+                If dttable.Rows.Count > 0 Then
+                    Ep.SetError(TXTJONO, "Job Order No Already Exist")
+                    bln = False
+                End If
+            End If
+        End If
 
         If lbllocked.Visible = True Then
             Ep.SetError(lbllocked, " Entry Locked  !!!")
@@ -667,4 +686,8 @@ LINE1:
             CloneWithValues.Cells(index).Value = row.Cells(index).Value
         Next
     End Function
+
+    Private Sub TXTJONO_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTJONO.KeyPress, TXTPONO.KeyPress
+        numkeypress(e, sender, Me)
+    End Sub
 End Class

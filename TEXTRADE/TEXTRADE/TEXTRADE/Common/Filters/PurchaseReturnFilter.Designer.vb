@@ -34,6 +34,7 @@ Partial Class PurchaseReturnFilter
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.txtDeliveryadd = New System.Windows.Forms.TextBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RDBDNREGISTERINDETAIL = New System.Windows.Forms.RadioButton()
         Me.RDBPURRETREGISTERINDETAIL = New System.Windows.Forms.RadioButton()
         Me.RDBMONTHLY = New System.Windows.Forms.RadioButton()
         Me.RDBAGENT = New System.Windows.Forms.RadioButton()
@@ -65,7 +66,8 @@ Partial Class PurchaseReturnFilter
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.RDBDNREGISTERINDETAIL = New System.Windows.Forms.RadioButton()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.CMBCREDITLEDGER = New System.Windows.Forms.ComboBox()
         Me.BlendPanel2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -74,6 +76,8 @@ Partial Class PurchaseReturnFilter
         'BlendPanel2
         '
         Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel2.Controls.Add(Me.Label12)
+        Me.BlendPanel2.Controls.Add(Me.CMBCREDITLEDGER)
         Me.BlendPanel2.Controls.Add(Me.Label11)
         Me.BlendPanel2.Controls.Add(Me.CMBAGENT)
         Me.BlendPanel2.Controls.Add(Me.Label8)
@@ -252,6 +256,16 @@ Partial Class PurchaseReturnFilter
         Me.GroupBox3.Size = New System.Drawing.Size(593, 126)
         Me.GroupBox3.TabIndex = 9
         Me.GroupBox3.TabStop = False
+        '
+        'RDBDNREGISTERINDETAIL
+        '
+        Me.RDBDNREGISTERINDETAIL.AutoSize = True
+        Me.RDBDNREGISTERINDETAIL.Location = New System.Drawing.Point(318, 88)
+        Me.RDBDNREGISTERINDETAIL.Name = "RDBDNREGISTERINDETAIL"
+        Me.RDBDNREGISTERINDETAIL.Size = New System.Drawing.Size(140, 18)
+        Me.RDBDNREGISTERINDETAIL.TabIndex = 22
+        Me.RDBDNREGISTERINDETAIL.Text = "DN Register In Detail"
+        Me.RDBDNREGISTERINDETAIL.UseVisualStyleBackColor = True
         '
         'RDBPURRETREGISTERINDETAIL
         '
@@ -605,15 +619,30 @@ Partial Class PurchaseReturnFilter
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'RDBDNREGISTERINDETAIL
+        'Label12
         '
-        Me.RDBDNREGISTERINDETAIL.AutoSize = True
-        Me.RDBDNREGISTERINDETAIL.Location = New System.Drawing.Point(318, 88)
-        Me.RDBDNREGISTERINDETAIL.Name = "RDBDNREGISTERINDETAIL"
-        Me.RDBDNREGISTERINDETAIL.Size = New System.Drawing.Size(140, 18)
-        Me.RDBDNREGISTERINDETAIL.TabIndex = 22
-        Me.RDBDNREGISTERINDETAIL.Text = "DN Register In Detail"
-        Me.RDBDNREGISTERINDETAIL.UseVisualStyleBackColor = True
+        Me.Label12.AutoSize = True
+        Me.Label12.BackColor = System.Drawing.Color.Transparent
+        Me.Label12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.Color.Black
+        Me.Label12.Location = New System.Drawing.Point(333, 156)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(78, 14)
+        Me.Label12.TabIndex = 746
+        Me.Label12.Text = "Credit Ledger"
+        '
+        'CMBCREDITLEDGER
+        '
+        Me.CMBCREDITLEDGER.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBCREDITLEDGER.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBCREDITLEDGER.BackColor = System.Drawing.Color.White
+        Me.CMBCREDITLEDGER.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBCREDITLEDGER.FormattingEnabled = True
+        Me.CMBCREDITLEDGER.Location = New System.Drawing.Point(413, 152)
+        Me.CMBCREDITLEDGER.MaxDropDownItems = 14
+        Me.CMBCREDITLEDGER.Name = "CMBCREDITLEDGER"
+        Me.CMBCREDITLEDGER.Size = New System.Drawing.Size(230, 22)
+        Me.CMBCREDITLEDGER.TabIndex = 745
         '
         'PurchaseReturnFilter
         '
@@ -624,7 +653,7 @@ Partial Class PurchaseReturnFilter
         Me.KeyPreview = True
         Me.Name = "PurchaseReturnFilter"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "PurchaseReturnFilter"
+        Me.Text = "Purchase Return Filter"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel2.ResumeLayout(False)
         Me.BlendPanel2.PerformLayout()
@@ -680,4 +709,6 @@ Partial Class PurchaseReturnFilter
     Friend WithEvents cmdexit As Button
     Friend WithEvents RDBPURRETREGISTERINDETAIL As RadioButton
     Friend WithEvents RDBDNREGISTERINDETAIL As RadioButton
+    Friend WithEvents Label12 As Label
+    Friend WithEvents CMBCREDITLEDGER As ComboBox
 End Class

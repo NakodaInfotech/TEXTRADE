@@ -37,7 +37,7 @@ Public Class BeamUpload
     End Sub
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(GREY_NO),0) + 1 ", " GREYRECDJOBBER ", " AND GREY_cmpid=" & CmpId & " and GREY_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(BEAMUPLOAD_NO),0) + 1 ", " BEAMUPLOAD ", " AND BEAMUPLOAD_cmpid=" & CmpId & " and BEAMUPLOAD_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTGREYNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
     Private Sub CMBGODOWN_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBGODOWN.Enter
@@ -209,6 +209,70 @@ Public Class BeamUpload
         End Try
     End Sub
 
+    Private Sub BeamUpload_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            Dim DTROW() As DataRow
+            DTROW = USERRIGHTS.Select("FormName = 'GRN'")
+            USERADD = DTROW(0).Item(1)
+            USEREDIT = DTROW(0).Item(2)
+            USERVIEW = DTROW(0).Item(3)
+            USERDELETE = DTROW(0).Item(4)
+
+            Cursor.Current = Cursors.WaitCursor
+
+            fillcmb()
+            clear()
+
+            'If ClientName = "SVS" Then GPCS.ReadOnly = True
+
+
+
+            If EDIT = True Then
+
+                If USEREDIT = False And USERVIEW = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+
+                Dim objJO As New ClsBeamUpload()
+                Dim ALPARAVAL As New ArrayList
+                ALPARAVAL.Add(TEMPGREYNO)
+                ALPARAVAL.Add(CmpId)
+                ALPARAVAL.Add(YearId)
+                objJO.alParaval = ALPARAVAL
+                Dim dttable As DataTable = objJO.selectGREY(TEMPGREYNO, CmpId, YearId)
+
+                If dttable.Rows.Count > 0 Then
+
+                    For Each dr As DataRow In dttable.Rows
+
+                        TXTGREYNO.Text = TEMPGREYNO
+                        GREYDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
+                        CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
+                        CMBGODOWN.Text = Convert.ToString(dr("GODOWN").ToString)
+
+                        CMBLOOM.Text = Convert.ToString(dr("LOOM").ToString)
+                        CMBBEAM.Text = Convert.ToString(dr("BEAM").ToString)
+                        txtremarks.Text = Convert.ToString(dr("remarks").ToString)
+
+
+
+
+
+                    Next
+
+
+                Else
+                    EDIT = False
+                    'clear()
+                End If
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub BeamUpload_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
             If errorvalid() = True Then
@@ -230,8 +294,8 @@ Public Class BeamUpload
 
     Private Sub CMBNAME_Validated(sender As Object, e As EventArgs) Handles CMBNAME.Validated
         Try
-            If CMBNAME.Text.Trim <> "" AndAlso CMBCODE.Text.Trim <> "" Then
-                LoadLoomsByWeaver(CMBCODE.Text.Trim)
+            If CMBNAME.Text.Trim <> "" Then
+                LoadLoomsByWeaver(CMBNAME.Text.Trim)
             End If
         Catch ex As Exception
             Throw ex
@@ -247,7 +311,7 @@ Public Class BeamUpload
 
             Dim dttable As DataTable
             Dim OBJCMN As New ClsCommon
-            dttable = OBJCMN.SEARCH(" LOOMMASTER_DESC.LOOM_NO ", "", " LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID LEFT OUTER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " LOOMMASTER.LOOM_YEARID= " & YearId & " LEDGERS.Acc_id = " & weaverAccId & "ORDER BY LOOMMASTER_DESC.LOOM_NO")
+            dttable = OBJCMN.SEARCH(" LOOMMASTER_DESC.LOOM_NO ", "", " LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID LEFT OUTER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_YEARID= " & YearId & " AND LEDGERS.Acc_CMPNAME = '" & CMBNAME.Text.Trim & "' ORDER BY LOOMMASTER_DESC.LOOM_NO")
 
             If DTTABLE.Rows.Count > 0 Then
                 For Each row As DataRow In DTTABLE.Rows

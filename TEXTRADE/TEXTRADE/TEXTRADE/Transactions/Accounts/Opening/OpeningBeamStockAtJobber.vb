@@ -2,7 +2,7 @@
 Imports BL
 Imports DevExpress.Utils.CommonDialogs
 
-Public Class OpeningBeamStockAtWeaver
+Public Class OpeningBeamStockAtJobber
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK, GRIDUPLOADDOUBLECLICK As Boolean
     Dim TEMPROW, TEMPUPLOADROW, PURREGID As Integer
@@ -86,7 +86,7 @@ Public Class OpeningBeamStockAtWeaver
     End Sub
     Sub GETMAX_BEAMISSUE_NO()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax("ISNULL(MAX(BEAMISSUE_NO),0)+1", "BEAMISSUETOWEAVER", "AND BEAMISSUE_YEARID=" & YearId)
+        DTTABLE = getmax("ISNULL(MAX(OPBEAM_NO),0)+1", "OPENINGBEAMSTOCKATJOBBER", "AND OPBEAM_YEARID=" & YearId)
         If DTTABLE.Rows.Count > 0 Then
             TXTISSUENO.Text = DTTABLE.Rows(0).Item(0)
         End If
@@ -95,7 +95,7 @@ Public Class OpeningBeamStockAtWeaver
     End Sub
     Public Sub GETMAXSERIES(ByVal TXTSERIES As TextBox)
         Try
-            Dim DTTABLE As DataTable = getmax(" ISNULL(MAX(SERIES),0) + 1 ", " ( SELECT MAX(ROLLISSUE_SERIES) AS SERIES, ROLLISSUE_yearid AS YEARID FROM ROLLISSUE GROUP BY ROLLISSUE_yearid  UNION ALL  SELECT MAX(BEAMISSUE_SERIES) AS SERIES, BEAMISSUE_yearid AS YEARID  FROM BEAMISSUETOWEAVER GROUP BY BEAMISSUE_yearid ) AS T", " AND T.YEARID = " & YearId)
+            Dim DTTABLE As DataTable = getmax(" ISNULL(MAX(SERIES),0) + 1 ", " ( SELECT MAX(ROLLISSUE_SERIES) AS SERIES, ROLLISSUE_yearid AS YEARID FROM ROLLISSUE GROUP BY ROLLISSUE_yearid  UNION ALL  SELECT MAX(OPBEAM_SERIES) AS SERIES, OPBEAM_yearid AS YEARID  FROM OPENINGBEAMSTOCKATJOBBER GROUP BY OPBEAM_yearid ) AS T", " AND T.YEARID = " & YearId)
             If DTTABLE.Rows.Count > 0 Then TXTSERIES.Text = DTTABLE.Rows(0).Item(0)
         Catch ex As Exception
             Throw ex
@@ -165,7 +165,7 @@ Public Class OpeningBeamStockAtWeaver
                 End If
 
                 Dim dttable As New DataTable
-                Dim OBJBEAMISSUE As New ClsBeamIssueWeaver
+                Dim OBJBEAMISSUE As New ClsOpeningBeamStockAtJobber
 
                 OBJBEAMISSUE.alParaval.Add(TEMPBEAMISSUENO)
                 OBJBEAMISSUE.alParaval.Add(YearId)
@@ -199,7 +199,7 @@ Public Class OpeningBeamStockAtWeaver
 
                     'UPLOAD(GRID)
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.SEARCH(" BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_SRNO AS GRIDSRNO, BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_REMARKS AS REMARKS, BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_NAME AS NAME, BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_PHOTO AS IMGPATH ", "", " BEAMISSUETOWEAVER_UPLOAD ", " AND BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_NO = " & TEMPBEAMISSUENO & " AND BEAMISSUE_YEARID = " & YearId & " ORDER BY BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_SRNO")
+                    Dim DT As DataTable = OBJCMN.SEARCH(" OPENINGBEAMSTOCKATJOBBER_UPLOAD.OPBEAM_SRNO AS GRIDSRNO, BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_REMARKS AS REMARKS, BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_NAME AS NAME, BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_PHOTO AS IMGPATH ", "", " BEAMISSUETOWEAVER_UPLOAD ", " AND BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_NO = " & TEMPBEAMISSUENO & " AND BEAMISSUE_YEARID = " & YearId & " ORDER BY BEAMISSUETOWEAVER_UPLOAD.BEAMISSUE_SRNO")
                     If DT.Rows.Count > 0 Then
                         For Each DTR As DataRow In DT.Rows
                             gridupload.Rows.Add(DTR("GRIDSRNO"), DTR("REMARKS"), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))))

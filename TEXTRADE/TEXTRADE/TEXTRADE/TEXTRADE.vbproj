@@ -2371,10 +2371,10 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningBeamStock.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtWeaver.Designer.vb">
-      <DependentUpon>OpeningBeamStockAtWeaver.vb</DependentUpon>
+    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtJobber.Designer.vb">
+      <DependentUpon>OpeningBeamStockAtJobber.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtWeaver.vb">
+    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtJobber.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Accounts\Opening\OpeningGDN.Designer.vb">
@@ -10382,8 +10382,8 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningBeamStock.resx">
       <DependentUpon>OpeningBeamStock.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningBeamStockAtWeaver.resx">
-      <DependentUpon>OpeningBeamStockAtWeaver.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningBeamStockAtJobber.resx">
+      <DependentUpon>OpeningBeamStockAtJobber.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningGDN.resx">
       <DependentUpon>OpeningGDN.vb</DependentUpon>
