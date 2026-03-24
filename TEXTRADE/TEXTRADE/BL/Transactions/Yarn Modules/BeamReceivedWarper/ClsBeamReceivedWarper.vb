@@ -105,6 +105,9 @@ Public Class ClsBeamReceivedWarper
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
+                I = I + 1
+
 
             End With
 
@@ -203,6 +206,8 @@ Public Class ClsBeamReceivedWarper
                 .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@BEAMRECNO", alParaval(I)))
