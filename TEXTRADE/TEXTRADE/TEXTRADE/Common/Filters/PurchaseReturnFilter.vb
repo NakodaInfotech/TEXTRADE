@@ -52,7 +52,7 @@ Public Class PurchaseReturnFilter
             If CMBDESIGN.Text.Trim = "" Then FILLDESIGN(CMBDESIGN, CMBITEMNAME.Text.Trim)
             If CMBSHADE.Text.Trim = "" Then FILLCOLOR(CMBSHADE, CMBDESIGN.Text.Trim, CMBITEMNAME.Text.Trim)
             If CMBAGENT.Text.Trim = "" Then fillname(CMBAGENT, edit, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
-
+            If CMBCREDITLEDGER.Text.Trim = "" Then FILLNAME(CMBCREDITLEDGER, edit, "")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -135,6 +135,7 @@ Public Class PurchaseReturnFilter
             ElseIf RDBPURRETREGISTERINDETAIL.Checked = True Then
                 OBJPURCH.FRMSTRING = "PURRETREGISTERINDETAIL"
                 OBJPURCH.PERIOD = "PURCHASE RETURN REGISTER IN DETAIL - " & OBJPURCH.PERIOD
+                If CMBCREDITLEDGER.Text.Trim <> "" Then OBJPURCH.WHERECLAUSE = OBJPURCH.WHERECLAUSE & " and {CREDITLEDGERS.ACC_CMPNAME}='" & CMBCREDITLEDGER.Text.Trim & "'"
 
             ElseIf RDBDNREGISTERINDETAIL.Checked = True Then
                 OBJPURCH.WHERECLAUSE = "{DEBITNOTEMASTER.DN_yearid}=" & YearId
@@ -219,5 +220,19 @@ Public Class PurchaseReturnFilter
         End Try
     End Sub
 
+    Private Sub CMBCREDITLEDGER_Enter(sender As Object, e As EventArgs) Handles CMBCREDITLEDGER.Enter
+        Try
+            If CMBCREDITLEDGER.Text.Trim = "" Then FILLNAME(CMBCREDITLEDGER, edit, "")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
+    Private Sub CMBCREDITLEDGER_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBCREDITLEDGER.Validating
+        Try
+            If CMBCREDITLEDGER.Text.Trim <> "" Then NAMEVALIDATE(CMBCREDITLEDGER, CMBCODE, e, Me, txtadd, "")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

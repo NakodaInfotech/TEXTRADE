@@ -3458,7 +3458,7 @@ LINE1:
     End Sub
 
     Private Sub GRIDMATREC_CellDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRIDMATREC.CellDoubleClick
-        If ClientName = "VALIANT" Or GRIDMATREC.CurrentRow.DefaultCellStyle.BackColor <> Color.Yellow Then
+        If ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or GRIDMATREC.CurrentRow.DefaultCellStyle.BackColor <> Color.Yellow Then
             EDITROW()
         Else
             MsgBox("This Row Is Locked")

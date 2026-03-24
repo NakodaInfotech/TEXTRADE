@@ -6,6 +6,8 @@ Public Class OpeningYarnJobOrder
     Dim TEMPROW As Integer
     Public EDIT As Boolean
     Public TEMPJONO As Integer           'Used for edit name
+    Dim ALLOWMANUALOPJOBORDER As Boolean = False
+
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
@@ -13,6 +15,13 @@ Public Class OpeningYarnJobOrder
     End Sub
 
     Sub CLEAR()
+        If ALLOWMANUALOPJOBORDER = True Then
+            TXTJONO.ReadOnly = False
+            TXTJONO.BackColor = Color.LemonChiffon
+        Else
+            TXTJONO.ReadOnly = True
+            TXTJONO.BackColor = Color.Linen
+        End If
         GETMAXNO()
         getsrno(GRIDBEAM)
         TXTSHADE.Clear()
@@ -59,7 +68,9 @@ Public Class OpeningYarnJobOrder
             Cursor.Current = Cursors.WaitCursor
             'fillcmb()
             CLEAR()
-
+            If ClientName = "SWPL" Then
+                ALLOWMANUALOPJOBORDER = True
+            End If
             If EDIT = True Then
                 SHOWDATA()
             Else
@@ -74,7 +85,7 @@ Public Class OpeningYarnJobOrder
 
     Sub GETMAXNO()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(JOB_no),0) + 1 ", " JOBORDER ", " and JOB_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(OYJOB_no),0) + 1 ", " OPENINGYARNJOBORDER ", " and OYJOB_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTJONO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -97,7 +108,16 @@ Public Class OpeningYarnJobOrder
             End If
         End If
 
-
+        Dim OBJCMN As New ClsCommon
+        If ALLOWMANUALOPJOBORDER = True Then
+            If TXTJONO.Text <> "" And CMBNAME.Text.Trim <> "" And EDIT = False Then
+                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(OPENINGYARNJOBORDER.OYJOB_no,0) AS JONO ", "", " OPENINGYARNJOBORDER ", "  AND OPENINGYARNJOBORDER.OYJOB_no=" & TXTJONO.Text.Trim & "  AND OPENINGYARNJOBORDER.OYJOB_cmpid = " & CmpId & " AND OPENINGYARNJOBORDER.OYJOB_locationid = " & Locationid & " AND OPENINGYARNJOBORDER.OYJOB_yearid = " & YearId)
+                If dttable.Rows.Count > 0 Then
+                    Ep.SetError(TXTJONO, "Job Order No Already Exist")
+                    bln = False
+                End If
+            End If
+        End If
 
         If lbllocked.Visible = True Then
             Ep.SetError(lbllocked, " Entry Locked  !!!")
@@ -114,7 +134,7 @@ Public Class OpeningYarnJobOrder
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-            Dim objclsGRN As New ClsJobOrder()
+            Dim objclsGRN As New ClsOpeningYarnJobOrder()
             Dim dttable As DataTable = objclsGRN.SelectYarnJob(TEMPJONO, YearId)
             If dttable.Rows.Count > 0 Then
                 For Each dr As DataRow In dttable.Rows
@@ -124,7 +144,7 @@ Public Class OpeningYarnJobOrder
                     CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
                     TXTPONO.Text = dr("PONO")
                     ' Reference and names
-                    TXTMTRS.Text = Val(dr("TOTALMTRS"))
+                    TXTTOTALMTRS.Text = Val(dr("TOTALMTRS"))
                     txtremarks.Text = dr("REMARKS").ToString
 
                 Next
@@ -139,7 +159,7 @@ Public Class OpeningYarnJobOrder
                 'End If
 
                 Dim OBJCMN As New ClsCommon
-                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_DESC.JOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(JOBORDER_DESC.JOB_PARENTITEM, '') AS PARENTITEM, ISNULL(JOBORDER_DESC.JOB_REFNO, '') AS REFNO, ISNULL(JOBORDER_DESC.JOB_REED, 0) AS REED, ISNULL(JOBORDER_DESC.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER_DESC.JOB_REEDSPACE,  0) AS REEDSPACE, ISNULL(JOBORDER_DESC.JOB_ENDS, 0) AS ENDS, ISNULL(JOBORDER_DESC.JOB_MTRS, 0) AS MTRS, ISNULL(JOBORDER_DESC.JOB_DESCRIPTION, '') AS DESCRIPTION,  ISNULL(JOBORDER_DESC.JOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(JOBORDER_DESC.JOB_DONE, 0) AS DONE ,ISNULL(JOBORDER_DESC.JOB_CLOSED, 0) AS CLOSED ", "", " JOBORDER_DESC LEFT OUTER JOIN COLORMASTER ON JOBORDER_DESC.JOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id ", " AND  JOBORDER_DESC.JOB_NO = " & TEMPJONO & " AND JOBORDER_DESC.JOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
+                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_PARENTITEM, '') AS PARENTITEM, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_REFNO, '') AS REFNO, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_REED, 0) AS REED, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_PICKS, 0) AS PICKS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_REEDSPACE,  0) AS REEDSPACE, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_ENDS, 0) AS ENDS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_MTRS, 0) AS MTRS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_DESCRIPTION, '') AS DESCRIPTION,  ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_DONE, 0) AS DONE ,ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_CLOSED, 0) AS CLOSED ", "", " OPENINGYARNJOBORDER_DESC LEFT OUTER JOIN COLORMASTER ON OPENINGYARNJOBORDER_DESC.OYJOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON OPENINGYARNJOBORDER_DESC.OYJOB_ITEMID = ITEMMASTER.item_id ", " AND  OPENINGYARNJOBORDER_DESC.OYJOB_NO = " & TEMPJONO & " AND OPENINGYARNJOBORDER_DESC.OYJOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
                 If dttable1.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable1.Rows
                         GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")), Val(DTR("CLOSED")))
@@ -214,8 +234,8 @@ Public Class OpeningYarnJobOrder
                         Mtrs = Val(row.Cells(GMTRS.Index).Value)
                         Description = row.Cells(GDESC.Index).Value.ToString
                         OUTMTRS = Val(row.Cells(GOUTMTRS.Index).Value)
-                        DONE = row.Cells(GDONE.Index).Value
-                        CLOSED = row.Cells(GCLOSED.Index).Value
+                        DONE = Val(row.Cells(GDONE.Index).Value)
+                        CLOSED = Val(row.Cells(GCLOSED.Index).Value)
 
                     Else
                         SrNo = SrNo & "|" & Val(row.Cells(GSRNO.Index).Value)
@@ -230,8 +250,8 @@ Public Class OpeningYarnJobOrder
                         Mtrs = Mtrs & "|" & Val(row.Cells(GMTRS.Index).Value)
                         Description = Description & "|" & row.Cells(GDESC.Index).Value.ToString
                         OUTMTRS = OUTMTRS & "|" & Val(row.Cells(GOUTMTRS.Index).Value)
-                        DONE = DONE & "|" & row.Cells(GDONE.Index).Value
-                        CLOSED = CLOSED & "|" & row.Cells(GCLOSED.Index).Value
+                        DONE = DONE & "|" & Val(row.Cells(GDONE.Index).Value)
+                        CLOSED = CLOSED & "|" & Val(row.Cells(GCLOSED.Index).Value)
 
 
                     End If
@@ -261,7 +281,7 @@ Public Class OpeningYarnJobOrder
 
 
 
-            Dim objDESIGN As New ClsJobOrder
+            Dim objDESIGN As New ClsOpeningYarnJobOrder
             objDESIGN.alParaval = alParaval
 
             If EDIT = False Then
@@ -424,15 +444,15 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub OpenToolStripButton_Click(sender As Object, e As EventArgs) Handles OpenToolStripButton.Click
-        Try
-            Dim OBJJO As New YarnJobOrderDetails
-            OBJJO.MdiParent = MDIMain
-            OBJJO.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub OpenToolStripButton_Click(sender As Object, e As EventArgs) Handles OpenToolStripButton.Click
+    '    Try
+    '        Dim OBJJO As New YarnJobOrderDetails
+    '        OBJJO.MdiParent = MDIMain
+    '        OBJJO.Show()
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub SaveToolStripButton_Click(sender As Object, e As EventArgs) Handles SaveToolStripButton.Click
         Try
@@ -483,7 +503,7 @@ LINE1:
                 alParaval.Add(0)
                 alParaval.Add(YearId)
 
-                Dim clspo As New ClsJobOrder()
+                Dim clspo As New ClsOpeningYarnJobOrder()
                 clspo.alParaval = alParaval
                 Dim IntResult As Integer = clspo.Delete()
                 MsgBox("Job Order Deleted")
@@ -525,6 +545,7 @@ LINE1:
             GRIDBEAM.Item(GDESC.Index, TEMPROW).Value = TXTDESCRIPTION.Text.Trim
             GRIDDOUBLECLICK = False
         End If
+        TOTAL()
         CMBITEMNAME.Text = ""
         TXTSHADE.Clear()
         TXTOTHERITEMNAME.Clear()
@@ -662,4 +683,8 @@ LINE1:
             CloneWithValues.Cells(index).Value = row.Cells(index).Value
         Next
     End Function
+
+    Private Sub TXTJONO_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTJONO.KeyPress, TXTPONO.KeyPress
+        numkeypress(e, sender, Me)
+    End Sub
 End Class
