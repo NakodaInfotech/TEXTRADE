@@ -103,10 +103,11 @@ Public Class SecurityInwardOutward
         PBIMG.ImageLocation = ""
         TXTPHOTOIMAGEUPLOADPATH.Clear()
         gridupload.RowCount = 0
+        GRIDUPLOADDESC.RowCount = 0
         gridDoubleClick = False
         getmaxno()
         TXTUPLOADPATH.Clear()
-
+        PBIMG.Image = Nothing
 
         'EP.Clear()
         ''txtsrno.Clear()
