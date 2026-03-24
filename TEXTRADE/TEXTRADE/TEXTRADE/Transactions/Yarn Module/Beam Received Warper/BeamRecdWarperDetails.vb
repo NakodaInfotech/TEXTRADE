@@ -60,19 +60,32 @@ Public Class BeamRecdWarperDetails
     End Sub
 
     Sub fillgrid()
+        'Try
+        '    Dim OBJBEAM As New ClsBeamReceivedWarper
+        '    OBJBEAM.alParaval.Add(0)
+        '    OBJBEAM.alParaval.Add(YearId)
+        '    Dim dttable As DataTable = OBJBEAM.selectBEAM()
+        '    gridbilldetails.DataSource = dttable
+        '    If dttable.Rows.Count > 0 Then
+        '        gridbill.FocusedRowHandle = gridbill.RowCount - 1
+        '        gridbill.TopRowIndex = gridbill.RowCount - 15
+        '    End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
+
         Try
-            Dim OBJBEAM As New ClsBeamReceivedWarper
-            OBJBEAM.alParaval.Add(0)
-            OBJBEAM.alParaval.Add(YearId)
-            Dim dttable As DataTable = OBJBEAM.selectBEAM()
-            gridbilldetails.DataSource = dttable
-            If dttable.Rows.Count > 0 Then
+            Dim objclsCMST As New ClsCommonMaster
+            Dim dt As DataTable = objclsCMST.search("BEAMRECEIVEDWARPER.BEAMREC_NO AS BEAMRECNO, BEAMRECEIVEDWARPER.BEAMREC_DATE AS DATE, GODOWNMASTER.GODOWN_name AS GODOWN, LEDGERS.Acc_cmpname AS NAME, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_BEAMNAME, '') AS BEAMNAME, BEAMRECEIVEDWARPER.BEAMREC_BEAMNO AS BEAMNO, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_TOTALJOBMTRS, 0) AS TOTALJOBMTRS, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_TOTALBEAMMTRS, 0) AS TOTALBEAMMTRS, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_ENDS, 0) AS ENDS, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_SECTION, 0) AS SECTION, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_BEAMWT, 0) AS BEAMWT, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_BREAKAGE, 0) AS BREAKAGE, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_CHALLANNO, '') AS CHALLANNO, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_REMARKS, '') AS REMARKS, ISNULL(BEAMRECEIVEDWARPER.BEAMREC_GAMANO, 0) AS GAMANO, ISNULL(STOREITEMMASTER.STOREITEM_NAME, '') AS ROLLNO ", "", "BEAMRECEIVEDWARPER INNER JOIN GODOWNMASTER ON BEAMRECEIVEDWARPER.BEAMREC_GODOWNID = GODOWNMASTER.GODOWN_id INNER JOIN LEDGERS ON BEAMRECEIVEDWARPER.BEAMREC_LEDGERID = LEDGERS.Acc_id INNER JOIN STOREITEMMASTER ON BEAMRECEIVEDWARPER.BEAMREC_ROLLID = STOREITEMMASTER.STOREITEM_ID ", " AND BEAMRECEIVEDWARPER.BEAMREC_YEARID =" & YearId & " ORDER BY BEAMRECEIVEDWARPER.BEAMREC_NO")
+            gridbilldetails.DataSource = dt
+            If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
                 gridbill.TopRowIndex = gridbill.RowCount - 15
             End If
         Catch ex As Exception
             Throw ex
         End Try
+
     End Sub
 
     Private Sub CMDEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEDIT.Click
@@ -106,6 +119,16 @@ Public Class BeamRecdWarperDetails
                 Exit Sub
             End If
             showform(False, 0)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TOOLGRIDDETAILS_Click(sender As Object, e As EventArgs) Handles TOOLGRIDDETAILS.Click
+        Try
+            Dim OBJDTLS As New BeamRecdWarperGridDetails
+            OBJDTLS.MdiParent = MDIMain
+            OBJDTLS.Show()
         Catch ex As Exception
             Throw ex
         End Try

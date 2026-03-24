@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class BeamRecdWarperDetails
+Partial Class BeamRecdWarperGridDetails
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -54,12 +54,6 @@ Partial Class BeamRecdWarperDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
-        Me.TOOLGRIDDETAILS = New System.Windows.Forms.ToolStripLabel()
-        Me.GJOBNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GJOBSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,7 +76,7 @@ Partial Class BeamRecdWarperDetails
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
-        Me.BlendPanel1.TabIndex = 10
+        Me.BlendPanel1.TabIndex = 11
         '
         'Label14
         '
@@ -112,7 +106,7 @@ Partial Class BeamRecdWarperDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMRECNO, Me.GDATE, Me.GGODOWN, Me.GNAME, Me.GBEAMNAME, Me.GBEAMNO, Me.GMTRS, Me.GTOTALBEAMMTRS, Me.GENDS, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBEAMWT, Me.GBREAKAGE, Me.GCHALLANNO, Me.GJOBNO, Me.GJOBSRNO, Me.GITEMNAME, Me.GREED, Me.GREEDSPACE, Me.GREMARKS, Me.gdone, Me.GMILLNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMRECNO, Me.GDATE, Me.GGODOWN, Me.GNAME, Me.GBEAMNAME, Me.GBEAMNO, Me.GMTRS, Me.GTOTALBEAMMTRS, Me.GENDS, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBEAMWT, Me.GBREAKAGE, Me.GCHALLANNO, Me.GREMARKS, Me.gdone, Me.GMILLNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -281,7 +275,7 @@ Partial Class BeamRecdWarperDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 18
+        Me.GREMARKS.VisibleIndex = 15
         Me.GREMARKS.Width = 100
         '
         'gdone
@@ -318,7 +312,7 @@ Partial Class BeamRecdWarperDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1, Me.TOOLGRIDDETAILS})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -380,66 +374,16 @@ Partial Class BeamRecdWarperDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
-        'TOOLGRIDDETAILS
-        '
-        Me.TOOLGRIDDETAILS.Name = "TOOLGRIDDETAILS"
-        Me.TOOLGRIDDETAILS.Size = New System.Drawing.Size(67, 22)
-        Me.TOOLGRIDDETAILS.Text = "Grid Details"
-        '
-        'GJOBNO
-        '
-        Me.GJOBNO.Caption = "Job No"
-        Me.GJOBNO.Name = "GJOBNO"
-        Me.GJOBNO.OptionsColumn.AllowEdit = False
-        Me.GJOBNO.Visible = True
-        Me.GJOBNO.VisibleIndex = 15
-        Me.GJOBNO.Width = 70
-        '
-        'GJOBSRNO
-        '
-        Me.GJOBSRNO.Caption = "GJOBSRNO"
-        Me.GJOBSRNO.FieldName = "Job SrNo"
-        Me.GJOBSRNO.Name = "GJOBSRNO"
-        Me.GJOBSRNO.OptionsColumn.AllowEdit = False
-        Me.GJOBSRNO.Visible = True
-        Me.GJOBSRNO.VisibleIndex = 16
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 17
-        Me.GITEMNAME.Width = 100
-        '
-        'GREED
-        '
-        Me.GREED.Caption = "Reed"
-        Me.GREED.Name = "GREED"
-        Me.GREED.OptionsColumn.AllowEdit = False
-        Me.GREED.Visible = True
-        Me.GREED.VisibleIndex = 20
-        Me.GREED.Width = 70
-        '
-        'GREEDSPACE
-        '
-        Me.GREEDSPACE.Caption = "Reed Space"
-        Me.GREEDSPACE.FieldName = "REEDSPACE"
-        Me.GREEDSPACE.Name = "GREEDSPACE"
-        Me.GREEDSPACE.OptionsColumn.AllowEdit = False
-        Me.GREEDSPACE.Visible = True
-        Me.GREEDSPACE.VisibleIndex = 19
-        '
-        'BeamRecdWarperDetails
+        'BeamRecdWarperGridDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "BeamRecdWarperDetails"
-        Me.Text = "Beam Recd Warper Details"
+        Me.Name = "BeamRecdWarperGridDetails"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.Text = "Beam Recd Warper Grid Details"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -458,20 +402,23 @@ Partial Class BeamRecdWarperDetails
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GBEAMRECNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBEAMNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBEAMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALBEAMMTRS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGAMANO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GSECTION As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GROLLNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBEAMWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBREAKAGE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gdone As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Label15 As Label
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents TOOLEXCEL As ToolStripButton
@@ -481,13 +428,4 @@ Partial Class BeamRecdWarperDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
-    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALBEAMMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TOOLGRIDDETAILS As ToolStripLabel
-    Friend WithEvents GJOBNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GJOBSRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREED As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREEDSPACE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
