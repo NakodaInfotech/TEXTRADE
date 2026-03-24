@@ -28,20 +28,21 @@ Partial Class BeamRecdWarperDetails
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GBEAMRECNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GJOBNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBEAMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALBEAMMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGAMANO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSECTION = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GROLLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBEAMWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBREAKAGE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdone = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -105,7 +106,7 @@ Partial Class BeamRecdWarperDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMRECNO, Me.GDATE, Me.GNAME, Me.GMILLNAME, Me.GCHALLANNO, Me.GJOBNO, Me.GREFNO, Me.GBEAMNO, Me.GBEAMNAME, Me.GENDS, Me.GMTRS, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBEAMWT, Me.GBREAKAGE, Me.gdone})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMRECNO, Me.GDATE, Me.GGODOWN, Me.GNAME, Me.GBEAMNAME, Me.GBEAMNO, Me.GMTRS, Me.GTOTALBEAMMTRS, Me.GENDS, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBEAMWT, Me.GBREAKAGE, Me.GCHALLANNO, Me.GREMARKS, Me.gdone, Me.GMILLNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -138,6 +139,14 @@ Partial Class BeamRecdWarperDetails
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 1
         '
+        'GGODOWN
+        '
+        Me.GGODOWN.Caption = "Godown"
+        Me.GGODOWN.FieldName = "GODOWN"
+        Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.Visible = True
+        Me.GGODOWN.VisibleIndex = 2
+        '
         'GNAME
         '
         Me.GNAME.Caption = "Warper Name"
@@ -145,7 +154,7 @@ Partial Class BeamRecdWarperDetails
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 220
         '
         'GMILLNAME
@@ -154,45 +163,7 @@ Partial Class BeamRecdWarperDetails
         Me.GMILLNAME.FieldName = "MILLNAME"
         Me.GMILLNAME.Name = "GMILLNAME"
         Me.GMILLNAME.OptionsColumn.AllowEdit = False
-        Me.GMILLNAME.Width = 200
-        '
-        'GCHALLANNO
-        '
-        Me.GCHALLANNO.Caption = "Challan No."
-        Me.GCHALLANNO.FieldName = "CHALLANNO"
-        Me.GCHALLANNO.Name = "GCHALLANNO"
-        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
-        Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 3
-        Me.GCHALLANNO.Width = 80
-        '
-        'GJOBNO
-        '
-        Me.GJOBNO.Caption = "Job No"
-        Me.GJOBNO.FieldName = "JOBNO"
-        Me.GJOBNO.Name = "GJOBNO"
-        Me.GJOBNO.Visible = True
-        Me.GJOBNO.VisibleIndex = 4
-        '
-        'GREFNO
-        '
-        Me.GREFNO.Caption = "Ref No"
-        Me.GREFNO.FieldName = "REFNO"
-        Me.GREFNO.Name = "GREFNO"
-        Me.GREFNO.OptionsColumn.AllowEdit = False
-        Me.GREFNO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GREFNO.Visible = True
-        Me.GREFNO.VisibleIndex = 5
-        '
-        'GBEAMNO
-        '
-        Me.GBEAMNO.Caption = "Beam No."
-        Me.GBEAMNO.FieldName = "BEAMNO"
-        Me.GBEAMNO.Name = "GBEAMNO"
-        Me.GBEAMNO.OptionsColumn.AllowEdit = False
-        Me.GBEAMNO.Visible = True
-        Me.GBEAMNO.VisibleIndex = 6
-        Me.GBEAMNO.Width = 80
+        Me.GMILLNAME.Width = 150
         '
         'GBEAMNAME
         '
@@ -201,28 +172,49 @@ Partial Class BeamRecdWarperDetails
         Me.GBEAMNAME.Name = "GBEAMNAME"
         Me.GBEAMNAME.OptionsColumn.AllowEdit = False
         Me.GBEAMNAME.Visible = True
-        Me.GBEAMNAME.VisibleIndex = 7
+        Me.GBEAMNAME.VisibleIndex = 4
         Me.GBEAMNAME.Width = 160
+        '
+        'GBEAMNO
+        '
+        Me.GBEAMNO.Caption = "Beam No."
+        Me.GBEAMNO.FieldName = "BEAMNO"
+        Me.GBEAMNO.Name = "GBEAMNO"
+        Me.GBEAMNO.OptionsColumn.AllowEdit = False
+        Me.GBEAMNO.Visible = True
+        Me.GBEAMNO.VisibleIndex = 5
+        '
+        'GMTRS
+        '
+        Me.GMTRS.Caption = "Total Job Mtrs"
+        Me.GMTRS.FieldName = "TOTALJOBMTRS"
+        Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.OptionsColumn.AllowEdit = False
+        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GMTRS.Visible = True
+        Me.GMTRS.VisibleIndex = 6
+        Me.GMTRS.Width = 90
+        '
+        'GTOTALBEAMMTRS
+        '
+        Me.GTOTALBEAMMTRS.Caption = "Total Beam Mtrs"
+        Me.GTOTALBEAMMTRS.FieldName = "TOTALBEAMMTRS"
+        Me.GTOTALBEAMMTRS.Name = "GTOTALBEAMMTRS"
+        Me.GTOTALBEAMMTRS.OptionsColumn.AllowEdit = False
+        Me.GTOTALBEAMMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GTOTALBEAMMTRS.Visible = True
+        Me.GTOTALBEAMMTRS.VisibleIndex = 7
+        Me.GTOTALBEAMMTRS.Width = 100
         '
         'GENDS
         '
-        Me.GENDS.Caption = "ENDS"
+        Me.GENDS.Caption = "Ends"
         Me.GENDS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GENDS.FieldName = "ENDS"
         Me.GENDS.Name = "GENDS"
         Me.GENDS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GENDS.Visible = True
         Me.GENDS.VisibleIndex = 8
-        '
-        'GMTRS
-        '
-        Me.GMTRS.Caption = "Mtrs"
-        Me.GMTRS.FieldName = "MTRS"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.OptionsColumn.AllowEdit = False
-        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 9
         '
         'GGAMANO
         '
@@ -232,8 +224,8 @@ Partial Class BeamRecdWarperDetails
         Me.GGAMANO.OptionsColumn.AllowEdit = False
         Me.GGAMANO.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GGAMANO.Visible = True
-        Me.GGAMANO.VisibleIndex = 10
-        Me.GGAMANO.Width = 80
+        Me.GGAMANO.VisibleIndex = 9
+        Me.GGAMANO.Width = 60
         '
         'GSECTION
         '
@@ -243,7 +235,7 @@ Partial Class BeamRecdWarperDetails
         Me.GSECTION.OptionsColumn.AllowEdit = False
         Me.GSECTION.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GSECTION.Visible = True
-        Me.GSECTION.VisibleIndex = 11
+        Me.GSECTION.VisibleIndex = 10
         '
         'GROLLNO
         '
@@ -252,7 +244,7 @@ Partial Class BeamRecdWarperDetails
         Me.GROLLNO.Name = "GROLLNO"
         Me.GROLLNO.OptionsColumn.AllowEdit = False
         Me.GROLLNO.Visible = True
-        Me.GROLLNO.VisibleIndex = 12
+        Me.GROLLNO.VisibleIndex = 11
         Me.GROLLNO.Width = 100
         '
         'GBEAMWT
@@ -263,7 +255,7 @@ Partial Class BeamRecdWarperDetails
         Me.GBEAMWT.OptionsColumn.AllowEdit = False
         Me.GBEAMWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBEAMWT.Visible = True
-        Me.GBEAMWT.VisibleIndex = 14
+        Me.GBEAMWT.VisibleIndex = 12
         '
         'GBREAKAGE
         '
@@ -274,6 +266,25 @@ Partial Class BeamRecdWarperDetails
         Me.GBREAKAGE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBREAKAGE.Visible = True
         Me.GBREAKAGE.VisibleIndex = 13
+        '
+        'GCHALLANNO
+        '
+        Me.GCHALLANNO.Caption = "Challan No."
+        Me.GCHALLANNO.FieldName = "CHALLANNO"
+        Me.GCHALLANNO.Name = "GCHALLANNO"
+        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
+        Me.GCHALLANNO.Visible = True
+        Me.GCHALLANNO.VisibleIndex = 14
+        Me.GCHALLANNO.Width = 80
+        '
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 15
+        Me.GREMARKS.Width = 100
         '
         'gdone
         '
@@ -402,7 +413,6 @@ Partial Class BeamRecdWarperDetails
     Friend WithEvents GROLLNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBEAMWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBREAKAGE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gdone As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents Label15 As Label
@@ -414,5 +424,7 @@ Partial Class BeamRecdWarperDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
-    Friend WithEvents GJOBNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALBEAMMTRS As DevExpress.XtraGrid.Columns.GridColumn
 End Class

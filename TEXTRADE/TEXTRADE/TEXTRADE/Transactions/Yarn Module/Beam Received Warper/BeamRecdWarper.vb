@@ -31,17 +31,17 @@ Public Class BeamRecdWarper
             LBLTOTALJOBMTRS.Text = 0.0
             TXTTOTALMTRS.Text = 0.0
             LBLTAPLINE.Text = 0.0
-            LBLTOTALMTRS.Text = 0.0
+            LBLTOTALBEAMMTRS.Text = 0.0
 
             'Dim TOTALTAPLINE As Double
             For Each ROW As DataGridViewRow In GRIDBEAM.Rows
                 If ROW.Cells(GSRNO.Index).Value <> Nothing Then
 
                     LBLTOTALJOBMTRS.Text = Format(Val(LBLTOTALJOBMTRS.Text) + Val(ROW.Cells(GJOBMTRS.Index).EditedFormattedValue), "0.00")
-                    LBLTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text) + Val(ROW.Cells(GBEAMMTRS.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALBEAMMTRS.Text = Format(Val(LBLTOTALBEAMMTRS.Text) + Val(ROW.Cells(GBEAMMTRS.Index).EditedFormattedValue), "0.00")
                 End If
             Next
-            TXTTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text), "0.00")
+            TXTTOTALMTRS.Text = Format(Val(LBLTOTALBEAMMTRS.Text), "0.00")
 
         Catch ex As Exception
             Throw ex
@@ -270,7 +270,7 @@ Public Class BeamRecdWarper
             alParaval.Add(TXTCHALLANNO.Text.Trim)
             alParaval.Add(DTCHALLANDATE.Text.Trim)
             alParaval.Add(Val(LBLTOTALJOBMTRS.Text.Trim))
-            alParaval.Add(Val(LBLTOTALMTRS.Text.Trim))
+            alParaval.Add(Val(LBLTOTALBEAMMTRS.Text.Trim))
             alParaval.Add(Val(LBLTAPLINE.Text.Trim))
             alParaval.Add(TXTREMARKS.Text.Trim)
             alParaval.Add(CmpId)

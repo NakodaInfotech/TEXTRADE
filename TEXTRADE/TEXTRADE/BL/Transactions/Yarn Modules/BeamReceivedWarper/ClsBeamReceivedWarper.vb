@@ -61,7 +61,7 @@ Public Class ClsBeamReceivedWarper
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALJOBMTRS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDTOTALMTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALBEAMMTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AVGTAPLINE", alParaval(I)))
                 I = I + 1
@@ -163,7 +163,7 @@ Public Class ClsBeamReceivedWarper
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALJOBMTRS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDTOTALMTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALBEAMMTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AVGTAPLINE", alParaval(I)))
                 I = I + 1
