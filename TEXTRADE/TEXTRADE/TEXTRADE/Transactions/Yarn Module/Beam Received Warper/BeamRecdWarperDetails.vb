@@ -124,6 +124,16 @@ Public Class BeamRecdWarperDetails
         End Try
     End Sub
 
+    Private Sub TOOLGRIDDETAILS_Click(sender As Object, e As EventArgs) Handles TOOLGRIDDETAILS.Click
+        Try
+            Dim OBJDTLS As New BeamRecdWarperGridDetails
+            OBJDTLS.MdiParent = MDIMain
+            OBJDTLS.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub TOOLREFRESH_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLREFRESH.Click
         Try
             If USEREDIT = False And USERVIEW = False Then

@@ -3079,6 +3079,12 @@
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperGridDetails.Designer.vb">
+      <DependentUpon>BeamRecdWarperGridDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperGridDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.Designer.vb">
       <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
     </Compile>
@@ -10732,6 +10738,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.resx">
       <DependentUpon>BeamRecdWarperDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperGridDetails.resx">
+      <DependentUpon>BeamRecdWarperGridDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.resx">
       <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
