@@ -27,17 +27,17 @@ Public Class ClsTaskMaster
         Try
 
             'save CategoryMaster
-            Dim strCommand As String = "SP_MASTER_CATEGORYMASTER_SAVE"
+            Dim strCommand As String = "SP_MASTER_TASKMASTER_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
-                .Add(New SqlClient.SqlParameter("@categoryname", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@categoryremarks", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(3)))
-                .Add(New SqlClient.SqlParameter("@userid", alParaval(4)))
-                .Add(New SqlClient.SqlParameter("@yearid", alParaval(5)))
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(6)))
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(1)))
+                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(2)))
+                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(3)))
+                .Add(New SqlClient.SqlParameter("@locationid", alParaval(4)))
+                .Add(New SqlClient.SqlParameter("@userid", alParaval(5)))
+                .Add(New SqlClient.SqlParameter("@yearid", alParaval(6)))
 
             End With
 
@@ -57,18 +57,17 @@ Public Class ClsTaskMaster
         Try
 
             'save CategoryMaster
-            Dim strCommand As String = "SP_MASTER_CATEGORYMASTER_UPDATE"
+            Dim strCommand As String = "SP_MASTER_TASKMASTER_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
-                .Add(New SqlClient.SqlParameter("@categoryname", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@categoryremarks", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(3)))
-                .Add(New SqlClient.SqlParameter("@userid", alParaval(4)))
-                .Add(New SqlClient.SqlParameter("@yearid", alParaval(5)))
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(6)))
-                .Add(New SqlClient.SqlParameter("@categoryid", alParaval(7)))
+                .Add(New SqlClient.SqlParameter("@NAME", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(1)))
+                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(2)))
+                .Add(New SqlClient.SqlParameter("@cmpid", alParaval(3)))
+                .Add(New SqlClient.SqlParameter("@locationid", alParaval(4)))
+                .Add(New SqlClient.SqlParameter("@userid", alParaval(5)))
+                .Add(New SqlClient.SqlParameter("@yearid", alParaval(6)))
 
             End With
 
@@ -80,6 +79,7 @@ Public Class ClsTaskMaster
         Return 0
 
     End Function
+
 
 #End Region
 End Class

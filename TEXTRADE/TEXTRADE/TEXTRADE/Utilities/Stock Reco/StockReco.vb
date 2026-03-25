@@ -107,7 +107,7 @@ Public Class StockReco
             Dim dttable As DataTable = OBJCMN.SEARCH("BARCODESTOCK.*", "", " BARCODESTOCK ", " AND BARCODESTOCK.BARCODE NOT IN (SELECT BARCODE FROM STOCKTAKING_DESC WHERE YEARID = " & YearId & ") AND BARCODESTOCK.YEARID = " & YearId & TEMPCONDITION & " AND BARCODESTOCK.BARCODE IN (" & BARCODE & ")")
             If dttable.Rows.Count > 0 Then
                 For Each dr As DataRow In dttable.Rows
-                    GRIDSTOCK.Rows.Add(GRIDSTOCK.RowCount + 1, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("DESIGNNO"), dr("COLOR"), dr("LOTNO"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("MTRS")), "0.00"), 0, "Mtrs", 0, dr("BARCODE"), dr("FROMNO"), dr("FROMSRNO"), dr("TYPE"))
+                    GRIDSTOCK.Rows.Add(GRIDSTOCK.RowCount + 1, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("DESIGNNO"), dr("COLOR"), dr("LOTNO"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("MTRS")), "0.00"), 0, "Mtrs", 0, dr("BALENO"), dr("BARCODE"), dr("FROMNO"), dr("FROMSRNO"), dr("TYPE"))
                 Next
                 TOTAL()
                 GRIDSTOCK.FirstDisplayedScrollingRowIndex = GRIDSTOCK.RowCount - 1

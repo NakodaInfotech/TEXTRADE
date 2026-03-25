@@ -257,6 +257,9 @@ Partial Class MDIMain
         Me.EditExistingEntryToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator308 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator307 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TASK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TASKADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TASKEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.YarnRelatedMasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BeamMasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewEntryToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1314,6 +1317,8 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.AddNewBeamUnloadEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingBeamUploadEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1737,7 +1742,7 @@ Partial Class MDIMain
         '
         'OtherMastersToolStripMenuItem
         '
-        Me.OtherMastersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MATERIAL_MASTER, Me.DEPARTMENT_MASTER, Me.ItemRelatedMastersToolStripMenuItem, Me.RatesRelatedMastersToolStripMenuItem, Me.TERM_MASTER, Me.GROUPOFCOMPANIES_MASTER, Me.PARTYITEMWISESTAMPING, Me.DESTOOL, Me.HSN_MASTER, Me.ToolStripSeparator2, Me.REASON_MASTER, Me.NARRATION_MASTER, Me.PARTYBANK_MASTER, Me.CONTRACTOR_MASTER, Me.CURRENCY_MASTER, Me.PACKINGTYPE_MASTER, Me.COSTCENTER_MASTER, Me.ToolStripSeparator18, Me.CHALLANTYPE_MASTER, Me.JOBOUTTYPE_MASTER, Me.JOBOUTTYPE_TOOL, Me.MILL_MASTER, Me.YARNQUALITY_MASTER, Me.WEAVE_MASTER, Me.LOOM_MASTER, Me.ToolStripSeparator11, Me.MACHINE_MASTER, Me.ToolStripSeparator108, Me.TransportInsuranceToolStripMenuItem, Me.VehicleMasterToolStripMenuItem, Me.ToolStripSeparator307})
+        Me.OtherMastersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MATERIAL_MASTER, Me.DEPARTMENT_MASTER, Me.ItemRelatedMastersToolStripMenuItem, Me.RatesRelatedMastersToolStripMenuItem, Me.TERM_MASTER, Me.GROUPOFCOMPANIES_MASTER, Me.PARTYITEMWISESTAMPING, Me.DESTOOL, Me.HSN_MASTER, Me.ToolStripSeparator2, Me.REASON_MASTER, Me.NARRATION_MASTER, Me.PARTYBANK_MASTER, Me.CONTRACTOR_MASTER, Me.CURRENCY_MASTER, Me.PACKINGTYPE_MASTER, Me.COSTCENTER_MASTER, Me.ToolStripSeparator18, Me.CHALLANTYPE_MASTER, Me.JOBOUTTYPE_MASTER, Me.JOBOUTTYPE_TOOL, Me.MILL_MASTER, Me.YARNQUALITY_MASTER, Me.WEAVE_MASTER, Me.LOOM_MASTER, Me.ToolStripSeparator11, Me.MACHINE_MASTER, Me.ToolStripSeparator108, Me.TransportInsuranceToolStripMenuItem, Me.VehicleMasterToolStripMenuItem, Me.ToolStripSeparator307, Me.TASK_MASTER})
         Me.OtherMastersToolStripMenuItem.Name = "OtherMastersToolStripMenuItem"
         Me.OtherMastersToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.OtherMastersToolStripMenuItem.Text = "Other Masters"
@@ -2808,6 +2813,25 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator307.Name = "ToolStripSeparator307"
         Me.ToolStripSeparator307.Size = New System.Drawing.Size(218, 6)
+        '
+        'TASK_MASTER
+        '
+        Me.TASK_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TASKADD, Me.TASKEDIT})
+        Me.TASK_MASTER.Name = "TASK_MASTER"
+        Me.TASK_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.TASK_MASTER.Text = "Task Master"
+        '
+        'TASKADD
+        '
+        Me.TASKADD.Name = "TASKADD"
+        Me.TASKADD.Size = New System.Drawing.Size(168, 22)
+        Me.TASKADD.Text = "Add New Entry"
+        '
+        'TASKEDIT
+        '
+        Me.TASKEDIT.Name = "TASKEDIT"
+        Me.TASKEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.TASKEDIT.Text = "Edit Existing Entry"
         '
         'YarnRelatedMasterToolStripMenuItem
         '
@@ -7424,7 +7448,7 @@ Partial Class MDIMain
         '
         'BeamUploadUnload_MASTER
         '
-        Me.BeamUploadUnload_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMUPLOADADD, Me.BEAMUPLOADEDIT})
+        Me.BeamUploadUnload_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMUPLOADADD, Me.BEAMUPLOADEDIT, Me.AddNewBeamUnloadEntryToolStripMenuItem, Me.EditExistingBeamUploadEntryToolStripMenuItem})
         Me.BeamUploadUnload_MASTER.Name = "BeamUploadUnload_MASTER"
         Me.BeamUploadUnload_MASTER.Size = New System.Drawing.Size(207, 22)
         Me.BeamUploadUnload_MASTER.Text = "Beam Upload / Unload"
@@ -7432,14 +7456,14 @@ Partial Class MDIMain
         'BEAMUPLOADADD
         '
         Me.BEAMUPLOADADD.Name = "BEAMUPLOADADD"
-        Me.BEAMUPLOADADD.Size = New System.Drawing.Size(168, 22)
-        Me.BEAMUPLOADADD.Text = "Add New Entry"
+        Me.BEAMUPLOADADD.Size = New System.Drawing.Size(245, 22)
+        Me.BEAMUPLOADADD.Text = "Add New Beam Upload Entry"
         '
         'BEAMUPLOADEDIT
         '
         Me.BEAMUPLOADEDIT.Name = "BEAMUPLOADEDIT"
-        Me.BEAMUPLOADEDIT.Size = New System.Drawing.Size(168, 22)
-        Me.BEAMUPLOADEDIT.Text = "Edit Existing Entry"
+        Me.BEAMUPLOADEDIT.Size = New System.Drawing.Size(245, 22)
+        Me.BEAMUPLOADEDIT.Text = "Edit Existing Beam Upload Entry"
         '
         'ToolStripSeparator339
         '
@@ -9581,6 +9605,18 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
+        'AddNewBeamUnloadEntryToolStripMenuItem
+        '
+        Me.AddNewBeamUnloadEntryToolStripMenuItem.Name = "AddNewBeamUnloadEntryToolStripMenuItem"
+        Me.AddNewBeamUnloadEntryToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
+        Me.AddNewBeamUnloadEntryToolStripMenuItem.Text = "Add New Beam Unload Entry"
+        '
+        'EditExistingBeamUploadEntryToolStripMenuItem
+        '
+        Me.EditExistingBeamUploadEntryToolStripMenuItem.Name = "EditExistingBeamUploadEntryToolStripMenuItem"
+        Me.EditExistingBeamUploadEntryToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
+        Me.EditExistingBeamUploadEntryToolStripMenuItem.Text = "Edit Existing Beam Upload Entry"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10898,4 +10934,9 @@ Partial Class MDIMain
     Friend WithEvents OPENINGBEAMSTOCKATJOBBER_MASTER As ToolStripMenuItem
     Friend WithEvents OPENINGBEAMSTOCKATJOBBER_ADD As ToolStripMenuItem
     Friend WithEvents OPENINGYARNJOBORDER_ADD As ToolStripMenuItem
+    Friend WithEvents TASK_MASTER As ToolStripMenuItem
+    Friend WithEvents TASKADD As ToolStripMenuItem
+    Friend WithEvents TASKEDIT As ToolStripMenuItem
+    Friend WithEvents AddNewBeamUnloadEntryToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditExistingBeamUploadEntryToolStripMenuItem As ToolStripMenuItem
 End Class

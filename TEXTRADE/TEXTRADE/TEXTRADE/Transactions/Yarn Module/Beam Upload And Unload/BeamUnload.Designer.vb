@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class BeamUpload
+Partial Class BeamUnload
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -27,7 +27,7 @@ Partial Class BeamUpload
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamUpload))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamUnload))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.GRIDLOOMBEAM = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -99,8 +99,8 @@ Partial Class BeamUpload
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(593, 581)
-        Me.BlendPanel1.TabIndex = 1
+        Me.BlendPanel1.Size = New System.Drawing.Size(555, 581)
+        Me.BlendPanel1.TabIndex = 2
         '
         'GRIDLOOMBEAM
         '
@@ -445,7 +445,7 @@ Partial Class BeamUpload
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(593, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(555, 25)
         Me.ToolStrip1.TabIndex = 14
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -520,17 +520,16 @@ Partial Class BeamUpload
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'BeamUpload
+        'BeamUnload
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(593, 581)
+        Me.ClientSize = New System.Drawing.Size(555, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "BeamUpload"
+        Me.Name = "BeamUnload"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Beam Upload"
+        Me.Text = "Beam Unload"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
@@ -545,10 +544,19 @@ Partial Class BeamUpload
     End Sub
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
+    Friend WithEvents GRIDLOOMBEAM As DataGridView
+    Friend WithEvents GSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GLOOMNO As DataGridViewTextBoxColumn
+    Friend WithEvents GBEAMNO As DataGridViewTextBoxColumn
+    Friend WithEvents Label3 As Label
+    Friend WithEvents CMBBEAM As ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents CMBLOOM As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents CMBGODOWN As ComboBox
     Friend WithEvents GREYDATE As MaskedTextBox
     Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents txtremarks As TextBox
     Friend WithEvents CMBCODE As ComboBox
     Friend WithEvents txtadd As TextBox
     Friend WithEvents cmddelete As Button
@@ -570,14 +578,5 @@ Partial Class BeamUpload
     Friend WithEvents toolprevious As ToolStripButton
     Friend WithEvents toolnext As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents Label3 As Label
-    Friend WithEvents CMBBEAM As ComboBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents CMBLOOM As ComboBox
-    Friend WithEvents txtremarks As TextBox
-    Friend WithEvents GRIDLOOMBEAM As DataGridView
     Friend WithEvents EP As ErrorProvider
-    Friend WithEvents GSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GLOOMNO As DataGridViewTextBoxColumn
-    Friend WithEvents GBEAMNO As DataGridViewTextBoxColumn
 End Class

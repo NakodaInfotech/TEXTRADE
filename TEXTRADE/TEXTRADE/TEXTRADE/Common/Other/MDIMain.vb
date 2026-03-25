@@ -11445,4 +11445,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub TASKADD_Click(sender As Object, e As EventArgs) Handles TASKADD.Click
+        Try
+            Dim OBJYARNJO As New TaskMaster
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewBeamUnloadEntryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewBeamUnloadEntryToolStripMenuItem.Click
+        Try
+            Dim OBJYARNJO As New BeamUnload
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

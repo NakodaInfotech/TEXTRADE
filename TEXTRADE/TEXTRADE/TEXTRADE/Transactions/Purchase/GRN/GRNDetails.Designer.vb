@@ -86,6 +86,7 @@ Partial Class GRNDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.GDELIVERYTO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -275,7 +276,7 @@ Partial Class GRNDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GPIECETYPE, Me.GMTRS, Me.GJOBBERNAME, Me.GLOTNO, Me.GLOTDATE, Me.GPURRATE, Me.GRECDPCS, Me.GRECDMTRS, Me.GBALENO, Me.GBROKER, Me.GGODOWN, Me.GPONO, Me.GCATEGORY, Me.GTRANSPORT, Me.GCHALLANDATE, Me.GREMARKS, Me.GLOTREADY, Me.GLRNO, Me.GPER, Me.GAMOUNT, Me.GHSNCODE, Me.GQUALITYWT, Me.GREFLOTNO, Me.GCREATEDBY, Me.GCHECKDONE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GPIECETYPE, Me.GMTRS, Me.GJOBBERNAME, Me.GLOTNO, Me.GLOTDATE, Me.GPURRATE, Me.GRECDPCS, Me.GRECDMTRS, Me.GBALENO, Me.GBROKER, Me.GGODOWN, Me.GPONO, Me.GCATEGORY, Me.GTRANSPORT, Me.GCHALLANDATE, Me.GREMARKS, Me.GLOTREADY, Me.GLRNO, Me.GPER, Me.GAMOUNT, Me.GHSNCODE, Me.GQUALITYWT, Me.GREFLOTNO, Me.GCREATEDBY, Me.GCHECKDONE, Me.GDELIVERYTO})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, "")})
@@ -315,7 +316,7 @@ Partial Class GRNDetails
         '
         Me.GNAME.Caption = "Supplier Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
@@ -698,6 +699,16 @@ Partial Class GRNDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'GDELIVERYTO
+        '
+        Me.GDELIVERYTO.Caption = "Delivery To"
+        Me.GDELIVERYTO.FieldName = "DELIVERYTO"
+        Me.GDELIVERYTO.Name = "GDELIVERYTO"
+        Me.GDELIVERYTO.OptionsColumn.AllowEdit = False
+        Me.GDELIVERYTO.Visible = True
+        Me.GDELIVERYTO.VisibleIndex = 33
+        Me.GDELIVERYTO.Width = 200
+        '
         'GRNDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -783,4 +794,5 @@ Partial Class GRNDetails
     Friend WithEvents Label1 As Label
     Friend WithEvents Label22 As Label
     Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDELIVERYTO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

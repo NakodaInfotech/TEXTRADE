@@ -2437,6 +2437,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningYarnJobOrder.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningYarnJobOrderDetails.Designer.vb">
+      <DependentUpon>OpeningYarnJobOrderDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningYarnJobOrderDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\In House Packing\Issue To Packing\SelectIssueBarcodeGrid.Designer.vb">
       <DependentUpon>SelectIssueBarcodeGrid.vb</DependentUpon>
     </Compile>
@@ -3131,6 +3137,12 @@
       <DependentUpon>SelectRollIssue.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnload.Designer.vb">
+      <DependentUpon>BeamUnload.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnload.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.Designer.vb">
@@ -10433,6 +10445,9 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningYarnJobOrder.resx">
       <DependentUpon>OpeningYarnJobOrder.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningYarnJobOrderDetails.resx">
+      <DependentUpon>OpeningYarnJobOrderDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\In House Packing\Issue To Packing\SelectIssueBarcodeGrid.resx">
       <DependentUpon>SelectIssueBarcodeGrid.vb</DependentUpon>
     </EmbeddedResource>
@@ -10777,6 +10792,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.resx">
       <DependentUpon>SelectRollIssue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnload.resx">
+      <DependentUpon>BeamUnload.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.resx">
       <DependentUpon>BeamUpload.vb</DependentUpon>

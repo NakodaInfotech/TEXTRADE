@@ -1,14 +1,16 @@
 ﻿Imports System.ComponentModel
 Imports BL
 Imports DevExpress.XtraGrid.Views.Base
-Public Class BeamUpload
+
+Public Class BeamUnload
+
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Public EDIT As Boolean
-    Dim GRIDDOUBLECLICK As Boolean
-    Dim GRIDUPLOADDOUBLECLICK As Boolean
+        Dim GRIDDOUBLECLICK As Boolean
+    Dim GRIDUNLOADDOUBLECLICK As Boolean
     Public TEMPGREYNO As Integer
     Dim TEMPROW As Integer
-    Dim TEMPUPLOADROW As Integer
+    Dim TEMPUNLOADROW As Integer
     Dim IntResult As Integer
     Dim TEMPMSG As Integer
 
@@ -34,7 +36,7 @@ Public Class BeamUpload
         tstxtbillno.Clear()
         txtremarks.Clear()
         GRIDDOUBLECLICK = False
-        GRIDUPLOADDOUBLECLICK = False
+        GRIDUNLOADDOUBLECLICK = False
         getmaxno()
         CMBBEAM.Text = ""
         CMBLOOM.Text = ""
@@ -43,7 +45,7 @@ Public Class BeamUpload
     End Sub
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(BEAMUPLOAD_NO),0) + 1 ", " BEAMUPLOAD ", " AND BEAMUPLOAD_cmpid=" & CmpId & " and BEAMUPLOAD_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(BEAMUNLOAD_NO),0) + 1 ", " BEAMUNLOAD ", " AND BEAMUNLOAD_cmpid=" & CmpId & " and BEAMUNLOAD_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTGREYNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
     Private Sub CMBGODOWN_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBGODOWN.Enter
@@ -77,7 +79,7 @@ Public Class BeamUpload
 
 
 
-            Dim objCUTTING As New ClsBeamUpload()
+            Dim objCUTTING As New ClsBeamUnload()
             objCUTTING.alParaval = alParaval
             If EDIT = False Then
                 If USERADD = False Then
@@ -169,18 +171,18 @@ Public Class BeamUpload
         Try
             If EDIT = True Then
 
-                Dim TEMPMSG As Integer = MsgBox("Wish to Delete This Beam Upload Entry ...?", MsgBoxStyle.YesNo)
+                Dim TEMPMSG As Integer = MsgBox("Wish to Delete This Beam UNLOAD Entry ...?", MsgBoxStyle.YesNo)
                 If TEMPMSG = vbNo Then Exit Sub
 
                 Dim ALPARAVAL As New ArrayList
-                Dim OBJEMB As New ClsBeamUpload
+                Dim OBJEMB As New ClsBeamUnload
 
                 ALPARAVAL.Add(TEMPGREYNO)
                 ALPARAVAL.Add(CmpId)
                 ALPARAVAL.Add(YearId)
                 OBJEMB.alParaval = ALPARAVAL
                 Dim INTRES As Integer = OBJEMB.Delete()
-                MsgBox("Beam Upload Entry Deleted Succesfully")
+                MsgBox("Beam UNLOAD Entry Deleted Succesfully")
                 clear()
                 EDIT = False
                 CMBNAME.Focus()
@@ -215,7 +217,7 @@ Public Class BeamUpload
         End Try
     End Sub
 
-    Private Sub BeamUpload_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub BeamUNLOAD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
             DTROW = USERRIGHTS.Select("FormName = 'GRN'")
@@ -240,7 +242,7 @@ Public Class BeamUpload
                     Exit Sub
                 End If
 
-                Dim objJO As New ClsBeamUpload()
+                Dim objJO As New ClsBeamUnload()
                 Dim ALPARAVAL As New ArrayList
                 ALPARAVAL.Add(TEMPGREYNO)
                 ALPARAVAL.Add(CmpId)
@@ -279,7 +281,7 @@ Public Class BeamUpload
         End Try
     End Sub
 
-    Private Sub BeamUpload_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+    Private Sub BeamUNLOAD_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
             If errorvalid() = True Then
                 Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
@@ -310,7 +312,7 @@ LINE1:
             TEMPGREYNO = Val(TXTGREYNO.Text) - 1
             If TEMPGREYNO > 0 Then
                 EDIT = True
-                BeamUpload_Load(sender, e)
+                BeamUNLOAD_Load(sender, e)
             Else
                 clear()
                 EDIT = False
@@ -336,7 +338,7 @@ LINE1:
             clear()
             If Val(TXTGREYNO.Text) - 1 >= TEMPGREYNO Then
                 EDIT = True
-                BeamUpload_Load(sender, e)
+                BeamUNLOAD_Load(sender, e)
             Else
                 clear()
                 EDIT = False
@@ -372,7 +374,7 @@ LINE1:
             End If
             Dim dttable As DataTable
             Dim OBJCMN As New ClsCommon
-            dttable = OBJCMN.SEARCH(" LOOMMASTER_DESC.LOOM_NO ", "", " LOOMMASTER_DESC INNER JOIN LOOMMASTER  ON LOOMMASTER_DESC.LOOM_ID = LOOMMASTER.LOOM_ID LEFT JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_YEARID= " & YearId & WHERECLAUSE & " AND LEDGERS.Acc_CMPNAME = '" & CMBNAME.Text.Trim & "'  AND LOOMMASTER_DESC.LOOM_NO NOT IN ( SELECT BEAMUPLOAD_LOOMID  FROM BEAMUPLOAD )ORDER BY LOOMMASTER_DESC.LOOM_NO;")
+            dttable = OBJCMN.SEARCH(" LOOMMASTER_DESC.LOOM_NO ", "", " LOOMMASTER_DESC INNER JOIN LOOMMASTER  ON LOOMMASTER_DESC.LOOM_ID = LOOMMASTER.LOOM_ID LEFT JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_YEARID= " & YearId & WHERECLAUSE & " AND LEDGERS.Acc_CMPNAME = '" & CMBNAME.Text.Trim & "'  AND LOOMMASTER_DESC.LOOM_NO NOT IN ( SELECT BEAMUNLOAD_LOOMID  FROM BEAMUNLOAD )ORDER BY LOOMMASTER_DESC.LOOM_NO;")
 
             If dttable.Rows.Count > 0 Then
                 For Each row As DataRow In dttable.Rows
@@ -402,11 +404,11 @@ LINE1:
             Dim OBJCMN As New ClsCommon
 
             dttable = OBJCMN.SEARCH(
-                " b.BEAMNO AS BEAMNO ",
-                "",
-                " BEAMSTOCKATJOBBER b ", "And Not EXISTS(SELECT 1 FROM BEAMUPLOAD u WHERE u.BEAMUPLOAD_BEAMID = b.BEAMNO ) And DONE = 'FALSE'   AND YEARID = " & YearId &
-                " ORDER BY DATE DESC "
-            )
+                    " b.BEAMNO AS BEAMNO ",
+                    "",
+                    " BEAMSTOCKATJOBBER b ", "And Not EXISTS(SELECT 1 FROM BEAMUNLOAD u WHERE u.BEAMUNLOAD_BEAMID = b.BEAMNO ) And DONE = 'FALSE'   AND YEARID = " & YearId &
+                    " ORDER BY DATE DESC "
+                )
 
             If dttable.Rows.Count > 0 Then
                 For Each row As DataRow In dttable.Rows
@@ -439,23 +441,23 @@ LINE1:
             Dim OBJCMN As New ClsCommon
 
             dt = OBJCMN.SEARCH(
-            " BEAMUPLOAD.BEAMUPLOAD_LOOMID AS LOOMNO, BEAMUPLOAD.BEAMUPLOAD_BEAMID AS BEAMNO ",
-            "",
-            " BEAMUPLOAD INNER JOIN LEDGERS ON BEAMUPLOAD.BEAMUPLOAD_LEDGERID = LEDGERS.Acc_id AND BEAMUPLOAD.BEAMUPLOAD_yearid = LEDGERS.Acc_yearid ",
-            " AND LEDGERS.Acc_cmpname = '" & CMBNAME.Text.Trim & "'"
-        )
+                " BEAMUNLOAD.BEAMUNLOAD_LOOMID AS LOOMNO, BEAMUNLOAD.BEAMUNLOAD_BEAMID AS BEAMNO ",
+                "",
+                " BEAMUNLOAD INNER JOIN LEDGERS ON BEAMUNLOAD.BEAMUNLOAD_LEDGERID = LEDGERS.Acc_id AND BEAMUNLOAD.BEAMUNLOAD_yearid = LEDGERS.Acc_yearid ",
+                " AND LEDGERS.Acc_cmpname = '" & CMBNAME.Text.Trim & "'"
+            )
 
             GRIDLOOMBEAM.Rows.Clear()
 
-            If dt.Rows.Count > 0 Then
-                Dim SNO As Integer = 0
-                For Each DTROWPS As DataRow In dt.Rows
-                    SNO += 1
-                    GRIDLOOMBEAM.Rows.Add(SNO, DTROWPS("LOOMNO"), DTROWPS("BEAMNO"))
-                Next
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-End Class
+                If dt.Rows.Count > 0 Then
+                    Dim SNO As Integer = 0
+                    For Each DTROWPS As DataRow In dt.Rows
+                        SNO += 1
+                        GRIDLOOMBEAM.Rows.Add(SNO, DTROWPS("LOOMNO"), DTROWPS("BEAMNO"))
+                    Next
+                End If
+            Catch ex As Exception
+                Throw ex
+            End Try
+        End Sub
+    End Class
