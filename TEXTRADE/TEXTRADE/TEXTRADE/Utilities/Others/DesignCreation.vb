@@ -88,6 +88,7 @@ Public Class DesignCreation
                         alParaval.Add("")
                         alParaval.Add("")
                         alParaval.Add(CMBDESIGNERNAME.Text.Trim)
+                        alParaval.Add("")
 
                         Dim objDESIGN As New ClsDesignMaster
                         objDESIGN.alParaval = alParaval
@@ -101,6 +102,8 @@ Public Class DesignCreation
                             IntResult = objDESIGN.SAVE()
                         End If
                     Next
+                    MsgBox("Details Added")
+
                 End If
             Else
                 MsgBox("Enter Sr No ", MsgBoxStyle.Critical)
