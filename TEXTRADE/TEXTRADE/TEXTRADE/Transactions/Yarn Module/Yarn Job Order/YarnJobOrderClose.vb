@@ -21,7 +21,7 @@ Public Class YarnJobOrderClose
                 Exit Sub
             End If
 
-            fillgrid(" and JOB_YEARID=" & YearId)
+            fillgrid()
         Catch ex As Exception
             Throw ex
         End Try
@@ -38,12 +38,12 @@ Public Class YarnJobOrderClose
                 For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                     Dim DTROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
 
-                    If DTROW("TYPE") = "JOBORDER_DESC" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 1 WHERE JOB_NO = " & Val(DTROW("JONO")) & " AND  JOB_YEARID = " & YearId, "", "")
-                    If DTROW("TYPE") = "OPENINGYARNJOBORDER_DESC" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGJOBORDER_DESC SET OYJOB_CLOSED = 1 WHERE OYJOB_NO = " & Val(DTROW("JONO")) & " AND  OYJOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "JOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 1 WHERE JOB_NO = " & Val(DTROW("JOBNO")) & "  AND JOB_SRNO = " & Val(DTROW("JOBSRNO")) & " AND  JOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "OPJOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGYARNJOBORDER_DESC SET OYJOB_CLOSED = 1 WHERE OYJOB_NO = " & Val(DTROW("JOBNO")) & "  AND OYJOB_SRNO = " & Val(DTROW("JOBSRNO")) & " AND  OYJOB_YEARID = " & YearId, "", "")
 
                 Next
                 MsgBox("Details Updated Successfully")
-                fillgrid(" and JOB_YEARID=" & YearId)
+                fillgrid()
                 gridbill.Focus()
             End If
 
@@ -53,11 +53,11 @@ Public Class YarnJobOrderClose
                 Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
                 For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                     Dim DTROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
-                    If DTROW("TYPE") = "JOBORDER_DESC" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 0 WHERE JOB_NO = " & Val(DTROW("JONO")) & " AND  JOB_YEARID = " & YearId, "", "")
-                    If DTROW("TYPE") = "OPENINGYARNJOBORDER_DESC" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGYARNJOBORDER_DESC SET OYJOB_CLOSED = 0 WHERE OYJOB_NO = " & Val(DTROW("JONO")) & " AND  OYJOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "JOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 0 WHERE JOB_NO = " & Val(DTROW("JOBNO")) & "  AND JOB_SRNO = " & Val(DTROW("JOBSRNO")) & " AND  JOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "OPJOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGYARNJOBORDER_DESC SET OYJOB_CLOSED = 0 WHERE OYJOB_NO = " & Val(DTROW("JOBNO")) & "  AND OYJOB_SRNO = " & Val(DTROW("JOBSRNO")) & " AND  OYJOB_YEARID = " & YearId, "", "")
                 Next
                 MsgBox("Details Updated Successfully")
-                fillgrid(" and JOB_YEARID=" & YearId)
+                fillgrid()
                 gridbill.Focus()
             End If
         Catch ex As Exception
@@ -68,21 +68,21 @@ Public Class YarnJobOrderClose
 
     Private Sub CMDREFRESH_Click(sender As Object, e As EventArgs) Handles CMDREFRESH.Click
         Try
-            fillgrid(" and JOB_YEARID=" & YearId)
+            fillgrid()
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Sub fillgrid(ByVal TEMPCONDITION)
+    Sub fillgrid()
         Try
             Dim OBJCMN As New ClsCommonMaster
             Dim dt As New DataTable
             If RBPENDING.Checked = True Then
 
-                dt = OBJCMN.search(" * ", "", "  ALLJOBORDER_DESC ", TEMPCONDITION & "and JOB_CLOSED = 0")
+                dt = OBJCMN.search(" ALLJOBORDER.JOB_NO AS JOBNO,ALLJOBORDER.JOB_DATE AS DATE, ITEMMASTER.item_name AS ITEMNAME, LEDGERS.Acc_CMPname AS NAME, COLORMASTER.COLOR_name AS COLOR, ISNULL(ALLJOBORDER_DESC.JOB_MTRS - ALLJOBORDER_DESC.JOB_OUTMTRS,  0) AS TOTALMTRS, ALLJOBORDER_DESC.JOB_SRNO AS JOBSRNO ,ALLJOBORDER.TYPE, ISNULL(ALLJOBORDER.JOB_REMARKS, '') AS REMARKS  ", "", "  ALLJOBORDER INNER JOIN  ALLJOBORDER_DESC ON ALLJOBORDER.JOB_NO = ALLJOBORDER_DESC.JOB_NO AND ALLJOBORDER.TYPE = ALLJOBORDER_DESC.TYPE AND ALLJOBORDER.JOB_YEARID = ALLJOBORDER_DESC.JOB_YEARID INNER JOIN ITEMMASTER ON ALLJOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id INNER JOIN LEDGERS ON ALLJOBORDER.JOB_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN COLORMASTER ON ALLJOBORDER_DESC.JOB_SHADEID = COLORMASTER.COLOR_id   ", " AND ALLJOBORDER.JOB_YEARID =  " & YearId & " and JOB_CLOSED = 0 AND (ALLJOBORDER_DESC.JOB_MTRS - ALLJOBORDER_DESC.JOB_OUTMTRS > 0) ORDER BY  ALLJOBORDER.JOB_NO ")
             Else
-                dt = OBJCMN.search(" * ", "", "  ALLJOBORDER_DESC ", TEMPCONDITION & "and JOB_CLOSED = 1")
+                dt = OBJCMN.search("ALLJOBORDER.JOB_NO AS JOBNO,ALLJOBORDER.JOB_DATE AS DATE ,ITEMMASTER.item_name AS ITEMNAME, LEDGERS.Acc_CMPname AS NAME, COLORMASTER.COLOR_name AS COLOR, ISNULL(ALLJOBORDER_DESC.JOB_MTRS - ALLJOBORDER_DESC.JOB_OUTMTRS,  0) AS TOTALMTRS, ALLJOBORDER_DESC.JOB_SRNO AS JOBSRNO ,ALLJOBORDER.TYPE, ISNULL(ALLJOBORDER.JOB_REMARKS, '') AS REMARKS  ", "", "  ALLJOBORDER INNER JOIN  ALLJOBORDER_DESC ON ALLJOBORDER.JOB_NO = ALLJOBORDER_DESC.JOB_NO AND ALLJOBORDER.TYPE = ALLJOBORDER_DESC.TYPE AND ALLJOBORDER.JOB_YEARID = ALLJOBORDER_DESC.JOB_YEARID INNER JOIN ITEMMASTER ON ALLJOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id INNER JOIN LEDGERS ON ALLJOBORDER.JOB_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN COLORMASTER ON ALLJOBORDER_DESC.JOB_SHADEID = COLORMASTER.COLOR_id   ", " AND ALLJOBORDER.JOB_YEARID =  " & YearId & " and JOB_CLOSED = 1 AND (ALLJOBORDER_DESC.JOB_MTRS - ALLJOBORDER_DESC.JOB_OUTMTRS > 0) ORDER BY  ALLJOBORDER.JOB_NO ")
 
             End If
 
@@ -112,7 +112,7 @@ Public Class YarnJobOrderClose
 
     Private Sub RBPENDING_CheckedChanged(sender As Object, e As EventArgs) Handles RBPENDING.CheckedChanged
         Try
-            fillgrid(" and JOB_YEARID=" & YearId)
+            fillgrid()
         Catch ex As Exception
             Throw ex
         End Try
@@ -120,7 +120,7 @@ Public Class YarnJobOrderClose
 
     Private Sub RBENTERED_CheckedChanged(sender As Object, e As EventArgs) Handles RBENTERED.CheckedChanged
         Try
-            fillgrid(" and JOB_YEARID=" & YearId)
+            fillgrid()
         Catch ex As Exception
             Throw ex
         End Try

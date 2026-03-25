@@ -175,6 +175,13 @@ Public Class YarnJobOrder
                             PBlock.Visible = True
                             GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                         End If
+
+
+                        If Convert.ToBoolean(DTR("CLOSED")) = True Then
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                            GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                        End If
                     Next
                 End If
 
@@ -623,7 +630,7 @@ LINE1:
     Sub EDITROW()
         Try
             If GRIDBEAM.CurrentRow.Index >= 0 And GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value <> Nothing Then
-                If Convert.ToBoolean(GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GDONE.Index).Value) = True Or (GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GOUTMTRS.Index).Value) > 0 Then
+                If Convert.ToBoolean(GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GDONE.Index).Value) = True Or (GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GOUTMTRS.Index).Value) > 0 Or (GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GCLOSED.Index).Value) = True Then
                     MsgBox("Item Locked. Item Used !!")
                     Exit Sub
                 End If
