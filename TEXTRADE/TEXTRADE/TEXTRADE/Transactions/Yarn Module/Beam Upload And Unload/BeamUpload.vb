@@ -1,4 +1,6 @@
-﻿Imports BL
+﻿Imports System.ComponentModel
+Imports BL
+Imports DevExpress.XtraGrid.Views.Base
 Public Class BeamUpload
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Public EDIT As Boolean
@@ -16,7 +18,7 @@ Public Class BeamUpload
 
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
         Try
-            CLEAR()
+            clear()
             EDIT = False
             CMBNAME.Focus()
         Catch ex As Exception
@@ -106,7 +108,7 @@ Public Class BeamUpload
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
             Cursor.Current = Cursors.Default
-            End Try
+        End Try
 
     End Sub
 
@@ -296,10 +298,59 @@ Public Class BeamUpload
         End If
     End Sub
 
+    Private Sub toolprevious_Click(sender As Object, e As EventArgs) Handles toolprevious.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            Cursor.Current = Cursors.WaitCursor
+
+LINE1:
+            TEMPGREYNO = Val(TXTGREYNO.Text) - 1
+            If TEMPGREYNO > 0 Then
+                EDIT = True
+                BeamUpload_Load(sender, e)
+            Else
+                clear()
+                EDIT = False
+            End If
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub toolnext_Click(sender As Object, e As EventArgs) Handles toolnext.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+LINE1:
+            TEMPGREYNO = Val(TXTGREYNO.Text) + 1
+            getmaxno()
+            Dim MAXNO As Integer = TXTGREYNO.Text.Trim
+            clear()
+            If Val(TXTGREYNO.Text) - 1 >= TEMPGREYNO Then
+                EDIT = True
+                BeamUpload_Load(sender, e)
+            Else
+                clear()
+                EDIT = False
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
     Private Sub CMBNAME_Validated(sender As Object, e As EventArgs) Handles CMBNAME.Validated
         Try
             If CMBNAME.Text.Trim <> "" Then
                 LoadLoomsByWeaver(CMBNAME.Text.Trim)
+                LoadGridLoomBeam()
             End If
         Catch ex As Exception
             Throw ex
@@ -308,24 +359,31 @@ Public Class BeamUpload
 
     Private Sub LoadLoomsByWeaver(weaverAccId As String)
         Try
-            CMBLOOM.Items.Clear()
-            CMBLOOM.Text = ""
-            CMBBEAM.Items.Clear()
-            CMBBEAM.Text = ""
 
+
+            Dim WHERECLAUSE As String
+            If CMBLOOM.Text <> "" Then
+                WHERECLAUSE = " AND LOOMMASTER_DESC.LOOM_NO = " & CMBLOOM.Text
+            Else
+                CMBBEAM.Items.Clear()
+                CMBBEAM.Text = ""
+                CMBLOOM.Items.Clear()
+                CMBLOOM.Text = ""
+            End If
             Dim dttable As DataTable
             Dim OBJCMN As New ClsCommon
-            dttable = OBJCMN.SEARCH(" LOOMMASTER_DESC.LOOM_NO ", "", " LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID LEFT OUTER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_YEARID= " & YearId & " AND LEDGERS.Acc_CMPNAME = '" & CMBNAME.Text.Trim & "' ORDER BY LOOMMASTER_DESC.LOOM_NO")
+            dttable = OBJCMN.SEARCH(" LOOMMASTER_DESC.LOOM_NO ", "", " LOOMMASTER_DESC INNER JOIN LOOMMASTER  ON LOOMMASTER_DESC.LOOM_ID = LOOMMASTER.LOOM_ID LEFT JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_YEARID= " & YearId & WHERECLAUSE & " AND LEDGERS.Acc_CMPNAME = '" & CMBNAME.Text.Trim & "'  AND LOOMMASTER_DESC.LOOM_NO NOT IN ( SELECT BEAMUPLOAD_LOOMID  FROM BEAMUPLOAD )ORDER BY LOOMMASTER_DESC.LOOM_NO;")
 
-            If DTTABLE.Rows.Count > 0 Then
-                For Each row As DataRow In DTTABLE.Rows
+            If dttable.Rows.Count > 0 Then
+                For Each row As DataRow In dttable.Rows
                     If Not IsDBNull(row("LOOM_NO")) Then
                         CMBLOOM.Items.Add(row("LOOM_NO").ToString())
                     End If
                 Next
-                CMBLOOM.SelectedIndex = 0
+                'CMBLOOM.SelectedIndex = 0
             Else
-                MsgBox("No Looms found for selected Weaver.", MsgBoxStyle.Information)
+                'MsgBox("No Looms found for selected Weaver.", MsgBoxStyle.Information)
+                CMBLOOM.Focus()
             End If
 
         Catch ex As Exception
@@ -344,11 +402,9 @@ Public Class BeamUpload
             Dim OBJCMN As New ClsCommon
 
             dttable = OBJCMN.SEARCH(
-                " BEAMNO, RECNO, RECSRNO ",
+                " b.BEAMNO AS BEAMNO ",
                 "",
-                " BEAMSTOCKATJOBBER ",
-                " AND DONE = 'FALSE' " &
-                " AND YEARID = " & YearId &
+                " BEAMSTOCKATJOBBER b ", "And Not EXISTS(SELECT 1 FROM BEAMUPLOAD u WHERE u.BEAMUPLOAD_BEAMID = b.BEAMNO ) And DONE = 'FALSE'   AND YEARID = " & YearId &
                 " ORDER BY DATE DESC "
             )
 
@@ -367,6 +423,39 @@ Public Class BeamUpload
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBLOOM_Validating(sender As Object, e As CancelEventArgs) Handles CMBLOOM.Validating
+        Try
+            LoadLoomsByWeaver(CMBNAME.Text.Trim)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub LoadGridLoomBeam()
+        Try
+            Dim dt As DataTable
+            Dim OBJCMN As New ClsCommon
+
+            dt = OBJCMN.SEARCH(
+            " BEAMUPLOAD.BEAMUPLOAD_LOOMID AS LOOMNO, BEAMUPLOAD.BEAMUPLOAD_BEAMID AS BEAMNO ",
+            "",
+            " BEAMUPLOAD INNER JOIN LEDGERS ON BEAMUPLOAD.BEAMUPLOAD_LEDGERID = LEDGERS.Acc_id AND BEAMUPLOAD.BEAMUPLOAD_yearid = LEDGERS.Acc_yearid ",
+            " AND LEDGERS.Acc_cmpname = '" & CMBNAME.Text.Trim & "'"
+        )
+
+            GRIDLOOMBEAM.Rows.Clear()
+
+            If dt.Rows.Count > 0 Then
+                Dim SNO As Integer = 0
+                For Each DTROWPS As DataRow In dt.Rows
+                    SNO += 1
+                    GRIDLOOMBEAM.Rows.Add(SNO, DTROWPS("LOOMNO"), DTROWPS("BEAMNO"))
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class
