@@ -36,14 +36,8 @@ Partial Class OpeningBeamStockAtJobber
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.LBLWHATSAPP = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -53,8 +47,6 @@ Partial Class OpeningBeamStockAtJobber
         Me.Label12 = New System.Windows.Forms.Label()
         Me.lblgrndate = New System.Windows.Forms.Label()
         Me.LBLTOTALCUT = New System.Windows.Forms.Label()
-        Me.CMBOURGODOWN = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTVEHICALNO = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -76,35 +68,46 @@ Partial Class OpeningBeamStockAtJobber
         Me.toolprevious = New System.Windows.Forms.ToolStripButton()
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.cmbtrans = New System.Windows.Forms.ComboBox()
-        Me.Label18 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TBSCHEDULE = New System.Windows.Forms.TabPage()
-        Me.CMBLOOMNO = New System.Windows.Forms.ComboBox()
-        Me.TXTSCHSRNO = New System.Windows.Forms.TextBox()
+        Me.CMBROLLNO = New System.Windows.Forms.ComboBox()
+        Me.TXTBREAKAGE = New System.Windows.Forms.TextBox()
+        Me.TXTBEAMWT = New System.Windows.Forms.TextBox()
+        Me.TXTSECTION = New System.Windows.Forms.TextBox()
+        Me.TXTGAMANO = New System.Windows.Forms.TextBox()
+        Me.CMBSIZER = New System.Windows.Forms.ComboBox()
+        Me.TXTGRIDREMARKS = New System.Windows.Forms.TextBox()
+        Me.TXTCUTWT = New System.Windows.Forms.TextBox()
+        Me.TXTWT = New System.Windows.Forms.TextBox()
+        Me.TXTCUT = New System.Windows.Forms.TextBox()
+        Me.TXTTAPLINE = New System.Windows.Forms.TextBox()
+        Me.TXTENDS = New System.Windows.Forms.TextBox()
+        Me.TXTBEAMNO = New System.Windows.Forms.TextBox()
+        Me.TXTGRIDSRNO = New System.Windows.Forms.TextBox()
+        Me.CMBBEAMNAME = New System.Windows.Forms.ComboBox()
         Me.GRIDBEAMISSUE = New System.Windows.Forms.DataGridView()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBEAMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBEAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGAMANO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSECTION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GROLLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBEAMWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBREAKAGE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GTAPLINE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCUT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GWTCUT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GNARR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSIZERNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GOUTCUT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOUTMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSIZERNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLOOMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GUPLOADDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CMBBEAMNAME = New System.Windows.Forms.ComboBox()
-        Me.GRIDSCHEDULE = New System.Windows.Forms.DataGridView()
-        Me.GSCHSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSCHBEAMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSCHLOOMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbupload = New System.Windows.Forms.TabPage()
         Me.TXTIMGPATH = New System.Windows.Forms.TextBox()
         Me.PBSOFTCOPY = New System.Windows.Forms.PictureBox()
@@ -138,7 +141,6 @@ Partial Class OpeningBeamStockAtJobber
         Me.TabControl1.SuspendLayout()
         Me.TBSCHEDULE.SuspendLayout()
         CType(Me.GRIDBEAMISSUE, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDSCHEDULE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbupload.SuspendLayout()
         CType(Me.PBSOFTCOPY, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridupload, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,8 +159,6 @@ Partial Class OpeningBeamStockAtJobber
         Me.BlendPanel1.Controls.Add(Me.Label12)
         Me.BlendPanel1.Controls.Add(Me.lblgrndate)
         Me.BlendPanel1.Controls.Add(Me.LBLTOTALCUT)
-        Me.BlendPanel1.Controls.Add(Me.CMBOURGODOWN)
-        Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.TXTVEHICALNO)
         Me.BlendPanel1.Controls.Add(Me.Label5)
@@ -170,8 +170,6 @@ Partial Class OpeningBeamStockAtJobber
         Me.BlendPanel1.Controls.Add(Me.LBLTOTALWT)
         Me.BlendPanel1.Controls.Add(Me.Label10)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
-        Me.BlendPanel1.Controls.Add(Me.cmbtrans)
-        Me.BlendPanel1.Controls.Add(Me.Label18)
         Me.BlendPanel1.Controls.Add(Me.TabControl1)
         Me.BlendPanel1.Controls.Add(Me.PBlock)
         Me.BlendPanel1.Controls.Add(Me.cmddelete)
@@ -220,7 +218,7 @@ Partial Class OpeningBeamStockAtJobber
         Me.TXTEWBNO.MaxLength = 20
         Me.TXTEWBNO.Name = "TXTEWBNO"
         Me.TXTEWBNO.Size = New System.Drawing.Size(127, 23)
-        Me.TXTEWBNO.TabIndex = 4
+        Me.TXTEWBNO.TabIndex = 3
         '
         'DTISSUEDATE
         '
@@ -284,32 +282,6 @@ Partial Class OpeningBeamStockAtJobber
         Me.LBLTOTALCUT.Text = "0.00"
         Me.LBLTOTALCUT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'CMBOURGODOWN
-        '
-        Me.CMBOURGODOWN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBOURGODOWN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBOURGODOWN.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBOURGODOWN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBOURGODOWN.FormattingEnabled = True
-        Me.CMBOURGODOWN.Location = New System.Drawing.Point(105, 63)
-        Me.CMBOURGODOWN.MaxDropDownItems = 14
-        Me.CMBOURGODOWN.Name = "CMBOURGODOWN"
-        Me.CMBOURGODOWN.Size = New System.Drawing.Size(246, 23)
-        Me.CMBOURGODOWN.TabIndex = 825
-        Me.CMBOURGODOWN.TabStop = False
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(17, 67)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(86, 15)
-        Me.Label4.TabIndex = 826
-        Me.Label4.Text = "Godown Name"
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -330,7 +302,7 @@ Partial Class OpeningBeamStockAtJobber
         Me.TXTVEHICALNO.MaxLength = 10
         Me.TXTVEHICALNO.Name = "TXTVEHICALNO"
         Me.TXTVEHICALNO.Size = New System.Drawing.Size(97, 23)
-        Me.TXTVEHICALNO.TabIndex = 3
+        Me.TXTVEHICALNO.TabIndex = 2
         '
         'Label5
         '
@@ -388,7 +360,7 @@ Partial Class OpeningBeamStockAtJobber
         Me.GroupBox5.Location = New System.Drawing.Point(23, 481)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(268, 89)
-        Me.GroupBox5.TabIndex = 6
+        Me.GroupBox5.TabIndex = 5
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Remarks"
         '
@@ -519,30 +491,6 @@ Partial Class OpeningBeamStockAtJobber
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'cmbtrans
-        '
-        Me.cmbtrans.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbtrans.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbtrans.BackColor = System.Drawing.Color.LemonChiffon
-        Me.cmbtrans.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbtrans.FormattingEnabled = True
-        Me.cmbtrans.Location = New System.Drawing.Point(499, 63)
-        Me.cmbtrans.MaxDropDownItems = 14
-        Me.cmbtrans.Name = "cmbtrans"
-        Me.cmbtrans.Size = New System.Drawing.Size(274, 23)
-        Me.cmbtrans.TabIndex = 2
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.BackColor = System.Drawing.Color.Transparent
-        Me.Label18.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(437, 67)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(60, 15)
-        Me.Label18.TabIndex = 645
-        Me.Label18.Text = "Transport"
-        '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TBSCHEDULE)
@@ -552,16 +500,28 @@ Partial Class OpeningBeamStockAtJobber
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1202, 351)
-        Me.TabControl1.TabIndex = 5
+        Me.TabControl1.TabIndex = 4
         '
         'TBSCHEDULE
         '
+        Me.TBSCHEDULE.AutoScroll = True
         Me.TBSCHEDULE.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(247, Byte), Integer))
-        Me.TBSCHEDULE.Controls.Add(Me.CMBLOOMNO)
-        Me.TBSCHEDULE.Controls.Add(Me.TXTSCHSRNO)
-        Me.TBSCHEDULE.Controls.Add(Me.GRIDBEAMISSUE)
+        Me.TBSCHEDULE.Controls.Add(Me.CMBROLLNO)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTBREAKAGE)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTBEAMWT)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTSECTION)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTGAMANO)
+        Me.TBSCHEDULE.Controls.Add(Me.CMBSIZER)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTGRIDREMARKS)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTCUTWT)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTWT)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTCUT)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTTAPLINE)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTENDS)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTBEAMNO)
+        Me.TBSCHEDULE.Controls.Add(Me.TXTGRIDSRNO)
         Me.TBSCHEDULE.Controls.Add(Me.CMBBEAMNAME)
-        Me.TBSCHEDULE.Controls.Add(Me.GRIDSCHEDULE)
+        Me.TBSCHEDULE.Controls.Add(Me.GRIDBEAMISSUE)
         Me.TBSCHEDULE.Location = New System.Drawing.Point(4, 24)
         Me.TBSCHEDULE.Name = "TBSCHEDULE"
         Me.TBSCHEDULE.Padding = New System.Windows.Forms.Padding(3)
@@ -569,30 +529,168 @@ Partial Class OpeningBeamStockAtJobber
         Me.TBSCHEDULE.TabIndex = 3
         Me.TBSCHEDULE.Text = "1. Schedule / Item Details"
         '
-        'CMBLOOMNO
+        'CMBROLLNO
         '
-        Me.CMBLOOMNO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBLOOMNO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBLOOMNO.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBLOOMNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBLOOMNO.FormattingEnabled = True
-        Me.CMBLOOMNO.Location = New System.Drawing.Point(196, 4)
-        Me.CMBLOOMNO.MaxDropDownItems = 14
-        Me.CMBLOOMNO.Name = "CMBLOOMNO"
-        Me.CMBLOOMNO.Size = New System.Drawing.Size(75, 23)
-        Me.CMBLOOMNO.TabIndex = 830
+        Me.CMBROLLNO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBROLLNO.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBROLLNO.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBROLLNO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBROLLNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBROLLNO.FormattingEnabled = True
+        Me.CMBROLLNO.Items.AddRange(New Object() {""})
+        Me.CMBROLLNO.Location = New System.Drawing.Point(471, 4)
+        Me.CMBROLLNO.MaxDropDownItems = 14
+        Me.CMBROLLNO.Name = "CMBROLLNO"
+        Me.CMBROLLNO.Size = New System.Drawing.Size(100, 23)
+        Me.CMBROLLNO.TabIndex = 5
         '
-        'TXTSCHSRNO
+        'TXTBREAKAGE
         '
-        Me.TXTSCHSRNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTSCHSRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSCHSRNO.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.TXTSCHSRNO.Location = New System.Drawing.Point(6, 4)
-        Me.TXTSCHSRNO.Name = "TXTSCHSRNO"
-        Me.TXTSCHSRNO.ReadOnly = True
-        Me.TXTSCHSRNO.Size = New System.Drawing.Size(30, 23)
-        Me.TXTSCHSRNO.TabIndex = 829
-        Me.TXTSCHSRNO.TabStop = False
+        Me.TXTBREAKAGE.BackColor = System.Drawing.Color.White
+        Me.TXTBREAKAGE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBREAKAGE.Location = New System.Drawing.Point(671, 4)
+        Me.TXTBREAKAGE.Name = "TXTBREAKAGE"
+        Me.TXTBREAKAGE.Size = New System.Drawing.Size(99, 23)
+        Me.TXTBREAKAGE.TabIndex = 7
+        Me.TXTBREAKAGE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTBEAMWT
+        '
+        Me.TXTBEAMWT.BackColor = System.Drawing.Color.White
+        Me.TXTBEAMWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBEAMWT.Location = New System.Drawing.Point(571, 4)
+        Me.TXTBEAMWT.Name = "TXTBEAMWT"
+        Me.TXTBEAMWT.Size = New System.Drawing.Size(100, 23)
+        Me.TXTBEAMWT.TabIndex = 6
+        Me.TXTBEAMWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTSECTION
+        '
+        Me.TXTSECTION.BackColor = System.Drawing.Color.White
+        Me.TXTSECTION.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTSECTION.Location = New System.Drawing.Point(371, 4)
+        Me.TXTSECTION.Name = "TXTSECTION"
+        Me.TXTSECTION.Size = New System.Drawing.Size(100, 23)
+        Me.TXTSECTION.TabIndex = 4
+        Me.TXTSECTION.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTGAMANO
+        '
+        Me.TXTGAMANO.BackColor = System.Drawing.Color.White
+        Me.TXTGAMANO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTGAMANO.Location = New System.Drawing.Point(271, 4)
+        Me.TXTGAMANO.Name = "TXTGAMANO"
+        Me.TXTGAMANO.Size = New System.Drawing.Size(100, 23)
+        Me.TXTGAMANO.TabIndex = 3
+        Me.TXTGAMANO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'CMBSIZER
+        '
+        Me.CMBSIZER.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSIZER.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSIZER.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBSIZER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSIZER.FormattingEnabled = True
+        Me.CMBSIZER.Location = New System.Drawing.Point(1219, 4)
+        Me.CMBSIZER.MaxDropDownItems = 14
+        Me.CMBSIZER.Name = "CMBSIZER"
+        Me.CMBSIZER.Size = New System.Drawing.Size(135, 23)
+        Me.CMBSIZER.TabIndex = 14
+        '
+        'TXTGRIDREMARKS
+        '
+        Me.TXTGRIDREMARKS.BackColor = System.Drawing.Color.White
+        Me.TXTGRIDREMARKS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTGRIDREMARKS.Location = New System.Drawing.Point(1070, 4)
+        Me.TXTGRIDREMARKS.Name = "TXTGRIDREMARKS"
+        Me.TXTGRIDREMARKS.Size = New System.Drawing.Size(149, 23)
+        Me.TXTGRIDREMARKS.TabIndex = 13
+        Me.TXTGRIDREMARKS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTCUTWT
+        '
+        Me.TXTCUTWT.BackColor = System.Drawing.Color.White
+        Me.TXTCUTWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCUTWT.Location = New System.Drawing.Point(1010, 4)
+        Me.TXTCUTWT.Name = "TXTCUTWT"
+        Me.TXTCUTWT.Size = New System.Drawing.Size(60, 23)
+        Me.TXTCUTWT.TabIndex = 12
+        Me.TXTCUTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTWT
+        '
+        Me.TXTWT.BackColor = System.Drawing.Color.White
+        Me.TXTWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTWT.Location = New System.Drawing.Point(950, 4)
+        Me.TXTWT.Name = "TXTWT"
+        Me.TXTWT.Size = New System.Drawing.Size(60, 23)
+        Me.TXTWT.TabIndex = 11
+        Me.TXTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTCUT
+        '
+        Me.TXTCUT.BackColor = System.Drawing.Color.White
+        Me.TXTCUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTCUT.Location = New System.Drawing.Point(890, 4)
+        Me.TXTCUT.Name = "TXTCUT"
+        Me.TXTCUT.Size = New System.Drawing.Size(60, 23)
+        Me.TXTCUT.TabIndex = 10
+        Me.TXTCUT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTTAPLINE
+        '
+        Me.TXTTAPLINE.BackColor = System.Drawing.Color.White
+        Me.TXTTAPLINE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTAPLINE.Location = New System.Drawing.Point(830, 4)
+        Me.TXTTAPLINE.Name = "TXTTAPLINE"
+        Me.TXTTAPLINE.Size = New System.Drawing.Size(60, 23)
+        Me.TXTTAPLINE.TabIndex = 9
+        Me.TXTTAPLINE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTENDS
+        '
+        Me.TXTENDS.BackColor = System.Drawing.Color.White
+        Me.TXTENDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTENDS.Location = New System.Drawing.Point(770, 4)
+        Me.TXTENDS.Name = "TXTENDS"
+        Me.TXTENDS.Size = New System.Drawing.Size(60, 23)
+        Me.TXTENDS.TabIndex = 8
+        Me.TXTENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTBEAMNO
+        '
+        Me.TXTBEAMNO.BackColor = System.Drawing.Color.White
+        Me.TXTBEAMNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBEAMNO.Location = New System.Drawing.Point(196, 4)
+        Me.TXTBEAMNO.Name = "TXTBEAMNO"
+        Me.TXTBEAMNO.Size = New System.Drawing.Size(75, 23)
+        Me.TXTBEAMNO.TabIndex = 2
+        Me.TXTBEAMNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTGRIDSRNO
+        '
+        Me.TXTGRIDSRNO.BackColor = System.Drawing.Color.Linen
+        Me.TXTGRIDSRNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTGRIDSRNO.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.TXTGRIDSRNO.Location = New System.Drawing.Point(6, 4)
+        Me.TXTGRIDSRNO.Name = "TXTGRIDSRNO"
+        Me.TXTGRIDSRNO.ReadOnly = True
+        Me.TXTGRIDSRNO.Size = New System.Drawing.Size(30, 23)
+        Me.TXTGRIDSRNO.TabIndex = 0
+        Me.TXTGRIDSRNO.TabStop = False
+        '
+        'CMBBEAMNAME
+        '
+        Me.CMBBEAMNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBBEAMNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBBEAMNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBBEAMNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBBEAMNAME.FormattingEnabled = True
+        Me.CMBBEAMNAME.Location = New System.Drawing.Point(36, 4)
+        Me.CMBBEAMNAME.MaxDropDownItems = 14
+        Me.CMBBEAMNAME.Name = "CMBBEAMNAME"
+        Me.CMBBEAMNAME.Size = New System.Drawing.Size(160, 23)
+        Me.CMBBEAMNAME.TabIndex = 1
         '
         'GRIDBEAMISSUE
         '
@@ -613,7 +711,7 @@ Partial Class OpeningBeamStockAtJobber
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDBEAMISSUE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDBEAMISSUE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDBEAMISSUE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GBEAMNAME, Me.GBEAMNO, Me.GENDS, Me.GTAPLINE, Me.GCUT, Me.GWT, Me.GWTCUT, Me.GNARR, Me.GFROMNO, Me.GFROMSRNO, Me.GTYPE, Me.GOUTCUT, Me.GDONE, Me.GSIZERNAME, Me.GLOOMNO, Me.GUPLOADDATE})
+        Me.GRIDBEAMISSUE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GBEAMNAME, Me.GBEAMNO, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBEAMWT, Me.GBREAKAGE, Me.GENDS, Me.GTAPLINE, Me.GCUT, Me.GWT, Me.GCUTWT, Me.GNARR, Me.GSIZERNAME, Me.GFROMNO, Me.GFROMSRNO, Me.GTYPE, Me.GOUTMTRS, Me.GDONE, Me.GLOOMNO, Me.GUPLOADDATE})
         DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -623,7 +721,7 @@ Partial Class OpeningBeamStockAtJobber
         DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDBEAMISSUE.DefaultCellStyle = DataGridViewCellStyle9
         Me.GRIDBEAMISSUE.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDBEAMISSUE.Location = New System.Drawing.Point(303, 4)
+        Me.GRIDBEAMISSUE.Location = New System.Drawing.Point(5, 28)
         Me.GRIDBEAMISSUE.MultiSelect = False
         Me.GRIDBEAMISSUE.Name = "GRIDBEAMISSUE"
         Me.GRIDBEAMISSUE.RowHeadersVisible = False
@@ -636,7 +734,7 @@ Partial Class OpeningBeamStockAtJobber
         Me.GRIDBEAMISSUE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDBEAMISSUE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDBEAMISSUE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDBEAMISSUE.Size = New System.Drawing.Size(885, 289)
+        Me.GRIDBEAMISSUE.Size = New System.Drawing.Size(1372, 265)
         Me.GRIDBEAMISSUE.TabIndex = 653
         Me.GRIDBEAMISSUE.TabStop = False
         '
@@ -668,6 +766,46 @@ Partial Class OpeningBeamStockAtJobber
         Me.GBEAMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GBEAMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GBEAMNO.Width = 75
+        '
+        'GGAMANO
+        '
+        Me.GGAMANO.HeaderText = "Gama No"
+        Me.GGAMANO.Name = "GGAMANO"
+        Me.GGAMANO.ReadOnly = True
+        Me.GGAMANO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGAMANO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GSECTION
+        '
+        Me.GSECTION.HeaderText = "Section"
+        Me.GSECTION.Name = "GSECTION"
+        Me.GSECTION.ReadOnly = True
+        Me.GSECTION.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSECTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GROLLNO
+        '
+        Me.GROLLNO.HeaderText = "Roll No"
+        Me.GROLLNO.Name = "GROLLNO"
+        Me.GROLLNO.ReadOnly = True
+        Me.GROLLNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GROLLNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GBEAMWT
+        '
+        Me.GBEAMWT.HeaderText = "Beam Wt"
+        Me.GBEAMWT.Name = "GBEAMWT"
+        Me.GBEAMWT.ReadOnly = True
+        Me.GBEAMWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBEAMWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GBREAKAGE
+        '
+        Me.GBREAKAGE.HeaderText = "Breakage"
+        Me.GBREAKAGE.Name = "GBREAKAGE"
+        Me.GBREAKAGE.ReadOnly = True
+        Me.GBREAKAGE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBREAKAGE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'GENDS
         '
@@ -715,17 +853,17 @@ Partial Class OpeningBeamStockAtJobber
         Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GWT.Width = 60
         '
-        'GWTCUT
+        'GCUTWT
         '
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GWTCUT.DefaultCellStyle = DataGridViewCellStyle8
-        Me.GWTCUT.HeaderText = "Cut Wt."
-        Me.GWTCUT.MaxInputLength = 50
-        Me.GWTCUT.Name = "GWTCUT"
-        Me.GWTCUT.ReadOnly = True
-        Me.GWTCUT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GWTCUT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GWTCUT.Width = 60
+        Me.GCUTWT.DefaultCellStyle = DataGridViewCellStyle8
+        Me.GCUTWT.HeaderText = "Cut Wt."
+        Me.GCUTWT.MaxInputLength = 50
+        Me.GCUTWT.Name = "GCUTWT"
+        Me.GCUTWT.ReadOnly = True
+        Me.GCUTWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCUTWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCUTWT.Width = 60
         '
         'GNARR
         '
@@ -735,6 +873,15 @@ Partial Class OpeningBeamStockAtJobber
         Me.GNARR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GNARR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GNARR.Width = 150
+        '
+        'GSIZERNAME
+        '
+        Me.GSIZERNAME.HeaderText = "Sizer Name"
+        Me.GSIZERNAME.Name = "GSIZERNAME"
+        Me.GSIZERNAME.ReadOnly = True
+        Me.GSIZERNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSIZERNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSIZERNAME.Width = 135
         '
         'GFROMNO
         '
@@ -763,29 +910,20 @@ Partial Class OpeningBeamStockAtJobber
         Me.GTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GTYPE.Visible = False
         '
-        'GOUTCUT
+        'GOUTMTRS
         '
-        Me.GOUTCUT.HeaderText = "OUTCUT"
-        Me.GOUTCUT.Name = "GOUTCUT"
-        Me.GOUTCUT.ReadOnly = True
-        Me.GOUTCUT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GOUTCUT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GOUTCUT.Visible = False
+        Me.GOUTMTRS.HeaderText = "OUTMTRS"
+        Me.GOUTMTRS.Name = "GOUTMTRS"
+        Me.GOUTMTRS.ReadOnly = True
+        Me.GOUTMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GOUTMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GOUTMTRS.Visible = False
         '
         'GDONE
         '
         Me.GDONE.HeaderText = "DONE"
         Me.GDONE.Name = "GDONE"
         Me.GDONE.Visible = False
-        '
-        'GSIZERNAME
-        '
-        Me.GSIZERNAME.HeaderText = "Sizer Name"
-        Me.GSIZERNAME.Name = "GSIZERNAME"
-        Me.GSIZERNAME.ReadOnly = True
-        Me.GSIZERNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSIZERNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSIZERNAME.Width = 135
         '
         'GLOOMNO
         '
@@ -798,97 +936,6 @@ Partial Class OpeningBeamStockAtJobber
         Me.GUPLOADDATE.HeaderText = "Upload Date"
         Me.GUPLOADDATE.Name = "GUPLOADDATE"
         Me.GUPLOADDATE.Visible = False
-        '
-        'CMBBEAMNAME
-        '
-        Me.CMBBEAMNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBBEAMNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBBEAMNAME.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBBEAMNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBBEAMNAME.FormattingEnabled = True
-        Me.CMBBEAMNAME.Location = New System.Drawing.Point(36, 4)
-        Me.CMBBEAMNAME.MaxDropDownItems = 14
-        Me.CMBBEAMNAME.Name = "CMBBEAMNAME"
-        Me.CMBBEAMNAME.Size = New System.Drawing.Size(160, 23)
-        Me.CMBBEAMNAME.TabIndex = 0
-        '
-        'GRIDSCHEDULE
-        '
-        Me.GRIDSCHEDULE.AllowUserToAddRows = False
-        Me.GRIDSCHEDULE.AllowUserToDeleteRows = False
-        Me.GRIDSCHEDULE.AllowUserToResizeColumns = False
-        Me.GRIDSCHEDULE.AllowUserToResizeRows = False
-        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDSCHEDULE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
-        Me.GRIDSCHEDULE.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDSCHEDULE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDSCHEDULE.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDSCHEDULE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle12
-        Me.GRIDSCHEDULE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSCHEDULE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSCHSRNO, Me.GSCHBEAMNAME, Me.GSCHLOOMNO})
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle15.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSCHEDULE.DefaultCellStyle = DataGridViewCellStyle15
-        Me.GRIDSCHEDULE.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDSCHEDULE.Location = New System.Drawing.Point(4, 28)
-        Me.GRIDSCHEDULE.MultiSelect = False
-        Me.GRIDSCHEDULE.Name = "GRIDSCHEDULE"
-        Me.GRIDSCHEDULE.ReadOnly = True
-        Me.GRIDSCHEDULE.RowHeadersVisible = False
-        Me.GRIDSCHEDULE.RowHeadersWidth = 30
-        Me.GRIDSCHEDULE.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDSCHEDULE.RowsDefaultCellStyle = DataGridViewCellStyle16
-        Me.GRIDSCHEDULE.RowTemplate.Height = 20
-        Me.GRIDSCHEDULE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSCHEDULE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.GRIDSCHEDULE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDSCHEDULE.Size = New System.Drawing.Size(294, 264)
-        Me.GRIDSCHEDULE.TabIndex = 2
-        Me.GRIDSCHEDULE.TabStop = False
-        '
-        'GSCHSRNO
-        '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GSCHSRNO.DefaultCellStyle = DataGridViewCellStyle13
-        Me.GSCHSRNO.HeaderText = "Sr."
-        Me.GSCHSRNO.Name = "GSCHSRNO"
-        Me.GSCHSRNO.ReadOnly = True
-        Me.GSCHSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSCHSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSCHSRNO.Width = 30
-        '
-        'GSCHBEAMNAME
-        '
-        Me.GSCHBEAMNAME.HeaderText = "Beamname"
-        Me.GSCHBEAMNAME.Name = "GSCHBEAMNAME"
-        Me.GSCHBEAMNAME.ReadOnly = True
-        Me.GSCHBEAMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSCHBEAMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSCHBEAMNAME.Width = 160
-        '
-        'GSCHLOOMNO
-        '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GSCHLOOMNO.DefaultCellStyle = DataGridViewCellStyle14
-        Me.GSCHLOOMNO.HeaderText = "Loom No."
-        Me.GSCHLOOMNO.Name = "GSCHLOOMNO"
-        Me.GSCHLOOMNO.ReadOnly = True
-        Me.GSCHLOOMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSCHLOOMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSCHLOOMNO.Width = 75
         '
         'tbupload
         '
@@ -975,29 +1022,29 @@ Partial Class OpeningBeamStockAtJobber
         Me.gridupload.AllowUserToDeleteRows = False
         Me.gridupload.AllowUserToResizeColumns = False
         Me.gridupload.AllowUserToResizeRows = False
-        DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Black
-        Me.gridupload.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Black
+        Me.gridupload.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle11
         Me.gridupload.BackgroundColor = System.Drawing.Color.White
         Me.gridupload.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.gridupload.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.gridupload.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.gridupload.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle12
         Me.gridupload.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridupload.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GUSRNO, Me.GUREMARKS, Me.GUNAME, Me.GUIMGPATH})
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle19.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle19.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridupload.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridupload.DefaultCellStyle = DataGridViewCellStyle13
         Me.gridupload.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.gridupload.GridColor = System.Drawing.SystemColors.Control
         Me.gridupload.Location = New System.Drawing.Point(6, 31)
@@ -1007,9 +1054,9 @@ Partial Class OpeningBeamStockAtJobber
         Me.gridupload.RowHeadersVisible = False
         Me.gridupload.RowHeadersWidth = 30
         Me.gridupload.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White
-        Me.gridupload.RowsDefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White
+        Me.gridupload.RowsDefaultCellStyle = DataGridViewCellStyle14
         Me.gridupload.RowTemplate.Height = 20
         Me.gridupload.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridupload.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -1252,7 +1299,6 @@ Partial Class OpeningBeamStockAtJobber
         Me.TBSCHEDULE.ResumeLayout(False)
         Me.TBSCHEDULE.PerformLayout()
         CType(Me.GRIDBEAMISSUE, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDSCHEDULE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbupload.ResumeLayout(False)
         Me.tbupload.PerformLayout()
         CType(Me.PBSOFTCOPY, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1272,8 +1318,6 @@ Partial Class OpeningBeamStockAtJobber
     Friend WithEvents Label12 As Label
     Friend WithEvents lblgrndate As Label
     Friend WithEvents LBLTOTALCUT As Label
-    Friend WithEvents CMBOURGODOWN As ComboBox
-    Friend WithEvents Label4 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents TXTVEHICALNO As TextBox
     Friend WithEvents Label5 As Label
@@ -1295,35 +1339,9 @@ Partial Class OpeningBeamStockAtJobber
     Friend WithEvents toolprevious As ToolStripButton
     Friend WithEvents toolnext As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents cmbtrans As ComboBox
-    Friend WithEvents Label18 As Label
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TBSCHEDULE As TabPage
-    Friend WithEvents CMBLOOMNO As ComboBox
-    Friend WithEvents TXTSCHSRNO As TextBox
     Friend WithEvents GRIDBEAMISSUE As DataGridView
-    Friend WithEvents gsrno As DataGridViewTextBoxColumn
-    Friend WithEvents GBEAMNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GBEAMNO As DataGridViewTextBoxColumn
-    Friend WithEvents GENDS As DataGridViewTextBoxColumn
-    Friend WithEvents GTAPLINE As DataGridViewTextBoxColumn
-    Friend WithEvents GCUT As DataGridViewTextBoxColumn
-    Friend WithEvents GWT As DataGridViewTextBoxColumn
-    Friend WithEvents GWTCUT As DataGridViewTextBoxColumn
-    Friend WithEvents GNARR As DataGridViewTextBoxColumn
-    Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
-    Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GTYPE As DataGridViewTextBoxColumn
-    Friend WithEvents GOUTCUT As DataGridViewTextBoxColumn
-    Friend WithEvents GDONE As DataGridViewTextBoxColumn
-    Friend WithEvents GSIZERNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GLOOMNO As DataGridViewTextBoxColumn
-    Friend WithEvents GUPLOADDATE As DataGridViewTextBoxColumn
-    Friend WithEvents CMBBEAMNAME As ComboBox
-    Friend WithEvents GRIDSCHEDULE As DataGridView
-    Friend WithEvents GSCHSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GSCHBEAMNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GSCHLOOMNO As DataGridViewTextBoxColumn
     Friend WithEvents tbupload As TabPage
     Friend WithEvents TXTIMGPATH As TextBox
     Friend WithEvents PBSOFTCOPY As PictureBox
@@ -1351,4 +1369,41 @@ Partial Class OpeningBeamStockAtJobber
     Friend WithEvents LBLEINVGENERATED As Label
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents TXTGRIDSRNO As TextBox
+    Friend WithEvents CMBBEAMNAME As ComboBox
+    Friend WithEvents TXTBEAMNO As TextBox
+    Friend WithEvents TXTENDS As TextBox
+    Friend WithEvents TXTCUT As TextBox
+    Friend WithEvents TXTTAPLINE As TextBox
+    Friend WithEvents TXTWT As TextBox
+    Friend WithEvents CMBSIZER As ComboBox
+    Friend WithEvents TXTGRIDREMARKS As TextBox
+    Friend WithEvents TXTCUTWT As TextBox
+    Friend WithEvents TXTBREAKAGE As TextBox
+    Friend WithEvents TXTBEAMWT As TextBox
+    Friend WithEvents TXTSECTION As TextBox
+    Friend WithEvents TXTGAMANO As TextBox
+    Friend WithEvents CMBROLLNO As ComboBox
+    Friend WithEvents gsrno As DataGridViewTextBoxColumn
+    Friend WithEvents GBEAMNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GBEAMNO As DataGridViewTextBoxColumn
+    Friend WithEvents GGAMANO As DataGridViewTextBoxColumn
+    Friend WithEvents GSECTION As DataGridViewTextBoxColumn
+    Friend WithEvents GROLLNO As DataGridViewTextBoxColumn
+    Friend WithEvents GBEAMWT As DataGridViewTextBoxColumn
+    Friend WithEvents GBREAKAGE As DataGridViewTextBoxColumn
+    Friend WithEvents GENDS As DataGridViewTextBoxColumn
+    Friend WithEvents GTAPLINE As DataGridViewTextBoxColumn
+    Friend WithEvents GCUT As DataGridViewTextBoxColumn
+    Friend WithEvents GWT As DataGridViewTextBoxColumn
+    Friend WithEvents GCUTWT As DataGridViewTextBoxColumn
+    Friend WithEvents GNARR As DataGridViewTextBoxColumn
+    Friend WithEvents GSIZERNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
+    Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GTYPE As DataGridViewTextBoxColumn
+    Friend WithEvents GOUTMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents GDONE As DataGridViewTextBoxColumn
+    Friend WithEvents GLOOMNO As DataGridViewTextBoxColumn
+    Friend WithEvents GUPLOADDATE As DataGridViewTextBoxColumn
 End Class
