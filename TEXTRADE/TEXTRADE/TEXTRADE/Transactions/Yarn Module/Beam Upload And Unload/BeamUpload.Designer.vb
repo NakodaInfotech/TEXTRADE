@@ -30,6 +30,9 @@ Partial Class BeamUpload
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamUpload))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.GRIDLOOMBEAM = New System.Windows.Forms.DataGridView()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLOOMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBEAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.CMBBEAM = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -61,9 +64,6 @@ Partial Class BeamUpload
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLOOMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBEAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDLOOMBEAM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -148,6 +148,30 @@ Partial Class BeamUpload
         Me.GRIDLOOMBEAM.Size = New System.Drawing.Size(300, 213)
         Me.GRIDLOOMBEAM.TabIndex = 861
         Me.GRIDLOOMBEAM.TabStop = False
+        '
+        'GSRNO
+        '
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 30
+        '
+        'GLOOMNO
+        '
+        Me.GLOOMNO.HeaderText = "Loom No"
+        Me.GLOOMNO.Name = "GLOOMNO"
+        Me.GLOOMNO.ReadOnly = True
+        Me.GLOOMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLOOMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLOOMNO.Width = 150
+        '
+        'GBEAMNO
+        '
+        Me.GBEAMNO.HeaderText = "Beam No."
+        Me.GBEAMNO.Name = "GBEAMNO"
+        Me.GBEAMNO.ReadOnly = True
         '
         'Label3
         '
@@ -495,30 +519,6 @@ Partial Class BeamUpload
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'GSRNO
-        '
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 30
-        '
-        'GLOOMNO
-        '
-        Me.GLOOMNO.HeaderText = "Loom No"
-        Me.GLOOMNO.Name = "GLOOMNO"
-        Me.GLOOMNO.ReadOnly = True
-        Me.GLOOMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLOOMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLOOMNO.Width = 150
-        '
-        'GBEAMNO
-        '
-        Me.GBEAMNO.HeaderText = "Beam No."
-        Me.GBEAMNO.Name = "GBEAMNO"
-        Me.GBEAMNO.ReadOnly = True
         '
         'BeamUpload
         '
