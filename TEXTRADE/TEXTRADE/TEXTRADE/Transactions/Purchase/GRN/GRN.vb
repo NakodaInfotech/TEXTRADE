@@ -1666,7 +1666,13 @@ NEXTLINE:
                         gridgrn.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("DESC").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("CUT"), "0.00"), Format(dr("MTRS"), "0.00"), dr("RACK"), dr("SHELF"), Format(dr("WT"), "0.00"), Format(dr("PURRATE"), "0.00"), Format(dr("SALERATE"), "0.00"), Format(dr("WHOLESALERATE"), "0.00"), dr("PER"), Format(dr("AMOUNT"), "0.00"), dr("BARCODE").ToString, dr("DONE").ToString, Val(dr("OUTPCS")), Val(dr("OUTMTRS")), dr("GRIDPONO").ToString, dr("POGRIDSRNO").ToString, dr("CHECKDONE"), dr("FROMTYPE"))
 
                         If Convert.ToBoolean(dr("CHECKDONE")) = True Or Convert.ToBoolean(dr("INHOUSECHECKDONE")) = True Or Convert.ToBoolean(dr("DONE")) = True Or Convert.ToBoolean(dr("PROGRAMDONE")) = True Or Val(dr("OUTMTRS")) > 0 Then
-                            If Convert.ToBoolean(dr("CHECKDONE")) = True Or Convert.ToBoolean(dr("INHOUSECHECKDONE")) = True Then TXTLOTNO.Enabled = False
+                            If Convert.ToBoolean(dr("CHECKDONE")) = True Or Convert.ToBoolean(dr("INHOUSECHECKDONE")) = True Then
+                                TXTLOTNO.Enabled = False
+                                If ClientName = "VINTAGEINDIA" And UserName = "Admin" Then
+                                    'TXTLOTNO.ReadOnly = False
+                                    TXTLOTNO.Enabled = True
+                                End If
+                            End If
                             gridgrn.Rows(gridgrn.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                             If ClientName <> "KARAN" Then
                                 lbllocked.Visible = True
@@ -3782,11 +3788,11 @@ LINE1:
                 txtqty.TabStop = False
                 txtqty.ReadOnly = True
                 TXTBALENO.TabStop = False
-                TXTBALENO.ReadOnly = True
+                'TXTBALENO.ReadOnly = True
                 cmbGodown.TabStop = False
                 CMBBROKER.TabStop = False
 
-                If UserName <> "Admin" Then TXTLOTNO.ReadOnly = True
+                If UserName <> "Admin" Then TXTLOTNO.ReadOnly = True And TXTBALENO.ReadOnly = True
 
             End If
 

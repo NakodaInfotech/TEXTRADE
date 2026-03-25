@@ -27,11 +27,7 @@ Public Class ClsOpeningBeamStockAtJobber
                 Dim I As Integer = 0
                 .Add(New SqlClient.SqlParameter("@BEAMISSUEDATE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TRANSPORT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICALNO", alParaval(I)))
                 I = I + 1
@@ -49,14 +45,6 @@ Public Class ClsOpeningBeamStockAtJobber
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
-                I = I + 1
-
-
-                .Add(New SqlClient.SqlParameter("@SCHSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHBEAMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHLOOMNO", alParaval(I)))
                 I = I + 1
 
 
@@ -120,11 +108,7 @@ Public Class ClsOpeningBeamStockAtJobber
                 Dim I As Integer = 0
                 .Add(New SqlClient.SqlParameter("@BEAMISSUEDATE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TRANSPORT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@VEHICALNO", alParaval(I)))
                 I = I + 1
@@ -143,14 +127,6 @@ Public Class ClsOpeningBeamStockAtJobber
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
-                I = I + 1
-
-
-                .Add(New SqlClient.SqlParameter("@SCHSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHBEAMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHLOOMNO", alParaval(I)))
                 I = I + 1
 
                 'grid parameters

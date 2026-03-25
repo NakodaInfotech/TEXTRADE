@@ -684,7 +684,7 @@ LINE1:
         Next
     End Function
 
-    Private Sub TXTJONO_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTJONO.KeyPress, TXTPONO.KeyPress
+    Private Sub TXTJONO_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTJONO.KeyPress,TXTPONO.KeyPress
         numkeypress(e, sender, Me)
     End Sub
 End Class
