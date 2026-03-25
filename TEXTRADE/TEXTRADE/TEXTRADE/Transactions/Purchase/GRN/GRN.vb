@@ -3791,6 +3791,9 @@ LINE1:
                 'TXTBALENO.ReadOnly = True
                 cmbGodown.TabStop = False
                 CMBBROKER.TabStop = False
+                If FRMSTRING = "GRN FANCY" Then
+                    LBLPACKING.Text = "Supplier"
+                End If
 
                 If UserName <> "Admin" Then TXTLOTNO.ReadOnly = True And TXTBALENO.ReadOnly = True
 
