@@ -22,38 +22,88 @@ Partial Class TaskMaster
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMBTASKTYPE = New System.Windows.Forms.ComboBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.CMBTASKNAME = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.CMDDELETE = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.txtremarks = New System.Windows.Forms.TextBox()
-        Me.chkchange = New System.Windows.Forms.CheckBox()
-        Me.lblgroup = New System.Windows.Forms.Label()
-        Me.txtname = New System.Windows.Forms.TextBox()
-        Me.cmdedit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.lbl = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
+        Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        CType(Me.Ep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMBTASKTYPE)
+        Me.BlendPanel1.Controls.Add(Me.Label28)
+        Me.BlendPanel1.Controls.Add(Me.CMBTASKNAME)
+        Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.CMDDELETE)
         Me.BlendPanel1.Controls.Add(Me.GroupBox5)
-        Me.BlendPanel1.Controls.Add(Me.chkchange)
-        Me.BlendPanel1.Controls.Add(Me.lblgroup)
-        Me.BlendPanel1.Controls.Add(Me.txtname)
-        Me.BlendPanel1.Controls.Add(Me.cmdedit)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
-        Me.BlendPanel1.Controls.Add(Me.lbl)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(656, 217)
+        Me.BlendPanel1.Size = New System.Drawing.Size(718, 247)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'CMBTASKTYPE
+        '
+        Me.CMBTASKTYPE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTASKTYPE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTASKTYPE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBTASKTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTASKTYPE.FormattingEnabled = True
+        Me.CMBTASKTYPE.Items.AddRange(New Object() {"", "Daily", "Weekly", "Monthly"})
+        Me.CMBTASKTYPE.Location = New System.Drawing.Point(91, 45)
+        Me.CMBTASKTYPE.MaxDropDownItems = 14
+        Me.CMBTASKTYPE.Name = "CMBTASKTYPE"
+        Me.CMBTASKTYPE.Size = New System.Drawing.Size(159, 22)
+        Me.CMBTASKTYPE.TabIndex = 873
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label28.Location = New System.Drawing.Point(30, 49)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(58, 14)
+        Me.Label28.TabIndex = 874
+        Me.Label28.Text = "Task Type"
+        '
+        'CMBTASKNAME
+        '
+        Me.CMBTASKNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTASKNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTASKNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBTASKNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTASKNAME.FormattingEnabled = True
+        Me.CMBTASKNAME.Location = New System.Drawing.Point(91, 15)
+        Me.CMBTASKNAME.MaxDropDownItems = 14
+        Me.CMBTASKNAME.Name = "CMBTASKNAME"
+        Me.CMBTASKNAME.Size = New System.Drawing.Size(553, 22)
+        Me.CMBTASKNAME.TabIndex = 293
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(22, 19)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(66, 14)
+        Me.Label1.TabIndex = 294
+        Me.Label1.Text = "Task Name"
         '
         'CMDDELETE
         '
@@ -61,7 +111,7 @@ Partial Class TaskMaster
         Me.CMDDELETE.FlatAppearance.BorderSize = 0
         Me.CMDDELETE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDDELETE.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDDELETE.Location = New System.Drawing.Point(124, 170)
+        Me.CMDDELETE.Location = New System.Drawing.Point(132, 180)
         Me.CMDDELETE.Name = "CMDDELETE"
         Me.CMDDELETE.Size = New System.Drawing.Size(80, 28)
         Me.CMDDELETE.TabIndex = 3
@@ -74,7 +124,7 @@ Partial Class TaskMaster
         Me.GroupBox5.Controls.Add(Me.txtremarks)
         Me.GroupBox5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox5.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox5.Location = New System.Drawing.Point(18, 89)
+        Me.GroupBox5.Location = New System.Drawing.Point(25, 89)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(306, 75)
         Me.GroupBox5.TabIndex = 1
@@ -90,74 +140,18 @@ Partial Class TaskMaster
         Me.txtremarks.Size = New System.Drawing.Size(294, 47)
         Me.txtremarks.TabIndex = 0
         '
-        'chkchange
-        '
-        Me.chkchange.AutoSize = True
-        Me.chkchange.Location = New System.Drawing.Point(3, 3)
-        Me.chkchange.Name = "chkchange"
-        Me.chkchange.Size = New System.Drawing.Size(15, 14)
-        Me.chkchange.TabIndex = 147
-        Me.chkchange.UseVisualStyleBackColor = True
-        Me.chkchange.Visible = False
-        '
-        'lblgroup
-        '
-        Me.lblgroup.BackColor = System.Drawing.Color.Transparent
-        Me.lblgroup.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblgroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblgroup.Location = New System.Drawing.Point(13, 22)
-        Me.lblgroup.Name = "lblgroup"
-        Me.lblgroup.Size = New System.Drawing.Size(73, 22)
-        Me.lblgroup.TabIndex = 143
-        Me.lblgroup.Text = "Category"
-        Me.lblgroup.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtname
-        '
-        Me.txtname.BackColor = System.Drawing.Color.LemonChiffon
-        Me.txtname.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtname.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtname.Location = New System.Drawing.Point(91, 20)
-        Me.txtname.Name = "txtname"
-        Me.txtname.Size = New System.Drawing.Size(523, 27)
-        Me.txtname.TabIndex = 0
-        '
-        'cmdedit
-        '
-        Me.cmdedit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdedit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdedit.Location = New System.Drawing.Point(18, 3)
-        Me.cmdedit.Name = "cmdedit"
-        Me.cmdedit.Size = New System.Drawing.Size(67, 26)
-        Me.cmdedit.TabIndex = 145
-        Me.cmdedit.Text = "&Edit"
-        Me.cmdedit.UseVisualStyleBackColor = True
-        Me.cmdedit.Visible = False
-        '
         'cmdok
         '
         Me.cmdok.BackColor = System.Drawing.Color.Transparent
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdok.Location = New System.Drawing.Point(38, 170)
+        Me.cmdok.Location = New System.Drawing.Point(46, 180)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 2
         Me.cmdok.Text = "Save"
         Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'lbl
-        '
-        Me.lbl.BackColor = System.Drawing.Color.Transparent
-        Me.lbl.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lbl.Location = New System.Drawing.Point(48, 48)
-        Me.lbl.Name = "lbl"
-        Me.lbl.Size = New System.Drawing.Size(197, 47)
-        Me.lbl.TabIndex = 144
-        Me.lbl.Text = "Enter Area                                            (e.g.  Kalbadevi,Santacruz." &
-    ".., etc. )"
         '
         'cmdexit
         '
@@ -165,17 +159,23 @@ Partial Class TaskMaster
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(210, 170)
+        Me.cmdexit.Location = New System.Drawing.Point(218, 180)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 4
         Me.cmdexit.Text = "Exit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
+        'Ep
+        '
+        Me.Ep.BlinkRate = 0
+        Me.Ep.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
+        Me.Ep.ContainerControl = Me
+        '
         'TaskMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(656, 217)
+        Me.ClientSize = New System.Drawing.Size(718, 247)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.KeyPreview = True
@@ -187,6 +187,7 @@ Partial Class TaskMaster
         Me.BlendPanel1.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        CType(Me.Ep, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -195,11 +196,11 @@ Partial Class TaskMaster
     Friend WithEvents CMDDELETE As Button
     Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents txtremarks As TextBox
-    Friend WithEvents chkchange As CheckBox
-    Friend WithEvents lblgroup As Label
-    Friend WithEvents txtname As TextBox
-    Friend WithEvents cmdedit As Button
     Friend WithEvents cmdok As Button
-    Friend WithEvents lbl As Label
     Friend WithEvents cmdexit As Button
+    Friend WithEvents CMBTASKNAME As ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents CMBTASKTYPE As ComboBox
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Ep As ErrorProvider
 End Class

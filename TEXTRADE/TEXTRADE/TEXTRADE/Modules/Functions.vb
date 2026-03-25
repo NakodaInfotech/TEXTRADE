@@ -405,6 +405,7 @@ PRINT 1,1")
                 End If
 
                 oWrite.WriteLine("SIZE 99.10 mm, 100.1 mm
+GAP 3 mm, 0 mm
 DIRECTION 0,0
 REFERENCE 0,0
 OFFSET 0 mm
@@ -445,6 +446,8 @@ TEXT 721,274,""ROMAN.TTF"",180,1,16,""UNIT""
 TEXT 516,274,""0"",180,17,16,""" & UNIT & """
 TEXT 547,274,""ROMAN.TTF"",180,1,16,"":""
 PRINT 1,1")
+                oWrite.Dispose()
+
 
             ElseIf ClientName = "SNCM" Then
 
