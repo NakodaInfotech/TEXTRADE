@@ -79,27 +79,91 @@ Public Class BeamRecdWarperGridDetails
     End Sub
 
     Private Sub CMDEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEDIT.Click
-
+        Try
+            If USEREDIT = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            showform(True, gridbill.GetFocusedRowCellValue("BEAMRECNO"))
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub gridbill_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
 
+        Try
+            If USEREDIT = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            showform(True, gridbill.GetFocusedRowCellValue("BEAMRECNO"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Sub
 
     Private Sub CMDADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDADD.Click
-
+        Try
+            If USEREDIT = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            showform(True, gridbill.GetFocusedRowCellValue("BEAMRECNO"))
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub TOOLREFRESH_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLREFRESH.Click
-
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            fillgrid()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub TOOLEXCEL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLEXCEL.Click
+        Try
+            Dim PATH As String = "" = ""
+            If FileIO.FileSystem.FileExists(PATH) = True Then FileIO.FileSystem.DeleteFile(PATH)
+            PATH = Application.StartupPath & "\Beam Received From Warper Grid Details.XLS"
 
+            Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
+            opti.ShowGridLines = True
+
+            Dim workbook As String = PATH
+            If FileIO.FileSystem.FileExists(PATH) = True Then Interaction.GetObject(workbook).close(False)
+            GC.Collect()
+
+            Dim PERIOD As String = AccFrom & " - " & AccTo
+
+            opti.SheetName = "Beam Received From Warper Grid Details"
+            gridbill.ExportToXls(PATH, opti)
+            EXCELCMPHEADER(PATH, "Beam Received From Warper Grid Details", gridbill.VisibleColumns.Count + gridbill.GroupCount, "", PERIOD)
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub gridbill_RowStyle(ByVal sender As Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles gridbill.RowStyle
-
+        Try
+            If e.RowHandle >= 0 Then
+                Dim View As GridView = sender
+                If View.GetRowCellDisplayText(e.RowHandle, View.Columns("GRIDDONE")) = "Checked" Then
+                    e.Appearance.Font = New System.Drawing.Font("CALIBRI", 9.0F, System.Drawing.FontStyle.Bold)
+                    e.Appearance.BackColor = Color.Yellow
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
 End Class
