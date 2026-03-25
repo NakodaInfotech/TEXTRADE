@@ -438,6 +438,12 @@
     <Compile Include="Masters\LoomMasterDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\TaskMaster.Designer.vb">
+      <DependentUpon>TaskMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\TaskMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.Designer.vb">
       <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
     </Compile>
@@ -9192,6 +9198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
       <DependentUpon>LoomMasterDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\TaskMaster.resx">
+      <DependentUpon>TaskMaster.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.resx">
       <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
