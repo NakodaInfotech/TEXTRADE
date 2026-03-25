@@ -163,6 +163,19 @@ Public Class OpeningYarnJobOrder
                 If dttable1.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable1.Rows
                         GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")), Val(DTR("CLOSED")))
+
+                        If Convert.ToBoolean(DTR("DONE")) = True Then
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                            GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                        End If
+
+                        If Val(DTR("OUTMTRS")) > 0 Then
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                            GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                        End If
+
                     Next
                 End If
 
@@ -609,7 +622,7 @@ LINE1:
     Sub EDITROW()
         Try
             If GRIDBEAM.CurrentRow.Index >= 0 And GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value <> Nothing Then
-                If Convert.ToBoolean(GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GDONE.Index).Value) = True Then
+                If Convert.ToBoolean(GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GDONE.Index).Value) = True Or (GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GOUTMTRS.Index).Value) > 0 Then
                     MsgBox("Item Locked. First Delete from Job Order")
                     Exit Sub
                 End If
@@ -686,5 +699,36 @@ LINE1:
 
     Private Sub TXTJONO_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTJONO.KeyPress,TXTPONO.KeyPress
         numkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub OpeningYarnJobOrder_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Try
+            If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
+                If ERRORVALID() = True Then
+                    Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
+                    If tempmsg = vbYes Then cmdok_Click(sender, e)
+                End If
+                Me.Close()
+            ElseIf e.KeyCode = Keys.Oemcomma Then
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then       'for Delete
+                tstxtbillno.Focus()
+                tstxtbillno.SelectAll()
+            ElseIf (e.Alt = True And e.KeyCode = Windows.Forms.Keys.D1) Then       'for scheduling
+                ' TabControl1.SelectedIndex = (0)
+            ElseIf (e.Alt = True And e.KeyCode = Windows.Forms.Keys.D2) Then       'for ITEM DETAILS
+                ' TabControl1.SelectedIndex = (1)
+            ElseIf e.KeyCode = Keys.Enter Then
+                SendKeys.Send("{Tab}")
+            ElseIf e.KeyCode = Keys.Left And e.Alt = True Then
+                Call toolprevious_Click(sender, e)
+            ElseIf e.KeyCode = Keys.Right And e.Alt = True Then
+                Call toolnext_Click(sender, e)
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.WaitCursor
+        End Try
     End Sub
 End Class

@@ -28,6 +28,7 @@ Partial Class SelectJobOrder
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GJOBNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GJOBSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,7 +43,6 @@ Partial Class SelectJobOrder
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GJOBSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +117,16 @@ Partial Class SelectJobOrder
         Me.GJOBNO.Visible = True
         Me.GJOBNO.VisibleIndex = 1
         Me.GJOBNO.Width = 60
+        '
+        'GJOBSRNO
+        '
+        Me.GJOBSRNO.Caption = "Job Sr.No"
+        Me.GJOBSRNO.FieldName = "JOBSRNO"
+        Me.GJOBSRNO.Name = "GJOBSRNO"
+        Me.GJOBSRNO.OptionsColumn.AllowEdit = False
+        Me.GJOBSRNO.Visible = True
+        Me.GJOBSRNO.VisibleIndex = 2
+        Me.GJOBSRNO.Width = 60
         '
         'GDATE
         '
@@ -201,7 +211,7 @@ Partial Class SelectJobOrder
         'GMTRS
         '
         Me.GMTRS.Caption = "Mtrs"
-        Me.GMTRS.FieldName = "MTRS"
+        Me.GMTRS.FieldName = "JOBMTRS"
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
@@ -258,16 +268,6 @@ Partial Class SelectJobOrder
         Me.cmdok.TabIndex = 8
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'GJOBSRNO
-        '
-        Me.GJOBSRNO.Caption = "Job Sr.No"
-        Me.GJOBSRNO.FieldName = "JOBSRNO"
-        Me.GJOBSRNO.Name = "GJOBSRNO"
-        Me.GJOBSRNO.OptionsColumn.AllowEdit = False
-        Me.GJOBSRNO.Visible = True
-        Me.GJOBSRNO.VisibleIndex = 2
-        Me.GJOBSRNO.Width = 60
         '
         'SelectJobOrder
         '
