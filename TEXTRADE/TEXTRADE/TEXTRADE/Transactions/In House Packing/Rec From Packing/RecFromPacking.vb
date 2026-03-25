@@ -1169,6 +1169,11 @@ NEXTLINE:
             End If
 
 
+            If ClientName = "ANKUSH" Then
+                TXTGRIDREMARKS.Text = Val(TXTGRIDREMARKS.Text.Trim) + 1
+            End If
+
+
 
 
 

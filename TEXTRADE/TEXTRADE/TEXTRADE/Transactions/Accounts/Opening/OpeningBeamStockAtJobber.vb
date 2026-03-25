@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports BL
+Imports CrystalDecisions.CrystalReports.Engine
 Imports DevExpress.Utils.CommonDialogs
 
 Public Class OpeningBeamStockAtJobber
@@ -10,6 +11,8 @@ Public Class OpeningBeamStockAtJobber
     Public TEMPBEAMISSUENO As Integer
     Dim TEMPMSG As Integer
     Dim DTWHATSAPP As New DataTable
+    Dim NextBeamNo As Integer
+    Dim MAXNO As Integer = 0
 
 
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
@@ -19,7 +22,7 @@ Public Class OpeningBeamStockAtJobber
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
         CLEAR()
         EDIT = False
-        CMBOURGODOWN.Focus()
+        'CMBOURGODOWN.Focus()
     End Sub
 
     Sub CLEAR()
@@ -27,8 +30,7 @@ Public Class OpeningBeamStockAtJobber
         TXTISSUENO.Clear()
         DTISSUEDATE.Text = Mydate
         cmbname.Text = ""
-        CMBOURGODOWN.Text = GETDEFAULTGODOWN()
-        cmbtrans.Text = ""
+
         TXTVEHICALNO.Clear()
         TXTEWBNO.Clear()
         TXTREMARKS.Clear()
@@ -40,15 +42,12 @@ Public Class OpeningBeamStockAtJobber
         TXTREMARKS.Clear()
 
         CMBBEAMNAME.Text = ""
-        CMBLOOMNO.Text = ""
-        TXTSCHSRNO.Text = 1
-
-        GRIDSCHEDULE.RowCount = 0
         GRIDBEAMISSUE.RowCount = 0
 
         GETMAX_BEAMISSUE_NO()
         LBLTOTALCUT.Text = 0.0
         LBLTOTALWT.Text = 0.0
+        GetLastBeamNo()
 
 
         GRIDDOUBLECLICK = False
@@ -62,6 +61,19 @@ Public Class OpeningBeamStockAtJobber
         txtuploadname.Clear()
         txtuploadremarks.Clear()
         TXTIMGPATH.Clear()
+
+        'If CMBROLLNO.Text = "" Then
+        '    Dim strUsedRolls As String = ""
+        '    For Each ROW As DataGridViewRow In GRIDBEAMISSUE.Rows
+        '        If ROW.IsNewRow Then Continue For
+        '        If GRIDDOUBLECLICK = True And ROW.Index = TEMPROW Then Continue For
+        '        Dim cellVal As String = If(ROW.Cells(GROLLNO.Index).Value IsNot Nothing, ROW.Cells(GROLLNO.Index).Value.ToString.Trim, "")
+        '        If cellVal <> "" Then strUsedRolls = strUsedRolls & "'" & cellVal & "',"
+        '    Next
+        '    If strUsedRolls <> "" Then strUsedRolls = " AND ITEMNAME NOT IN (" & strUsedRolls.TrimEnd(",") & ") "
+        '    fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 " & strUsedRolls, "HAVING SUM(QTY - ISSQTY) >0")
+        'End If
+
         gridupload.RowCount = 0
 
         If gridupload.RowCount > 0 Then
@@ -127,8 +139,6 @@ Public Class OpeningBeamStockAtJobber
                 'Call OpenToolStripButton_Click(sender, e)
             ElseIf e.KeyCode = Keys.Enter Then
                 SendKeys.Send("{Tab}")
-            ElseIf e.KeyCode = Keys.F5 Then
-                GRIDSCHEDULE.Focus()
             ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then       'for Delete
                 tstxtbillno.Focus()
                 tstxtbillno.SelectAll()
@@ -139,9 +149,8 @@ Public Class OpeningBeamStockAtJobber
     End Sub
     Sub FILLCMB()
         If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
-        If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
-        If cmbtrans.Text = "" Then FILLNAME(cmbtrans, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'TRANSPORT'")
         fillBEAM(CMBBEAMNAME, False)
+        If CMBSIZER.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
     End Sub
 
     Private Sub BeamIssueWeaver_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -156,7 +165,6 @@ Public Class OpeningBeamStockAtJobber
 
             FILLCMB()
             CLEAR()
-            CMBOURGODOWN.Text = GETDEFAULTGODOWN()
 
             If EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then
@@ -176,18 +184,17 @@ Public Class OpeningBeamStockAtJobber
 
                     TXTISSUENO.Text = TEMPBEAMISSUENO
                     DTISSUEDATE.Text = dttable.Rows(0).Item("ISSUEDATE")
-                    CMBOURGODOWN.Text = dttable.Rows(0).Item("GODOWN").ToString
                     cmbname.Text = dttable.Rows(0).Item("NAME").ToString
-                    cmbtrans.Text = dttable.Rows(0).Item("TRANSPORT").ToString
                     TXTVEHICALNO.Text = dttable.Rows(0).Item("VEHICALNO").ToString
                     TXTEWBNO.Text = dttable.Rows(0).Item("EWBNO").ToString
                     TXTREMARKS.Text = dttable.Rows(0).Item("REMARKS").ToString
-                    If Convert.ToBoolean(dttable.Rows(0).Item("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
+                    'If Convert.ToBoolean(dttable.Rows(0).Item("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
-                        GRIDBEAMISSUE.Rows.Add(Val(ROW("SRNO")), ROW("BEAMNAME"), ROW("BEAMNO"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("CUT")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), ROW("NARR"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"), ROW("OUTCUT"), ROW("DONE"), ROW("SIZERNAME"), ROW("LOOMNO"), ROW("UPLOADDATE"))
+                        'GRIDBEAMISSUE.Rows.Add(Val(ROW("SRNO")), ROW("BEAMNAME"), ROW("BEAMNO"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("MTRS")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), ROW("NARR"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"), ROW("OUTMTRS"), ROW("DONE"), ROW("SIZERNAME"), ROW("LOOMNO"), ROW("UPLOADDATE"))
+                        GRIDBEAMISSUE.Rows.Add(Val(ROW("SRNO")), ROW("BEAMNAME"), ROW("BEAMNO"), Format(Val(ROW("GAMANO")), "0.00"), Format(Val(ROW("SECTION")), "0.00"), ROW("ROLLNO"), Format(Val(ROW("BEAMWT")), "0.00"), Format(Val(ROW("BREAKAGE")), "0.00"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("MTRS")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("CUTWT")), "0.000"), ROW("NARR"), ROW("SIZER"), 0, 0, "", ROW("OUTMTRS"), ROW("DONE"), "", "")
 
-                        If Val(ROW("OUTCUT")) > 0 Or Convert.ToBoolean(ROW("DONE")) = True Then
+                        If Val(ROW("OUTMTRS")) > 0 Or Convert.ToBoolean(ROW("DONE")) = True Then
                             GRIDBEAMISSUE.Rows(GRIDBEAMISSUE.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
                             lbllocked.Visible = True
                             PBlock.Visible = True
@@ -207,19 +214,11 @@ Public Class OpeningBeamStockAtJobber
                     End If
 
 
-                    'SCHEDULE(GRID)
-                    DT = OBJCMN.SEARCH(" BEAMMASTER.BEAM_NAME AS BEAMNAME, OPENINGBEAMSTOCKATJOBBER_SCHEDULE.OPBEAM_LOOMNO AS LOOMNO ", "", " OPENINGBEAMSTOCKATJOBBER_SCHEDULE INNER JOIN BEAMMASTER ON OPENINGBEAMSTOCKATJOBBER_SCHEDULE.OPBEAM_BEAMID = BEAMMASTER.BEAM_ID  ", " AND OPENINGBEAMSTOCKATJOBBER_SCHEDULE.OPBEAM_NO = " & TEMPBEAMISSUENO & " AND OPENINGBEAMSTOCKATJOBBER_SCHEDULE.OPBEAM_YEARID = " & YearId & " ORDER BY OPENINGBEAMSTOCKATJOBBER_SCHEDULE.OPBEAM_GRIDSRNO")
-                    If DT.Rows.Count > 0 Then
-                        For Each DTR As DataRow In DT.Rows
-                            GRIDSCHEDULE.Rows.Add(0, DTR("BEAMNAME"), Val(DTR("LOOMNO")))
-                        Next
-                        getsrno(GRIDSCHEDULE)
-                    End If
-
-
                     TOTAL()
                 End If
             End If
+            GetLastBeamNo()
+            fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
         Catch ex As Exception
             Throw ex
         End Try
@@ -236,9 +235,7 @@ Public Class OpeningBeamStockAtJobber
             Dim alParaval As New ArrayList
 
             alParaval.Add(Format(Convert.ToDateTime(DTISSUEDATE.Text.Trim).Date, "MM/dd/yyyy"))
-            alParaval.Add(CMBOURGODOWN.Text.Trim)
             alParaval.Add(cmbname.Text.Trim)
-            alParaval.Add(cmbtrans.Text.Trim)
             alParaval.Add(TXTVEHICALNO.Text.Trim)
             alParaval.Add(TXTEWBNO.Text.Trim)
             alParaval.Add(TXTREMARKS.Text.Trim)
@@ -249,42 +246,25 @@ Public Class OpeningBeamStockAtJobber
             alParaval.Add(Userid)
             alParaval.Add(YearId)
 
-            Dim SCHSRNO As String = ""
-            Dim SCHBEAMNAME As String = ""
-            Dim SCHLOOMNO As String = ""
-
-            For Each row As Windows.Forms.DataGridViewRow In GRIDSCHEDULE.Rows
-                If row.Cells(gsrno.Index).Value <> Nothing Then
-                    If SCHSRNO = "" Then
-                        SCHSRNO = Val(row.Cells(GSCHSRNO.Index).Value)
-                        SCHBEAMNAME = row.Cells(GSCHBEAMNAME.Index).Value.ToString
-                        SCHLOOMNO = Val(row.Cells(GSCHLOOMNO.Index).Value.ToString)
-                    Else
-
-                        SCHSRNO = SCHSRNO & "|" & Val(row.Cells(GSCHSRNO.Index).Value)
-                        SCHBEAMNAME = SCHBEAMNAME & "|" & row.Cells(GSCHBEAMNAME.Index).Value.ToString
-                        SCHLOOMNO = SCHLOOMNO & "|" & Val(row.Cells(GSCHLOOMNO.Index).Value)
-                    End If
-                End If
-            Next
-
-            alParaval.Add(SCHSRNO)
-            alParaval.Add(SCHBEAMNAME)
-            alParaval.Add(SCHLOOMNO)
 
             Dim SRNO As String = ""
             Dim BEAMNAME As String = ""
             Dim BEAMNO As String = ""
+            Dim GAMANO As String = ""
+            Dim SECTION As String = ""
+            Dim ROLLNO As String = ""
+            Dim BEAMWT As String = ""
+            Dim BREAKAGE As String = ""
             Dim ENDS As String = ""
             Dim TL As String = ""
             Dim CUT As String = ""
             Dim WT As String = ""
-            Dim WTCUT As String = ""
+            Dim CUTWT As String = ""
             Dim NARR As String = ""
             Dim FROMNO As String = ""
             Dim FROMSRNO As String = ""
             Dim TYPE As String = ""
-            Dim OUTCUT As String = ""
+            Dim OUTMTRS As String = ""
             Dim GRIDDONE As String = ""
             Dim SIZERNAME As String = ""
             Dim LOOMNO As String = ""
@@ -296,22 +276,28 @@ Public Class OpeningBeamStockAtJobber
                         SRNO = Val(row.Cells(gsrno.Index).Value)
                         BEAMNAME = row.Cells(GBEAMNAME.Index).Value.ToString
                         BEAMNO = row.Cells(GBEAMNO.Index).Value.ToString
+                        GAMANO = Format(Val(row.Cells(GGAMANO.Index).Value), "0.00")
+                        SECTION = Format(Val(row.Cells(GSECTION.Index).Value), "0.00")
+                        ROLLNO = row.Cells(GROLLNO.Index).Value.ToString
+                        BEAMWT = Format(Val(row.Cells(GBEAMWT.Index).Value), "0.00")
+                        BREAKAGE = Format(Val(row.Cells(GBREAKAGE.Index).Value), "0.00")
+
                         ENDS = Val(row.Cells(GENDS.Index).Value)
                         TL = Val(row.Cells(GTAPLINE.Index).Value)
                         CUT = Format(Val(row.Cells(GCUT.Index).Value), "0.00")
-                        WT = Format(Val(row.Cells(GWT.Index).Value), "0.000")
-                        WTCUT = Format(Val(row.Cells(GWTCUT.Index).Value), "0.000")
+                        WT = Format(Val(row.Cells(GWT.Index).Value), "0.00")
+                        CUTWT = Format(Val(row.Cells(GCUTWT.Index).Value), "0.00")
                         If row.Cells(GNARR.Index).Value = Nothing Then NARR = "" Else NARR = row.Cells(GNARR.Index).Value.ToString
+                        SIZERNAME = row.Cells(GSIZERNAME.Index).Value
                         FROMNO = Val(row.Cells(GFROMNO.Index).Value)
                         FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
                         TYPE = row.Cells(GTYPE.Index).Value.ToString
-                        OUTCUT = Val(row.Cells(GOUTCUT.Index).Value)
+                        OUTMTRS = Val(row.Cells(GOUTMTRS.Index).Value)
                         If row.Cells(GDONE.Index).Value = True Then
                             GRIDDONE = 1
                         Else
                             GRIDDONE = 0
                         End If
-                        SIZERNAME = row.Cells(GSIZERNAME.Index).Value
                         LOOMNO = Val(row.Cells(GLOOMNO.Index).Value)
                         If row.Cells(GUPLOADDATE.Index).Value.ToString <> "" Then UPLOADDATE = Format(Convert.ToDateTime(row.Cells(GUPLOADDATE.Index).Value).Date, "MM/dd/yyyy") Else UPLOADDATE = ""
 
@@ -320,22 +306,28 @@ Public Class OpeningBeamStockAtJobber
                         SRNO = SRNO & "|" & row.Cells(gsrno.Index).Value
                         BEAMNAME = BEAMNAME & "|" & row.Cells(GBEAMNAME.Index).Value.ToString
                         BEAMNO = BEAMNO & "|" & row.Cells(GBEAMNO.Index).Value.ToString
+                        GAMANO = GAMANO & "|" & Format(Val(row.Cells(GGAMANO.Index).Value), "0.00")
+                        SECTION = SECTION & "|" & Format(Val(row.Cells(GSECTION.Index).Value), "0.00")
+                        ROLLNO = ROLLNO & "|" & row.Cells(GROLLNO.Index).Value.ToString
+                        BEAMWT = BEAMWT & "|" & Format(Val(row.Cells(GBEAMWT.Index).Value), "0.00")
+                        BREAKAGE = BREAKAGE & "|" & Format(Val(row.Cells(GBREAKAGE.Index).Value), "0.00")
+
                         ENDS = ENDS & "|" & Val(row.Cells(GENDS.Index).Value)
                         TL = TL & "|" & Val(row.Cells(GTAPLINE.Index).Value)
                         CUT = CUT & "|" & Format(Val(row.Cells(GCUT.Index).Value), "0.00")
                         WT = WT & "|" & Format(Val(row.Cells(GWT.Index).Value), "0.000")
-                        WTCUT = WTCUT & "|" & Format(Val(row.Cells(GWTCUT.Index).Value), "0.000")
+                        CUTWT = CUTWT & "|" & Format(Val(row.Cells(GCUTWT.Index).Value), "0.000")
                         If row.Cells(GNARR.Index).Value = Nothing Then NARR = NARR & "|" & "" Else NARR = NARR & "|" & row.Cells(GNARR.Index).Value
+                        SIZERNAME = SIZERNAME & "|" & row.Cells(GSIZERNAME.Index).Value
                         FROMNO = FROMNO & "|" & Val(row.Cells(GFROMNO.Index).Value)
                         FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
                         TYPE = TYPE & "|" & row.Cells(GTYPE.Index).Value
-                        OUTCUT = OUTCUT & "|" & Val(row.Cells(GOUTCUT.Index).Value)
+                        OUTMTRS = OUTMTRS & "|" & Val(row.Cells(GOUTMTRS.Index).Value)
                         If row.Cells(GDONE.Index).Value = True Then
                             GRIDDONE = GRIDDONE & "|" & "1"
                         Else
                             GRIDDONE = GRIDDONE & "|" & "0"
                         End If
-                        SIZERNAME = SIZERNAME & "|" & row.Cells(GSIZERNAME.Index).Value
                         LOOMNO = LOOMNO & "|" & Val(row.Cells(GLOOMNO.Index).Value)
                         If row.Cells(GUPLOADDATE.Index).Value.ToString <> "" Then UPLOADDATE = UPLOADDATE & "|" & Format(Convert.ToDateTime(row.Cells(GUPLOADDATE.Index).Value).Date, "MM/dd/yyyy") Else UPLOADDATE = UPLOADDATE & "|" & ""
                     End If
@@ -345,16 +337,21 @@ Public Class OpeningBeamStockAtJobber
             alParaval.Add(SRNO)
             alParaval.Add(BEAMNAME)
             alParaval.Add(BEAMNO)
+            alParaval.Add(GAMANO)
+            alParaval.Add(SECTION)
+            alParaval.Add(ROLLNO)
+            alParaval.Add(BEAMWT)
+            alParaval.Add(BREAKAGE)
             alParaval.Add(ENDS)
             alParaval.Add(TL)
             alParaval.Add(CUT)
             alParaval.Add(WT)
-            alParaval.Add(WTCUT)
+            alParaval.Add(CUTWT)
             alParaval.Add(NARR)
             alParaval.Add(FROMNO)
             alParaval.Add(FROMSRNO)
             alParaval.Add(TYPE)
-            alParaval.Add(OUTCUT)
+            alParaval.Add(OUTMTRS)
             alParaval.Add(GRIDDONE)
             alParaval.Add(SIZERNAME)
             alParaval.Add(LOOMNO)
@@ -478,10 +475,7 @@ Public Class OpeningBeamStockAtJobber
         '    bln = False
         'End If
 
-        If ClientName <> "SWPL" And cmbtrans.Text.Trim.Length = 0 Then
-            EP.SetError(cmbtrans, " Please Select Transport")
-            bln = False
-        End If
+
 
         'DONE TEMPORARILY
         'If lbllocked.Visible = True Then
@@ -489,10 +483,10 @@ Public Class OpeningBeamStockAtJobber
         '    bln = False
         'End If
 
-        If GRIDSCHEDULE.RowCount = 0 And ClientName = "SASHWINKUMAR" Then
-            EP.SetError(cmbname, "Please Fill Schedule Details")
-            bln = False
-        End If
+        'If GRIDSCHEDULE.RowCount = 0 And ClientName = "SASHWINKUMAR" Then
+        '    EP.SetError(cmbname, "Please Fill Schedule Details")
+        '    bln = False
+        'End If
 
         Return bln
     End Function
@@ -510,38 +504,6 @@ Public Class OpeningBeamStockAtJobber
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-
-    Private Sub cmbtrans_Enter(sender As Object, e As EventArgs) Handles cmbtrans.Enter
-        Try
-            If cmbtrans.Text.Trim = "" Then FILLNAME(cmbtrans, EDIT, "AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'AND LEDGERS.ACC_TYPE= 'TRANSPORT'")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub cmbtrans_Validating(sender As Object, e As CancelEventArgs) Handles cmbtrans.Validating
-        Try
-            If cmbtrans.Text.Trim <> "" Then NAMEVALIDATE(cmbtrans, cmbcode, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='TRANSPORT'", "Sundry Creditors", "TRANSPORT")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub cmbtrans_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbtrans.KeyDown
-        Try
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='TRANSPORT'"
-                OBJLEDGER.ShowDialog()
-                If OBJLEDGER.TEMPNAME <> "" Then cmbtrans.Text = OBJLEDGER.TEMPNAME
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub cmbname_Enter(sender As Object, e As EventArgs) Handles cmbname.Enter
         Try
             If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
@@ -568,39 +530,6 @@ Public Class OpeningBeamStockAtJobber
     Private Sub cmbname_Validating(sender As Object, e As CancelEventArgs) Handles cmbname.Validating
         Try
             If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS' ", "SUNDRY CREDITORS", "ACCOUNTS", "", "", "")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBOURGODOWN_Enter(sender As Object, e As EventArgs) Handles CMBOURGODOWN.Enter
-        Try
-            If CMBOURGODOWN.Text.Trim = "" Then fillGODOWN(CMBOURGODOWN, EDIT)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBOURGODOWN_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBOURGODOWN.KeyDown
-        Try
-            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
-            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
-
-            If e.KeyCode = Keys.F1 Then
-                Dim OBJGODOWN As New SelectGodown
-                OBJGODOWN.FRMSTRING = "GODOWN"
-                OBJGODOWN.SEARCH = " AND GODOWN_ISOUR = 'True'"
-                OBJGODOWN.ShowDialog()
-                If OBJGODOWN.TEMPNAME <> "" Then CMBOURGODOWN.Text = OBJGODOWN.TEMPNAME
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBOURGODOWN_Validating(sender As Object, e As CancelEventArgs) Handles CMBOURGODOWN.Validating
-        Try
-            If CMBOURGODOWN.Text.Trim <> "" Then GODOWNVALIDATE(CMBOURGODOWN, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
@@ -825,65 +754,65 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMDSELECTBEAMSTOCK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDSELECTBEAMSTOCK.Click
-        Try
+    'Private Sub CMDSELECTBEAMSTOCK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDSELECTBEAMSTOCK.Click
+    '    Try
 
-            If (EDIT = True And USEREDIT = False And USERVIEW = False) Or (EDIT = False And USERADD = False) Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
+    '        If (EDIT = True And USEREDIT = False And USERVIEW = False) Or (EDIT = False And USERADD = False) Then
+    '            MsgBox("Insufficient Rights")
+    '            Exit Sub
+    '        End If
 
-            If GRIDSCHEDULE.RowCount = 0 And ClientName = "SASHWINKUMAR" Then
-                MsgBox("First Schedule Beams", MsgBoxStyle.Critical)
-                Exit Sub
-            End If
-
-
-            'IT IS NOT MANDATE TO SELECT GODOWN HERE,
-            'IF USER SELECTS GODOWN THEN WE WILL ADD THAT IN WHERE CLAUE OR ELSE SHOW ALL BEAMS WHICH ARE PRESENT WITH SIZER OR INHOUSE BOTH
+    '        If GRIDSCHEDULE.RowCount = 0 And ClientName = "SASHWINKUMAR" Then
+    '            MsgBox("First Schedule Beams", MsgBoxStyle.Critical)
+    '            Exit Sub
+    '        End If
 
 
-            'SHOW ONLY THOSE BEAMS IN STOCK WHICH WE HAVE SELECTED IN SCHEDULING
-            Dim WHERECLAUSE As String = ""
-            For Each ROW As DataGridViewRow In GRIDSCHEDULE.Rows
-                If WHERECLAUSE = "" Then
-                    WHERECLAUSE = " AND BEAMNAME IN ('" & ROW.Cells(GBEAMNAME.Index).Value & "'"
-                Else
-                    WHERECLAUSE = WHERECLAUSE & ",'" & ROW.Cells(GBEAMNAME.Index).Value & "'"
-                End If
-            Next
-            If WHERECLAUSE <> "" Then WHERECLAUSE = WHERECLAUSE & ")"
-            WHERECLAUSE = WHERECLAUSE & " AND DATE <= '" & Format(Convert.ToDateTime(DTISSUEDATE.Text).Date, "MM/dd/yyyy") & "'"
+    '        'IT IS NOT MANDATE TO SELECT GODOWN HERE,
+    '        'IF USER SELECTS GODOWN THEN WE WILL ADD THAT IN WHERE CLAUE OR ELSE SHOW ALL BEAMS WHICH ARE PRESENT WITH SIZER OR INHOUSE BOTH
 
 
-            Dim OBJSELECTSTOCK As New SelectBeamStock
-            OBJSELECTSTOCK.TEMPGODOWNNAME = CMBOURGODOWN.Text.Trim
-            Dim DTBEAMSTOCK As DataTable = OBJSELECTSTOCK.DT
-            OBJSELECTSTOCK.WHERECLAUSE = WHERECLAUSE
-            OBJSELECTSTOCK.ALLOWEDBEAMS = GRIDSCHEDULE.RowCount
-            OBJSELECTSTOCK.ShowDialog()
-            If DTBEAMSTOCK.Rows.Count > 0 Then
+    '        'SHOW ONLY THOSE BEAMS IN STOCK WHICH WE HAVE SELECTED IN SCHEDULING
+    '        Dim WHERECLAUSE As String = ""
+    '        For Each ROW As DataGridViewRow In GRIDSCHEDULE.Rows
+    '            If WHERECLAUSE = "" Then
+    '                WHERECLAUSE = " AND BEAMNAME IN ('" & ROW.Cells(GBEAMNAME.Index).Value & "'"
+    '            Else
+    '                WHERECLAUSE = WHERECLAUSE & ",'" & ROW.Cells(GBEAMNAME.Index).Value & "'"
+    '            End If
+    '        Next
+    '        If WHERECLAUSE <> "" Then WHERECLAUSE = WHERECLAUSE & ")"
+    '        WHERECLAUSE = WHERECLAUSE & " AND DATE <= '" & Format(Convert.ToDateTime(DTISSUEDATE.Text).Date, "MM/dd/yyyy") & "'"
 
-                'CHECK IF 1ST BEAM HAS 0 IN SRNO THEN CLEAR THE GRID
-                'NEED TO CHECK WHETHER ANY ROW IS PRESENT OR NOT ELSE IT GIVES ERROR
-                If GRIDBEAMISSUE.RowCount <> 0 Then
-                    If Val(GRIDBEAMISSUE.Rows(0).Cells(gsrno.Index).Value) = 0 Then GRIDBEAMISSUE.RowCount = 0
-                End If
 
-                For Each ROW As DataRow In DTBEAMSTOCK.Rows
-                    GRIDBEAMISSUE.Rows.Add(0, ROW("BEAMNAME"), ROW("BEAMNO"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("CUT")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), "", Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"), 0, 0, ROW("SIZERNAME"), 0, "")
-                Next
-                TOTAL()
-                getsrno(GRIDBEAMISSUE)
-                CMDSELECTBEAMSTOCK.Enabled = False
-            End If
+    '        Dim OBJSELECTSTOCK As New SelectBeamStock
+    '        OBJSELECTSTOCK.TEMPGODOWNNAME = CMBOURGODOWN.Text.Trim
+    '        Dim DTBEAMSTOCK As DataTable = OBJSELECTSTOCK.DT
+    '        OBJSELECTSTOCK.WHERECLAUSE = WHERECLAUSE
+    '        OBJSELECTSTOCK.ALLOWEDBEAMS = GRIDSCHEDULE.RowCount
+    '        OBJSELECTSTOCK.ShowDialog()
+    '        If DTBEAMSTOCK.Rows.Count > 0 Then
 
-            TOTAL()
+    '            'CHECK IF 1ST BEAM HAS 0 IN SRNO THEN CLEAR THE GRID
+    '            'NEED TO CHECK WHETHER ANY ROW IS PRESENT OR NOT ELSE IT GIVES ERROR
+    '            If GRIDBEAMISSUE.RowCount <> 0 Then
+    '                If Val(GRIDBEAMISSUE.Rows(0).Cells(gsrno.Index).Value) = 0 Then GRIDBEAMISSUE.RowCount = 0
+    '            End If
 
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    '            For Each ROW As DataRow In DTBEAMSTOCK.Rows
+    '                GRIDBEAMISSUE.Rows.Add(0, ROW("BEAMNAME"), ROW("BEAMNO"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("CUT")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), "", Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"), 0, 0, ROW("SIZERNAME"), 0, "")
+    '            Next
+    '            TOTAL()
+    '            getsrno(GRIDBEAMISSUE)
+    '            CMDSELECTBEAMSTOCK.Enabled = False
+    '        End If
+
+    '        TOTAL()
+
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Private Sub GRIDBEAMISSUE_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GRIDBEAMISSUE.KeyDown
         Try
@@ -932,7 +861,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBBEAMNAME_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBBEAMNAME.Enter
+    Private Sub CMBBEAMNAME_Enter(ByVal sender As Object, ByVal e As System.EventArgs)
         Try
             If CMBBEAMNAME.Text.Trim <> "" Then fillBEAM(CMBBEAMNAME, EDIT)
         Catch ex As Exception
@@ -940,7 +869,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBBEAMNAME_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBBEAMNAME.Validating
+    Private Sub CMBBEAMNAME_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs)
         Try
             If CMBBEAMNAME.Text.Trim <> "" Then BEAMVALIDATE(CMBBEAMNAME, e, Me)
         Catch ex As Exception
@@ -948,72 +877,10 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBLOOMNO_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CMBLOOMNO.KeyPress
+    Private Sub CMBLOOMNO_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         numkeypress(e, sender, Me)
     End Sub
 
-    Sub FILLGRID()
-        Try
-            If GRIDDOUBLECLICK = False Then
-                GRIDSCHEDULE.Rows.Add(0, CMBBEAMNAME.Text.Trim, Val(CMBLOOMNO.Text.Trim))
-            Else
-                GRIDSCHEDULE.Item(GSCHBEAMNAME.Index, TEMPROW).Value = CMBBEAMNAME.Text.Trim
-                GRIDSCHEDULE.Item(GSCHLOOMNO.Index, TEMPROW).Value = Val(CMBLOOMNO.Text.Trim)
-                GRIDDOUBLECLICK = False
-                TEMPROW = 0
-            End If
-            CMBBEAMNAME.Text = ""
-            CMBLOOMNO.Text = ""
-            getsrno(GRIDSCHEDULE)
-            CMBBEAMNAME.Focus()
-            If GRIDSCHEDULE.RowCount > 0 Then TXTSCHSRNO.Text = Val(GRIDSCHEDULE.RowCount) + 1 Else TXTSCHSRNO.Text = 1
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub GRIDSCHEDULE_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRIDSCHEDULE.CellDoubleClick
-        Try
-            If e.RowIndex = -1 Then Exit Sub
-
-            If e.RowIndex >= 0 And GRIDSCHEDULE.Item(gsrno.Index, e.RowIndex).Value <> Nothing Then
-
-                GRIDDOUBLECLICK = True
-                TXTSCHSRNO.Text = GRIDSCHEDULE.Item(GSCHSRNO.Index, e.RowIndex).Value
-                CMBBEAMNAME.Text = GRIDSCHEDULE.Item(GSCHBEAMNAME.Index, e.RowIndex).Value
-                CMBLOOMNO.Text = GRIDSCHEDULE.Item(GSCHLOOMNO.Index, e.RowIndex).Value
-
-                TEMPROW = e.RowIndex
-                CMBBEAMNAME.Focus()
-
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub GRIDSCHEDULE_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GRIDSCHEDULE.KeyDown
-        Try
-            If e.KeyCode = Keys.Delete And GRIDSCHEDULE.RowCount > 0 Then
-                'dont allow user if any of the grid line is in edit mode.....
-                'cmbitemname.Text.Trim <> Val(txtqty.Text) <> 0 And Val(txtamount.Text.Trim) <> 0 And cmbqtyunit.Text.Trim <> 
-                If GRIDDOUBLECLICK = True Then
-                    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
-                    Exit Sub
-                End If
-                'end of block
-
-                GRIDSCHEDULE.Rows.RemoveAt(GRIDSCHEDULE.CurrentRow.Index)
-                getsrno(GRIDSCHEDULE)
-                TXTSCHSRNO.Text = GRIDSCHEDULE.RowCount + 1
-                TOTAL()
-
-            End If
-
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
 
     Private Sub TOOLWHATSAPP_Click(sender As Object, e As EventArgs) Handles TOOLWHATSAPP.Click
         Dim DT As New DataTable
@@ -1048,7 +915,7 @@ LINE1:
 
             Dim OBJWHATSAPP As New SendWhatsapp
             OBJWHATSAPP.PARTYNAME = cmbname.Text.Trim
-            OBJWHATSAPP.AGENTNAME = cmbtrans.Text.Trim
+            'OBJWHATSAPP.AGENTNAME = cmbtrans.Text.Trim
             OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & cmbname.Text.Trim & "_BEAM_" & Val(BEAMISSUEBEAMNO) & ".pdf")
             OBJWHATSAPP.FILENAME.Add(cmbname.Text.Trim & "BEAM_" & Val(BEAMISSUEBEAMNO) & ".pdf")
             OBJWHATSAPP.ShowDialog()
@@ -1058,29 +925,29 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBLOOMNO_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBLOOMNO.Enter
-        Try
-            If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim = "" Then FILLLOOM(CMBLOOMNO, cmbname.Text.Trim, EDIT)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub CMBLOOMNO_Enter(ByVal sender As Object, ByVal e As System.EventArgs)
+    '    Try
+    '        If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim = "" Then FILLLOOM(CMBLOOMNO, cmbname.Text.Trim, EDIT)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
-    Private Sub CMBLOOMNO_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBLOOMNO.Validated
-        Try
-            If CMBBEAMNAME.Text.Trim <> "" And Val(CMBLOOMNO.Text.Trim) > 0 Then FILLGRID()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub CMBLOOMNO_Validated(ByVal sender As Object, ByVal e As System.EventArgs)
+    '    Try
+    '        If CMBBEAMNAME.Text.Trim <> "" And Val(CMBLOOMNO.Text.Trim) > 0 Then FILLGRID()
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
-    Private Sub CMBLOOMNO_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBLOOMNO.Validating
-        Try
-            If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOMNO, cmbname.Text.Trim, e, Me)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub CMBLOOMNO_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs)
+    '    Try
+    '        If cmbname.Text.Trim <> "" And CMBLOOMNO.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOMNO, cmbname.Text.Trim, e, Me)
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 
     Sub PRINTREPORT()
         'Try
@@ -1097,5 +964,226 @@ LINE1:
 
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         If EDIT = True Then PRINTREPORT()
+    End Sub
+
+    Private Sub CMBISSBEAMNAME_Enter(sender As Object, e As EventArgs) Handles CMBBEAMNAME.Enter
+        Try
+            If CMBBEAMNAME.Text.Trim <> "" Then fillBEAM(CMBBEAMNAME, EDIT)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBISSBEAMNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBBEAMNAME.Validating
+        Try
+            If CMBBEAMNAME.Text.Trim <> "" Then BEAMVALIDATE(CMBBEAMNAME, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub fillgrid()
+
+        GRIDBEAMISSUE.Enabled = True
+
+        If GRIDDOUBLECLICK = False Then
+            GRIDBEAMISSUE.Rows.Add(Val(TXTGRIDSRNO.Text.Trim), CMBBEAMNAME.Text.Trim, TXTBEAMNO.Text.Trim, Val(TXTGAMANO.Text.Trim), Val(TXTSECTION.Text.Trim), CMBROLLNO.Text.Trim, Val(TXTBEAMWT.Text.Trim), Val(TXTBREAKAGE.Text.Trim), Val(TXTENDS.Text.Trim), Val(TXTTAPLINE.Text.Trim), Val(TXTCUT.Text.Trim), Val(TXTWT.Text.Trim), Val(TXTCUTWT.Text.Trim), TXTGRIDREMARKS.Text.Trim, CMBSIZER.Text.Trim, 0, 0, "", 0, 0, "", "")
+            getsrno(GRIDBEAMISSUE)
+            TXTBEAMNO.Text = TXTBEAMNO.Text + 1
+
+            GRIDBEAMISSUE.FirstDisplayedScrollingRowIndex = GRIDBEAMISSUE.RowCount - 1
+        ElseIf GRIDDOUBLECLICK = True Then
+            GRIDBEAMISSUE.Item(gsrno.Index, TEMPROW).Value = Val(TXTGRIDSRNO.Text.Trim)
+            GRIDBEAMISSUE.Item(GBEAMNAME.Index, TEMPROW).Value = CMBBEAMNAME.Text.Trim
+            GRIDBEAMISSUE.Item(GBEAMNO.Index, TEMPROW).Value = Val(TXTBEAMNO.Text.Trim)
+            GRIDBEAMISSUE.Item(GGAMANO.Index, TEMPROW).Value = Val(TXTGAMANO.Text.Trim)
+            GRIDBEAMISSUE.Item(GSECTION.Index, TEMPROW).Value = Val(TXTSECTION.Text.Trim)
+            GRIDBEAMISSUE.Item(GROLLNO.Index, TEMPROW).Value = CMBROLLNO.Text.Trim
+            GRIDBEAMISSUE.Item(GBEAMWT.Index, TEMPROW).Value = Val(TXTBEAMWT.Text.Trim)
+            GRIDBEAMISSUE.Item(GBREAKAGE.Index, TEMPROW).Value = Val(TXTBREAKAGE.Text.Trim)
+            GRIDBEAMISSUE.Item(GENDS.Index, TEMPROW).Value = Val(TXTENDS.Text.Trim)
+            GRIDBEAMISSUE.Item(GTAPLINE.Index, TEMPROW).Value = Val(TXTTAPLINE.Text.Trim)
+            GRIDBEAMISSUE.Item(GCUT.Index, TEMPROW).Value = Val(TXTCUT.Text.Trim)
+            GRIDBEAMISSUE.Item(GWT.Index, TEMPROW).Value = Val(TXTWT.Text.Trim)
+            GRIDBEAMISSUE.Item(GCUTWT.Index, TEMPROW).Value = Val(TXTCUTWT.Text.Trim)
+
+            GRIDBEAMISSUE.Item(GNARR.Index, TEMPROW).Value = TXTGRIDREMARKS.Text.Trim
+            GRIDBEAMISSUE.Item(GSIZERNAME.Index, TEMPROW).Value = CMBSIZER.Text.Trim
+
+            TXTBEAMNO.Text = MAXNO + 1
+
+            GRIDDOUBLECLICK = False
+        End If
+        'TXTGRIDSRNO.Text = GRIDBEAMISSUE.RowCount + 1
+        'CMBOURGODOWN.Text = ""
+        CMBBEAMNAME.Text = ""
+        GetLastBeamNo()
+
+        TXTGAMANO.Clear()
+        TXTSECTION.Clear()
+        CMBROLLNO.DataSource = Nothing
+        CMBROLLNO.Text = ""
+        'If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, edit, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
+        If CMBROLLNO.Text = "" Then
+            Dim strUsedRolls As String = ""
+            For Each ROW As DataGridViewRow In GRIDBEAMISSUE.Rows
+                If ROW.IsNewRow Then Continue For
+                If GRIDDOUBLECLICK = True And ROW.Index = TEMPROW Then Continue For
+                Dim cellVal As String = If(ROW.Cells(GROLLNO.Index).Value IsNot Nothing, ROW.Cells(GROLLNO.Index).Value.ToString.Trim, "")
+                If cellVal <> "" Then strUsedRolls = strUsedRolls & "'" & cellVal & "',"
+            Next
+            If strUsedRolls <> "" Then strUsedRolls = " AND ITEMNAME NOT IN (" & strUsedRolls.TrimEnd(",") & ") "
+            fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 " & strUsedRolls, "HAVING SUM(QTY - ISSQTY) >0")
+        End If
+        TXTBEAMWT.Clear()
+        TXTBREAKAGE.Clear()
+        TXTENDS.Clear()
+        TXTTAPLINE.Clear()
+        TXTCUT.Clear()
+        TXTWT.Clear()
+        TXTCUTWT.Clear()
+        TXTGRIDREMARKS.Clear()
+        CMBSIZER.Text = ""
+        'getsrno(GRIDSTOCK)
+        TOTAL()
+
+        CMBBEAMNAME.Focus()
+
+        TXTGRIDSRNO.Text = Val(GRIDBEAMISSUE.RowCount) + 1
+
+    End Sub
+    Public Function GetGridMaxBeamNo() As Integer
+        For Each r As DataGridViewRow In GRIDBEAMISSUE.Rows
+            If Not r.IsNewRow Then
+                If Val(r.Cells(GBEAMNO.Index).Value) > MAXNO Then
+                    MAXNO = Val(r.Cells(GBEAMNO.Index).Value)
+                End If
+            End If
+        Next
+    End Function
+
+
+    Sub GetLastBeamNo()
+        Dim NextBeamNo As Integer
+        Dim OBJCMN As New ClsCommon
+        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(BEAMNO),0)+1 AS LASTNO ", "", "BEAMSTOCKATJOBBER")
+        If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
+        TXTBEAMNO.Text = NextBeamNo
+    End Sub
+
+
+
+    Private Sub TXTBEAMNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBEAMNO.Validating
+
+        If Val(TXTBEAMNO.Text) <> 0 Then
+            If GRIDBEAMISSUE.RowCount > 0 Then
+                If Not CHECKBEAM() Then
+                    MsgBox("Beam No already Present in Grid below")
+                    TXTBEAMNO.Clear()
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        End If
+
+    End Sub
+
+
+    Function CHECKBEAM() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In GRIDBEAMISSUE.Rows
+                If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
+                    If TXTBEAMNO.Text.Trim = ROW.Cells(GBEAMNO.Index).Value Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Function CHECKROLL() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In GRIDBEAMISSUE.Rows
+                If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
+                    If CMBROLLNO.Text.Trim = ROW.Cells(GROLLNO.Index).Value Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Private Sub CMBROLLNO_Validating(sender As Object, e As CancelEventArgs) Handles CMBROLLNO.Validating
+        'If CMBROLLNO.Text <> "" Then
+        If GRIDBEAMISSUE.RowCount > 0 Then
+            If Not CHECKROLL() Then
+                MsgBox("Roll No already Present in Grid below")
+                CMBROLLNO.Text = ""
+                e.Cancel = True
+                Exit Sub
+            End If
+        End If
+        'End If
+    End Sub
+
+    Private Sub CMBSIZER_Enter(sender As Object, e As EventArgs) Handles CMBSIZER.Enter
+        Try
+            If CMBSIZER.Text.Trim = "" Then FILLNAME(CMBSIZER, EDIT, "and GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS' ")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSIZER_Validating(sender As Object, e As CancelEventArgs) Handles CMBSIZER.Validating
+        Try
+            If CMBSIZER.Text.Trim <> "" Then NAMEVALIDATE(CMBSIZER, cmbcode, e, Me, TXTADD, "AND GROUPMASTER.GROUP_SECONDARY='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSIZER_Validated(sender As Object, e As EventArgs) Handles CMBSIZER.Validated
+        FILLGRID()
+    End Sub
+
+    Private Sub GRIDBEAMISSUE_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDBEAMISSUE.CellDoubleClick
+        Try
+            EDITROW()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub EDITROW()
+        Try
+            If GRIDBEAMISSUE.CurrentRow.Index >= 0 And GRIDBEAMISSUE.Item(gsrno.Index, GRIDBEAMISSUE.CurrentRow.Index).Value <> Nothing Then
+                GRIDDOUBLECLICK = True
+
+                TXTGRIDSRNO.Text = GRIDBEAMISSUE.Item(gsrno.Index, GRIDBEAMISSUE.CurrentRow.Index).Value.ToString
+                CMBBEAMNAME.Text = GRIDBEAMISSUE.Item(GBEAMNAME.Index, GRIDBEAMISSUE.CurrentRow.Index).Value.ToString
+                TXTBEAMNO.Text = Val(GRIDBEAMISSUE.Item(GBEAMNO.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTGAMANO.Text = Val(GRIDBEAMISSUE.Item(GGAMANO.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTSECTION.Text = Val(GRIDBEAMISSUE.Item(GSECTION.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1", "")
+                CMBROLLNO.Text = GRIDBEAMISSUE.Item(GROLLNO.Index, GRIDBEAMISSUE.CurrentRow.Index).Value.ToString
+
+                TXTBEAMWT.Text = Val(GRIDBEAMISSUE.Item(GBEAMWT.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTBREAKAGE.Text = Val(GRIDBEAMISSUE.Item(GBREAKAGE.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTENDS.Text = Val(GRIDBEAMISSUE.Item(GENDS.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTTAPLINE.Text = Val(GRIDBEAMISSUE.Item(GTAPLINE.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTCUT.Text = Val(GRIDBEAMISSUE.Item(GCUT.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTWT.Text = Val(GRIDBEAMISSUE.Item(GWT.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTCUTWT.Text = Val(GRIDBEAMISSUE.Item(GCUTWT.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTGRIDREMARKS.Text = GRIDBEAMISSUE.Item(GNARR.Index, GRIDBEAMISSUE.CurrentRow.Index).Value.ToString
+                CMBSIZER.Text = GRIDBEAMISSUE.Item(GSIZERNAME.Index, GRIDBEAMISSUE.CurrentRow.Index).Value.ToString
+
+                TEMPROW = GRIDBEAMISSUE.CurrentRow.Index
+                CMBBEAMNAME.Focus()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

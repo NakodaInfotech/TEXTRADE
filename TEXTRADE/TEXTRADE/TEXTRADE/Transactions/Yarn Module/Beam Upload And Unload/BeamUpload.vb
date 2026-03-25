@@ -34,6 +34,10 @@ Public Class BeamUpload
         GRIDDOUBLECLICK = False
         GRIDUPLOADDOUBLECLICK = False
         getmaxno()
+        CMBBEAM.Text = ""
+        CMBLOOM.Text = ""
+        CMBGODOWN.Text = ""
+        GRIDLOOMBEAM.RowCount = 0
     End Sub
     Sub getmaxno()
         Dim DTTABLE As New DataTable
@@ -322,6 +326,43 @@ Public Class BeamUpload
                 CMBLOOM.SelectedIndex = 0
             Else
                 MsgBox("No Looms found for selected Weaver.", MsgBoxStyle.Information)
+            End If
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBLOOM_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMBLOOM.SelectedIndexChanged
+        Try
+            If CMBLOOM.Text.Trim = "" Then Exit Sub
+
+            CMBBEAM.Items.Clear()
+            CMBBEAM.Text = ""
+
+            Dim dttable As DataTable
+            Dim OBJCMN As New ClsCommon
+
+            dttable = OBJCMN.SEARCH(
+                " BEAMNO, RECNO, RECSRNO ",
+                "",
+                " BEAMSTOCKATJOBBER ",
+                " AND DONE = 'FALSE' " &
+                " AND YEARID = " & YearId &
+                " ORDER BY DATE DESC "
+            )
+
+            If dttable.Rows.Count > 0 Then
+                For Each row As DataRow In dttable.Rows
+                    If Not IsDBNull(row("BEAMNO")) AndAlso row("BEAMNO").ToString().Trim <> "" Then
+                        CMBBEAM.Items.Add(row("BEAMNO").ToString().Trim)
+                    End If
+                Next
+                If CMBBEAM.Items.Count > 0 Then
+                    CMBBEAM.SelectedIndex = 0
+                End If
+            Else
+                MsgBox("No Beams found for selected Loom.", MsgBoxStyle.Information)
             End If
 
         Catch ex As Exception

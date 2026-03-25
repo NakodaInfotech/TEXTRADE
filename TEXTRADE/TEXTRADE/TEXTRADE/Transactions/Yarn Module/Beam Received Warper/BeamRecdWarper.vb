@@ -207,7 +207,7 @@ Public Class BeamRecdWarper
 
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
-                        GRIDBEAM.Rows.Add(Val(ROW("SRNO")), Val(ROW("JOBNO")), Val(ROW("JOBSRNO")), ROW("ITEMNAME"), Val(ROW("REED")), Val(ROW("REEDSPACE")), Val(ROW("PICS")), ROW("NARRATION"), Val(ROW("GRIDENDS")), ROW("REFNO"), Val(ROW("JOBMTRS")), Val(ROW("BEAMMTRS")), ROW("FROMTYPE"), Val(ROW("GRIDDONE")), Val(ROW("OUTMTRS")))
+                        GRIDBEAM.Rows.Add(Val(ROW("SRNO")), Val(ROW("JOBNO")), Val(ROW("JOBSRNO")), ROW("ITEMNAME"), Val(ROW("REED")), Val(ROW("REEDSPACE")), Val(ROW("PICS")), ROW("DESCRIPTION"), Val(ROW("GRIDENDS")), ROW("REFNO"), Val(ROW("JOBMTRS")), Val(ROW("BEAMMTRS")), ROW("FROMTYPE"), Val(ROW("GRIDDONE")), Val(ROW("OUTMTRS")))
 
                         If Convert.ToBoolean(ROW("GRIDDONE")) = True Then
                             lbllocked.Visible = True

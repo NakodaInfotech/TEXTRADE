@@ -438,6 +438,12 @@
     <Compile Include="Masters\LoomMasterDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\TaskMaster.Designer.vb">
+      <DependentUpon>TaskMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\TaskMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.Designer.vb">
       <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
     </Compile>
@@ -3221,6 +3227,12 @@
       <DependentUpon>YarnJobOrderDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Loom Efficiency\YarnLoomEfficiency.Designer.vb">
+      <DependentUpon>YarnLoomEfficiency.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Loom Efficiency\YarnLoomEfficiency.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.Designer.vb">
@@ -9193,6 +9205,9 @@
     <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
       <DependentUpon>LoomMasterDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Masters\TaskMaster.resx">
+      <DependentUpon>TaskMaster.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.resx">
       <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
     </EmbeddedResource>
@@ -10810,6 +10825,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderDetails.resx">
       <DependentUpon>YarnJobOrderDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Loom Efficiency\YarnLoomEfficiency.resx">
+      <DependentUpon>YarnLoomEfficiency.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>
