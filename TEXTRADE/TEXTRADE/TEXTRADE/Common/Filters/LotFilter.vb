@@ -568,7 +568,7 @@ Public Class LotFilter
 
     Private Sub LotFilter_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            If HIGHVERSION = True And ClientName <> "SNCM" And ClientName <> "YASHVI" Then
+            If HIGHVERSION = True And ClientName <> "SNCM" And ClientName <> "ROVIRO" And ClientName <> "YASHVI" Then
                 RBDETAILS.Visible = True
                 RBSUMMVALUE.Visible = True
                 RBPCSDETAILS.Visible = True
