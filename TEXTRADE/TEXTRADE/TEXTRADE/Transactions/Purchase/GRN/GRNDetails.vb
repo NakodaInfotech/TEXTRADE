@@ -375,8 +375,9 @@ Public Class GRNDetails
                 GBALENO.Caption = "P.Design No"
                 GHSNCODE.VisibleIndex = GDESIGNNO.VisibleIndex + 1
             End If
-            If ClientName = "VINTAGEINDIA" Then
-                GDELIVERYTO.Caption = "Supplier"
+            If ClientName = "VINTAGEINDIA" And FRMSTRING = "GRN FANCY" Then
+                GNAME.Caption = "Party Name"
+                GDELIVERYTO.Caption = "Supplier Name"
             End If
         Catch ex As Exception
             Throw ex
