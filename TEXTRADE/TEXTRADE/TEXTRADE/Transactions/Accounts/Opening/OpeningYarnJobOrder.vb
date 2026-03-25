@@ -163,6 +163,19 @@ Public Class OpeningYarnJobOrder
                 If dttable1.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable1.Rows
                         GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")), Val(DTR("CLOSED")))
+
+                        If Convert.ToBoolean(DTR("DONE")) = True Then
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                            GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                        End If
+
+                        If Val(DTR("OUTMTRS")) > 0 Then
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                            GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                        End If
+
                     Next
                 End If
 
@@ -609,7 +622,7 @@ LINE1:
     Sub EDITROW()
         Try
             If GRIDBEAM.CurrentRow.Index >= 0 And GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value <> Nothing Then
-                If Convert.ToBoolean(GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GDONE.Index).Value) = True Then
+                If Convert.ToBoolean(GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GDONE.Index).Value) = True Or (GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GOUTMTRS.Index).Value) > 0 Then
                     MsgBox("Item Locked. First Delete from Job Order")
                     Exit Sub
                 End If
