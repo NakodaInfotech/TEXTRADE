@@ -438,6 +438,12 @@
     <Compile Include="Masters\LoomMasterDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\TaskMaster.Designer.vb">
+      <DependentUpon>TaskMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\TaskMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.Designer.vb">
       <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
     </Compile>
@@ -2371,10 +2377,10 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningBeamStock.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtWeaver.Designer.vb">
-      <DependentUpon>OpeningBeamStockAtWeaver.vb</DependentUpon>
+    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtJobber.Designer.vb">
+      <DependentUpon>OpeningBeamStockAtJobber.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtWeaver.vb">
+    <Compile Include="Transactions\Accounts\Opening\OpeningBeamStockAtJobber.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Accounts\Opening\OpeningGDN.Designer.vb">
@@ -3079,6 +3085,12 @@
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperGridDetails.Designer.vb">
+      <DependentUpon>BeamRecdWarperGridDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperGridDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.Designer.vb">
       <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
     </Compile>
@@ -3215,6 +3227,12 @@
       <DependentUpon>YarnJobOrderDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Loom Efficiency\YarnLoomEfficiency.Designer.vb">
+      <DependentUpon>YarnLoomEfficiency.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Yarn Loom Efficiency\YarnLoomEfficiency.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.Designer.vb">
@@ -9187,6 +9205,9 @@
     <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
       <DependentUpon>LoomMasterDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Masters\TaskMaster.resx">
+      <DependentUpon>TaskMaster.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.resx">
       <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
     </EmbeddedResource>
@@ -10382,8 +10403,8 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningBeamStock.resx">
       <DependentUpon>OpeningBeamStock.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningBeamStockAtWeaver.resx">
-      <DependentUpon>OpeningBeamStockAtWeaver.vb</DependentUpon>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningBeamStockAtJobber.resx">
+      <DependentUpon>OpeningBeamStockAtJobber.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningGDN.resx">
       <DependentUpon>OpeningGDN.vb</DependentUpon>
@@ -10733,6 +10754,9 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperDetails.resx">
       <DependentUpon>BeamRecdWarperDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarperGridDetails.resx">
+      <DependentUpon>BeamRecdWarperGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\DirectIssueWeaver.resx">
       <DependentUpon>DirectIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
@@ -10801,6 +10825,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Job Order\YarnJobOrderDetails.resx">
       <DependentUpon>YarnJobOrderDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Yarn Loom Efficiency\YarnLoomEfficiency.resx">
+      <DependentUpon>YarnLoomEfficiency.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Yarn Recd\SelectBeamProg.resx">
       <DependentUpon>SelectBeamProg.vb</DependentUpon>

@@ -33,7 +33,7 @@ Public Class SelectJobOrder
             If SIZERNAME <> "" Then WHERE = WHERE & " AND LEDGERS.ACC_CMPNAME = '" & SIZERNAME & "'"
 
             Dim objcmn As New ClsCommon
-            Dim dt As DataTable = objcmn.SEARCH(" CAST(0 AS BIT) AS CHK, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ALLJOBORDER.JOB_NO AS JOBNO, ALLJOBORDER.JOB_DATE AS DATE, ISNULL(ALLJOBORDER.JOB_REED, 0) AS REED, ISNULL(ALLJOBORDER.JOB_REEDSPACE, 0) AS REEDSPACE, ISNULL(ALLJOBORDER.JOB_PICKS, 0) AS PICS, ALLJOBORDER.TYPE AS FROMTYPE, ISNULL(ALLJOBORDER.JOB_REFNO, '') AS REFNO, ISNULL(ALLJOBORDER.JOB_TOTALMTRS - ALLJOBORDER.JOB_OUTMTRS, 0) AS MTRS, ITEMMASTER.item_name AS ITEMNAME, ISNULL(ALLJOBORDER.JOB_TOTALENDS, 0) AS ENDS ", "", "  ALLJOBORDER INNER  JOIN ITEMMASTER ON ALLJOBORDER.JOB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS ON ALLJOBORDER.JOB_LEDGERID = LEDGERS.Acc_id  ", WHERE & " AND (ALLJOBORDER.JOB_TOTALMTRS- ALLJOBORDER.JOB_OUTMTRS >0)AND  ALLJOBORDER.JOB_CLOSE = 0 AND ALLJOBORDER.JOB_YEARID = " & YearId)
+            Dim dt As DataTable = objcmn.SEARCH(" CAST(0 AS BIT) AS CHK, ALLJOBORDER.JOB_DATE AS DATE, ALLJOBORDER.JOB_NO AS JOBNO, ALLJOBORDER_DESC.JOB_SRNO AS JOBSRNO, ISNULL(ALLJOBORDER_DESC.JOB_REED, 0) AS REED, ISNULL(ALLJOBORDER_DESC.JOB_REEDSPACE, 0) AS REEDSPACE, ISNULL(ALLJOBORDER_DESC.JOB_PICKS, 0) AS PICS, ALLJOBORDER.TYPE AS FROMTYPE, ISNULL(ALLJOBORDER_DESC.JOB_REFNO, '') AS REFNO, ISNULL(ALLJOBORDER_DESC.JOB_MTRS - ALLJOBORDER_DESC.JOB_OUTMTRS, 0) AS JOBMTRS, ISNULL(ALLJOBORDER_DESC.JOB_ENDS, 0) AS ENDS, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(ALLJOBORDER_DESC.JOB_DESCRIPTION, '') AS DESCRIPTION, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME ", "", "  ALLJOBORDER INNER JOIN ALLJOBORDER_DESC ON ALLJOBORDER.JOB_NO = ALLJOBORDER_DESC.JOB_NO AND ALLJOBORDER.JOB_YEARID = ALLJOBORDER_DESC.JOB_YEARID AND  ALLJOBORDER.TYPE = ALLJOBORDER_DESC.TYPE INNER JOIN ITEMMASTER ON ALLJOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS ON ALLJOBORDER.JOB_LEDGERID = LEDGERS.Acc_id   ", WHERE & " AND (ALLJOBORDER_DESC.JOB_MTRS- ALLJOBORDER_DESC.JOB_OUTMTRS >0) AND  ALLJOBORDER_DESC.JOB_CLOSED= 'FALSE' AND ALLJOBORDER.JOB_YEARID = " & YearId & "   ORDER BY ALLJOBORDER.JOB_NO ")
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -53,29 +53,29 @@ Public Class SelectJobOrder
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    COUNT = COUNT + 1
                 End If
             Next
-            If COUNT > 1 Then
-                MsgBox("You Can Select Only One Entry")
-                Exit Sub
-            End If
+
 
             DT.Columns.Add("NAME")
             DT.Columns.Add("JOBNO")
+            DT.Columns.Add("JOBSRNO")
+            DT.Columns.Add("FROMTYPE")
             DT.Columns.Add("REED")
             DT.Columns.Add("REEDSPACE")
             DT.Columns.Add("PICS")
-            DT.Columns.Add("FROMTYPE")
             DT.Columns.Add("REFNO")
             DT.Columns.Add("ITEMNAME")
             DT.Columns.Add("ENDS")
+            DT.Columns.Add("JOBMTRS")
+            DT.Columns.Add("DESCRIPTION")
+
 
 
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("NAME"), dtrow("JOBNO"), Val(dtrow("REED")), Val(dtrow("REEDSPACE")), Val(dtrow("PICS")), dtrow("FROMTYPE"), dtrow("REFNO"), dtrow("ITEMNAME"), dtrow("ENDS"))
+                    DT.Rows.Add(dtrow("NAME"), dtrow("JOBNO"), dtrow("JOBSRNO"), dtrow("FROMTYPE"), Val(dtrow("REED")), Val(dtrow("REEDSPACE")), Val(dtrow("PICS")), dtrow("REFNO"), dtrow("ITEMNAME"), dtrow("ENDS"), Val(dtrow("JOBMTRS")), dtrow("DESCRIPTION"))
                 End If
             Next
             Me.Close()

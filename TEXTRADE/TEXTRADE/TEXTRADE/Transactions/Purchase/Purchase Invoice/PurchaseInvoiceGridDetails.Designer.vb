@@ -100,6 +100,7 @@ Partial Class PurchaseInvoiceGridDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.GGRNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -256,7 +257,7 @@ Partial Class PurchaseInvoiceGridDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GADDRESS, Me.GAGENT, Me.GDYEINGNAME, Me.GPARTYBILLNO, Me.GEWAYBILLNO, Me.GCHALLANLOTNO, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESC, Me.GDESIGNNO, Me.GCOLOR, Me.GAQTY, Me.GFOLDPER, Me.GLOTNO, Me.GBALENO, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GCATEGORY, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GLRNO, Me.GREGNAME, Me.GPER, Me.GFROMCITY, Me.GTOCITY, Me.GMONTHNAME, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GADDRESS, Me.GAGENT, Me.GDYEINGNAME, Me.GPARTYBILLNO, Me.GEWAYBILLNO, Me.GCHALLANLOTNO, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESC, Me.GDESIGNNO, Me.GCOLOR, Me.GAQTY, Me.GFOLDPER, Me.GLOTNO, Me.GBALENO, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GCATEGORY, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GLRNO, Me.GREGNAME, Me.GPER, Me.GFROMCITY, Me.GTOCITY, Me.GMONTHNAME, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDT, Me.GGRNNO})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -873,6 +874,14 @@ Partial Class PurchaseInvoiceGridDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
+        'GGRNNO
+        '
+        Me.GGRNNO.Caption = "GRN No"
+        Me.GGRNNO.FieldName = "GRNNO"
+        Me.GGRNNO.Name = "GGRNNO"
+        Me.GGRNNO.Visible = True
+        Me.GGRNNO.VisibleIndex = 52
+        '
         'PurchaseInvoiceGridDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -972,4 +981,5 @@ Partial Class PurchaseInvoiceGridDetails
     Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTDT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGRNNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

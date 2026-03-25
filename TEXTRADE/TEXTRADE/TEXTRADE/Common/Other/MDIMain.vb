@@ -3538,7 +3538,7 @@ Public Class MDIMain
     Private Sub PendingJoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PendingJoToolStripMenuItem.Click
         Try
             Dim ObjpendingJO As New JobOutDetails
-            ObjpendingJO.Where = " AND (JO_TOTALMTRS-JO_RECDMTRS)>0"
+            ObjpendingJO.Where = " AND (JO_TOTALMTRS-JO_RECDMTRS)>0 AND JO_LOTCOMPLETED = 0"
             ObjpendingJO.MdiParent = Me
             ObjpendingJO.Show()
         Catch ex As Exception
@@ -11425,7 +11425,18 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub OPENINGYARNJOBORDER_MASTER_Click(sender As Object, e As EventArgs) Handles OPENINGYARNJOBORDER_MASTER.Click
+
+    Private Sub OPENINGBEAMSTOCKATJOBBER_ADD_Click(sender As Object, e As EventArgs) Handles OPENINGBEAMSTOCKATJOBBER_ADD.Click
+        Try
+            Dim OBJYARNJO As New OpeningBeamStockAtJobber
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub OPENINGYARNJOBORDER_ADD_Click(sender As Object, e As EventArgs) Handles OPENINGYARNJOBORDER_ADD.Click
         Try
             Dim OBJYARNJO As New OpeningYarnJobOrder
             OBJYARNJO.MdiParent = Me

@@ -231,10 +231,12 @@
     <Compile Include="Masters\ClsPartyWiseBaleRate.vb" />
     <Compile Include="Masters\ClsProjectMaster.vb" />
     <Compile Include="Masters\ClsSampleTypeMaster.vb" />
+    <Compile Include="Masters\ClsTaskMaster.vb" />
     <Compile Include="Masters\ClsTransInsurance.vb" />
     <Compile Include="Masters\ClsVehicleMaster.vb" />
     <Compile Include="Masters\ClsWeaveMaster.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningBeamStock.vb" />
+    <Compile Include="Transactions\Accounts\Opening\ClsOpeningBeamStockAtJobber.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningGreyStockAtProcess.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningGreyStockAtTransport.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningStockRolls.vb" />

@@ -38,8 +38,8 @@ Public Class YarnJobOrderClose
                 For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                     Dim DTROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
 
-                    If DTROW("TYPE") = "JOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 1 WHERE JOB_NO = " & Val(DTROW("JOBNO")) & " AND  JOB_YEARID = " & YearId, "", "")
-                    If DTROW("TYPE") = "OPENINGJOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGJOBORDER_DESC SET OPJOB_CLOSED = 1 WHERE OPJOB_NO = " & Val(DTROW("JOBNO")) & " AND  OPJOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "JOBORDER_DESC" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 1 WHERE JOB_NO = " & Val(DTROW("JONO")) & " AND  JOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "OPENINGYARNJOBORDER_DESC" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGJOBORDER_DESC SET OYJOB_CLOSED = 1 WHERE OYJOB_NO = " & Val(DTROW("JONO")) & " AND  OYJOB_YEARID = " & YearId, "", "")
 
                 Next
                 MsgBox("Details Updated Successfully")
@@ -53,8 +53,8 @@ Public Class YarnJobOrderClose
                 Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
                 For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                     Dim DTROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
-                    If DTROW("TYPE") = "JOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 0 WHERE JOB_NO = " & Val(DTROW("JOBNO")) & " AND  JOB_YEARID = " & YearId, "", "")
-                    If DTROW("TYPE") = "OPENINGJOBORDER" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGJOBORDER_DESC SET OPJOB_CLOSED = 0 WHERE OPJOB_NO = " & Val(DTROW("JOBNO")) & " AND  OPJOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "JOBORDER_DESC" Then DT = OBJCMN.Execute_Any_String(" UPDATE JOBORDER_DESC SET JOB_CLOSED = 0 WHERE JOB_NO = " & Val(DTROW("JONO")) & " AND  JOB_YEARID = " & YearId, "", "")
+                    If DTROW("TYPE") = "OPENINGYARNJOBORDER_DESC" Then DT = OBJCMN.Execute_Any_String(" UPDATE OPENINGYARNJOBORDER_DESC SET OYJOB_CLOSED = 0 WHERE OYJOB_NO = " & Val(DTROW("JONO")) & " AND  OYJOB_YEARID = " & YearId, "", "")
                 Next
                 MsgBox("Details Updated Successfully")
                 fillgrid(" and JOB_YEARID=" & YearId)

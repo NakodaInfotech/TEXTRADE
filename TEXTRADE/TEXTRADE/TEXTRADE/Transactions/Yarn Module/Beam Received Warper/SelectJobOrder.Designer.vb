@@ -28,20 +28,21 @@ Partial Class SelectJobOrder
         Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GJOBNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPICS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GENDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GJOBSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +82,7 @@ Partial Class SelectJobOrder
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GJOBNO, Me.GDATE, Me.GNAME, Me.GITEMNAME, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GENDS, Me.GPICS, Me.GMTRS, Me.GTYPE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GJOBNO, Me.GJOBSRNO, Me.GDATE, Me.GNAME, Me.GITEMNAME, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GENDS, Me.GPICS, Me.GMTRS, Me.GTYPE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -115,16 +116,7 @@ Partial Class SelectJobOrder
         Me.GJOBNO.OptionsColumn.AllowEdit = False
         Me.GJOBNO.Visible = True
         Me.GJOBNO.VisibleIndex = 1
-        '
-        'GREFNO
-        '
-        Me.GREFNO.Caption = "Ref No"
-        Me.GREFNO.FieldName = "REFNO"
-        Me.GREFNO.Name = "GREFNO"
-        Me.GREFNO.OptionsColumn.AllowEdit = False
-        Me.GREFNO.Visible = True
-        Me.GREFNO.VisibleIndex = 5
-        Me.GREFNO.Width = 90
+        Me.GJOBNO.Width = 60
         '
         'GDATE
         '
@@ -135,17 +127,8 @@ Partial Class SelectJobOrder
         Me.GDATE.Name = "GDATE"
         Me.GDATE.OptionsColumn.AllowEdit = False
         Me.GDATE.Visible = True
-        Me.GDATE.VisibleIndex = 2
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 4
-        Me.GITEMNAME.Width = 180
+        Me.GDATE.VisibleIndex = 3
+        Me.GDATE.Width = 70
         '
         'GNAME
         '
@@ -154,8 +137,28 @@ Partial Class SelectJobOrder
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 3
+        Me.GNAME.VisibleIndex = 4
         Me.GNAME.Width = 220
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 5
+        Me.GITEMNAME.Width = 180
+        '
+        'GREFNO
+        '
+        Me.GREFNO.Caption = "Ref No"
+        Me.GREFNO.FieldName = "REFNO"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.OptionsColumn.AllowEdit = False
+        Me.GREFNO.Visible = True
+        Me.GREFNO.VisibleIndex = 6
+        Me.GREFNO.Width = 85
         '
         'GREED
         '
@@ -164,8 +167,7 @@ Partial Class SelectJobOrder
         Me.GREED.Name = "GREED"
         Me.GREED.OptionsColumn.AllowEdit = False
         Me.GREED.Visible = True
-        Me.GREED.VisibleIndex = 6
-        Me.GREED.Width = 80
+        Me.GREED.VisibleIndex = 7
         '
         'GREEDSPACE
         '
@@ -174,19 +176,16 @@ Partial Class SelectJobOrder
         Me.GREEDSPACE.Name = "GREEDSPACE"
         Me.GREEDSPACE.OptionsColumn.AllowEdit = False
         Me.GREEDSPACE.Visible = True
-        Me.GREEDSPACE.VisibleIndex = 7
-        Me.GREEDSPACE.Width = 80
+        Me.GREEDSPACE.VisibleIndex = 8
         '
-        'GMTRS
+        'GENDS
         '
-        Me.GMTRS.Caption = "Mtrs"
-        Me.GMTRS.FieldName = "MTRS"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.OptionsColumn.AllowEdit = False
-        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 10
-        Me.GMTRS.Width = 80
+        Me.GENDS.Caption = "Ends"
+        Me.GENDS.FieldName = "ENDS"
+        Me.GENDS.Name = "GENDS"
+        Me.GENDS.OptionsColumn.AllowEdit = False
+        Me.GENDS.Visible = True
+        Me.GENDS.VisibleIndex = 9
         '
         'GPICS
         '
@@ -196,8 +195,19 @@ Partial Class SelectJobOrder
         Me.GPICS.OptionsColumn.AllowEdit = False
         Me.GPICS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPICS.Visible = True
-        Me.GPICS.VisibleIndex = 9
+        Me.GPICS.VisibleIndex = 10
         Me.GPICS.Width = 80
+        '
+        'GMTRS
+        '
+        Me.GMTRS.Caption = "Mtrs"
+        Me.GMTRS.FieldName = "MTRS"
+        Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.OptionsColumn.AllowEdit = False
+        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GMTRS.Visible = True
+        Me.GMTRS.VisibleIndex = 11
+        Me.GMTRS.Width = 80
         '
         'GTYPE
         '
@@ -206,7 +216,7 @@ Partial Class SelectJobOrder
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 11
+        Me.GTYPE.VisibleIndex = 12
         Me.GTYPE.Width = 120
         '
         'APPROXDATE
@@ -249,14 +259,15 @@ Partial Class SelectJobOrder
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GENDS
+        'GJOBSRNO
         '
-        Me.GENDS.Caption = "Ends"
-        Me.GENDS.FieldName = "ENDS"
-        Me.GENDS.Name = "GENDS"
-        Me.GENDS.OptionsColumn.AllowEdit = False
-        Me.GENDS.Visible = True
-        Me.GENDS.VisibleIndex = 8
+        Me.GJOBSRNO.Caption = "Job Sr.No"
+        Me.GJOBSRNO.FieldName = "JOBSRNO"
+        Me.GJOBSRNO.Name = "GJOBSRNO"
+        Me.GJOBSRNO.OptionsColumn.AllowEdit = False
+        Me.GJOBSRNO.Visible = True
+        Me.GJOBSRNO.VisibleIndex = 2
+        Me.GJOBSRNO.Width = 60
         '
         'SelectJobOrder
         '
@@ -300,4 +311,5 @@ Partial Class SelectJobOrder
     Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GJOBSRNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
