@@ -759,7 +759,12 @@ NEXTLINE:
             GRIDSR.FirstDisplayedScrollingRowIndex = GRIDSR.RowCount - 1
 
             TXTMTRS.Clear()
-            If ClientName <> "SHREENAKODA" Or ClientName <> "ANKUSH" Then CMBRACK.Text = ""
+            If ClientName <> "SHREENAKODA" And ClientName <> "ANKUSH" Then CMBRACK.Text = ""
+
+            If ClientName = "ANKUSH" Then
+                TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
+            End If
+
             CMBSHELF.Text = ""
             TXTSRNO.Text = GRIDSR.RowCount + 1
             If ClientName = "YASHVI" Then TXTCUT.Focus() Else CMBPIECETYPE.Focus()
