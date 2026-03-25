@@ -29,6 +29,26 @@ Public Class TaskMaster
     End Sub
 
     Private Sub CMDDELETE_Click(sender As Object, e As EventArgs) Handles CMDDELETE.Click
+        Try
+            If EDIT = False Then Exit Sub
+            If USERDELETE = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            If MsgBox("Wish to Delete?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As New DataTable
+
+                DT = OBJCMN.Execute_Any_String("DELETE FROM TASKMASTER WHERE TASK_name = '" & TempName & "' AND TASK_YEARID= " & YearId, "", "")
+                MsgBox("Entry Deleted Successfully")
+                EDIT = False
+                clear()
+
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
 
     End Sub
 
@@ -44,6 +64,36 @@ Public Class TaskMaster
         ElseIf e.KeyCode = Keys.Enter Then
             SendKeys.Send("{Tab}")
         End If
+    End Sub
+
+    Private Sub TaskMaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            Dim dttable As New DataTable
+            Dim objCommon As New ClsCommonMaster
+
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'ITEM MASTER'")
+            USERADD = DTROW(0).Item(1)
+                USEREDIT = DTROW(0).Item(2)
+                USERVIEW = DTROW(0).Item(3)
+                USERDELETE = DTROW(0).Item(4)
+            Me.Text = "Task Master"
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            If EDIT = True Then dttable = objCommon.search(" TASK_name, TASK_REMARKS", "", "TaskMaster", " and Task_id = " & TempID & " and Task_cmpid = " & CmpId & " and Task_locationid = " & Locationid & " and Task_yearid = " & YearId)
+
+
+            CMBTASKNAME.Text = TempName
+
+            If dttable.Rows.Count > 0 Then
+                CMBTASKNAME.Text = dttable.Rows(0).Item(0).ToString
+                CMBTASKTYPE.Text = dttable.Rows(0).Item(0).ToString
+                txtremarks.Text = dttable.Rows(0).Item(1).ToString
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
     End Sub
 
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
@@ -65,27 +115,27 @@ Public Class TaskMaster
             alParaval.Add(Userid)
             alParaval.Add(YearId)
 
-            Dim objclscategorymaster As New ClsCategoryMaster
+            Dim objclscategorymaster As New ClsTaskMaster
             objclscategorymaster.alParaval = alParaval
 
-                If EDIT = False Then
-                    If USERADD = False Then
-                        MsgBox("Insufficient Rights")
-                        Exit Sub
-                    End If
-                    IntResult = objclscategorymaster.save()
-                    MsgBox("Details Added")
-                ElseIf EDIT = True Then
-                    If USEREDIT = False Then
-                        MsgBox("Insufficient Rights")
-                        Exit Sub
-                    End If
-                    alParaval.Add(TempID)
-                    IntResult = objclscategorymaster.Update()
-                    MsgBox("Details Updated")
-                    EDIT = False
-
+            If EDIT = False Then
+                If USERADD = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
                 End If
+                IntResult = objclscategorymaster.save()
+                MsgBox("Details Added")
+            ElseIf EDIT = True Then
+                If USEREDIT = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                alParaval.Add(TempID)
+                IntResult = objclscategorymaster.Update()
+                MsgBox("Details Updated")
+                EDIT = False
+
+            End If
 
             clear()
             CMBTASKNAME.Focus()
