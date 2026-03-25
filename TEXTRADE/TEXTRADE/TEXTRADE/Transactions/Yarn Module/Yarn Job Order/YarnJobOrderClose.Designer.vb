@@ -29,23 +29,21 @@ Partial Class YarnJobOrderClose
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GJOBNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBILLDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBILLINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPARTYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSOLD = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTEMPSOLD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMBREASON = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,7 +135,7 @@ Partial Class YarnJobOrderClose
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBILLNO, Me.GGRIDSRNO, Me.GBILLDATE, Me.GREGNAME, Me.GBILLINITIALS, Me.GPARTYBILLNO, Me.GNAME, Me.GTRANSNAME, Me.GTYPE, Me.GSOLD, Me.GTEMPSOLD})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GJOBNO, Me.GGRIDSRNO, Me.GDATE, Me.GREGNAME, Me.GNAME, Me.GPARTYBILLNO, Me.GTRANSNAME, Me.GTYPE, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 40
@@ -148,17 +146,17 @@ Partial Class YarnJobOrderClose
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
         '
-        'GBILLNO
+        'GJOBNO
         '
-        Me.GBILLNO.Caption = "Sr No."
-        Me.GBILLNO.DisplayFormat.FormatString = "0"
-        Me.GBILLNO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GBILLNO.FieldName = "BILLNO"
-        Me.GBILLNO.Name = "GBILLNO"
-        Me.GBILLNO.OptionsColumn.AllowEdit = False
-        Me.GBILLNO.Visible = True
-        Me.GBILLNO.VisibleIndex = 1
-        Me.GBILLNO.Width = 50
+        Me.GJOBNO.Caption = "Sr No."
+        Me.GJOBNO.DisplayFormat.FormatString = "0"
+        Me.GJOBNO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GJOBNO.FieldName = "JOBNO"
+        Me.GJOBNO.Name = "GJOBNO"
+        Me.GJOBNO.OptionsColumn.AllowEdit = False
+        Me.GJOBNO.Visible = True
+        Me.GJOBNO.VisibleIndex = 1
+        Me.GJOBNO.Width = 50
         '
         'GGRIDSRNO
         '
@@ -167,17 +165,17 @@ Partial Class YarnJobOrderClose
         Me.GGRIDSRNO.Name = "GGRIDSRNO"
         Me.GGRIDSRNO.OptionsColumn.AllowEdit = False
         '
-        'GBILLDATE
+        'GDATE
         '
-        Me.GBILLDATE.Caption = "Date"
-        Me.GBILLDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GBILLDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GBILLDATE.FieldName = "BILLDATE"
-        Me.GBILLDATE.Name = "GBILLDATE"
-        Me.GBILLDATE.OptionsColumn.AllowEdit = False
-        Me.GBILLDATE.Visible = True
-        Me.GBILLDATE.VisibleIndex = 2
-        Me.GBILLDATE.Width = 80
+        Me.GDATE.Caption = "Date"
+        Me.GDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GDATE.FieldName = "DATE"
+        Me.GDATE.Name = "GDATE"
+        Me.GDATE.OptionsColumn.AllowEdit = False
+        Me.GDATE.Visible = True
+        Me.GDATE.VisibleIndex = 2
+        Me.GDATE.Width = 80
         '
         'GREGNAME
         '
@@ -189,36 +187,15 @@ Partial Class YarnJobOrderClose
         Me.GREGNAME.VisibleIndex = 3
         Me.GREGNAME.Width = 210
         '
-        'GBILLINITIALS
-        '
-        Me.GBILLINITIALS.Caption = "Party Name"
-        Me.GBILLINITIALS.FieldName = "BILLINITIALS"
-        Me.GBILLINITIALS.Name = "GBILLINITIALS"
-        Me.GBILLINITIALS.OptionsColumn.AllowEdit = False
-        Me.GBILLINITIALS.Visible = True
-        Me.GBILLINITIALS.VisibleIndex = 4
-        Me.GBILLINITIALS.Width = 207
-        '
         'GNAME
         '
-        Me.GNAME.Caption = "Shade"
-        Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageOptions.ImageIndex = 0
+        Me.GNAME.Caption = "Party Name"
+        Me.GNAME.FieldName = "BILLINITIALS"
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 6
-        Me.GNAME.Width = 168
-        '
-        'GTRANSNAME
-        '
-        Me.GTRANSNAME.Caption = "Total Mtrs"
-        Me.GTRANSNAME.FieldName = "TRANSNAME"
-        Me.GTRANSNAME.Name = "GTRANSNAME"
-        Me.GTRANSNAME.OptionsColumn.AllowEdit = False
-        Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 7
-        Me.GTRANSNAME.Width = 125
+        Me.GNAME.VisibleIndex = 4
+        Me.GNAME.Width = 207
         '
         'GPARTYBILLNO
         '
@@ -230,6 +207,16 @@ Partial Class YarnJobOrderClose
         Me.GPARTYBILLNO.VisibleIndex = 5
         Me.GPARTYBILLNO.Width = 148
         '
+        'GTRANSNAME
+        '
+        Me.GTRANSNAME.Caption = "Total Mtrs"
+        Me.GTRANSNAME.FieldName = "TRANSNAME"
+        Me.GTRANSNAME.Name = "GTRANSNAME"
+        Me.GTRANSNAME.OptionsColumn.AllowEdit = False
+        Me.GTRANSNAME.Visible = True
+        Me.GTRANSNAME.VisibleIndex = 6
+        Me.GTRANSNAME.Width = 125
+        '
         'GTYPE
         '
         Me.GTYPE.Caption = "Type"
@@ -237,25 +224,7 @@ Partial Class YarnJobOrderClose
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 16
-        '
-        'GSOLD
-        '
-        Me.GSOLD.Caption = "Sold"
-        Me.GSOLD.FieldName = "SOLD"
-        Me.GSOLD.Name = "GSOLD"
-        Me.GSOLD.OptionsColumn.AllowEdit = False
-        Me.GSOLD.Visible = True
-        Me.GSOLD.VisibleIndex = 17
-        '
-        'GTEMPSOLD
-        '
-        Me.GTEMPSOLD.Caption = "Temp Sold"
-        Me.GTEMPSOLD.FieldName = "TEMPSOLD"
-        Me.GTEMPSOLD.Name = "GTEMPSOLD"
-        Me.GTEMPSOLD.OptionsColumn.AllowEdit = False
-        Me.GTEMPSOLD.Visible = True
-        Me.GTEMPSOLD.VisibleIndex = 18
+        Me.GTYPE.VisibleIndex = 7
         '
         'CMBREASON
         '
@@ -314,6 +283,16 @@ Partial Class YarnJobOrderClose
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.OptionsColumn.AllowEdit = False
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 8
+        Me.GREMARKS.Width = 100
+        '
         'YarnJobOrderClose
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -344,21 +323,19 @@ Partial Class YarnJobOrderClose
     Friend WithEvents CHKSELECTALL As CheckBox
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Private WithEvents GBILLNO As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GJOBNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDSRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents GBILLDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREGNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBILLINITIALS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTRANSNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYBILLNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTYPE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSOLD As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTEMPSOLD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMBREASON As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents cmdexit As Button
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents toolStripSeparator As ToolStripSeparator
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents cmdok As Button
+    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
 End Class
