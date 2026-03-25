@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports BL
+Imports CrystalDecisions.CrystalReports.Engine
 Imports DevExpress.Utils.CommonDialogs
 
 Public Class OpeningBeamStockAtJobber
@@ -275,18 +276,19 @@ Public Class OpeningBeamStockAtJobber
                         SRNO = Val(row.Cells(gsrno.Index).Value)
                         BEAMNAME = row.Cells(GBEAMNAME.Index).Value.ToString
                         BEAMNO = row.Cells(GBEAMNO.Index).Value.ToString
-                        GAMANO = Val(row.Cells(GGAMANO.Index).Value)
-                        SECTION = Val(row.Cells(GSECTION.Index).Value)
+                        GAMANO = Format(Val(row.Cells(GGAMANO.Index).Value), "0.00")
+                        SECTION = Format(Val(row.Cells(GSECTION.Index).Value), "0.00")
                         ROLLNO = row.Cells(GROLLNO.Index).Value.ToString
-                        BEAMWT = Val(row.Cells(GBEAMWT.Index).Value)
-                        BREAKAGE = Val(row.Cells(GBREAKAGE.Index).Value)
+                        BEAMWT = Format(Val(row.Cells(GBEAMWT.Index).Value), "0.00")
+                        BREAKAGE = Format(Val(row.Cells(GBREAKAGE.Index).Value), "0.00")
 
                         ENDS = Val(row.Cells(GENDS.Index).Value)
                         TL = Val(row.Cells(GTAPLINE.Index).Value)
                         CUT = Format(Val(row.Cells(GCUT.Index).Value), "0.00")
-                        WT = Format(Val(row.Cells(GWT.Index).Value), "0.000")
-                        CUTWT = Format(Val(row.Cells(GCUTWT.Index).Value), "0.000")
+                        WT = Format(Val(row.Cells(GWT.Index).Value), "0.00")
+                        CUTWT = Format(Val(row.Cells(GCUTWT.Index).Value), "0.00")
                         If row.Cells(GNARR.Index).Value = Nothing Then NARR = "" Else NARR = row.Cells(GNARR.Index).Value.ToString
+                        SIZERNAME = row.Cells(GSIZERNAME.Index).Value
                         FROMNO = Val(row.Cells(GFROMNO.Index).Value)
                         FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
                         TYPE = row.Cells(GTYPE.Index).Value.ToString
@@ -296,7 +298,6 @@ Public Class OpeningBeamStockAtJobber
                         Else
                             GRIDDONE = 0
                         End If
-                        SIZERNAME = row.Cells(GSIZERNAME.Index).Value
                         LOOMNO = Val(row.Cells(GLOOMNO.Index).Value)
                         If row.Cells(GUPLOADDATE.Index).Value.ToString <> "" Then UPLOADDATE = Format(Convert.ToDateTime(row.Cells(GUPLOADDATE.Index).Value).Date, "MM/dd/yyyy") Else UPLOADDATE = ""
 
@@ -305,12 +306,19 @@ Public Class OpeningBeamStockAtJobber
                         SRNO = SRNO & "|" & row.Cells(gsrno.Index).Value
                         BEAMNAME = BEAMNAME & "|" & row.Cells(GBEAMNAME.Index).Value.ToString
                         BEAMNO = BEAMNO & "|" & row.Cells(GBEAMNO.Index).Value.ToString
+                        GAMANO = GAMANO & "|" & Format(Val(row.Cells(GGAMANO.Index).Value), "0.00")
+                        SECTION = SECTION & "|" & Format(Val(row.Cells(GSECTION.Index).Value), "0.00")
+                        ROLLNO = ROLLNO & "|" & row.Cells(GROLLNO.Index).Value.ToString
+                        BEAMWT = BEAMWT & "|" & Format(Val(row.Cells(GBEAMWT.Index).Value), "0.00")
+                        BREAKAGE = BREAKAGE & "|" & Format(Val(row.Cells(GBREAKAGE.Index).Value), "0.00")
+
                         ENDS = ENDS & "|" & Val(row.Cells(GENDS.Index).Value)
                         TL = TL & "|" & Val(row.Cells(GTAPLINE.Index).Value)
                         CUT = CUT & "|" & Format(Val(row.Cells(GCUT.Index).Value), "0.00")
                         WT = WT & "|" & Format(Val(row.Cells(GWT.Index).Value), "0.000")
                         CUTWT = CUTWT & "|" & Format(Val(row.Cells(GCUTWT.Index).Value), "0.000")
                         If row.Cells(GNARR.Index).Value = Nothing Then NARR = NARR & "|" & "" Else NARR = NARR & "|" & row.Cells(GNARR.Index).Value
+                        SIZERNAME = SIZERNAME & "|" & row.Cells(GSIZERNAME.Index).Value
                         FROMNO = FROMNO & "|" & Val(row.Cells(GFROMNO.Index).Value)
                         FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
                         TYPE = TYPE & "|" & row.Cells(GTYPE.Index).Value
@@ -320,7 +328,6 @@ Public Class OpeningBeamStockAtJobber
                         Else
                             GRIDDONE = GRIDDONE & "|" & "0"
                         End If
-                        SIZERNAME = SIZERNAME & "|" & row.Cells(GSIZERNAME.Index).Value
                         LOOMNO = LOOMNO & "|" & Val(row.Cells(GLOOMNO.Index).Value)
                         If row.Cells(GUPLOADDATE.Index).Value.ToString <> "" Then UPLOADDATE = UPLOADDATE & "|" & Format(Convert.ToDateTime(row.Cells(GUPLOADDATE.Index).Value).Date, "MM/dd/yyyy") Else UPLOADDATE = UPLOADDATE & "|" & ""
                     End If
@@ -330,6 +337,11 @@ Public Class OpeningBeamStockAtJobber
             alParaval.Add(SRNO)
             alParaval.Add(BEAMNAME)
             alParaval.Add(BEAMNO)
+            alParaval.Add(GAMANO)
+            alParaval.Add(SECTION)
+            alParaval.Add(ROLLNO)
+            alParaval.Add(BEAMWT)
+            alParaval.Add(BREAKAGE)
             alParaval.Add(ENDS)
             alParaval.Add(TL)
             alParaval.Add(CUT)
