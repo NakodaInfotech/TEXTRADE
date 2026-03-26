@@ -361,33 +361,29 @@ LINE1:
 
     Private Sub LoadLoomsByWeaver(weaverAccId As String)
         Try
-
-
-            Dim WHERECLAUSE As String
+            Dim WHERECLAUSE As String = ""
             If CMBLOOM.Text <> "" Then
-                WHERECLAUSE = " AND LOOMMASTER_DESC.LOOM_NO = " & CMBLOOM.Text
-            Else
-                CMBBEAM.Items.Clear()
+                WHERECLAUSE = " AND LOOM_NO = " & CMBLOOM.Text
+            End If
+            CMBBEAM.Items.Clear()
                 CMBBEAM.Text = ""
                 CMBLOOM.Items.Clear()
                 CMBLOOM.Text = ""
-            End If
-            Dim dttable As DataTable
-            Dim OBJCMN As New ClsCommon
-            dttable = OBJCMN.SEARCH(" LOOMMASTER_DESC.LOOM_NO ", "", " LOOMMASTER_DESC INNER JOIN LOOMMASTER  ON LOOMMASTER_DESC.LOOM_ID = LOOMMASTER.LOOM_ID LEFT JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_YEARID= " & YearId & WHERECLAUSE & " AND LEDGERS.Acc_CMPNAME = '" & CMBNAME.Text.Trim & "'  AND LOOMMASTER_DESC.LOOM_NO NOT IN ( SELECT BEAMUNLOAD_LOOMID  FROM BEAMUNLOAD )ORDER BY LOOMMASTER_DESC.LOOM_NO;")
 
+
+                Dim dttable As DataTable
+            Dim OBJCMN As New ClsCommon
+            dttable = OBJCMN.SEARCH("LOOM_NO , BEAM_NO ", "", "BEAMLOOMSTATUS", "AND LOOM_STATUS = 'OCCUPIED' " & "AND WEAVER_NAME = '" & CMBNAME.Text.Trim & "' " & WHERECLAUSE & " " & "ORDER BY LOOM_NO;")
             If dttable.Rows.Count > 0 Then
                 For Each row As DataRow In dttable.Rows
                     If Not IsDBNull(row("LOOM_NO")) Then
                         CMBLOOM.Items.Add(row("LOOM_NO").ToString())
                     End If
+
                 Next
-                'CMBLOOM.SelectedIndex = 0
             Else
-                'MsgBox("No Looms found for selected Weaver.", MsgBoxStyle.Information)
                 CMBLOOM.Focus()
             End If
-
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -403,17 +399,11 @@ LINE1:
             Dim dttable As DataTable
             Dim OBJCMN As New ClsCommon
 
-            dttable = OBJCMN.SEARCH(
-                    " b.BEAMNO AS BEAMNO ",
-                    "",
-                    " BEAMSTOCKATJOBBER b ", "And Not EXISTS(SELECT 1 FROM BEAMUNLOAD u WHERE u.BEAMUNLOAD_BEAMID = b.BEAMNO ) And DONE = 'FALSE'   AND YEARID = " & YearId &
-                    " ORDER BY DATE DESC "
-                )
-
+            dttable = OBJCMN.SEARCH("LOOM_NO , BEAM_NO ", "", "BEAMLOOMSTATUS", "AND LOOM_STATUS = 'OCCUPIED' " & "AND WEAVER_NAME = '" & CMBNAME.Text.Trim & "'  AND LOOM_NO = " & CMBLOOM.Text & " ORDER BY LOOM_NO;")
             If dttable.Rows.Count > 0 Then
                 For Each row As DataRow In dttable.Rows
-                    If Not IsDBNull(row("BEAMNO")) AndAlso row("BEAMNO").ToString().Trim <> "" Then
-                        CMBBEAM.Items.Add(row("BEAMNO").ToString().Trim)
+                    If Not IsDBNull(row("BEAM_NO")) AndAlso row("BEAM_NO").ToString().Trim <> "" Then
+                        CMBBEAM.Items.Add(row("BEAM_NO").ToString().Trim)
                     End If
                 Next
                 If CMBBEAM.Items.Count > 0 Then
@@ -430,7 +420,7 @@ LINE1:
 
     Private Sub CMBLOOM_Validating(sender As Object, e As CancelEventArgs) Handles CMBLOOM.Validating
         Try
-            LoadLoomsByWeaver(CMBNAME.Text.Trim)
+            ' LoadLoomsByWeaver(CMBNAME.Text.Trim)
         Catch ex As Exception
             Throw ex
         End Try
