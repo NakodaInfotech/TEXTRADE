@@ -8,7 +8,7 @@ Public Class YarnLoomEfficiency
     Dim tempRow As Integer
 
     Public edit As Boolean
-    Public TEMPloanNO As String
+    Public TEMPYLENO As String
     Public tempMsg As Integer
     Dim dtLoom As DataTable
     Private Sub cmbrounder_Enter(sender As Object, e As EventArgs) Handles cmbrounder.Enter
@@ -272,7 +272,11 @@ Public Class YarnLoomEfficiency
                         EFFICIENCYPER = Val(row.Cells(GEFFPER.Index).Value)
                         AVGPICK = Val(row.Cells(GAVGPICK.Index).Value)
                         gridremarks = row.Cells(GGRIDREMARKS.Index).Value.ToString
-                        DONE = row.Cells(GDONE.Index).Value
+                        If IsDBNull(row.Cells(GDONE.Index).Value) OrElse row.Cells(GDONE.Index).Value Is Nothing Then
+                            DONE = "0"
+                        Else
+                            DONE = row.Cells(GDONE.Index).Value
+                        End If
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
@@ -287,7 +291,11 @@ Public Class YarnLoomEfficiency
                         EFFICIENCYPER = EFFICIENCYPER & "|" & Val(row.Cells(GEFFPER.Index).Value)
                         AVGPICK = AVGPICK & "|" & Val(row.Cells(GAVGPICK.Index).Value)
                         gridremarks = gridremarks & "|" & row.Cells(GGRIDREMARKS.Index).Value.ToString
-                        DONE = DONE & "|" & row.Cells(GDONE.Index).Value
+                        If IsDBNull(row.Cells(GDONE.Index).Value) OrElse row.Cells(GDONE.Index).Value Is Nothing Then
+                            DONE = DONE & "|0"
+                        Else
+                            DONE = DONE & "|" & row.Cells(GDONE.Index).Value
+                        End If
 
 
                     End If
@@ -325,7 +333,7 @@ Public Class YarnLoomEfficiency
                 txteffno.Text = DTT.Rows(0).Item(0)
                 MessageBox.Show("Details Added")
             Else
-                alParaval.Add(TEMPloanNO)
+                alParaval.Add(TEMPYLENO)
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
@@ -455,18 +463,18 @@ Public Class YarnLoomEfficiency
                 Dim ALPARAVAL As New ArrayList
                 Dim objclsloan As New ClsYarnLoomEfficiency
 
-                ALPARAVAL.Add(TEMPloanNO)
+                ALPARAVAL.Add(TEMPYLENO)
                 ALPARAVAL.Add(CmpId)
                 ALPARAVAL.Add(Locationid)
                 ALPARAVAL.Add(YearId)
 
                 objclsloan.alParaval = ALPARAVAL
-                Dim dt As DataTable = objclsloan.SELECTLOAN(TEMPloanNO, CmpId, Locationid, YearId)
+                Dim dt As DataTable = objclsloan.SELECTLOAN(TEMPYLENO, CmpId, Locationid, YearId)
 
                 If dt.Rows.Count > 0 Then
                     For Each dr As DataRow In dt.Rows
 
-                        txteffno.Text = TEMPloanNO
+                        txteffno.Text = TEMPYLENO
                         EFFDATE.Value = Convert.ToDateTime(dr("loanDATE"))
                         cmbname.Text = Convert.ToString(dr("NAME"))
                         cmbrounder.Text = Convert.ToString(dr("ROUNDER").ToString)
@@ -561,9 +569,9 @@ Public Class YarnLoomEfficiency
     End Sub
 
     Private Sub toolprevious_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolprevious.Click
-        TEMPloanNO = Val(txteffno.Text) - 1
+        TEMPYLENO = Val(txteffno.Text) - 1
         clear()
-        If TEMPloanNO > 0 Then
+        If TEMPYLENO > 0 Then
             edit = True
             Loanmaster_load(sender, e)
         Else
@@ -573,10 +581,10 @@ Public Class YarnLoomEfficiency
     End Sub
 
     Private Sub toolnext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolnext.Click
-        TEMPloanNO = Val(txteffno.Text) + 1
+        TEMPYLENO = Val(txteffno.Text) + 1
         getmax_loan_no()
         clear()
-        If Val(txteffno.Text) - 1 >= TEMPloanNO Then
+        If Val(txteffno.Text) - 1 >= TEMPYLENO Then
             edit = True
             Loanmaster_load(sender, e)
         Else
@@ -629,9 +637,9 @@ Public Class YarnLoomEfficiency
     End Sub
 
     Private Sub tstxtbillno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles tstxtbillno.Validating
-        TEMPloanNO = Val(tstxtbillno.Text)
+        TEMPYLENO = Val(tstxtbillno.Text)
         clear()
-        If TEMPloanNO > 0 Then
+        If TEMPYLENO > 0 Then
             edit = True
             Loanmaster_load(sender, e)
         Else
