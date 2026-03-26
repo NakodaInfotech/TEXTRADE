@@ -8150,3 +8150,6 @@ TABLE ADD
 YARNSTOCKADJUSTMENT_INDESC
 YARNSTOCKADJUSTMENT_DESC
 YARNSTOCKADJUSTMENT
+
+********************************************************************************
+DONE IN VINTAGE INDIA
