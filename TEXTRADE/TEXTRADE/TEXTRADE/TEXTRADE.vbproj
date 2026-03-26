@@ -438,6 +438,12 @@
     <Compile Include="Masters\LoomMasterDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\TaskDetails.Designer.vb">
+      <DependentUpon>TaskDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\TaskDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Masters\TaskMaster.Designer.vb">
       <DependentUpon>TaskMaster.vb</DependentUpon>
     </Compile>
@@ -716,6 +722,12 @@
     </Compile>
     <Compile Include="Reports\Crystal Reports\Stock\Store Stock Reports\StoresPartwiseRepairingReport.vb">
       <DependentUpon>StoresPartwiseRepairingReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Yarn Job order\YarnJobOrderReport.vb">
+      <DependentUpon>YarnJobOrderReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -9217,6 +9229,9 @@
     <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
       <DependentUpon>LoomMasterDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Masters\TaskDetails.resx">
+      <DependentUpon>TaskDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Masters\TaskMaster.resx">
       <DependentUpon>TaskMaster.vb</DependentUpon>
     </EmbeddedResource>
@@ -9388,6 +9403,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Stock\Store Stock Reports\StoresPartwiseRepairingReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>StoresPartwiseRepairingReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Yarn Job order\YarnJobOrderReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>YarnJobOrderReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.resx">
       <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>

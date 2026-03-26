@@ -8151,5 +8151,5 @@ YARNSTOCKADJUSTMENT_INDESC
 YARNSTOCKADJUSTMENT_DESC
 YARNSTOCKADJUSTMENT
 
-********************************************************************************
-DONE IN VINTAGE INDIA
+
+ADDED IN EINVOICEENTRY ---- ERRORMESSAGE ,varchar(MAX)
