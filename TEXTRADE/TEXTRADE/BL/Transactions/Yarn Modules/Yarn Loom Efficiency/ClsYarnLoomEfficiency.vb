@@ -26,7 +26,7 @@ Public Class ClsYarnLoomEfficiency
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@EFFNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
@@ -106,7 +106,7 @@ Public Class ClsYarnLoomEfficiency
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@EFFNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
@@ -165,7 +165,7 @@ Public Class ClsYarnLoomEfficiency
                 .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
                 I = I + 1
 
-                .Add(New SqlClient.SqlParameter("@EFFNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@YLENO", alParaval(I)))
                 I = I + 1
 
             End With
@@ -178,14 +178,14 @@ Public Class ClsYarnLoomEfficiency
         Return 0
     End Function
 
-    Public Function SELECTGDN(ByVal GDNno As Integer, ByVal Cmpid As Integer, ByVal LocationID As Integer, ByVal YearID As Integer) As DataTable
+    Public Function SELECTLOAN(ByVal TEMPloanNO As Integer, ByVal Cmpid As Integer, ByVal LocationID As Integer, ByVal YearID As Integer) As DataTable
         Dim dtTable As DataTable
         Try
 
             Dim strCommand As String = "SP_SELECTYARNLOOMEFFICIENCY_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@EFFNO", GDNno))
+                .Add(New SqlClient.SqlParameter("@YLENO", TEMPloanNO))
                 .Add(New SqlClient.SqlParameter("@CmpID", Cmpid))
                 .Add(New SqlClient.SqlParameter("@LocationID", LocationID))
                 .Add(New SqlClient.SqlParameter("@YearID", YearID))
@@ -204,7 +204,7 @@ Public Class ClsYarnLoomEfficiency
             Dim strCommand As String = "SP_TRANS_YARNLOOMEFFFICIENCY_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@EFFNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@YLENO", alParaval(0)))
                 .Add(New SqlClient.SqlParameter("@Cmpid", alParaval(1)))
                 .Add(New SqlClient.SqlParameter("@LocationID", alParaval(2)))
                 .Add(New SqlClient.SqlParameter("@USERID", alParaval(3)))

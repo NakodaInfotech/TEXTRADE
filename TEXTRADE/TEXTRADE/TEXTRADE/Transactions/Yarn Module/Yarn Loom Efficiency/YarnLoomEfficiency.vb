@@ -1,5 +1,6 @@
-﻿Imports BL
-Imports System.Windows.Forms
+﻿Imports System.Windows.Forms
+Imports BL
+Imports iTextSharp.text.pdf
 Public Class YarnLoomEfficiency
     'following two variables Is only For used In edit mode....
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
@@ -9,6 +10,7 @@ Public Class YarnLoomEfficiency
     Public edit As Boolean
     Public TEMPloanNO As String
     Public tempMsg As Integer
+    Dim dtLoom As DataTable
     Private Sub cmbrounder_Enter(sender As Object, e As EventArgs) Handles cmbrounder.Enter
         Try
             If cmbrounder.Text.Trim = "" Then
@@ -47,7 +49,7 @@ Public Class YarnLoomEfficiency
 
     Private Sub cmbitemname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBYARNQUALITY.Validating, CMBYARNQ.Validating
         Try
-            If CMBYARNQUALITY.Text.Trim <> "" Then STOREITEMVALIDATE(CMBYARNQUALITY, e, Me)
+            If CMBYARNQUALITY.Text.Trim <> "" Then YARNQUALITYVALIDATE(CMBYARNQUALITY, e, Me)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -231,8 +233,8 @@ Public Class YarnLoomEfficiency
             alParaval.Add(EFFDATE.Value)
             alParaval.Add(cmbname.Text.Trim)
             alParaval.Add(cmbrounder.Text.Trim)
-            'alParaval.Add(lbltotalqty.Text.Trim)
-            'alParaval.Add(LBLTOTALAMT.Text.Trim)
+            alParaval.Add(LBLTOTALRECMTRS.Text.Trim)
+            alParaval.Add(LBLTOTALWEFT.Text.Trim)
             alParaval.Add(txtremarks.Text.Trim)
             alParaval.Add(CmpId)
             alParaval.Add(Locationid)
@@ -253,12 +255,13 @@ Public Class YarnLoomEfficiency
             Dim EFFICIENCYPER As String = ""
             Dim AVGPICK As String = ""
             Dim gridremarks As String = ""
-
+            Dim DONE As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In gridloan.Rows
                 If row.Cells(gsrno.Index).Value <> Nothing Then
                     If gridsrno = "" Then
                         gridsrno = row.Cells(gsrno.Index).Value
+                        LOOMNO = row.Cells(GLOOM.Index).Value.ToString
                         YARNQUALITY = row.Cells(GYARNQUALITY.Index).Value.ToString
                         BEAMNO = Val(row.Cells(GBEAMNO.Index).Value)
                         RPM = Val(row.Cells(GRPM.Index).Value)
@@ -269,9 +272,11 @@ Public Class YarnLoomEfficiency
                         EFFICIENCYPER = Val(row.Cells(GEFFPER.Index).Value)
                         AVGPICK = Val(row.Cells(GAVGPICK.Index).Value)
                         gridremarks = row.Cells(GGRIDREMARKS.Index).Value.ToString
+                        DONE = row.Cells(GDONE.Index).Value
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
+                        LOOMNO = LOOMNO & "|" & row.Cells(GLOOM.Index).Value.ToString
                         YARNQUALITY = YARNQUALITY & "|" & row.Cells(GYARNQUALITY.Index).Value.ToString
                         BEAMNO = BEAMNO & "|" & Val(row.Cells(GBEAMNO.Index).Value)
                         RPM = RPM & "|" & Val(row.Cells(GRPM.Index).Value)
@@ -282,6 +287,7 @@ Public Class YarnLoomEfficiency
                         EFFICIENCYPER = EFFICIENCYPER & "|" & Val(row.Cells(GEFFPER.Index).Value)
                         AVGPICK = AVGPICK & "|" & Val(row.Cells(GAVGPICK.Index).Value)
                         gridremarks = gridremarks & "|" & row.Cells(GGRIDREMARKS.Index).Value.ToString
+                        DONE = DONE & "|" & row.Cells(GDONE.Index).Value
 
 
                     End If
@@ -289,6 +295,8 @@ Public Class YarnLoomEfficiency
             Next
 
             alParaval.Add(gridsrno)
+            alParaval.Add(LOOMNO)
+
             alParaval.Add(YARNQUALITY)
             alParaval.Add(BEAMNO)
             alParaval.Add(RPM)
@@ -299,10 +307,12 @@ Public Class YarnLoomEfficiency
             alParaval.Add(EFFICIENCYPER)
             alParaval.Add(AVGPICK)
             alParaval.Add(gridremarks)
+            alParaval.Add(DONE)
 
 
 
-            Dim objclsloan As New ClsStoresLoan
+
+            Dim objclsloan As New ClsYarnLoomEfficiency
             objclsloan.alParaval = alParaval
 
             If edit = False Then
@@ -310,7 +320,9 @@ Public Class YarnLoomEfficiency
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                IntResult = objclsloan.save()
+                'IntResult = objclsloan.save()
+                Dim DTT As DataTable = objclsloan.SAVE()
+                txteffno.Text = DTT.Rows(0).Item(0)
                 MessageBox.Show("Details Added")
             Else
                 alParaval.Add(TEMPloanNO)
@@ -403,19 +415,35 @@ Public Class YarnLoomEfficiency
     End Sub
 
     Private Sub Loanmaster_load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Try
-            Cursor.Current = Cursors.WaitCursor
 
+        Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'STORES'")
+
+            DTROW = USERRIGHTS.Select("FormName = 'GDN'")
+
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
 
+            Cursor.Current = Cursors.WaitCursor
 
 
-            FILLSTOREITEMNAME(CMBYARNQUALITY)
+
+            clear()
+            If edit = True Then
+                SHOWDATA()
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+
+    End Sub
+    Sub SHOWDATA()
+        Try
+
             clear()
 
             If edit = True Then
@@ -425,7 +453,7 @@ Public Class YarnLoomEfficiency
                     Exit Sub
                 End If
                 Dim ALPARAVAL As New ArrayList
-                Dim objclsloan As New ClsStoresLoan
+                Dim objclsloan As New ClsYarnLoomEfficiency
 
                 ALPARAVAL.Add(TEMPloanNO)
                 ALPARAVAL.Add(CmpId)
@@ -433,7 +461,7 @@ Public Class YarnLoomEfficiency
                 ALPARAVAL.Add(YearId)
 
                 objclsloan.alParaval = ALPARAVAL
-                Dim dt As DataTable = objclsloan.selectLoan()
+                Dim dt As DataTable = objclsloan.SELECTLOAN(TEMPloanNO, CmpId, Locationid, YearId)
 
                 If dt.Rows.Count > 0 Then
                     For Each dr As DataRow In dt.Rows
@@ -465,7 +493,6 @@ Public Class YarnLoomEfficiency
         Finally
             Cursor.Current = Cursors.Default
         End Try
-
     End Sub
 
     Private Sub txtsrno_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtsrno.GotFocus
@@ -495,7 +522,7 @@ Public Class YarnLoomEfficiency
                 If TEMPMSG = vbYes Then
 
                     Dim ALPARAVAL As New ArrayList
-                    Dim OBJLOAN As New ClsStoresLoan
+                    Dim OBJLOAN As New ClsYarnLoomEfficiency
 
                     ALPARAVAL.Add(Val(txteffno.Text.Trim))
                     ALPARAVAL.Add(CmpId)
@@ -641,4 +668,56 @@ Public Class YarnLoomEfficiency
             Throw ex
         End Try
     End Sub
+
+    Private Sub CMBLOOM_Enter(sender As Object, e As EventArgs) Handles CMBLOOM.Enter
+        Try
+            If cmbname.Text.Trim = "" Then FILLNAME(cmbname, edit, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' or GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbname_Validated(sender As Object, e As EventArgs) Handles cmbname.Validated
+        Try
+            Dim objclsCMST As New ClsCommonMaster
+
+            ' 🔥 FIX: assign to dtLoom (NOT dt)
+            dtLoom = objclsCMST.search(" LOOM_NO, BEAM_NO ", "", "BEAMLOOMSTATUS",
+            " AND WEAVER_NAME = '" & cmbname.Text.Trim & "' AND LOOM_STATUS = 'OCCUPIED' ORDER BY LOOM_NO ")
+
+            If dtLoom IsNot Nothing AndAlso dtLoom.Rows.Count > 0 Then
+                CMBLOOM.DataSource = dtLoom
+                CMBLOOM.DisplayMember = "LOOM_NO"
+                CMBLOOM.ValueMember = "BEAM_NO"
+                ' 🔴 IMPORTANT: Remove automatic selection
+                CMBLOOM.SelectedIndex = -1
+            Else
+                CMBLOOM.DataSource = Nothing
+                TXTBEAMNO.Clear()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Private Sub CMBLOOM_Validated(sender As Object, e As EventArgs) Handles CMBLOOM.Validated
+        Try
+            If dtLoom IsNot Nothing Then
+                For Each dr As DataRow In dtLoom.Rows
+                    If dr("LOOM_NO").ToString.Trim = CMBLOOM.Text.Trim Then
+                        TXTBEAMNO.Text = dr("BEAM_NO").ToString
+                        Exit Sub
+                    End If
+                Next
+            End If
+
+            ' If not found
+            TXTBEAMNO.Clear()
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+
 End Class
