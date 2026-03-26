@@ -81,15 +81,15 @@ Public Class TaskMaster
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-            If EDIT = True Then dttable = objCommon.search(" TASK_name, TASK_REMARKS", "", "TaskMaster", " and Task_id = " & TempID & " and Task_cmpid = " & CmpId & " and Task_locationid = " & Locationid & " and Task_yearid = " & YearId)
+            If EDIT = True Then dttable = objCommon.search(" TASK_name, TASK_type, TASK_remarks", "", "TaskMaster", " and Task_id = " & TempID & " and Task_cmpid = " & CmpId & " and Task_locationid = " & Locationid & " and Task_yearid = " & YearId)
 
 
             CMBTASKNAME.Text = TempName
 
             If dttable.Rows.Count > 0 Then
                 CMBTASKNAME.Text = dttable.Rows(0).Item(0).ToString
-                CMBTASKTYPE.Text = dttable.Rows(0).Item(0).ToString
-                txtremarks.Text = dttable.Rows(0).Item(1).ToString
+                CMBTASKTYPE.Text = dttable.Rows(0).Item(1).ToString
+                txtremarks.Text = dttable.Rows(0).Item(2).ToString
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
