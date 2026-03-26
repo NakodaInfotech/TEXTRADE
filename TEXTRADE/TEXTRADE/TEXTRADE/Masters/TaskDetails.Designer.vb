@@ -29,6 +29,8 @@ Partial Class TaskDetails
         Me.gridledger = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdadd = New System.Windows.Forms.Button()
         Me.cmdedit = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
@@ -49,7 +51,7 @@ Partial Class TaskDetails
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(511, 706)
+        Me.BlendPanel1.Size = New System.Drawing.Size(648, 706)
         Me.BlendPanel1.TabIndex = 1
         '
         'CMDREFRESH
@@ -59,7 +61,7 @@ Partial Class TaskDetails
         Me.CMDREFRESH.FlatAppearance.BorderSize = 0
         Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
-        Me.CMDREFRESH.Location = New System.Drawing.Point(259, 657)
+        Me.CMDREFRESH.Location = New System.Drawing.Point(291, 657)
         Me.CMDREFRESH.Margin = New System.Windows.Forms.Padding(4)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(93, 34)
@@ -77,7 +79,7 @@ Partial Class TaskDetails
         Me.gridname.MainView = Me.gridledger
         Me.gridname.Margin = New System.Windows.Forms.Padding(4)
         Me.gridname.Name = "gridname"
-        Me.gridname.Size = New System.Drawing.Size(479, 635)
+        Me.gridname.Size = New System.Drawing.Size(619, 635)
         Me.gridname.TabIndex = 0
         Me.gridname.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridledger})
         '
@@ -85,7 +87,7 @@ Partial Class TaskDetails
         '
         Me.gridledger.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridledger.Appearance.Row.Options.UseFont = True
-        Me.gridledger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GID})
+        Me.gridledger.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GID, Me.GTYPE, Me.GREMARKS})
         Me.gridledger.DetailHeight = 425
         Me.gridledger.GridControl = Me.gridname
         Me.gridledger.Name = "gridledger"
@@ -104,9 +106,10 @@ Partial Class TaskDetails
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.MinWidth = 23
         Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 0
-        Me.GNAME.Width = 408
+        Me.GNAME.Width = 358
         '
         'GID
         '
@@ -116,6 +119,26 @@ Partial Class TaskDetails
         Me.GID.Name = "GID"
         Me.GID.Width = 87
         '
+        'GTYPE
+        '
+        Me.GTYPE.Caption = "Task Type"
+        Me.GTYPE.FieldName = "TYPE"
+        Me.GTYPE.Name = "GTYPE"
+        Me.GTYPE.OptionsColumn.AllowEdit = False
+        Me.GTYPE.Visible = True
+        Me.GTYPE.VisibleIndex = 1
+        Me.GTYPE.Width = 99
+        '
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.OptionsColumn.AllowEdit = False
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 2
+        Me.GREMARKS.Width = 107
+        '
         'cmdadd
         '
         Me.cmdadd.BackColor = System.Drawing.Color.Transparent
@@ -123,7 +146,7 @@ Partial Class TaskDetails
         Me.cmdadd.FlatAppearance.BorderSize = 0
         Me.cmdadd.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdadd.ForeColor = System.Drawing.Color.Black
-        Me.cmdadd.Location = New System.Drawing.Point(58, 657)
+        Me.cmdadd.Location = New System.Drawing.Point(90, 657)
         Me.cmdadd.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdadd.Name = "cmdadd"
         Me.cmdadd.Size = New System.Drawing.Size(93, 34)
@@ -137,7 +160,7 @@ Partial Class TaskDetails
         Me.cmdedit.FlatAppearance.BorderSize = 0
         Me.cmdedit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdedit.ForeColor = System.Drawing.Color.Black
-        Me.cmdedit.Location = New System.Drawing.Point(159, 657)
+        Me.cmdedit.Location = New System.Drawing.Point(191, 657)
         Me.cmdedit.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdedit.Name = "cmdedit"
         Me.cmdedit.Size = New System.Drawing.Size(93, 34)
@@ -151,7 +174,7 @@ Partial Class TaskDetails
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(359, 657)
+        Me.cmdexit.Location = New System.Drawing.Point(391, 657)
         Me.cmdexit.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(93, 34)
@@ -163,7 +186,7 @@ Partial Class TaskDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(511, 706)
+        Me.ClientSize = New System.Drawing.Size(648, 706)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Nirmala UI", 9.75!)
         Me.KeyPreview = True
@@ -186,4 +209,6 @@ Partial Class TaskDetails
     Friend WithEvents cmdadd As Button
     Friend WithEvents cmdedit As Button
     Friend WithEvents cmdexit As Button
+    Friend WithEvents GTYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
 End Class
