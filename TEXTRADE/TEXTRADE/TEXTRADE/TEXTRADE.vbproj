@@ -438,6 +438,12 @@
     <Compile Include="Masters\LoomMasterDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\TaskDetails.Designer.vb">
+      <DependentUpon>TaskDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\TaskDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Masters\TaskMaster.Designer.vb">
       <DependentUpon>TaskMaster.vb</DependentUpon>
     </Compile>
@@ -3143,6 +3149,12 @@
       <DependentUpon>SelectRollIssue.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnload.Designer.vb">
+      <DependentUpon>BeamUnload.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnload.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.Designer.vb">
@@ -9217,6 +9229,9 @@
     <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
       <DependentUpon>LoomMasterDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Masters\TaskDetails.resx">
+      <DependentUpon>TaskDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Masters\TaskMaster.resx">
       <DependentUpon>TaskMaster.vb</DependentUpon>
     </EmbeddedResource>
@@ -10796,6 +10811,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received\SelectRollIssue.resx">
       <DependentUpon>SelectRollIssue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnload.resx">
+      <DependentUpon>BeamUnload.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.resx">
       <DependentUpon>BeamUpload.vb</DependentUpon>

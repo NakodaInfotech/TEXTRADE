@@ -4,6 +4,7 @@ Imports System.IO
 Imports BL
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
+Imports DevExpress.XtraVerticalGrid.Rows
 
 Public Class GDN
 
@@ -1781,7 +1782,7 @@ LINE1:
                 Exit Sub
             End If
 
-            If ClientName = "MOMAI" Or ClientName = "SHEETAL" Then
+            If ClientName = "MOMAI" Or ClientName = "SHEETAL" Or ClientName = "ROVIRO" Then
                 If MsgBox("Wish to Print Label?", MsgBoxStyle.YesNo) = vbYes Then PRINTBARCODE()
             End If
 
@@ -1823,9 +1824,16 @@ LINE1:
     Sub PRINTBARCODE()
         Try
 
+            Dim PRINTMRP As Integer
+            Dim psi As New ProcessStartInfo()
+            Dim proc As Process
             Dim dirresults As String = ""
             Dim oWrite As System.IO.StreamWriter
             oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
+
+            If ClientName = "MOMAI" Then GoTo MOMAILINE : 
+
+
             If ClientName = "SHEETAL" Then
                 oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
 GAP 3 mm, 0 mm
@@ -1866,25 +1874,59 @@ PRINT 1,1")
                 oWrite.Dispose()
 
 
-                'Printing Barcode
-                Dim psi As New ProcessStartInfo()
-                psi.FileName = "cmd.exe"
-                psi.RedirectStandardInput = False
-                psi.RedirectStandardOutput = True
-                psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
-                psi.UseShellExecute = False
+            ElseIf ClientName = "ROVIRO" Then
 
-                Dim proc As Process
-                proc = Process.Start(psi)
-                dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
-                proc.WaitForExit()
-                proc.Dispose()
+                oWrite.WriteLine("<xpml><page quantity='0' pitch='100.1 mm'></xpml>SIZE 99.10 mm, 100.1 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+<xpml></page></xpml><xpml><page quantity='1' pitch='100.1 mm'></xpml>SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 773,594,""0"",180,16,16,""PARTY NAME""
+TEXT 511,594,""0"",180,16,16,"":""
+TEXT 479,594,""0"",180,16,16,""" & cmbname.Text.Trim & """
+TEXT 772,530,""0"",180,16,16,""TRANSPORT""
+TEXT 511,530,""0"",180,16,16,"":""
+TEXT 479,530,""0"",180,16,16,""" & CMBTRANS.Text.Trim & """
+TEXT 773,466,""0"",180,16,16,""CITY NAME""
+TEXT 479,466,""0"",180,17,16,""" & cmbcity.Text.Trim & """
+TEXT 511,466,""0"",180,16,16,"":""
+TEXT 773,402,""0"",180,16,16,""BALE NO""
+TEXT 479,402,""0"",180,17,16,""" & txtgdnno.Text.Trim & " X " & TXTBALENOFROM.Text.Trim & """
+TEXT 511,402,""0"",180,16,16,"":""
+QRCODE 253,399,L,8,A,180,M2,S7,""" & Val(txtgdnno.Text.Trim) & """
+PRINT 1,1
+<xpml></page></xpml><xpml><end/></xpml>")
+                oWrite.Dispose()
 
-                Exit Sub
+
+
             End If
 
+            'Printing Barcode
+            psi.FileName = "cmd.exe"
+            psi.RedirectStandardInput = False
+            psi.RedirectStandardOutput = True
+            psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
+            psi.UseShellExecute = False
 
-            Dim PRINTMRP As Integer
+            proc = Process.Start(psi)
+            dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
+            proc.WaitForExit()
+            proc.Dispose()
+            Exit Sub
+
+
+
+
+
+
+MOMAILINE:
             If ClientName = "MOMAI" Then
                 PRINTMRP = MsgBox("Wish to Print MRP?", MsgBoxStyle.YesNo)
             End If
@@ -1956,14 +1998,13 @@ PRINT 1,1")
                     End If
 
                     'Printing Barcode
-                    Dim psi As New ProcessStartInfo()
+                    psi = New ProcessStartInfo()
                     psi.FileName = "cmd.exe"
                     psi.RedirectStandardInput = False
                     psi.RedirectStandardOutput = True
                     psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
                     psi.UseShellExecute = False
 
-                    Dim proc As Process
                     proc = Process.Start(psi)
                     dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
                     proc.WaitForExit()

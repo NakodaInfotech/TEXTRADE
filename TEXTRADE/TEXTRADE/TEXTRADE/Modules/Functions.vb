@@ -432,16 +432,16 @@ TEXT 516,338,""0"",180,17,16,""" & Format(Val(MTRS),"0.00") & """
 TEXT 547,338,""ROMAN.TTF"",180,1,16,"":""
 QRCODE 258,502,L,10,A,180,M2,S7,""" & BARCODE & """
 TEXT 253,274,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
-TEXT 678,178,""ROMAN.TTF"",180,1,16,""ITEM""
-TEXT 517,178,""ROMAN.TTF"",180,1,16,"":""
-TEXT 485,178,""ROMAN.TTF"",180,1,16,""" & ITEMNAME & """
-TEXT 678,119,""ROMAN.TTF"",180,1,16,""SHADE""
-TEXT 517,119,""ROMAN.TTF"",180,1,16,"":""
-TEXT 486,119,""ROMAN.TTF"",180,1,16,""" & SHADE & """
-TEXT 678,60,""ROMAN.TTF"",180,1,16,""MTRS""
-TEXT 485,60,""0"",180,17,16,""" & Format(Val(MTRS),"0.00") & """
-TEXT 517,60,""ROMAN.TTF"",180,1,16,"":""
-QRCODE 205,130,L,5,A,180,M2,S7,""" & BARCODE & """
+TEXT 663,178,""ROMAN.TTF"",180,1,16,""ITEM""
+TEXT 502,178,""ROMAN.TTF"",180,1,16,"":""
+TEXT 471,178,""ROMAN.TTF"",180,1,16,""" & ITEMNAME & """
+TEXT 663,119,""ROMAN.TTF"",180,1,16,""SHADE""
+TEXT 502,119,""ROMAN.TTF"",180,1,16,"":""
+TEXT 471,119,""ROMAN.TTF"",180,1,16,""" & SHADE & """
+TEXT 663,60,""ROMAN.TTF"",180,1,16,""MTRS""
+TEXT 471,60,""0"",180,17,16,""" & Format(Val(MTRS),"0.00") & """
+TEXT 502,60,""ROMAN.TTF"",180,1,16,"":""
+QRCODE 191,130,L,5,A,180,M2,S7,""" & BARCODE & """
 TEXT 721,274,""ROMAN.TTF"",180,1,16,""UNIT""
 TEXT 516,274,""0"",180,17,16,""" & UNIT & """
 TEXT 547,274,""ROMAN.TTF"",180,1,16,"":""
@@ -10117,6 +10117,26 @@ line1:
     End Function
 
 
-
+    Sub FILLTASK(ByRef CMBTASKNAME As ComboBox, ByRef edit As Boolean, ByVal CONDITION As String)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            If CMBTASKNAME.Text.Trim = "" Then
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable = objclscommon.search("TASKMASTER.TASK_id, TASKMASTER.TASK_name ", "", " TASKMASTER ", " AND TASKMASTER.TASK_cmpid=" & CmpId & " and TASKMASTER.TASK_locationid=" & Locationid & " and TASKMASTER.TASK_yearid=" & YearId & CONDITION)
+                If dt.Rows.Count > 0 Then
+                    dt.DefaultView.Sort = "TASK_name"
+                    CMBTASKNAME.DisplayMember = "TASK_name"
+                End If
+                CMBTASKNAME.DataSource = dt
+                CMBTASKNAME.SelectedIndex = -1
+                CMBTASKNAME.SelectAll()
+                CMBTASKNAME.Text = ""
+            End If
+        Catch ex As Exception
+            Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
 
 End Module

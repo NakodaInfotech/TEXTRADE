@@ -192,7 +192,7 @@ Public Class OpeningBeamStockAtJobber
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
                         'GRIDBEAMISSUE.Rows.Add(Val(ROW("SRNO")), ROW("BEAMNAME"), ROW("BEAMNO"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("MTRS")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), ROW("NARR"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"), ROW("OUTMTRS"), ROW("DONE"), ROW("SIZERNAME"), ROW("LOOMNO"), ROW("UPLOADDATE"))
-                        GRIDBEAMISSUE.Rows.Add(Val(ROW("SRNO")), ROW("BEAMNAME"), ROW("BEAMNO"), Format(Val(ROW("GAMANO")), "0.00"), Format(Val(ROW("SECTION")), "0.00"), ROW("ROLLNO"), Format(Val(ROW("BEAMWT")), "0.00"), Format(Val(ROW("BREAKAGE")), "0.00"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("MTRS")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("CUTWT")), "0.000"), ROW("NARR"), ROW("SIZER"), 0, 0, "", ROW("OUTMTRS"), ROW("DONE"), "", "")
+                        GRIDBEAMISSUE.Rows.Add(Val(ROW("SRNO")), ROW("BEAMNAME"), ROW("BEAMNO"), Format(Val(ROW("GAMANO")), "0.00"), Format(Val(ROW("SECTION")), "0.00"), ROW("ROLLNO"), Format(Val(ROW("BEAMWT")), "0.00"), Format(Val(ROW("BREAKAGE")), "0.00"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("MTRS")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("CUTWT")), "0.000"), ROW("NARR"), ROW("SIZER"), ROW("OUTMTRS"), ROW("DONE"))
 
                         If Val(ROW("OUTMTRS")) > 0 Or Convert.ToBoolean(ROW("DONE")) = True Then
                             GRIDBEAMISSUE.Rows(GRIDBEAMISSUE.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
@@ -261,14 +261,10 @@ Public Class OpeningBeamStockAtJobber
             Dim WT As String = ""
             Dim CUTWT As String = ""
             Dim NARR As String = ""
-            Dim FROMNO As String = ""
-            Dim FROMSRNO As String = ""
-            Dim TYPE As String = ""
             Dim OUTMTRS As String = ""
             Dim GRIDDONE As String = ""
             Dim SIZERNAME As String = ""
-            Dim LOOMNO As String = ""
-            Dim UPLOADDATE As String = ""
+
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDBEAMISSUE.Rows
                 If row.Cells(gsrno.Index).Value <> Nothing Then
@@ -289,17 +285,13 @@ Public Class OpeningBeamStockAtJobber
                         CUTWT = Format(Val(row.Cells(GCUTWT.Index).Value), "0.00")
                         If row.Cells(GNARR.Index).Value = Nothing Then NARR = "" Else NARR = row.Cells(GNARR.Index).Value.ToString
                         SIZERNAME = row.Cells(GSIZERNAME.Index).Value
-                        FROMNO = Val(row.Cells(GFROMNO.Index).Value)
-                        FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
-                        TYPE = row.Cells(GTYPE.Index).Value.ToString
                         OUTMTRS = Val(row.Cells(GOUTMTRS.Index).Value)
                         If row.Cells(GDONE.Index).Value = True Then
                             GRIDDONE = 1
                         Else
                             GRIDDONE = 0
                         End If
-                        LOOMNO = Val(row.Cells(GLOOMNO.Index).Value)
-                        If row.Cells(GUPLOADDATE.Index).Value.ToString <> "" Then UPLOADDATE = Format(Convert.ToDateTime(row.Cells(GUPLOADDATE.Index).Value).Date, "MM/dd/yyyy") Else UPLOADDATE = ""
+
 
                     Else
 
@@ -319,17 +311,13 @@ Public Class OpeningBeamStockAtJobber
                         CUTWT = CUTWT & "|" & Format(Val(row.Cells(GCUTWT.Index).Value), "0.000")
                         If row.Cells(GNARR.Index).Value = Nothing Then NARR = NARR & "|" & "" Else NARR = NARR & "|" & row.Cells(GNARR.Index).Value
                         SIZERNAME = SIZERNAME & "|" & row.Cells(GSIZERNAME.Index).Value
-                        FROMNO = FROMNO & "|" & Val(row.Cells(GFROMNO.Index).Value)
-                        FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
-                        TYPE = TYPE & "|" & row.Cells(GTYPE.Index).Value
                         OUTMTRS = OUTMTRS & "|" & Val(row.Cells(GOUTMTRS.Index).Value)
                         If row.Cells(GDONE.Index).Value = True Then
                             GRIDDONE = GRIDDONE & "|" & "1"
                         Else
                             GRIDDONE = GRIDDONE & "|" & "0"
                         End If
-                        LOOMNO = LOOMNO & "|" & Val(row.Cells(GLOOMNO.Index).Value)
-                        If row.Cells(GUPLOADDATE.Index).Value.ToString <> "" Then UPLOADDATE = UPLOADDATE & "|" & Format(Convert.ToDateTime(row.Cells(GUPLOADDATE.Index).Value).Date, "MM/dd/yyyy") Else UPLOADDATE = UPLOADDATE & "|" & ""
+
                     End If
                 End If
             Next
@@ -348,14 +336,11 @@ Public Class OpeningBeamStockAtJobber
             alParaval.Add(WT)
             alParaval.Add(CUTWT)
             alParaval.Add(NARR)
-            alParaval.Add(FROMNO)
-            alParaval.Add(FROMSRNO)
-            alParaval.Add(TYPE)
+
             alParaval.Add(OUTMTRS)
             alParaval.Add(GRIDDONE)
             alParaval.Add(SIZERNAME)
-            alParaval.Add(LOOMNO)
-            alParaval.Add(UPLOADDATE)
+
 
 
             Dim OBJBEAMISSUE As New ClsOpeningBeamStockAtJobber
@@ -1002,7 +987,7 @@ LINE1:
             GRIDBEAMISSUE.Item(GBREAKAGE.Index, TEMPROW).Value = Val(TXTBREAKAGE.Text.Trim)
             GRIDBEAMISSUE.Item(GENDS.Index, TEMPROW).Value = Val(TXTENDS.Text.Trim)
             GRIDBEAMISSUE.Item(GTAPLINE.Index, TEMPROW).Value = Val(TXTTAPLINE.Text.Trim)
-            GRIDBEAMISSUE.Item(GCUT.Index, TEMPROW).Value = Val(TXTCUT.Text.Trim)
+            GRIDBEAMISSUE.Item(GMTRS.Index, TEMPROW).Value = Val(TXTCUT.Text.Trim)
             GRIDBEAMISSUE.Item(GWT.Index, TEMPROW).Value = Val(TXTWT.Text.Trim)
             GRIDBEAMISSUE.Item(GCUTWT.Index, TEMPROW).Value = Val(TXTCUTWT.Text.Trim)
 
@@ -1173,7 +1158,7 @@ LINE1:
                 TXTBREAKAGE.Text = Val(GRIDBEAMISSUE.Item(GBREAKAGE.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
                 TXTENDS.Text = Val(GRIDBEAMISSUE.Item(GENDS.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
                 TXTTAPLINE.Text = Val(GRIDBEAMISSUE.Item(GTAPLINE.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
-                TXTCUT.Text = Val(GRIDBEAMISSUE.Item(GCUT.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
+                TXTCUT.Text = Val(GRIDBEAMISSUE.Item(GMTRS.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
                 TXTWT.Text = Val(GRIDBEAMISSUE.Item(GWT.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
                 TXTCUTWT.Text = Val(GRIDBEAMISSUE.Item(GCUTWT.Index, GRIDBEAMISSUE.CurrentRow.Index).Value)
                 TXTGRIDREMARKS.Text = GRIDBEAMISSUE.Item(GNARR.Index, GRIDBEAMISSUE.CurrentRow.Index).Value.ToString
