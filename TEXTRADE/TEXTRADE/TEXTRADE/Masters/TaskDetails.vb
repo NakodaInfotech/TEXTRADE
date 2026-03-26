@@ -32,7 +32,7 @@ Public Class TaskDetails
         Dim dttable As New DataTable
         Dim objClsCommon As New ClsCommonMaster
 
-        dttable = objClsCommon.search(" TASK_name AS NAME, TASK_id AS ID", "", "TASKMASTER", " and TASK_yearid = " & YearId & " ORDER BY TASK_id")
+        dttable = objClsCommon.search(" TASK_name AS NAME, TASK_id AS ID, TASK_type AS TYPE, TASK_remarks AS REMARKS", "", "TASKMASTER", " and TASK_yearid = " & YearId & " ORDER BY TASK_id")
 
         gridname.DataSource = dttable
     End Sub
