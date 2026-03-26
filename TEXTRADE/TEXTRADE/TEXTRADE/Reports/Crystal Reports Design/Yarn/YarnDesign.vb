@@ -20,6 +20,9 @@ Public Class YarnDesign
     Dim RPTCHALLAN As New YarnChallanReport
     Dim RPTCHALLAN_VAISHALI As New YarnChallanReport_VAISHALI
 
+    Dim RPTYARNJOBORDER As New YarnJobOrderReport
+
+
 
     Private Sub StockDesign_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Windows.Forms.Keys.Escape Then
@@ -71,7 +74,11 @@ Public Class YarnDesign
             ElseIf FRMSTRING = "YARNDYEINGPROGRAM" Then
                 crTables = RPTYARNDYEINGPROG.Database.Tables
 
+            ElseIf FRMSTRING = "YARNJOBORDER" Then
+                crTables = RPTYARNJOBORDER.Database.Tables
             End If
+
+
 
 
             For Each crTable In crTables
@@ -101,6 +108,10 @@ Public Class YarnDesign
 
             ElseIf FRMSTRING = "YARNDYEINGPROGRAM" Then
                 crpo.ReportSource = RPTYARNDYEINGPROG
+
+
+            ElseIf FRMSTRING = "YARNJOBORDER" Then
+                crpo.ReportSource = RPTYARNJOBORDER
 
             End If
 
@@ -147,6 +158,14 @@ Public Class YarnDesign
                 expo.DestinationOptions = oDfDopt
                 RPTYARNISSUEKNITTING.Export()
 
+            ElseIf FRMSTRING = "YARNJOBORDER" Then
+                expo = RPTYARNJOBORDER.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTYARNJOBORDER.Export()
+
+
             ElseIf FRMSTRING = "YARNISSUE" Then
                 If ClientName = "VAISHALI" Then
                     expo = RPTYARNISSUE_VAISHALI.ExportOptions
@@ -154,6 +173,7 @@ Public Class YarnDesign
                     expo.ExportFormatType = ExportFormatType.PortableDocFormat
                     expo.DestinationOptions = oDfDopt
                     RPTYARNISSUE_VAISHALI.Export()
+
                 Else
                     If YARNISSUEA5 = True Then
                         expo = RPTYARNISSUE_A5.ExportOptions

@@ -491,7 +491,13 @@ LINE1:
 
     Sub PRINTREPORT()
         Try
-
+            If MsgBox("Wish to Print Yarn Job order?", MsgBoxStyle.YesNo) = vbYes Then
+                Dim OBJPUR As New YarnDesign
+                OBJPUR.MdiParent = MDIMain
+                OBJPUR.FRMSTRING = "YARNJOBORDER"
+                OBJPUR.WHERECLAUSE = "{JOBORDER.JOB_NO}=" & Val(TXTJONO.Text.Trim) & " and {JOBORDER.JOB_YEARID}=" & YearId
+                OBJPUR.Show()
+            End If
         Catch ex As Exception
             Throw ex
         End Try
