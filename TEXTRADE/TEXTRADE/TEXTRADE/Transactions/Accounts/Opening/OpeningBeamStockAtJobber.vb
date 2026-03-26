@@ -88,7 +88,7 @@ Public Class OpeningBeamStockAtJobber
             LBLTOTALCUT.Text = 0.0
             For Each ROW As DataGridViewRow In GRIDBEAMISSUE.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
-                    LBLTOTALCUT.Text = Format(Val(LBLTOTALCUT.Text) + Val(ROW.Cells(GCUT.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALCUT.Text = Format(Val(LBLTOTALCUT.Text) + Val(ROW.Cells(GMTRS.Index).EditedFormattedValue), "0.00")
                     LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.000")
                 End If
             Next
@@ -280,7 +280,7 @@ Public Class OpeningBeamStockAtJobber
 
                         ENDS = Val(row.Cells(GENDS.Index).Value)
                         TL = Val(row.Cells(GTAPLINE.Index).Value)
-                        CUT = Format(Val(row.Cells(GCUT.Index).Value), "0.00")
+                        CUT = Format(Val(row.Cells(GMTRS.Index).Value), "0.00")
                         WT = Format(Val(row.Cells(GWT.Index).Value), "0.00")
                         CUTWT = Format(Val(row.Cells(GCUTWT.Index).Value), "0.00")
                         If row.Cells(GNARR.Index).Value = Nothing Then NARR = "" Else NARR = row.Cells(GNARR.Index).Value.ToString
@@ -306,7 +306,7 @@ Public Class OpeningBeamStockAtJobber
 
                         ENDS = ENDS & "|" & Val(row.Cells(GENDS.Index).Value)
                         TL = TL & "|" & Val(row.Cells(GTAPLINE.Index).Value)
-                        CUT = CUT & "|" & Format(Val(row.Cells(GCUT.Index).Value), "0.00")
+                        CUT = CUT & "|" & Format(Val(row.Cells(GMTRS.Index).Value), "0.00")
                         WT = WT & "|" & Format(Val(row.Cells(GWT.Index).Value), "0.000")
                         CUTWT = CUTWT & "|" & Format(Val(row.Cells(GCUTWT.Index).Value), "0.000")
                         If row.Cells(GNARR.Index).Value = Nothing Then NARR = NARR & "|" & "" Else NARR = NARR & "|" & row.Cells(GNARR.Index).Value

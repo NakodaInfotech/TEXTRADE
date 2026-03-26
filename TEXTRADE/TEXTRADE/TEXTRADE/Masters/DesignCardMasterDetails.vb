@@ -125,7 +125,7 @@ Public Class DesignCardMasterDetails
         End Try
     End Sub
 
-    Private Sub gridbilldetails_DoubleClick(sender As Object, e As EventArgs) Handles GRIDBILLDETAILS.DoubleClick
+    Private Sub gridbilldetails_DoubleClick(sender As Object, e As EventArgs) Handles GRIDBILL.DoubleClick
         Try
             showform(True, GRIDBILL.GetFocusedRowCellValue("CARDNO"))
         Catch ex As Exception

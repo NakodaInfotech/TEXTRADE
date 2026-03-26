@@ -4630,4 +4630,31 @@ line1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub tstxtbillno_Validated(sender As Object, e As EventArgs) Handles tstxtbillno.Validated
+        Try
+            If Val(tstxtbillno.Text.Trim) > 0 Then
+                'GRIDDRAWING.RowCount = 0
+                'GRIDSELVEDGEPATTERN.RowCount = 0
+                'GRIDWARPPATTERN.RowCount = 0
+                'GRIDWEFTPATTERN.RowCount = 0
+                'GRIDWARP.RowCount = 0
+                'GRIDWEFT.RowCount = 0
+                'GRIDSELVEDGE.RowCount = 0
+                'GRIDPEG.RowCount = 0
+                'GRIDPEGPLAN.RowCount = 0
+
+                tempdesignno = Val(tstxtbillno.Text)
+                If tempdesignno > 0 Then
+                    EDIT = True
+                    DesignCardMaster_Load(sender, e)
+                Else
+                    CLEAR()
+                    EDIT = False
+                End If
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 End Class
