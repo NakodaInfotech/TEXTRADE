@@ -983,6 +983,8 @@ Partial Class MDIMain
         Me.BeamUploadUnload_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.BEAMUPLOADADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.BEAMUPLOADEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewBeamUnloadEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingBeamUploadEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator339 = New System.Windows.Forms.ToolStripSeparator()
         Me.GreyReceived_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.GREYRECDJOBBER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1317,8 +1319,8 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.AddNewBeamUnloadEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingBeamUploadEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YARNLOOMEFFICIENCY_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YARNLOOMEFFICIENCY_ADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -6960,7 +6962,7 @@ Partial Class MDIMain
         '
         'YARNMODULE_MENU
         '
-        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BEAMENTRY_MASTER, Me.ToolStripSeparator339, Me.GreyReceived_MENU, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.TOOLSTRIPYARNDYEINGPROGRAM, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNSTOCKADJUSTMENT_MASTER, Me.YARNLOAN_MASTER, Me.YARNRECDTOOLSTRIP})
+        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BEAMENTRY_MASTER, Me.ToolStripSeparator339, Me.GreyReceived_MENU, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.TOOLSTRIPYARNDYEINGPROGRAM, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNSTOCKADJUSTMENT_MASTER, Me.YARNLOAN_MASTER, Me.YARNRECDTOOLSTRIP, Me.YARNLOOMEFFICIENCY_MASTER})
         Me.YARNMODULE_MENU.Name = "YARNMODULE_MENU"
         Me.YARNMODULE_MENU.Size = New System.Drawing.Size(87, 20)
         Me.YARNMODULE_MENU.Text = "Yarn Module"
@@ -7465,6 +7467,18 @@ Partial Class MDIMain
         Me.BEAMUPLOADEDIT.Size = New System.Drawing.Size(245, 22)
         Me.BEAMUPLOADEDIT.Text = "Edit Existing Beam Upload Entry"
         '
+        'AddNewBeamUnloadEntryToolStripMenuItem
+        '
+        Me.AddNewBeamUnloadEntryToolStripMenuItem.Name = "AddNewBeamUnloadEntryToolStripMenuItem"
+        Me.AddNewBeamUnloadEntryToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
+        Me.AddNewBeamUnloadEntryToolStripMenuItem.Text = "Add New Beam Unload Entry"
+        '
+        'EditExistingBeamUploadEntryToolStripMenuItem
+        '
+        Me.EditExistingBeamUploadEntryToolStripMenuItem.Name = "EditExistingBeamUploadEntryToolStripMenuItem"
+        Me.EditExistingBeamUploadEntryToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
+        Me.EditExistingBeamUploadEntryToolStripMenuItem.Text = "Edit Existing Beam Upload Entry"
+        '
         'ToolStripSeparator339
         '
         Me.ToolStripSeparator339.Name = "ToolStripSeparator339"
@@ -7839,19 +7853,19 @@ Partial Class MDIMain
         'YARNSTOCKADJUSTMENTADD
         '
         Me.YARNSTOCKADJUSTMENTADD.Name = "YARNSTOCKADJUSTMENTADD"
-        Me.YARNSTOCKADJUSTMENTADD.Size = New System.Drawing.Size(168, 22)
+        Me.YARNSTOCKADJUSTMENTADD.Size = New System.Drawing.Size(180, 22)
         Me.YARNSTOCKADJUSTMENTADD.Text = "&Add New Entry"
         '
         'YARNSTOCKADJUSTMENTEDIT
         '
         Me.YARNSTOCKADJUSTMENTEDIT.Name = "YARNSTOCKADJUSTMENTEDIT"
-        Me.YARNSTOCKADJUSTMENTEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.YARNSTOCKADJUSTMENTEDIT.Size = New System.Drawing.Size(180, 22)
         Me.YARNSTOCKADJUSTMENTEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator163
         '
         Me.ToolStripSeparator163.Name = "ToolStripSeparator163"
-        Me.ToolStripSeparator163.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator163.Size = New System.Drawing.Size(177, 6)
         '
         'YARNLOAN_MASTER
         '
@@ -7897,7 +7911,7 @@ Partial Class MDIMain
         '
         Me.AgencySaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleOrderToolStripMenuItem, Me.SaleInvoiceToolStripMenuItem, Me.SaleReturnToolStripMenuItem, Me.ToolStripSeparator316})
         Me.AgencySaleToolStripMenuItem.Name = "AgencySaleToolStripMenuItem"
-        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencySaleToolStripMenuItem.Text = "&Entries"
         '
         'AgencySaleOrderToolStripMenuItem
@@ -7992,7 +8006,7 @@ Partial Class MDIMain
         '
         Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317, Me.AgencyManualMatchingToolStripMenuItem, Me.AGENCYOPENINGBILL_MASTER, Me.ToolStripSeparator320})
         Me.AToolStripMenuItem.Name = "AToolStripMenuItem"
-        Me.AToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AToolStripMenuItem.Text = "&Accounts"
         '
         'ReceipToolStripMenuItem
@@ -8076,13 +8090,13 @@ Partial Class MDIMain
         'ToolStripSeparator311
         '
         Me.ToolStripSeparator311.Name = "ToolStripSeparator311"
-        Me.ToolStripSeparator311.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator311.Size = New System.Drawing.Size(177, 6)
         '
         'AgencyOpeningBillsToolStripMenuItem
         '
         Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDINGGRID_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322})
         Me.AgencyOpeningBillsToolStripMenuItem.Name = "AgencyOpeningBillsToolStripMenuItem"
-        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencyOpeningBillsToolStripMenuItem.Text = "Reports"
         '
         'AGENCYOUTSTANDINGGRID_MENU
@@ -8111,7 +8125,7 @@ Partial Class MDIMain
         'ToolStripSeparator309
         '
         Me.ToolStripSeparator309.Name = "ToolStripSeparator309"
-        Me.ToolStripSeparator309.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator309.Size = New System.Drawing.Size(177, 6)
         '
         'MAGICBOX_MENU
         '
@@ -9605,17 +9619,18 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'AddNewBeamUnloadEntryToolStripMenuItem
+        'YARNLOOMEFFICIENCY_MASTER
         '
-        Me.AddNewBeamUnloadEntryToolStripMenuItem.Name = "AddNewBeamUnloadEntryToolStripMenuItem"
-        Me.AddNewBeamUnloadEntryToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
-        Me.AddNewBeamUnloadEntryToolStripMenuItem.Text = "Add New Beam Unload Entry"
+        Me.YARNLOOMEFFICIENCY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNLOOMEFFICIENCY_ADD})
+        Me.YARNLOOMEFFICIENCY_MASTER.Name = "YARNLOOMEFFICIENCY_MASTER"
+        Me.YARNLOOMEFFICIENCY_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.YARNLOOMEFFICIENCY_MASTER.Text = "Yarn Loom Efficiency"
         '
-        'EditExistingBeamUploadEntryToolStripMenuItem
+        'YARNLOOMEFFICIENCY_ADD
         '
-        Me.EditExistingBeamUploadEntryToolStripMenuItem.Name = "EditExistingBeamUploadEntryToolStripMenuItem"
-        Me.EditExistingBeamUploadEntryToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
-        Me.EditExistingBeamUploadEntryToolStripMenuItem.Text = "Edit Existing Beam Upload Entry"
+        Me.YARNLOOMEFFICIENCY_ADD.Name = "YARNLOOMEFFICIENCY_ADD"
+        Me.YARNLOOMEFFICIENCY_ADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNLOOMEFFICIENCY_ADD.Text = "Add New Entry"
         '
         'MDIMain
         '
@@ -10939,4 +10954,6 @@ Partial Class MDIMain
     Friend WithEvents TASKEDIT As ToolStripMenuItem
     Friend WithEvents AddNewBeamUnloadEntryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EditExistingBeamUploadEntryToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents YARNLOOMEFFICIENCY_MASTER As ToolStripMenuItem
+    Friend WithEvents YARNLOOMEFFICIENCY_ADD As ToolStripMenuItem
 End Class

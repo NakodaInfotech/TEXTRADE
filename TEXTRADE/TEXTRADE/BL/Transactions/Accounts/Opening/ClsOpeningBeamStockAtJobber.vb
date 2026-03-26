@@ -78,22 +78,14 @@ Public Class ClsOpeningBeamStockAtJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@NARRATION", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@SIZERNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@UPLOADDATE", alParaval(I)))
-                I = I + 1
+
 
 
             End With
@@ -168,22 +160,14 @@ Public Class ClsOpeningBeamStockAtJobber
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@NARRATION", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@SIZERNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@UPLOADDATE", alParaval(I)))
-                I = I + 1
+
 
 
                 .Add(New SqlClient.SqlParameter("@BEAMISSUENO", alParaval(I)))
