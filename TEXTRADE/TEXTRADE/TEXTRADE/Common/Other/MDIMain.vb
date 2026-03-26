@@ -11465,4 +11465,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub YARNLOOMEFFICIENCY_ADD_Click(sender As Object, e As EventArgs) Handles YARNLOOMEFFICIENCY_ADD.Click
+        Try
+            Dim OBJYARNJO As New YarnLoomEfficiency
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
