@@ -38,6 +38,7 @@ Public Class ClsTaskMaster
                 .Add(New SqlClient.SqlParameter("@locationid", alParaval(4)))
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(5)))
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(6)))
+                .Add(New SqlClient.SqlParameter("@transfer", alParaval(7)))
 
             End With
 
@@ -68,6 +69,8 @@ Public Class ClsTaskMaster
                 .Add(New SqlClient.SqlParameter("@locationid", alParaval(4)))
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(5)))
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(6)))
+                .Add(New SqlClient.SqlParameter("@transfer", alParaval(7)))
+                .Add(New SqlClient.SqlParameter("@TASKid", alParaval(8)))
 
             End With
 

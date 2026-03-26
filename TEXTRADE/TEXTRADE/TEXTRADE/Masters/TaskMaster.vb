@@ -114,6 +114,7 @@ Public Class TaskMaster
             alParaval.Add(Locationid)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
+            alParaval.Add(0)
 
             Dim objclscategorymaster As New ClsTaskMaster
             objclscategorymaster.alParaval = alParaval
@@ -179,5 +180,13 @@ Public Class TaskMaster
         End If
         CMBTASKNAME.DataSource = dt
         CMBTASKNAME.SelectedIndex = -1
+    End Sub
+
+    Private Sub CMBTASKNAME_Enter(sender As Object, e As EventArgs) Handles CMBTASKNAME.Enter
+        Try
+            If CMBTASKNAME.Text.Trim = "" Then FILLTASK(CMBTASKNAME, EDIT, "")
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
     End Sub
 End Class

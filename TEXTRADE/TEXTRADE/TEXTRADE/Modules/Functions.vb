@@ -10117,6 +10117,26 @@ line1:
     End Function
 
 
-
+    Sub FILLTASK(ByRef CMBTASKNAME As ComboBox, ByRef edit As Boolean, ByVal CONDITION As String)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            If CMBTASKNAME.Text.Trim = "" Then
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable = objclscommon.search("TASKMASTER.TASK_id, TASKMASTER.TASK_name ", "", " TASKMASTER ", " AND TASKMASTER.TASK_cmpid=" & CmpId & " and TASKMASTER.TASK_locationid=" & Locationid & " and TASKMASTER.TASK_yearid=" & YearId & CONDITION)
+                If dt.Rows.Count > 0 Then
+                    dt.DefaultView.Sort = "TASK_name"
+                    CMBTASKNAME.DisplayMember = "TASK_name"
+                End If
+                CMBTASKNAME.DataSource = dt
+                CMBTASKNAME.SelectedIndex = -1
+                CMBTASKNAME.SelectAll()
+                CMBTASKNAME.Text = ""
+            End If
+        Catch ex As Exception
+            Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
 
 End Module
