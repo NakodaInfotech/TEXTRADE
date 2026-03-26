@@ -1049,6 +1049,8 @@ Partial Class MDIMain
         Me.YARNLOANEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator26 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNRECDTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
+        Me.YARNLOOMEFFICIENCY_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YARNLOOMEFFICIENCY_ADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.AGENCYMODULE_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1319,8 +1321,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.YARNLOOMEFFICIENCY_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.YARNLOOMEFFICIENCY_ADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -2826,13 +2826,13 @@ Partial Class MDIMain
         'TASKADD
         '
         Me.TASKADD.Name = "TASKADD"
-        Me.TASKADD.Size = New System.Drawing.Size(168, 22)
+        Me.TASKADD.Size = New System.Drawing.Size(180, 22)
         Me.TASKADD.Text = "Add New Entry"
         '
         'TASKEDIT
         '
         Me.TASKEDIT.Name = "TASKEDIT"
-        Me.TASKEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.TASKEDIT.Size = New System.Drawing.Size(180, 22)
         Me.TASKEDIT.Text = "Edit Existing Entry"
         '
         'YarnRelatedMasterToolStripMenuItem
@@ -7853,19 +7853,19 @@ Partial Class MDIMain
         'YARNSTOCKADJUSTMENTADD
         '
         Me.YARNSTOCKADJUSTMENTADD.Name = "YARNSTOCKADJUSTMENTADD"
-        Me.YARNSTOCKADJUSTMENTADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNSTOCKADJUSTMENTADD.Size = New System.Drawing.Size(168, 22)
         Me.YARNSTOCKADJUSTMENTADD.Text = "&Add New Entry"
         '
         'YARNSTOCKADJUSTMENTEDIT
         '
         Me.YARNSTOCKADJUSTMENTEDIT.Name = "YARNSTOCKADJUSTMENTEDIT"
-        Me.YARNSTOCKADJUSTMENTEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.YARNSTOCKADJUSTMENTEDIT.Size = New System.Drawing.Size(168, 22)
         Me.YARNSTOCKADJUSTMENTEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator163
         '
         Me.ToolStripSeparator163.Name = "ToolStripSeparator163"
-        Me.ToolStripSeparator163.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator163.Size = New System.Drawing.Size(165, 6)
         '
         'YARNLOAN_MASTER
         '
@@ -7899,6 +7899,19 @@ Partial Class MDIMain
         Me.YARNRECDTOOLSTRIP.Name = "YARNRECDTOOLSTRIP"
         Me.YARNRECDTOOLSTRIP.Size = New System.Drawing.Size(218, 6)
         '
+        'YARNLOOMEFFICIENCY_MASTER
+        '
+        Me.YARNLOOMEFFICIENCY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNLOOMEFFICIENCY_ADD})
+        Me.YARNLOOMEFFICIENCY_MASTER.Name = "YARNLOOMEFFICIENCY_MASTER"
+        Me.YARNLOOMEFFICIENCY_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.YARNLOOMEFFICIENCY_MASTER.Text = "Yarn Loom Efficiency"
+        '
+        'YARNLOOMEFFICIENCY_ADD
+        '
+        Me.YARNLOOMEFFICIENCY_ADD.Name = "YARNLOOMEFFICIENCY_ADD"
+        Me.YARNLOOMEFFICIENCY_ADD.Size = New System.Drawing.Size(151, 22)
+        Me.YARNLOOMEFFICIENCY_ADD.Text = "Add New Entry"
+        '
         'AGENCYMODULE_MENU
         '
         Me.AGENCYMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleToolStripMenuItem, Me.AToolStripMenuItem, Me.ToolStripSeparator311, Me.AgencyOpeningBillsToolStripMenuItem, Me.ToolStripSeparator309})
@@ -7911,7 +7924,7 @@ Partial Class MDIMain
         '
         Me.AgencySaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleOrderToolStripMenuItem, Me.SaleInvoiceToolStripMenuItem, Me.SaleReturnToolStripMenuItem, Me.ToolStripSeparator316})
         Me.AgencySaleToolStripMenuItem.Name = "AgencySaleToolStripMenuItem"
-        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.AgencySaleToolStripMenuItem.Text = "&Entries"
         '
         'AgencySaleOrderToolStripMenuItem
@@ -8006,7 +8019,7 @@ Partial Class MDIMain
         '
         Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317, Me.AgencyManualMatchingToolStripMenuItem, Me.AGENCYOPENINGBILL_MASTER, Me.ToolStripSeparator320})
         Me.AToolStripMenuItem.Name = "AToolStripMenuItem"
-        Me.AToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.AToolStripMenuItem.Text = "&Accounts"
         '
         'ReceipToolStripMenuItem
@@ -8090,13 +8103,13 @@ Partial Class MDIMain
         'ToolStripSeparator311
         '
         Me.ToolStripSeparator311.Name = "ToolStripSeparator311"
-        Me.ToolStripSeparator311.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator311.Size = New System.Drawing.Size(119, 6)
         '
         'AgencyOpeningBillsToolStripMenuItem
         '
         Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDINGGRID_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322})
         Me.AgencyOpeningBillsToolStripMenuItem.Name = "AgencyOpeningBillsToolStripMenuItem"
-        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.AgencyOpeningBillsToolStripMenuItem.Text = "Reports"
         '
         'AGENCYOUTSTANDINGGRID_MENU
@@ -8125,7 +8138,7 @@ Partial Class MDIMain
         'ToolStripSeparator309
         '
         Me.ToolStripSeparator309.Name = "ToolStripSeparator309"
-        Me.ToolStripSeparator309.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator309.Size = New System.Drawing.Size(119, 6)
         '
         'MAGICBOX_MENU
         '
@@ -9618,19 +9631,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'YARNLOOMEFFICIENCY_MASTER
-        '
-        Me.YARNLOOMEFFICIENCY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNLOOMEFFICIENCY_ADD})
-        Me.YARNLOOMEFFICIENCY_MASTER.Name = "YARNLOOMEFFICIENCY_MASTER"
-        Me.YARNLOOMEFFICIENCY_MASTER.Size = New System.Drawing.Size(221, 22)
-        Me.YARNLOOMEFFICIENCY_MASTER.Text = "Yarn Loom Efficiency"
-        '
-        'YARNLOOMEFFICIENCY_ADD
-        '
-        Me.YARNLOOMEFFICIENCY_ADD.Name = "YARNLOOMEFFICIENCY_ADD"
-        Me.YARNLOOMEFFICIENCY_ADD.Size = New System.Drawing.Size(180, 22)
-        Me.YARNLOOMEFFICIENCY_ADD.Text = "Add New Entry"
         '
         'MDIMain
         '
