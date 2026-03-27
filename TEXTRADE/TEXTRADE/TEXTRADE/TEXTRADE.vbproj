@@ -9080,6 +9080,12 @@
     <Compile Include="Utilities\Update Peding\UpdateRackShelfDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Update Peding\UpdateYarnRackShelf.Designer.vb">
+      <DependentUpon>UpdateYarnRackShelf.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Update Peding\UpdateYarnRackShelf.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Update Peding\UploadGodName.Designer.vb">
       <DependentUpon>UploadGodName.vb</DependentUpon>
     </Compile>
@@ -14267,6 +14273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UpdateRackShelfDetails.resx">
       <DependentUpon>UpdateRackShelfDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Update Peding\UpdateYarnRackShelf.resx">
+      <DependentUpon>UpdateYarnRackShelf.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UploadGodName.resx">
       <DependentUpon>UploadGodName.vb</DependentUpon>
