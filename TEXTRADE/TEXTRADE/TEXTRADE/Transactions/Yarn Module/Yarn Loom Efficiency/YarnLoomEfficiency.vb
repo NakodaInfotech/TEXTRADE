@@ -475,8 +475,9 @@ Public Class YarnLoomEfficiency
                     For Each dr As DataRow In dt.Rows
 
                         txteffno.Text = TEMPYLENO
-                        EFFDATE.Value = Convert.ToDateTime(dr("loanDATE"))
+                        EFFDATE.Value = Convert.ToDateTime(dr("DATE"))
                         cmbname.Text = Convert.ToString(dr("NAME"))
+                        'cmbname_Validated(Nothing, Nothing)  ' ← ADD THIS LINE
                         cmbrounder.Text = Convert.ToString(dr("ROUNDER").ToString)
                         txtremarks.Text = Convert.ToString(dr("remarks"))
                         gridloan.Rows.Add(dr("gridsrno").ToString, dr("LOOMNO").ToString, dr("YARNQUALITY").ToString, Val(dr("BEAMNO")), Format(Val(dr("RPM")), "0.00"), Format(Val(dr("PICKS")), "0.00"), Format(Val(dr("RECMTRS")), "0.00"), Format(Val(dr("WEFT")), "0.00"), Format(Val(dr("WARP")), "0.00"), Format(Val(dr("EFFPER")), "0.00"), Format(Val(dr("AVGPICK")), "0.00"), dr("GRIDREMARKS").ToString)
@@ -526,7 +527,7 @@ Public Class YarnLoomEfficiency
 
             If edit = True Then
                 Dim BLN As Boolean = True
-                Dim TEMPMSG As Integer = MsgBox("Delete loan?", MsgBoxStyle.YesNo)
+                Dim TEMPMSG As Integer = MsgBox("Delete Yarn Loom Efficiency?", MsgBoxStyle.YesNo)
                 If TEMPMSG = vbYes Then
 
                     Dim ALPARAVAL As New ArrayList
@@ -535,6 +536,7 @@ Public Class YarnLoomEfficiency
                     ALPARAVAL.Add(Val(txteffno.Text.Trim))
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Locationid)
+                    ALPARAVAL.Add(Userid)
                     ALPARAVAL.Add(YearId)
 
                     OBJLOAN.alParaval = ALPARAVAL
@@ -719,13 +721,22 @@ Public Class YarnLoomEfficiency
                 Next
             End If
 
-            ' If not found
-            TXTBEAMNO.Clear()
+            '' If not found
+            'TXTBEAMNO.Clear()
+            If gridDoubleClick = False Then   ' ← ADD THIS CHECK
+                TXTBEAMNO.Clear()
+            End If
 
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
     End Sub
 
+    Private Sub TXTBEAMNO_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTBEAMNO.KeyPress
+        numkeypress(e, TXTBEAMNO, Me)
+    End Sub
 
+    Private Sub TXTRECMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTRECMTRS.KeyPress, TXTRPM.KeyPress, TXTPICKS.KeyPress, TXTWEFT.KeyPress, TXTWARP.KeyPress, TXTEFFPER.KeyPress, TXTAVGPICK.KeyPress
+        numdotkeypress(e, TXTRECMTRS, Me)
+    End Sub
 End Class
