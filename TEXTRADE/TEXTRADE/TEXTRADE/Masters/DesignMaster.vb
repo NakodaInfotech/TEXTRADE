@@ -38,6 +38,7 @@ Public Class DesignMaster
         FILLMILL(CMBMILL, EDIT)
         fillDESIGNER(CMBCREATEDBY, "")
         FILLDESIGN(CMBPARENTDESIGNNO, "")
+        FILLDESIGN(CMBCOPYDESIGN, "")
     End Sub
 
     Private Sub DesignMasterg_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -732,6 +733,63 @@ Public Class DesignMaster
             If ClientName <> "YASHVI" Then ALPHABETNUMKYEPRESS(e, sender, Me)
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBCOPYDESIGN_Validated(sender As Object, e As EventArgs) Handles CMBCOPYDESIGN.Validated
+        Try
+            If CMBCOPYDESIGN.Text.Trim = "" Then Exit Sub
+
+            Dim objclsJO As New ClsDesignMaster()
+            Dim dttable As DataTable = objclsJO.selectdesign(CMBCOPYDESIGN.Text.Trim, CmpId, Locationid, YearId)
+
+            If dttable.Rows.Count = 0 Then
+                MsgBox("Design Not Found", MsgBoxStyle.Critical, "TEXPRO")
+                CMBCOPYDESIGN.Text = ""
+                Exit Sub
+            End If
+
+            If MsgBox("Copy data from design '" & CMBCOPYDESIGN.Text.Trim & "'?", MsgBoxStyle.YesNo, "TEXPRO") = MsgBoxResult.No Then
+                CMBCOPYDESIGN.Text = ""
+                Exit Sub
+            End If
+
+            Clear()
+            For Each dr As DataRow In dttable.Rows
+                CMBMILL.Text = dr("MILLNAME").ToString
+                TXTCADNO.Text = dr("CADNO").ToString
+                TXTPURRATE.Text = Val(dr("PURRATE"))
+                TXTSALERATE.Text = Val(dr("SALERATE"))
+                TXTWRATE.Text = Val(dr("WRATE"))
+                txtremarks.Text = dr("remarks").ToString
+                TXTFABRIC.Text = Val(dr("FABRIC"))
+                TXTDYEING.Text = Val(dr("DYEING"))
+                TXTJOBWORK.Text = Val(dr("JOBWORK"))
+                TXTFINISHING.Text = Val(dr("FINISHING"))
+                TXTEXTRA.Text = Val(dr("EXTRA"))
+                TXTTOTAL.Text = Val(dr("TOTAL"))
+                CMBITEM.Text = dr("ITEMNAME").ToString
+                TXTLINE1.Text = dr("LINE1").ToString
+                TXTLINE2.Text = dr("LINE2").ToString
+                CMBPARENTDESIGNNO.Text = dr("PARENTDESIGNNO").ToString
+                CMBCREATEDBY.Text = dr("DESIGNER").ToString
+            Next
+
+            Dim copyId As Integer = dttable.Rows(0)("DESIGNID")
+            Dim OBJCMN As New ClsCommon
+            Dim dt As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNMASTER_COLOR.DESIGN_SRNO, 0) AS GRIDSRNO, ISNULL(BASECOLORMASTER.COLOR_name, '') AS BASE, ISNULL(PRINTCOLORMASTER.COLOR_name, '') AS [PRINT],  ISNULL(COLORMASTER.COLOR_name, '') AS COLOR,  ISNULL(DESIGNMASTER_COLOR.DESIGN_BLOCKED, 0) AS BLOCKED,  ISNULL(DESIGNMASTER_COLOR.DESIGN_SHADETYPE, '') AS SHADETYPE ", "", " DESIGNMASTER_COLOR LEFT OUTER JOIN COLORMASTER ON DESIGNMASTER_COLOR.DESIGN_COLORID = COLORMASTER.COLOR_id  LEFT OUTER JOIN COLORMASTER AS BASECOLORMASTER ON DESIGNMASTER_COLOR.DESIGN_BASECOLORID = BASECOLORMASTER.COLOR_id  LEFT OUTER JOIN COLORMASTER AS PRINTCOLORMASTER ON DESIGNMASTER_COLOR.DESIGN_PRINTCOLORID = PRINTCOLORMASTER.COLOR_id ", " AND DESIGNMASTER_COLOR.DESIGN_ID = " & copyId & " AND DESIGNMASTER_COLOR.DESIGN_YEARID = " & YearId & " ORDER BY DESIGNMASTER_COLOR.DESIGN_SRNO")
+            If dt.Rows.Count > 0 Then
+                For Each DTR1 As DataRow In dt.Rows
+                    GRIDSHADE.Rows.Add(DTR1("GRIDSRNO"), DTR1("BASE"), DTR1("PRINT"), DTR1("COLOR"), DTR1("BLOCKED"), DTR1("SHADETYPE"))
+                Next
+                getsrno(GRIDSHADE)
+            End If
+
+            CMBCOPYDESIGN.Text = ""
+            CMBDESIGNNO.Focus()
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 
