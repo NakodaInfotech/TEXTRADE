@@ -119,106 +119,106 @@ Public Class YarnQualityMaster
     End Sub
 
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
+        '********************************************************************************************************
+        '****************************************ATTENTION******************************************************
+        '********************************************************************************************************
+        'IF ADD ANY COLUMN HERE THEN YOU NEED TO ADD IN UPLOADYARNSTOCK ON MDI 
         Try
-            Try
-                Ep.Clear()
-                If Not errorvalid() Then
+            Ep.Clear()
+            If Not errorvalid() Then
+                Exit Sub
+            End If
+            If ClientName = "AADHAR" And EDIT = False Then
+                ' txtname.Text = txtcount.Text.Trim + txtname.Text.Trim
+            End If
+            Dim OBJYARN As New ClsYarnQualityMaster
+            OBJYARN.alParaval.Add(txtname.Text.Trim)
+            OBJYARN.alParaval.Add(CMBCATEGORY.Text.Trim)
+            OBJYARN.alParaval.Add(txtremarks.Text.Trim)
+            OBJYARN.alParaval.Add(Val(TXTBOXWT.Text.Trim))
+            OBJYARN.alParaval.Add(CMBHSNCODE.Text.Trim)
+            OBJYARN.alParaval.Add(Val(TXTDENIER.Text.Trim))
+            OBJYARN.alParaval.Add(Val(TXTRATE.Text.Trim))
+
+            Dim YARNQUALITY As String = ""
+            Dim PER As String = ""
+
+            For Each ROW As DataGridViewRow In GRIDCOMP.Rows
+                If ROW.Cells(GYARNQUALITY.Index).Value <> Nothing Then
+                    If YARNQUALITY = "" Then
+                        YARNQUALITY = ROW.Cells(GYARNQUALITY.Index).Value.ToString
+                        PER = Val(ROW.Cells(GPER.Index).Value)
+                    Else
+                        YARNQUALITY = YARNQUALITY & "|" & ROW.Cells(GYARNQUALITY.Index).Value.ToString
+                        PER = PER & "|" & Val(ROW.Cells(GPER.Index).Value)
+                    End If
+                End If
+            Next
+
+            OBJYARN.alParaval.Add(YARNQUALITY)
+            OBJYARN.alParaval.Add(PER)
+
+
+            Dim STORESRNO As String = ""
+            Dim STOREITEMNAME As String = ""
+            Dim STOREQTY As String = ""
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDSTORES.Rows
+                If row.Cells(0).Value <> Nothing Then
+                    If STORESRNO = "" Then
+                        STORESRNO = row.Cells(SSRNO.Index).Value.ToString
+                        STOREITEMNAME = row.Cells(SSTOREITEM.Index).Value.ToString
+                        STOREQTY = Val(row.Cells(SQTY.Index).Value)
+                    Else
+                        STORESRNO = STORESRNO & "|" & row.Cells(SSRNO.Index).Value.ToString
+                        STOREITEMNAME = STOREITEMNAME & "|" & row.Cells(SSTOREITEM.Index).Value.ToString
+                        STOREQTY = STOREQTY & "|" & Val(row.Cells(SQTY.Index).Value)
+                    End If
+                End If
+            Next
+
+            OBJYARN.alParaval.Add(STORESRNO)
+            OBJYARN.alParaval.Add(STOREITEMNAME)
+            OBJYARN.alParaval.Add(STOREQTY)
+
+            OBJYARN.alParaval.Add(CmpId)
+            OBJYARN.alParaval.Add(Userid)
+            OBJYARN.alParaval.Add(YearId)
+
+            OBJYARN.alParaval.Add(txtcount.Text.Trim)
+            OBJYARN.alParaval.Add(TXTSHADENO.Text.Trim)
+            OBJYARN.alParaval.Add(CMBMILLNAME.Text.Trim)
+
+            If CMBGREYQUALITY.Text.Trim = "" Then
+                OBJYARN.alParaval.Add(txtname.Text.Trim)
+            Else
+                OBJYARN.alParaval.Add(CMBGREYQUALITY.Text.Trim)
+            End If
+
+
+            If EDIT = False Then
+                If USERADD = False Then
+                    MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                If ClientName = "AADHAR" And EDIT = False Then
-                    ' txtname.Text = txtcount.Text.Trim + txtname.Text.Trim
-                End If
-                Dim OBJYARN As New ClsYarnQualityMaster
-                OBJYARN.alParaval.Add(txtname.Text.Trim)
-                OBJYARN.alParaval.Add(CMBCATEGORY.Text.Trim)
-                OBJYARN.alParaval.Add(txtremarks.Text.Trim)
-                OBJYARN.alParaval.Add(Val(TXTBOXWT.Text.Trim))
-                OBJYARN.alParaval.Add(CMBHSNCODE.Text.Trim)
-                OBJYARN.alParaval.Add(Val(TXTDENIER.Text.Trim))
-                OBJYARN.alParaval.Add(Val(TXTRATE.Text.Trim))
 
-                Dim YARNQUALITY As String = ""
-                Dim PER As String = ""
+                Dim INTRES As Integer = OBJYARN.SAVE()
+                MsgBox("Details Added")
+            Else
 
-                For Each ROW As DataGridViewRow In GRIDCOMP.Rows
-                    If ROW.Cells(GYARNQUALITY.Index).Value <> Nothing Then
-                        If YARNQUALITY = "" Then
-                            YARNQUALITY = ROW.Cells(GYARNQUALITY.Index).Value.ToString
-                            PER = Val(ROW.Cells(GPER.Index).Value)
-                        Else
-                            YARNQUALITY = YARNQUALITY & "|" & ROW.Cells(GYARNQUALITY.Index).Value.ToString
-                            PER = PER & "|" & Val(ROW.Cells(GPER.Index).Value)
-                        End If
-                    End If
-                Next
-
-                OBJYARN.alParaval.Add(YARNQUALITY)
-                OBJYARN.alParaval.Add(PER)
-
-
-                Dim STORESRNO As String = ""
-                Dim STOREITEMNAME As String = ""
-                Dim STOREQTY As String = ""
-
-                For Each row As Windows.Forms.DataGridViewRow In GRIDSTORES.Rows
-                    If row.Cells(0).Value <> Nothing Then
-                        If STORESRNO = "" Then
-                            STORESRNO = row.Cells(SSRNO.Index).Value.ToString
-                            STOREITEMNAME = row.Cells(SSTOREITEM.Index).Value.ToString
-                            STOREQTY = Val(row.Cells(SQTY.Index).Value)
-                        Else
-                            STORESRNO = STORESRNO & "|" & row.Cells(SSRNO.Index).Value.ToString
-                            STOREITEMNAME = STOREITEMNAME & "|" & row.Cells(SSTOREITEM.Index).Value.ToString
-                            STOREQTY = STOREQTY & "|" & Val(row.Cells(SQTY.Index).Value)
-                        End If
-                    End If
-                Next
-
-                OBJYARN.alParaval.Add(STORESRNO)
-                OBJYARN.alParaval.Add(STOREITEMNAME)
-                OBJYARN.alParaval.Add(STOREQTY)
-
-                OBJYARN.alParaval.Add(CmpId)
-                OBJYARN.alParaval.Add(Userid)
-                OBJYARN.alParaval.Add(YearId)
-
-                OBJYARN.alParaval.Add(txtcount.Text.Trim)
-                OBJYARN.alParaval.Add(TXTSHADENO.Text.Trim)
-                OBJYARN.alParaval.Add(CMBMILLNAME.Text.Trim)
-
-                If CMBGREYQUALITY.Text.Trim = "" Then
-                    OBJYARN.alParaval.Add(txtname.Text.Trim)
-                Else
-                    OBJYARN.alParaval.Add(CMBGREYQUALITY.Text.Trim)
+                If USEREDIT = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
                 End If
 
+                OBJYARN.alParaval.Add(tempid)
+                Dim INTRES As Integer = OBJYARN.UPDATE()
+                MsgBox("Details Updated")
+                EDIT = False
+            End If
+            clear()
+            txtname.Focus()
 
-                If EDIT = False Then
-                    If USERADD = False Then
-                        MsgBox("Insufficient Rights")
-                        Exit Sub
-                    End If
-
-                    Dim INTRES As Integer = OBJYARN.SAVE()
-                    MsgBox("Details Added")
-                Else
-
-                    If USEREDIT = False Then
-                        MsgBox("Insufficient Rights")
-                        Exit Sub
-                    End If
-
-                    OBJYARN.alParaval.Add(tempid)
-                    Dim INTRES As Integer = OBJYARN.UPDATE()
-                    MsgBox("Details Updated")
-                    EDIT = False
-                End If
-                clear()
-                txtname.Focus()
-
-            Catch ex As Exception
-                Throw ex
-            End Try
         Catch ex As Exception
             Throw ex
         End Try
