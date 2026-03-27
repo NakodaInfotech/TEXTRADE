@@ -438,6 +438,18 @@
     <Compile Include="Masters\LoomMasterDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Masters\TaskCheckListDetails.Designer.vb">
+      <DependentUpon>TaskCheckListDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\TaskCheckListDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Masters\TaskCheckListMaster.Designer.vb">
+      <DependentUpon>TaskCheckListMaster.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\TaskCheckListMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Masters\TaskDetails.Designer.vb">
       <DependentUpon>TaskDetails.vb</DependentUpon>
     </Compile>
@@ -9234,6 +9246,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\LoomMasterDetails.resx">
       <DependentUpon>LoomMasterDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\TaskCheckListDetails.resx">
+      <DependentUpon>TaskCheckListDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Masters\TaskCheckListMaster.resx">
+      <DependentUpon>TaskCheckListMaster.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Masters\TaskDetails.resx">
       <DependentUpon>TaskDetails.vb</DependentUpon>
