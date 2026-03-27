@@ -251,7 +251,7 @@ Public Class YarnJobOrder
                     If SrNo = "" Then
                         SrNo = Val(row.Cells(GSRNO.Index).Value)
                         ItemName = row.Cells(GITEMNAME.Index).Value.ToString
-                        Shade = row.Cells(GDESIGN.Index).Value.ToString
+                        DESIGN = row.Cells(GDESIGN.Index).Value.ToString
                         Shade = row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = row.Cells(GREFNO.Index).Value.ToString
@@ -268,7 +268,7 @@ Public Class YarnJobOrder
                     Else
                         SrNo = SrNo & "|" & Val(row.Cells(GSRNO.Index).Value)
                         ItemName = ItemName & "|" & row.Cells(GITEMNAME.Index).Value.ToString
-                        Shade = Shade & "|" & row.Cells(GDESIGN.Index).Value.ToString
+                        DESIGN = DESIGN & "|" & row.Cells(GDESIGN.Index).Value.ToString
                         Shade = Shade & "|" & row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = OtherItemName & "|" & row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = RefNo & "|" & row.Cells(GREFNO.Index).Value.ToString
