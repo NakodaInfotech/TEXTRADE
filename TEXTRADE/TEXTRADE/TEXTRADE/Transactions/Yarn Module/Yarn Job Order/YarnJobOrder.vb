@@ -24,7 +24,7 @@ Public Class YarnJobOrder
         End If
         GETMAXNO()
         getsrno(GRIDBEAM)
-        TXTSHADE.Clear()
+        CMBSHADE.Text = ""
         TXTDESCRIPTION.Clear()
         TXTPONO.Clear()
         DTDATE.Text = Now.Date
@@ -125,7 +125,10 @@ Public Class YarnJobOrder
             bln = False
         End If
 
-
+        If GRIDBEAM.RowCount = 0 Then
+            Ep.SetError(CMBNAME, "Fill Packing Slip Details")
+            bln = False
+        End If
 
 
         Return bln
@@ -365,7 +368,7 @@ LINE1:
                         TXTREED.Text = Val(dr("REED"))
                         TXTREEDSPACE.Text = Val(dr("REEDSPACE"))
                         TXTPICKS.Text = Val(dr("PICKS"))
-                        TXTSHADE.Text = dr("SHADE")
+                        CMBSHADE.Text = dr("SHADE")
                         TXTOTHERITEMNAME.Text = dr("PARENTITEM")
                         TXTTOTALENDS.Text = Val(dr("TOTALENDS"))
                     Next
@@ -468,7 +471,7 @@ LINE1:
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -570,13 +573,13 @@ LINE1:
     Sub FILLGRID()
         If GRIDDOUBLECLICK = False Then
 
-            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, CMBDESIGN.Text.Trim, TXTSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
+            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
             getsrno(GRIDBEAM)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDBEAM.Item(GSRNO.Index, TEMPROW).Value = Val(TXTSRNO.Text.Trim)
             GRIDBEAM.Item(GITEMNAME.Index, TEMPROW).Value = CMBITEMNAME.Text.Trim
             GRIDBEAM.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
-            GRIDBEAM.Item(GSHADE.Index, TEMPROW).Value = TXTSHADE.Text.Trim
+            GRIDBEAM.Item(GSHADE.Index, TEMPROW).Value = CMBSHADE.Text.Trim
             GRIDBEAM.Item(GPARENTITEM.Index, TEMPROW).Value = TXTOTHERITEMNAME.Text.Trim
             GRIDBEAM.Item(GREFNO.Index, TEMPROW).Value = TXTREFNO.Text.Trim
             GRIDBEAM.Item(GREED.Index, TEMPROW).Value = Format(Val(TXTREED.Text.Trim), "0.00")
@@ -591,7 +594,7 @@ LINE1:
         TOTAL()
 
         CMBITEMNAME.Text = ""
-        TXTSHADE.Clear()
+        CMBSHADE.Text = ""
         TXTOTHERITEMNAME.Clear()
         TXTREED.Clear()
         TXTREEDSPACE.Clear()
@@ -621,7 +624,7 @@ LINE1:
     End Sub
     Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
@@ -666,7 +669,7 @@ LINE1:
                 TXTSRNO.Text = GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 CMBITEMNAME.Text = GRIDBEAM.Item(GITEMNAME.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 CMBDESIGN.Text = GRIDBEAM.Item(GDESIGN.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
-                TXTSHADE.Text = GRIDBEAM.Item(GSHADE.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+                CMBSHADE.Text = GRIDBEAM.Item(GSHADE.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 TXTOTHERITEMNAME.Text = GRIDBEAM.Item(GPARENTITEM.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 TXTREFNO.Text = GRIDBEAM.Item(GREFNO.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 TXTREED.Text = GRIDBEAM.Item(GREED.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
@@ -824,26 +827,50 @@ LINE1:
 
     Private Sub YarnJobOrder_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            If ClientName = "MMC" Then
-                TXTSHADE.ReadOnly = False
-                TXTSHADE.BackColor = Color.White
-                TXTOTHERITEMNAME.ReadOnly = False
-                TXTOTHERITEMNAME.BackColor = Color.White
-                TXTREED.ReadOnly = False
-                TXTREED.BackColor = Color.White
-                TXTREEDSPACE.ReadOnly = False
-                TXTREEDSPACE.BackColor = Color.White
-                TXTPICKS.ReadOnly = False
-                TXTPICKS.BackColor = Color.White
-                TXTTOTALENDS.ReadOnly = False
-                TXTTOTALENDS.BackColor = Color.White
-                CMBITEMNAME.Enabled = True
-            End If
+            'If ClientName = "MMC" Then
+            '    CMBSHADE.BackColor = Color.White
+            '    TXTOTHERITEMNAME.ReadOnly = False
+            '    TXTOTHERITEMNAME.BackColor = Color.White
+            '    TXTREED.ReadOnly = False
+            '    TXTREED.BackColor = Color.White
+            '    TXTREEDSPACE.ReadOnly = False
+            '    TXTREEDSPACE.BackColor = Color.White
+            '    TXTPICKS.ReadOnly = False
+            '    TXTPICKS.BackColor = Color.White
+            '    TXTTOTALENDS.ReadOnly = False
+            '    TXTTOTALENDS.BackColor = Color.White
+            '    CMBITEMNAME.Enabled = True
+            'End If
 
 
             If ClientName = "SWPL" Then
-                CMBDESIGN.Enabled = False
+                CMBDESIGN.Enabled = True
                 CMBDESIGN.TabStop = False
+                CMBSHADE.Enabled = False
+                CMBSHADE.TabStop = False
+
+                CMBSHADE.BackColor = Color.Linen
+                TXTOTHERITEMNAME.ReadOnly = True
+                TXTOTHERITEMNAME.Enabled = False
+                TXTOTHERITEMNAME.TabStop = False
+                TXTOTHERITEMNAME.BackColor = Color.Linen
+                TXTREED.ReadOnly = True
+                TXTREED.Enabled = False
+                TXTREED.TabStop = False
+                TXTREED.BackColor = Color.Linen
+                TXTREEDSPACE.ReadOnly = True
+                TXTREEDSPACE.Enabled = False
+                TXTREEDSPACE.TabStop = False
+                TXTREEDSPACE.BackColor = Color.Linen
+                TXTPICKS.ReadOnly = True
+                TXTPICKS.Enabled = False
+                TXTPICKS.TabStop = False
+                TXTPICKS.BackColor = Color.Linen
+                TXTTOTALENDS.ReadOnly = True
+                TXTTOTALENDS.Enabled = False
+                TXTTOTALENDS.TabStop = False
+                TXTTOTALENDS.BackColor = Color.Linen
+                CMBITEMNAME.Enabled = True
             End If
         Catch ex As Exception
             Throw ex
@@ -868,5 +895,19 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMBSHADE_Enter(sender As Object, e As EventArgs) Handles CMBSHADE.Enter
+        Try
+            If CMBSHADE.Text.Trim = "" Then FILLCOLOR(CMBSHADE, CMBDESIGN.Text.Trim, CMBITEMNAME.Text.Trim)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
+    Private Sub CMBSHADE_Validating(sender As Object, e As CancelEventArgs) Handles CMBSHADE.Validating
+        Try
+            If CMBSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBSHADE, e, Me, CMBDESIGN.Text.Trim, CMBITEMNAME.Text.Trim)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 End Class
