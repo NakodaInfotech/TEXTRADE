@@ -54,6 +54,7 @@ Public Class YarnJobOrder
         TXTWEFTCONS.Clear()
         TXTWEFTRATE.Clear()
         TXTWEFTCOST.Clear()
+        CMBDESIGN.Text = ""
 
     End Sub
 
@@ -124,6 +125,9 @@ Public Class YarnJobOrder
             bln = False
         End If
 
+
+
+
         Return bln
     End Function
 
@@ -159,10 +163,10 @@ Public Class YarnJobOrder
                 'End If
 
                 Dim OBJCMN As New ClsCommon
-                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_DESC.JOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(JOBORDER_DESC.JOB_PARENTITEM, '') AS PARENTITEM, ISNULL(JOBORDER_DESC.JOB_REFNO, '') AS REFNO, ISNULL(JOBORDER_DESC.JOB_REED, 0) AS REED, ISNULL(JOBORDER_DESC.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER_DESC.JOB_REEDSPACE,  0) AS REEDSPACE, ISNULL(JOBORDER_DESC.JOB_ENDS, 0) AS ENDS, ISNULL(JOBORDER_DESC.JOB_MTRS, 0) AS MTRS, ISNULL(JOBORDER_DESC.JOB_DESCRIPTION, '') AS DESCRIPTION,  ISNULL(JOBORDER_DESC.JOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(JOBORDER_DESC.JOB_DONE, 0) AS DONE ,ISNULL(JOBORDER_DESC.JOB_CLOSED, 0) AS CLOSED ", "", " JOBORDER_DESC LEFT OUTER JOIN COLORMASTER ON JOBORDER_DESC.JOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id ", " AND  JOBORDER_DESC.JOB_NO = " & TEMPJONO & " AND JOBORDER_DESC.JOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
+                Dim dttable1 As DataTable = OBJCMN.SEARCH("ISNULL(JOBORDER_DESC.JOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(JOBORDER_DESC.JOB_PARENTITEM, '') AS PARENTITEM, ISNULL(JOBORDER_DESC.JOB_REFNO, '') AS REFNO, ISNULL(JOBORDER_DESC.JOB_REED, 0) AS REED, ISNULL(JOBORDER_DESC.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER_DESC.JOB_REEDSPACE, 0) AS REEDSPACE, ISNULL(JOBORDER_DESC.JOB_ENDS, 0) AS ENDS, ISNULL(JOBORDER_DESC.JOB_MTRS, 0) AS MTRS, ISNULL(JOBORDER_DESC.JOB_DESCRIPTION, '') AS DESCRIPTION, ISNULL(JOBORDER_DESC.JOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(JOBORDER_DESC.JOB_DONE, 0) AS DONE, ISNULL(JOBORDER_DESC.JOB_CLOSED, 0) AS CLOSED, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO ", "", " JOBORDER_DESC LEFT OUTER JOIN DESIGNMASTER ON JOBORDER_DESC.JOB_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON JOBORDER_DESC.JOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id ", " AND  JOBORDER_DESC.JOB_NO = " & TEMPJONO & " AND JOBORDER_DESC.JOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
                 If dttable1.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable1.Rows
-                        GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")), Val(DTR("CLOSED")))
+                        GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("DESIGNNO").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")), Val(DTR("CLOSED")))
 
                         If Convert.ToBoolean(DTR("DONE")) = True Then
                             lbllocked.Visible = True
@@ -185,8 +189,11 @@ Public Class YarnJobOrder
                     Next
                 End If
 
-
-                CMBITEMNAME.Enabled = False
+                If ClientName = "SWPL" Then
+                    CMBITEMNAME.Enabled = False
+                Else
+                    CMBITEMNAME.Enabled = True
+                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -221,6 +228,7 @@ Public Class YarnJobOrder
 
             Dim SrNo As String = ""
             Dim ItemName As String = ""
+            Dim DESIGN As String = ""
             Dim Shade As String = ""
             Dim OtherItemName As String = ""
             Dim RefNo As String = ""
@@ -243,6 +251,7 @@ Public Class YarnJobOrder
                     If SrNo = "" Then
                         SrNo = Val(row.Cells(GSRNO.Index).Value)
                         ItemName = row.Cells(GITEMNAME.Index).Value.ToString
+                        Shade = row.Cells(GDESIGN.Index).Value.ToString
                         Shade = row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = row.Cells(GREFNO.Index).Value.ToString
@@ -259,6 +268,7 @@ Public Class YarnJobOrder
                     Else
                         SrNo = SrNo & "|" & Val(row.Cells(GSRNO.Index).Value)
                         ItemName = ItemName & "|" & row.Cells(GITEMNAME.Index).Value.ToString
+                        Shade = Shade & "|" & row.Cells(GDESIGN.Index).Value.ToString
                         Shade = Shade & "|" & row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = OtherItemName & "|" & row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = RefNo & "|" & row.Cells(GREFNO.Index).Value.ToString
@@ -279,6 +289,7 @@ Public Class YarnJobOrder
 
             alParaval.Add(SrNo)
             alParaval.Add(ItemName)
+            alParaval.Add(DESIGN)
             alParaval.Add(Shade)
             alParaval.Add(OtherItemName)
             alParaval.Add(RefNo)
@@ -545,7 +556,12 @@ LINE1:
 
     Private Sub TXTDESCRIPTION_Validated(sender As Object, e As EventArgs) Handles TXTDESCRIPTION.Validated
         Try
-            FILLGRID()
+            If CMBITEMNAME.Text.Trim <> "" And Val(TXTMTRS.Text) <> 0 Then
+                FILLGRID()
+            Else
+                MsgBox("Please fill Proper Details")
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -554,11 +570,12 @@ LINE1:
     Sub FILLGRID()
         If GRIDDOUBLECLICK = False Then
 
-            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, TXTSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
+            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, CMBDESIGN.Text.Trim, TXTSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
             getsrno(GRIDBEAM)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDBEAM.Item(GSRNO.Index, TEMPROW).Value = Val(TXTSRNO.Text.Trim)
             GRIDBEAM.Item(GITEMNAME.Index, TEMPROW).Value = CMBITEMNAME.Text.Trim
+            GRIDBEAM.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
             GRIDBEAM.Item(GSHADE.Index, TEMPROW).Value = TXTSHADE.Text.Trim
             GRIDBEAM.Item(GPARENTITEM.Index, TEMPROW).Value = TXTOTHERITEMNAME.Text.Trim
             GRIDBEAM.Item(GREFNO.Index, TEMPROW).Value = TXTREFNO.Text.Trim
@@ -583,8 +600,11 @@ LINE1:
         TXTREFNO.Clear()
         TXTMTRS.Clear()
         TXTDESCRIPTION.Clear()
+
         CMBITEMNAME.Enabled = True
         CMBITEMNAME.Focus()
+        CMBDESIGN.Text = ""
+
 
         GRIDBEAM.FirstDisplayedScrollingRowIndex = GRIDBEAM.RowCount - 1
         TXTSRNO.Text = GRIDBEAM.RowCount + 1
@@ -645,6 +665,7 @@ LINE1:
 
                 TXTSRNO.Text = GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 CMBITEMNAME.Text = GRIDBEAM.Item(GITEMNAME.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+                CMBDESIGN.Text = GRIDBEAM.Item(GDESIGN.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 TXTSHADE.Text = GRIDBEAM.Item(GSHADE.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 TXTOTHERITEMNAME.Text = GRIDBEAM.Item(GPARENTITEM.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 TXTREFNO.Text = GRIDBEAM.Item(GREFNO.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
@@ -656,8 +677,13 @@ LINE1:
                 TXTDESCRIPTION.Text = GRIDBEAM.Item(GDESC.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDBEAM.CurrentRow.Index
-                'CMBITEMNAME.Focus()
-                TXTREFNO.Focus()
+
+                If ClientName = "SWPL" Then
+                    TXTREFNO.Focus()
+                Else
+                    CMBITEMNAME.Focus()
+                End If
+
             End If
         Catch ex As Exception
             Throw ex
@@ -799,21 +825,48 @@ LINE1:
     Private Sub YarnJobOrder_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If ClientName = "MMC" Then
-                TXTSHADE.Enabled = True
+                TXTSHADE.ReadOnly = False
                 TXTSHADE.BackColor = Color.White
-                TXTOTHERITEMNAME.Enabled = True
+                TXTOTHERITEMNAME.ReadOnly = False
                 TXTOTHERITEMNAME.BackColor = Color.White
-                TXTREED.Enabled = True
+                TXTREED.ReadOnly = False
                 TXTREED.BackColor = Color.White
-                TXTREEDSPACE.Enabled = True
+                TXTREEDSPACE.ReadOnly = False
                 TXTREEDSPACE.BackColor = Color.White
-                TXTPICKS.Enabled = True
+                TXTPICKS.ReadOnly = False
                 TXTPICKS.BackColor = Color.White
-                TXTTOTALENDS.Enabled = True
+                TXTTOTALENDS.ReadOnly = False
                 TXTTOTALENDS.BackColor = Color.White
+                CMBITEMNAME.Enabled = True
+            End If
+
+
+            If ClientName = "SWPL" Then
+                CMBDESIGN.Enabled = False
+                CMBDESIGN.TabStop = False
             End If
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+
+
+    Private Sub CMBDESIGN_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGN.Validating
+        Try
+            If CMBDESIGN.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGN, e, Me)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDESIGN_Enter(sender As Object, e As EventArgs) Handles CMBDESIGN.Enter
+        Try
+            If CMBDESIGN.Text.Trim = "" Then FILLDESIGN(CMBDESIGN, CMBITEMNAME.Text.Trim)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+
 End Class
