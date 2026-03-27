@@ -221,6 +221,7 @@ Public Class YarnJobOrder
 
             Dim SrNo As String = ""
             Dim ItemName As String = ""
+            Dim DESIGN As String = ""
             Dim Shade As String = ""
             Dim OtherItemName As String = ""
             Dim RefNo As String = ""
@@ -243,6 +244,7 @@ Public Class YarnJobOrder
                     If SrNo = "" Then
                         SrNo = Val(row.Cells(GSRNO.Index).Value)
                         ItemName = row.Cells(GITEMNAME.Index).Value.ToString
+                        Shade = row.Cells(GDESIGN.Index).Value.ToString
                         Shade = row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = row.Cells(GREFNO.Index).Value.ToString
@@ -259,6 +261,7 @@ Public Class YarnJobOrder
                     Else
                         SrNo = SrNo & "|" & Val(row.Cells(GSRNO.Index).Value)
                         ItemName = ItemName & "|" & row.Cells(GITEMNAME.Index).Value.ToString
+                        Shade = Shade & "|" & row.Cells(GDESIGN.Index).Value.ToString
                         Shade = Shade & "|" & row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = OtherItemName & "|" & row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = RefNo & "|" & row.Cells(GREFNO.Index).Value.ToString
@@ -279,6 +282,7 @@ Public Class YarnJobOrder
 
             alParaval.Add(SrNo)
             alParaval.Add(ItemName)
+            alParaval.Add(DESIGN)
             alParaval.Add(Shade)
             alParaval.Add(OtherItemName)
             alParaval.Add(RefNo)
@@ -457,7 +461,7 @@ LINE1:
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -554,11 +558,12 @@ LINE1:
     Sub FILLGRID()
         If GRIDDOUBLECLICK = False Then
 
-            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, TXTSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
+            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, CMBDESIGN.Text.Trim, TXTSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
             getsrno(GRIDBEAM)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDBEAM.Item(GSRNO.Index, TEMPROW).Value = Val(TXTSRNO.Text.Trim)
             GRIDBEAM.Item(GITEMNAME.Index, TEMPROW).Value = CMBITEMNAME.Text.Trim
+            GRIDBEAM.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
             GRIDBEAM.Item(GSHADE.Index, TEMPROW).Value = TXTSHADE.Text.Trim
             GRIDBEAM.Item(GPARENTITEM.Index, TEMPROW).Value = TXTOTHERITEMNAME.Text.Trim
             GRIDBEAM.Item(GREFNO.Index, TEMPROW).Value = TXTREFNO.Text.Trim
@@ -585,6 +590,8 @@ LINE1:
         TXTDESCRIPTION.Clear()
         CMBITEMNAME.Enabled = True
         CMBITEMNAME.Focus()
+        CMBDESIGN.Text = ""
+
 
         GRIDBEAM.FirstDisplayedScrollingRowIndex = GRIDBEAM.RowCount - 1
         TXTSRNO.Text = GRIDBEAM.RowCount + 1
@@ -601,7 +608,8 @@ LINE1:
     End Sub
     Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS", "")
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -744,6 +752,22 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
             Cursor.Current = Cursors.WaitCursor
+        End Try
+    End Sub
+
+    Private Sub CMBDESIGN_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGN.Validating
+        Try
+            If CMBDESIGN.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGN, e, Me)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDESIGN_Enter(sender As Object, e As EventArgs) Handles CMBDESIGN.Enter
+        Try
+            If CMBDESIGN.Text.Trim = "" Then FILLDESIGN(CMBDESIGN, CMBITEMNAME.Text.Trim)
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class

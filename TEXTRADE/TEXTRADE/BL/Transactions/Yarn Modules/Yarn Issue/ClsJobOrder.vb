@@ -52,6 +52,8 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@OTHERITEMNAME", alParaval(I)))
@@ -123,6 +125,8 @@ Public Class ClsJobOrder
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I += 1
