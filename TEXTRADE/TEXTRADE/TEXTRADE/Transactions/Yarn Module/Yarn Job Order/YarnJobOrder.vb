@@ -221,7 +221,6 @@ Public Class YarnJobOrder
 
             Dim SrNo As String = ""
             Dim ItemName As String = ""
-            Dim DESIGN As String = ""
             Dim Shade As String = ""
             Dim OtherItemName As String = ""
             Dim RefNo As String = ""
@@ -244,7 +243,6 @@ Public Class YarnJobOrder
                     If SrNo = "" Then
                         SrNo = Val(row.Cells(GSRNO.Index).Value)
                         ItemName = row.Cells(GITEMNAME.Index).Value.ToString
-                        Shade = row.Cells(GDESIGN.Index).Value.ToString
                         Shade = row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = row.Cells(GREFNO.Index).Value.ToString
@@ -261,7 +259,6 @@ Public Class YarnJobOrder
                     Else
                         SrNo = SrNo & "|" & Val(row.Cells(GSRNO.Index).Value)
                         ItemName = ItemName & "|" & row.Cells(GITEMNAME.Index).Value.ToString
-                        Shade = Shade & "|" & row.Cells(GDESIGN.Index).Value.ToString
                         Shade = Shade & "|" & row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = OtherItemName & "|" & row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = RefNo & "|" & row.Cells(GREFNO.Index).Value.ToString
@@ -282,7 +279,6 @@ Public Class YarnJobOrder
 
             alParaval.Add(SrNo)
             alParaval.Add(ItemName)
-            alParaval.Add(DESIGN)
             alParaval.Add(Shade)
             alParaval.Add(OtherItemName)
             alParaval.Add(RefNo)
@@ -461,7 +457,7 @@ LINE1:
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -558,12 +554,11 @@ LINE1:
     Sub FILLGRID()
         If GRIDDOUBLECLICK = False Then
 
-            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, CMBDESIGN.Text.Trim, TXTSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
+            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, TXTSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
             getsrno(GRIDBEAM)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDBEAM.Item(GSRNO.Index, TEMPROW).Value = Val(TXTSRNO.Text.Trim)
             GRIDBEAM.Item(GITEMNAME.Index, TEMPROW).Value = CMBITEMNAME.Text.Trim
-            GRIDBEAM.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
             GRIDBEAM.Item(GSHADE.Index, TEMPROW).Value = TXTSHADE.Text.Trim
             GRIDBEAM.Item(GPARENTITEM.Index, TEMPROW).Value = TXTOTHERITEMNAME.Text.Trim
             GRIDBEAM.Item(GREFNO.Index, TEMPROW).Value = TXTREFNO.Text.Trim
@@ -590,8 +585,6 @@ LINE1:
         TXTDESCRIPTION.Clear()
         CMBITEMNAME.Enabled = True
         CMBITEMNAME.Focus()
-        CMBDESIGN.Text = ""
-
 
         GRIDBEAM.FirstDisplayedScrollingRowIndex = GRIDBEAM.RowCount - 1
         TXTSRNO.Text = GRIDBEAM.RowCount + 1
@@ -608,8 +601,7 @@ LINE1:
     End Sub
     Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS", "")
-
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
@@ -713,6 +705,54 @@ LINE1:
         End If
 
     End Sub
+
+    Private Sub TXTCOPYSONONO_Validated(sender As Object, e As EventArgs) Handles TXTCOPYSONO.Validated
+        Try
+            If Val(TXTCOPYSONO.Text.Trim) = 0 Then Exit Sub
+
+            Dim OBJCMN As New ClsCommon
+            Dim dttable2 As DataTable = OBJCMN.SEARCH(" SALEORDER_DESC.SO_GRIDSRNO AS GRIDSRNO , ISNULL(QUALITYMASTER.QUALITY_name,'') AS QUALITY, ISNULL(COLORMASTER.COLOR_name,'') AS COLOR, ISNULL(ITEMMASTER.item_name,'') AS ITEMNAME, ISNULL(SALEORDER_DESC.SO_MTRS,0) AS MTRS ", "", " SALEORDER_DESC LEFT OUTER JOIN QUALITYMASTER ON SALEORDER_DESC.SO_QUALITYID = QUALITYMASTER.QUALITY_id AND SALEORDER_DESC.SO_YEARID = QUALITYMASTER.QUALITY_yearid LEFT OUTER JOIN COLORMASTER ON SALEORDER_DESC.SO_YEARID = COLORMASTER.COLOR_yearid AND SALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON SALEORDER_DESC.SO_YEARID = ITEMMASTER.item_yearid AND SALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id  ", " AND SALEORDER_DESC.SO_NO = " & Val(TXTCOPYSONO.Text.Trim) & " AND SALEORDER_DESC.SO_YEARID = " & YearId & " ORDER BY GRIDSRNO")
+            If dttable2.Rows.Count = 0 Then
+                MsgBox("Sale Order Not Found", MsgBoxStyle.Critical, "TEXTRADE")
+                TXTCOPYSONO.Clear()
+                Exit Sub
+            End If
+
+            If MsgBox("Copy data from Sale Order No. " & TXTCOPYSONO.Text.Trim & "?", MsgBoxStyle.YesNo, "TEXPRO") = MsgBoxResult.No Then
+                TXTCOPYSONO.Clear()
+                Exit Sub
+            End If
+            If dttable2.Rows.Count > 0 Then
+                GRIDBEAM.RowCount = 0   ' Clear existing grid rows
+
+                For Each DTR As DataRow In dttable2.Rows
+                    GRIDBEAM.Rows.Add(
+                        Val(DTR("GRIDSRNO")),
+                        DTR("ITEMNAME").ToString,
+                        DTR("COLOR").ToString,
+                        DTR("QUALITY").ToString,
+                        "",'DTR("REFNO").ToString,
+                         "0.00",'Format(Val(DTR("REED")), "0.00"),
+                        "0.00",'Format(Val(DTR("PICKS")), "0.00"),
+                        "0.00",'Format(Val(DTR("REEDSPACE")), "0.00"),
+                        "0.00",'Format(Val(DTR("ENDS")), "0.000"),
+                        Format(Val(DTR("MTRS")), "0.00"),
+                        "")
+                Next
+                getsrno(GRIDBEAM)
+                TOTAL()
+            Else
+                MsgBox("No detail lines found in this Sale Order", MsgBoxStyle.Information, "TEXTRADE")
+            End If
+
+            TXTCOPYSONO.Clear()
+            CMBNAME.Focus()
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
     Public Function CloneWithValues(ByVal row As DataGridViewRow) As DataGridViewRow
         CloneWithValues = CType(row.Clone(), DataGridViewRow)
         For index As Int32 = 0 To row.Cells.Count - 1
@@ -755,17 +795,22 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBDESIGN_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGN.Validating
+    Private Sub YarnJobOrder_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
-            If CMBDESIGN.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGN, e, Me)
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBDESIGN_Enter(sender As Object, e As EventArgs) Handles CMBDESIGN.Enter
-        Try
-            If CMBDESIGN.Text.Trim = "" Then FILLDESIGN(CMBDESIGN, CMBITEMNAME.Text.Trim)
+            If ClientName = "MMC" Then
+                TXTSHADE.Enabled = True
+                TXTSHADE.BackColor = Color.White
+                TXTOTHERITEMNAME.Enabled = True
+                TXTOTHERITEMNAME.BackColor = Color.White
+                TXTREED.Enabled = True
+                TXTREED.BackColor = Color.White
+                TXTREEDSPACE.Enabled = True
+                TXTREEDSPACE.BackColor = Color.White
+                TXTPICKS.Enabled = True
+                TXTPICKS.BackColor = Color.White
+                TXTTOTALENDS.Enabled = True
+                TXTTOTALENDS.BackColor = Color.White
+            End If
         Catch ex As Exception
             Throw ex
         End Try
