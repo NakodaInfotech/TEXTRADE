@@ -144,6 +144,8 @@ Partial Class YarnJobOrderDetails
         Me.GDESIGNNO.FieldName = "DESIGNNO"
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.OptionsColumn.AllowEdit = False
+        Me.GDESIGNNO.Visible = True
+        Me.GDESIGNNO.VisibleIndex = 4
         Me.GDESIGNNO.Width = 120
         '
         'GCOLOR

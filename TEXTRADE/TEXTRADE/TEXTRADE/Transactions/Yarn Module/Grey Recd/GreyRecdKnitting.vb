@@ -236,6 +236,70 @@ CHECKNEXTLINE:
             End If
 
 
+
+
+
+            If ClientName = "MMC" Then
+
+                'FOR JOBORDER CHECKING, FIRST REMOVE GDNQTY
+                Dim TEMJOBORDERROWNO As Integer = -1
+                Dim TEMJOBORDERMATCH As Boolean = False
+                If GRIDJOBORDER.RowCount > 0 Then
+
+                    For Each ORDROW As DataGridViewRow In GRIDJOBORDER.Rows
+                        ' ORDROW.Cells(OGRNQTY.Index).Value = 0
+                        ORDROW.Cells(PGRNMTRS.Index).Value = 0
+                    Next
+
+                    'GET MULTISONO
+                    Dim MULTISONO() As String = (From row As DataGridViewRow In GRIDJOBORDER.Rows.Cast(Of DataGridViewRow)() Where Not row.IsNewRow Select CStr(row.Cells(PFROMNO.Index).Value)).Distinct.ToArray
+
+                    For Each ROW As DataGridViewRow In GRIDGREY.Rows
+                        For Each ORDROW As DataGridViewRow In GRIDJOBORDER.Rows
+                            If ROW.Cells(gitemname.Index).Value = ORDROW.Cells(PITEMNAME.Index).Value And ROW.Cells(GDESIGN.Index).Value = ORDROW.Cells(PDESIGN.Index).Value And ROW.Cells(gcolor.Index).Value = ORDROW.Cells(PCOLOR.Index).Value Then
+                                TEMJOBORDERMATCH = True
+                                'IF ITEM / DESIGN / SHADE IS MATCHED BUT THE QTY IS FULL THEN WE NEED TO KEEP THIS ROWNO IN TEMP AND NEED TO CHECK FURTHER ALSO
+                                'IF WE GET ANY NEW MATHING THEN WE NEED TO INSERT THERE
+                                'IF NO MATCHING IS FOUND IN FURTHER ROWS THEN WE NEED TO ADD QTY IN THIS TEMPROW
+                                If Val(ORDROW.Cells(PGRNMTRS.Index).Value) >= Val(ORDROW.Cells(PMTRS.Index).Value) Then
+                                    TEMJOBORDERROWNO = ORDROW.Index
+                                    GoTo NEXTLINE
+                                End If
+                                'ORDROW.Cells(OGRNQTY.Index).Value = Val(ORDROW.Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+                                ORDROW.Cells(PGRNMTRS.Index).Value = Val(ORDROW.Cells(PGRNMTRS.Index).Value) + Val(ROW.Cells(GMTRS.Index).Value)
+                                'ROW.Cells(GPURRATE.Index).Value = Val(ORDROW.Cells(ORATE.Index).Value)
+                                TEMJOBORDERROWNO = -1
+                                Exit For
+NEXTLINE:
+                            End If
+                        Next
+                        'IF NO FURTHER MACHING IS FOUND BUT WE HAVE TEMPORDERROWNO THEN ADD VALUE IN THAT ROW
+                        If TEMJOBORDERROWNO >= 0 Then
+                            'GRIDJOBORDER.Rows(TEMJOBORDERROWNO).Cells(PGRNQTY.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OGRNQTY.Index).Value) + Val(ROW.Cells(gQty.Index).Value)
+                            GRIDJOBORDER.Rows(TEMJOBORDERROWNO).Cells(PGRNMTRS.Index).Value = Val(GRIDJOBORDER.Rows(TEMJOBORDERROWNO).Cells(PGRNMTRS.Index).Value) + Val(ROW.Cells(GMTRS.Index).Value)
+                            'ROW.Cells(GPURRATE.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(ORATE.Index).Value)
+                            TEMJOBORDERROWNO = -1
+                        End If
+                        If TEMJOBORDERMATCH = False Then
+                            ROW.DefaultCellStyle.BackColor = Color.LightGreen
+                            If MsgBox("There are Items which are not Present in Selected  Job Order, Wish to Proceed", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                                EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
+                                bln = False
+                            End If
+                        End If
+                        TEMJOBORDERMATCH = False
+                    Next
+                End If
+
+            End If
+
+            If ClientName = "MMC" Then
+                If GRIDJOBORDER.RowCount = 0 Then
+                    EP.SetError(cmbname, "Select Job First")
+                    bln = False
+                End If
+            End If
+
             Return bln
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1175,6 +1239,9 @@ NEXTLINE:
 
         GRIDGREY.RowCount = 0
 
+
+        GRIDJOBORDER.RowCount = 0
+
         GRIDDOUBLECLICK = False
         GRIDUPLOADDOUBLECLICK = False
         getmaxno()
@@ -2009,6 +2076,11 @@ LINE1:
                 TXTROLLNO.BackColor = Color.LemonChiffon
                 TXTROLLNO.ReadOnly = True
             End If
+
+
+            If ClientName = "MMC" Then
+                CMDSELECTJO.Visible = True
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -2109,6 +2181,51 @@ NEXTLINE:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub CMDSELECTJO_Click(sender As Object, e As EventArgs) Handles CMDSELECTJO.Click
+
+        Try
+
+            If cmbname.Text.Trim = "" Then
+                MsgBox("Select Party Name", MsgBoxStyle.Critical)
+                cmbname.Focus()
+                Exit Sub
+            End If
+
+
+
+
+            Dim DTPO As New DataTable
+
+            Dim OBJSELECTPO As New SelectJobOrder
+            OBJSELECTPO.SIZERNAME = cmbname.Text.Trim
+            OBJSELECTPO.ShowDialog()
+            DTPO = OBJSELECTPO.DT
+            If DTPO.Rows.Count > 0 Then
+
+                'BEFORE ADDING THE ROW IN ORDERDER GRID CHECK WHETHER SAME ORDERNO AN SRNO IS PRESENT IN GRID OR NOT
+                For Each DTROW As DataRow In DTPO.Rows
+                    For Each ROW As DataGridViewRow In GRIDJOBORDER.Rows
+                        If Val(ROW.Cells(PFROMNO.Index).Value) = Val(DTROW("JOBNO")) And Val(ROW.Cells(PFROMSRNO.Index).Value) = Val(DTROW("JOBSRNO")) And ROW.Cells(PFROMTYPE.Index).Value = DTROW("FROMTYPE") Then GoTo NEXTLINE
+                    Next
+
+                    GRIDJOBORDER.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGNNO"), DTROW("COLOR"), Val(DTROW("JOBMTRS")), DTROW("JOBNO"), DTROW("JOBSRNO"), DTROW("FROMTYPE"), 0)
+
+NEXTLINE:
+                Next
+                getsrno(GRIDJOBORDER)
+
+            End If
+
+            getsrno(GRIDGREY)
+            cmdselectPO.Enabled = True
+            total()
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+
     End Sub
 
     Private Sub CMBDYEINGNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBDYEINGNAME.Validating
