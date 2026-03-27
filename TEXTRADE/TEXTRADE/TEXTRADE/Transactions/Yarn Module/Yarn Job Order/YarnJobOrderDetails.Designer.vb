@@ -57,6 +57,7 @@ Partial Class YarnJobOrderDetails
         '
         'BlendPanel1
         '
+        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
@@ -98,7 +99,6 @@ Partial Class YarnJobOrderDetails
         '
         'GCHK
         '
-        Me.GCHK.Caption = "GridColumn1"
         Me.GCHK.FieldName = "CHK"
         Me.GCHK.Name = "GCHK"
         Me.GCHK.Visible = True
