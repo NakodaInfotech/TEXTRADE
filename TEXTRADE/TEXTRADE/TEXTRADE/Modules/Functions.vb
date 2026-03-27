@@ -10139,4 +10139,28 @@ line1:
         End Try
     End Sub
 
+    Sub FILLTASKTYPE(ByRef CMBTASKTYPE As ComboBox, ByRef edit As Boolean, ByVal CONDITION As String)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            If CMBTASKTYPE.Text.Trim = "" Then
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable = objclscommon.search("TASKMASTER.TASK_id, TASKMASTER.TASK_type ", "", " TASKMASTER ", " AND TASKMASTER.TASK_cmpid=" & CmpId & " and TASKMASTER.TASK_locationid=" & Locationid & " and TASKMASTER.TASK_yearid=" & YearId & CONDITION)
+                If dt.Rows.Count > 0 Then
+                    dt.DefaultView.Sort = "TASK_type"
+                    CMBTASKTYPE.DisplayMember = "TASK_type"
+                End If
+                CMBTASKTYPE.DataSource = dt
+                CMBTASKTYPE.SelectedIndex = -1
+                CMBTASKTYPE.SelectAll()
+                CMBTASKTYPE.Text = ""
+            End If
+        Catch ex As Exception
+            Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+
+
 End Module
