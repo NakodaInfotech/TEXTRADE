@@ -128,6 +128,31 @@ Public Class ClsGreyRecdKnitting
                 I = I + 1
 
 
+
+
+                'JOGRID
+                .Add(New SqlClient.SqlParameter("@JOBORDERGRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERITEMNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERDESIGN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERCOLOR", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERMTRS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERFROMNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERFROMSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERFROMTYPE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERGRNMTRS", alParaval(I)))
+                I = I + 1
+
+
+
+
                 .Add(New SqlClient.SqlParameter("@DYEINGNAME", alParaval(I)))
                 I = I + 1
 
@@ -260,6 +285,33 @@ Public Class ClsGreyRecdKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ORDERRATE", alParaval(I)))
                 I = I + 1
+
+
+
+
+                'JOGRID
+                .Add(New SqlClient.SqlParameter("@JOBORDERGRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERITEMNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERDESIGN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERCOLOR", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERMTRS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERFROMNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERFROMSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERFROMTYPE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERGRNMTRS", alParaval(I)))
+                I = I + 1
+
+
+
+
 
                 .Add(New SqlClient.SqlParameter("@DYEINGNAME", alParaval(I)))
                 I = I + 1

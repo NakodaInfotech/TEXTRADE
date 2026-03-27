@@ -20,7 +20,7 @@ Public Class ClsUpdateYarnRackShelf
         Dim DTTABLE As DataTable
         Try
             'save purchase order
-            Dim strCommand As String = "SP_UTILITIES_UPDATERACKSHELF_SAVE"
+            Dim strCommand As String = "SP_UTILITIES_UPDATEYARNRACKSHELF_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -47,36 +47,46 @@ Public Class ClsUpdateYarnRackShelf
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PCS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PIECETYPE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BALENO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
-                I = I + 1
+                I += 1
 
+                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@BAGS", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@CATEGORY", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@JOBBERNAME", alParaval(I)))
+                I += 1
             End With
 
             DTTABLE = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -92,7 +102,7 @@ Public Class ClsUpdateYarnRackShelf
         Dim intResult As Integer
         Try
             'Update purchase order
-            Dim strCommand As String = "SP_UTILITIES_UPDATERACKSHELF_UPDATE"
+            Dim strCommand As String = "SP_UTILITIES_UPDATEYARNRACKSHELF_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -119,35 +129,46 @@ Public Class ClsUpdateYarnRackShelf
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@QUALITY", alParaval(I)))
-                I = I + 1
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
+                I += 1
+
                 .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
-                I = I + 1
+                I += 1
+
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
-                I = I + 1
+                I += 1
+
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PCS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@UNIT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@PIECETYPE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BALENO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
-                I = I + 1
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@BAGS", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@CATEGORY", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@LRNO", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@BILLNO", alParaval(I)))
+                I += 1
+
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
-                I = I + 1
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@JOBBERNAME", alParaval(I)))
+                I += 1
 
                 .Add(New SqlClient.SqlParameter("@ENTRYNO", alParaval(I)))
                 I = I + 1
@@ -161,11 +182,11 @@ Public Class ClsUpdateYarnRackShelf
         Return 0
     End Function
 
-    Public Function SELECTUPDATERACKSHELF(ByVal RECONO As Integer, ByVal YearID As Integer) As DataTable
+    Public Function SELECTUPDATEYARNRACKSHELF(ByVal RECONO As Integer, ByVal YearID As Integer) As DataTable
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTUPDATERACKSHELF_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTUPDATEYARNRACKSHELF_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@ENTRYNO", RECONO))
@@ -182,7 +203,7 @@ Public Class ClsUpdateYarnRackShelf
     Public Function DELETE() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_UTILITIES_UPDATERACKSHELF_DELETE"
+            Dim strCommand As String = "SP_UTILITIES_UPDATEYARNRACKSHELF_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@ENTRYNO", alParaval(0)))
