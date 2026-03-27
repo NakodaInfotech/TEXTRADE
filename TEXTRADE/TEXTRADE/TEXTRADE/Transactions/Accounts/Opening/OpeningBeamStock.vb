@@ -264,7 +264,7 @@ Public Class OpeningBeamStock
     End Function
     Private Sub TXTREMARKS_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTREMARKS.Validating
 
-        If CMBOURGODOWN.Text.Trim <> "" And CMBNAME.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And CMBMILL.Text.Trim <> "" And Val(TXTTOTALENDS.Text.Trim) > 0 And Val(TXTTOTALMTRS.Text.Trim) > 0 Then
+        If CMBOURGODOWN.Text.Trim <> "" And CMBNAME.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And CMBMILL.Text.Trim <> "" And Val(TXTTOTALENDS.Text.Trim) > 0 And Val(TXTTOTALMTRS.Text.Trim) > 0 And CMBROLLNO.Text.Trim <> "" Then
 
             If USERADD = False Then
                 MsgBox("Insufficient Rights")
@@ -445,9 +445,9 @@ Public Class OpeningBeamStock
 
             txtsrno.Text = GRIDSTOCK.Item(GGRIDSRNO.Index, GRIDSTOCK.CurrentRow.Index).Value.ToString
             TXTNO.Text = GRIDSTOCK.Item(GBEAMSTOCKNO.Index, GRIDSTOCK.CurrentRow.Index).Value.ToString
-            CMBOURGODOWN.Text = GRIDSTOCK.Item(GGODOWN.Index, e.RowIndex).Value
-            CMBNAME.Text = GRIDSTOCK.Item(GNAME.Index, e.RowIndex).Value
-            CMBMILL.Text = GRIDSTOCK.Item(GMILL.Index, e.RowIndex).Value
+            CMBOURGODOWN.Text = GRIDSTOCK.Item(GGODOWN.Index, e.RowIndex).Value.ToString
+            CMBNAME.Text = GRIDSTOCK.Item(GNAME.Index, e.RowIndex).Value.ToString
+            CMBMILL.Text = GRIDSTOCK.Item(GMILL.Index, e.RowIndex).Value.ToString
             TXTBEAMNO.Text = Val(GRIDSTOCK.Item(GBEAMNO.Index, e.RowIndex).Value)
             CMBBEAMNAME.Text = GRIDSTOCK.Item(GBEAMNAME.Index, e.RowIndex).Value
             TXTTOTALENDS.Text = Val(GRIDSTOCK.Item(GTOTALENDS.Index, e.RowIndex).Value)
@@ -457,11 +457,11 @@ Public Class OpeningBeamStock
             'CMBROLLNO.Text = GRIDSTOCK.Item(GROLLNO.Index, e.RowIndex).Value
             fillROLLITEM(CMBROLLNO, edit, "AND ROLLITEM = 1", "")
 
-            CMBROLLNO.Text = GRIDSTOCK.Item(GROLLNO.Index, e.RowIndex).Value
+            CMBROLLNO.Text = GRIDSTOCK.Item(GROLLNO.Index, e.RowIndex).Value.ToString
 
-            TXTBEAMWT.Text = GRIDSTOCK.Item(GBEAMWT.Index, e.RowIndex).Value
-            TXTBREAKAGE.Text = GRIDSTOCK.Item(GBREAKAGE.Index, e.RowIndex).Value
-            TXTREMARKS.Text = GRIDSTOCK.Item(GREMARKS.Index, e.RowIndex).Value
+            TXTBEAMWT.Text = Val(GRIDSTOCK.Item(GBEAMWT.Index, e.RowIndex).Value)
+            TXTBREAKAGE.Text = Val(GRIDSTOCK.Item(GBREAKAGE.Index, e.RowIndex).Value)
+            TXTREMARKS.Text = GRIDSTOCK.Item(GREMARKS.Index, e.RowIndex).Value.ToString
 
             GRIDDOUBLECLICK = True
             edit = True
@@ -682,7 +682,7 @@ Public Class OpeningBeamStock
             Dim bln As Boolean = True
             For Each ROW As DataGridViewRow In GRIDSTOCK.Rows
                 If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
-                    If CMBROLLNO.Text.Trim = ROW.Cells(GROLLNO.Index).Value Then bln = False
+                    If CMBROLLNO.Text.Trim = ROW.Cells(GROLLNO.Index).Value.ToString Then bln = False
                 End If
             Next
             Return bln
