@@ -95,6 +95,9 @@ Partial Class InvoiceGridDetails
         Me.GGRIDWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRIDPURNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRIDPARTYBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
@@ -108,9 +111,6 @@ Partial Class InvoiceGridDetails
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,7 +146,7 @@ Partial Class InvoiceGridDetails
         Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
         Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(449, 541)
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(492, 541)
         Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
         Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
         Me.CMDSAVELAYOUT.TabIndex = 448
@@ -867,6 +867,30 @@ Partial Class InvoiceGridDetails
         Me.GGRIDPARTYBILLNO.OptionsColumn.AllowEdit = False
         Me.GGRIDPARTYBILLNO.Width = 100
         '
+        'GCOMPLAINT
+        '
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 53
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 54
+        '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Dt"
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 55
+        '
         'CHKEDIT
         '
         Me.CHKEDIT.AutoHeight = False
@@ -880,7 +904,7 @@ Partial Class InvoiceGridDetails
         Me.CMDOK.FlatAppearance.BorderSize = 0
         Me.CMDOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDOK.ForeColor = System.Drawing.Color.Black
-        Me.CMDOK.Location = New System.Drawing.Point(535, 541)
+        Me.CMDOK.Location = New System.Drawing.Point(578, 541)
         Me.CMDOK.Name = "CMDOK"
         Me.CMDOK.Size = New System.Drawing.Size(80, 28)
         Me.CMDOK.TabIndex = 2
@@ -894,7 +918,7 @@ Partial Class InvoiceGridDetails
         Me.cmdcancel.FlatAppearance.BorderSize = 0
         Me.cmdcancel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdcancel.ForeColor = System.Drawing.Color.Black
-        Me.cmdcancel.Location = New System.Drawing.Point(619, 540)
+        Me.cmdcancel.Location = New System.Drawing.Point(662, 540)
         Me.cmdcancel.Name = "cmdcancel"
         Me.cmdcancel.Size = New System.Drawing.Size(80, 28)
         Me.cmdcancel.TabIndex = 3
@@ -989,30 +1013,6 @@ Partial Class InvoiceGridDetails
         Me.lbl.Size = New System.Drawing.Size(156, 14)
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
-        '
-        'GCOMPLAINT
-        '
-        Me.GCOMPLAINT.Caption = "Complaint"
-        Me.GCOMPLAINT.FieldName = "COMPLAINT"
-        Me.GCOMPLAINT.Name = "GCOMPLAINT"
-        Me.GCOMPLAINT.Visible = True
-        Me.GCOMPLAINT.VisibleIndex = 53
-        '
-        'GCOMPLAINTBY
-        '
-        Me.GCOMPLAINTBY.Caption = "Complaint By"
-        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
-        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
-        Me.GCOMPLAINTBY.Visible = True
-        Me.GCOMPLAINTBY.VisibleIndex = 54
-        '
-        'GCOMPLAINTDATE
-        '
-        Me.GCOMPLAINTDATE.Caption = "Complaint Dt"
-        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
-        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
-        Me.GCOMPLAINTDATE.Visible = True
-        Me.GCOMPLAINTDATE.VisibleIndex = 55
         '
         'InvoiceGridDetails
         '

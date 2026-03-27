@@ -159,7 +159,7 @@ Public Class YarnRecd
         If DTTABLE.Rows.Count > 0 Then TXTYARNNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
-    Function errorvalid() As Boolean
+    Function ERRORVALID() As Boolean
         Try
             Dim bln As Boolean = True
 

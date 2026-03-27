@@ -48,32 +48,6 @@ Partial Class OpeningStockYarn
         Me.CMBYARNQUALITY = New System.Windows.Forms.ComboBox()
         Me.TXTLRNO = New System.Windows.Forms.TextBox()
         Me.gridstock = New System.Windows.Forms.DataGridView()
-        Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMILL = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPROCESS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLRDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBILLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.gtoname = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGODOWN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBAGS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCONES = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GRACK = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GOUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GOUTBAGS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CMBSHADE = New System.Windows.Forms.ComboBox()
         Me.TXTLOTNO = New System.Windows.Forms.TextBox()
         Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
@@ -94,6 +68,32 @@ Partial Class OpeningStockYarn
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMILL = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPROCESS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLRDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBILLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.gtoname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGODOWN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBAGS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCONES = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRACK = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPER = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOUTBAGS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridstock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -205,42 +205,43 @@ Partial Class OpeningStockYarn
         'TXTGRIDREMARKS
         '
         Me.TXTGRIDREMARKS.BackColor = System.Drawing.Color.White
-        Me.TXTGRIDREMARKS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTGRIDREMARKS.Location = New System.Drawing.Point(1533, 5)
+        Me.TXTGRIDREMARKS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTGRIDREMARKS.Location = New System.Drawing.Point(1533, 4)
         Me.TXTGRIDREMARKS.Name = "TXTGRIDREMARKS"
-        Me.TXTGRIDREMARKS.Size = New System.Drawing.Size(120, 22)
+        Me.TXTGRIDREMARKS.Size = New System.Drawing.Size(120, 23)
         Me.TXTGRIDREMARKS.TabIndex = 16
         '
         'TXTAMOUNT
         '
         Me.TXTAMOUNT.BackColor = System.Drawing.Color.Linen
-        Me.TXTAMOUNT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTAMOUNT.Location = New System.Drawing.Point(1793, 5)
+        Me.TXTAMOUNT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTAMOUNT.Location = New System.Drawing.Point(1793, 4)
         Me.TXTAMOUNT.Name = "TXTAMOUNT"
         Me.TXTAMOUNT.ReadOnly = True
-        Me.TXTAMOUNT.Size = New System.Drawing.Size(80, 22)
+        Me.TXTAMOUNT.Size = New System.Drawing.Size(80, 23)
         Me.TXTAMOUNT.TabIndex = 19
         Me.TXTAMOUNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTRATE
         '
         Me.TXTRATE.BackColor = System.Drawing.Color.White
-        Me.TXTRATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE.Location = New System.Drawing.Point(1713, 5)
+        Me.TXTRATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE.Location = New System.Drawing.Point(1653, 4)
         Me.TXTRATE.Name = "TXTRATE"
-        Me.TXTRATE.Size = New System.Drawing.Size(80, 22)
-        Me.TXTRATE.TabIndex = 18
+        Me.TXTRATE.Size = New System.Drawing.Size(80, 23)
+        Me.TXTRATE.TabIndex = 17
         Me.TXTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBPER
         '
         Me.CMBPER.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBPER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBPER.FormattingEnabled = True
         Me.CMBPER.Items.AddRange(New Object() {"Bags", "Wt"})
-        Me.CMBPER.Location = New System.Drawing.Point(1653, 4)
+        Me.CMBPER.Location = New System.Drawing.Point(1733, 4)
         Me.CMBPER.Name = "CMBPER"
         Me.CMBPER.Size = New System.Drawing.Size(60, 23)
-        Me.CMBPER.TabIndex = 17
+        Me.CMBPER.TabIndex = 18
         '
         'CMBRACK
         '
@@ -289,7 +290,7 @@ Partial Class OpeningStockYarn
         '
         'TXTCONES
         '
-        Me.TXTCONES.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTCONES.BackColor = System.Drawing.Color.White
         Me.TXTCONES.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTCONES.Location = New System.Drawing.Point(1393, 4)
         Me.TXTCONES.Name = "TXTCONES"
@@ -349,7 +350,7 @@ Partial Class OpeningStockYarn
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.gridstock.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridstock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridstock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GNO, Me.GLOTNO, Me.GYARNQUALITY, Me.GMILL, Me.GDESIGN, Me.GSHADE, Me.GPROCESS, Me.GREMARKS, Me.GLRNO, Me.GLRDATE, Me.GBILLNO, Me.gtoname, Me.GGODOWN, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRACK, Me.GGRIDREMARKS, Me.GPER, Me.GRATE, Me.GAMOUNT, Me.GBARCODE, Me.GOUTWT, Me.GOUTBAGS, Me.GDONE})
+        Me.gridstock.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GNO, Me.GLOTNO, Me.GYARNQUALITY, Me.GMILL, Me.GDESIGN, Me.GSHADE, Me.GPROCESS, Me.GREMARKS, Me.GLRNO, Me.GLRDATE, Me.GBILLNO, Me.gtoname, Me.GGODOWN, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRACK, Me.GGRIDREMARKS, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GBARCODE, Me.GOUTWT, Me.GOUTBAGS, Me.GDONE})
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -373,231 +374,9 @@ Partial Class OpeningStockYarn
         Me.gridstock.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridstock.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.gridstock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gridstock.Size = New System.Drawing.Size(2005, 448)
+        Me.gridstock.Size = New System.Drawing.Size(2025, 448)
         Me.gridstock.TabIndex = 14
         Me.gridstock.TabStop = False
-        '
-        'gsrno
-        '
-        Me.gsrno.HeaderText = "Sr."
-        Me.gsrno.Name = "gsrno"
-        Me.gsrno.ReadOnly = True
-        Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gsrno.Width = 40
-        '
-        'GNO
-        '
-        Me.GNO.HeaderText = "NO"
-        Me.GNO.Name = "GNO"
-        Me.GNO.ReadOnly = True
-        Me.GNO.Visible = False
-        '
-        'GLOTNO
-        '
-        Me.GLOTNO.HeaderText = "Lot No."
-        Me.GLOTNO.Name = "GLOTNO"
-        Me.GLOTNO.ReadOnly = True
-        Me.GLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLOTNO.Width = 60
-        '
-        'GYARNQUALITY
-        '
-        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.ReadOnly = True
-        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GYARNQUALITY.Width = 160
-        '
-        'GMILL
-        '
-        Me.GMILL.HeaderText = "Mill Name"
-        Me.GMILL.Name = "GMILL"
-        Me.GMILL.ReadOnly = True
-        Me.GMILL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMILL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMILL.Width = 160
-        '
-        'GDESIGN
-        '
-        Me.GDESIGN.HeaderText = "Design"
-        Me.GDESIGN.Name = "GDESIGN"
-        Me.GDESIGN.ReadOnly = True
-        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDESIGN.Width = 80
-        '
-        'GSHADE
-        '
-        Me.GSHADE.HeaderText = "Shade"
-        Me.GSHADE.Name = "GSHADE"
-        Me.GSHADE.ReadOnly = True
-        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSHADE.Width = 80
-        '
-        'GPROCESS
-        '
-        Me.GPROCESS.HeaderText = "Process"
-        Me.GPROCESS.Name = "GPROCESS"
-        Me.GPROCESS.ReadOnly = True
-        Me.GPROCESS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPROCESS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GREMARKS
-        '
-        Me.GREMARKS.HeaderText = "Remarks"
-        Me.GREMARKS.Name = "GREMARKS"
-        Me.GREMARKS.ReadOnly = True
-        Me.GREMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GREMARKS.Width = 150
-        '
-        'GLRNO
-        '
-        Me.GLRNO.HeaderText = "LR No"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.ReadOnly = True
-        Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLRNO.Width = 80
-        '
-        'GLRDATE
-        '
-        Me.GLRDATE.HeaderText = "LR Date"
-        Me.GLRDATE.Name = "GLRDATE"
-        Me.GLRDATE.ReadOnly = True
-        Me.GLRDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLRDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GLRDATE.Visible = False
-        Me.GLRDATE.Width = 80
-        '
-        'GBILLNO
-        '
-        Me.GBILLNO.HeaderText = "Bill No"
-        Me.GBILLNO.Name = "GBILLNO"
-        Me.GBILLNO.ReadOnly = True
-        Me.GBILLNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBILLNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBILLNO.Width = 80
-        '
-        'gtoname
-        '
-        Me.gtoname.HeaderText = "Jobber Name"
-        Me.gtoname.Name = "gtoname"
-        Me.gtoname.ReadOnly = True
-        Me.gtoname.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gtoname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.gtoname.Width = 160
-        '
-        'GGODOWN
-        '
-        Me.GGODOWN.HeaderText = "Godown"
-        Me.GGODOWN.Name = "GGODOWN"
-        Me.GGODOWN.ReadOnly = True
-        Me.GGODOWN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GGODOWN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GGODOWN.Width = 120
-        '
-        'GBAGS
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBAGS.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GBAGS.HeaderText = "Bags"
-        Me.GBAGS.Name = "GBAGS"
-        Me.GBAGS.ReadOnly = True
-        Me.GBAGS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBAGS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBAGS.Width = 60
-        '
-        'GWT
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GWT.DefaultCellStyle = DataGridViewCellStyle4
-        Me.GWT.HeaderText = "Wt"
-        Me.GWT.Name = "GWT"
-        Me.GWT.ReadOnly = True
-        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GWT.Width = 60
-        '
-        'GCONES
-        '
-        Me.GCONES.HeaderText = "Cones"
-        Me.GCONES.Name = "GCONES"
-        Me.GCONES.ReadOnly = True
-        Me.GCONES.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GCONES.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GCONES.Width = 60
-        '
-        'GRACK
-        '
-        Me.GRACK.HeaderText = "Rack"
-        Me.GRACK.Name = "GRACK"
-        Me.GRACK.ReadOnly = True
-        Me.GRACK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRACK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GRACK.Width = 80
-        '
-        'GGRIDREMARKS
-        '
-        Me.GGRIDREMARKS.HeaderText = "Remarks"
-        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
-        Me.GGRIDREMARKS.ReadOnly = True
-        Me.GGRIDREMARKS.Width = 120
-        '
-        'GPER
-        '
-        Me.GPER.HeaderText = "Per"
-        Me.GPER.Name = "GPER"
-        Me.GPER.ReadOnly = True
-        Me.GPER.Width = 60
-        '
-        'GRATE
-        '
-        Me.GRATE.HeaderText = "Rate"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.ReadOnly = True
-        Me.GRATE.Width = 80
-        '
-        'GAMOUNT
-        '
-        Me.GAMOUNT.HeaderText = "Amount"
-        Me.GAMOUNT.Name = "GAMOUNT"
-        Me.GAMOUNT.ReadOnly = True
-        Me.GAMOUNT.Width = 80
-        '
-        'GBARCODE
-        '
-        Me.GBARCODE.HeaderText = "Barcode"
-        Me.GBARCODE.Name = "GBARCODE"
-        Me.GBARCODE.ReadOnly = True
-        Me.GBARCODE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBARCODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBARCODE.Width = 120
-        '
-        'GOUTWT
-        '
-        Me.GOUTWT.HeaderText = "Out Wt"
-        Me.GOUTWT.Name = "GOUTWT"
-        Me.GOUTWT.ReadOnly = True
-        Me.GOUTWT.Visible = False
-        '
-        'GOUTBAGS
-        '
-        Me.GOUTBAGS.HeaderText = "Out Bags"
-        Me.GOUTBAGS.Name = "GOUTBAGS"
-        Me.GOUTBAGS.ReadOnly = True
-        Me.GOUTBAGS.Visible = False
-        '
-        'GDONE
-        '
-        Me.GDONE.HeaderText = "Done"
-        Me.GDONE.Name = "GDONE"
-        Me.GDONE.ReadOnly = True
-        Me.GDONE.Visible = False
         '
         'CMBSHADE
         '
@@ -833,6 +612,236 @@ Partial Class OpeningStockYarn
         Me.TextBox1.Size = New System.Drawing.Size(120, 22)
         Me.TextBox1.TabIndex = 36
         '
+        'gsrno
+        '
+        Me.gsrno.HeaderText = "Sr."
+        Me.gsrno.Name = "gsrno"
+        Me.gsrno.ReadOnly = True
+        Me.gsrno.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gsrno.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gsrno.Width = 40
+        '
+        'GNO
+        '
+        Me.GNO.HeaderText = "NO"
+        Me.GNO.Name = "GNO"
+        Me.GNO.ReadOnly = True
+        Me.GNO.Visible = False
+        '
+        'GLOTNO
+        '
+        Me.GLOTNO.HeaderText = "Lot No."
+        Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.ReadOnly = True
+        Me.GLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLOTNO.Width = 60
+        '
+        'GYARNQUALITY
+        '
+        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.ReadOnly = True
+        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GYARNQUALITY.Width = 160
+        '
+        'GMILL
+        '
+        Me.GMILL.HeaderText = "Mill Name"
+        Me.GMILL.Name = "GMILL"
+        Me.GMILL.ReadOnly = True
+        Me.GMILL.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMILL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMILL.Width = 160
+        '
+        'GDESIGN
+        '
+        Me.GDESIGN.HeaderText = "Design"
+        Me.GDESIGN.Name = "GDESIGN"
+        Me.GDESIGN.ReadOnly = True
+        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDESIGN.Width = 80
+        '
+        'GSHADE
+        '
+        Me.GSHADE.HeaderText = "Shade"
+        Me.GSHADE.Name = "GSHADE"
+        Me.GSHADE.ReadOnly = True
+        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSHADE.Width = 80
+        '
+        'GPROCESS
+        '
+        Me.GPROCESS.HeaderText = "Process"
+        Me.GPROCESS.Name = "GPROCESS"
+        Me.GPROCESS.ReadOnly = True
+        Me.GPROCESS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPROCESS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GREMARKS
+        '
+        Me.GREMARKS.HeaderText = "Remarks"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.ReadOnly = True
+        Me.GREMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GREMARKS.Width = 150
+        '
+        'GLRNO
+        '
+        Me.GLRNO.HeaderText = "LR No"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.ReadOnly = True
+        Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLRNO.Width = 80
+        '
+        'GLRDATE
+        '
+        Me.GLRDATE.HeaderText = "LR Date"
+        Me.GLRDATE.Name = "GLRDATE"
+        Me.GLRDATE.ReadOnly = True
+        Me.GLRDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLRDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GLRDATE.Visible = False
+        Me.GLRDATE.Width = 80
+        '
+        'GBILLNO
+        '
+        Me.GBILLNO.HeaderText = "Bill No"
+        Me.GBILLNO.Name = "GBILLNO"
+        Me.GBILLNO.ReadOnly = True
+        Me.GBILLNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBILLNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBILLNO.Width = 80
+        '
+        'gtoname
+        '
+        Me.gtoname.HeaderText = "Jobber Name"
+        Me.gtoname.Name = "gtoname"
+        Me.gtoname.ReadOnly = True
+        Me.gtoname.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gtoname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.gtoname.Width = 160
+        '
+        'GGODOWN
+        '
+        Me.GGODOWN.HeaderText = "Godown"
+        Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.ReadOnly = True
+        Me.GGODOWN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGODOWN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGODOWN.Width = 120
+        '
+        'GBAGS
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBAGS.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GBAGS.HeaderText = "Bags"
+        Me.GBAGS.Name = "GBAGS"
+        Me.GBAGS.ReadOnly = True
+        Me.GBAGS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBAGS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBAGS.Width = 60
+        '
+        'GWT
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GWT.DefaultCellStyle = DataGridViewCellStyle4
+        Me.GWT.HeaderText = "Wt"
+        Me.GWT.Name = "GWT"
+        Me.GWT.ReadOnly = True
+        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GWT.Width = 60
+        '
+        'GCONES
+        '
+        Me.GCONES.HeaderText = "Cones"
+        Me.GCONES.Name = "GCONES"
+        Me.GCONES.ReadOnly = True
+        Me.GCONES.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCONES.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCONES.Width = 60
+        '
+        'GRACK
+        '
+        Me.GRACK.HeaderText = "Rack"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.ReadOnly = True
+        Me.GRACK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRACK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GRACK.Width = 80
+        '
+        'GGRIDREMARKS
+        '
+        Me.GGRIDREMARKS.HeaderText = "Grid Remarks"
+        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
+        Me.GGRIDREMARKS.ReadOnly = True
+        Me.GGRIDREMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGRIDREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGRIDREMARKS.Width = 120
+        '
+        'GRATE
+        '
+        Me.GRATE.HeaderText = "Rate"
+        Me.GRATE.Name = "GRATE"
+        Me.GRATE.ReadOnly = True
+        Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GRATE.Width = 80
+        '
+        'GPER
+        '
+        Me.GPER.HeaderText = "Per"
+        Me.GPER.Name = "GPER"
+        Me.GPER.ReadOnly = True
+        Me.GPER.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPER.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPER.Width = 60
+        '
+        'GAMOUNT
+        '
+        Me.GAMOUNT.HeaderText = "Amount"
+        Me.GAMOUNT.Name = "GAMOUNT"
+        Me.GAMOUNT.ReadOnly = True
+        Me.GAMOUNT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GAMOUNT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GAMOUNT.Width = 80
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.HeaderText = "Barcode"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.ReadOnly = True
+        Me.GBARCODE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBARCODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBARCODE.Width = 120
+        '
+        'GOUTWT
+        '
+        Me.GOUTWT.HeaderText = "Out Wt"
+        Me.GOUTWT.Name = "GOUTWT"
+        Me.GOUTWT.ReadOnly = True
+        Me.GOUTWT.Visible = False
+        '
+        'GOUTBAGS
+        '
+        Me.GOUTBAGS.HeaderText = "Out Bags"
+        Me.GOUTBAGS.Name = "GOUTBAGS"
+        Me.GOUTBAGS.ReadOnly = True
+        Me.GOUTBAGS.Visible = False
+        '
+        'GDONE
+        '
+        Me.GDONE.HeaderText = "Done"
+        Me.GDONE.Name = "GDONE"
+        Me.GDONE.ReadOnly = True
+        Me.GDONE.Visible = False
+        '
         'OpeningStockYarn
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -888,6 +897,11 @@ Partial Class OpeningStockYarn
     Friend WithEvents CMBRACK As ComboBox
     Friend WithEvents TXTBILLNO As TextBox
     Friend WithEvents TXTREMARKS As TextBox
+    Friend WithEvents TXTAMOUNT As TextBox
+    Friend WithEvents TXTRATE As TextBox
+    Friend WithEvents CMBPER As ComboBox
+    Friend WithEvents TXTGRIDREMARKS As TextBox
+    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
     Friend WithEvents GNO As DataGridViewTextBoxColumn
     Friend WithEvents GLOTNO As DataGridViewTextBoxColumn
@@ -907,16 +921,11 @@ Partial Class OpeningStockYarn
     Friend WithEvents GCONES As DataGridViewTextBoxColumn
     Friend WithEvents GRACK As DataGridViewTextBoxColumn
     Friend WithEvents GGRIDREMARKS As DataGridViewTextBoxColumn
-    Friend WithEvents GPER As DataGridViewTextBoxColumn
     Friend WithEvents GRATE As DataGridViewTextBoxColumn
+    Friend WithEvents GPER As DataGridViewTextBoxColumn
     Friend WithEvents GAMOUNT As DataGridViewTextBoxColumn
     Friend WithEvents GBARCODE As DataGridViewTextBoxColumn
     Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
     Friend WithEvents GOUTBAGS As DataGridViewTextBoxColumn
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
-    Friend WithEvents TXTAMOUNT As TextBox
-    Friend WithEvents TXTRATE As TextBox
-    Friend WithEvents CMBPER As ComboBox
-    Friend WithEvents TXTGRIDREMARKS As TextBox
-    Friend WithEvents TextBox1 As TextBox
 End Class
