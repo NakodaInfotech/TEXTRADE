@@ -46,6 +46,7 @@ Partial Class GreyRecdKnitting
         Dim DataGridViewCellStyle41 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle42 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSELECTJO = New System.Windows.Forms.Button()
         Me.TXTTO = New System.Windows.Forms.TextBox()
         Me.LBLTO = New System.Windows.Forms.Label()
         Me.LBLFROM = New System.Windows.Forms.Label()
@@ -161,11 +162,8 @@ Partial Class GreyRecdKnitting
         Me.OGRNQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.OGRNMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.TBJOBDETAILS = New System.Windows.Forms.TabPage()
         Me.GRIDJOBORDER = New System.Windows.Forms.DataGridView()
-        Me.CMDSELECTJO = New System.Windows.Forms.Button()
         Me.PSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -175,6 +173,8 @@ Partial Class GreyRecdKnitting
         Me.PFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PGRNMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -187,9 +187,9 @@ Partial Class GreyRecdKnitting
         CType(Me.PBSoftCopy, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TBPODETAILS.SuspendLayout()
         CType(Me.GRIDORDER, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TBJOBDETAILS.SuspendLayout()
         CType(Me.GRIDJOBORDER, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -241,6 +241,21 @@ Partial Class GreyRecdKnitting
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDSELECTJO
+        '
+        Me.CMDSELECTJO.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSELECTJO.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSELECTJO.FlatAppearance.BorderSize = 0
+        Me.CMDSELECTJO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSELECTJO.ForeColor = System.Drawing.Color.Black
+        Me.CMDSELECTJO.Location = New System.Drawing.Point(593, 545)
+        Me.CMDSELECTJO.Name = "CMDSELECTJO"
+        Me.CMDSELECTJO.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSELECTJO.TabIndex = 14
+        Me.CMDSELECTJO.Text = "Select &J.O"
+        Me.CMDSELECTJO.UseVisualStyleBackColor = False
+        Me.CMDSELECTJO.Visible = False
         '
         'TXTTO
         '
@@ -300,7 +315,7 @@ Partial Class GreyRecdKnitting
         Me.cmdselectPO.Location = New System.Drawing.Point(553, 478)
         Me.cmdselectPO.Name = "cmdselectPO"
         Me.cmdselectPO.Size = New System.Drawing.Size(80, 28)
-        Me.cmdselectPO.TabIndex = 672
+        Me.cmdselectPO.TabIndex = 9
         Me.cmdselectPO.Text = "Select &P.O"
         Me.cmdselectPO.UseVisualStyleBackColor = False
         '
@@ -327,7 +342,7 @@ Partial Class GreyRecdKnitting
         Me.CMBDYEINGNAME.MaxDropDownItems = 14
         Me.CMBDYEINGNAME.Name = "CMBDYEINGNAME"
         Me.CMBDYEINGNAME.Size = New System.Drawing.Size(243, 22)
-        Me.CMBDYEINGNAME.TabIndex = 670
+        Me.CMBDYEINGNAME.TabIndex = 6
         '
         'lrdate
         '
@@ -384,7 +399,7 @@ Partial Class GreyRecdKnitting
         Me.txtlrno.Location = New System.Drawing.Point(673, 54)
         Me.txtlrno.Name = "txtlrno"
         Me.txtlrno.Size = New System.Drawing.Size(84, 22)
-        Me.txtlrno.TabIndex = 1
+        Me.txtlrno.TabIndex = 5
         Me.txtlrno.TabStop = False
         '
         'Label21
@@ -409,7 +424,7 @@ Partial Class GreyRecdKnitting
         Me.cmbtrans.MaxDropDownItems = 14
         Me.cmbtrans.Name = "cmbtrans"
         Me.cmbtrans.Size = New System.Drawing.Size(243, 22)
-        Me.cmbtrans.TabIndex = 0
+        Me.cmbtrans.TabIndex = 3
         Me.cmbtrans.TabStop = False
         '
         'Label18
@@ -520,7 +535,7 @@ Partial Class GreyRecdKnitting
         Me.cmddelete.Location = New System.Drawing.Point(593, 512)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 10
+        Me.cmddelete.TabIndex = 12
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -534,7 +549,7 @@ Partial Class GreyRecdKnitting
         Me.cmdclear.Location = New System.Drawing.Point(508, 512)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 9
+        Me.cmdclear.TabIndex = 11
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
@@ -548,7 +563,7 @@ Partial Class GreyRecdKnitting
         Me.cmdok.Location = New System.Drawing.Point(637, 478)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 8
+        Me.cmdok.TabIndex = 10
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -562,7 +577,7 @@ Partial Class GreyRecdKnitting
         Me.cmdexit.Location = New System.Drawing.Point(677, 512)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 11
+        Me.cmdexit.TabIndex = 13
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -618,7 +633,7 @@ Partial Class GreyRecdKnitting
         Me.txtchallan.Location = New System.Drawing.Point(476, 54)
         Me.txtchallan.Name = "txtchallan"
         Me.txtchallan.Size = New System.Drawing.Size(80, 22)
-        Me.txtchallan.TabIndex = 5
+        Me.txtchallan.TabIndex = 4
         '
         'LBLCHALLAN
         '
@@ -653,7 +668,7 @@ Partial Class GreyRecdKnitting
         Me.GroupBox5.Location = New System.Drawing.Point(28, 474)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(301, 98)
-        Me.GroupBox5.TabIndex = 10
+        Me.GroupBox5.TabIndex = 8
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Remarks"
         '
@@ -714,7 +729,7 @@ Partial Class GreyRecdKnitting
         Me.cmbname.MaxDropDownItems = 14
         Me.cmbname.Name = "cmbname"
         Me.cmbname.Size = New System.Drawing.Size(243, 22)
-        Me.cmbname.TabIndex = 1
+        Me.cmbname.TabIndex = 2
         '
         'ToolStrip1
         '
@@ -841,7 +856,7 @@ Partial Class GreyRecdKnitting
         Me.TXTLOOMNO.Location = New System.Drawing.Point(502, 2)
         Me.TXTLOOMNO.Name = "TXTLOOMNO"
         Me.TXTLOOMNO.Size = New System.Drawing.Size(100, 22)
-        Me.TXTLOOMNO.TabIndex = 644
+        Me.TXTLOOMNO.TabIndex = 5
         '
         'TXTROLLNO
         '
@@ -850,7 +865,7 @@ Partial Class GreyRecdKnitting
         Me.TXTROLLNO.Location = New System.Drawing.Point(602, 2)
         Me.TXTROLLNO.Name = "TXTROLLNO"
         Me.TXTROLLNO.Size = New System.Drawing.Size(100, 22)
-        Me.TXTROLLNO.TabIndex = 4
+        Me.TXTROLLNO.TabIndex = 6
         '
         'TXTWT
         '
@@ -859,7 +874,7 @@ Partial Class GreyRecdKnitting
         Me.TXTWT.Location = New System.Drawing.Point(882, 2)
         Me.TXTWT.Name = "TXTWT"
         Me.TXTWT.Size = New System.Drawing.Size(60, 22)
-        Me.TXTWT.TabIndex = 8
+        Me.TXTWT.TabIndex = 10
         Me.TXTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBSHELF
@@ -872,7 +887,7 @@ Partial Class GreyRecdKnitting
         Me.CMBSHELF.Location = New System.Drawing.Point(1041, 2)
         Me.CMBSHELF.Name = "CMBSHELF"
         Me.CMBSHELF.Size = New System.Drawing.Size(101, 22)
-        Me.CMBSHELF.TabIndex = 10
+        Me.CMBSHELF.TabIndex = 12
         '
         'CMBRACK
         '
@@ -884,7 +899,7 @@ Partial Class GreyRecdKnitting
         Me.CMBRACK.Location = New System.Drawing.Point(942, 2)
         Me.CMBRACK.Name = "CMBRACK"
         Me.CMBRACK.Size = New System.Drawing.Size(99, 22)
-        Me.CMBRACK.TabIndex = 9
+        Me.CMBRACK.TabIndex = 11
         '
         'CMBDESIGN
         '
@@ -894,7 +909,7 @@ Partial Class GreyRecdKnitting
         Me.CMBDESIGN.Location = New System.Drawing.Point(312, 2)
         Me.CMBDESIGN.Name = "CMBDESIGN"
         Me.CMBDESIGN.Size = New System.Drawing.Size(90, 22)
-        Me.CMBDESIGN.TabIndex = 2
+        Me.CMBDESIGN.TabIndex = 3
         '
         'TXTMTRS
         '
@@ -903,7 +918,7 @@ Partial Class GreyRecdKnitting
         Me.TXTMTRS.Location = New System.Drawing.Point(822, 2)
         Me.TXTMTRS.Name = "TXTMTRS"
         Me.TXTMTRS.Size = New System.Drawing.Size(60, 22)
-        Me.TXTMTRS.TabIndex = 7
+        Me.TXTMTRS.TabIndex = 9
         Me.TXTMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GRIDGREY
@@ -1107,7 +1122,7 @@ Partial Class GreyRecdKnitting
         Me.CMBQUALITY.Location = New System.Drawing.Point(192, 2)
         Me.CMBQUALITY.Name = "CMBQUALITY"
         Me.CMBQUALITY.Size = New System.Drawing.Size(120, 22)
-        Me.CMBQUALITY.TabIndex = 1
+        Me.CMBQUALITY.TabIndex = 2
         '
         'cmbitemname
         '
@@ -1120,7 +1135,7 @@ Partial Class GreyRecdKnitting
         Me.cmbitemname.Location = New System.Drawing.Point(32, 2)
         Me.cmbitemname.Name = "cmbitemname"
         Me.cmbitemname.Size = New System.Drawing.Size(160, 22)
-        Me.cmbitemname.TabIndex = 0
+        Me.cmbitemname.TabIndex = 1
         '
         'LBLTOTALWT
         '
@@ -1144,7 +1159,7 @@ Partial Class GreyRecdKnitting
         Me.cmbqtyunit.Location = New System.Drawing.Point(762, 2)
         Me.cmbqtyunit.Name = "cmbqtyunit"
         Me.cmbqtyunit.Size = New System.Drawing.Size(60, 22)
-        Me.cmbqtyunit.TabIndex = 6
+        Me.cmbqtyunit.TabIndex = 8
         '
         'LBLTOTALMTRS
         '
@@ -1189,7 +1204,7 @@ Partial Class GreyRecdKnitting
         Me.TXTQTY.Location = New System.Drawing.Point(702, 2)
         Me.TXTQTY.Name = "TXTQTY"
         Me.TXTQTY.Size = New System.Drawing.Size(60, 22)
-        Me.TXTQTY.TabIndex = 5
+        Me.TXTQTY.TabIndex = 7
         Me.TXTQTY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lbltotalqty
@@ -1212,7 +1227,7 @@ Partial Class GreyRecdKnitting
         Me.cmbcolor.Location = New System.Drawing.Point(402, 2)
         Me.cmbcolor.Name = "cmbcolor"
         Me.cmbcolor.Size = New System.Drawing.Size(100, 22)
-        Me.cmbcolor.TabIndex = 3
+        Me.cmbcolor.TabIndex = 4
         '
         'tbupload
         '
@@ -1588,16 +1603,6 @@ Partial Class GreyRecdKnitting
         Me.ORATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
         Me.ORATE.Width = 70
         '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'EP
-        '
-        Me.EP.BlinkRate = 0
-        Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
-        Me.EP.ContainerControl = Me
-        '
         'TBJOBDETAILS
         '
         Me.TBJOBDETAILS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
@@ -1655,21 +1660,6 @@ Partial Class GreyRecdKnitting
         Me.GRIDJOBORDER.Size = New System.Drawing.Size(762, 297)
         Me.GRIDJOBORDER.TabIndex = 4
         Me.GRIDJOBORDER.TabStop = False
-        '
-        'CMDSELECTJO
-        '
-        Me.CMDSELECTJO.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSELECTJO.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSELECTJO.FlatAppearance.BorderSize = 0
-        Me.CMDSELECTJO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSELECTJO.ForeColor = System.Drawing.Color.Black
-        Me.CMDSELECTJO.Location = New System.Drawing.Point(593, 545)
-        Me.CMDSELECTJO.Name = "CMDSELECTJO"
-        Me.CMDSELECTJO.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSELECTJO.TabIndex = 854
-        Me.CMDSELECTJO.Text = "Select &J.O"
-        Me.CMDSELECTJO.UseVisualStyleBackColor = False
-        Me.CMDSELECTJO.Visible = False
         '
         'PSRNO
         '
@@ -1751,6 +1741,16 @@ Partial Class GreyRecdKnitting
         Me.PGRNMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.PGRNMTRS.Width = 80
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'EP
+        '
+        Me.EP.BlinkRate = 0
+        Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
+        Me.EP.ContainerControl = Me
+        '
         'GreyRecdKnitting
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1779,9 +1779,9 @@ Partial Class GreyRecdKnitting
         CType(Me.PBSoftCopy, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TBPODETAILS.ResumeLayout(False)
         CType(Me.GRIDORDER, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TBJOBDETAILS.ResumeLayout(False)
         CType(Me.GRIDJOBORDER, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
