@@ -23,20 +23,20 @@ Partial Class YarnJobOrder
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnJobOrder))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -47,6 +47,7 @@ Partial Class YarnJobOrder
         Me.TXTPONO = New System.Windows.Forms.TextBox()
         Me.TABCONTROLDETAILS = New System.Windows.Forms.TabControl()
         Me.TBWEFT = New System.Windows.Forms.TabPage()
+        Me.CMBSHADE = New System.Windows.Forms.ComboBox()
         Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
         Me.TXTDESCRIPTION = New System.Windows.Forms.TextBox()
         Me.TXTOTHERITEMNAME = New System.Windows.Forms.TextBox()
@@ -67,28 +68,13 @@ Partial Class YarnJobOrder
         Me.GOUTMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCLOSED = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TXTTOTALWEFTCOST = New System.Windows.Forms.TextBox()
         Me.TXTREED = New System.Windows.Forms.TextBox()
         Me.TXTTOTALENDS = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTRATE = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTCONS = New System.Windows.Forms.TextBox()
         Me.TXTMTRS = New System.Windows.Forms.TextBox()
         Me.TXTPICKS = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTBE = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTPE = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTWT = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTTE = New System.Windows.Forms.TextBox()
         Me.TXTREEDSPACE = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTCOST = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTRATE = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTCONS = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTBE = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTPE = New System.Windows.Forms.TextBox()
         Me.TXTREFNO = New System.Windows.Forms.TextBox()
         Me.CMBITEMNAME = New System.Windows.Forms.ComboBox()
-        Me.TXTWEFTWT = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTTE = New System.Windows.Forms.TextBox()
-        Me.Label51 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.DTDATE = New System.Windows.Forms.MaskedTextBox()
         Me.LBLPARTYNAME = New System.Windows.Forms.Label()
@@ -120,7 +106,6 @@ Partial Class YarnJobOrder
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CMBSHADE = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
         Me.TBWEFT.SuspendLayout()
@@ -134,7 +119,6 @@ Partial Class YarnJobOrder
         'BlendPanel1
         '
         Me.BlendPanel1.AutoSize = True
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.Label18)
         Me.BlendPanel1.Controls.Add(Me.TXTCOPYSONO)
         Me.BlendPanel1.Controls.Add(Me.Label2)
@@ -256,34 +240,32 @@ Partial Class YarnJobOrder
         Me.TBWEFT.Controls.Add(Me.TXTOTHERITEMNAME)
         Me.TBWEFT.Controls.Add(Me.TXTSRNO)
         Me.TBWEFT.Controls.Add(Me.GRIDBEAM)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTCOST)
         Me.TBWEFT.Controls.Add(Me.TXTREED)
         Me.TBWEFT.Controls.Add(Me.TXTTOTALENDS)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTRATE)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTCONS)
         Me.TBWEFT.Controls.Add(Me.TXTMTRS)
         Me.TBWEFT.Controls.Add(Me.TXTPICKS)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTBE)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTPE)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTWT)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTTE)
         Me.TBWEFT.Controls.Add(Me.TXTREEDSPACE)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTCOST)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTRATE)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTCONS)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTBE)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTPE)
         Me.TBWEFT.Controls.Add(Me.TXTREFNO)
         Me.TBWEFT.Controls.Add(Me.CMBITEMNAME)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTWT)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTTE)
-        Me.TBWEFT.Controls.Add(Me.Label51)
         Me.TBWEFT.Location = New System.Drawing.Point(4, 24)
         Me.TBWEFT.Name = "TBWEFT"
         Me.TBWEFT.Padding = New System.Windows.Forms.Padding(3)
         Me.TBWEFT.Size = New System.Drawing.Size(1152, 239)
         Me.TBWEFT.TabIndex = 2
         Me.TBWEFT.Text = "Item Details"
+        '
+        'CMBSHADE
+        '
+        Me.CMBSHADE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSHADE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSHADE.BackColor = System.Drawing.SystemColors.Window
+        Me.CMBSHADE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSHADE.FormattingEnabled = True
+        Me.CMBSHADE.Location = New System.Drawing.Point(284, 5)
+        Me.CMBSHADE.MaxDropDownItems = 14
+        Me.CMBSHADE.Name = "CMBSHADE"
+        Me.CMBSHADE.Size = New System.Drawing.Size(120, 23)
+        Me.CMBSHADE.TabIndex = 3
         '
         'CMBDESIGN
         '
@@ -336,28 +318,28 @@ Partial Class YarnJobOrder
         Me.GRIDBEAM.AllowUserToDeleteRows = False
         Me.GRIDBEAM.AllowUserToResizeColumns = False
         Me.GRIDBEAM.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDBEAM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDBEAM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle15
         Me.GRIDBEAM.BackgroundColor = System.Drawing.Color.White
         Me.GRIDBEAM.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDBEAM.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDBEAM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDBEAM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle16
         Me.GRIDBEAM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDBEAM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GITEMNAME, Me.GDESIGN, Me.GSHADE, Me.GPARENTITEM, Me.GREFNO, Me.GREED, Me.GPICKS, Me.GREEDSPACE, Me.GENDS, Me.GMTRS, Me.GDESC, Me.GOUTMTRS, Me.GDONE, Me.GCLOSED})
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDBEAM.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle27.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDBEAM.DefaultCellStyle = DataGridViewCellStyle27
         Me.GRIDBEAM.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDBEAM.Location = New System.Drawing.Point(3, 28)
         Me.GRIDBEAM.MultiSelect = False
@@ -366,14 +348,14 @@ Partial Class YarnJobOrder
         Me.GRIDBEAM.RowHeadersVisible = False
         Me.GRIDBEAM.RowHeadersWidth = 30
         Me.GRIDBEAM.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDBEAM.RowsDefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDBEAM.RowsDefaultCellStyle = DataGridViewCellStyle28
         Me.GRIDBEAM.RowTemplate.Height = 20
         Me.GRIDBEAM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDBEAM.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDBEAM.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDBEAM.Size = New System.Drawing.Size(1232, 194)
+        Me.GRIDBEAM.Size = New System.Drawing.Size(1227, 194)
         Me.GRIDBEAM.TabIndex = 12
         Me.GRIDBEAM.TabStop = False
         '
@@ -423,8 +405,8 @@ Partial Class YarnJobOrder
         '
         'GREFNO
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GREFNO.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GREFNO.DefaultCellStyle = DataGridViewCellStyle17
         Me.GREFNO.HeaderText = "Ref No"
         Me.GREFNO.Name = "GREFNO"
         Me.GREFNO.ReadOnly = True
@@ -434,8 +416,8 @@ Partial Class YarnJobOrder
         '
         'GREED
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GREED.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GREED.DefaultCellStyle = DataGridViewCellStyle18
         Me.GREED.HeaderText = "Reed"
         Me.GREED.Name = "GREED"
         Me.GREED.ReadOnly = True
@@ -445,8 +427,8 @@ Partial Class YarnJobOrder
         '
         'GPICKS
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GPICKS.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GPICKS.DefaultCellStyle = DataGridViewCellStyle19
         Me.GPICKS.HeaderText = "Picks"
         Me.GPICKS.Name = "GPICKS"
         Me.GPICKS.ReadOnly = True
@@ -456,8 +438,8 @@ Partial Class YarnJobOrder
         '
         'GREEDSPACE
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GREEDSPACE.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GREEDSPACE.DefaultCellStyle = DataGridViewCellStyle20
         Me.GREEDSPACE.HeaderText = "R.S."
         Me.GREEDSPACE.Name = "GREEDSPACE"
         Me.GREEDSPACE.ReadOnly = True
@@ -467,8 +449,8 @@ Partial Class YarnJobOrder
         '
         'GENDS
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GENDS.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GENDS.DefaultCellStyle = DataGridViewCellStyle21
         Me.GENDS.HeaderText = "Ends"
         Me.GENDS.Name = "GENDS"
         Me.GENDS.ReadOnly = True
@@ -478,8 +460,8 @@ Partial Class YarnJobOrder
         '
         'GMTRS
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle22
         Me.GMTRS.HeaderText = "Mtrs"
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.ReadOnly = True
@@ -489,8 +471,8 @@ Partial Class YarnJobOrder
         '
         'GDESC
         '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GDESC.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GDESC.DefaultCellStyle = DataGridViewCellStyle23
         Me.GDESC.HeaderText = "Description"
         Me.GDESC.Name = "GDESC"
         Me.GDESC.ReadOnly = True
@@ -500,8 +482,8 @@ Partial Class YarnJobOrder
         '
         'GOUTMTRS
         '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GOUTMTRS.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GOUTMTRS.DefaultCellStyle = DataGridViewCellStyle24
         Me.GOUTMTRS.HeaderText = "Out Mtrs"
         Me.GOUTMTRS.Name = "GOUTMTRS"
         Me.GOUTMTRS.ReadOnly = True
@@ -511,8 +493,8 @@ Partial Class YarnJobOrder
         '
         'GDONE
         '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GDONE.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GDONE.DefaultCellStyle = DataGridViewCellStyle25
         Me.GDONE.HeaderText = "Done"
         Me.GDONE.Name = "GDONE"
         Me.GDONE.ReadOnly = True
@@ -522,26 +504,14 @@ Partial Class YarnJobOrder
         '
         'GCLOSED
         '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GCLOSED.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GCLOSED.DefaultCellStyle = DataGridViewCellStyle26
         Me.GCLOSED.HeaderText = "Closed"
         Me.GCLOSED.Name = "GCLOSED"
         Me.GCLOSED.ReadOnly = True
         Me.GCLOSED.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GCLOSED.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GCLOSED.Visible = False
-        '
-        'TXTTOTALWEFTCOST
-        '
-        Me.TXTTOTALWEFTCOST.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTCOST.Location = New System.Drawing.Point(979, 161)
-        Me.TXTTOTALWEFTCOST.Name = "TXTTOTALWEFTCOST"
-        Me.TXTTOTALWEFTCOST.ReadOnly = True
-        Me.TXTTOTALWEFTCOST.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTCOST.TabIndex = 900
-        Me.TXTTOTALWEFTCOST.TabStop = False
-        Me.TXTTOTALWEFTCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTCOST.Visible = False
         '
         'TXTREED
         '
@@ -562,30 +532,6 @@ Partial Class YarnJobOrder
         Me.TXTTOTALENDS.TabIndex = 9
         Me.TXTTOTALENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TXTTOTALWEFTRATE
-        '
-        Me.TXTTOTALWEFTRATE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTRATE.Location = New System.Drawing.Point(919, 161)
-        Me.TXTTOTALWEFTRATE.Name = "TXTTOTALWEFTRATE"
-        Me.TXTTOTALWEFTRATE.ReadOnly = True
-        Me.TXTTOTALWEFTRATE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTRATE.TabIndex = 899
-        Me.TXTTOTALWEFTRATE.TabStop = False
-        Me.TXTTOTALWEFTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTRATE.Visible = False
-        '
-        'TXTTOTALWEFTCONS
-        '
-        Me.TXTTOTALWEFTCONS.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTCONS.Location = New System.Drawing.Point(859, 161)
-        Me.TXTTOTALWEFTCONS.Name = "TXTTOTALWEFTCONS"
-        Me.TXTTOTALWEFTCONS.ReadOnly = True
-        Me.TXTTOTALWEFTCONS.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTCONS.TabIndex = 898
-        Me.TXTTOTALWEFTCONS.TabStop = False
-        Me.TXTTOTALWEFTCONS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTCONS.Visible = False
-        '
         'TXTMTRS
         '
         Me.TXTMTRS.BackColor = System.Drawing.Color.LemonChiffon
@@ -605,54 +551,6 @@ Partial Class YarnJobOrder
         Me.TXTPICKS.TabIndex = 7
         Me.TXTPICKS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TXTTOTALWEFTBE
-        '
-        Me.TXTTOTALWEFTBE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTBE.Location = New System.Drawing.Point(690, 161)
-        Me.TXTTOTALWEFTBE.Name = "TXTTOTALWEFTBE"
-        Me.TXTTOTALWEFTBE.ReadOnly = True
-        Me.TXTTOTALWEFTBE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTTOTALWEFTBE.TabIndex = 897
-        Me.TXTTOTALWEFTBE.TabStop = False
-        Me.TXTTOTALWEFTBE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTBE.Visible = False
-        '
-        'TXTTOTALWEFTPE
-        '
-        Me.TXTTOTALWEFTPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTPE.Location = New System.Drawing.Point(640, 161)
-        Me.TXTTOTALWEFTPE.Name = "TXTTOTALWEFTPE"
-        Me.TXTTOTALWEFTPE.ReadOnly = True
-        Me.TXTTOTALWEFTPE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTTOTALWEFTPE.TabIndex = 896
-        Me.TXTTOTALWEFTPE.TabStop = False
-        Me.TXTTOTALWEFTPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTPE.Visible = False
-        '
-        'TXTTOTALWEFTWT
-        '
-        Me.TXTTOTALWEFTWT.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTWT.Location = New System.Drawing.Point(800, 161)
-        Me.TXTTOTALWEFTWT.Name = "TXTTOTALWEFTWT"
-        Me.TXTTOTALWEFTWT.ReadOnly = True
-        Me.TXTTOTALWEFTWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTWT.TabIndex = 895
-        Me.TXTTOTALWEFTWT.TabStop = False
-        Me.TXTTOTALWEFTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTWT.Visible = False
-        '
-        'TXTTOTALWEFTTE
-        '
-        Me.TXTTOTALWEFTTE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTTE.Location = New System.Drawing.Point(740, 161)
-        Me.TXTTOTALWEFTTE.Name = "TXTTOTALWEFTTE"
-        Me.TXTTOTALWEFTTE.ReadOnly = True
-        Me.TXTTOTALWEFTTE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTTE.TabIndex = 894
-        Me.TXTTOTALWEFTTE.TabStop = False
-        Me.TXTTOTALWEFTTE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTTE.Visible = False
-        '
         'TXTREEDSPACE
         '
         Me.TXTREEDSPACE.BackColor = System.Drawing.Color.White
@@ -661,58 +559,6 @@ Partial Class YarnJobOrder
         Me.TXTREEDSPACE.Size = New System.Drawing.Size(70, 23)
         Me.TXTREEDSPACE.TabIndex = 8
         Me.TXTREEDSPACE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTWEFTCOST
-        '
-        Me.TXTWEFTCOST.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTCOST.Location = New System.Drawing.Point(815, 114)
-        Me.TXTWEFTCOST.Name = "TXTWEFTCOST"
-        Me.TXTWEFTCOST.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTCOST.TabIndex = 10
-        Me.TXTWEFTCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTCOST.Visible = False
-        '
-        'TXTWEFTRATE
-        '
-        Me.TXTWEFTRATE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTRATE.Location = New System.Drawing.Point(755, 114)
-        Me.TXTWEFTRATE.Name = "TXTWEFTRATE"
-        Me.TXTWEFTRATE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTRATE.TabIndex = 9
-        Me.TXTWEFTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTRATE.Visible = False
-        '
-        'TXTWEFTCONS
-        '
-        Me.TXTWEFTCONS.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTCONS.Location = New System.Drawing.Point(695, 114)
-        Me.TXTWEFTCONS.Name = "TXTWEFTCONS"
-        Me.TXTWEFTCONS.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTCONS.TabIndex = 8
-        Me.TXTWEFTCONS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTCONS.Visible = False
-        '
-        'TXTWEFTBE
-        '
-        Me.TXTWEFTBE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTBE.Location = New System.Drawing.Point(705, 71)
-        Me.TXTWEFTBE.Name = "TXTWEFTBE"
-        Me.TXTWEFTBE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTWEFTBE.TabIndex = 5
-        Me.TXTWEFTBE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTBE.Visible = False
-        '
-        'TXTWEFTPE
-        '
-        Me.TXTWEFTPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTWEFTPE.Location = New System.Drawing.Point(655, 71)
-        Me.TXTWEFTPE.Name = "TXTWEFTPE"
-        Me.TXTWEFTPE.ReadOnly = True
-        Me.TXTWEFTPE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTWEFTPE.TabIndex = 4
-        Me.TXTWEFTPE.TabStop = False
-        Me.TXTWEFTPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTPE.Visible = False
         '
         'TXTREFNO
         '
@@ -735,42 +581,6 @@ Partial Class YarnJobOrder
         Me.CMBITEMNAME.Name = "CMBITEMNAME"
         Me.CMBITEMNAME.Size = New System.Drawing.Size(150, 23)
         Me.CMBITEMNAME.TabIndex = 1
-        '
-        'TXTWEFTWT
-        '
-        Me.TXTWEFTWT.BackColor = System.Drawing.Color.Linen
-        Me.TXTWEFTWT.Location = New System.Drawing.Point(636, 114)
-        Me.TXTWEFTWT.Name = "TXTWEFTWT"
-        Me.TXTWEFTWT.ReadOnly = True
-        Me.TXTWEFTWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTWT.TabIndex = 7
-        Me.TXTWEFTWT.TabStop = False
-        Me.TXTWEFTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTWT.Visible = False
-        '
-        'TXTWEFTTE
-        '
-        Me.TXTWEFTTE.BackColor = System.Drawing.Color.Linen
-        Me.TXTWEFTTE.Location = New System.Drawing.Point(755, 71)
-        Me.TXTWEFTTE.Name = "TXTWEFTTE"
-        Me.TXTWEFTTE.ReadOnly = True
-        Me.TXTWEFTTE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTTE.TabIndex = 6
-        Me.TXTWEFTTE.TabStop = False
-        Me.TXTWEFTTE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTTE.Visible = False
-        '
-        'Label51
-        '
-        Me.Label51.AutoSize = True
-        Me.Label51.BackColor = System.Drawing.Color.Transparent
-        Me.Label51.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label51.Location = New System.Drawing.Point(1005, 165)
-        Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(34, 15)
-        Me.Label51.TabIndex = 886
-        Me.Label51.Text = "Total"
-        Me.Label51.Visible = False
         '
         'Label4
         '
@@ -1107,19 +917,6 @@ Partial Class YarnJobOrder
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'CMBSHADE
-        '
-        Me.CMBSHADE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSHADE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSHADE.BackColor = System.Drawing.SystemColors.Window
-        Me.CMBSHADE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBSHADE.FormattingEnabled = True
-        Me.CMBSHADE.Location = New System.Drawing.Point(284, 5)
-        Me.CMBSHADE.MaxDropDownItems = 14
-        Me.CMBSHADE.Name = "CMBSHADE"
-        Me.CMBSHADE.Size = New System.Drawing.Size(120, 23)
-        Me.CMBSHADE.TabIndex = 901
-        '
         'YarnJobOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1187,21 +984,6 @@ Partial Class YarnJobOrder
     Friend WithEvents TXTREED As TextBox
     Friend WithEvents TABCONTROLDETAILS As TabControl
     Friend WithEvents TBWEFT As TabPage
-    Friend WithEvents TXTTOTALWEFTCOST As TextBox
-    Friend WithEvents TXTTOTALWEFTRATE As TextBox
-    Friend WithEvents TXTTOTALWEFTCONS As TextBox
-    Friend WithEvents TXTTOTALWEFTBE As TextBox
-    Friend WithEvents TXTTOTALWEFTPE As TextBox
-    Friend WithEvents TXTTOTALWEFTWT As TextBox
-    Friend WithEvents TXTTOTALWEFTTE As TextBox
-    Friend WithEvents TXTWEFTCOST As TextBox
-    Friend WithEvents TXTWEFTRATE As TextBox
-    Friend WithEvents TXTWEFTCONS As TextBox
-    Friend WithEvents TXTWEFTBE As TextBox
-    Friend WithEvents TXTWEFTPE As TextBox
-    Friend WithEvents TXTWEFTWT As TextBox
-    Friend WithEvents TXTWEFTTE As TextBox
-    Friend WithEvents Label51 As Label
     Friend WithEvents Ep As ErrorProvider
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents GRIDBEAM As DataGridView

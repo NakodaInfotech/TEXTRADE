@@ -47,13 +47,7 @@ Public Class YarnJobOrder
         lbllocked.Visible = False
         PBlock.Visible = False
 
-        TXTWEFTPE.Clear()
-        TXTWEFTBE.Clear()
-        TXTWEFTTE.Clear()
-        TXTWEFTWT.Clear()
-        TXTWEFTCONS.Clear()
-        TXTWEFTRATE.Clear()
-        TXTWEFTCOST.Clear()
+
         CMBDESIGN.Text = ""
 
     End Sub
