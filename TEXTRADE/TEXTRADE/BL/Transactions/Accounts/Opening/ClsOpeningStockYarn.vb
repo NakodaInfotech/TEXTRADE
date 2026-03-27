@@ -83,9 +83,9 @@ Public Class ClsOpeningStockYarn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
@@ -167,9 +167,9 @@ Public Class ClsOpeningStockYarn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PER", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMOUNT", alParaval(I)))
                 I = I + 1
