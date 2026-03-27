@@ -25,7 +25,7 @@ Public Class YarnLoomEfficiencyDetails
 
     Private Sub JobOrderDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN JOBORDER'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN LOOMEFFICIENCY'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -45,12 +45,12 @@ Public Class YarnLoomEfficiencyDetails
 
     Sub FILLGRID()
         Try
-            Dim OBJSTORE As New ClsJobOrder
+            Dim OBJSTORE As New ClsYarnLoomEfficiency
             OBJSTORE.alParaval.Add(0)
             OBJSTORE.alParaval.Add(YearId)
             'Dim DT As DataTable = OBJSTORE.SelectYarnJob
             Dim objclsCMST As New ClsCommonMaster
-            Dim dt As DataTable = objclsCMST.search(" CAST(0 AS BIT) AS CHK, JOBORDER_DESC.JOB_NO AS JOBNO, ISNULL(JOBORDER_DESC.JOB_REFNO, '') AS REFNO,ISNULL(COLORMASTER.COLOR_name, '')AS COLOR, ISNULL(JOBORDER.JOB_TOTALMTRS, 0) AS TOTALMTRS,  ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, JOBORDER.JOB_DATE AS DATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(JOBORDER_DESC.JOB_REED, 0) AS REED, ISNULL(JOBORDER_DESC.JOB_REEDSPACE, 0) AS REEDSPACE, ISNULL(JOBORDER_DESC.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER_DESC.JOB_ENDS, 0) AS TOTALENDS,ISNULL(JOBORDER.JOB_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(JOBORDER_DESC.JOB_OUTMTRS, 0) AS OUTMTRS,ISNULL(JOBORDER_DESC.JOB_DONE,0) AS DONE, ISNULL(JOBORDER.JOB_REMARKS,'') AS REMARKS  ", "", " JOBORDER INNER JOIN JOBORDER_DESC ON JOBORDER.JOB_NO = JOBORDER_DESC.JOB_NO LEFT OUTER JOIN LEDGERS ON JOBORDER.JOB_YEARID = LEDGERS.Acc_yearid AND JOBORDER.JOB_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER_DESC.JOB_YEARID = ITEMMASTER.item_yearid AND JOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON JOBORDER_DESC.JOB_YEARID = COLORMASTER.COLOR_yearid AND JOBORDER_DESC.JOB_SHADEID = COLORMASTER.COLOR_id   ", " AND  (JOBORDER.JOB_YEARID  = '" & YearId & "') ORDER BY JOBNO")
+            Dim dt As DataTable = objclsCMST.search(" CAST(0 AS BIT) AS CHK, ISNULL(YARNLOOMEFFICIENCY.YLE_no, 0) AS YLENO, YARNLOOMEFFICIENCY.YLE_date AS DATE, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(CONTRACTMASTER.CONTRACT_NAME, '') AS ROUNDER, ISNULL(YARNLOOMEFFICIENCY.YLE_TOTALRECMTRS, 0) AS TOTALRECMTRS, ISNULL(YARNLOOMEFFICIENCY.YLE_TOTALWEFT, 0) AS TOTALWEFT, ISNULL(YARNLOOMEFFICIENCY.YLE_remarks, '') AS REMARKS, ISNULL(LOOMMASTER_DESC.LOOM_NO, '') AS LOOMNO, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS YARNQUALITY, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_GRIDSRNO, 0) AS GRIDSRNO, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_BEAMNO, 0) AS BEAMNO, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_RPM, 0) AS RPM, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_PICKS, 0) AS PICKS, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_RECMTRS, 0) AS RECMTRS, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_WEFT, 0) AS WEFT, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_WARP, 0) AS WARP, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_EFFPER, 0) AS EFFPER, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_AVGPICK, 0) AS AVGPICK, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_GRIDREMARKS, '') AS GRIDREMARKS, ISNULL(YARNLOOMEFFICIENCY_DESC.YLE_DONE, 0) AS DONE  ", "", " YARNLOOMEFFICIENCY INNER JOIN YARNLOOMEFFICIENCY_DESC ON YARNLOOMEFFICIENCY.YLE_no = YARNLOOMEFFICIENCY_DESC.YLE_no AND YARNLOOMEFFICIENCY.YLE_yearid = YARNLOOMEFFICIENCY_DESC.YLE_yearid LEFT OUTER JOIN YARNQUALITYMASTER ON YARNLOOMEFFICIENCY_DESC.YLE_YARNQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN LOOMMASTER_DESC ON YARNLOOMEFFICIENCY_DESC.YLE_LOOMNO = LOOMMASTER_DESC.LOOM_NO LEFT OUTER JOIN CONTRACTMASTER ON YARNLOOMEFFICIENCY.YLE_ROUNDERID = CONTRACTMASTER.CONTRACT_ID LEFT OUTER JOIN LEDGERS ON YARNLOOMEFFICIENCY.YLE_ledgerid = LEDGERS.Acc_id  ", " AND  (YARNLOOMEFFICIENCY.YLE_YEARID  = '" & YearId & "') ORDER BY YLENO")
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -69,10 +69,10 @@ Public Class YarnLoomEfficiencyDetails
             End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim OBJSTORES As New YarnJobOrder
+                Dim OBJSTORES As New YarnLoomEfficiency
                 OBJSTORES.MdiParent = MDIMain
                 OBJSTORES.EDIT = editval
-                OBJSTORES.TEMPJONO = INWARDNO
+                OBJSTORES.TEMPYLENO = INWARDNO
                 OBJSTORES.Show()
             End If
         Catch ex As Exception
@@ -82,7 +82,7 @@ Public Class YarnLoomEfficiencyDetails
 
     Private Sub gridpayment_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
+            showform(True, gridbill.GetFocusedRowCellValue("YLENO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -90,7 +90,7 @@ Public Class YarnLoomEfficiencyDetails
 
     Private Sub CMDEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEDIT.Click
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
+            showform(True, gridbill.GetFocusedRowCellValue("YLENO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -110,11 +110,11 @@ Public Class YarnLoomEfficiencyDetails
             Dim PATH As String = Application.StartupPath & "\Stores Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
-            opti.SheetName = "Yarn Job Order Details"
+            opti.SheetName = "Yarn Loom Efficiency Details"
             gridbill.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Yarn Job Order Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+            EXCELCMPHEADER(PATH, "Yarn Loom Efficiency Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
         Catch ex As Exception
-            MsgBox("Stores Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+            MsgBox("Loom Efficiency Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
 
