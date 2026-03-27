@@ -1321,6 +1321,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.YARNLOOMEFFICIENCY_EDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -2826,13 +2827,13 @@ Partial Class MDIMain
         'TASKADD
         '
         Me.TASKADD.Name = "TASKADD"
-        Me.TASKADD.Size = New System.Drawing.Size(180, 22)
+        Me.TASKADD.Size = New System.Drawing.Size(168, 22)
         Me.TASKADD.Text = "Add New Entry"
         '
         'TASKEDIT
         '
         Me.TASKEDIT.Name = "TASKEDIT"
-        Me.TASKEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.TASKEDIT.Size = New System.Drawing.Size(168, 22)
         Me.TASKEDIT.Text = "Edit Existing Entry"
         '
         'YarnRelatedMasterToolStripMenuItem
@@ -7901,7 +7902,7 @@ Partial Class MDIMain
         '
         'YARNLOOMEFFICIENCY_MASTER
         '
-        Me.YARNLOOMEFFICIENCY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNLOOMEFFICIENCY_ADD})
+        Me.YARNLOOMEFFICIENCY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNLOOMEFFICIENCY_ADD, Me.YARNLOOMEFFICIENCY_EDIT})
         Me.YARNLOOMEFFICIENCY_MASTER.Name = "YARNLOOMEFFICIENCY_MASTER"
         Me.YARNLOOMEFFICIENCY_MASTER.Size = New System.Drawing.Size(221, 22)
         Me.YARNLOOMEFFICIENCY_MASTER.Text = "Yarn Loom Efficiency"
@@ -7909,7 +7910,7 @@ Partial Class MDIMain
         'YARNLOOMEFFICIENCY_ADD
         '
         Me.YARNLOOMEFFICIENCY_ADD.Name = "YARNLOOMEFFICIENCY_ADD"
-        Me.YARNLOOMEFFICIENCY_ADD.Size = New System.Drawing.Size(151, 22)
+        Me.YARNLOOMEFFICIENCY_ADD.Size = New System.Drawing.Size(180, 22)
         Me.YARNLOOMEFFICIENCY_ADD.Text = "Add New Entry"
         '
         'AGENCYMODULE_MENU
@@ -9632,6 +9633,12 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
+        'YARNLOOMEFFICIENCY_EDIT
+        '
+        Me.YARNLOOMEFFICIENCY_EDIT.Name = "YARNLOOMEFFICIENCY_EDIT"
+        Me.YARNLOOMEFFICIENCY_EDIT.Size = New System.Drawing.Size(180, 22)
+        Me.YARNLOOMEFFICIENCY_EDIT.Text = "Edit Existing Entry"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10956,4 +10963,5 @@ Partial Class MDIMain
     Friend WithEvents EditExistingBeamUploadEntryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents YARNLOOMEFFICIENCY_MASTER As ToolStripMenuItem
     Friend WithEvents YARNLOOMEFFICIENCY_ADD As ToolStripMenuItem
+    Friend WithEvents YARNLOOMEFFICIENCY_EDIT As ToolStripMenuItem
 End Class
