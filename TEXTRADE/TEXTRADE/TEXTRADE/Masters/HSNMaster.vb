@@ -207,6 +207,9 @@ Public Class HSNMaster
 
             'IF WE MAKE ANY CHANGES IN SAVE CODE THEN DO THE SAME CHANGS IN THE FOLLOWING FORMS
             '1) UPLOADITEM ON MDIMAIN
+            '2) UPLOADSTOCK ON MDIMAIN
+            '3) UPLOADYARNSTOCK ON MDIMAIN
+
 
             EP.Clear()
             If Not errorvalid() Then
