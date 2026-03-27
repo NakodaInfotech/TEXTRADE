@@ -50,7 +50,6 @@ Partial Class YarnJobOrder
         Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
         Me.TXTDESCRIPTION = New System.Windows.Forms.TextBox()
         Me.TXTOTHERITEMNAME = New System.Windows.Forms.TextBox()
-        Me.TXTSHADE = New System.Windows.Forms.TextBox()
         Me.TXTSRNO = New System.Windows.Forms.TextBox()
         Me.GRIDBEAM = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -121,6 +120,7 @@ Partial Class YarnJobOrder
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.CMBSHADE = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
         Me.TBWEFT.SuspendLayout()
@@ -250,10 +250,10 @@ Partial Class YarnJobOrder
         '
         Me.TBWEFT.AutoScroll = True
         Me.TBWEFT.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBWEFT.Controls.Add(Me.CMBSHADE)
         Me.TBWEFT.Controls.Add(Me.CMBDESIGN)
         Me.TBWEFT.Controls.Add(Me.TXTDESCRIPTION)
         Me.TBWEFT.Controls.Add(Me.TXTOTHERITEMNAME)
-        Me.TBWEFT.Controls.Add(Me.TXTSHADE)
         Me.TBWEFT.Controls.Add(Me.TXTSRNO)
         Me.TBWEFT.Controls.Add(Me.GRIDBEAM)
         Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTCOST)
@@ -297,7 +297,6 @@ Partial Class YarnJobOrder
         Me.CMBDESIGN.Name = "CMBDESIGN"
         Me.CMBDESIGN.Size = New System.Drawing.Size(101, 23)
         Me.CMBDESIGN.TabIndex = 2
-        Me.CMBDESIGN.TabStop = False
         '
         'TXTDESCRIPTION
         '
@@ -309,27 +308,14 @@ Partial Class YarnJobOrder
         Me.TXTDESCRIPTION.Name = "TXTDESCRIPTION"
         Me.TXTDESCRIPTION.Size = New System.Drawing.Size(170, 23)
         Me.TXTDESCRIPTION.TabIndex = 11
-        Me.TXTDESCRIPTION.TabStop = False
         '
         'TXTOTHERITEMNAME
         '
-        Me.TXTOTHERITEMNAME.BackColor = System.Drawing.Color.Linen
+        Me.TXTOTHERITEMNAME.BackColor = System.Drawing.Color.White
         Me.TXTOTHERITEMNAME.Location = New System.Drawing.Point(404, 5)
         Me.TXTOTHERITEMNAME.Name = "TXTOTHERITEMNAME"
-        Me.TXTOTHERITEMNAME.ReadOnly = True
         Me.TXTOTHERITEMNAME.Size = New System.Drawing.Size(150, 23)
         Me.TXTOTHERITEMNAME.TabIndex = 4
-        Me.TXTOTHERITEMNAME.TabStop = False
-        '
-        'TXTSHADE
-        '
-        Me.TXTSHADE.BackColor = System.Drawing.Color.Linen
-        Me.TXTSHADE.Location = New System.Drawing.Point(284, 5)
-        Me.TXTSHADE.Name = "TXTSHADE"
-        Me.TXTSHADE.ReadOnly = True
-        Me.TXTSHADE.Size = New System.Drawing.Size(120, 23)
-        Me.TXTSHADE.TabIndex = 3
-        Me.TXTSHADE.TabStop = False
         '
         'TXTSRNO
         '
@@ -559,25 +545,21 @@ Partial Class YarnJobOrder
         '
         'TXTREED
         '
-        Me.TXTREED.BackColor = System.Drawing.Color.Linen
+        Me.TXTREED.BackColor = System.Drawing.Color.White
         Me.TXTREED.Location = New System.Drawing.Point(674, 5)
         Me.TXTREED.MaxLength = 50
         Me.TXTREED.Name = "TXTREED"
-        Me.TXTREED.ReadOnly = True
         Me.TXTREED.Size = New System.Drawing.Size(70, 23)
         Me.TXTREED.TabIndex = 6
-        Me.TXTREED.TabStop = False
         Me.TXTREED.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTTOTALENDS
         '
-        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.Linen
+        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.White
         Me.TXTTOTALENDS.Location = New System.Drawing.Point(884, 5)
         Me.TXTTOTALENDS.Name = "TXTTOTALENDS"
-        Me.TXTTOTALENDS.ReadOnly = True
         Me.TXTTOTALENDS.Size = New System.Drawing.Size(80, 23)
         Me.TXTTOTALENDS.TabIndex = 9
-        Me.TXTTOTALENDS.TabStop = False
         Me.TXTTOTALENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTTOTALWEFTRATE
@@ -612,18 +594,15 @@ Partial Class YarnJobOrder
         Me.TXTMTRS.Name = "TXTMTRS"
         Me.TXTMTRS.Size = New System.Drawing.Size(80, 23)
         Me.TXTMTRS.TabIndex = 10
-        Me.TXTMTRS.TabStop = False
         Me.TXTMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTPICKS
         '
-        Me.TXTPICKS.BackColor = System.Drawing.Color.Linen
+        Me.TXTPICKS.BackColor = System.Drawing.Color.White
         Me.TXTPICKS.Location = New System.Drawing.Point(744, 5)
         Me.TXTPICKS.Name = "TXTPICKS"
-        Me.TXTPICKS.ReadOnly = True
         Me.TXTPICKS.Size = New System.Drawing.Size(70, 23)
         Me.TXTPICKS.TabIndex = 7
-        Me.TXTPICKS.TabStop = False
         Me.TXTPICKS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTTOTALWEFTBE
@@ -676,13 +655,11 @@ Partial Class YarnJobOrder
         '
         'TXTREEDSPACE
         '
-        Me.TXTREEDSPACE.BackColor = System.Drawing.Color.Linen
+        Me.TXTREEDSPACE.BackColor = System.Drawing.Color.White
         Me.TXTREEDSPACE.Location = New System.Drawing.Point(814, 5)
         Me.TXTREEDSPACE.Name = "TXTREEDSPACE"
-        Me.TXTREEDSPACE.ReadOnly = True
         Me.TXTREEDSPACE.Size = New System.Drawing.Size(70, 23)
         Me.TXTREEDSPACE.TabIndex = 8
-        Me.TXTREEDSPACE.TabStop = False
         Me.TXTREEDSPACE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTWEFTCOST
@@ -747,7 +724,6 @@ Partial Class YarnJobOrder
         Me.TXTREFNO.Name = "TXTREFNO"
         Me.TXTREFNO.Size = New System.Drawing.Size(120, 23)
         Me.TXTREFNO.TabIndex = 5
-        Me.TXTREFNO.TabStop = False
         '
         'CMBITEMNAME
         '
@@ -759,7 +735,6 @@ Partial Class YarnJobOrder
         Me.CMBITEMNAME.Name = "CMBITEMNAME"
         Me.CMBITEMNAME.Size = New System.Drawing.Size(150, 23)
         Me.CMBITEMNAME.TabIndex = 1
-        Me.CMBITEMNAME.TabStop = False
         '
         'TXTWEFTWT
         '
@@ -1132,6 +1107,19 @@ Partial Class YarnJobOrder
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'CMBSHADE
+        '
+        Me.CMBSHADE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSHADE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSHADE.BackColor = System.Drawing.SystemColors.Window
+        Me.CMBSHADE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSHADE.FormattingEnabled = True
+        Me.CMBSHADE.Location = New System.Drawing.Point(284, 5)
+        Me.CMBSHADE.MaxDropDownItems = 14
+        Me.CMBSHADE.Name = "CMBSHADE"
+        Me.CMBSHADE.Size = New System.Drawing.Size(120, 23)
+        Me.CMBSHADE.TabIndex = 901
+        '
         'YarnJobOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1220,7 +1208,6 @@ Partial Class YarnJobOrder
     Friend WithEvents TXTSRNO As TextBox
     Friend WithEvents TXTDESCRIPTION As TextBox
     Friend WithEvents TXTOTHERITEMNAME As TextBox
-    Friend WithEvents TXTSHADE As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents TXTPONO As TextBox
     Friend WithEvents Label2 As Label
@@ -1243,4 +1230,5 @@ Partial Class YarnJobOrder
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
     Friend WithEvents GCLOSED As DataGridViewTextBoxColumn
     Friend WithEvents CMBDESIGN As ComboBox
+    Friend WithEvents CMBSHADE As ComboBox
 End Class

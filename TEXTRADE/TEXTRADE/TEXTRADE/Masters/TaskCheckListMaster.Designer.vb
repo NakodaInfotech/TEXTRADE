@@ -23,13 +23,14 @@ Partial Class TaskCheckListMaster
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TaskCheckListMaster))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMBTASKTYPE = New System.Windows.Forms.ComboBox()
         Me.TXTTRANSADD = New System.Windows.Forms.TextBox()
         Me.PBLOCK = New System.Windows.Forms.PictureBox()
         Me.lbllocked = New System.Windows.Forms.Label()
@@ -60,7 +61,6 @@ Partial Class TaskCheckListMaster
         Me.cmdclear = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.CMBTASKTYPE = New System.Windows.Forms.ComboBox()
         Me.DTTASKDATE = New System.Windows.Forms.MaskedTextBox()
         Me.TXTTASKNO = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -81,6 +81,7 @@ Partial Class TaskCheckListMaster
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMBTASKTYPE)
         Me.BlendPanel1.Controls.Add(Me.TXTTRANSADD)
         Me.BlendPanel1.Controls.Add(Me.PBLOCK)
         Me.BlendPanel1.Controls.Add(Me.lbllocked)
@@ -94,7 +95,6 @@ Partial Class TaskCheckListMaster
         Me.BlendPanel1.Controls.Add(Me.cmdclear)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.Label6)
-        Me.BlendPanel1.Controls.Add(Me.CMBTASKTYPE)
         Me.BlendPanel1.Controls.Add(Me.DTTASKDATE)
         Me.BlendPanel1.Controls.Add(Me.TXTTASKNO)
         Me.BlendPanel1.Controls.Add(Me.Label12)
@@ -104,8 +104,22 @@ Partial Class TaskCheckListMaster
         Me.BlendPanel1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(797, 538)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1009, 538)
         Me.BlendPanel1.TabIndex = 2
+        '
+        'CMBTASKTYPE
+        '
+        Me.CMBTASKTYPE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBTASKTYPE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBTASKTYPE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBTASKTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBTASKTYPE.FormattingEnabled = True
+        Me.CMBTASKTYPE.Items.AddRange(New Object() {"", "Daily", "Weekly", "Monthly"})
+        Me.CMBTASKTYPE.Location = New System.Drawing.Point(90, 44)
+        Me.CMBTASKTYPE.MaxDropDownItems = 14
+        Me.CMBTASKTYPE.Name = "CMBTASKTYPE"
+        Me.CMBTASKTYPE.Size = New System.Drawing.Size(159, 22)
+        Me.CMBTASKTYPE.TabIndex = 930
         '
         'TXTTRANSADD
         '
@@ -149,7 +163,7 @@ Partial Class TaskCheckListMaster
         Me.TabControl1.Location = New System.Drawing.Point(12, 125)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(762, 288)
+        Me.TabControl1.Size = New System.Drawing.Size(985, 288)
         Me.TabControl1.TabIndex = 5
         '
         'TBTASK
@@ -162,7 +176,7 @@ Partial Class TaskCheckListMaster
         Me.TBTASK.Location = New System.Drawing.Point(4, 24)
         Me.TBTASK.Name = "TBTASK"
         Me.TBTASK.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBTASK.Size = New System.Drawing.Size(754, 260)
+        Me.TBTASK.Size = New System.Drawing.Size(977, 260)
         Me.TBTASK.TabIndex = 1
         Me.TBTASK.Text = "Task Details"
         '
@@ -171,7 +185,7 @@ Partial Class TaskCheckListMaster
         Me.LBLTOTALTASK.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALTASK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALTASK.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALTASK.Location = New System.Drawing.Point(280, 223)
+        Me.LBLTOTALTASK.Location = New System.Drawing.Point(280, 240)
         Me.LBLTOTALTASK.Name = "LBLTOTALTASK"
         Me.LBLTOTALTASK.Size = New System.Drawing.Size(78, 15)
         Me.LBLTOTALTASK.TabIndex = 855
@@ -184,7 +198,7 @@ Partial Class TaskCheckListMaster
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(241, 223)
+        Me.Label4.Location = New System.Drawing.Point(241, 240)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(33, 15)
         Me.Label4.TabIndex = 854
@@ -196,28 +210,28 @@ Partial Class TaskCheckListMaster
         Me.GRIDTASK.AllowUserToDeleteRows = False
         Me.GRIDTASK.AllowUserToResizeColumns = False
         Me.GRIDTASK.AllowUserToResizeRows = False
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDTASK.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDTASK.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDTASK.BackgroundColor = System.Drawing.Color.White
         Me.GRIDTASK.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDTASK.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDTASK.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDTASK.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDTASK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDTASK.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GCHKTASK, Me.GTASK, Me.GREMARKS})
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDTASK.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDTASK.DefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDTASK.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDTASK.Location = New System.Drawing.Point(5, 4)
         Me.GRIDTASK.MultiSelect = False
@@ -225,14 +239,14 @@ Partial Class TaskCheckListMaster
         Me.GRIDTASK.RowHeadersVisible = False
         Me.GRIDTASK.RowHeadersWidth = 30
         Me.GRIDTASK.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDTASK.RowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDTASK.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.GRIDTASK.RowTemplate.Height = 20
         Me.GRIDTASK.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDTASK.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDTASK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDTASK.Size = New System.Drawing.Size(794, 216)
+        Me.GRIDTASK.Size = New System.Drawing.Size(965, 234)
         Me.GRIDTASK.TabIndex = 11
         Me.GRIDTASK.TabStop = False
         '
@@ -258,18 +272,18 @@ Partial Class TaskCheckListMaster
         Me.GTASK.ReadOnly = True
         Me.GTASK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GTASK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GTASK.Width = 400
+        Me.GTASK.Width = 500
         '
         'GREMARKS
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GREMARKS.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GREMARKS.DefaultCellStyle = DataGridViewCellStyle3
         Me.GREMARKS.HeaderText = "Remarks"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.ReadOnly = True
         Me.GREMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GREMARKS.Width = 200
+        Me.GREMARKS.Width = 300
         '
         'TXTADD
         '
@@ -310,7 +324,7 @@ Partial Class TaskCheckListMaster
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.PrintToolStripButton, Me.tooldelete, Me.toolStripSeparator, Me.toolprevious, Me.toolnext, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(797, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1009, 25)
         Me.ToolStrip1.TabIndex = 848
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -450,24 +464,11 @@ Partial Class TaskCheckListMaster
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(31, 48)
+        Me.Label6.Location = New System.Drawing.Point(29, 47)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(58, 15)
         Me.Label6.TabIndex = 838
         Me.Label6.Text = "Task Type"
-        '
-        'CMBTASKTYPE
-        '
-        Me.CMBTASKTYPE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBTASKTYPE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBTASKTYPE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBTASKTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBTASKTYPE.FormattingEnabled = True
-        Me.CMBTASKTYPE.Location = New System.Drawing.Point(92, 45)
-        Me.CMBTASKTYPE.MaxDropDownItems = 14
-        Me.CMBTASKTYPE.Name = "CMBTASKTYPE"
-        Me.CMBTASKTYPE.Size = New System.Drawing.Size(246, 23)
-        Me.CMBTASKTYPE.TabIndex = 3
         '
         'DTTASKDATE
         '
@@ -475,7 +476,7 @@ Partial Class TaskCheckListMaster
         Me.DTTASKDATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.DTTASKDATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DTTASKDATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.DTTASKDATE.Location = New System.Drawing.Point(618, 69)
+        Me.DTTASKDATE.Location = New System.Drawing.Point(915, 69)
         Me.DTTASKDATE.Mask = "00/00/0000"
         Me.DTTASKDATE.Name = "DTTASKDATE"
         Me.DTTASKDATE.Size = New System.Drawing.Size(82, 23)
@@ -487,7 +488,7 @@ Partial Class TaskCheckListMaster
         '
         Me.TXTTASKNO.BackColor = System.Drawing.Color.Linen
         Me.TXTTASKNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTASKNO.Location = New System.Drawing.Point(618, 40)
+        Me.TXTTASKNO.Location = New System.Drawing.Point(915, 40)
         Me.TXTTASKNO.Name = "TXTTASKNO"
         Me.TXTTASKNO.ReadOnly = True
         Me.TXTTASKNO.Size = New System.Drawing.Size(82, 23)
@@ -501,7 +502,7 @@ Partial Class TaskCheckListMaster
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(578, 44)
+        Me.Label12.Location = New System.Drawing.Point(875, 44)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(38, 15)
         Me.Label12.TabIndex = 834
@@ -513,7 +514,7 @@ Partial Class TaskCheckListMaster
         Me.lblgrndate.BackColor = System.Drawing.Color.Transparent
         Me.lblgrndate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblgrndate.ForeColor = System.Drawing.Color.Black
-        Me.lblgrndate.Location = New System.Drawing.Point(584, 73)
+        Me.lblgrndate.Location = New System.Drawing.Point(881, 73)
         Me.lblgrndate.Name = "lblgrndate"
         Me.lblgrndate.Size = New System.Drawing.Size(32, 15)
         Me.lblgrndate.TabIndex = 832
@@ -541,7 +542,7 @@ Partial Class TaskCheckListMaster
         'TaskCheckListMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(797, 538)
+        Me.ClientSize = New System.Drawing.Size(1009, 538)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.KeyPreview = True
@@ -588,7 +589,6 @@ Partial Class TaskCheckListMaster
     Friend WithEvents cmdclear As Button
     Friend WithEvents cmdok As Button
     Friend WithEvents Label6 As Label
-    Friend WithEvents CMBTASKTYPE As ComboBox
     Friend WithEvents DTTASKDATE As MaskedTextBox
     Friend WithEvents TXTTASKNO As TextBox
     Friend WithEvents Label12 As Label
@@ -599,9 +599,10 @@ Partial Class TaskCheckListMaster
     Friend WithEvents LBLTOTALTASK As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents GRIDTASK As DataGridView
+    Friend WithEvents EP As ErrorProvider
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GCHKTASK As DataGridViewCheckBoxColumn
     Friend WithEvents GTASK As DataGridViewTextBoxColumn
     Friend WithEvents GREMARKS As DataGridViewTextBoxColumn
-    Friend WithEvents EP As ErrorProvider
+    Friend WithEvents CMBTASKTYPE As ComboBox
 End Class
