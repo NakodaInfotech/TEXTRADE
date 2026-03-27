@@ -1,0 +1,3 @@
+﻿Public Class YarnLoomEfficiencyDetails
+
+End Class
