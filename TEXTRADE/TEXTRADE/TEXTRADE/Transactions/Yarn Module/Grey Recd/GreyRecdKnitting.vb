@@ -491,6 +491,60 @@ NEXTLINE:
 
 
 
+
+
+
+
+            Dim JOBORDERGRIDSRNO As String = ""
+            Dim JOBORDERITEMNAME As String = ""
+            Dim JOBORDERDESIGN As String = ""
+            Dim JOBORDERCOLOR As String = ""
+            Dim JOBORDERMTRS As String = ""
+            Dim JOBORDERFROMNO As String = ""
+            Dim JOBORDERFROMSRNO As String = ""
+            Dim JOBORDERFROMTYPE As String = ""
+            Dim JOBORDERGRNMTRS As String = ""
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDORDER.Rows
+                If row.Cells(0).Value <> Nothing Then
+
+                    If JOBORDERGRIDSRNO = "" Then
+                        JOBORDERGRIDSRNO = Val(row.Cells(PSRNO.Index).Value)
+                        JOBORDERITEMNAME = row.Cells(PITEMNAME.Index).Value.ToString
+                        JOBORDERDESIGN = row.Cells(PDESIGN.Index).Value.ToString
+                        JOBORDERCOLOR = row.Cells(PCOLOR.Index).Value.ToString
+                        JOBORDERMTRS = Val(row.Cells(PMTRS.Index).Value)
+                        JOBORDERFROMNO = Val(row.Cells(PFROMNO.Index).Value)
+                        JOBORDERFROMSRNO = Val(row.Cells(PFROMSRNO.Index).Value)
+                        JOBORDERFROMTYPE = row.Cells(PFROMTYPE.Index).Value.ToString
+                        JOBORDERGRNMTRS = Val(row.Cells(PGRNMTRS.Index).Value)
+                    Else
+                        JOBORDERGRIDSRNO = JOBORDERGRIDSRNO & "|" & Val(row.Cells(PSRNO.Index).Value)
+                        JOBORDERITEMNAME = JOBORDERITEMNAME & "|" & row.Cells(PITEMNAME.Index).Value.ToString
+                        JOBORDERDESIGN = JOBORDERDESIGN & "|" & row.Cells(PDESIGN.Index).Value.ToString
+                        JOBORDERCOLOR = JOBORDERCOLOR & "|" & row.Cells(PCOLOR.Index).Value.ToString
+                        JOBORDERMTRS = JOBORDERMTRS & "|" & Val(row.Cells(PMTRS.Index).Value)
+                        JOBORDERFROMNO = JOBORDERFROMNO & "|" & Val(row.Cells(PFROMNO.Index).Value)
+                        JOBORDERFROMSRNO = JOBORDERFROMSRNO & "|" & Val(row.Cells(PFROMSRNO.Index).Value)
+                        JOBORDERFROMTYPE = JOBORDERFROMTYPE & "|" & row.Cells(PFROMTYPE.Index).Value.ToString
+                        ORDERGRNMTRS = ORDERGRNMTRS & "|" & Val(row.Cells(PGRNMTRS.Index).Value)
+                    End If
+                End If
+            Next
+
+            alParaval.Add(JOBORDERGRIDSRNO)
+            alParaval.Add(JOBORDERITEMNAME)
+            alParaval.Add(JOBORDERDESIGN)
+            alParaval.Add(JOBORDERCOLOR)
+            alParaval.Add(JOBORDERMTRS)
+            alParaval.Add(JOBORDERFROMNO)
+            alParaval.Add(JOBORDERFROMSRNO)
+            alParaval.Add(JOBORDERFROMTYPE)
+            alParaval.Add(JOBORDERGRNMTRS)
+
+
+
+
             alParaval.Add(CMBDYEINGNAME.Text.Trim)
 
             alParaval.Add("") 'VEHICLENO
@@ -498,6 +552,7 @@ NEXTLINE:
             alParaval.Add("")     'TOCITY
             alParaval.Add("")     'PACKING
             alParaval.Add("")   'EWAYBILLNO
+
 
             Dim objCUTTING As New ClsGreyRecdKnitting()
             objCUTTING.alParaval = alParaval
@@ -1259,6 +1314,8 @@ NEXTLINE:
         End If
         TXTLOOMNO.Clear()
         GRIDORDER.RowCount = 0
+        GRIDJOBORDER.RowCount = 0
+
 
     End Sub
 
@@ -1431,6 +1488,21 @@ NEXTLINE:
                         Next
                     End If
                     getsrno(GRIDORDER)
+
+
+
+
+                    'JOBORDER GRID
+                    'Dim OBJCMN As New ClsCommon
+                    dttable = OBJCMN.SEARCH(" GREYRECDKNITTING_JODETAILS.GREY_GRIDSRNO AS GRIDSRNO, ITEMMASTER.item_name AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR ,ISNULL(GREYRECDKNITTING_JODETAILS.GREY_ORDERMTRS,0) AS ORDERMTRS, GREYRECDKNITTING_JODETAILS.GREY_FROMNO AS FROMNO, GREYRECDKNITTING_JODETAILS.GREY_FROMSRNO AS FROMSRNO, GREYRECDKNITTING_JODETAILS.GREY_FROMTYPE AS FROMTYPE , ISNULL(GREYRECDKNITTING_JODETAILS.GREY_MTRS,0) AS GRNMTRS  ", "", " GREYRECDKNITTING_JODETAILS INNER JOIN ITEMMASTER ON GREYRECDKNITTING_JODETAILS.GREY_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON GREYRECDKNITTING_JODETAILS.GREY_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON GREYRECDKNITTING_JODETAILS.GREY_DESIGNID = DESIGNMASTER.DESIGN_id ", " AND GREYRECDKNITTING_PODETAILS.GREY_NO = " & TEMPGREYNO & "  AND GREYRECDKNITTING_PODETAILS.GREY_YEARID = " & YearId)
+                    If dttable.Rows.Count > 0 Then
+                        For Each DTR As DataRow In dttable.Rows
+                            GRIDORDER.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME"), DTR("DESIGNNO"), DTR("COLOR"), Val(DTR("ORDERMTRS")), Val(DTR("FROMNO")), Val(DTR("FROMSRNO")), DTR("FROMTYPE"), Val(DTR("GRNMTRS")))
+                        Next
+                    End If
+                    getsrno(GRIDJOBORDER)
+
+
 
                     total()
                     GRIDGREY.FirstDisplayedScrollingRowIndex = GRIDGREY.RowCount - 1
@@ -2035,6 +2107,21 @@ LINE1:
                     Exit Sub
                 End If
 
+                If ClientName = "MMC" Then
+                    If TXTLOOMNO.Text.Trim.Length = 0 Then
+                        MsgBox("Enter Loom No", MsgBoxStyle.Critical)
+                        TXTLOOMNO.Focus()
+                        Exit Sub
+                    End If
+
+                    If Val(TXTMTRS.Text.Trim) <= 0 Then
+                        MsgBox("Enter Mtrs", MsgBoxStyle.Critical)
+                        TXTMTRS.Focus()
+                        Exit Sub
+                    End If
+
+                End If
+
                 fillgrid()
             Else
 
@@ -2074,12 +2161,17 @@ LINE1:
 
             If VALIDATEBALENO = True Then
                 TXTROLLNO.BackColor = Color.LemonChiffon
-                TXTROLLNO.ReadOnly = True
+                ' TXTROLLNO.ReadOnly = False
             End If
 
 
             If ClientName = "MMC" Then
                 CMDSELECTJO.Visible = True
+                TXTLOOMNO.BackColor = Color.LemonChiffon
+                TXTMTRS.BackColor = Color.LemonChiffon
+                TXTWT.BackColor = Color.LemonChiffon
+
+
             End If
         Catch ex As Exception
             Throw ex
