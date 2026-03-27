@@ -447,7 +447,9 @@
     <Compile Include="Masters\TaskCheckListMaster.Designer.vb">
       <DependentUpon>TaskCheckListMaster.vb</DependentUpon>
     </Compile>
-    <Compile Include="Masters\TaskCheckListMaster.vb" />
+    <Compile Include="Masters\TaskCheckListMaster.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Masters\TaskDetails.Designer.vb">
       <DependentUpon>TaskDetails.vb</DependentUpon>
     </Compile>
