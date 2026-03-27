@@ -910,4 +910,8 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTPICKS.KeyPress, TXTREEDSPACE.KeyPress, TXTTOTALENDS.KeyPress, TXTTOTALMTRS.KeyPress
+        numdotkeypress(e, sender, Me)
+    End Sub
 End Class
