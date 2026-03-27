@@ -28,15 +28,14 @@ Partial Class YarnLoomEfficiencyDetails
         Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GYARNQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRPM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRECMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWEFT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPICKS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWARP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GEFFPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -47,6 +46,8 @@ Partial Class YarnLoomEfficiencyDetails
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
+        Me.GLOOMNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAVGPICK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +86,7 @@ Partial Class YarnLoomEfficiencyDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GPICKS, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GLOOMNO, Me.GYARNQUALITY, Me.GBEAMNO, Me.GRPM, Me.GPICKS, Me.GRECMTRS, Me.GWEFT, Me.GWARP, Me.GEFFPER, Me.GAVGPICK, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -100,7 +101,7 @@ Partial Class YarnLoomEfficiencyDetails
         'GSRNO
         '
         Me.GSRNO.Caption = "Sr. No."
-        Me.GSRNO.FieldName = "JOBNO"
+        Me.GSRNO.FieldName = "YLENO"
         Me.GSRNO.Name = "GSRNO"
         Me.GSRNO.OptionsColumn.AllowEdit = False
         Me.GSRNO.Visible = True
@@ -125,105 +126,110 @@ Partial Class YarnLoomEfficiencyDetails
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 200
         '
-        'GITEMNAME
+        'GYARNQUALITY
         '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 3
-        Me.GITEMNAME.Width = 250
+        Me.GYARNQUALITY.Caption = "Yarn Quality"
+        Me.GYARNQUALITY.FieldName = "YARNQUALITY"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.OptionsColumn.AllowEdit = False
+        Me.GYARNQUALITY.Visible = True
+        Me.GYARNQUALITY.VisibleIndex = 4
+        Me.GYARNQUALITY.Width = 250
         '
-        'GDESIGNNO
+        'GBEAMNO
         '
-        Me.GDESIGNNO.Caption = "Design No"
-        Me.GDESIGNNO.FieldName = "DESIGNNO"
-        Me.GDESIGNNO.Name = "GDESIGNNO"
-        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
-        Me.GDESIGNNO.Width = 120
+        Me.GBEAMNO.Caption = "Beam No"
+        Me.GBEAMNO.FieldName = "BEAMNO"
+        Me.GBEAMNO.Name = "GBEAMNO"
+        Me.GBEAMNO.OptionsColumn.AllowEdit = False
+        Me.GBEAMNO.Visible = True
+        Me.GBEAMNO.VisibleIndex = 5
+        Me.GBEAMNO.Width = 120
         '
-        'GCOLOR
+        'GRPM
         '
-        Me.GCOLOR.Caption = "Shade"
-        Me.GCOLOR.FieldName = "COLOR"
-        Me.GCOLOR.Name = "GCOLOR"
-        Me.GCOLOR.OptionsColumn.AllowEdit = False
-        Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 4
-        Me.GCOLOR.Width = 120
+        Me.GRPM.Caption = "RPM"
+        Me.GRPM.DisplayFormat.FormatString = "0.00"
+        Me.GRPM.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GRPM.FieldName = "RPM"
+        Me.GRPM.Name = "GRPM"
+        Me.GRPM.OptionsColumn.AllowEdit = False
+        Me.GRPM.Visible = True
+        Me.GRPM.VisibleIndex = 6
+        Me.GRPM.Width = 100
         '
-        'GREFNO
+        'GRECMTRS
         '
-        Me.GREFNO.Caption = "Ref No"
-        Me.GREFNO.FieldName = "REFNO"
-        Me.GREFNO.Name = "GREFNO"
-        Me.GREFNO.OptionsColumn.AllowEdit = False
-        Me.GREFNO.Visible = True
-        Me.GREFNO.VisibleIndex = 5
-        Me.GREFNO.Width = 100
+        Me.GRECMTRS.Caption = "Rec Mtrs"
+        Me.GRECMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GRECMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GRECMTRS.FieldName = "RECMTRS"
+        Me.GRECMTRS.Name = "GRECMTRS"
+        Me.GRECMTRS.OptionsColumn.AllowEdit = False
+        Me.GRECMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GRECMTRS.Visible = True
+        Me.GRECMTRS.VisibleIndex = 7
+        Me.GRECMTRS.Width = 100
         '
-        'GREED
+        'GWEFT
         '
-        Me.GREED.Caption = "Reed"
-        Me.GREED.FieldName = "REED"
-        Me.GREED.Name = "GREED"
-        Me.GREED.OptionsColumn.AllowEdit = False
-        Me.GREED.Visible = True
-        Me.GREED.VisibleIndex = 6
-        Me.GREED.Width = 100
-        '
-        'GREEDSPACE
-        '
-        Me.GREEDSPACE.Caption = "Reed Space"
-        Me.GREEDSPACE.FieldName = "REEDSPACE"
-        Me.GREEDSPACE.Name = "GREEDSPACE"
-        Me.GREEDSPACE.OptionsColumn.AllowEdit = False
-        Me.GREEDSPACE.Visible = True
-        Me.GREEDSPACE.VisibleIndex = 7
-        Me.GREEDSPACE.Width = 100
+        Me.GWEFT.Caption = "Weft"
+        Me.GWEFT.DisplayFormat.FormatString = "0.00"
+        Me.GWEFT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GWEFT.FieldName = "WEFT"
+        Me.GWEFT.Name = "GWEFT"
+        Me.GWEFT.OptionsColumn.AllowEdit = False
+        Me.GWEFT.Visible = True
+        Me.GWEFT.VisibleIndex = 8
+        Me.GWEFT.Width = 100
         '
         'GPICKS
         '
         Me.GPICKS.Caption = "Picks"
+        Me.GPICKS.DisplayFormat.FormatString = "0.00"
+        Me.GPICKS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GPICKS.FieldName = "PICKS"
         Me.GPICKS.Name = "GPICKS"
         Me.GPICKS.OptionsColumn.AllowEdit = False
         Me.GPICKS.Visible = True
-        Me.GPICKS.VisibleIndex = 8
+        Me.GPICKS.VisibleIndex = 9
         '
-        'GTOTALENDS
+        'GWARP
         '
-        Me.GTOTALENDS.Caption = "Total Ends"
-        Me.GTOTALENDS.FieldName = "TOTALENDS"
-        Me.GTOTALENDS.Name = "GTOTALENDS"
-        Me.GTOTALENDS.OptionsColumn.AllowEdit = False
-        Me.GTOTALENDS.Visible = True
-        Me.GTOTALENDS.VisibleIndex = 9
-        Me.GTOTALENDS.Width = 100
+        Me.GWARP.Caption = "Warp"
+        Me.GWARP.DisplayFormat.FormatString = "0.00"
+        Me.GWARP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GWARP.FieldName = "WARP"
+        Me.GWARP.Name = "GWARP"
+        Me.GWARP.OptionsColumn.AllowEdit = False
+        Me.GWARP.Visible = True
+        Me.GWARP.VisibleIndex = 10
+        Me.GWARP.Width = 100
         '
-        'GTOTALMTRS
+        'GEFFPER
         '
-        Me.GTOTALMTRS.Caption = "Total Mtrs"
-        Me.GTOTALMTRS.DisplayFormat.FormatString = "0"
-        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
-        Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 10
-        Me.GTOTALMTRS.Width = 100
+        Me.GEFFPER.Caption = "Efficiency Per"
+        Me.GEFFPER.DisplayFormat.FormatString = "0.00"
+        Me.GEFFPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GEFFPER.FieldName = "EFFPER"
+        Me.GEFFPER.Name = "GEFFPER"
+        Me.GEFFPER.OptionsColumn.AllowEdit = False
+        Me.GEFFPER.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GEFFPER.Visible = True
+        Me.GEFFPER.VisibleIndex = 11
+        Me.GEFFPER.Width = 100
         '
         'GREMARKS
         '
         Me.GREMARKS.Caption = "Remarks"
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 11
+        Me.GREMARKS.VisibleIndex = 13
         Me.GREMARKS.Width = 200
         '
         'CHKDONE
@@ -295,6 +301,26 @@ Partial Class YarnLoomEfficiencyDetails
         Me.CMDADD.Text = "&Add New"
         Me.CMDADD.UseVisualStyleBackColor = True
         '
+        'GLOOMNO
+        '
+        Me.GLOOMNO.Caption = "Loom No"
+        Me.GLOOMNO.FieldName = "LOOMNO"
+        Me.GLOOMNO.Name = "GLOOMNO"
+        Me.GLOOMNO.OptionsColumn.AllowEdit = False
+        Me.GLOOMNO.Visible = True
+        Me.GLOOMNO.VisibleIndex = 2
+        '
+        'GAVGPICK
+        '
+        Me.GAVGPICK.Caption = "Average Pick"
+        Me.GAVGPICK.DisplayFormat.FormatString = "0.00"
+        Me.GAVGPICK.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAVGPICK.FieldName = "AVGPICK"
+        Me.GAVGPICK.Name = "GAVGPICK"
+        Me.GAVGPICK.OptionsColumn.AllowEdit = False
+        Me.GAVGPICK.Visible = True
+        Me.GAVGPICK.VisibleIndex = 12
+        '
         'YarnLoomEfficiencyDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -323,15 +349,14 @@ Partial Class YarnLoomEfficiencyDetails
     Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREED As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GREEDSPACE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GYARNQUALITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRPM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRECMTRS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWEFT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPICKS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALENDS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWARP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GEFFPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents ToolStrip1 As ToolStrip
@@ -342,4 +367,6 @@ Partial Class YarnLoomEfficiencyDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
+    Friend WithEvents GLOOMNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAVGPICK As DevExpress.XtraGrid.Columns.GridColumn
 End Class
