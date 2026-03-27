@@ -59,7 +59,8 @@ Public Class YarnLoomEfficiency
     Sub clear()
 
         tstxtbillno.Clear()
-        EFFDATE.Value = Mydate
+        EFFDATE.Text = Now.Date
+
 
         EP.Clear()
         txtsrno.Clear()
@@ -146,12 +147,14 @@ Public Class YarnLoomEfficiency
         txtsrno.Clear()
         CMBLOOM.Text = ""
         CMBYARNQUALITY.Text = ""
-        'GetLastBeamNo()
+        TXTBEAMNO.Clear()
         TXTRPM.Clear()
         TXTPICKS.Clear()
         TXTRECMTRS.Clear()
         TXTWEFT.Clear()
         TXTWARP.Clear()
+        TXTEFFPER.Clear()
+        TXTAVGPICK.Clear()
         txtgridremarks.Clear()
 
         If gridloan.RowCount > 0 Then
@@ -230,7 +233,7 @@ Public Class YarnLoomEfficiency
             Else
                 alParaval.Add(0)
             End If
-            alParaval.Add(EFFDATE.Value)
+            alParaval.Add(Format(Convert.ToDateTime(EFFDATE.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(cmbname.Text.Trim)
             alParaval.Add(cmbrounder.Text.Trim)
             alParaval.Add(LBLTOTALRECMTRS.Text.Trim)
@@ -367,7 +370,7 @@ Public Class YarnLoomEfficiency
         Dim bln As Boolean = True
 
         If cmbname.Text.Trim.Length = 0 Then
-            EP.SetError(cmbname, "Enter loan. by")
+            EP.SetError(cmbname, "Enter Weaver Name")
             bln = False
         End If
 
@@ -389,7 +392,15 @@ Public Class YarnLoomEfficiency
 
 
 
-        If Not datecheck(EFFDATE.Value) Then bln = False
+        If EFFDATE.Text = "__/__/____" Then
+            EP.SetError(EFFDATE, " Please Enter Proper Date")
+            bln = False
+        Else
+            If Not datecheck(EFFDATE.Text) Then
+                EP.SetError(EFFDATE, "Date not in Accounting Year")
+                bln = False
+            End If
+        End If
         Return bln
     End Function
 
@@ -427,7 +438,7 @@ Public Class YarnLoomEfficiency
         Try
             Dim DTROW() As DataRow
 
-            DTROW = USERRIGHTS.Select("FormName = 'GDN'")
+            DTROW = USERRIGHTS.Select("FormName = 'YARN LOOMEFFICIENCY'")
 
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
@@ -475,7 +486,7 @@ Public Class YarnLoomEfficiency
                     For Each dr As DataRow In dt.Rows
 
                         txteffno.Text = TEMPYLENO
-                        EFFDATE.Value = Convert.ToDateTime(dr("DATE"))
+                        EFFDATE.Text = Format(Convert.ToDateTime(dr("DATE")), "dd/MM/yyyy")
                         cmbname.Text = Convert.ToString(dr("NAME"))
                         'cmbname_Validated(Nothing, Nothing)  ' ← ADD THIS LINE
                         cmbrounder.Text = Convert.ToString(dr("ROUNDER").ToString)
@@ -560,7 +571,7 @@ Public Class YarnLoomEfficiency
                 Exit Sub
             End If
 
-            Dim objprdetails As New StoresLoanDetails
+            Dim objprdetails As New YarnLoomEfficiencyDetails
             objprdetails.MdiParent = MDIMain
             objprdetails.Show()
             objprdetails.BringToFront()
@@ -603,11 +614,20 @@ Public Class YarnLoomEfficiency
         Call cmddelete_Click(sender, e)
     End Sub
 
-    Private Sub loandate_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles EFFDATE.Validating
-        If Not datecheck(EFFDATE.Value) Then
-            MsgBox("Date Not in Current Accounting Year")
-            e.Cancel = True
-        End If
+    Private Sub loandate_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs)
+        Try
+            If EFFDATE.Text.Trim <> "__/__/____" Then
+                'PARSING DATE FORMATS WHETHER THEY ARE PROPER OR NOT
+                Dim TEMP As DateTime
+                If Not DateTime.TryParse(EFFDATE.Text, TEMP) Then
+                    MsgBox("Enter Proper Date")
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
 
@@ -668,9 +688,21 @@ Public Class YarnLoomEfficiency
 
     Private Sub txtgridremarks_Validated(sender As Object, e As EventArgs) Handles txtgridremarks.Validated
         Try
-            If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTRECMTRS.Text.Trim) > 0 Then
+            If CMBLOOM.Text.Trim <> "" And CMBYARNQUALITY.Text.Trim <> "" And Val(TXTRECMTRS.Text.Trim) > 0 Then
+
+                For Each row As DataGridViewRow In gridloan.Rows
+                    If row.Cells(GLOOM.Index).Value.ToString.Trim = CMBLOOM.Text.Trim Then
+                        If gridDoubleClick = False OrElse row.Index <> tempRow Then  ' ← CHANGE THIS LINE
+                            MsgBox("Loom No " & CMBLOOM.Text.Trim & " already exists in grid!")
+                            CMBLOOM.Focus()
+                            Exit Sub
+                        End If
+                    End If
+                Next
+
                 fillgrid()
                 total()
+                EP.Clear()
             Else
                 EP.SetError(CMBYARNQUALITY, "Please enter Proper Details")
             End If
@@ -699,7 +731,7 @@ Public Class YarnLoomEfficiency
                 CMBLOOM.DataSource = dtLoom
                 CMBLOOM.DisplayMember = "LOOM_NO"
                 CMBLOOM.ValueMember = "BEAM_NO"
-                ' 🔴 IMPORTANT: Remove automatic selection
+
                 CMBLOOM.SelectedIndex = -1
             Else
                 CMBLOOM.DataSource = Nothing
