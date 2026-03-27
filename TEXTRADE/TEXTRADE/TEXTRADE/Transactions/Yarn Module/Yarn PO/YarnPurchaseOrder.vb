@@ -473,7 +473,7 @@ Public Class YarnPurchaseOrder
         End Try
     End Sub
 
-    Sub fillgrid()
+    Sub FILLGRID()
 
         GRIDPO.Enabled = True
         If GRIDDOUBLECLICK = False Then
@@ -508,7 +508,7 @@ Public Class YarnPurchaseOrder
         TXTCONES.Clear()
         TXTRATE.Clear()
 
-        total()
+        TOTAL()
         CMBYARNQUALITY.Focus()
 
     End Sub
@@ -915,16 +915,6 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TOOLCLOSE_Click(sender As Object, e As EventArgs)
-        'Try
-        '    Dim OBJPO As New PurchaseOrderClose
-        '    OBJPO.MdiParent = MDIMain
-        '    OBJPO.Show()
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
-    End Sub
-
     Private Sub CMBDESIGN_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBDESIGN.Validating
         Try
             If CMBDESIGN.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGN, e, Me, "")
@@ -948,8 +938,6 @@ LINE1:
             Throw ex
         End Try
     End Sub
-
-
 
     Private Sub CMBMILLNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBMILLNAME.Validating
         Try
@@ -975,7 +963,19 @@ LINE1:
     End Sub
 
     Private Sub TXTCONES_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTCONES.KeyPress
-        numkeypress(e, TXTCONES, Me)
+        numkeypress(e, sender, Me)
+    End Sub
+
+    Private Sub YarnPurchaseOrder_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If ClientName = "VAISHALI" Then
+                CMBORDERTYPE.TabStop = True
+                CMBDESIGN.TabStop = True
+                TXTPSHADE.TabStop = True
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class
 
