@@ -280,7 +280,7 @@ CHECKNEXTLINE:
                     bln = False
                 End If
                 If TXTFILENO.Text.Trim = "" Then
-                    EP.SetError(cmbname, "Please Enter File No")
+                    EP.SetError(TXTFILENO, "Please Enter File No")
                     bln = False
                 End If
             End If
@@ -1148,6 +1148,8 @@ NEXTLINE:
         GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 
 
+        TXTBARCODE.Clear()
+        TXTWT.Clear()
         If ClientName <> "SWPL" Then
             txtgridremarks.Clear()
             If ClientName <> "VAISHALI" Then CMBYARNQUALITY.Text = ""
@@ -1158,7 +1160,6 @@ NEXTLINE:
             cmbcolor.Text = ""
             TXTGRIDLOTNO.Clear()
             txtqty.Clear()
-            TXTWT.Clear()
             TXTCONES.Clear()
             TXTGRIDLRNO.Clear()
             DTLRDATE.Value = Now.Date
@@ -1173,15 +1174,11 @@ NEXTLINE:
             TXTRATE.Clear()
             CMBPER.Text = ""
             TXTAMT.Clear()
-        End If
-
-
-        TXTBARCODE.Clear()
-
-        If ClientName = "SWPL" Then
-            TXTLRNO.Text = Val(TXTLRNO.Text.Trim) + 1
+        Else
+            TXTGRIDLRNO.Text = Val(TXTGRIDLRNO.Text.Trim) + 1
             TXTWT.Focus()
         End If
+
 
 
     End Sub
@@ -1778,6 +1775,10 @@ LINE1:
                 TXTGRIDLOTNO.Enabled = False
                 TXTGRIDLOTNO.TabStop = False
                 TOOLUPLOADEXCEL.Visible = True
+                CMBDESIGN.TabStop = False
+                TXTPSHADE.TabStop = False
+                DTLRDATE.TabStop = False
+                TXTCONES.TabStop = False
             End If
 
             If TYPE = "FINISH" Then

@@ -11641,4 +11641,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub ToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem7.Click
+        Try
+            Dim OBJYARNJO As New UpdateYarnRackShelf
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
