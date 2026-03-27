@@ -474,6 +474,7 @@
     <Compile Include="Utilities\ClsTermsAndConditions.vb" />
     <Compile Include="Utilities\ClsUpdatePendingEntry.vb" />
     <Compile Include="Utilities\ClsUpdateRackShelf.vb" />
+    <Compile Include="Utilities\ClsUpdateYarnRackShelf.vb" />
     <Compile Include="Utilities\ClsUploadSign.vb" />
     <Compile Include="Utilities\ClsYearTransfer.vb" />
     <Compile Include="Utilities\ClsLedgersForAutoMailers.vb" />

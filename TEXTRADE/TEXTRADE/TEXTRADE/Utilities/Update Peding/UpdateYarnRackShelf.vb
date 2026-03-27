@@ -34,12 +34,12 @@ Public Class UpdateYarnRackShelf
             ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then       'for billno foucs
                 tstxtbillno.Focus()
                 tstxtbillno.SelectAll()
-                'ElseIf e.Alt = True And e.KeyCode = Keys.Left Then
-                '    toolprevious_Click(sender, e)
-                'ElseIf e.Alt = True And e.KeyCode = Keys.Right Then
-                '    toolnext_Click(sender, e)
-                'ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
-                '    Call OpenToolStripButton_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Keys.Left Then
+                toolprevious_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Keys.Right Then
+                toolnext_Click(sender, e)
+            ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
+                Call OpenToolStripButton_Click(sender, e)
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -52,7 +52,7 @@ Public Class UpdateYarnRackShelf
             If CMBSHELF.Text.Trim = "" Then FILLSHELF(CMBSHELF)
             CLEAR()
 
-            'FILLGRID()
+            FILLGRID()
 
             If EDIT = True Then
 
@@ -93,7 +93,7 @@ Public Class UpdateYarnRackShelf
 
         gridbilldetails.DataSource = Nothing
         GETMAXNO()
-        'FILLGRID()
+        FILLGRID()
 
     End Sub
     Function ERRORVALID() As Boolean
@@ -262,7 +262,7 @@ Public Class UpdateYarnRackShelf
             alParaval.Add(BARCODE)
             alParaval.Add(TYPE)
 
-            Dim OBJRACK As New ClsUpdateRackShelf()
+            Dim OBJRACK As New ClsUpdateYarnRackShelf()
             OBJRACK.alParaval = alParaval
             If EDIT = False Then
                 Dim DTTABLE As DataTable = OBJRACK.SAVE()
