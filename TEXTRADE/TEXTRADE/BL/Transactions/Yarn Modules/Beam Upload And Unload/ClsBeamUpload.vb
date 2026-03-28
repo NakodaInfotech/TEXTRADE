@@ -46,6 +46,8 @@ Public Class ClsBeamUpload
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@beamname", alParaval(I)))
+                I = I + 1
 
 
             End With
@@ -86,6 +88,8 @@ Public Class ClsBeamUpload
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GREYNO", alParaval(I)))
                 I = I + 1

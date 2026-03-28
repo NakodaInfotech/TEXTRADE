@@ -64,6 +64,8 @@ Partial Class BeamUpload
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.txtbeamname = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDLOOMBEAM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -74,6 +76,8 @@ Partial Class BeamUpload
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.txtbeamname)
+        Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.GRIDLOOMBEAM)
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.CMBBEAM)
@@ -179,7 +183,7 @@ Partial Class BeamUpload
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(47, 134)
+        Me.Label3.Location = New System.Drawing.Point(204, 106)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(59, 14)
         Me.Label3.TabIndex = 677
@@ -192,10 +196,10 @@ Partial Class BeamUpload
         Me.CMBBEAM.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBBEAM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBBEAM.FormattingEnabled = True
-        Me.CMBBEAM.Location = New System.Drawing.Point(110, 131)
+        Me.CMBBEAM.Location = New System.Drawing.Point(267, 103)
         Me.CMBBEAM.MaxDropDownItems = 14
         Me.CMBBEAM.Name = "CMBBEAM"
-        Me.CMBBEAM.Size = New System.Drawing.Size(147, 22)
+        Me.CMBBEAM.Size = New System.Drawing.Size(85, 22)
         Me.CMBBEAM.TabIndex = 3
         '
         'Label1
@@ -220,7 +224,7 @@ Partial Class BeamUpload
         Me.CMBLOOM.Location = New System.Drawing.Point(110, 103)
         Me.CMBLOOM.MaxDropDownItems = 14
         Me.CMBLOOM.Name = "CMBLOOM"
-        Me.CMBLOOM.Size = New System.Drawing.Size(147, 22)
+        Me.CMBLOOM.Size = New System.Drawing.Size(88, 22)
         Me.CMBLOOM.TabIndex = 2
         '
         'Label2
@@ -245,7 +249,7 @@ Partial Class BeamUpload
         Me.CMBGODOWN.Location = New System.Drawing.Point(110, 45)
         Me.CMBGODOWN.MaxDropDownItems = 14
         Me.CMBGODOWN.Name = "CMBGODOWN"
-        Me.CMBGODOWN.Size = New System.Drawing.Size(226, 23)
+        Me.CMBGODOWN.Size = New System.Drawing.Size(242, 23)
         Me.CMBGODOWN.TabIndex = 0
         '
         'GREYDATE
@@ -436,7 +440,7 @@ Partial Class BeamUpload
         Me.CMBNAME.Location = New System.Drawing.Point(110, 74)
         Me.CMBNAME.MaxDropDownItems = 14
         Me.CMBNAME.Name = "CMBNAME"
-        Me.CMBNAME.Size = New System.Drawing.Size(226, 22)
+        Me.CMBNAME.Size = New System.Drawing.Size(242, 22)
         Me.CMBNAME.TabIndex = 1
         '
         'ToolStrip1
@@ -520,6 +524,30 @@ Partial Class BeamUpload
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'txtbeamname
+        '
+        Me.txtbeamname.BackColor = System.Drawing.Color.Linen
+        Me.txtbeamname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtbeamname.Location = New System.Drawing.Point(110, 131)
+        Me.txtbeamname.Name = "txtbeamname"
+        Me.txtbeamname.ReadOnly = True
+        Me.txtbeamname.Size = New System.Drawing.Size(242, 22)
+        Me.txtbeamname.TabIndex = 862
+        Me.txtbeamname.TabStop = False
+        Me.txtbeamname.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(28, 134)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(76, 14)
+        Me.Label4.TabIndex = 863
+        Me.Label4.Text = "Beam Name "
+        '
         'BeamUpload
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -580,4 +608,6 @@ Partial Class BeamUpload
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GLOOMNO As DataGridViewTextBoxColumn
     Friend WithEvents GBEAMNO As DataGridViewTextBoxColumn
+    Friend WithEvents txtbeamname As TextBox
+    Friend WithEvents Label4 As Label
 End Class
