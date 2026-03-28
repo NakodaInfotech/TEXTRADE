@@ -1,0 +1,3 @@
+﻿Public Class OpeningBeamStockAtJobberDetails
+
+End Class
