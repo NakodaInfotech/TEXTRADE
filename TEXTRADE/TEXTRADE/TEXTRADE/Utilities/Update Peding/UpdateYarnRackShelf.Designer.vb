@@ -56,22 +56,19 @@ Partial Class UpdateYarnRackShelf
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMCODE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GYARNQUALITYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPIECETYPE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GJOBBERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCONES = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.CMBRACK = New System.Windows.Forms.ComboBox()
         Me.CMDSAVE = New System.Windows.Forms.Button()
@@ -443,7 +440,7 @@ Partial Class UpdateYarnRackShelf
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GITEMCODE, Me.GCATEGORY, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GGODOWN, Me.GPCS, Me.GUNIT, Me.GMTRS, Me.GPIECETYPE, Me.GLOTNO, Me.GBALENO, Me.GCHALLANNO, Me.GBARCODE, Me.GTYPE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GYARNQUALITYNAME, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GGODOWN, Me.GLRNO, Me.GBILLNO, Me.GJOBBERNAME, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRACK, Me.GBARCODE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -470,39 +467,25 @@ Partial Class UpdateYarnRackShelf
         Me.GSRNO.VisibleIndex = 0
         Me.GSRNO.Width = 35
         '
-        'GITEMCODE
+        'GYARNQUALITYNAME
         '
-        Me.GITEMCODE.Caption = "Item Code"
-        Me.GITEMCODE.FieldName = "ITEMCODE"
-        Me.GITEMCODE.Name = "GITEMCODE"
-        Me.GITEMCODE.OptionsColumn.AllowEdit = False
+        Me.GYARNQUALITYNAME.Caption = "Yarn Quality"
+        Me.GYARNQUALITYNAME.FieldName = "YARNQUALITY"
+        Me.GYARNQUALITYNAME.Name = "GYARNQUALITYNAME"
+        Me.GYARNQUALITYNAME.OptionsColumn.AllowEdit = False
+        Me.GYARNQUALITYNAME.Visible = True
+        Me.GYARNQUALITYNAME.VisibleIndex = 1
+        Me.GYARNQUALITYNAME.Width = 200
         '
-        'GCATEGORY
+        'GMILLNAME
         '
-        Me.GCATEGORY.Caption = "Category"
-        Me.GCATEGORY.FieldName = "CATEGORY"
-        Me.GCATEGORY.Name = "GCATEGORY"
-        Me.GCATEGORY.OptionsColumn.AllowEdit = False
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.OptionsColumn.AllowEdit = False
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 1
-        Me.GITEMNAME.Width = 200
-        '
-        'GQUALITY
-        '
-        Me.GQUALITY.Caption = "Quality"
-        Me.GQUALITY.FieldName = "QUALITY"
-        Me.GQUALITY.Name = "GQUALITY"
-        Me.GQUALITY.OptionsColumn.AllowEdit = False
-        Me.GQUALITY.Visible = True
-        Me.GQUALITY.VisibleIndex = 2
-        Me.GQUALITY.Width = 150
+        Me.GMILLNAME.Caption = "Mill Name"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.OptionsColumn.AllowEdit = False
+        Me.GMILLNAME.Visible = True
+        Me.GMILLNAME.VisibleIndex = 2
+        Me.GMILLNAME.Width = 150
         '
         'GDESIGNNO
         '
@@ -534,76 +517,75 @@ Partial Class UpdateYarnRackShelf
         Me.GGODOWN.VisibleIndex = 5
         Me.GGODOWN.Width = 150
         '
-        'GPCS
+        'GLRNO
         '
-        Me.GPCS.Caption = "Pcs"
-        Me.GPCS.DisplayFormat.FormatString = "0"
-        Me.GPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPCS.FieldName = "PCS"
-        Me.GPCS.Name = "GPCS"
-        Me.GPCS.OptionsColumn.AllowEdit = False
-        Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 6
-        Me.GPCS.Width = 80
+        Me.GLRNO.Caption = "Lr No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.OptionsColumn.AllowEdit = False
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 8
         '
-        'GUNIT
+        'GBILLNO
         '
-        Me.GUNIT.Caption = "Unit"
-        Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.OptionsColumn.AllowEdit = False
-        Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 7
+        Me.GBILLNO.Caption = "Bill No"
+        Me.GBILLNO.FieldName = "BILLNO"
+        Me.GBILLNO.Name = "GBILLNO"
+        Me.GBILLNO.Visible = True
+        Me.GBILLNO.VisibleIndex = 9
         '
-        'GMTRS
+        'GJOBBERNAME
         '
-        Me.GMTRS.Caption = "Mtrs."
-        Me.GMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GMTRS.FieldName = "MTRS"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.OptionsColumn.AllowEdit = False
-        Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 8
-        Me.GMTRS.Width = 90
+        Me.GJOBBERNAME.Caption = "Jobber Name"
+        Me.GJOBBERNAME.FieldName = "JOBBERNAME"
+        Me.GJOBBERNAME.Name = "GJOBBERNAME"
+        Me.GJOBBERNAME.OptionsColumn.AllowEdit = False
+        Me.GJOBBERNAME.Visible = True
+        Me.GJOBBERNAME.VisibleIndex = 10
         '
-        'GPIECETYPE
+        'GBAGS
         '
-        Me.GPIECETYPE.Caption = "Piece Type"
-        Me.GPIECETYPE.FieldName = "PIECETYPE"
-        Me.GPIECETYPE.Name = "GPIECETYPE"
-        Me.GPIECETYPE.OptionsColumn.AllowEdit = False
-        Me.GPIECETYPE.Visible = True
-        Me.GPIECETYPE.VisibleIndex = 9
-        Me.GPIECETYPE.Width = 90
+        Me.GBAGS.Caption = "Bags"
+        Me.GBAGS.DisplayFormat.FormatString = "0"
+        Me.GBAGS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GBAGS.FieldName = "BAGS"
+        Me.GBAGS.Name = "GBAGS"
+        Me.GBAGS.OptionsColumn.AllowEdit = False
+        Me.GBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBAGS.Visible = True
+        Me.GBAGS.VisibleIndex = 7
+        Me.GBAGS.Width = 90
         '
-        'GLOTNO
+        'GWT
         '
-        Me.GLOTNO.Caption = "Lot No"
-        Me.GLOTNO.FieldName = "LOTNO"
-        Me.GLOTNO.Name = "GLOTNO"
-        Me.GLOTNO.OptionsColumn.AllowEdit = False
-        Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 10
+        Me.GWT.Caption = "Wt"
+        Me.GWT.DisplayFormat.FormatString = "0"
+        Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GWT.FieldName = "WT"
+        Me.GWT.Name = "GWT"
+        Me.GWT.OptionsColumn.AllowEdit = False
+        Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GWT.Visible = True
+        Me.GWT.VisibleIndex = 6
+        Me.GWT.Width = 80
         '
-        'GBALENO
+        'GCONES
         '
-        Me.GBALENO.Caption = "Bale No"
-        Me.GBALENO.FieldName = "BALENO"
-        Me.GBALENO.Name = "GBALENO"
-        Me.GBALENO.Visible = True
-        Me.GBALENO.VisibleIndex = 11
+        Me.GCONES.Caption = "Cones"
+        Me.GCONES.DisplayFormat.FormatString = "0"
+        Me.GCONES.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCONES.FieldName = "CONES"
+        Me.GCONES.Name = "GCONES"
+        Me.GCONES.Visible = True
+        Me.GCONES.VisibleIndex = 12
         '
-        'GCHALLANNO
+        'GRACK
         '
-        Me.GCHALLANNO.Caption = "Challan No"
-        Me.GCHALLANNO.FieldName = "CHALLANNO"
-        Me.GCHALLANNO.Name = "GCHALLANNO"
-        Me.GCHALLANNO.OptionsColumn.AllowEdit = False
-        Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 12
+        Me.GRACK.Caption = "Rack"
+        Me.GRACK.FieldName = "RACK"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.Visible = True
+        Me.GRACK.VisibleIndex = 13
         '
         'GBARCODE
         '
@@ -613,14 +595,8 @@ Partial Class UpdateYarnRackShelf
         Me.GBARCODE.OptionsColumn.AllowEdit = False
         Me.GBARCODE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count)})
         Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 13
+        Me.GBARCODE.VisibleIndex = 11
         Me.GBARCODE.Width = 130
-        '
-        'GTYPE
-        '
-        Me.GTYPE.Caption = "Type"
-        Me.GTYPE.FieldName = "TYPE"
-        Me.GTYPE.Name = "GTYPE"
         '
         'CHKDONE
         '
@@ -752,22 +728,18 @@ Partial Class UpdateYarnRackShelf
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMCODE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GYARNQUALITYNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents GPCS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLOTNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBALENO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GBAGS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBILLNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GJOBBERNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRACK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents CMBRACK As ComboBox
     Friend WithEvents CMDSAVE As Button
@@ -775,4 +747,5 @@ Partial Class UpdateYarnRackShelf
     Friend WithEvents TXTBARCODE As TextBox
     Friend WithEvents cmdexit As Button
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents GCONES As DevExpress.XtraGrid.Columns.GridColumn
 End Class

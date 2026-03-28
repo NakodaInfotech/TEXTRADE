@@ -73,9 +73,7 @@ Public Class BeamUpload
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
-
-
-
+            alParaval.Add(txtbeamname.Text.Trim)
 
             Dim objCUTTING As New ClsBeamUpload()
             objCUTTING.alParaval = alParaval
@@ -260,14 +258,8 @@ Public Class BeamUpload
                         CMBLOOM.Text = Convert.ToString(dr("LOOM").ToString)
                         CMBBEAM.Text = Convert.ToString(dr("BEAM").ToString)
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
-
-
-
-
-
+                        txtbeamname.Text = Convert.ToString(dr("BEAMNAME").ToString)
                     Next
-
-
                 Else
                     EDIT = False
                     'clear()
@@ -397,7 +389,7 @@ LINE1:
             Dim OBJCMN As New ClsCommon
 
             dttable = OBJCMN.SEARCH(
-                " b.BEAMNO AS BEAMNO ",
+                " b.BEAMNO AS BEAMNO , b.BEAMNAME AS BEAMNAME",
                 "",
                 " BEAMSTOCKATJOBBER b ", "And Not EXISTS(SELECT 1 FROM BEAMUPLOAD u WHERE u.BEAMUPLOAD_BEAMID = b.BEAMNO ) And DONE = 'FALSE'   AND YEARID = " & YearId &
                 " ORDER BY DATE DESC "
@@ -412,6 +404,7 @@ LINE1:
                 If CMBBEAM.Items.Count > 0 Then
                     CMBBEAM.SelectedIndex = 0
                 End If
+                txtbeamname.Text = dttable.Rows(0)("BEAMNAME").ToString().Trim
             Else
                 MsgBox("No Beams found for selected Loom.", MsgBoxStyle.Information)
             End If

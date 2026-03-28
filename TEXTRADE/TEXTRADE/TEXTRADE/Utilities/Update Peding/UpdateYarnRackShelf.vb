@@ -183,8 +183,8 @@ Public Class UpdateYarnRackShelf
             alParaval.Add(Format(DTUPDATEDATE.Value.Date, "MM/dd/yyyy"))
             alParaval.Add(CMBRACK.Text.Trim)
             alParaval.Add(CMBSHELF.Text.Trim)
-            alParaval.Add(Val(GPCS.SummaryText))
-            alParaval.Add(Val(GMTRS.SummaryText))
+            alParaval.Add(Val(GWT.SummaryText))
+            alParaval.Add(Val(GBAGS.SummaryText))
             alParaval.Add(txtremarks.Text.Trim)
 
             alParaval.Add(CmpId)
@@ -511,7 +511,7 @@ LINE1:
     Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
         Try
             Dim DTGDN As New DataTable
-            Dim OBJSELECTGDN As New SelectStockGDN
+            Dim OBJSELECTGDN As New SelectYarnStock
             OBJSELECTGDN.ShowDialog()
             DTGDN = OBJSELECTGDN.DT
 
