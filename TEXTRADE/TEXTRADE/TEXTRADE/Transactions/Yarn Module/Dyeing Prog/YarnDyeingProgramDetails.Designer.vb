@@ -37,6 +37,7 @@ Partial Class YarnDyeingProgramDetails
         Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gwt = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRECDWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBALWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCLOSED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -45,7 +46,6 @@ Partial Class YarnDyeingProgramDetails
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GBALWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,7 +143,7 @@ Partial Class YarnDyeingProgramDetails
         '
         Me.GNAME.Caption = "Jobber Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 2
@@ -178,7 +178,7 @@ Partial Class YarnDyeingProgramDetails
         'GCOLOR
         '
         Me.GCOLOR.Caption = "Shade"
-        Me.GCOLOR.FieldName = "SHADE"
+        Me.GCOLOR.FieldName = "COLOR"
         Me.GCOLOR.Name = "GCOLOR"
         Me.GCOLOR.Visible = True
         Me.GCOLOR.VisibleIndex = 6
@@ -211,6 +211,17 @@ Partial Class YarnDyeingProgramDetails
         Me.GRECDWT.Visible = True
         Me.GRECDWT.VisibleIndex = 9
         Me.GRECDWT.Width = 60
+        '
+        'GBALWT
+        '
+        Me.GBALWT.Caption = "Bal Wt"
+        Me.GBALWT.DisplayFormat.FormatString = "0.00"
+        Me.GBALWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GBALWT.FieldName = "BALWT"
+        Me.GBALWT.Name = "GBALWT"
+        Me.GBALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBALWT.Visible = True
+        Me.GBALWT.VisibleIndex = 10
         '
         'GREMARKS
         '
@@ -273,17 +284,6 @@ Partial Class YarnDyeingProgramDetails
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'GBALWT
-        '
-        Me.GBALWT.Caption = "Bal Wt"
-        Me.GBALWT.DisplayFormat.FormatString = "0.00"
-        Me.GBALWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GBALWT.FieldName = "BALWT"
-        Me.GBALWT.Name = "GBALWT"
-        Me.GBALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GBALWT.Visible = True
-        Me.GBALWT.VisibleIndex = 10
         '
         'YarnDyeingProgramDetails
         '

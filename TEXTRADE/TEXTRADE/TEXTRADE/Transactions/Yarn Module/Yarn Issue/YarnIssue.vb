@@ -189,6 +189,8 @@ Public Class YarnIssue
         GRIDUPLOADDOUBLECLICK = False
         getmaxno()
 
+        CMBITEMNAME.Text = ""
+
 
         If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
 
@@ -344,6 +346,8 @@ Public Class YarnIssue
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
+            alParaval.Add(CMBITEMNAME.Text.Trim)
+
 
 
             Dim gridsrno As String = ""
@@ -607,6 +611,8 @@ Public Class YarnIssue
 
                         CMBTRANS.Text = dr("TRANSNAME").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
+                        CMBITEMNAME.Text = Convert.ToString(dr("ITEMNAME").ToString)
+
 
                         Dim TEMPLRDATE As String = ""
                         If dr("LRNO") <> "" Then TEMPLRDATE = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
@@ -809,8 +815,8 @@ Public Class YarnIssue
         TXTWT.Clear()
         TXTCONES.Clear()
         TXTLRNO.Clear()
-        DTLRDATE.Value = Now.Date
-        DTLIFTDATE.Value = Now.Date
+        'DTLRDATE.Value = Now.Date
+        'DTLIFTDATE.Value = Now.Date
 
         'txtPartyMtrs.Clear()
         'txtCheckPcs.Clear()
@@ -1364,9 +1370,9 @@ LINE1:
         Try
             If ClientName = "VAISHALI" Then
                 'FETCH CONEWT FROM MILLMASTER
-                If Val(TXTWT.Text.Trim) = 0 And Val(TXTCONES.Text.Trim) <> 0 And CMBMILL.Text.Trim <> "" Then
+                If Val(TXTCONES.Text.Trim) <> 0 And CMBMILL.Text.Trim <> "" Then
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.search("ISNULL(MILL_REMARK,0) AS CONEWT", "", "MILLMASTER ", " AND MILL_NAME = '" & CMBMILL.Text.Trim & "' AND MILL_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MILL_REMARK,0) AS CONEWT", "", "MILLMASTER ", " AND MILL_NAME = '" & CMBMILL.Text.Trim & "' AND MILL_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then TXTWT.Text = Format(Val(TXTCONES.Text.Trim) * Val(DT.Rows(0).Item("CONEWT")), "0.00")
                 End If
             End If

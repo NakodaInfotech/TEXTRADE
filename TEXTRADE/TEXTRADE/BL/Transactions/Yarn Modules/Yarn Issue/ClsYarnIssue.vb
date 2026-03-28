@@ -62,6 +62,8 @@ Public Class ClsYarnIssue
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -166,6 +168,8 @@ Public Class ClsYarnIssue
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
                 I = I + 1
 
 
