@@ -39,9 +39,9 @@ Public Class SelectYarnStock
             Dim OBJCMN As New ClsCommon
             Dim DT As New DataTable
             If ALLOWYARNBARCODEPRINT = True Then
-                DT = OBJCMN.SEARCH(" CAST(0 AS BIT) AS CHK, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO, CONES, BAGS, WT, BARCODE, FROMNO, FROMSRNO, FROMTYPE ", "", "  YARNBARCODESTOCK ", WHERECLAUSE)
+                DT = OBJCMN.SEARCH(" CAST(0 AS BIT) AS CHK, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO, CONES, BAGS, WT, BARCODE, FROMNO, FROMSRNO, FROMTYPE , RACK ", "", "  YARNBARCODESTOCK ", WHERECLAUSE)
             Else
-                DT = OBJCMN.SEARCH(" CAST(0 AS BIT) AS CHK, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO, SUM(ISNULL(CONES,0)) AS CONES, SUM(BAGS) AS BAGS, SUM(WT) AS WT, '' AS BARCODE, 0 AS FROMNO, 0 AS FROMSRNO, '' AS FROMTYPE ", "", "  YARNSTOCKVIEW ", WHERECLAUSE & " GROUP BY GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO HAVING SUM(WT) > 0 ")
+                DT = OBJCMN.SEARCH(" CAST(0 AS BIT) AS CHK, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO, SUM(ISNULL(CONES, 0)) AS CONES, SUM(BAGS) AS BAGS, SUM(WT) AS WT, '' AS BARCODE, 0 AS FROMNO, 0 AS FROMSRNO, '' AS FROMTYPE, ISNULL(RACK, '') AS RACK ", "", "  YARNSTOCKVIEW ", WHERECLAUSE & " GROUP BY GODOWN, YARNQUALITY, CATEGORY, MILLNAME, DESIGNNO, COLOR, LOTNO, LRNO HAVING SUM(WT) > 0 ")
             End If
             gridbilldetails.DataSource = DT
             If DT.Rows.Count > 0 Then
@@ -68,11 +68,13 @@ Public Class SelectYarnStock
             DT.Columns.Add("FROMNO")
             DT.Columns.Add("FROMSRNO")
             DT.Columns.Add("FROMTYPE")
+            DT.Columns.Add("RACK")
+
 
             For I As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(I)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), dtrow("LOTNO"), dtrow("LRNO"), Val(dtrow("BAGS")), Val(dtrow("WT")), Val(dtrow("CONES")), dtrow("BARCODE"), Val(dtrow("FROMNO")), Val(dtrow("FROMSRNO")), dtrow("FROMTYPE"))
+                    DT.Rows.Add(dtrow("YARNQUALITY"), dtrow("MILLNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), dtrow("LOTNO"), dtrow("LRNO"), Val(dtrow("BAGS")), Val(dtrow("WT")), Val(dtrow("CONES")), dtrow("BARCODE"), Val(dtrow("FROMNO")), Val(dtrow("FROMSRNO")), dtrow("FROMTYPE"), dtrow("RACK"))
                 End If
             Next
             Me.Close()

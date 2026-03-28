@@ -139,7 +139,7 @@ Public Class YarnStockReco
 
         EP.Clear()
         CHKCOPY.CheckState = CheckState.Unchecked
-        CMBGODOWN.Text = ""
+        If USERGODOWN <> "" Then CMBGODOWN.Text = USERGODOWN Else CMBGODOWN.Text = ""
         CMBNAME.Text = ""
         CMBTRANS.Text = ""
         DTRECODATE.Text = Now.Date
