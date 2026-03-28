@@ -116,7 +116,12 @@ Public Class InvoiceMaster
         TXTGATEPASSNO.Clear()
         txtchallan.Clear()
         CHALLANDATE.Text = Now.Date
-        txtrefno.Clear()
+        If ClientName = "BARKHA" Then
+            txtrefno.Text = "BARKHAA"
+        Else
+            txtrefno.Clear()
+        End If
+
         CMBFORMNO.Text = ""
         TXTCRDAYS.Clear()
         duedate.Value = Now.Date
