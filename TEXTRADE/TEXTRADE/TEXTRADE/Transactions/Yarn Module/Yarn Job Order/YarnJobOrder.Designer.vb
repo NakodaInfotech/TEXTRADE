@@ -47,6 +47,7 @@ Partial Class YarnJobOrder
         Me.TXTPONO = New System.Windows.Forms.TextBox()
         Me.TABCONTROLDETAILS = New System.Windows.Forms.TabControl()
         Me.TBWEFT = New System.Windows.Forms.TabPage()
+        Me.CMBSHADE = New System.Windows.Forms.ComboBox()
         Me.CMBDESIGN = New System.Windows.Forms.ComboBox()
         Me.TXTDESCRIPTION = New System.Windows.Forms.TextBox()
         Me.TXTOTHERITEMNAME = New System.Windows.Forms.TextBox()
@@ -67,28 +68,13 @@ Partial Class YarnJobOrder
         Me.GOUTMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCLOSED = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TXTTOTALWEFTCOST = New System.Windows.Forms.TextBox()
         Me.TXTREED = New System.Windows.Forms.TextBox()
         Me.TXTTOTALENDS = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTRATE = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTCONS = New System.Windows.Forms.TextBox()
         Me.TXTMTRS = New System.Windows.Forms.TextBox()
         Me.TXTPICKS = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTBE = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTPE = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTWT = New System.Windows.Forms.TextBox()
-        Me.TXTTOTALWEFTTE = New System.Windows.Forms.TextBox()
         Me.TXTREEDSPACE = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTCOST = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTRATE = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTCONS = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTBE = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTPE = New System.Windows.Forms.TextBox()
         Me.TXTREFNO = New System.Windows.Forms.TextBox()
         Me.CMBITEMNAME = New System.Windows.Forms.ComboBox()
-        Me.TXTWEFTWT = New System.Windows.Forms.TextBox()
-        Me.TXTWEFTTE = New System.Windows.Forms.TextBox()
-        Me.Label51 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.DTDATE = New System.Windows.Forms.MaskedTextBox()
         Me.LBLPARTYNAME = New System.Windows.Forms.Label()
@@ -120,7 +106,6 @@ Partial Class YarnJobOrder
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CMBSHADE = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
         Me.TBWEFT.SuspendLayout()
@@ -176,7 +161,7 @@ Partial Class YarnJobOrder
         Me.Label18.Location = New System.Drawing.Point(326, 5)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(49, 14)
-        Me.Label18.TabIndex = 1049
+        Me.Label18.TabIndex = 20
         Me.Label18.Text = "Copy SO"
         '
         'TXTCOPYSONO
@@ -186,7 +171,7 @@ Partial Class YarnJobOrder
         Me.TXTCOPYSONO.Location = New System.Drawing.Point(375, 1)
         Me.TXTCOPYSONO.Name = "TXTCOPYSONO"
         Me.TXTCOPYSONO.Size = New System.Drawing.Size(61, 22)
-        Me.TXTCOPYSONO.TabIndex = 1048
+        Me.TXTCOPYSONO.TabIndex = 21
         Me.TXTCOPYSONO.TabStop = False
         Me.TXTCOPYSONO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -198,7 +183,7 @@ Partial Class YarnJobOrder
         Me.Label2.Location = New System.Drawing.Point(795, 382)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(81, 15)
-        Me.Label2.TabIndex = 1047
+        Me.Label2.TabIndex = 10
         Me.Label2.Text = "Total Mtrs"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -209,7 +194,7 @@ Partial Class YarnJobOrder
         Me.TXTTOTALMTRS.Name = "TXTTOTALMTRS"
         Me.TXTTOTALMTRS.ReadOnly = True
         Me.TXTTOTALMTRS.Size = New System.Drawing.Size(80, 23)
-        Me.TXTTOTALMTRS.TabIndex = 1045
+        Me.TXTTOTALMTRS.TabIndex = 11
         Me.TXTTOTALMTRS.TabStop = False
         Me.TXTTOTALMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -221,7 +206,7 @@ Partial Class YarnJobOrder
         Me.Label1.Location = New System.Drawing.Point(33, 73)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(81, 15)
-        Me.Label1.TabIndex = 1046
+        Me.Label1.TabIndex = 18
         Me.Label1.Text = "PO No"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -256,34 +241,32 @@ Partial Class YarnJobOrder
         Me.TBWEFT.Controls.Add(Me.TXTOTHERITEMNAME)
         Me.TBWEFT.Controls.Add(Me.TXTSRNO)
         Me.TBWEFT.Controls.Add(Me.GRIDBEAM)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTCOST)
         Me.TBWEFT.Controls.Add(Me.TXTREED)
         Me.TBWEFT.Controls.Add(Me.TXTTOTALENDS)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTRATE)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTCONS)
         Me.TBWEFT.Controls.Add(Me.TXTMTRS)
         Me.TBWEFT.Controls.Add(Me.TXTPICKS)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTBE)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTPE)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTWT)
-        Me.TBWEFT.Controls.Add(Me.TXTTOTALWEFTTE)
         Me.TBWEFT.Controls.Add(Me.TXTREEDSPACE)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTCOST)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTRATE)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTCONS)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTBE)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTPE)
         Me.TBWEFT.Controls.Add(Me.TXTREFNO)
         Me.TBWEFT.Controls.Add(Me.CMBITEMNAME)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTWT)
-        Me.TBWEFT.Controls.Add(Me.TXTWEFTTE)
-        Me.TBWEFT.Controls.Add(Me.Label51)
         Me.TBWEFT.Location = New System.Drawing.Point(4, 24)
         Me.TBWEFT.Name = "TBWEFT"
         Me.TBWEFT.Padding = New System.Windows.Forms.Padding(3)
         Me.TBWEFT.Size = New System.Drawing.Size(1152, 239)
         Me.TBWEFT.TabIndex = 2
         Me.TBWEFT.Text = "Item Details"
+        '
+        'CMBSHADE
+        '
+        Me.CMBSHADE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSHADE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSHADE.BackColor = System.Drawing.SystemColors.Window
+        Me.CMBSHADE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSHADE.FormattingEnabled = True
+        Me.CMBSHADE.Location = New System.Drawing.Point(284, 5)
+        Me.CMBSHADE.MaxDropDownItems = 14
+        Me.CMBSHADE.Name = "CMBSHADE"
+        Me.CMBSHADE.Size = New System.Drawing.Size(120, 23)
+        Me.CMBSHADE.TabIndex = 3
         '
         'CMBDESIGN
         '
@@ -373,7 +356,7 @@ Partial Class YarnJobOrder
         Me.GRIDBEAM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDBEAM.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDBEAM.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDBEAM.Size = New System.Drawing.Size(1232, 194)
+        Me.GRIDBEAM.Size = New System.Drawing.Size(1227, 194)
         Me.GRIDBEAM.TabIndex = 12
         Me.GRIDBEAM.TabStop = False
         '
@@ -531,18 +514,6 @@ Partial Class YarnJobOrder
         Me.GCLOSED.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GCLOSED.Visible = False
         '
-        'TXTTOTALWEFTCOST
-        '
-        Me.TXTTOTALWEFTCOST.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTCOST.Location = New System.Drawing.Point(979, 161)
-        Me.TXTTOTALWEFTCOST.Name = "TXTTOTALWEFTCOST"
-        Me.TXTTOTALWEFTCOST.ReadOnly = True
-        Me.TXTTOTALWEFTCOST.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTCOST.TabIndex = 900
-        Me.TXTTOTALWEFTCOST.TabStop = False
-        Me.TXTTOTALWEFTCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTCOST.Visible = False
-        '
         'TXTREED
         '
         Me.TXTREED.BackColor = System.Drawing.Color.White
@@ -561,30 +532,6 @@ Partial Class YarnJobOrder
         Me.TXTTOTALENDS.Size = New System.Drawing.Size(80, 23)
         Me.TXTTOTALENDS.TabIndex = 9
         Me.TXTTOTALENDS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTTOTALWEFTRATE
-        '
-        Me.TXTTOTALWEFTRATE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTRATE.Location = New System.Drawing.Point(919, 161)
-        Me.TXTTOTALWEFTRATE.Name = "TXTTOTALWEFTRATE"
-        Me.TXTTOTALWEFTRATE.ReadOnly = True
-        Me.TXTTOTALWEFTRATE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTRATE.TabIndex = 899
-        Me.TXTTOTALWEFTRATE.TabStop = False
-        Me.TXTTOTALWEFTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTRATE.Visible = False
-        '
-        'TXTTOTALWEFTCONS
-        '
-        Me.TXTTOTALWEFTCONS.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTCONS.Location = New System.Drawing.Point(859, 161)
-        Me.TXTTOTALWEFTCONS.Name = "TXTTOTALWEFTCONS"
-        Me.TXTTOTALWEFTCONS.ReadOnly = True
-        Me.TXTTOTALWEFTCONS.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTCONS.TabIndex = 898
-        Me.TXTTOTALWEFTCONS.TabStop = False
-        Me.TXTTOTALWEFTCONS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTCONS.Visible = False
         '
         'TXTMTRS
         '
@@ -605,54 +552,6 @@ Partial Class YarnJobOrder
         Me.TXTPICKS.TabIndex = 7
         Me.TXTPICKS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'TXTTOTALWEFTBE
-        '
-        Me.TXTTOTALWEFTBE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTBE.Location = New System.Drawing.Point(690, 161)
-        Me.TXTTOTALWEFTBE.Name = "TXTTOTALWEFTBE"
-        Me.TXTTOTALWEFTBE.ReadOnly = True
-        Me.TXTTOTALWEFTBE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTTOTALWEFTBE.TabIndex = 897
-        Me.TXTTOTALWEFTBE.TabStop = False
-        Me.TXTTOTALWEFTBE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTBE.Visible = False
-        '
-        'TXTTOTALWEFTPE
-        '
-        Me.TXTTOTALWEFTPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTPE.Location = New System.Drawing.Point(640, 161)
-        Me.TXTTOTALWEFTPE.Name = "TXTTOTALWEFTPE"
-        Me.TXTTOTALWEFTPE.ReadOnly = True
-        Me.TXTTOTALWEFTPE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTTOTALWEFTPE.TabIndex = 896
-        Me.TXTTOTALWEFTPE.TabStop = False
-        Me.TXTTOTALWEFTPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTPE.Visible = False
-        '
-        'TXTTOTALWEFTWT
-        '
-        Me.TXTTOTALWEFTWT.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTWT.Location = New System.Drawing.Point(800, 161)
-        Me.TXTTOTALWEFTWT.Name = "TXTTOTALWEFTWT"
-        Me.TXTTOTALWEFTWT.ReadOnly = True
-        Me.TXTTOTALWEFTWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTWT.TabIndex = 895
-        Me.TXTTOTALWEFTWT.TabStop = False
-        Me.TXTTOTALWEFTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTWT.Visible = False
-        '
-        'TXTTOTALWEFTTE
-        '
-        Me.TXTTOTALWEFTTE.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWEFTTE.Location = New System.Drawing.Point(740, 161)
-        Me.TXTTOTALWEFTTE.Name = "TXTTOTALWEFTTE"
-        Me.TXTTOTALWEFTTE.ReadOnly = True
-        Me.TXTTOTALWEFTTE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTTOTALWEFTTE.TabIndex = 894
-        Me.TXTTOTALWEFTTE.TabStop = False
-        Me.TXTTOTALWEFTTE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTTOTALWEFTTE.Visible = False
-        '
         'TXTREEDSPACE
         '
         Me.TXTREEDSPACE.BackColor = System.Drawing.Color.White
@@ -661,58 +560,6 @@ Partial Class YarnJobOrder
         Me.TXTREEDSPACE.Size = New System.Drawing.Size(70, 23)
         Me.TXTREEDSPACE.TabIndex = 8
         Me.TXTREEDSPACE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTWEFTCOST
-        '
-        Me.TXTWEFTCOST.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTCOST.Location = New System.Drawing.Point(815, 114)
-        Me.TXTWEFTCOST.Name = "TXTWEFTCOST"
-        Me.TXTWEFTCOST.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTCOST.TabIndex = 10
-        Me.TXTWEFTCOST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTCOST.Visible = False
-        '
-        'TXTWEFTRATE
-        '
-        Me.TXTWEFTRATE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTRATE.Location = New System.Drawing.Point(755, 114)
-        Me.TXTWEFTRATE.Name = "TXTWEFTRATE"
-        Me.TXTWEFTRATE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTRATE.TabIndex = 9
-        Me.TXTWEFTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTRATE.Visible = False
-        '
-        'TXTWEFTCONS
-        '
-        Me.TXTWEFTCONS.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTCONS.Location = New System.Drawing.Point(695, 114)
-        Me.TXTWEFTCONS.Name = "TXTWEFTCONS"
-        Me.TXTWEFTCONS.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTCONS.TabIndex = 8
-        Me.TXTWEFTCONS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTCONS.Visible = False
-        '
-        'TXTWEFTBE
-        '
-        Me.TXTWEFTBE.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTWEFTBE.Location = New System.Drawing.Point(705, 71)
-        Me.TXTWEFTBE.Name = "TXTWEFTBE"
-        Me.TXTWEFTBE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTWEFTBE.TabIndex = 5
-        Me.TXTWEFTBE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTBE.Visible = False
-        '
-        'TXTWEFTPE
-        '
-        Me.TXTWEFTPE.BackColor = System.Drawing.Color.Linen
-        Me.TXTWEFTPE.Location = New System.Drawing.Point(655, 71)
-        Me.TXTWEFTPE.Name = "TXTWEFTPE"
-        Me.TXTWEFTPE.ReadOnly = True
-        Me.TXTWEFTPE.Size = New System.Drawing.Size(50, 23)
-        Me.TXTWEFTPE.TabIndex = 4
-        Me.TXTWEFTPE.TabStop = False
-        Me.TXTWEFTPE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTPE.Visible = False
         '
         'TXTREFNO
         '
@@ -736,42 +583,6 @@ Partial Class YarnJobOrder
         Me.CMBITEMNAME.Size = New System.Drawing.Size(150, 23)
         Me.CMBITEMNAME.TabIndex = 1
         '
-        'TXTWEFTWT
-        '
-        Me.TXTWEFTWT.BackColor = System.Drawing.Color.Linen
-        Me.TXTWEFTWT.Location = New System.Drawing.Point(636, 114)
-        Me.TXTWEFTWT.Name = "TXTWEFTWT"
-        Me.TXTWEFTWT.ReadOnly = True
-        Me.TXTWEFTWT.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTWT.TabIndex = 7
-        Me.TXTWEFTWT.TabStop = False
-        Me.TXTWEFTWT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTWT.Visible = False
-        '
-        'TXTWEFTTE
-        '
-        Me.TXTWEFTTE.BackColor = System.Drawing.Color.Linen
-        Me.TXTWEFTTE.Location = New System.Drawing.Point(755, 71)
-        Me.TXTWEFTTE.Name = "TXTWEFTTE"
-        Me.TXTWEFTTE.ReadOnly = True
-        Me.TXTWEFTTE.Size = New System.Drawing.Size(60, 23)
-        Me.TXTWEFTTE.TabIndex = 6
-        Me.TXTWEFTTE.TabStop = False
-        Me.TXTWEFTTE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTWEFTTE.Visible = False
-        '
-        'Label51
-        '
-        Me.Label51.AutoSize = True
-        Me.Label51.BackColor = System.Drawing.Color.Transparent
-        Me.Label51.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label51.Location = New System.Drawing.Point(1005, 165)
-        Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(34, 15)
-        Me.Label51.TabIndex = 886
-        Me.Label51.Text = "Total"
-        Me.Label51.Visible = False
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -781,7 +592,7 @@ Partial Class YarnJobOrder
         Me.Label4.Location = New System.Drawing.Point(1031, 44)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 15)
-        Me.Label4.TabIndex = 757
+        Me.Label4.TabIndex = 24
         Me.Label4.Text = "Sr. No."
         '
         'DTDATE
@@ -806,7 +617,7 @@ Partial Class YarnJobOrder
         Me.LBLPARTYNAME.Location = New System.Drawing.Point(38, 45)
         Me.LBLPARTYNAME.Name = "LBLPARTYNAME"
         Me.LBLPARTYNAME.Size = New System.Drawing.Size(81, 15)
-        Me.LBLPARTYNAME.TabIndex = 747
+        Me.LBLPARTYNAME.TabIndex = 17
         Me.LBLPARTYNAME.Text = "Party Name"
         Me.LBLPARTYNAME.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -817,7 +628,7 @@ Partial Class YarnJobOrder
         Me.TXTADD.Multiline = True
         Me.TXTADD.Name = "TXTADD"
         Me.TXTADD.Size = New System.Drawing.Size(35, 22)
-        Me.TXTADD.TabIndex = 0
+        Me.TXTADD.TabIndex = 22
         Me.TXTADD.TabStop = False
         Me.TXTADD.Visible = False
         '
@@ -830,7 +641,7 @@ Partial Class YarnJobOrder
         Me.LBLCLOSED.Location = New System.Drawing.Point(1059, 382)
         Me.LBLCLOSED.Name = "LBLCLOSED"
         Me.LBLCLOSED.Size = New System.Drawing.Size(80, 29)
-        Me.LBLCLOSED.TabIndex = 743
+        Me.LBLCLOSED.TabIndex = 12
         Me.LBLCLOSED.Text = "Closed"
         Me.LBLCLOSED.Visible = False
         '
@@ -845,7 +656,7 @@ Partial Class YarnJobOrder
         Me.CMBCODE.MaxDropDownItems = 14
         Me.CMBCODE.Name = "CMBCODE"
         Me.CMBCODE.Size = New System.Drawing.Size(56, 23)
-        Me.CMBCODE.TabIndex = 742
+        Me.CMBCODE.TabIndex = 23
         Me.CMBCODE.Visible = False
         '
         'Label15
@@ -857,7 +668,7 @@ Partial Class YarnJobOrder
         Me.Label15.Location = New System.Drawing.Point(1011, 451)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(44, 15)
-        Me.Label15.TabIndex = 734
+        Me.Label15.TabIndex = 14
         Me.Label15.Text = "Locked"
         '
         'Label23
@@ -869,7 +680,7 @@ Partial Class YarnJobOrder
         Me.Label23.Location = New System.Drawing.Point(993, 450)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(18, 17)
-        Me.Label23.TabIndex = 733
+        Me.Label23.TabIndex = 15
         Me.Label23.Text = "   "
         '
         'PBlock
@@ -905,7 +716,7 @@ Partial Class YarnJobOrder
         Me.Label9.Location = New System.Drawing.Point(1040, 72)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(32, 15)
-        Me.Label9.TabIndex = 622
+        Me.Label9.TabIndex = 25
         Me.Label9.Text = "Date"
         '
         'cmddelete
@@ -993,7 +804,7 @@ Partial Class YarnJobOrder
         Me.tstxtbillno.Location = New System.Drawing.Point(242, 1)
         Me.tstxtbillno.Name = "tstxtbillno"
         Me.tstxtbillno.Size = New System.Drawing.Size(74, 22)
-        Me.tstxtbillno.TabIndex = 12
+        Me.tstxtbillno.TabIndex = 19
         Me.tstxtbillno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lbllocked
@@ -1005,7 +816,7 @@ Partial Class YarnJobOrder
         Me.lbllocked.Location = New System.Drawing.Point(1059, 417)
         Me.lbllocked.Name = "lbllocked"
         Me.lbllocked.Size = New System.Drawing.Size(82, 29)
-        Me.lbllocked.TabIndex = 445
+        Me.lbllocked.TabIndex = 13
         Me.lbllocked.Text = "Locked"
         Me.lbllocked.Visible = False
         '
@@ -1016,7 +827,7 @@ Partial Class YarnJobOrder
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1184, 25)
-        Me.ToolStrip1.TabIndex = 610
+        Me.ToolStrip1.TabIndex = 16
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'OpenToolStripButton
@@ -1107,19 +918,6 @@ Partial Class YarnJobOrder
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'CMBSHADE
-        '
-        Me.CMBSHADE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSHADE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSHADE.BackColor = System.Drawing.SystemColors.Window
-        Me.CMBSHADE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBSHADE.FormattingEnabled = True
-        Me.CMBSHADE.Location = New System.Drawing.Point(284, 5)
-        Me.CMBSHADE.MaxDropDownItems = 14
-        Me.CMBSHADE.Name = "CMBSHADE"
-        Me.CMBSHADE.Size = New System.Drawing.Size(120, 23)
-        Me.CMBSHADE.TabIndex = 901
-        '
         'YarnJobOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1187,21 +985,6 @@ Partial Class YarnJobOrder
     Friend WithEvents TXTREED As TextBox
     Friend WithEvents TABCONTROLDETAILS As TabControl
     Friend WithEvents TBWEFT As TabPage
-    Friend WithEvents TXTTOTALWEFTCOST As TextBox
-    Friend WithEvents TXTTOTALWEFTRATE As TextBox
-    Friend WithEvents TXTTOTALWEFTCONS As TextBox
-    Friend WithEvents TXTTOTALWEFTBE As TextBox
-    Friend WithEvents TXTTOTALWEFTPE As TextBox
-    Friend WithEvents TXTTOTALWEFTWT As TextBox
-    Friend WithEvents TXTTOTALWEFTTE As TextBox
-    Friend WithEvents TXTWEFTCOST As TextBox
-    Friend WithEvents TXTWEFTRATE As TextBox
-    Friend WithEvents TXTWEFTCONS As TextBox
-    Friend WithEvents TXTWEFTBE As TextBox
-    Friend WithEvents TXTWEFTPE As TextBox
-    Friend WithEvents TXTWEFTWT As TextBox
-    Friend WithEvents TXTWEFTTE As TextBox
-    Friend WithEvents Label51 As Label
     Friend WithEvents Ep As ErrorProvider
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents GRIDBEAM As DataGridView

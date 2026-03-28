@@ -1287,6 +1287,11 @@ Public Class MDIMain
                         STOCKTAKING_MASTER.Enabled = True
                         STOCKTAKINGADD.Enabled = True
                         OPGDNADD.Enabled = True
+
+                        'YARN STOCKABJUSTMENT
+                        YARNSTOCKADJUSTMENT_MASTER.Enabled = True
+                        YARNSTOCKADJUSTMENTADD.Enabled = True
+
                     Else
                         GDNADD.Enabled = False
                         CHALLANTYPEADD.Enabled = False
@@ -1298,6 +1303,9 @@ Public Class MDIMain
                         'If ClientName = "AVIS" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SUPRIYA" Or ClientName = "YASHVI" Or ClientName = "RMANILAL" Or ClientName = "SONU" Or ClientName = "KOTHARI" Or ClientName = "MVIKASKUMAR" Or ClientName = "KARAN" Then STOCKADJUSTMENTADD.Enabled = False
                         STOCKTAKINGADD.Enabled = False
                         OPGDNADD.Enabled = False
+
+                        'YARN STOCKABJUSTMENT
+                        YARNSTOCKADJUSTMENTADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         GDN_MASTER.Enabled = True
@@ -1328,9 +1336,15 @@ Public Class MDIMain
                         '    STOCKADJUSTMENT_MASTER.Enabled = True
                         '    STOCKADJUSTMENTEDIT.Enabled = True
                         'End If
+
+
                         STOCKTAKING_MASTER.Enabled = True
                         STOCKTAKINGEDIT.Enabled = True
                         OPGDNEDIT.Enabled = True
+
+                        'YARN STOCKABJUSTMENT
+                        YARNSTOCKADJUSTMENT_MASTER.Enabled = True
+                        YARNSTOCKADJUSTMENTEDIT.Enabled = True
                     Else
                         GDNEDIT.Enabled = False
                         CHALLANTYPEEDIT.Enabled = False
@@ -1342,6 +1356,10 @@ Public Class MDIMain
                         STOCKTAKINGEDIT.Enabled = False
                         OPGDNEDIT.Enabled = False
                         YARNCHALLANEDIT.Enabled = False
+
+                        'YARN STOCKABJUSTMENT
+                        YARNSTOCKADJUSTMENTEDIT.Enabled = False
+
                     End If
 
 

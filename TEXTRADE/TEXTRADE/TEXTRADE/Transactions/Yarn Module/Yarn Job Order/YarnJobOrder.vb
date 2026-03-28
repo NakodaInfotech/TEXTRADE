@@ -47,13 +47,7 @@ Public Class YarnJobOrder
         lbllocked.Visible = False
         PBlock.Visible = False
 
-        TXTWEFTPE.Clear()
-        TXTWEFTBE.Clear()
-        TXTWEFTTE.Clear()
-        TXTWEFTWT.Clear()
-        TXTWEFTCONS.Clear()
-        TXTWEFTRATE.Clear()
-        TXTWEFTCOST.Clear()
+
         CMBDESIGN.Text = ""
 
     End Sub
@@ -817,6 +811,10 @@ LINE1:
                 Call toolprevious_Click(sender, e)
             ElseIf e.KeyCode = Keys.Right And e.Alt = True Then
                 Call toolnext_Click(sender, e)
+
+            ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
+                Call OpenToolStripButton_Click(sender, e)
+
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex

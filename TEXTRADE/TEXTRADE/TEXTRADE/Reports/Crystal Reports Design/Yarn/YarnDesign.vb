@@ -21,6 +21,8 @@ Public Class YarnDesign
     Dim RPTCHALLAN_VAISHALI As New YarnChallanReport_VAISHALI
 
     Dim RPTYARNJOBORDER As New YarnJobOrderReport
+    Dim RPTYARNJOBORDERCOMMON As New YarnJobOrderCommonReport
+
 
 
 
@@ -75,7 +77,11 @@ Public Class YarnDesign
                 crTables = RPTYARNDYEINGPROG.Database.Tables
 
             ElseIf FRMSTRING = "YARNJOBORDER" Then
-                crTables = RPTYARNJOBORDER.Database.Tables
+                If ClientName = "SWPL" Then
+                    crTables = RPTYARNJOBORDER.Database.Tables
+                Else
+                    crTables = RPTYARNJOBORDERCOMMON.Database.Tables
+                End If
             End If
 
 
@@ -111,7 +117,11 @@ Public Class YarnDesign
 
 
             ElseIf FRMSTRING = "YARNJOBORDER" Then
-                crpo.ReportSource = RPTYARNJOBORDER
+                If ClientName = "SWPL" Then
+                    crpo.ReportSource = RPTYARNJOBORDER
+                Else
+                    crpo.ReportSource = RPTYARNJOBORDERCOMMON
+                End If
 
             End If
 
@@ -159,11 +169,21 @@ Public Class YarnDesign
                 RPTYARNISSUEKNITTING.Export()
 
             ElseIf FRMSTRING = "YARNJOBORDER" Then
-                expo = RPTYARNJOBORDER.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTYARNJOBORDER.Export()
+                If ClientName = "SWPL" Then
+                    expo = RPTYARNJOBORDER.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTYARNJOBORDER.Export()
+                Else
+                    expo = RPTYARNJOBORDERCOMMON.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTYARNJOBORDERCOMMON.Export()
+                End If
+
+
 
 
             ElseIf FRMSTRING = "YARNISSUE" Then

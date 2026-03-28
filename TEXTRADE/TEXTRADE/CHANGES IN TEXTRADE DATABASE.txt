@@ -8153,3 +8153,7 @@ YARNSTOCKADJUSTMENT
 
 
 ADDED IN EINVOICEENTRY ---- ERRORMESSAGE ,varchar(MAX)
+
+*************************************************************
+DONE IN MMC 
+DONE IN BARKHA
