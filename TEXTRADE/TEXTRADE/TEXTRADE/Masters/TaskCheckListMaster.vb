@@ -188,7 +188,7 @@ LINE1:
             alParaval.Add(TASK)
             alParaval.Add(REMARKS)
 
-            Dim objSTOCK As New ClsStoreStockAdjustment()
+            Dim objSTOCK As New ClsTaskCheckListMaster()
             objSTOCK.alParaval = alParaval
             If EDIT = False Then
                 If USERADD = False Then
@@ -231,7 +231,7 @@ LINE1:
                 If MsgBox("Wish to Delete Task Check List?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
                 Dim ALPARAVAL As New ArrayList
-                Dim OBSTOCK As New ClsStoreStockAdjustment
+                Dim OBSTOCK As New ClsTaskCheckListMaster
 
                 ALPARAVAL.Add(TEMPTASKNO)
                 ALPARAVAL.Add(CmpId)
@@ -308,8 +308,8 @@ LINE1:
                 End If
 
 
-                Dim objSTOCK As New ClsStoreStockAdjustment()
-                Dim dttable As DataTable = objSTOCK.SELECTSTORESTOCKADJUSTMENT(TEMPTASKNO, CmpId, Locationid, YearId)
+                Dim objSTOCK As New ClsTaskCheckListMaster()
+                Dim dttable As DataTable = objSTOCK.SELECTTASKCHECKLIST(TEMPTASKNO, CmpId, Locationid, YearId)
                 If dttable.Rows.Count > 0 Then
 
                     For Each dr As DataRow In dttable.Rows
