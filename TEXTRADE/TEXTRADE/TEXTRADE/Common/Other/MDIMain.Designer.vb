@@ -1157,6 +1157,10 @@ Partial Class MDIMain
         Me.UpdateQualityWtToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateLRNoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPDATEBROKERMENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator348 = New System.Windows.Forms.ToolStripSeparator()
         Me.UpdateStockOnHandDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewEntryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditExistingEntryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1322,10 +1326,9 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator348 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TASKCHECKLIST_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TASKCHECKADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TASKCHECKEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -1749,7 +1752,7 @@ Partial Class MDIMain
         '
         'OtherMastersToolStripMenuItem
         '
-        Me.OtherMastersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MATERIAL_MASTER, Me.DEPARTMENT_MASTER, Me.ItemRelatedMastersToolStripMenuItem, Me.RatesRelatedMastersToolStripMenuItem, Me.TERM_MASTER, Me.GROUPOFCOMPANIES_MASTER, Me.PARTYITEMWISESTAMPING, Me.DESTOOL, Me.HSN_MASTER, Me.ToolStripSeparator2, Me.REASON_MASTER, Me.NARRATION_MASTER, Me.PARTYBANK_MASTER, Me.CONTRACTOR_MASTER, Me.CURRENCY_MASTER, Me.PACKINGTYPE_MASTER, Me.COSTCENTER_MASTER, Me.ToolStripSeparator18, Me.CHALLANTYPE_MASTER, Me.JOBOUTTYPE_MASTER, Me.JOBOUTTYPE_TOOL, Me.MILL_MASTER, Me.YARNQUALITY_MASTER, Me.WEAVE_MASTER, Me.LOOM_MASTER, Me.ToolStripSeparator11, Me.MACHINE_MASTER, Me.ToolStripSeparator108, Me.TransportInsuranceToolStripMenuItem, Me.VehicleMasterToolStripMenuItem, Me.ToolStripSeparator307, Me.TASK_MASTER})
+        Me.OtherMastersToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MATERIAL_MASTER, Me.DEPARTMENT_MASTER, Me.ItemRelatedMastersToolStripMenuItem, Me.RatesRelatedMastersToolStripMenuItem, Me.TERM_MASTER, Me.GROUPOFCOMPANIES_MASTER, Me.PARTYITEMWISESTAMPING, Me.DESTOOL, Me.HSN_MASTER, Me.ToolStripSeparator2, Me.REASON_MASTER, Me.NARRATION_MASTER, Me.PARTYBANK_MASTER, Me.CONTRACTOR_MASTER, Me.CURRENCY_MASTER, Me.PACKINGTYPE_MASTER, Me.COSTCENTER_MASTER, Me.ToolStripSeparator18, Me.CHALLANTYPE_MASTER, Me.JOBOUTTYPE_MASTER, Me.JOBOUTTYPE_TOOL, Me.MILL_MASTER, Me.YARNQUALITY_MASTER, Me.WEAVE_MASTER, Me.LOOM_MASTER, Me.ToolStripSeparator11, Me.MACHINE_MASTER, Me.ToolStripSeparator108, Me.TransportInsuranceToolStripMenuItem, Me.VehicleMasterToolStripMenuItem, Me.ToolStripSeparator307, Me.TASK_MASTER, Me.TASKCHECKLIST_MASTER})
         Me.OtherMastersToolStripMenuItem.Name = "OtherMastersToolStripMenuItem"
         Me.OtherMastersToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.OtherMastersToolStripMenuItem.Text = "Other Masters"
@@ -8162,25 +8165,25 @@ Partial Class MDIMain
         'MAGICBOXORDER_MENU
         '
         Me.MAGICBOXORDER_MENU.Name = "MAGICBOXORDER_MENU"
-        Me.MAGICBOXORDER_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.MAGICBOXORDER_MENU.Size = New System.Drawing.Size(173, 22)
         Me.MAGICBOXORDER_MENU.Text = "Magic Box Order"
         '
         'MAGICBOXINVOICE_MENU
         '
         Me.MAGICBOXINVOICE_MENU.Name = "MAGICBOXINVOICE_MENU"
-        Me.MAGICBOXINVOICE_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.MAGICBOXINVOICE_MENU.Size = New System.Drawing.Size(173, 22)
         Me.MAGICBOXINVOICE_MENU.Text = "Magic Box Invoice"
         '
         'MAGICBOXRECPAY_MENU
         '
         Me.MAGICBOXRECPAY_MENU.Name = "MAGICBOXRECPAY_MENU"
-        Me.MAGICBOXRECPAY_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.MAGICBOXRECPAY_MENU.Size = New System.Drawing.Size(173, 22)
         Me.MAGICBOXRECPAY_MENU.Text = "Magic Box Rec/Pay"
         '
         'ToolStripSeparator327
         '
         Me.ToolStripSeparator327.Name = "ToolStripSeparator327"
-        Me.ToolStripSeparator327.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator327.Size = New System.Drawing.Size(170, 6)
         '
         'MASHOK_REPORTS
         '
@@ -8553,6 +8556,30 @@ Partial Class MDIMain
         Me.UPDATEBROKERMENU.Size = New System.Drawing.Size(253, 22)
         Me.UPDATEBROKERMENU.Text = "Update Broker"
         '
+        'ToolStripMenuItem6
+        '
+        Me.ToolStripMenuItem6.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem7, Me.ToolStripMenuItem8, Me.ToolStripSeparator348})
+        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(253, 22)
+        Me.ToolStripMenuItem6.Text = "Update Yarn Rack && Shelf"
+        '
+        'ToolStripMenuItem7
+        '
+        Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
+        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(168, 22)
+        Me.ToolStripMenuItem7.Text = "&Add New Entry"
+        '
+        'ToolStripMenuItem8
+        '
+        Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
+        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(168, 22)
+        Me.ToolStripMenuItem8.Text = "&Edit Existing Entry"
+        '
+        'ToolStripSeparator348
+        '
+        Me.ToolStripSeparator348.Name = "ToolStripSeparator348"
+        Me.ToolStripSeparator348.Size = New System.Drawing.Size(165, 6)
+        '
         'UpdateStockOnHandDetailsToolStripMenuItem
         '
         Me.UpdateStockOnHandDetailsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem1, Me.EditExistingEntryToolStripMenuItem1, Me.ToolStripSeparator242})
@@ -8563,19 +8590,19 @@ Partial Class MDIMain
         'AddNewEntryToolStripMenuItem1
         '
         Me.AddNewEntryToolStripMenuItem1.Name = "AddNewEntryToolStripMenuItem1"
-        Me.AddNewEntryToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.AddNewEntryToolStripMenuItem1.Size = New System.Drawing.Size(168, 22)
         Me.AddNewEntryToolStripMenuItem1.Text = "&Add New Entry"
         '
         'EditExistingEntryToolStripMenuItem1
         '
         Me.EditExistingEntryToolStripMenuItem1.Name = "EditExistingEntryToolStripMenuItem1"
-        Me.EditExistingEntryToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
+        Me.EditExistingEntryToolStripMenuItem1.Size = New System.Drawing.Size(168, 22)
         Me.EditExistingEntryToolStripMenuItem1.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator242
         '
         Me.ToolStripSeparator242.Name = "ToolStripSeparator242"
-        Me.ToolStripSeparator242.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator242.Size = New System.Drawing.Size(165, 6)
         '
         'UpdateReminderDaysToolStripMenuItem
         '
@@ -9643,29 +9670,24 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'ToolStripMenuItem6
+        'TASKCHECKLIST_MASTER
         '
-        Me.ToolStripMenuItem6.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem7, Me.ToolStripMenuItem8, Me.ToolStripSeparator348})
-        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(253, 22)
-        Me.ToolStripMenuItem6.Text = "Update Yarn Rack && Shelf"
+        Me.TASKCHECKLIST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TASKCHECKADD, Me.TASKCHECKEDIT})
+        Me.TASKCHECKLIST_MASTER.Name = "TASKCHECKLIST_MASTER"
+        Me.TASKCHECKLIST_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.TASKCHECKLIST_MASTER.Text = "Task Check Master"
         '
-        'ToolStripMenuItem7
+        'TASKCHECKADD
         '
-        Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
-        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(180, 22)
-        Me.ToolStripMenuItem7.Text = "&Add New Entry"
+        Me.TASKCHECKADD.Name = "TASKCHECKADD"
+        Me.TASKCHECKADD.Size = New System.Drawing.Size(180, 22)
+        Me.TASKCHECKADD.Text = "Add New Entry"
         '
-        'ToolStripMenuItem8
+        'TASKCHECKEDIT
         '
-        Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
-        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(180, 22)
-        Me.ToolStripMenuItem8.Text = "&Edit Existing Entry"
-        '
-        'ToolStripSeparator348
-        '
-        Me.ToolStripSeparator348.Name = "ToolStripSeparator348"
-        Me.ToolStripSeparator348.Size = New System.Drawing.Size(177, 6)
+        Me.TASKCHECKEDIT.Name = "TASKCHECKEDIT"
+        Me.TASKCHECKEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.TASKCHECKEDIT.Text = "Edit Existing Entry"
         '
         'MDIMain
         '
@@ -10996,4 +11018,7 @@ Partial Class MDIMain
     Friend WithEvents ToolStripMenuItem7 As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem8 As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator348 As ToolStripSeparator
+    Friend WithEvents TASKCHECKLIST_MASTER As ToolStripMenuItem
+    Friend WithEvents TASKCHECKADD As ToolStripMenuItem
+    Friend WithEvents TASKCHECKEDIT As ToolStripMenuItem
 End Class

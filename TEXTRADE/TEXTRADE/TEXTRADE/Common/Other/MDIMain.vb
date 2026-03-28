@@ -11669,4 +11669,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub TASKCHECKADD_Click(sender As Object, e As EventArgs) Handles TASKCHECKADD.Click
+        Try
+            Dim OBJYARNJO As New TaskCheckListMaster
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TASKCHECKEDIT_Click(sender As Object, e As EventArgs) Handles TASKCHECKEDIT.Click
+        Try
+            Dim OBJYARNJO As New TaskCheckListDetails
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
