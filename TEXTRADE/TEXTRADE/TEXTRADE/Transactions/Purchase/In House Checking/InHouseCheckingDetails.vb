@@ -135,4 +135,12 @@ Public Class InHouseCheckingDetails
             MsgBox("Checking Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
+
+    Private Sub InHouseCheckingDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+
+        gridbill.Columns("PCS").Visible = False
+        gridbill.Columns("MATRECNO").Visible = False
+        gridbill.Columns("BALENO").Caption = "Pcs"
+    End Sub
+
 End Class

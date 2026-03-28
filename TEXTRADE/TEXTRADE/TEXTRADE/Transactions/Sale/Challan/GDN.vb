@@ -970,9 +970,19 @@ NEXTLINE:
                 If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND GROUP_NAME = 'HASTE DEBTORS'  AND ACC_TYPE = 'ACCOUNTS'")
                 If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
             Else
-                If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND ACC_TYPE = 'ACCOUNTS'")
-                If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+
+                If ClientName = "VINTAGEINDIA" Then
+                    If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND ACC_TYPE = 'ACCOUNTS'")
+                    If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
+                Else
+                    If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND ACC_TYPE = 'ACCOUNTS'")
+                    If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+                End If
+
             End If
+
+
+
             FILLCHALLANTYPE(CMBTYPE)
             FILLCONTRACT(CMBCONTRACTOR)
             If CMBSTOREITEMNAME.Text.Trim = "" Then FILLSTOREITEMNAME(CMBSTOREITEMNAME)
@@ -2049,7 +2059,11 @@ NEXTLINE:
             If ClientName = "AVIS" Then
                 If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND GROUP_NAME <> 'HASTE DEBTORS'")
             Else
-                If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+                If ClientName = "VINTAGEINDIA" Then
+                    If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
+                Else
+                    If cmbname.Text.Trim = "" Then FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
+                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -2059,12 +2073,16 @@ NEXTLINE:
     Private Sub cmbname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
             If cmbname.Text.Trim <> "" Then
-                NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS", CMBTRANS.Text, CMBAGENT.Text)
-                'Dim OBJCMN As New ClsCommon
-                'Dim DT As DataTable = OBJCMN.search(" ISNULL(ACC_TINNO,'') AS TINNO", "", " LEDGERS", " AND ACC_CMPNAME = '" & cmbname.Text.Trim & "'  AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
-                'If DT.Rows.Count > 0 Then LBLTINNO.Text = DT.Rows(0).Item("TINNO")
-                'If ClientName <> "KOTHARI" Then TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
 
+                If ClientName = "VINTAGEINDIA" Then
+                    If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors')", "Sundry debtors", "ACCOUNTS")
+                Else
+                    NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS", CMBTRANS.Text, CMBAGENT.Text)
+                    'Dim OBJCMN As New ClsCommon
+                    'Dim DT As DataTable = OBJCMN.search(" ISNULL(ACC_TINNO,'') AS TINNO", "", " LEDGERS", " AND ACC_CMPNAME = '" & cmbname.Text.Trim & "'  AND ACC_CMPID = " & CmpId & " AND ACC_LOCATIONID = " & Locationid & " AND ACC_YEARID = " & YearId)
+                    'If DT.Rows.Count > 0 Then LBLTINNO.Text = DT.Rows(0).Item("TINNO")
+                    'If ClientName <> "KOTHARI" Then TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -2713,7 +2731,7 @@ NEXTLINE:
                 If ClientName <> "SANGHVI" And ClientName <> "TINUMINU" Then OBJSELECTGDN.GODOWN = CMBGODOWN.Text.Trim
                 If ALLOWPACKINGSLIP = True Then OBJSELECTGDN.FILTER = " AND BARCODE = ''"
                 If ALLOWPACKINGSLIP = True And cmbname.Text.Trim <> "" Then OBJSELECTGDN.FILTER = OBJSELECTGDN.FILTER & " AND JOBBERNAME = '" & cmbname.Text.Trim & "'"
-                If ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "AARYA" And cmbname.Text.Trim <> "" Then OBJSELECTGDN.FILTER = OBJSELECTGDN.FILTER & " AND PURNAME = '" & cmbname.Text.Trim & "'"
+                If ClientName = "RADHA" Or ClientName = "AARYA" And cmbname.Text.Trim <> "" Then OBJSELECTGDN.FILTER = OBJSELECTGDN.FILTER & " AND PURNAME = '" & cmbname.Text.Trim & "'"
                 OBJSELECTGDN.ShowDialog()
                 DTGDN = OBJSELECTGDN.DT
             Else

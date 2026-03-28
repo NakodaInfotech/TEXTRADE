@@ -1747,7 +1747,7 @@ NEXTLINE:
             If cmbname.Text.Trim = "" Then
                 If ClientName = "AMAN" Or ClientName = "AARYA" Then
                     FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' and ACC_TYPE = 'ACCOUNTS'")
-                ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Then
+                ElseIf ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "SIMPLEX" Or ClientName = "VINTAGEINDIA" Then
                     FILLNAME(cmbname, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') and ACC_TYPE = 'ACCOUNTS'")
                 Else
                     FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
@@ -3782,9 +3782,9 @@ LINE1:
                 CMBSHELF.TabStop = False
                 LBL3.Visible = True
                 CMBDESIGN.TabStop = False
-                CMBDESIGN.Enabled = False
+                'CMBDESIGN.Enabled = False
                 cmbcolor.TabStop = False
-                cmbcolor.Enabled = False
+                'cmbcolor.Enabled = False
                 txtqty.TabStop = False
                 txtqty.ReadOnly = True
                 TXTBALENO.TabStop = False
@@ -3827,6 +3827,15 @@ LINE1:
                 TXTBALENO.BackColor = Color.LemonChiffon
                 GBALENO.ReadOnly = True
             End If
+
+
+
+            If ClientName = "VINTAGEINDIA" Then
+                If UserName <> "Admin" Then
+                    TXTLOTNO.ReadOnly = True
+                End If
+            End If
+
 
         Catch ex As Exception
             Throw ex

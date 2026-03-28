@@ -622,8 +622,8 @@ Public Class YarnStockReco
 
                 If DTTABLE.Rows.Count > 0 Then
                     For Each dr As DataRow In DTTABLE.Rows
-                    GRIDSTOCKOUT.Rows.Add(0, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, "", "", dr("COLOR").ToString, dr("LOTNO").ToString, "", Val(dr("BAGS")), Format(Val(dr("WT")), "0.00"), Val(dr("CONES")), dr("LRNO"), "", "", 0, dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
-                    If CHKCOPY.Checked = True Then GRIDSTOCKIN.Rows.Add(0, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, "", "", dr("COLOR").ToString, dr("LOTNO").ToString, "", Val(dr("BAGS")), Format(Val(dr("WT")), "0.00"), Val(dr("CONES")), dr("LRNO"), "", "", 0, "", Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
+                    GRIDSTOCKOUT.Rows.Add(0, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, "", "", dr("COLOR").ToString, dr("LOTNO").ToString, "", Val(dr("BAGS")), Format(Val(dr("WT")), "0.00"), Val(dr("CONES")), dr("LRNO"), dr("RACK"), 0, "", 0, dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
+                    If CHKCOPY.Checked = True Then GRIDSTOCKIN.Rows.Add(0, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, "", "", dr("COLOR").ToString, dr("LOTNO").ToString, "", Val(dr("BAGS")), Format(Val(dr("WT")), "0.00"), Val(dr("CONES")), dr("LRNO"), dr("RACK"), 0, "", 0, dr("BARCODE").ToString, 0, 0, 0)
                 Next
                     GRIDSTOCKOUT.FirstDisplayedScrollingRowIndex = GRIDSTOCKOUT.RowCount - 1
                     GETSRNO(GRIDSTOCKOUT)

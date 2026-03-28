@@ -1147,6 +1147,8 @@ NEXTLINE:
                 LBLDYEING.Text = "Party Name"
                 CHKPROCESS.Visible = True
                 CLB_PROCESS.Visible = True
+                CMBDESIGNNO.Enabled = True
+
             End If
 
             If ClientName = "KARAN" Then

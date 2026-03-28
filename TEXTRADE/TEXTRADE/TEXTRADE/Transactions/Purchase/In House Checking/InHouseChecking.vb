@@ -635,7 +635,7 @@ NEXTLINE:
                     TXTDECLPCS.Text = Format(Val(dr("DECLPCS")), "0.00")
 
                     GRIDCHECKING.Rows.Add(dr("GRIDSRNO").ToString, Format(Val(dr("GREYMTRS")), "0.00"), Format(Val(dr("RECDMTRS")), "0.00"), Format(Val(dr("CHECKEDMTRS")), "0.00"), dr("NARR").ToString, dr("PIECETYPE").ToString, Format(Val(dr("DIFF")), "0.00"), dr("UNIT").ToString, Format(Val(dr("CHKWIDTH")), "0.00"), Format(Val(dr("RECDWT")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("WTDIFF")), "0.00"), dr("ITEMNAME"), dr("QUALITY"), dr("BALENO"), dr("DESIGN"), dr("COLOR").ToString, dr("BARCODE"), dr("RACK"), dr("SHELF"), dr("DONE"), Val(dr("OUTPCS")), Val(dr("OUTMTRS")), Val(dr("RATE")), dr("PER"), Val(dr("AMT")), Val(dr("WTPER")))
-                    If dr("NARR") <> "" And ClientName = "VINTAGEINDIA" Then Gdesc.ReadOnly = True
+                    'If dr("NARR") <> "" And ClientName = "VINTAGEINDIA" Then Gdesc.ReadOnly = True
 
                     If Val(dr("OUTMTRS")) > 0 Then
                         GRIDCHECKING.Rows(GRIDCHECKING.RowCount - 1).DefaultCellStyle.BackColor = Drawing.Color.Yellow
