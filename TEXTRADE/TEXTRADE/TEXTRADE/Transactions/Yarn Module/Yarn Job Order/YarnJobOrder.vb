@@ -39,6 +39,7 @@ Public Class YarnJobOrder
         TXTMTRS.Clear()
         txtremarks.Clear()
         tstxtbillno.Clear()
+        CMDSELECTSO.Enabled = True
 
         GRIDBEAM.RowCount = 0
 
@@ -465,7 +466,7 @@ LINE1:
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -618,7 +619,7 @@ LINE1:
     End Sub
     Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "ACCOUNTS")
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
@@ -734,7 +735,7 @@ LINE1:
             If Val(TXTCOPYSONO.Text.Trim) = 0 Then Exit Sub
 
             Dim OBJCMN As New ClsCommon
-            Dim dttable2 As DataTable = OBJCMN.SEARCH(" SALEORDER_DESC.SO_GRIDSRNO AS GRIDSRNO , ISNULL(QUALITYMASTER.QUALITY_name,'') AS QUALITY, ISNULL(COLORMASTER.COLOR_name,'') AS COLOR, ISNULL(ITEMMASTER.item_name,'') AS ITEMNAME, ISNULL(SALEORDER_DESC.SO_MTRS,0) AS MTRS ", "", " SALEORDER_DESC LEFT OUTER JOIN QUALITYMASTER ON SALEORDER_DESC.SO_QUALITYID = QUALITYMASTER.QUALITY_id AND SALEORDER_DESC.SO_YEARID = QUALITYMASTER.QUALITY_yearid LEFT OUTER JOIN COLORMASTER ON SALEORDER_DESC.SO_YEARID = COLORMASTER.COLOR_yearid AND SALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON SALEORDER_DESC.SO_YEARID = ITEMMASTER.item_yearid AND SALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id  ", " AND SALEORDER_DESC.SO_NO = " & Val(TXTCOPYSONO.Text.Trim) & " AND SALEORDER_DESC.SO_YEARID = " & YearId & " ORDER BY GRIDSRNO")
+            Dim dttable2 As DataTable = OBJCMN.SEARCH(" SALEORDER_DESC.SO_GRIDSRNO AS GRIDSRNO , ISNULL(QUALITYMASTER.QUALITY_name,'') AS QUALITY, ISNULL(COLORMASTER.COLOR_name,'') AS COLOR, ISNULL(ITEMMASTER.item_name,'') AS ITEMNAME, ISNULL(SALEORDER_DESC.SO_MTRS,0) AS MTRS ", "", " SALEORDER_DESC LEFT OUTER JOIN QUALITYMASTER ON SALEORDER_DESC.SO_QUALITYID = QUALITYMASTER.QUALITY_id AND SALEORDER_DESC.SO_YEARID = QUALITYMASTER.QUALITY_yearid LEFT OUTER JOIN COLORMASTER ON SALEORDER_DESC.SO_YEARID = COLORMASTER.COLOR_yearid AND SALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON SALEORDER_DESC.SO_DESIGNID = DESIGNMASTER.DESIGN_ID AND SALEORDER_DESC.SO_YEARID = DESIGNMASTER.DESIGN_YEARID  LEFT OUTER JOIN ITEMMASTER ON SALEORDER_DESC.SO_YEARID = ITEMMASTER.item_yearid AND SALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id  ", " AND SALEORDER_DESC.SO_NO = " & Val(TXTCOPYSONO.Text.Trim) & " AND SALEORDER_DESC.SO_YEARID = " & YearId & " ORDER BY GRIDSRNO")
             If dttable2.Rows.Count = 0 Then
                 MsgBox("Sale Order Not Found", MsgBoxStyle.Critical, "TEXTRADE")
                 TXTCOPYSONO.Clear()
@@ -839,7 +840,10 @@ LINE1:
             '    TXTTOTALENDS.BackColor = Color.White
             '    CMBITEMNAME.Enabled = True
             'End If
-
+            If ClientName = "MMC" Then
+                CMDSELECTSO.Visible = True
+                TXTCOPYSONO.Enabled = False
+            End If
 
             If ClientName = "SWPL" Then
                 CMBDESIGN.Enabled = True
@@ -888,6 +892,64 @@ LINE1:
     Private Sub CMBDESIGN_Enter(sender As Object, e As EventArgs) Handles CMBDESIGN.Enter
         Try
             If CMBDESIGN.Text.Trim = "" Then FILLDESIGN(CMBDESIGN, CMBITEMNAME.Text.Trim)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDSELECTSO_Click(sender As Object, e As EventArgs) Handles CMDSELECTSO.Click
+        Try
+            If ClientName = "MMC" Then
+                If CMBNAME.Text.Trim = "" Then
+                    MsgBox("Select Party Name", MsgBoxStyle.Critical)
+                    CMBNAME.Focus()
+                    Exit Sub
+                End If
+                Dim OBJCMN As New ClsCommon
+                'Dim DT1 As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(INVOICEMASTER_DESC.INVOICE_RATE,0) AS LASTRATE", "", " INVOICEMASTER_DESC INNER JOIN ITEMMASTER ON item_id = INVOICE_ITEMID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO  AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID INNER JOIN LEDGERS ON ACC_ID = INVOICE_LEDGERID", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ITEMMASTER.ITEM_NAME = '" & GRIDINVOICE.Item(GITEMNAME.Index, GRIDINVOICE.CurrentRow.Index).Value & "' AND INVOICEMASTER.INVOICE_DATE < '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_YEARID = " & YearId & " ORDER BY INVOICEMASTER.INVOICE_NO DESC")
+                'If DT1.Rows.Count > 0 Then LBLRATE.Text = Format(Val(DT1.Rows(0).Item("LASTRATE")), "0.00")
+
+                Dim DTSO As New DataTable
+                Dim OBJSELECTSO As New SelectSO
+                OBJSELECTSO.PARTYNAME = CMBNAME.Text.Trim
+                OBJSELECTSO.ShowDialog()
+                DTSO = OBJSELECTSO.DT
+
+                If DTSO.Rows.Count > 0 Then
+
+                    ''  GETTING DISTINCT SONO NO IN TEXTBOX
+                    Dim DV As DataView = DTSO.DefaultView
+                    Dim NEWDT As DataTable = DV.ToTable(True, "SONO")
+
+                    'txtremarks.Text = DTSO.Rows(0).Item("REMARKS")
+
+
+                    'BEFORE ADDING THE ROW IN ORDERDER GRID CHECK WHETHER SAME ORDERNO AN SRNO IS PRESENT IN GRID OR NOT
+                    For Each DTROW As DataRow In DTSO.Rows
+                        'For Each ROW As DataGridViewRow In GRIDORDER.Rows
+                        '    If Val(ROW.Cells(OFROMNO.Index).Value) = Val(DTROW("SONO")) And Val(ROW.Cells(OFROMSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(OFROMTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
+                        'Next
+
+
+                        GRIDBEAM.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), "", "", 0, 0, 0, 0, Format(Val(DTROW("MTRS")), "0.00"), "")
+
+NEXTLINE:
+                    Next
+                    getsrno(GRIDBEAM)
+                    'getsrno(GRIDINVOICE)
+                    CMDSELECTSO.Enabled = False
+
+                    TOTAL()
+                    GRIDBEAM.FirstDisplayedScrollingRowIndex = GRIDBEAM.RowCount - 1
+                    If GRIDBEAM.RowCount > 0 Then
+                        GRIDBEAM.Focus()
+                        GRIDBEAM.CurrentCell = GRIDBEAM.Rows(0).Cells(GMTRS.Index)
+                    End If
+                    'If ClientName = "ABHEE" Then
+                    '    GRIDBEAM.RowCount = 0
+                    'End If
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try
