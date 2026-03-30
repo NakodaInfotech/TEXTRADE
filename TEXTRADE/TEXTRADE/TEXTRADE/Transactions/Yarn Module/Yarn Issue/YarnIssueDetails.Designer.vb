@@ -23,6 +23,7 @@ Partial Class YarnIssueDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -57,7 +58,7 @@ Partial Class YarnIssueDetails
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
+        Me.GPARTYCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +78,20 @@ Partial Class YarnIssueDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 7
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 544)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'cmdexit
         '
@@ -121,7 +136,7 @@ Partial Class YarnIssueDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GMACHINENO, Me.GCHALLAN, Me.GPROCESS, Me.GMILL, Me.GYARN, Me.GDESIGN, Me.GCOLOR, Me.GLOTNO, Me.GBAGS, Me.GTOTALBAGS, Me.gwt, Me.GTOTALWT, Me.GCONES, Me.GTOTALCONES, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GREMARKS, Me.GYARNRECD, Me.GBARCODE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GMACHINENO, Me.GCHALLAN, Me.GPROCESS, Me.GMILL, Me.GYARN, Me.GDESIGN, Me.GCOLOR, Me.GPARTYCOLOR, Me.GLOTNO, Me.GBAGS, Me.GTOTALBAGS, Me.gwt, Me.GTOTALWT, Me.GCONES, Me.GTOTALCONES, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GREMARKS, Me.GYARNRECD, Me.GBARCODE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -237,7 +252,7 @@ Partial Class YarnIssueDetails
         Me.GLOTNO.FieldName = "LOTNO"
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 11
+        Me.GLOTNO.VisibleIndex = 12
         '
         'GBAGS
         '
@@ -246,7 +261,7 @@ Partial Class YarnIssueDetails
         Me.GBAGS.Name = "GBAGS"
         Me.GBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBAGS.Visible = True
-        Me.GBAGS.VisibleIndex = 12
+        Me.GBAGS.VisibleIndex = 13
         '
         'GTOTALBAGS
         '
@@ -256,7 +271,7 @@ Partial Class YarnIssueDetails
         Me.GTOTALBAGS.FieldName = "TOTALBAGS"
         Me.GTOTALBAGS.Name = "GTOTALBAGS"
         Me.GTOTALBAGS.Visible = True
-        Me.GTOTALBAGS.VisibleIndex = 13
+        Me.GTOTALBAGS.VisibleIndex = 14
         Me.GTOTALBAGS.Width = 60
         '
         'gwt
@@ -266,7 +281,7 @@ Partial Class YarnIssueDetails
         Me.gwt.Name = "gwt"
         Me.gwt.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.gwt.Visible = True
-        Me.gwt.VisibleIndex = 14
+        Me.gwt.VisibleIndex = 15
         '
         'GTOTALWT
         '
@@ -276,7 +291,7 @@ Partial Class YarnIssueDetails
         Me.GTOTALWT.FieldName = "TOTALWT"
         Me.GTOTALWT.Name = "GTOTALWT"
         Me.GTOTALWT.Visible = True
-        Me.GTOTALWT.VisibleIndex = 15
+        Me.GTOTALWT.VisibleIndex = 16
         Me.GTOTALWT.Width = 60
         '
         'GCONES
@@ -286,7 +301,7 @@ Partial Class YarnIssueDetails
         Me.GCONES.Name = "GCONES"
         Me.GCONES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GCONES.Visible = True
-        Me.GCONES.VisibleIndex = 16
+        Me.GCONES.VisibleIndex = 17
         '
         'GTOTALCONES
         '
@@ -296,7 +311,7 @@ Partial Class YarnIssueDetails
         Me.GTOTALCONES.FieldName = "TOTALCONES"
         Me.GTOTALCONES.Name = "GTOTALCONES"
         Me.GTOTALCONES.Visible = True
-        Me.GTOTALCONES.VisibleIndex = 17
+        Me.GTOTALCONES.VisibleIndex = 18
         '
         'GTRANSNAME
         '
@@ -304,7 +319,7 @@ Partial Class YarnIssueDetails
         Me.GTRANSNAME.FieldName = "TRANSNAME"
         Me.GTRANSNAME.Name = "GTRANSNAME"
         Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 18
+        Me.GTRANSNAME.VisibleIndex = 19
         Me.GTRANSNAME.Width = 150
         '
         'GLRNO
@@ -313,7 +328,7 @@ Partial Class YarnIssueDetails
         Me.GLRNO.FieldName = "LRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 19
+        Me.GLRNO.VisibleIndex = 20
         '
         'GLRDATE
         '
@@ -323,7 +338,7 @@ Partial Class YarnIssueDetails
         Me.GLRDATE.FieldName = "LRDATE"
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.Visible = True
-        Me.GLRDATE.VisibleIndex = 20
+        Me.GLRDATE.VisibleIndex = 21
         '
         'GREMARKS
         '
@@ -331,7 +346,7 @@ Partial Class YarnIssueDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 22
+        Me.GREMARKS.VisibleIndex = 23
         Me.GREMARKS.Width = 180
         '
         'GYARNRECD
@@ -340,7 +355,7 @@ Partial Class YarnIssueDetails
         Me.GYARNRECD.FieldName = "YARNRECD"
         Me.GYARNRECD.Name = "GYARNRECD"
         Me.GYARNRECD.Visible = True
-        Me.GYARNRECD.VisibleIndex = 23
+        Me.GYARNRECD.VisibleIndex = 24
         '
         'GBARCODE
         '
@@ -349,7 +364,7 @@ Partial Class YarnIssueDetails
         Me.GBARCODE.Name = "GBARCODE"
         Me.GBARCODE.OptionsColumn.AllowEdit = False
         Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 21
+        Me.GBARCODE.VisibleIndex = 22
         Me.GBARCODE.Width = 100
         '
         'ToolStrip1
@@ -397,19 +412,14 @@ Partial Class YarnIssueDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'CMDSAVELAYOUT
+        'GPARTYCOLOR
         '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 544)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 449
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
+        Me.GPARTYCOLOR.Caption = "P.Shade"
+        Me.GPARTYCOLOR.FieldName = "PARTYCOLOR"
+        Me.GPARTYCOLOR.Name = "GPARTYCOLOR"
+        Me.GPARTYCOLOR.Visible = True
+        Me.GPARTYCOLOR.VisibleIndex = 11
+        Me.GPARTYCOLOR.Width = 80
         '
         'YarnIssueDetails
         '
@@ -467,4 +477,5 @@ Partial Class YarnIssueDetails
     Friend WithEvents GYARNRECD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GPARTYCOLOR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

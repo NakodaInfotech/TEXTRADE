@@ -200,6 +200,9 @@ Public Class YarnIssue
         Else
             txtuploadsrno.Text = 1
         End If
+
+        TXTPSHADE.Clear()
+
     End Sub
 
     Sub total()
@@ -355,6 +358,7 @@ Public Class YarnIssue
             Dim MILLNAME As String = ""
             Dim DESIGN As String = ""
             Dim COLOR As String = ""
+            Dim PSHADE As String = ""
             Dim LOTNO As String = ""
             Dim qty As String = ""
             Dim WT As String = ""
@@ -376,6 +380,7 @@ Public Class YarnIssue
                         MILLNAME = row.Cells(GMILLNAME.Index).Value.ToString
                         DESIGN = row.Cells(GDESIGN.Index).Value.ToString
                         COLOR = row.Cells(gcolor.Index).Value.ToString
+                        PSHADE = row.Cells(GPSHADE.Index).Value.ToString
                         LOTNO = row.Cells(GLOTNO.Index).Value.ToString
                         qty = row.Cells(GQTY.Index).Value.ToString
                         WT = row.Cells(GWT.Index).Value
@@ -396,6 +401,7 @@ Public Class YarnIssue
                         MILLNAME = MILLNAME & "|" & row.Cells(GMILLNAME.Index).Value.ToString
                         DESIGN = DESIGN & "|" & row.Cells(GDESIGN.Index).Value.ToString
                         COLOR = COLOR & "|" & row.Cells(gcolor.Index).Value.ToString
+                        PSHADE = PSHADE & "|" & row.Cells(GPSHADE.Index).Value.ToString
                         LOTNO = LOTNO & "|" & row.Cells(GLOTNO.Index).Value.ToString
                         qty = qty & "|" & row.Cells(GQTY.Index).Value
                         WT = WT & "|" & row.Cells(GWT.Index).Value
@@ -416,12 +422,11 @@ Public Class YarnIssue
             alParaval.Add(YARNQUALITY)
             alParaval.Add(MILLNAME)
             alParaval.Add(DESIGN)
-
             alParaval.Add(COLOR)
+            alParaval.Add(PSHADE)
             alParaval.Add(LOTNO)
             alParaval.Add(qty)
             alParaval.Add(WT)
-
             alParaval.Add(CONES)
             alParaval.Add(LRNO)
             alParaval.Add(LRDATE)
@@ -618,7 +623,7 @@ Public Class YarnIssue
                         If dr("LRNO") <> "" Then TEMPLRDATE = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
                         Dim TEMPLIFTDATE As String = ""
                         If dr("LRNO") <> "" Then TEMPLIFTDATE = Format(Convert.ToDateTime(dr("LIFTINGDATE")).Date, "dd/MM/yyyy")
-                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), Format(Convert.ToDateTime(dr("LIFTINGDATE")).Date, "dd/MM/yyyy"), dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
+                        GRIDYARN.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("DESIGNNO").ToString, dr("COLOR"), dr("PARTYCOLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), Format(Convert.ToDateTime(dr("LIFTINGDATE")).Date, "dd/MM/yyyy"), dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
 
                         If Convert.ToDecimal(dr("RECDWT")) > 0 Then
                             lbllocked.Visible = True
@@ -777,7 +782,7 @@ Public Class YarnIssue
         TEMPLIFTDATE = Format(DTLIFTDATE.Value.Date, "dd/MM/yyyy")
 
         If GRIDDOUBLECLICK = False Then
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, TEMPLRDATE, TEMPLIFTDATE)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTPSHADE.Text.Trim, TXTLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0.00"), TXTLRNO.Text.Trim, TEMPLRDATE, TEMPLIFTDATE)
             getsrno(GRIDYARN)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDYARN.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -786,6 +791,7 @@ Public Class YarnIssue
 
             GRIDYARN.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
             GRIDYARN.Item(gcolor.Index, TEMPROW).Value = cmbcolor.Text.Trim
+            GRIDYARN.Item(GPSHADE.Index, TEMPROW).Value = TXTPSHADE.Text.Trim
             GRIDYARN.Item(GLOTNO.Index, TEMPROW).Value = TXTLOTNO.Text.Trim
 
             GRIDYARN.Item(GQTY.Index, TEMPROW).Value = Format(Val(txtqty.Text.Trim), "0.00")
@@ -810,6 +816,7 @@ Public Class YarnIssue
         CMBMILL.Text = ""
         CMBDESIGN.Text = ""
         cmbcolor.Text = ""
+        TXTPSHADE.Clear()
         TXTLOTNO.Clear()
         txtqty.Clear()
         TXTWT.Clear()
@@ -884,8 +891,17 @@ Public Class YarnIssue
                         If DTROW("BARCODE") <> "" And LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(DTROW("BARCODE")) Or (DTROW("BARCODE") = "" And Val(ROW.Cells(GFROMNO.Index).Value) = Val(DTROW("FROMNO")) And Val(ROW.Cells(GFROMSRNO.Index).Value) = Val(DTROW("FROMSRNO"))) And ROW.Cells(GFROMTYPE.Index).Value = DTROW("FROMTYPE") Then GoTo NEXTLINE
                     Next
 
+                    ''If ClientName = "VAISHALI" Then
+                    'Dim TEMPPARTYCOLOR As String
+                    '    Dim OBJCMN As New ClsCommon
+                    '    Dim dt As DataTable = OBJCMN.SEARCH(" ISNULL(COLORTAGGING.TAG_PCOLOR,'') AS PSHADE", "", "COLORTAGGING INNER JOIN COLORMASTER ON COLORTAGGING.TAG_COLORID = COLORMASTER.COLOR_ID INNER JOIN LEDGERS ON LEDGERS.Acc_id = COLORTAGGING.TAG_LEDGERID ", " AND ledgers.acc_cmpname = '" & CMBNAME.Text.Trim & "' and ISNULL(COLORMASTER.COLOR_name, '')='" & DTROW("COLOR") & "' AND COLORTAGGING.TAG_YEARID = " & YearId)
+                    '    If dt.Rows.Count > 0 Then
+                    '        TEMPPARTYCOLOR = dt.Rows(0).Item("PSHADE")
+                    '    End If
+                    '' End If
 
-                    GRIDYARN.Rows.Add(0, DTROW("YARNQUALITY"), DTROW("MILLNAME"), DTROW("DESIGNNO"), DTROW("COLOR"), DTROW("LOTNO"), Format(Val(DTROW("BAGS")), "0"), Format(Val(DTROW("WT")), "0.00"), Format(Val(DTROW("CONES")), "0"), DTROW("LRNO"), Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), Format(DTLIFTDATE.Value.Date, "dd/MM/yyyy"), DTROW("BARCODE"), DTROW("FROMNO"), DTROW("FROMSRNO"), DTROW("FROMTYPE"))
+
+                    GRIDYARN.Rows.Add(0, DTROW("YARNQUALITY"), DTROW("MILLNAME"), DTROW("DESIGNNO"), DTROW("COLOR"), "", DTROW("LOTNO"), Format(Val(DTROW("BAGS")), "0"), Format(Val(DTROW("WT")), "0.00"), Format(Val(DTROW("CONES")), "0"), DTROW("LRNO"), Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), Format(DTLIFTDATE.Value.Date, "dd/MM/yyyy"), DTROW("BARCODE"), DTROW("FROMNO"), DTROW("FROMSRNO"), DTROW("FROMTYPE"))
 
 NEXTLINE:
 
@@ -1205,6 +1221,7 @@ LINE1:
                 TXTLRNO.Visible = False
                 DTLRDATE.Visible = False
                 DTLIFTDATE.Visible = False
+                TXTPSHADE.Visible = False
             End If
 
 
@@ -1227,6 +1244,8 @@ LINE1:
 
                 CMBDESIGN.Text = GRIDYARN.Item(GDESIGN.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 cmbcolor.Text = GRIDYARN.Item(gcolor.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+                TXTPSHADE.Text = GRIDYARN.Item(GPSHADE.Index, GRIDYARN.CurrentRow.Index).Value.ToString
+
                 TXTLOTNO.Text = GRIDYARN.Item(GLOTNO.Index, GRIDYARN.CurrentRow.Index).Value.ToString
 
                 txtqty.Text = GRIDYARN.Item(GQTY.Index, GRIDYARN.CurrentRow.Index).Value.ToString
@@ -1492,5 +1511,13 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub cmbcolor_Validated(sender As Object, e As EventArgs) Handles cmbcolor.Validated
+        If CMBNAME.Text.Trim <> "" And cmbcolor.Text.Trim <> "" And EDIT = False Then
+            Dim OBJCMN As New ClsCommon
+            Dim dt As DataTable = OBJCMN.SEARCH(" ISNULL(COLORTAGGING.TAG_PCOLOR,'') AS PSHADE", "", "COLORTAGGING INNER JOIN COLORMASTER ON COLORTAGGING.TAG_COLORID = COLORMASTER.COLOR_ID INNER JOIN LEDGERS ON LEDGERS.Acc_id = COLORTAGGING.TAG_LEDGERID ", " AND ledgers.acc_cmpname = '" & CMBNAME.Text.Trim & "' and ISNULL(COLORMASTER.COLOR_name, '')='" & cmbcolor.Text.Trim & "' AND COLORTAGGING.TAG_YEARID = " & YearId)
+            If dt.Rows.Count > 0 Then TXTPSHADE.Text = dt.Rows(0).Item("PSHADE")
+        End If
     End Sub
 End Class

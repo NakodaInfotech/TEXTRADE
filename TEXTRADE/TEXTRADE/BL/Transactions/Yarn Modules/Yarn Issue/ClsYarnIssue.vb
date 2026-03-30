@@ -78,6 +78,8 @@ Public Class ClsYarnIssue
 
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@PARTYCOLOR", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(I)))
@@ -184,6 +186,8 @@ Public Class ClsYarnIssue
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@PARTYCOLOR", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOTNO", alParaval(I)))
                 I = I + 1
