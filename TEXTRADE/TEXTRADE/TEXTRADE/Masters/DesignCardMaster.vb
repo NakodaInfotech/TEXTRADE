@@ -3877,19 +3877,20 @@ line1:
     Private Sub CMBWEFTMILLNAME_Validated(sender As Object, e As EventArgs) Handles CMBWEFTMILLNAME.Validated
         Try
             If GRIDWEFTDOUBLECLICK = False Then
+                'WE NEED TO ALLOW THIS FOR 1+1 QUALITY
                 If CMBWEFTGRIDSYMBOL.Text <> "" And CMBWEFTYARNQUALITY.Text.Trim <> "" Then
                     GBWEFT.Visible = True
                     cmbweftshade.Focus()
-                    For Each symRow As DataGridViewRow In GRIDWEFT.Rows
-                        If symRow.IsNewRow Then Continue For
-                        Dim symValue As String = symRow.Cells(FSYM.Index).Value?.ToString()
-                        If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
-                            MessageBox.Show("Multiple Sym Not Allowed.")
-                            GBWEFT.Visible = False
-                            CMBWEFTGRIDSYMBOL.Focus()
-                            Exit Sub
-                        End If
-                    Next
+                    'For Each symRow As DataGridViewRow In GRIDWEFT.Rows
+                    '    If symRow.IsNewRow Then Continue For
+                    '    Dim symValue As String = symRow.Cells(FSYM.Index).Value?.ToString()
+                    '    If symValue = CMBWEFTGRIDSYMBOL.Text.Trim And GRIDWEFTDOUBLECLICK = False Then
+                    '        MessageBox.Show("Multiple Sym Not Allowed.")
+                    '        GBWEFT.Visible = False
+                    '        CMBWEFTGRIDSYMBOL.Focus()
+                    '        Exit Sub
+                    '    End If
+                    'Next
                     'Else
                     '    MsgBox("Fill Yarn Quality OR Symbol")
                 End If

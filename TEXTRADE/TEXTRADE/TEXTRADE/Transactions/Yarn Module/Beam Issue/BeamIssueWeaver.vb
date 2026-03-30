@@ -852,13 +852,13 @@ LINE1:
                 End If
             Next
             If WHERECLAUSE <> "" Then WHERECLAUSE = WHERECLAUSE & ")"
-            WHERECLAUSE = WHERECLAUSE & " AND DATE <= '" & Format(Convert.ToDateTime(DTISSUEDATE.Text).Date, "MM/dd/yyyy") & "'"
+            'WHERECLAUSE = WHERECLAUSE & " AND DATE <= '" & Format(Convert.ToDateTime(DTISSUEDATE.Text).Date, "MM/dd/yyyy") & "'"
 
 
             Dim OBJSELECTSTOCK As New SelectBeamStock
             OBJSELECTSTOCK.TEMPGODOWNNAME = CMBOURGODOWN.Text.Trim
             Dim DTBEAMSTOCK As DataTable = OBJSELECTSTOCK.DT
-            OBJSELECTSTOCK.WHERECLAUSE = WHERECLAUSE
+            OBJSELECTSTOCK.WHERECLAUSE = WHERECLAUSE & " AND GODOWN = '" & CMBOURGODOWN.Text.Trim & "'"
             OBJSELECTSTOCK.ALLOWEDBEAMS = GRIDSCHEDULE.RowCount
             OBJSELECTSTOCK.ShowDialog()
             If DTBEAMSTOCK.Rows.Count > 0 Then
@@ -869,8 +869,11 @@ LINE1:
                     If Val(GRIDBEAMISSUE.Rows(0).Cells(gsrno.Index).Value) = 0 Then GRIDBEAMISSUE.RowCount = 0
                 End If
 
+
                 For Each ROW As DataRow In DTBEAMSTOCK.Rows
-                    GRIDBEAMISSUE.Rows.Add(0, ROW("BEAMNAME"), ROW("BEAMNO"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("CUT")), "0.00"), Format(Val(ROW("WT")), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), "", Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"), 0, 0, ROW("SIZERNAME"), 0, "")
+                    Dim WTMTRS As Double = Val(ROW("WT"))
+                    If ClientName = "SWPL" Then WTMTRS = Val(ROW("MTRS"))
+                    GRIDBEAMISSUE.Rows.Add(0, ROW("BEAMNAME"), ROW("BEAMNO"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("CUT")), "0.00"), Format(Val(WTMTRS), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), "", Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"), 0, 0, ROW("SIZERNAME"), 0, "")
                 Next
                 TOTAL()
                 getsrno(GRIDBEAMISSUE)
@@ -1096,5 +1099,18 @@ LINE1:
 
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         If EDIT = True Then PRINTREPORT()
+    End Sub
+
+    Private Sub BeamIssueWeaver_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If ClientName = "SWPL" Then
+                GWT.HeaderText = "Mtrs"
+                GCUT.Visible = False
+                GWTCUT.Visible = False
+                GWT.Width = 100
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

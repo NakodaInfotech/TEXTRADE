@@ -1905,13 +1905,16 @@ LINE1:
             TXTWT.Clear()
             TXTMTRS.Clear()
             TXTLOOMNO.Clear()
-            TXTROLLNO.Clear()
+            If ClientName <> "SWPL" Then TXTROLLNO.Clear()
             CMBRACK.Text = ""
             CMBSHELF.Text = ""
             txtsrno.Text = GRIDGREY.RowCount + 1
 
-            If ClientName = "MMC" Or ClientName = "SWPL" Then
+            If ClientName = "MMC" Then
                 TXTROLLNO.Focus()
+            ElseIf ClientName = "SWPL" Then
+                TXTROLLNO.Text = Val(TXTROLLNO.Text.Trim) + 1
+                TXTLOOMNO.Focus()
             Else
                 cmbitemname.Focus()
             End If
@@ -2170,8 +2173,16 @@ LINE1:
                 TXTLOOMNO.BackColor = Color.LemonChiffon
                 TXTMTRS.BackColor = Color.LemonChiffon
                 TXTWT.BackColor = Color.LemonChiffon
+            End If
 
+            If ClientName = "SWPL" Then
+                CMBQUALITY.TabStop = False
+                CMBDESIGN.TabStop = False
+                cmbcolor.TabStop = False
+                TXTQTY.TabStop = False
+                cmbqtyunit.TabStop = False
 
+                TXTMTRS.BackColor = Color.LemonChiffon
             End If
         Catch ex As Exception
             Throw ex

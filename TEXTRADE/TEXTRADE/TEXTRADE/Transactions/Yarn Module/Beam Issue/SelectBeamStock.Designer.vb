@@ -39,6 +39,7 @@ Partial Class SelectBeamStock
         Me.GFROMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFROMSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
@@ -82,7 +83,7 @@ Partial Class SelectBeamStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GMILLNAME, Me.GBEAMNO, Me.GBEAMNAME, Me.GENDS, Me.GTAPLINE, Me.GCUT, Me.GWT, Me.GWTCUT, Me.GFROMNO, Me.GFROMSRNO, Me.GTYPE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GMILLNAME, Me.GBEAMNO, Me.GBEAMNAME, Me.GENDS, Me.GTAPLINE, Me.GCUT, Me.GWT, Me.GWTCUT, Me.GFROMNO, Me.GFROMSRNO, Me.GTYPE, Me.GMTRS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -235,6 +236,14 @@ Partial Class SelectBeamStock
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.OptionsFilter.AllowAutoFilter = False
         '
+        'GMTRS
+        '
+        Me.GMTRS.Caption = "Mtrs"
+        Me.GMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GMTRS.FieldName = "TOTALMTRS"
+        Me.GMTRS.Name = "GMTRS"
+        '
         'APPROXDATE
         '
         Me.APPROXDATE.AutoHeight = False
@@ -318,4 +327,5 @@ Partial Class SelectBeamStock
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents cmdexit As Button
     Friend WithEvents cmdok As Button
+    Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
 End Class

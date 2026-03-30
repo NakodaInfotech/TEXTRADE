@@ -370,8 +370,8 @@ LINE1:
                         CMBLOOM.Items.Add(row("LOOM_NO").ToString())
                     End If
                 Next
-            Else
-                CMBLOOM.Focus()
+                'Else
+                '    CMBLOOM.Focus()
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex

@@ -114,7 +114,7 @@ Public Class YarnJobOrder
             End If
         End If
 
-        If lbllocked.Visible = True Then
+        If lbllocked.Visible = True And UserName <> "Admin" Then
             Ep.SetError(lbllocked, " Entry Locked  !!!")
             bln = False
         End If
@@ -653,7 +653,7 @@ LINE1:
     Sub EDITROW()
         Try
             If GRIDBEAM.CurrentRow.Index >= 0 And GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value <> Nothing Then
-                If Convert.ToBoolean(GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GDONE.Index).Value) = True Or (GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GOUTMTRS.Index).Value) > 0 Or (GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GCLOSED.Index).Value) = True Then
+                If (Convert.ToBoolean(GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GDONE.Index).Value) = True Or (GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GOUTMTRS.Index).Value) > 0 Or (GRIDBEAM.Rows(GRIDBEAM.CurrentRow.Index).Cells(GCLOSED.Index).Value) = True) And UserName <> "Admin" Then
                     MsgBox("Item Locked. Item Used !!")
                     Exit Sub
                 End If

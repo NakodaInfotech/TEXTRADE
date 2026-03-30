@@ -14,7 +14,7 @@ Public Class SelectBeamStock
             Dim OBJCMN As New ClsCommon()
             WHERE = WHERE & " " & WHERECLAUSE
             If TEMPGODOWNNAME <> "" Then WHERE = WHERE & " AND BEAMSTOCK.GODOWN='" & TEMPGODOWNNAME & "' "
-            Dim DT As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK , BEAMSTOCK.NAME, BEAMSTOCK.MILLNAME,BEAMSTOCK.TYPE,BEAMSTOCK.BEAMNAME, BEAMSTOCK.BEAMNO, BEAMSTOCK.CUT, BEAMSTOCK.WT, BEAMSTOCK.WTCUT, BEAMSTOCK.RECNO AS FROMNO, BEAMSTOCK.RECSRNO AS FROMSRNO, BEAMSTOCK.ENDS, BEAMSTOCK.TAPLINE", "", "BEAMSTOCK", WHERECLAUSE & " AND BEAMSTOCK.YEARID = " & YearId & " ORDER BY RECNO, RECSRNO")
+            Dim DT As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK , BEAMSTOCK.NAME, BEAMSTOCK.MILLNAME,BEAMSTOCK.TYPE,BEAMSTOCK.BEAMNAME, BEAMSTOCK.BEAMNO, BEAMSTOCK.CUT, BEAMSTOCK.WT, BEAMSTOCK.WTCUT, BEAMSTOCK.RECNO AS FROMNO, BEAMSTOCK.RECSRNO AS FROMSRNO, BEAMSTOCK.ENDS, BEAMSTOCK.TAPLINE, BEAMSTOCK.TOTALMTRS", "", "BEAMSTOCK", WHERECLAUSE & " AND BEAMSTOCK.YEARID = " & YearId & " ORDER BY RECNO, RECSRNO")
             gridbilldetails.DataSource = DT
 
             If DT.Rows.Count > 0 Then
@@ -57,12 +57,13 @@ Public Class SelectBeamStock
             DT.Columns.Add("FROMSRNO")
             DT.Columns.Add("TYPE")
             DT.Columns.Add("SIZERNAME")
+            DT.Columns.Add("MTRS")
 
 
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("BEAMNAME"), dtrow("BEAMNO"), dtrow("ENDS"), dtrow("TAPLINE"), dtrow("CUT"), dtrow("WT"), dtrow("WTCUT"), dtrow("FROMNO"), dtrow("FROMSRNO"), dtrow("TYPE"), dtrow("NAME"))
+                    DT.Rows.Add(dtrow("BEAMNAME"), dtrow("BEAMNO"), dtrow("ENDS"), dtrow("TAPLINE"), dtrow("CUT"), dtrow("WT"), dtrow("WTCUT"), dtrow("FROMNO"), dtrow("FROMSRNO"), dtrow("TYPE"), dtrow("NAME"), dtrow("TOTALMTRS"))
                 End If
             Next
             Me.Close()
@@ -93,6 +94,20 @@ Public Class SelectBeamStock
             If e.KeyCode = Keys.Space Then
                 Dim DTROW As DataRow = gridbill.GetFocusedDataRow()
                 DTROW("CHK") = Not DTROW("CHK")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub SelectBeamStock_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If ClientName = "SWPL" Then
+                GWT.Visible = False
+                GWTCUT.Visible = False
+                GCUT.Visible = False
+                GMTRS.Visible = True
+                GMTRS.VisibleIndex = GENDS.VisibleIndex + 1
             End If
         Catch ex As Exception
             Throw ex

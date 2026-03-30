@@ -235,11 +235,11 @@ Partial Class BeamRecdWarper
         Me.Label18.BackColor = System.Drawing.Color.Transparent
         Me.Label18.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.ForeColor = System.Drawing.Color.Black
-        Me.Label18.Location = New System.Drawing.Point(721, 92)
+        Me.Label18.Location = New System.Drawing.Point(695, 92)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(47, 15)
+        Me.Label18.Size = New System.Drawing.Size(73, 15)
         Me.Label18.TabIndex = 953
-        Me.Label18.Text = "Roll No"
+        Me.Label18.Text = "Empty Beam"
         '
         'Label9
         '
