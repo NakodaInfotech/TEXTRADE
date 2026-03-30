@@ -71,7 +71,7 @@ Partial Class YarnLoomEfficiency
         Me.gridloan = New System.Windows.Forms.DataGridView()
         Me.gsrno = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLOOM = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBEAMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBEAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRPM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPICKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -82,7 +82,7 @@ Partial Class YarnLoomEfficiency
         Me.GAVGPICK = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CMBYARNQUALITY = New System.Windows.Forms.ComboBox()
+        Me.CMBBEAMNAME = New System.Windows.Forms.ComboBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.LBLTOTALRECMTRS = New System.Windows.Forms.Label()
         Me.txtsrno = New System.Windows.Forms.TextBox()
@@ -156,7 +156,7 @@ Partial Class YarnLoomEfficiency
         Me.EFFDATE.Mask = "00/00/0000"
         Me.EFFDATE.Name = "EFFDATE"
         Me.EFFDATE.Size = New System.Drawing.Size(84, 23)
-        Me.EFFDATE.TabIndex = 882
+        Me.EFFDATE.TabIndex = 1
         Me.EFFDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.EFFDATE.ValidatingType = GetType(Date)
         '
@@ -167,7 +167,7 @@ Partial Class YarnLoomEfficiency
         Me.TXTADD.Location = New System.Drawing.Point(523, 28)
         Me.TXTADD.Name = "TXTADD"
         Me.TXTADD.Size = New System.Drawing.Size(29, 21)
-        Me.TXTADD.TabIndex = 881
+        Me.TXTADD.TabIndex = 20
         Me.TXTADD.TabStop = False
         Me.TXTADD.Visible = False
         '
@@ -181,7 +181,7 @@ Partial Class YarnLoomEfficiency
         Me.cmbrounder.MaxDropDownItems = 14
         Me.cmbrounder.Name = "cmbrounder"
         Me.cmbrounder.Size = New System.Drawing.Size(207, 22)
-        Me.cmbrounder.TabIndex = 2
+        Me.cmbrounder.TabIndex = 3
         '
         'Label72
         '
@@ -191,7 +191,7 @@ Partial Class YarnLoomEfficiency
         Me.Label72.Location = New System.Drawing.Point(3, 94)
         Me.Label72.Name = "Label72"
         Me.Label72.Size = New System.Drawing.Size(76, 14)
-        Me.Label72.TabIndex = 880
+        Me.Label72.TabIndex = 12
         Me.Label72.Text = "Rounder"
         Me.Label72.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -206,7 +206,7 @@ Partial Class YarnLoomEfficiency
         Me.CMBCODE.MaxDropDownItems = 14
         Me.CMBCODE.Name = "CMBCODE"
         Me.CMBCODE.Size = New System.Drawing.Size(10, 22)
-        Me.CMBCODE.TabIndex = 739
+        Me.CMBCODE.TabIndex = 21
         Me.CMBCODE.Visible = False
         '
         'cmddelete
@@ -278,7 +278,7 @@ Partial Class YarnLoomEfficiency
         Me.Label1.Location = New System.Drawing.Point(11, 67)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(68, 14)
-        Me.Label1.TabIndex = 637
+        Me.Label1.TabIndex = 13
         Me.Label1.Text = "Party Name"
         '
         'cmbname
@@ -292,7 +292,7 @@ Partial Class YarnLoomEfficiency
         Me.cmbname.MaxDropDownItems = 14
         Me.cmbname.Name = "cmbname"
         Me.cmbname.Size = New System.Drawing.Size(208, 22)
-        Me.cmbname.TabIndex = 1
+        Me.cmbname.TabIndex = 2
         '
         'txteffno
         '
@@ -302,7 +302,7 @@ Partial Class YarnLoomEfficiency
         Me.txteffno.Name = "txteffno"
         Me.txteffno.ReadOnly = True
         Me.txteffno.Size = New System.Drawing.Size(84, 22)
-        Me.txteffno.TabIndex = 627
+        Me.txteffno.TabIndex = 0
         Me.txteffno.TabStop = False
         Me.txteffno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -315,7 +315,7 @@ Partial Class YarnLoomEfficiency
         Me.Label12.Location = New System.Drawing.Point(497, 63)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(37, 14)
-        Me.Label12.TabIndex = 630
+        Me.Label12.TabIndex = 18
         Me.Label12.Text = "Sr. No"
         '
         'Label9
@@ -327,7 +327,7 @@ Partial Class YarnLoomEfficiency
         Me.Label9.Location = New System.Drawing.Point(502, 94)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(33, 14)
-        Me.Label9.TabIndex = 622
+        Me.Label9.TabIndex = 17
         Me.Label9.Text = "Date"
         '
         'Label15
@@ -339,7 +339,7 @@ Partial Class YarnLoomEfficiency
         Me.Label15.Location = New System.Drawing.Point(280, 425)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(44, 14)
-        Me.Label15.TabIndex = 613
+        Me.Label15.TabIndex = 11
         Me.Label15.Text = "Locked"
         '
         'Label23
@@ -350,7 +350,7 @@ Partial Class YarnLoomEfficiency
         Me.Label23.Location = New System.Drawing.Point(261, 424)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(18, 17)
-        Me.Label23.TabIndex = 612
+        Me.Label23.TabIndex = 10
         Me.Label23.Text = "   "
         '
         'TabControl1
@@ -379,7 +379,7 @@ Partial Class YarnLoomEfficiency
         Me.TabPage1.Controls.Add(Me.LBLTOTALWEFT)
         Me.TabPage1.Controls.Add(Me.pbcopy)
         Me.TabPage1.Controls.Add(Me.gridloan)
-        Me.TabPage1.Controls.Add(Me.CMBYARNQUALITY)
+        Me.TabPage1.Controls.Add(Me.CMBBEAMNAME)
         Me.TabPage1.Controls.Add(Me.Label10)
         Me.TabPage1.Controls.Add(Me.LBLTOTALRECMTRS)
         Me.TabPage1.Controls.Add(Me.txtsrno)
@@ -399,7 +399,7 @@ Partial Class YarnLoomEfficiency
         Me.TXTAVGPICK.Location = New System.Drawing.Point(963, 2)
         Me.TXTAVGPICK.Name = "TXTAVGPICK"
         Me.TXTAVGPICK.Size = New System.Drawing.Size(80, 22)
-        Me.TXTAVGPICK.TabIndex = 9
+        Me.TXTAVGPICK.TabIndex = 10
         Me.TXTAVGPICK.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTEFFPER
@@ -408,7 +408,7 @@ Partial Class YarnLoomEfficiency
         Me.TXTEFFPER.Location = New System.Drawing.Point(883, 2)
         Me.TXTEFFPER.Name = "TXTEFFPER"
         Me.TXTEFFPER.Size = New System.Drawing.Size(80, 22)
-        Me.TXTEFFPER.TabIndex = 8
+        Me.TXTEFFPER.TabIndex = 9
         Me.TXTEFFPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTWARP
@@ -417,7 +417,7 @@ Partial Class YarnLoomEfficiency
         Me.TXTWARP.Location = New System.Drawing.Point(803, 2)
         Me.TXTWARP.Name = "TXTWARP"
         Me.TXTWARP.Size = New System.Drawing.Size(80, 22)
-        Me.TXTWARP.TabIndex = 7
+        Me.TXTWARP.TabIndex = 8
         Me.TXTWARP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTWEFT
@@ -426,7 +426,7 @@ Partial Class YarnLoomEfficiency
         Me.TXTWEFT.Location = New System.Drawing.Point(723, 2)
         Me.TXTWEFT.Name = "TXTWEFT"
         Me.TXTWEFT.Size = New System.Drawing.Size(80, 22)
-        Me.TXTWEFT.TabIndex = 6
+        Me.TXTWEFT.TabIndex = 7
         Me.TXTWEFT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTRECMTRS
@@ -435,7 +435,7 @@ Partial Class YarnLoomEfficiency
         Me.TXTRECMTRS.Location = New System.Drawing.Point(643, 2)
         Me.TXTRECMTRS.Name = "TXTRECMTRS"
         Me.TXTRECMTRS.Size = New System.Drawing.Size(80, 22)
-        Me.TXTRECMTRS.TabIndex = 5
+        Me.TXTRECMTRS.TabIndex = 6
         Me.TXTRECMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTPICKS
@@ -444,7 +444,7 @@ Partial Class YarnLoomEfficiency
         Me.TXTPICKS.Location = New System.Drawing.Point(563, 2)
         Me.TXTPICKS.Name = "TXTPICKS"
         Me.TXTPICKS.Size = New System.Drawing.Size(80, 22)
-        Me.TXTPICKS.TabIndex = 4
+        Me.TXTPICKS.TabIndex = 5
         Me.TXTPICKS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTRPM
@@ -453,7 +453,7 @@ Partial Class YarnLoomEfficiency
         Me.TXTRPM.Location = New System.Drawing.Point(483, 2)
         Me.TXTRPM.Name = "TXTRPM"
         Me.TXTRPM.Size = New System.Drawing.Size(80, 22)
-        Me.TXTRPM.TabIndex = 3
+        Me.TXTRPM.TabIndex = 4
         Me.TXTRPM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TXTBEAMNO
@@ -463,7 +463,7 @@ Partial Class YarnLoomEfficiency
         Me.TXTBEAMNO.Location = New System.Drawing.Point(383, 1)
         Me.TXTBEAMNO.Name = "TXTBEAMNO"
         Me.TXTBEAMNO.Size = New System.Drawing.Size(100, 23)
-        Me.TXTBEAMNO.TabIndex = 2
+        Me.TXTBEAMNO.TabIndex = 3
         Me.TXTBEAMNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBLOOM
@@ -477,7 +477,7 @@ Partial Class YarnLoomEfficiency
         Me.CMBLOOM.MaxDropDownItems = 14
         Me.CMBLOOM.Name = "CMBLOOM"
         Me.CMBLOOM.Size = New System.Drawing.Size(151, 22)
-        Me.CMBLOOM.TabIndex = 0
+        Me.CMBLOOM.TabIndex = 1
         '
         'LBLTOTALWEFT
         '
@@ -487,7 +487,7 @@ Partial Class YarnLoomEfficiency
         Me.LBLTOTALWEFT.Location = New System.Drawing.Point(723, 234)
         Me.LBLTOTALWEFT.Name = "LBLTOTALWEFT"
         Me.LBLTOTALWEFT.Size = New System.Drawing.Size(80, 15)
-        Me.LBLTOTALWEFT.TabIndex = 638
+        Me.LBLTOTALWEFT.TabIndex = 14
         Me.LBLTOTALWEFT.Text = "0"
         Me.LBLTOTALWEFT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -521,7 +521,7 @@ Partial Class YarnLoomEfficiency
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.gridloan.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridloan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridloan.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GLOOM, Me.GYARNQUALITY, Me.GBEAMNO, Me.GRPM, Me.GPICKS, Me.GRECMTRS, Me.GWEFT, Me.GWARP, Me.GEFFPER, Me.GAVGPICK, Me.GGRIDREMARKS, Me.GDONE})
+        Me.gridloan.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GLOOM, Me.GBEAMNAME, Me.GBEAMNO, Me.GRPM, Me.GPICKS, Me.GRECMTRS, Me.GWEFT, Me.GWARP, Me.GEFFPER, Me.GAVGPICK, Me.GGRIDREMARKS, Me.GDONE})
         DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -545,7 +545,7 @@ Partial Class YarnLoomEfficiency
         Me.gridloan.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.gridloan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gridloan.Size = New System.Drawing.Size(1303, 210)
-        Me.gridloan.TabIndex = 6
+        Me.gridloan.TabIndex = 15
         Me.gridloan.TabStop = False
         '
         'gsrno
@@ -566,16 +566,16 @@ Partial Class YarnLoomEfficiency
         Me.GLOOM.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GLOOM.Width = 150
         '
-        'GYARNQUALITY
+        'GBEAMNAME
         '
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GYARNQUALITY.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.ReadOnly = True
-        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GYARNQUALITY.Width = 200
+        Me.GBEAMNAME.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GBEAMNAME.HeaderText = "Beam Name"
+        Me.GBEAMNAME.Name = "GBEAMNAME"
+        Me.GBEAMNAME.ReadOnly = True
+        Me.GBEAMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBEAMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBEAMNAME.Width = 200
         '
         'GBEAMNO
         '
@@ -681,18 +681,18 @@ Partial Class YarnLoomEfficiency
         Me.GDONE.Name = "GDONE"
         Me.GDONE.Visible = False
         '
-        'CMBYARNQUALITY
+        'CMBBEAMNAME
         '
-        Me.CMBYARNQUALITY.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBYARNQUALITY.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBYARNQUALITY.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBYARNQUALITY.DropDownWidth = 400
-        Me.CMBYARNQUALITY.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBYARNQUALITY.FormattingEnabled = True
-        Me.CMBYARNQUALITY.Location = New System.Drawing.Point(183, 2)
-        Me.CMBYARNQUALITY.Name = "CMBYARNQUALITY"
-        Me.CMBYARNQUALITY.Size = New System.Drawing.Size(200, 22)
-        Me.CMBYARNQUALITY.TabIndex = 1
+        Me.CMBBEAMNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBBEAMNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBBEAMNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBBEAMNAME.DropDownWidth = 400
+        Me.CMBBEAMNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBBEAMNAME.FormattingEnabled = True
+        Me.CMBBEAMNAME.Location = New System.Drawing.Point(183, 2)
+        Me.CMBBEAMNAME.Name = "CMBBEAMNAME"
+        Me.CMBBEAMNAME.Size = New System.Drawing.Size(200, 22)
+        Me.CMBBEAMNAME.TabIndex = 2
         '
         'Label10
         '
@@ -703,7 +703,7 @@ Partial Class YarnLoomEfficiency
         Me.Label10.Location = New System.Drawing.Point(609, 234)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(31, 14)
-        Me.Label10.TabIndex = 635
+        Me.Label10.TabIndex = 12
         Me.Label10.Text = "Total"
         '
         'LBLTOTALRECMTRS
@@ -714,7 +714,7 @@ Partial Class YarnLoomEfficiency
         Me.LBLTOTALRECMTRS.Location = New System.Drawing.Point(637, 234)
         Me.LBLTOTALRECMTRS.Name = "LBLTOTALRECMTRS"
         Me.LBLTOTALRECMTRS.Size = New System.Drawing.Size(80, 15)
-        Me.LBLTOTALRECMTRS.TabIndex = 634
+        Me.LBLTOTALRECMTRS.TabIndex = 13
         Me.LBLTOTALRECMTRS.Text = "0"
         Me.LBLTOTALRECMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -735,7 +735,7 @@ Partial Class YarnLoomEfficiency
         Me.txtgridremarks.Location = New System.Drawing.Point(1043, 2)
         Me.txtgridremarks.Name = "txtgridremarks"
         Me.txtgridremarks.Size = New System.Drawing.Size(150, 22)
-        Me.txtgridremarks.TabIndex = 10
+        Me.txtgridremarks.TabIndex = 11
         '
         'cmdcopy
         '
@@ -780,7 +780,7 @@ Partial Class YarnLoomEfficiency
         Me.tstxtbillno.Location = New System.Drawing.Point(243, 1)
         Me.tstxtbillno.Name = "tstxtbillno"
         Me.tstxtbillno.Size = New System.Drawing.Size(45, 22)
-        Me.tstxtbillno.TabIndex = 15
+        Me.tstxtbillno.TabIndex = 16
         Me.tstxtbillno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'chkchange
@@ -789,7 +789,7 @@ Partial Class YarnLoomEfficiency
         Me.chkchange.Location = New System.Drawing.Point(501, 64)
         Me.chkchange.Name = "chkchange"
         Me.chkchange.Size = New System.Drawing.Size(15, 14)
-        Me.chkchange.TabIndex = 441
+        Me.chkchange.TabIndex = 19
         Me.chkchange.UseVisualStyleBackColor = True
         Me.chkchange.Visible = False
         '
@@ -802,7 +802,7 @@ Partial Class YarnLoomEfficiency
         Me.Label2.Location = New System.Drawing.Point(15, 31)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(167, 29)
-        Me.Label2.TabIndex = 430
+        Me.Label2.TabIndex = 14
         Me.Label2.Text = "Loom Efficiency"
         '
         'ToolStrip1
@@ -812,7 +812,7 @@ Partial Class YarnLoomEfficiency
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
-        Me.ToolStrip1.TabIndex = 14
+        Me.ToolStrip1.TabIndex = 15
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'OpenToolStripButton
@@ -950,7 +950,7 @@ Partial Class YarnLoomEfficiency
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents pbcopy As PictureBox
     Friend WithEvents gridloan As DataGridView
-    Friend WithEvents CMBYARNQUALITY As ComboBox
+    Friend WithEvents CMBBEAMNAME As ComboBox
     Friend WithEvents txtsrno As TextBox
     Friend WithEvents txtgridremarks As TextBox
     Friend WithEvents cmdcopy As Button
@@ -983,9 +983,10 @@ Partial Class YarnLoomEfficiency
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents TXTADD As TextBox
+    Friend WithEvents EFFDATE As MaskedTextBox
     Friend WithEvents gsrno As DataGridViewTextBoxColumn
     Friend WithEvents GLOOM As DataGridViewTextBoxColumn
-    Friend WithEvents GYARNQUALITY As DataGridViewTextBoxColumn
+    Friend WithEvents GBEAMNAME As DataGridViewTextBoxColumn
     Friend WithEvents GBEAMNO As DataGridViewTextBoxColumn
     Friend WithEvents GRPM As DataGridViewTextBoxColumn
     Friend WithEvents GPICKS As DataGridViewTextBoxColumn
@@ -996,5 +997,4 @@ Partial Class YarnLoomEfficiency
     Friend WithEvents GAVGPICK As DataGridViewTextBoxColumn
     Friend WithEvents GGRIDREMARKS As DataGridViewTextBoxColumn
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
-    Friend WithEvents EFFDATE As MaskedTextBox
 End Class

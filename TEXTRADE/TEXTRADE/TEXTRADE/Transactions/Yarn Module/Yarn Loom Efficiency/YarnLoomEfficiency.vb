@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.ComponentModel
+Imports System.Windows.Forms
 Imports BL
 Imports iTextSharp.text.pdf
 Public Class YarnLoomEfficiency
@@ -39,17 +40,17 @@ Public Class YarnLoomEfficiency
         End Try
     End Sub
 
-    Private Sub cmbitemname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBYARNQUALITY.Enter, CMBYARNQ.Enter
+    Private Sub cmbitemname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBBEAMNAME.Enter, CMBYARNQ.Enter
         Try
-            If CMBYARNQUALITY.Text.Trim = "" Then fillYARNQUALITY(CMBYARNQUALITY, edit)
+            If CMBBEAMNAME.Text.Trim = "" Then fillBEAM(CMBBEAMNAME, edit)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 
-    Private Sub cmbitemname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBYARNQUALITY.Validating, CMBYARNQ.Validating
+    Private Sub cmbitemname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBBEAMNAME.Validating, CMBYARNQ.Validating
         Try
-            If CMBYARNQUALITY.Text.Trim <> "" Then YARNQUALITYVALIDATE(CMBYARNQUALITY, e, Me)
+            If CMBBEAMNAME.Text.Trim <> "" Then BEAMVALIDATE(CMBBEAMNAME, e, Me)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -64,14 +65,14 @@ Public Class YarnLoomEfficiency
 
         EP.Clear()
         txtsrno.Clear()
-        CMBYARNQUALITY.Text = ""
+        CMBBEAMNAME.Text = ""
         txtgridremarks.Clear()
 
         txtremarks.Clear()
         cmbname.Text = ""
         cmbrounder.Text = ""
         CMBLOOM.Text = ""
-        CMBYARNQUALITY.Text = ""
+        CMBBEAMNAME.Text = ""
         TXTBEAMNO.Clear()
         TXTRPM.Clear()
         TXTPICKS.Clear()
@@ -120,12 +121,12 @@ Public Class YarnLoomEfficiency
     Sub fillgrid()
         gridloan.Enabled = True
         If gridDoubleClick = False Then
-            gridloan.Rows.Add(Val(txtsrno.Text.Trim), CMBLOOM.Text.Trim, CMBYARNQUALITY.Text.Trim, Val(TXTBEAMNO.Text.Trim), Val(TXTRPM.Text.Trim), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTRECMTRS.Text.Trim), "0.00"), Format(Val(TXTWEFT.Text.Trim), "0.00"), Format(Val(TXTWARP.Text.Trim), "0.00"), Format(Val(TXTEFFPER.Text.Trim), "0.00"), Format(Val(TXTAVGPICK.Text.Trim), "0.00"), txtgridremarks.Text.Trim)
+            gridloan.Rows.Add(Val(txtsrno.Text.Trim), CMBLOOM.Text.Trim, CMBBEAMNAME.Text.Trim, Val(TXTBEAMNO.Text.Trim), Val(TXTRPM.Text.Trim), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTRECMTRS.Text.Trim), "0.00"), Format(Val(TXTWEFT.Text.Trim), "0.00"), Format(Val(TXTWARP.Text.Trim), "0.00"), Format(Val(TXTEFFPER.Text.Trim), "0.00"), Format(Val(TXTAVGPICK.Text.Trim), "0.00"), txtgridremarks.Text.Trim)
             getsrno(gridloan)
         ElseIf gridDoubleClick = True Then
             gridloan.Item(gsrno.Index, tempRow).Value = Val(txtsrno.Text.Trim)
             gridloan.Item(GLOOM.Index, tempRow).Value = CMBLOOM.Text.Trim
-            gridloan.Item(GYARNQUALITY.Index, tempRow).Value = CMBYARNQUALITY.Text.Trim
+            gridloan.Item(GBEAMNAME.Index, tempRow).Value = CMBBEAMNAME.Text.Trim
             gridloan.Item(GBEAMNO.Index, tempRow).Value = Val(TXTBEAMNO.Text.Trim)
 
             gridloan.Item(GRPM.Index, tempRow).Value = Format(Val(TXTRPM.Text.Trim), "0.00")
@@ -146,7 +147,7 @@ Public Class YarnLoomEfficiency
 
         txtsrno.Clear()
         CMBLOOM.Text = ""
-        CMBYARNQUALITY.Text = ""
+        CMBBEAMNAME.Text = ""
         TXTBEAMNO.Clear()
         TXTRPM.Clear()
         TXTPICKS.Clear()
@@ -193,7 +194,7 @@ Public Class YarnLoomEfficiency
                 gridDoubleClick = True
                 txtsrno.Text = gridloan.Item(gsrno.Index, gridloan.CurrentRow.Index).Value.ToString
                 CMBLOOM.Text = gridloan.Item(GLOOM.Index, gridloan.CurrentRow.Index).Value.ToString
-                CMBYARNQUALITY.Text = gridloan.Item(GYARNQUALITY.Index, gridloan.CurrentRow.Index).Value.ToString
+                CMBBEAMNAME.Text = gridloan.Item(GBEAMNAME.Index, gridloan.CurrentRow.Index).Value.ToString
                 TXTBEAMNO.Text = gridloan.Item(GBEAMNO.Index, gridloan.CurrentRow.Index).Value.ToString
                 TXTRPM.Text = gridloan.Item(GRPM.Index, gridloan.CurrentRow.Index).Value.ToString
                 TXTPICKS.Text = gridloan.Item(GPICKS.Index, gridloan.CurrentRow.Index).Value.ToString
@@ -248,7 +249,7 @@ Public Class YarnLoomEfficiency
             Dim gridsrno As String = ""
             Dim LOOMNO As String = ""
 
-            Dim YARNQUALITY As String = ""
+            Dim BEAMNAME As String = ""
             Dim BEAMNO As String = ""
             Dim RPM As String = ""
             Dim PICKS As String = ""
@@ -265,7 +266,7 @@ Public Class YarnLoomEfficiency
                     If gridsrno = "" Then
                         gridsrno = row.Cells(gsrno.Index).Value
                         LOOMNO = row.Cells(GLOOM.Index).Value.ToString
-                        YARNQUALITY = row.Cells(GYARNQUALITY.Index).Value.ToString
+                        BEAMNAME = row.Cells(GBEAMNAME.Index).Value.ToString
                         BEAMNO = Val(row.Cells(GBEAMNO.Index).Value)
                         RPM = Val(row.Cells(GRPM.Index).Value)
                         PICKS = Val(row.Cells(GPICKS.Index).Value)
@@ -284,7 +285,7 @@ Public Class YarnLoomEfficiency
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
                         LOOMNO = LOOMNO & "|" & row.Cells(GLOOM.Index).Value.ToString
-                        YARNQUALITY = YARNQUALITY & "|" & row.Cells(GYARNQUALITY.Index).Value.ToString
+                        BEAMNAME = BEAMNAME & "|" & row.Cells(GBEAMNAME.Index).Value.ToString
                         BEAMNO = BEAMNO & "|" & Val(row.Cells(GBEAMNO.Index).Value)
                         RPM = RPM & "|" & Val(row.Cells(GRPM.Index).Value)
                         PICKS = PICKS & "|" & Val(row.Cells(GPICKS.Index).Value)
@@ -308,7 +309,7 @@ Public Class YarnLoomEfficiency
             alParaval.Add(gridsrno)
             alParaval.Add(LOOMNO)
 
-            alParaval.Add(YARNQUALITY)
+            alParaval.Add(BEAMNAME)
             alParaval.Add(BEAMNO)
             alParaval.Add(RPM)
             alParaval.Add(PICKS)
@@ -341,7 +342,7 @@ Public Class YarnLoomEfficiency
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                IntResult = objclsloan.Update()
+                IntResult = objclsloan.UPDATE()
                 MsgBox("Details Updated")
             End If
             edit = False
@@ -491,7 +492,7 @@ Public Class YarnLoomEfficiency
                         'cmbname_Validated(Nothing, Nothing)  ' ← ADD THIS LINE
                         cmbrounder.Text = Convert.ToString(dr("ROUNDER").ToString)
                         txtremarks.Text = Convert.ToString(dr("remarks"))
-                        gridloan.Rows.Add(dr("gridsrno").ToString, dr("LOOMNO").ToString, dr("YARNQUALITY").ToString, Val(dr("BEAMNO")), Format(Val(dr("RPM")), "0.00"), Format(Val(dr("PICKS")), "0.00"), Format(Val(dr("RECMTRS")), "0.00"), Format(Val(dr("WEFT")), "0.00"), Format(Val(dr("WARP")), "0.00"), Format(Val(dr("EFFPER")), "0.00"), Format(Val(dr("AVGPICK")), "0.00"), dr("GRIDREMARKS").ToString)
+                        gridloan.Rows.Add(dr("gridsrno").ToString, dr("LOOMNO").ToString, dr("BEAMNAME").ToString, Val(dr("BEAMNO")), Format(Val(dr("RPM")), "0.00"), Format(Val(dr("PICKS")), "0.00"), Format(Val(dr("RECMTRS")), "0.00"), Format(Val(dr("WEFT")), "0.00"), Format(Val(dr("WARP")), "0.00"), Format(Val(dr("EFFPER")), "0.00"), Format(Val(dr("AVGPICK")), "0.00"), dr("GRIDREMARKS").ToString)
 
                     Next
                     gridloan.FirstDisplayedScrollingRowIndex = gridloan.RowCount - 1
@@ -647,8 +648,8 @@ Public Class YarnLoomEfficiency
     End Sub
 
 
-    Private Sub cmbitemname_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CMBYARNQUALITY.KeyPress, CMBYARNQ.KeyPress
-        commakeypress(e, CMBYARNQUALITY, Me)
+    Private Sub cmbitemname_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CMBBEAMNAME.KeyPress, CMBYARNQ.KeyPress
+        commakeypress(e, CMBBEAMNAME, Me)
     End Sub
 
     Private Sub txtgridremarks_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtgridremarks.KeyPress
@@ -688,23 +689,24 @@ Public Class YarnLoomEfficiency
 
     Private Sub txtgridremarks_Validated(sender As Object, e As EventArgs) Handles txtgridremarks.Validated
         Try
-            If CMBLOOM.Text.Trim <> "" And CMBYARNQUALITY.Text.Trim <> "" And Val(TXTRECMTRS.Text.Trim) > 0 Then
+            If CMBLOOM.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And Val(TXTRECMTRS.Text.Trim) > 0 Then
 
-                For Each row As DataGridViewRow In gridloan.Rows
-                    If row.Cells(GLOOM.Index).Value.ToString.Trim = CMBLOOM.Text.Trim Then
-                        If gridDoubleClick = False OrElse row.Index <> tempRow Then  ' ← CHANGE THIS LINE
-                            MsgBox("Loom No " & CMBLOOM.Text.Trim & " already exists in grid!")
-                            CMBLOOM.Focus()
-                            Exit Sub
-                        End If
-                    End If
-                Next
+                'For Each row As DataGridViewRow In gridloan.Rows
+                '    If row.Cells(GLOOM.Index).Value.ToString.Trim = CMBLOOM.Text.Trim Then
+                '        If gridDoubleClick = False OrElse row.Index <> tempRow Then  ' ← CHANGE THIS LINE
+                '            MsgBox("Loom No " & CMBLOOM.Text.Trim & " already exists in grid!")
+                '            CMBLOOM.Focus()
+                '            Exit Sub
+                '        End If
+                '    End If
+                'Next
+                CHECKLOOM()
 
                 fillgrid()
                 total()
                 EP.Clear()
             Else
-                EP.SetError(CMBYARNQUALITY, "Please enter Proper Details")
+                EP.SetError(CMBBEAMNAME, "Please enter Proper Details")
             End If
         Catch ex As Exception
             Throw ex
@@ -724,17 +726,19 @@ Public Class YarnLoomEfficiency
             Dim objclsCMST As New ClsCommonMaster
 
             ' 🔥 FIX: assign to dtLoom (NOT dt)
-            dtLoom = objclsCMST.search(" LOOM_NO, BEAM_NO ", "", "BEAMLOOMSTATUS",
+            dtLoom = objclsCMST.search(" LOOM_NO, BEAM_NAME, BEAM_NO ", "", "BEAMLOOMSTATUS",
             " AND WEAVER_NAME = '" & cmbname.Text.Trim & "' AND LOOM_STATUS = 'OCCUPIED' ORDER BY LOOM_NO ")
 
             If dtLoom IsNot Nothing AndAlso dtLoom.Rows.Count > 0 Then
                 CMBLOOM.DataSource = dtLoom
                 CMBLOOM.DisplayMember = "LOOM_NO"
-                CMBLOOM.ValueMember = "BEAM_NO"
+                CMBLOOM.ValueMember = "LOOM_NO"
+                CMBLOOM.ValueMember = "LOOM_NO"
 
                 CMBLOOM.SelectedIndex = -1
             Else
                 CMBLOOM.DataSource = Nothing
+                CMBBEAMNAME.Text = ""
                 TXTBEAMNO.Clear()
             End If
 
@@ -747,6 +751,7 @@ Public Class YarnLoomEfficiency
             If dtLoom IsNot Nothing Then
                 For Each dr As DataRow In dtLoom.Rows
                     If dr("LOOM_NO").ToString.Trim = CMBLOOM.Text.Trim Then
+                        CMBBEAMNAME.Text = dr("BEAM_NAME").ToString
                         TXTBEAMNO.Text = dr("BEAM_NO").ToString
                         Exit Sub
                     End If
@@ -756,6 +761,7 @@ Public Class YarnLoomEfficiency
             '' If not found
             'TXTBEAMNO.Clear()
             If gridDoubleClick = False Then   ' ← ADD THIS CHECK
+                CMBBEAMNAME.Text = ""
                 TXTBEAMNO.Clear()
             End If
 
@@ -770,5 +776,35 @@ Public Class YarnLoomEfficiency
 
     Private Sub TXTRECMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTRECMTRS.KeyPress, TXTRPM.KeyPress, TXTPICKS.KeyPress, TXTWEFT.KeyPress, TXTWARP.KeyPress, TXTEFFPER.KeyPress, TXTAVGPICK.KeyPress
         numdotkeypress(e, TXTRECMTRS, Me)
+    End Sub
+    Function CHECKLOOM() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In gridloan.Rows
+                If (gridDoubleClick = True And tempRow <> ROW.Index) Or gridDoubleClick = False Then
+                    If CMBLOOM.Text.Trim = ROW.Cells(GLOOM.Index).Value.ToString Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Private Sub CMBLOOM_Validating(sender As Object, e As CancelEventArgs) Handles CMBLOOM.Validating
+        Try
+            If gridloan.RowCount > 0 Then
+                If Not CHECKLOOM() Then
+                    MsgBox("Loom No already Present in Grid below")
+                    CMBLOOM.Text = ""
+                    e.Cancel = True
+                    Exit Sub
+                End If
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Sub
 End Class

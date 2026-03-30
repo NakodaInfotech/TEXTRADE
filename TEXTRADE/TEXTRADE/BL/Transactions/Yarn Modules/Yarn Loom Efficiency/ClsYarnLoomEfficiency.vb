@@ -61,7 +61,7 @@ Public Class ClsYarnLoomEfficiency
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BEAMNO", alParaval(I)))
                 I = I + 1
@@ -141,7 +141,7 @@ Public Class ClsYarnLoomEfficiency
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@YARNQUALITY", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BEAMNO", alParaval(I)))
                 I = I + 1

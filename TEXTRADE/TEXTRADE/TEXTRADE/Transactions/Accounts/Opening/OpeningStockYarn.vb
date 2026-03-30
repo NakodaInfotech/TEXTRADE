@@ -115,6 +115,7 @@ Public Class OpeningStockYarn
         gridstock.Enabled = True
 
         If GRIDDOUBLECLICK = False Then
+
             gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), TXTLOTNO.Text.Trim, CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, CMBPROCESS.Text.Trim, TXTREMARKS.Text.Trim, TXTLRNO.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBILLNO.Text.Trim, CMBTONAME.Text, CMBGODOWN.Text.Trim, Val(TXTBAGS.Text.Trim), Val(TXTWT.Text.Trim), Val(TXTCONES.Text.Trim), CMBRACK.Text.Trim, TXTGRIDREMARKS, TXTRATE.Text.Trim, CMBPER.Text.Trim, TXTAMOUNT.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
             getsrno(gridstock)
             gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
@@ -242,7 +243,7 @@ Public Class OpeningStockYarn
             If dttable.Rows.Count > 0 Then
                 For Each DR As DataRow In dttable.Rows
                     openingdate.Value = Format(Convert.ToDateTime(DR("DATE")).Date, "dd/MM/yyyy")
-                    CMBPROCESS.Text = Convert.ToString(DR("TYPE").ToString)
+                    cmbtype.Text = Convert.ToString(DR("TYPE").ToString)
                     gridstock.Rows.Add(DR("GRIDSRNO"), DR("SMNO"), DR("LOTNO"), DR("YARNQUALITY"), DR("MILLNAME"), DR("DESIGNNO"), DR("COLOR"), DR("PROCESSNAME"), DR("REMARKS"), DR("LRNO"), DR("LRDATE"), DR("BILLNO"), DR("TONAME"), DR("GODOWN"), Val(DR("BAGS")), Val(DR("WT")), Val(DR("CONES")), DR("RACK"), DR("GRIDREMARKS"), Val(DR("RATE")), DR("PER"), Val(DR("AMOUNT")), DR("BARCODE"), Val(DR("OUTWT")), Val(DR("OUTBAGS")), DR("DONE"))
                 Next
                 getsrno(gridstock)
@@ -334,6 +335,7 @@ Public Class OpeningStockYarn
             If GRIDDOUBLECLICK = False Then
                 Dim DT As DataTable = OBJSM.SAVE()
                 If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
+                BARCODE()
             Else
                 ALPARAVAL.Add(TXTNO.Text.Trim)
                 Dim INTRES As Integer = OBJSM.UPDATE()

@@ -23,358 +23,306 @@ Partial Class OpeningBeamStockAtJobberDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.cmdexit = New System.Windows.Forms.Button()
-        Me.cmdok = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMISSUENO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GISSUEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GORDERNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GAMT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRECDBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GRECDWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GDONE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCLOSED = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGRIDREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREEDSPACE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPICKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.lbl = New System.Windows.Forms.Label()
+        Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CMDEXIT = New System.Windows.Forms.Button()
+        Me.CMDEDIT = New System.Windows.Forms.Button()
+        Me.CMDADD = New System.Windows.Forms.Button()
+        Me.GVEHICALNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GEWBNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CHKDONE, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
-        Me.BlendPanel1.Controls.Add(Me.cmdexit)
-        Me.BlendPanel1.Controls.Add(Me.cmdok)
-        Me.BlendPanel1.Controls.Add(Me.Label1)
-        Me.BlendPanel1.Controls.Add(Me.Label2)
-        Me.BlendPanel1.Controls.Add(Me.Label21)
-        Me.BlendPanel1.Controls.Add(Me.Label22)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
-        Me.BlendPanel1.Controls.Add(Me.lbl)
+        Me.BlendPanel1.Controls.Add(Me.CMDEXIT)
+        Me.BlendPanel1.Controls.Add(Me.CMDEDIT)
+        Me.BlendPanel1.Controls.Add(Me.CMDADD)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BlendPanel1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
-        Me.BlendPanel1.TabIndex = 8
-        '
-        'cmdexit
-        '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(620, 534)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 445
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
-        '
-        'cmdok
-        '
-        Me.cmdok.BackColor = System.Drawing.Color.Transparent
-        Me.cmdok.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdok.FlatAppearance.BorderSize = 0
-        Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(534, 534)
-        Me.cmdok.Name = "cmdok"
-        Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 444
-        Me.cmdok.Text = "&Ok"
-        Me.cmdok.UseVisualStyleBackColor = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Red
-        Me.Label1.Location = New System.Drawing.Point(1123, 35)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(44, 14)
-        Me.Label1.TabIndex = 443
-        Me.Label1.Text = "Closed"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.LightSkyBlue
-        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label2.Location = New System.Drawing.Point(1104, 34)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(18, 17)
-        Me.Label2.TabIndex = 442
-        Me.Label2.Text = "   "
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.BackColor = System.Drawing.Color.Transparent
-        Me.Label21.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.ForeColor = System.Drawing.Color.Red
-        Me.Label21.Location = New System.Drawing.Point(968, 35)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(44, 14)
-        Me.Label21.TabIndex = 441
-        Me.Label21.Text = "Locked"
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label22.Location = New System.Drawing.Point(949, 34)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(18, 17)
-        Me.Label22.TabIndex = 440
-        Me.Label22.Text = "   "
+        Me.BlendPanel1.TabIndex = 17
         '
         'gridbilldetails
         '
-        Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(21, 54)
+        Me.gridbilldetails.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridbilldetails.Location = New System.Drawing.Point(16, 41)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(1201, 473)
-        Me.gridbilldetails.TabIndex = 256
+        Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHKDONE})
+        Me.gridbilldetails.Size = New System.Drawing.Size(1202, 494)
+        Me.gridbilldetails.TabIndex = 321
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
         'gridbill
         '
-        Me.gridbill.Appearance.HeaderPanel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
-        Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GORDERNO, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GBAGS, Me.GWT, Me.GRATE, Me.GAMT, Me.GRECDBAGS, Me.GRECDWT, Me.GDONE, Me.GCLOSED, Me.GGRIDREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GBEAMISSUENO, Me.GISSUEDATE, Me.GNAME, Me.GVEHICALNO, Me.GEWBNO, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GPICKS, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
+        Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
-        Me.gridbill.OptionsBehavior.Editable = False
+        Me.gridbill.OptionsCustomization.AllowRowSizing = True
         Me.gridbill.OptionsView.ColumnAutoWidth = False
+        Me.gridbill.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
-        Me.gridbill.OptionsView.ShowGroupPanel = False
         '
-        'gsrno
+        'GCHK
         '
-        Me.gsrno.Caption = "Sr. No"
-        Me.gsrno.FieldName = "SONO"
-        Me.gsrno.Name = "gsrno"
-        Me.gsrno.Visible = True
-        Me.gsrno.VisibleIndex = 0
-        Me.gsrno.Width = 50
+        Me.GCHK.FieldName = "CHK"
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.Visible = True
+        Me.GCHK.VisibleIndex = 0
+        Me.GCHK.Width = 30
         '
-        'gdate
+        'GBEAMISSUENO
         '
-        Me.gdate.Caption = "Date"
-        Me.gdate.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.gdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.gdate.FieldName = "SODATE"
-        Me.gdate.Name = "gdate"
-        Me.gdate.Visible = True
-        Me.gdate.VisibleIndex = 1
-        Me.gdate.Width = 70
+        Me.GBEAMISSUENO.Caption = "Sr No."
+        Me.GBEAMISSUENO.FieldName = "BEAMISSUENO"
+        Me.GBEAMISSUENO.Name = "GBEAMISSUENO"
+        Me.GBEAMISSUENO.OptionsColumn.AllowEdit = False
+        Me.GBEAMISSUENO.Visible = True
+        Me.GBEAMISSUENO.VisibleIndex = 1
+        Me.GBEAMISSUENO.Width = 60
+        '
+        'GISSUEDATE
+        '
+        Me.GISSUEDATE.Caption = "Date"
+        Me.GISSUEDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GISSUEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GISSUEDATE.FieldName = "ISSUEDATE"
+        Me.GISSUEDATE.Name = "GISSUEDATE"
+        Me.GISSUEDATE.OptionsColumn.AllowEdit = False
+        Me.GISSUEDATE.Visible = True
+        Me.GISSUEDATE.VisibleIndex = 2
         '
         'GNAME
         '
-        Me.GNAME.Caption = "Supplier Name"
+        Me.GNAME.Caption = "Party Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 200
         '
-        'GORDERNO
+        'GITEMNAME
         '
-        Me.GORDERNO.Caption = "Order No"
-        Me.GORDERNO.FieldName = "REFNO"
-        Me.GORDERNO.Name = "GORDERNO"
-        Me.GORDERNO.Visible = True
-        Me.GORDERNO.VisibleIndex = 3
-        '
-        'GQUALITY
-        '
-        Me.GQUALITY.Caption = "Yarn Quality"
-        Me.GQUALITY.FieldName = "YARNQUALITY"
-        Me.GQUALITY.Name = "GQUALITY"
-        Me.GQUALITY.Visible = True
-        Me.GQUALITY.VisibleIndex = 4
-        Me.GQUALITY.Width = 150
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 6
+        Me.GITEMNAME.Width = 250
         '
         'GDESIGNNO
         '
         Me.GDESIGNNO.Caption = "Design No"
-        Me.GDESIGNNO.FieldName = "DESIGN"
+        Me.GDESIGNNO.FieldName = "DESIGNNO"
         Me.GDESIGNNO.Name = "GDESIGNNO"
+        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 5
-        Me.GDESIGNNO.Width = 100
+        Me.GDESIGNNO.VisibleIndex = 7
+        Me.GDESIGNNO.Width = 120
         '
         'GCOLOR
         '
         Me.GCOLOR.Caption = "Shade"
-        Me.GCOLOR.FieldName = "SHADE"
+        Me.GCOLOR.FieldName = "COLOR"
         Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.OptionsColumn.AllowEdit = False
         Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 6
+        Me.GCOLOR.VisibleIndex = 8
+        Me.GCOLOR.Width = 120
         '
-        'GBAGS
+        'GREFNO
         '
-        Me.GBAGS.Caption = "Bage"
-        Me.GBAGS.DisplayFormat.FormatString = "0"
-        Me.GBAGS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GBAGS.FieldName = "BAGS"
-        Me.GBAGS.Name = "GBAGS"
-        Me.GBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QTY", "{0:0}")})
-        Me.GBAGS.Visible = True
-        Me.GBAGS.VisibleIndex = 7
-        Me.GBAGS.Width = 60
+        Me.GREFNO.Caption = "Ref No"
+        Me.GREFNO.FieldName = "REFNO"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.OptionsColumn.AllowEdit = False
+        Me.GREFNO.Visible = True
+        Me.GREFNO.VisibleIndex = 9
+        Me.GREFNO.Width = 100
         '
-        'GWT
+        'GREED
         '
-        Me.GWT.Caption = "Wt"
-        Me.GWT.DisplayFormat.FormatString = "0.00"
-        Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GWT.FieldName = "WT"
-        Me.GWT.Name = "GWT"
-        Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "MTRS", "{0:0.00}")})
-        Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 8
+        Me.GREED.Caption = "Reed"
+        Me.GREED.FieldName = "REED"
+        Me.GREED.Name = "GREED"
+        Me.GREED.OptionsColumn.AllowEdit = False
+        Me.GREED.Visible = True
+        Me.GREED.VisibleIndex = 10
+        Me.GREED.Width = 100
         '
-        'GRATE
+        'GREEDSPACE
         '
-        Me.GRATE.Caption = "Rate"
-        Me.GRATE.DisplayFormat.FormatString = "0.00"
-        Me.GRATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GRATE.FieldName = "RATE"
-        Me.GRATE.Name = "GRATE"
-        Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 9
+        Me.GREEDSPACE.Caption = "Reed Space"
+        Me.GREEDSPACE.FieldName = "REEDSPACE"
+        Me.GREEDSPACE.Name = "GREEDSPACE"
+        Me.GREEDSPACE.OptionsColumn.AllowEdit = False
+        Me.GREEDSPACE.Visible = True
+        Me.GREEDSPACE.VisibleIndex = 11
+        Me.GREEDSPACE.Width = 100
         '
-        'GAMT
+        'GPICKS
         '
-        Me.GAMT.Caption = "Amount"
-        Me.GAMT.DisplayFormat.FormatString = "0.00"
-        Me.GAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GAMT.FieldName = "AMT"
-        Me.GAMT.Name = "GAMT"
-        Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AMT", "{0:0.00}")})
-        Me.GAMT.Visible = True
-        Me.GAMT.VisibleIndex = 10
-        Me.GAMT.Width = 100
+        Me.GPICKS.Caption = "Picks"
+        Me.GPICKS.FieldName = "PICKS"
+        Me.GPICKS.Name = "GPICKS"
+        Me.GPICKS.OptionsColumn.AllowEdit = False
+        Me.GPICKS.Visible = True
+        Me.GPICKS.VisibleIndex = 12
         '
-        'GRECDBAGS
+        'GTOTALENDS
         '
-        Me.GRECDBAGS.Caption = "Recd Bags"
-        Me.GRECDBAGS.FieldName = "RECDBAGS"
-        Me.GRECDBAGS.Name = "GRECDBAGS"
-        Me.GRECDBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RECDQTY", "{0:0.##}")})
-        Me.GRECDBAGS.Visible = True
-        Me.GRECDBAGS.VisibleIndex = 11
-        Me.GRECDBAGS.Width = 60
+        Me.GTOTALENDS.Caption = "Total Ends"
+        Me.GTOTALENDS.FieldName = "TOTALENDS"
+        Me.GTOTALENDS.Name = "GTOTALENDS"
+        Me.GTOTALENDS.OptionsColumn.AllowEdit = False
+        Me.GTOTALENDS.Visible = True
+        Me.GTOTALENDS.VisibleIndex = 13
+        Me.GTOTALENDS.Width = 100
         '
-        'GRECDWT
+        'GTOTALMTRS
         '
-        Me.GRECDWT.Caption = "Recd Wt"
-        Me.GRECDWT.FieldName = "RECDWT"
-        Me.GRECDWT.Name = "GRECDWT"
-        Me.GRECDWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RECDMTRS", "{0:0.##}")})
-        Me.GRECDWT.Visible = True
-        Me.GRECDWT.VisibleIndex = 12
+        Me.GTOTALMTRS.Caption = "Total Mtrs"
+        Me.GTOTALMTRS.DisplayFormat.FormatString = "0"
+        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
+        Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
+        Me.GTOTALMTRS.Visible = True
+        Me.GTOTALMTRS.VisibleIndex = 14
+        Me.GTOTALMTRS.Width = 100
         '
-        'GDONE
+        'GREMARKS
         '
-        Me.GDONE.Caption = "Done"
-        Me.GDONE.FieldName = "DONE"
-        Me.GDONE.Name = "GDONE"
-        Me.GDONE.Visible = True
-        Me.GDONE.VisibleIndex = 13
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.OptionsColumn.AllowEdit = False
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 15
+        Me.GREMARKS.Width = 200
         '
-        'GCLOSED
+        'CHKDONE
         '
-        Me.GCLOSED.Caption = "Closed"
-        Me.GCLOSED.FieldName = "CLOSED"
-        Me.GCLOSED.Name = "GCLOSED"
-        Me.GCLOSED.Visible = True
-        Me.GCLOSED.VisibleIndex = 14
-        '
-        'GGRIDREMARKS
-        '
-        Me.GGRIDREMARKS.Caption = "Desc"
-        Me.GGRIDREMARKS.FieldName = "DESC"
-        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
+        Me.CHKDONE.AutoHeight = False
+        Me.CHKDONE.Name = "CHKDONE"
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButton1, Me.toolStripSeparator, Me.PrintToolStripButton, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator4})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
-        Me.ToolStrip1.TabIndex = 255
+        Me.ToolStrip1.TabIndex = 3
         Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'ToolStripButton1
+        'TOOLEXCEL
         '
-        Me.ToolStripButton1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(59, 22)
-        Me.ToolStripButton1.Text = "Add New"
+        Me.TOOLEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.TOOLEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLEXCEL.Name = "TOOLEXCEL"
+        Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLEXCEL.Text = "Print"
         '
-        'toolStripSeparator
+        'ToolStripSeparator2
         '
-        Me.toolStripSeparator.Name = "toolStripSeparator"
-        Me.toolStripSeparator.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
-        'PrintToolStripButton
+        'TOOLREFRESH
         '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.PrintToolStripButton.Text = "&Print"
+        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
+        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLREFRESH.Name = "TOOLREFRESH"
+        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLREFRESH.Text = "ToolStripButton1"
         '
-        'ToolStripSeparator1
+        'ToolStripSeparator4
         '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
         '
-        'lbl
+        'CMDEXIT
         '
-        Me.lbl.AutoSize = True
-        Me.lbl.BackColor = System.Drawing.Color.Transparent
-        Me.lbl.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lbl.Location = New System.Drawing.Point(19, 34)
-        Me.lbl.Name = "lbl"
-        Me.lbl.Size = New System.Drawing.Size(128, 14)
-        Me.lbl.TabIndex = 251
-        Me.lbl.Text = "Select a P.O. to Change"
+        Me.CMDEXIT.Location = New System.Drawing.Point(662, 541)
+        Me.CMDEXIT.Name = "CMDEXIT"
+        Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDEXIT.TabIndex = 2
+        Me.CMDEXIT.Text = "E&xit"
+        Me.CMDEXIT.UseVisualStyleBackColor = True
+        '
+        'CMDEDIT
+        '
+        Me.CMDEDIT.Location = New System.Drawing.Point(577, 541)
+        Me.CMDEDIT.Name = "CMDEDIT"
+        Me.CMDEDIT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDEDIT.TabIndex = 1
+        Me.CMDEDIT.Text = "&Edit"
+        Me.CMDEDIT.UseVisualStyleBackColor = True
+        '
+        'CMDADD
+        '
+        Me.CMDADD.Location = New System.Drawing.Point(492, 541)
+        Me.CMDADD.Name = "CMDADD"
+        Me.CMDADD.Size = New System.Drawing.Size(80, 28)
+        Me.CMDADD.TabIndex = 0
+        Me.CMDADD.Text = "&Add New"
+        Me.CMDADD.UseVisualStyleBackColor = True
+        '
+        'GVEHICALNO
+        '
+        Me.GVEHICALNO.Caption = "Vehcile No"
+        Me.GVEHICALNO.FieldName = "VEHICALNO"
+        Me.GVEHICALNO.Name = "GVEHICALNO"
+        Me.GVEHICALNO.Visible = True
+        Me.GVEHICALNO.VisibleIndex = 4
+        '
+        'GEWBNO
+        '
+        Me.GEWBNO.Caption = "Eway Bill No"
+        Me.GEWBNO.FieldName = "EWBNO"
+        Me.GEWBNO.Name = "GEWBNO"
+        Me.GEWBNO.Visible = True
+        Me.GEWBNO.VisibleIndex = 5
         '
         'OpeningBeamStockAtJobberDetails
         '
@@ -391,6 +339,7 @@ Partial Class OpeningBeamStockAtJobberDetails
         Me.BlendPanel1.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CHKDONE, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -398,34 +347,31 @@ Partial Class OpeningBeamStockAtJobberDetails
     End Sub
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
-    Friend WithEvents cmdexit As Button
-    Friend WithEvents cmdok As Button
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label22 As Label
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
-    Private WithEvents gsrno As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents gdate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMISSUENO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GISSUEDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GORDERNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBAGS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GAMT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GRECDBAGS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GRECDWT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GDONE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCLOSED As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGRIDREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREED As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREEDSPACE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPICKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALENDS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents ToolStripButton1 As ToolStripButton
-    Friend WithEvents toolStripSeparator As ToolStripSeparator
-    Friend WithEvents PrintToolStripButton As ToolStripButton
-    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents lbl As Label
+    Friend WithEvents TOOLEXCEL As ToolStripButton
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents TOOLREFRESH As ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents CMDEXIT As Button
+    Friend WithEvents CMDEDIT As Button
+    Friend WithEvents CMDADD As Button
+    Friend WithEvents GVEHICALNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GEWBNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
