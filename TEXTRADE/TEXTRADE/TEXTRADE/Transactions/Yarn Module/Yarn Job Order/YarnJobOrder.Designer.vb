@@ -106,6 +106,7 @@ Partial Class YarnJobOrder
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.CMDSELECTSO = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
         Me.TBWEFT.SuspendLayout()
@@ -120,6 +121,7 @@ Partial Class YarnJobOrder
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSELECTSO)
         Me.BlendPanel1.Controls.Add(Me.Label18)
         Me.BlendPanel1.Controls.Add(Me.TXTCOPYSONO)
         Me.BlendPanel1.Controls.Add(Me.Label2)
@@ -918,6 +920,21 @@ Partial Class YarnJobOrder
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
+        'CMDSELECTSO
+        '
+        Me.CMDSELECTSO.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSELECTSO.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSELECTSO.FlatAppearance.BorderSize = 0
+        Me.CMDSELECTSO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSELECTSO.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDSELECTSO.Location = New System.Drawing.Point(546, 451)
+        Me.CMDSELECTSO.Name = "CMDSELECTSO"
+        Me.CMDSELECTSO.Size = New System.Drawing.Size(93, 28)
+        Me.CMDSELECTSO.TabIndex = 945
+        Me.CMDSELECTSO.Text = "Select &Order"
+        Me.CMDSELECTSO.UseVisualStyleBackColor = False
+        Me.CMDSELECTSO.Visible = False
+        '
         'YarnJobOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1014,4 +1031,5 @@ Partial Class YarnJobOrder
     Friend WithEvents GCLOSED As DataGridViewTextBoxColumn
     Friend WithEvents CMBDESIGN As ComboBox
     Friend WithEvents CMBSHADE As ComboBox
+    Friend WithEvents CMDSELECTSO As Button
 End Class

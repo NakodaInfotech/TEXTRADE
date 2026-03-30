@@ -3344,7 +3344,45 @@ PRINT 1,1")
 
             ElseIf ClientName = "ARIHANT" Then
 
-                oWrite.WriteLine("<xpml><page quantity='0' pitch='50.0 mm'></xpml>SIZE 97.5 mm, 50 mm")
+                'oWrite.WriteLine("<xpml><page quantity='0' pitch='50.0 mm'></xpml>SIZE 97.5 mm, 50 mm")
+                'oWrite.WriteLine("GAP 3 mm, 0 mm")
+                'oWrite.WriteLine("DIRECTION 0,0")
+                'oWrite.WriteLine("REFERENCE 0,0")
+                'oWrite.WriteLine("OFFSET 0 mm")
+                'oWrite.WriteLine("SET PEEL OFF")
+                'oWrite.WriteLine("SET CUTTER OFF")
+                'oWrite.WriteLine("SET PARTIAL_CUTTER OFF")
+                'oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='50.0 mm'></xpml>SET TEAR ON")
+                'oWrite.WriteLine("CLS")
+                'oWrite.WriteLine("BARCODE 458,154,""128M"",106,0,180,2,4,""" & BARCODE & """") 'BARCODE
+                'oWrite.WriteLine("CODEPAGE 1252")
+                'oWrite.WriteLine("TEXT 359,42,""0"",180,10,10,""" & BARCODE & """")
+                'oWrite.WriteLine("TEXT 459,377,""0"",180,16,16,""" & ITEMNAME & """")
+                'oWrite.WriteLine("TEXT 458,318,""0"",180,12,12,""D.NO""")
+                'oWrite.WriteLine("TEXT 458,267,""0"",180,12,12,""WIDTH""")
+                'oWrite.WriteLine("TEXT 133,318,""0"",180,12,12,""" & LOTNO & """")
+                'oWrite.WriteLine("TEXT 458,210,""0"",180,12,12,""MTRS""")
+                'oWrite.WriteLine("TEXT 355,318,""0"",180,12,12,"":""")
+                'oWrite.WriteLine("TEXT 355,267,""0"",180,12,12,"":""")
+                'oWrite.WriteLine("TEXT 355,210,""0"",180,12,12,"":""")
+                'oWrite.WriteLine("TEXT 327,318,""0"",180,12,12,""" & DESIGNNO & """")
+
+                ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                'Dim TEMPWIDTH As String = ""
+                'Dim OBJCMN As New ClsCommon
+                'Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                'If DT.Rows.Count > 0 Then
+                '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                'End If
+                'oWrite.WriteLine("TEXT 327,267,""0"",180,12,12,""" & TEMPWIDTH & """")
+
+                'oWrite.WriteLine("TEXT 327,216,""0"",180,18,18,""" & Format(Val(MTRS), "0.00") & """")
+                'oWrite.WriteLine("PRINT 1,1")
+                'oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
+                'oWrite.Dispose()
+
+
+                oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm")
                 oWrite.WriteLine("GAP 3 mm, 0 mm")
                 oWrite.WriteLine("DIRECTION 0,0")
                 oWrite.WriteLine("REFERENCE 0,0")
@@ -3352,20 +3390,19 @@ PRINT 1,1")
                 oWrite.WriteLine("SET PEEL OFF")
                 oWrite.WriteLine("SET CUTTER OFF")
                 oWrite.WriteLine("SET PARTIAL_CUTTER OFF")
-                oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='50.0 mm'></xpml>SET TEAR ON")
+                oWrite.WriteLine("SET TEAR ON")
                 oWrite.WriteLine("CLS")
-                oWrite.WriteLine("BARCODE 458,154,""128M"",106,0,180,2,4,""" & BARCODE & """") 'BARCODE
                 oWrite.WriteLine("CODEPAGE 1252")
-                oWrite.WriteLine("TEXT 359,42,""0"",180,10,10,""" & BARCODE & """")
-                oWrite.WriteLine("TEXT 459,377,""0"",180,16,16,""" & ITEMNAME & """")
-                oWrite.WriteLine("TEXT 458,318,""0"",180,12,12,""D.NO""")
-                oWrite.WriteLine("TEXT 458,267,""0"",180,12,12,""WIDTH""")
-                oWrite.WriteLine("TEXT 133,318,""0"",180,12,12,""" & LOTNO & """")
-                oWrite.WriteLine("TEXT 458,210,""0"",180,12,12,""MTRS""")
-                oWrite.WriteLine("TEXT 355,318,""0"",180,12,12,"":""")
-                oWrite.WriteLine("TEXT 355,267,""0"",180,12,12,"":""")
-                oWrite.WriteLine("TEXT 355,210,""0"",180,12,12,"":""")
-                oWrite.WriteLine("TEXT 327,318,""0"",180,12,12,""" & DESIGNNO & """")
+                oWrite.WriteLine("TEXT 734,451,""ROMAN.TTF"",180,1,15,""" & ITEMNAME & """")
+                oWrite.WriteLine("TEXT 734,386,""ROMAN.TTF"",180,1,11,""D. NO""")
+                oWrite.WriteLine("TEXT 734,324,""ROMAN.TTF"",180,1,11,""WIDTH""")
+                oWrite.WriteLine("TEXT 408,386,""ROMAN.TTF"",180,1,11,""" & LOTNO & """")
+                oWrite.WriteLine("TEXT 734,267,""ROMAN.TTF"",180,1,11,""MTRS""")
+                oWrite.WriteLine("TEXT 630,386,""ROMAN.TTF"",180,1,11,"":""")
+                oWrite.WriteLine("TEXT 630,324,""ROMAN.TTF"",180,1,11,"":""")
+                oWrite.WriteLine("TEXT 630,267,""ROMAN.TTF"",180,1,11,"":""")
+                oWrite.WriteLine("TEXT 602,386,""ROMAN.TTF"",180,1,11,""" & DESIGNNO & """")
+
 
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                 Dim TEMPWIDTH As String = ""
@@ -3374,12 +3411,15 @@ PRINT 1,1")
                 If DT.Rows.Count > 0 Then
                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
                 End If
-                oWrite.WriteLine("TEXT 327,267,""0"",180,12,12,""" & TEMPWIDTH & """")
 
-                oWrite.WriteLine("TEXT 327,216,""0"",180,18,18,""" & Format(Val(MTRS), "0.00") & """")
+
+                oWrite.WriteLine("TEXT 602,324,""ROMAN.TTF"",180,1,11,""" & TEMPWIDTH & """")
+                oWrite.WriteLine("TEXT 602,272,""ROMAN.TTF"",180,1,16,""" & MTRS & """")
+                oWrite.WriteLine("BARCODE 734,210,""128M"",102,0,180,3,6,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 515,104,""ROMAN.TTF"",180,1,8,""" & BARCODE & """")
                 oWrite.WriteLine("PRINT 1,1")
-                oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
                 oWrite.Dispose()
+
 
             ElseIf ClientName = "KEMLINO" Then
 

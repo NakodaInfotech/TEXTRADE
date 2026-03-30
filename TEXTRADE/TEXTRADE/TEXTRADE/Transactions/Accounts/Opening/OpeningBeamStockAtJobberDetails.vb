@@ -25,7 +25,7 @@ Public Class OpeningBeamStockAtJobberDetails
 
     Private Sub JobOrderDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'YARN JOBORDER'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'BEAM ISSUE'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -45,7 +45,7 @@ Public Class OpeningBeamStockAtJobberDetails
 
     Sub FILLGRID()
         Try
-            Dim OBJSTORE As New ClsJobOrder
+            Dim OBJSTORE As New ClsOpeningBeamStockAtJobber
             OBJSTORE.alParaval.Add(0)
             OBJSTORE.alParaval.Add(YearId)
             'Dim DT As DataTable = OBJSTORE.SelectYarnJob
@@ -69,10 +69,10 @@ Public Class OpeningBeamStockAtJobberDetails
             End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim OBJSTORES As New YarnJobOrder
+                Dim OBJSTORES As New OpeningBeamStockAtJobber
                 OBJSTORES.MdiParent = MDIMain
                 OBJSTORES.EDIT = editval
-                OBJSTORES.TEMPJONO = INWARDNO
+                OBJSTORES.TEMPBEAMISSUENO = INWARDNO
                 OBJSTORES.Show()
             End If
         Catch ex As Exception
@@ -82,7 +82,7 @@ Public Class OpeningBeamStockAtJobberDetails
 
     Private Sub gridpayment_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
+            showform(True, gridbill.GetFocusedRowCellValue("BEAMISSUENO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -90,7 +90,7 @@ Public Class OpeningBeamStockAtJobberDetails
 
     Private Sub CMDEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEDIT.Click
         Try
-            showform(True, gridbill.GetFocusedRowCellValue("JOBNO"))
+            showform(True, gridbill.GetFocusedRowCellValue("BEAMISSUENO"))
         Catch ex As Exception
             Throw ex
         End Try
@@ -107,14 +107,14 @@ Public Class OpeningBeamStockAtJobberDetails
     Private Sub TOOLEXCEL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLEXCEL.Click
         Try
 
-            Dim PATH As String = Application.StartupPath & "\Stores Details.XLS"
+            Dim PATH As String = Application.StartupPath & "\Opening Beam Stock At Jobber Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
-            opti.SheetName = "Yarn Job Order Details"
+            opti.SheetName = "Opening Beam Stock At Jobber Details"
             gridbill.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Yarn Job Order Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+            EXCELCMPHEADER(PATH, "Opening Beam Stock At Jobber Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
         Catch ex As Exception
-            MsgBox("Yarn Job Order Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+            MsgBox("Opening Beam Stock At Jobber Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
 
