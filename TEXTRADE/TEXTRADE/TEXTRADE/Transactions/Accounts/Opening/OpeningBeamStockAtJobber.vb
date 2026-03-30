@@ -136,7 +136,7 @@ Public Class OpeningBeamStockAtJobber
             ElseIf e.Alt = True And e.KeyCode = Keys.Right Then
                 toolnext_Click(sender, e)
             ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
-                'Call OpenToolStripButton_Click(sender, e)
+                Call OpenToolStripButton_Click(sender, e)
             ElseIf e.KeyCode = Keys.Enter Then
                 SendKeys.Send("{Tab}")
             ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then       'for Delete
@@ -1100,6 +1100,16 @@ LINE1:
             Throw ex
         End Try
     End Function
+
+    Private Sub OpenToolStripButton_Click(sender As Object, e As EventArgs) Handles OpenToolStripButton.Click
+        Try
+            Dim OBJJO As New OpeningBeamStockAtJobberDetails
+            OBJJO.MdiParent = MDIMain
+            OBJJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Private Sub CMBROLLNO_Validating(sender As Object, e As CancelEventArgs) Handles CMBROLLNO.Validating
         'If CMBROLLNO.Text <> "" Then
