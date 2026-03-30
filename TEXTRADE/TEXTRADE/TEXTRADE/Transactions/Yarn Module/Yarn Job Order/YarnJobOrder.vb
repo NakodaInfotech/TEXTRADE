@@ -915,6 +915,18 @@ LINE1:
                 OBJSELECTSO.ShowDialog()
                 DTSO = OBJSELECTSO.DT
 
+                If ClientName = "MMC" Then
+                    Dim rowsToDelete As New List(Of DataRow)
+                    For Each dr As DataRow In DTSO.Rows
+                        If dr("TYPE").ToString = "YARNSALEORDER" Or dr("TYPE").ToString = "OPENINGYARNSALEORDER" Then
+                            rowsToDelete.Add(dr)
+                        End If
+                    Next
+                    For Each dr As DataRow In rowsToDelete
+                        DTSO.Rows.Remove(dr)
+                    Next
+                End If
+
                 If DTSO.Rows.Count > 0 Then
 
                     ''  GETTING DISTINCT SONO NO IN TEXTBOX
