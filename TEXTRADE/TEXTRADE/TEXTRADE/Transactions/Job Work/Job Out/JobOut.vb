@@ -245,7 +245,7 @@ Public Class JobOut
             End If
 
 
-            If TXTCHALLANNO.Text.Trim <> "" And ClientName <> "RADHA" Then
+            If TXTCHALLANNO.Text.Trim <> "" And (ClientName <> "RADHA" And ClientName <> "VINTAGEINDIA") Then
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(TXTCHALLANNO.Text.Trim)) Then
                     'for search
                     DT = OBJCMN.SEARCH(" JO_challanno, LEDGERS.ACC_cmpname", "", " JOBOUT inner join LEDGERS on LEDGERS.ACC_id = JO_ledgerid ", " and JO_challanno = '" & TXTCHALLANNO.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & CMBNAME.Text.Trim & "' AND JO_YEARID =" & YearId)

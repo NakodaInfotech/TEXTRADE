@@ -1040,7 +1040,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
             If EDIT = True Then PRINTREPORT(TEMPYARNNO)
         Catch ex As Exception
@@ -1421,6 +1421,8 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
+
 
     Private Sub cmbitemname_Validating(sender As Object, e As CancelEventArgs) Handles CMBITEMNAME.Validating
         Try
