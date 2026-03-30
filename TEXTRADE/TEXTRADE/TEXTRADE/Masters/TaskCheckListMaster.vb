@@ -45,9 +45,9 @@ Public Class TaskCheckListMaster
         End If
     End Sub
 
-    Sub FILLCMB()
-        If CMBTASKTYPE.Text.Trim = "" Then FILLTASKTYPE(CMBTASKTYPE, EDIT, "")
-    End Sub
+    'Sub FILLCMB()
+    '    If CMBTASKTYPE.Text.Trim = "" Then FILLTASKTYPE(CMBTASKTYPE, EDIT, "")
+    'End Sub
 
     Function ERRORVALID() As Boolean
         Try
@@ -268,7 +268,7 @@ LINE1:
 
     Sub getmaxno()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(SA_no),0) + 1 ", " TASKCHECKMASTER ", " AND SA_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(TASKCHECK_NO),0) + 1 ", " TASKCHECKMASTER ", " AND TASKCHECK_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTTASKNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -286,6 +286,46 @@ LINE1:
         LBLTOTALTASK.Text = 0.0
     End Sub
 
+    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
+        Try
+            If EDIT = True Then
+                PRINTREPORT()
+                If GRIDTASK.RowCount > 0 Then
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub PRINTREPORT()
+        Try
+            If MsgBox("Wish to Print Entry?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+            Dim OBJSA As New SaleOrderDesign
+            OBJSA.MdiParent = MDIMain
+            OBJSA.FORMULA = "{TASKCHECKMASTER.TASKCHECK_NO} = " & Val(TXTTASKNO.Text.Trim) & " AND {TASKCHECKMASTER.TASKCHECK_YEARID} = " & YearId
+            OBJSA.FRMSTRING = "STORESTOCKRECO"
+            OBJSA.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub tooldelete_Click(sender As Object, e As EventArgs) Handles tooldelete.Click
+        Try
+            Call cmddelete_Click(sender, e)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub SaveToolStripButton_Click(sender As Object, e As EventArgs) Handles SaveToolStripButton.Click
+        Try
+            Call cmdok_Click(sender, e)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub TaskCheckListMaster_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
@@ -297,7 +337,7 @@ LINE1:
 
             Cursor.Current = Cursors.WaitCursor
 
-            FILLCMB()
+            'FILLCMB()
             CLEAR()
 
             If EDIT = True Then
@@ -361,11 +401,11 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBTASKTYPE_Enter(sender As Object, e As EventArgs)
-        Try
-            If CMBTASKTYPE.Text.Trim = "" Then FILLTASKTYPE(CMBTASKTYPE, EDIT, "")
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    'Private Sub CMBTASKTYPE_Enter(sender As Object, e As EventArgs)
+    '    Try
+    '        If CMBTASKTYPE.Text.Trim = "" Then FILLTASKTYPE(CMBTASKTYPE, EDIT, "")
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+    'End Sub
 End Class
