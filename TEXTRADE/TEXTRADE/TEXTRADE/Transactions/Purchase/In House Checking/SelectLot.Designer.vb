@@ -60,7 +60,7 @@ Partial Class SelectLot
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1172, 668)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1272, 668)
         Me.BlendPanel1.TabIndex = 6
         '
         'gridbilldetails
@@ -71,7 +71,7 @@ Partial Class SelectLot
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHKEDIT, Me.APPROXDATE, Me.RepositoryItemCheckEdit1})
-        Me.gridbilldetails.Size = New System.Drawing.Size(1125, 597)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1226, 597)
         Me.gridbilldetails.TabIndex = 648
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -81,7 +81,7 @@ Partial Class SelectLot
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGODOWN, Me.GLOTNO, Me.GLRNO, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GTYPE, Me.GBALENO, Me.GCHALLANNO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGODOWN, Me.GLOTNO, Me.GLRNO, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GBALENO, Me.GCHALLANNO, Me.GTYPE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -196,6 +196,9 @@ Partial Class SelectLot
         Me.GTYPE.Caption = "Type"
         Me.GTYPE.FieldName = "TYPE"
         Me.GTYPE.Name = "GTYPE"
+        Me.GTYPE.Visible = True
+        Me.GTYPE.VisibleIndex = 11
+        Me.GTYPE.Width = 100
         '
         'GBALENO
         '
@@ -235,7 +238,7 @@ Partial Class SelectLot
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(589, 624)
+        Me.cmdexit.Location = New System.Drawing.Point(670, 627)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 9
@@ -249,7 +252,7 @@ Partial Class SelectLot
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(503, 624)
+        Me.cmdok.Location = New System.Drawing.Point(584, 627)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 8
@@ -259,7 +262,7 @@ Partial Class SelectLot
         'SelectLot
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1172, 668)
+        Me.ClientSize = New System.Drawing.Size(1272, 668)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
