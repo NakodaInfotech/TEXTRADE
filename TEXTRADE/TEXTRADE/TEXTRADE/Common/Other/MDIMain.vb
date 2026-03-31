@@ -1371,6 +1371,8 @@ Public Class MDIMain
                         SALEADD.Enabled = True
                         PROFORMASALEADD.Enabled = True
                         SALEAUTOPOSTADD.Enabled = True
+                        GENERATEEWAY_MASTER.Enabled = True
+                        GENERATEEINV_MASTER.Enabled = True
                     Else
                         SALEADD.Enabled = False
                         PROFORMASALEADD.Enabled = False
@@ -1382,6 +1384,8 @@ Public Class MDIMain
                         SALE_TOOL.Enabled = True
                         SALEEDIT.Enabled = True
                         PROFORMASALEEDIT.Enabled = True
+                        GENERATEEWAY_MASTER.Enabled = True
+                        GENERATEEINV_MASTER.Enabled = True
                     Else
                         SALEEDIT.Enabled = False
                         PROFORMASALEEDIT.Enabled = False
@@ -5369,10 +5373,6 @@ SKIPLINE:
                 MAGICBOX_MENU.Visible = True
             End If
             If ClientName <> "ABHEE" Then PartyWiseBaleRate.Visible = False
-            If ClientName <> "MNARESH" Then
-                AutoEInvoiceToolStripMenuItem.Visible = False
-                AutoEWayToolStripMenuItem.Visible = False
-            End If
             If ALLOWWHATSAPP = True Then AUTOWHATSAPP_MENU.Visible = True
         Catch ex As Exception
             Throw ex
@@ -11127,7 +11127,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AutoEWayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoEWayToolStripMenuItem.Click
+    Private Sub AutoEWayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GENERATEEWAY_MASTER.Click
         Try
             Dim OBJHOLD As New AutoEway
             OBJHOLD.MdiParent = Me
@@ -11147,7 +11147,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AutoEInvoiceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutoEInvoiceToolStripMenuItem.Click
+    Private Sub AutoEInvoiceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GENERATEEINV_MASTER.Click
         Try
             Dim OBJHOLD As New AutoEInvoice
             OBJHOLD.MdiParent = Me
