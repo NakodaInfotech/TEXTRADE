@@ -277,7 +277,7 @@ LINE1:
         DTTASKDATE.Text = Now.Date
         txtremarks.Clear()
         EP.Clear()
-
+        tstxtbillno.Clear()
         GRIDTASK.RowCount = 0
         GRIDDOUBLECLICK = False
         TabControl1.SelectedIndex = 0
@@ -285,6 +285,29 @@ LINE1:
 
         LBLTOTALTASK.Text = 0.0
     End Sub
+
+    Private Sub tstxtbillno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles tstxtbillno.Validating
+        Try
+            If Val(tstxtbillno.Text.Trim) > 0 Then
+                GRIDTASK.RowCount = 0
+                TEMPTASKNO = Val(tstxtbillno.Text)
+                If TEMPTASKNO > 0 Then
+                    EDIT = True
+                    TaskCheckListMaster_Load(sender, e)
+                Else
+                    CLEAR()
+                    EDIT = False
+                End If
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub tstxtbillno_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tstxtbillno.KeyPress
+        numkeypress(e, sender, Me)
+    End Sub
+
 
     Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
         Try
@@ -401,6 +424,7 @@ LINE1:
         End Try
     End Sub
 
+
     'Private Sub CMBTASKTYPE_Enter(sender As Object, e As EventArgs)
     '    Try
     '        If CMBTASKTYPE.Text.Trim = "" Then FILLTASKTYPE(CMBTASKTYPE, EDIT, "")
@@ -408,4 +432,5 @@ LINE1:
     '        Throw ex
     '    End Try
     'End Sub
+
 End Class
