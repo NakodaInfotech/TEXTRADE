@@ -389,6 +389,10 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub OpenToolStripButton_Click(sender As Object, e As EventArgs) Handles OpenToolStripButton.Click
+
+    End Sub
+
     Private Sub CMBLOOM_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMBLOOM.SelectedIndexChanged
         Try
             If CMBLOOM.Text.Trim = "" Then Exit Sub

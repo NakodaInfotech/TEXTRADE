@@ -1854,7 +1854,7 @@ LINE1:
                 TXTAMOUNT.Visible = True
             End If
 
-            If ClientName = "SAFFRON" Or ClientName = "SAFFRONOFF" Then
+            If ClientName = "SAFFRON" Or ClientName = "SAFFRONOFF" Or ClientName = "SWPL" Then
                 LBLTYPE.Visible = True
                 CMBTYPE.Visible = True
                 TXTTYPEJONO.Visible = True
