@@ -5295,7 +5295,7 @@ SKIPLINE:
                 COSTCENTER_MASTER.Visible = True
             End If
 
-            If ClientName = "SAFFRON" Or ClientName = "SAFFRONOFF" Then
+            If ClientName = "SAFFRON" Or ClientName = "SAFFRONOFF" Or ClientName = "SWPL" Then
                 JOBOUTTYPE_MASTER.Visible = True
                 JOBOUTTYPE_TOOL.Visible = True
             End If
