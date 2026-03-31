@@ -10,6 +10,14 @@ Public Class OpeningYarnJobOrder
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
+    Sub FILLCMB()
+        Try
+            FILLNAME(CMBNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+            FILLNAME(CMBPARTYNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
@@ -24,12 +32,16 @@ Public Class OpeningYarnJobOrder
         End If
         GETMAXNO()
         getsrno(GRIDBEAM)
-        TXTSHADE.Clear()
+        CMBSHADE.Text = ""
+        CMBDESIGN.Text = ""
+
         TXTDESCRIPTION.Clear()
         TXTPONO.Clear()
         DTDATE.Text = Now.Date
         CMBITEMNAME.Text = ""
         CMBNAME.Text = ""
+        CMBPARTYNAME.Text = ""
+
         TXTTOTALMTRS.Clear()
         TXTREED.Clear()
         TXTREEDSPACE.Clear()
@@ -47,13 +59,7 @@ Public Class OpeningYarnJobOrder
         lbllocked.Visible = False
         PBlock.Visible = False
 
-        TXTWEFTPE.Clear()
-        TXTWEFTBE.Clear()
-        TXTWEFTTE.Clear()
-        TXTWEFTWT.Clear()
-        TXTWEFTCONS.Clear()
-        TXTWEFTRATE.Clear()
-        TXTWEFTCOST.Clear()
+
 
     End Sub
 
@@ -111,16 +117,28 @@ Public Class OpeningYarnJobOrder
         Dim OBJCMN As New ClsCommon
         If ALLOWMANUALOPJOBORDER = True Then
             If TXTJONO.Text <> "" And CMBNAME.Text.Trim <> "" And EDIT = False Then
-                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(OPENINGYARNJOBORDER.OYJOB_no,0) AS JONO ", "", " OPENINGYARNJOBORDER ", "  AND OPENINGYARNJOBORDER.OYJOB_no=" & TXTJONO.Text.Trim & "  AND OPENINGYARNJOBORDER.OYJOB_cmpid = " & CmpId & " AND OPENINGYARNJOBORDER.OYJOB_locationid = " & Locationid & " AND OPENINGYARNJOBORDER.OYJOB_yearid = " & YearId)
+                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(OPENINGYARNJOBORDER.OYJOB_no,0) AS JONO ", "", " OPENINGYARNJOBORDER ", "  AND OPENINGYARNJOBORDER.OYJOB_no=" & TXTJONO.Text.Trim & "  AND OPENINGYARNJOBORDER.OYJOB_cmpid = " & CmpId & "  AND OPENINGYARNJOBORDER.OYJOB_yearid = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     Ep.SetError(TXTJONO, "Job Order No Already Exist")
                     bln = False
                 End If
             End If
         End If
+        If CMBPARTYNAME.Text.Trim = "" And ClientName = "SWPL" Then
+            Ep.SetError(CMBPARTYNAME, "Select Party Name")
+            bln = False
+        End If
+        If CMBNAME.Text.Trim = "" Then
+            Ep.SetError(CMBNAME, "Select Jobber Name")
+            bln = False
+        End If
 
         If lbllocked.Visible = True Then
             Ep.SetError(lbllocked, " Entry Locked  !!!")
+            bln = False
+        End If
+        If GRIDBEAM.RowCount = 0 Then
+            Ep.SetError(CMBNAME, "Fill Proper Details")
             bln = False
         End If
 
@@ -142,6 +160,8 @@ Public Class OpeningYarnJobOrder
                     TXTJONO.ReadOnly = True
                     DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
                     CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
+                    CMBPARTYNAME.Text = Convert.ToString(dr("PARTYNAME").ToString)
+
                     TXTPONO.Text = dr("PONO")
                     ' Reference and names
                     TXTTOTALMTRS.Text = Val(dr("TOTALMTRS"))
@@ -159,10 +179,10 @@ Public Class OpeningYarnJobOrder
                 'End If
 
                 Dim OBJCMN As New ClsCommon
-                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_PARENTITEM, '') AS PARENTITEM, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_REFNO, '') AS REFNO, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_REED, 0) AS REED, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_PICKS, 0) AS PICKS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_REEDSPACE,  0) AS REEDSPACE, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_ENDS, 0) AS ENDS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_MTRS, 0) AS MTRS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_DESCRIPTION, '') AS DESCRIPTION,  ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_DONE, 0) AS DONE ,ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_CLOSED, 0) AS CLOSED ", "", " OPENINGYARNJOBORDER_DESC LEFT OUTER JOIN COLORMASTER ON OPENINGYARNJOBORDER_DESC.OYJOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON OPENINGYARNJOBORDER_DESC.OYJOB_ITEMID = ITEMMASTER.item_id ", " AND  OPENINGYARNJOBORDER_DESC.OYJOB_NO = " & TEMPJONO & " AND OPENINGYARNJOBORDER_DESC.OYJOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
+                Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME,ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_PARENTITEM, '') AS PARENTITEM, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_REFNO, '') AS REFNO, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_REED, 0) AS REED, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_PICKS, 0) AS PICKS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_REEDSPACE,  0) AS REEDSPACE, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_ENDS, 0) AS ENDS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_MTRS, 0) AS MTRS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_DESCRIPTION, '') AS DESCRIPTION,  ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_DONE, 0) AS DONE ,ISNULL(OPENINGYARNJOBORDER_DESC.OYJOB_CLOSED, 0) AS CLOSED ", "", " OPENINGYARNJOBORDER_DESC LEFT OUTER JOIN COLORMASTER ON OPENINGYARNJOBORDER_DESC.OYJOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON OPENINGYARNJOBORDER_DESC.OYJOB_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN DESIGNMASTER ON OPENINGYARNJOBORDER_DESC.OYJOB_DESIGNID = DESIGNMASTER.DESIGN_id AND  OPENINGYARNJOBORDER_DESC.OYJOB_YEARID = DESIGNMASTER.DESIGN_yearid ", " AND  OPENINGYARNJOBORDER_DESC.OYJOB_NO = " & TEMPJONO & " AND OPENINGYARNJOBORDER_DESC.OYJOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
                 If dttable1.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable1.Rows
-                        GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")), Val(DTR("CLOSED")))
+                        GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("DESIGNNO").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")), Val(DTR("CLOSED")))
 
                         If Convert.ToBoolean(DTR("DONE")) = True Then
                             lbllocked.Visible = True
@@ -187,7 +207,6 @@ Public Class OpeningYarnJobOrder
                 End If
 
 
-                CMBITEMNAME.Enabled = False
             End If
         Catch ex As Exception
             Throw ex
@@ -208,20 +227,22 @@ Public Class OpeningYarnJobOrder
             alParaval.Add(Format(Convert.ToDateTime(DTDATE.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(Val(TXTPONO.Text.Trim))
+            alParaval.Add(CMBPARTYNAME.Text.Trim)
+
             alParaval.Add(Val(TXTTOTALMTRS.Text.Trim))
             alParaval.Add(txtremarks.Text.Trim)
 
             alParaval.Add(CmpId)
-            alParaval.Add(Locationid)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
-            alParaval.Add(0)
 
             '*************************************************************************
             'GRID WARP
 
             Dim SrNo As String = ""
             Dim ItemName As String = ""
+            Dim DESIGN As String = ""
+
             Dim Shade As String = ""
             Dim OtherItemName As String = ""
             Dim RefNo As String = ""
@@ -244,6 +265,8 @@ Public Class OpeningYarnJobOrder
                     If SrNo = "" Then
                         SrNo = Val(row.Cells(GSRNO.Index).Value)
                         ItemName = row.Cells(GITEMNAME.Index).Value.ToString
+                        DESIGN = row.Cells(GDESIGN.Index).Value.ToString
+
                         Shade = row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = row.Cells(GREFNO.Index).Value.ToString
@@ -260,6 +283,8 @@ Public Class OpeningYarnJobOrder
                     Else
                         SrNo = SrNo & "|" & Val(row.Cells(GSRNO.Index).Value)
                         ItemName = ItemName & "|" & row.Cells(GITEMNAME.Index).Value.ToString
+                        DESIGN = DESIGN & "|" & row.Cells(GDESIGN.Index).Value.ToString
+
                         Shade = Shade & "|" & row.Cells(GSHADE.Index).Value.ToString
                         OtherItemName = OtherItemName & "|" & row.Cells(GPARENTITEM.Index).Value.ToString
                         RefNo = RefNo & "|" & row.Cells(GREFNO.Index).Value.ToString
@@ -280,6 +305,8 @@ Public Class OpeningYarnJobOrder
 
             alParaval.Add(SrNo)
             alParaval.Add(ItemName)
+            alParaval.Add(DESIGN)
+
             alParaval.Add(Shade)
             alParaval.Add(OtherItemName)
             alParaval.Add(RefNo)
@@ -355,7 +382,7 @@ LINE1:
                         TXTREED.Text = Val(dr("REED"))
                         TXTREEDSPACE.Text = Val(dr("REEDSPACE"))
                         TXTPICKS.Text = Val(dr("PICKS"))
-                        TXTSHADE.Text = dr("SHADE")
+                        CMBSHADE.Text = dr("SHADE")
                         TXTOTHERITEMNAME.Text = dr("PARENTITEM")
                         TXTTOTALENDS.Text = Val(dr("TOTALENDS"))
                     Next
@@ -549,12 +576,14 @@ LINE1:
     Sub FILLGRID()
         If GRIDDOUBLECLICK = False Then
 
-            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, TXTSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
+            GRIDBEAM.Rows.Add(Val(TXTSRNO.Text.Trim), CMBITEMNAME.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, TXTOTHERITEMNAME.Text.Trim, TXTREFNO.Text.Trim, Format(Val(TXTREED.Text.Trim), "0.00"), Format(Val(TXTPICKS.Text.Trim), "0.00"), Format(Val(TXTREEDSPACE.Text.Trim), "0.00"), Format(Val(TXTTOTALENDS.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), TXTDESCRIPTION.Text.Trim)
             getsrno(GRIDBEAM)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDBEAM.Item(GSRNO.Index, TEMPROW).Value = Val(TXTSRNO.Text.Trim)
             GRIDBEAM.Item(GITEMNAME.Index, TEMPROW).Value = CMBITEMNAME.Text.Trim
-            GRIDBEAM.Item(GSHADE.Index, TEMPROW).Value = TXTSHADE.Text.Trim
+            GRIDBEAM.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
+
+            GRIDBEAM.Item(GSHADE.Index, TEMPROW).Value = CMBSHADE.Text.Trim
             GRIDBEAM.Item(GPARENTITEM.Index, TEMPROW).Value = TXTOTHERITEMNAME.Text.Trim
             GRIDBEAM.Item(GREFNO.Index, TEMPROW).Value = TXTREFNO.Text.Trim
             GRIDBEAM.Item(GREED.Index, TEMPROW).Value = Format(Val(TXTREED.Text.Trim), "0.00")
@@ -567,7 +596,8 @@ LINE1:
         End If
         TOTAL()
         CMBITEMNAME.Text = ""
-        TXTSHADE.Clear()
+        CMBDESIGN.Text = ""
+        CMBSHADE.Text = ""
         TXTOTHERITEMNAME.Clear()
         TXTREED.Clear()
         TXTREEDSPACE.Clear()
@@ -638,7 +668,9 @@ LINE1:
 
                 TXTSRNO.Text = GRIDBEAM.Item(GSRNO.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 CMBITEMNAME.Text = GRIDBEAM.Item(GITEMNAME.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
-                TXTSHADE.Text = GRIDBEAM.Item(GSHADE.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+                CMBDESIGN.Text = GRIDBEAM.Item(GDESIGN.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+                CMBSHADE.Text = GRIDBEAM.Item(GSHADE.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
+
                 TXTOTHERITEMNAME.Text = GRIDBEAM.Item(GPARENTITEM.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 TXTREFNO.Text = GRIDBEAM.Item(GREFNO.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
                 TXTREED.Text = GRIDBEAM.Item(GREED.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
@@ -649,7 +681,12 @@ LINE1:
                 TXTDESCRIPTION.Text = GRIDBEAM.Item(GDESC.Index, GRIDBEAM.CurrentRow.Index).Value.ToString
 
                 TEMPROW = GRIDBEAM.CurrentRow.Index
-                CMBITEMNAME.Focus()
+                'CMBITEMNAME.Focus()
+                If ClientName = "SWPL" Then
+                    TXTREFNO.Focus()
+                Else
+                    CMBITEMNAME.Focus()
+                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -704,7 +741,7 @@ LINE1:
         Next
     End Function
 
-    Private Sub TXTJONO_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTJONO.KeyPress,TXTPONO.KeyPress
+    Private Sub TXTJONO_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTJONO.KeyPress, TXTPONO.KeyPress
         numkeypress(e, sender, Me)
     End Sub
 
@@ -736,6 +773,71 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
             Cursor.Current = Cursors.WaitCursor
+        End Try
+    End Sub
+
+    Private Sub CMBDESIGN_Enter(sender As Object, e As EventArgs) Handles CMBDESIGN.Enter
+        Try
+            If CMBDESIGN.Text.Trim = "" Then FILLDESIGN(CMBDESIGN, CMBITEMNAME.Text.Trim)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSHADE_Enter(sender As Object, e As EventArgs) Handles CMBSHADE.Enter
+        Try
+            If CMBSHADE.Text.Trim = "" Then FILLCOLOR(CMBSHADE, CMBDESIGN.Text.Trim, CMBITEMNAME.Text.Trim)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSHADE_Validating(sender As Object, e As CancelEventArgs) Handles CMBSHADE.Validating
+        Try
+            If CMBSHADE.Text.Trim <> "" Then COLORVALIDATE(CMBSHADE, e, Me, CMBDESIGN.Text.Trim, CMBITEMNAME.Text.Trim)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDESIGN_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGN.Validating
+        Try
+            If CMBDESIGN.Text.Trim <> "" Then DESIGNVALIDATE(CMBDESIGN, e, Me)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPARTYNAME_Enter(sender As Object, e As EventArgs) Handles CMBPARTYNAME.Enter
+        Try
+            If CMBPARTYNAME.Text.Trim = "" Then FILLNAME(CMBPARTYNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPARTYNAME_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBPARTYNAME.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPCODE <> "" Then CMBCODE.Text = OBJLEDGER.TEMPCODE
+                If OBJLEDGER.TEMPNAME <> "" Then CMBPARTYNAME.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPARTYNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBPARTYNAME.Validating
+        Try
+            If CMBPARTYNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBPARTYNAME, CMBCODE, e, Me, TXTADD, " and (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS")
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class

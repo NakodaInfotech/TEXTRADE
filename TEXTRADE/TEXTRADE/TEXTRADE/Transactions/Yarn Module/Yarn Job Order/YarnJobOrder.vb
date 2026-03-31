@@ -1,6 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.Pdf.Drawing.DirectX
 
 Public Class YarnJobOrder
     Dim GRIDDOUBLECLICK As Boolean
@@ -600,7 +601,7 @@ LINE1:
 
                 Dim clspo As New ClsYarnJobOrder()
                 clspo.alParaval = alParaval
-                Dim IntResult As Integer = clspo.Delete()
+                Dim IntResult As Integer = clspo.DELETE()
                 MsgBox("Job Order Deleted")
                 CLEAR()
                 EDIT = False
@@ -899,6 +900,21 @@ LINE1:
                 TXTCOPYSONO.Enabled = False
                 CMBDESIGN.TabStop = True
                 CMBDESIGN.Enabled = True
+
+                GRIDBEAM.ReadOnly = False
+                GPARENTITEM.HeaderText = "Loom No"
+                'GPARENTITEM.ReadOnly = False
+                'GPICKS.ReadOnly = False
+                'GDESC.ReadOnly = False
+                GITEMNAME.ReadOnly = True
+                GDESIGN.ReadOnly = True
+                GSHADE.ReadOnly = True
+                GREFNO.ReadOnly = True
+                GREED.ReadOnly = True
+                GREEDSPACE.ReadOnly = True
+                GENDS.ReadOnly = True
+                GMTRS.ReadOnly = True
+
             End If
 
             If ClientName = "SWPL" Then
@@ -932,6 +948,14 @@ LINE1:
             Throw ex
         End Try
     End Sub
+    Private Sub GRIDBEAM_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles GRIDBEAM.CellBeginEdit
+        If ClientName = "MMC" Then
+            Dim allowedColumns As New List(Of String) From {"GPARENTITEM", "GPICKS", "GDESC"}
+            If Not allowedColumns.Contains(GRIDBEAM.Columns(e.ColumnIndex).Name) Then
+                e.Cancel = True  ' Block editing for all other columns
+            End If
+        End If
+    End Sub
 
     Private Sub CMBDESIGN_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGN.Validating
         Try
@@ -952,11 +976,11 @@ LINE1:
     Private Sub CMDSELECTSO_Click(sender As Object, e As EventArgs) Handles CMDSELECTSO.Click
         Try
             If ClientName = "MMC" Then
-                If CMBNAME.Text.Trim = "" Then
-                    MsgBox("Select Party Name", MsgBoxStyle.Critical)
-                    CMBNAME.Focus()
-                    Exit Sub
-                End If
+                'If CMBNAME.Text.Trim = "" Then
+                '    MsgBox("Select Party Name", MsgBoxStyle.Critical)
+                '    CMBNAME.Focus()
+                '    Exit Sub
+                'End If
                 Dim OBJCMN As New ClsCommon
                 'Dim DT1 As DataTable = OBJCMN.SEARCH(" TOP 1 ISNULL(INVOICEMASTER_DESC.INVOICE_RATE,0) AS LASTRATE", "", " INVOICEMASTER_DESC INNER JOIN ITEMMASTER ON item_id = INVOICE_ITEMID INNER JOIN INVOICEMASTER ON INVOICEMASTER.INVOICE_NO = INVOICEMASTER_DESC.INVOICE_NO  AND INVOICEMASTER.INVOICE_REGISTERID = INVOICEMASTER_DESC.INVOICE_REGISTERID AND INVOICEMASTER.INVOICE_YEARID = INVOICEMASTER_DESC.INVOICE_YEARID INNER JOIN LEDGERS ON ACC_ID = INVOICE_LEDGERID", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ITEMMASTER.ITEM_NAME = '" & GRIDINVOICE.Item(GITEMNAME.Index, GRIDINVOICE.CurrentRow.Index).Value & "' AND INVOICEMASTER.INVOICE_DATE < '" & Format(Convert.ToDateTime(INVOICEDATE.Text).Date, "MM/dd/yyyy") & "' AND INVOICEMASTER.INVOICE_YEARID = " & YearId & " ORDER BY INVOICEMASTER.INVOICE_NO DESC")
                 'If DT1.Rows.Count > 0 Then LBLRATE.Text = Format(Val(DT1.Rows(0).Item("LASTRATE")), "0.00")
@@ -984,7 +1008,7 @@ LINE1:
                     ''  GETTING DISTINCT SONO NO IN TEXTBOX
                     Dim DV As DataView = DTSO.DefaultView
                     Dim NEWDT As DataTable = DV.ToTable(True, "SONO")
-
+                    'Dim Picks As FLOAT2
                     'txtremarks.Text = DTSO.Rows(0).Item("REMARKS")
 
 
@@ -994,14 +1018,16 @@ LINE1:
                         '    If Val(ROW.Cells(OFROMNO.Index).Value) = Val(DTROW("SONO")) And Val(ROW.Cells(OFROMSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(OFROMTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
                         'Next
 
+                        Dim DT1 As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_PICKS,0) AS PICKS ", "", " ITEMMASTER", " AND ITEMMASTER.ITEM_NAME = '" & DTROW("ITEMNAME") & "' AND ITEMMASTER.item_yearid = " & YearId & "")
+                        'If DT1.Rows.Count > 0 Then LBLRATE.Text = Format(Val(DT1.Rows(0).Item("LASTRATE")), "0.00")
 
-                        GRIDBEAM.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), "", "", 0, 0, 0, 0, Format(Val(DTROW("MTRS")), "0.00"), "")
+                        GRIDBEAM.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), "", "", 0, Format(Val(DT1.Rows(0).Item("PICKS")), "0.00"), 0, 0, Format(Val(DTROW("MTRS")), "0.00"), "")
 
 NEXTLINE:
                     Next
                     getsrno(GRIDBEAM)
                     'getsrno(GRIDINVOICE)
-                    CMDSELECTSO.Enabled = False
+                    'CMDSELECTSO.Enabled = False
 
                     TOTAL()
                     GRIDBEAM.FirstDisplayedScrollingRowIndex = GRIDBEAM.RowCount - 1
