@@ -430,7 +430,7 @@
     <Compile Include="Transactions\Yarn Modules\Yarn Inter GodownTransfer\ClsYarnInterGodownTransfer.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsBeamIssue.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsBeamProgram.vb" />
-    <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsJobOrder.vb" />
+    <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsYarnJobOrder.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsProductionFloorIssue.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsWeftIssue.vb" />
     <Compile Include="Transactions\Yarn Modules\Yarn Issue\ClsYarnIssue.vb" />
