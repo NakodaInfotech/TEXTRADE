@@ -161,7 +161,7 @@ Public Class YarnJobOrder
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-            Dim objclsGRN As New ClsJobOrder()
+            Dim objclsGRN As New ClsYarnJobOrder()
             Dim dttable As DataTable = objclsGRN.SelectYarnJob(TEMPJONO, YearId)
             If dttable.Rows.Count > 0 Then
                 For Each dr As DataRow In dttable.Rows
@@ -318,7 +318,7 @@ Public Class YarnJobOrder
 
 
 
-            Dim objDESIGN As New ClsJobOrder
+            Dim objDESIGN As New ClsYarnJobOrder
             objDESIGN.alParaval = alParaval
 
             If EDIT = False Then
@@ -598,7 +598,7 @@ LINE1:
                 alParaval.Add(TEMPJONO)
                 alParaval.Add(YearId)
 
-                Dim clspo As New ClsJobOrder()
+                Dim clspo As New ClsYarnJobOrder()
                 clspo.alParaval = alParaval
                 Dim IntResult As Integer = clspo.Delete()
                 MsgBox("Job Order Deleted")
