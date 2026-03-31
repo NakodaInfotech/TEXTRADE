@@ -42,6 +42,8 @@ Public Class BeamUnload
         CMBLOOM.Text = ""
         CMBGODOWN.Text = ""
         GRIDLOOMBEAM.RowCount = 0
+        txtbeamname.Clear()
+
     End Sub
     Sub getmaxno()
         Dim DTTABLE As New DataTable
@@ -75,9 +77,7 @@ Public Class BeamUnload
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
-
-
-
+            alParaval.Add(txtbeamname.Text.Trim)
 
             Dim objCUTTING As New ClsBeamUnload()
             objCUTTING.alParaval = alParaval
@@ -135,6 +135,16 @@ Public Class BeamUnload
                 bln = False
             End If
 
+
+            If CMBLOOM.Text.Trim.Length = 0 Then
+                EP.SetError(CMBLOOM, " Please Fill Loom")
+                bln = False
+            End If
+
+            If CMBBEAM.Text.Trim.Length = 0 Then
+                EP.SetError(CMBBEAM, " Please Fill Beam")
+                bln = False
+            End If
 
             If GREYDATE.Text = "__/__/____" Then
                 EP.SetError(GREYDATE, " Please Enter Proper Date")
@@ -262,11 +272,7 @@ Public Class BeamUnload
                         CMBLOOM.Text = Convert.ToString(dr("LOOM").ToString)
                         CMBBEAM.Text = Convert.ToString(dr("BEAM").ToString)
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
-
-
-
-
-
+                        txtbeamname.Text = Convert.ToString(dr("BEAMNAME").ToString)
                     Next
 
 
@@ -274,6 +280,7 @@ Public Class BeamUnload
                     EDIT = False
                     'clear()
                 End If
+                LoadGridLoomBeam()
             End If
 
         Catch ex As Exception
@@ -366,12 +373,12 @@ LINE1:
                 WHERECLAUSE = " AND LOOM_NO = " & CMBLOOM.Text
             End If
             CMBBEAM.Items.Clear()
-                CMBBEAM.Text = ""
-                CMBLOOM.Items.Clear()
-                CMBLOOM.Text = ""
+            CMBBEAM.Text = ""
+            CMBLOOM.Items.Clear()
+            CMBLOOM.Text = ""
 
 
-                Dim dttable As DataTable
+            Dim dttable As DataTable
             Dim OBJCMN As New ClsCommon
             dttable = OBJCMN.SEARCH("LOOM_NO , BEAM_NO ", "", "BEAMLOOMSTATUS", "AND LOOM_STATUS = 'OCCUPIED' " & "AND WEAVER_NAME = '" & CMBNAME.Text.Trim & "' " & WHERECLAUSE & " " & "ORDER BY LOOM_NO;")
             If dttable.Rows.Count > 0 Then
@@ -389,10 +396,6 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub OpenToolStripButton_Click(sender As Object, e As EventArgs) Handles OpenToolStripButton.Click
-
-    End Sub
-
     Private Sub CMBLOOM_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMBLOOM.SelectedIndexChanged
         Try
             If CMBLOOM.Text.Trim = "" Then Exit Sub
@@ -403,7 +406,7 @@ LINE1:
             Dim dttable As DataTable
             Dim OBJCMN As New ClsCommon
 
-            dttable = OBJCMN.SEARCH("LOOM_NO , BEAM_NO ", "", "BEAMLOOMSTATUS", "AND LOOM_STATUS = 'OCCUPIED' " & "AND WEAVER_NAME = '" & CMBNAME.Text.Trim & "'  AND LOOM_NO = " & CMBLOOM.Text & " ORDER BY LOOM_NO;")
+            dttable = OBJCMN.SEARCH("LOOM_NO , BEAM_NO , BEAM_NAME ", "", "BEAMLOOMSTATUS", "AND LOOM_STATUS = 'OCCUPIED' " & "AND WEAVER_NAME = '" & CMBNAME.Text.Trim & "'  AND LOOM_NO = " & CMBLOOM.Text & " ORDER BY LOOM_NO;")
             If dttable.Rows.Count > 0 Then
                 For Each row As DataRow In dttable.Rows
                     If Not IsDBNull(row("BEAM_NO")) AndAlso row("BEAM_NO").ToString().Trim <> "" Then
@@ -413,6 +416,7 @@ LINE1:
                 If CMBBEAM.Items.Count > 0 Then
                     CMBBEAM.SelectedIndex = 0
                 End If
+                txtbeamname.Text = dttable.Rows(0)("BEAM_NAME").ToString().Trim
             Else
                 MsgBox("No Beams found for selected Loom.", MsgBoxStyle.Information)
             End If

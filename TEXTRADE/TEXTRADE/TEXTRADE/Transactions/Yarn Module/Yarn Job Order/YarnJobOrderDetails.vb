@@ -47,7 +47,7 @@ Public Class YarnJobOrderDetails
 
     Sub FILLGRID()
         Try
-            Dim OBJSTORE As New ClsJobOrder
+            Dim OBJSTORE As New ClsYarnJobOrder
             OBJSTORE.alParaval.Add(0)
             OBJSTORE.alParaval.Add(YearId)
             'Dim DT As DataTable = OBJSTORE.SelectYarnJob

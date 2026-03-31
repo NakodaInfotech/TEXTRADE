@@ -51,7 +51,6 @@ Partial Class BeamUploadDetails
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.TOOLGRIDDETAILS = New System.Windows.Forms.ToolStripLabel()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.CMDEDIT = New System.Windows.Forms.Button()
         Me.CMDADD = New System.Windows.Forms.Button()
@@ -313,7 +312,7 @@ Partial Class BeamUploadDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1, Me.TOOLGRIDDETAILS})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLEXCEL, Me.ToolStripSeparator2, Me.TOOLREFRESH, Me.ToolStripSeparator1})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -347,12 +346,6 @@ Partial Class BeamUploadDetails
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'TOOLGRIDDETAILS
-        '
-        Me.TOOLGRIDDETAILS.Name = "TOOLGRIDDETAILS"
-        Me.TOOLGRIDDETAILS.Size = New System.Drawing.Size(67, 22)
-        Me.TOOLGRIDDETAILS.Text = "Grid Details"
         '
         'CMDEXIT
         '
@@ -431,7 +424,6 @@ Partial Class BeamUploadDetails
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents TOOLGRIDDETAILS As ToolStripLabel
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
