@@ -342,6 +342,7 @@ NEXTLINE:
             Dim QUALITY As String = ""
             Dim DESIGN As String = ""
             Dim COLOR As String = ""
+
             Dim LOOMNO As String = ""
             Dim ROLLNO As String = ""
             Dim qty As String = ""
@@ -434,6 +435,10 @@ NEXTLINE:
             Dim ORDERITEMNAME As String = ""
             Dim ORDERDESIGN As String = ""
             Dim ORDERCOLOR As String = ""
+            Dim OTHERITEMNAME As String = ""
+            Dim REFNO As String = ""
+            Dim PONO As String = ""
+            Dim PARTYNAME As String = ""
             Dim ORDERPCS As String = ""
             Dim ORDERMTRS As String = ""
             Dim ORDERFROMNO As String = ""
@@ -2176,6 +2181,7 @@ LINE1:
             End If
 
             If ClientName = "SWPL" Then
+                CMDSELECTJO.Visible = True
                 CMBQUALITY.TabStop = False
                 CMBDESIGN.TabStop = False
                 cmbcolor.TabStop = False
@@ -2384,4 +2390,11 @@ NEXTLINE:
         End Try
     End Function
 
+    Private Sub TXTLOOMNO_Validated(sender As Object, e As EventArgs) Handles TXTLOOMNO.Validated
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

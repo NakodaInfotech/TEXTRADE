@@ -260,6 +260,9 @@ Partial Class MDIMain
         Me.TASK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.TASKADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.TASKEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TASKCHECKLIST_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TASKCHECKADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TASKCHECKEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.YarnRelatedMasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BeamMasterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewEntryToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
@@ -984,7 +987,7 @@ Partial Class MDIMain
         Me.BEAMUPLOADADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.BEAMUPLOADEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewBeamUnloadEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingBeamUploadEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BEAMUNLOADEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator339 = New System.Windows.Forms.ToolStripSeparator()
         Me.GreyReceived_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.GREYRECDJOBBER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1326,9 +1329,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.TASKCHECKLIST_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TASKCHECKADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TASKCHECKEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -2842,6 +2842,25 @@ Partial Class MDIMain
         Me.TASKEDIT.Name = "TASKEDIT"
         Me.TASKEDIT.Size = New System.Drawing.Size(168, 22)
         Me.TASKEDIT.Text = "Edit Existing Entry"
+        '
+        'TASKCHECKLIST_MASTER
+        '
+        Me.TASKCHECKLIST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TASKCHECKADD, Me.TASKCHECKEDIT})
+        Me.TASKCHECKLIST_MASTER.Name = "TASKCHECKLIST_MASTER"
+        Me.TASKCHECKLIST_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.TASKCHECKLIST_MASTER.Text = "Task Check Master"
+        '
+        'TASKCHECKADD
+        '
+        Me.TASKCHECKADD.Name = "TASKCHECKADD"
+        Me.TASKCHECKADD.Size = New System.Drawing.Size(168, 22)
+        Me.TASKCHECKADD.Text = "Add New Entry"
+        '
+        'TASKCHECKEDIT
+        '
+        Me.TASKCHECKEDIT.Name = "TASKCHECKEDIT"
+        Me.TASKCHECKEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.TASKCHECKEDIT.Text = "Edit Existing Entry"
         '
         'YarnRelatedMasterToolStripMenuItem
         '
@@ -7458,7 +7477,7 @@ Partial Class MDIMain
         '
         'BeamUploadUnload_MASTER
         '
-        Me.BeamUploadUnload_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMUPLOADADD, Me.BEAMUPLOADEDIT, Me.AddNewBeamUnloadEntryToolStripMenuItem, Me.EditExistingBeamUploadEntryToolStripMenuItem})
+        Me.BeamUploadUnload_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMUPLOADADD, Me.BEAMUPLOADEDIT, Me.AddNewBeamUnloadEntryToolStripMenuItem, Me.BEAMUNLOADEDIT})
         Me.BeamUploadUnload_MASTER.Name = "BeamUploadUnload_MASTER"
         Me.BeamUploadUnload_MASTER.Size = New System.Drawing.Size(207, 22)
         Me.BeamUploadUnload_MASTER.Text = "Beam Upload / Unload"
@@ -7481,11 +7500,11 @@ Partial Class MDIMain
         Me.AddNewBeamUnloadEntryToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
         Me.AddNewBeamUnloadEntryToolStripMenuItem.Text = "Add New Beam Unload Entry"
         '
-        'EditExistingBeamUploadEntryToolStripMenuItem
+        'BEAMUNLOADEDIT
         '
-        Me.EditExistingBeamUploadEntryToolStripMenuItem.Name = "EditExistingBeamUploadEntryToolStripMenuItem"
-        Me.EditExistingBeamUploadEntryToolStripMenuItem.Size = New System.Drawing.Size(245, 22)
-        Me.EditExistingBeamUploadEntryToolStripMenuItem.Text = "Edit Existing Beam Upload Entry"
+        Me.BEAMUNLOADEDIT.Name = "BEAMUNLOADEDIT"
+        Me.BEAMUNLOADEDIT.Size = New System.Drawing.Size(245, 22)
+        Me.BEAMUNLOADEDIT.Text = "Edit Existing Beam Unload Entry"
         '
         'ToolStripSeparator339
         '
@@ -8274,7 +8293,7 @@ Partial Class MDIMain
         '
         Me.TCSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TCSCHALLAN_MASTER, Me.ToolStripSeparator239})
         Me.TCSReportsToolStripMenuItem.Name = "TCSReportsToolStripMenuItem"
-        Me.TCSReportsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.TCSReportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TCSReportsToolStripMenuItem.Text = "TCS Reports"
         '
         'TCSCHALLAN_MASTER
@@ -8291,13 +8310,13 @@ Partial Class MDIMain
         'ToolStripSeparator237
         '
         Me.ToolStripSeparator237.Name = "ToolStripSeparator237"
-        Me.ToolStripSeparator237.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator237.Size = New System.Drawing.Size(177, 6)
         '
         'TDSReportsToolStripMenuItem
         '
         Me.TDSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TDSToolStripMenuItem, Me.TDSCHALLAN_MASTER, Me.TDSDeductedNotDedictedReportToolStripMenuItem, Me.ToolStripSeparator238})
         Me.TDSReportsToolStripMenuItem.Name = "TDSReportsToolStripMenuItem"
-        Me.TDSReportsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.TDSReportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.TDSReportsToolStripMenuItem.Text = "TDS Reports"
         '
         'TDSToolStripMenuItem
@@ -8326,13 +8345,13 @@ Partial Class MDIMain
         'ToolStripSeparator44
         '
         Me.ToolStripSeparator44.Name = "ToolStripSeparator44"
-        Me.ToolStripSeparator44.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator44.Size = New System.Drawing.Size(177, 6)
         '
         'InterestCalculatorToolStripMenuItem
         '
         Me.InterestCalculatorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InterestToolStripMenuItem, Me.IntrestCalculatorSummaryToolStripMenuItem, Me.ToolStripSeparator60, Me.InterestCalculatorBillWiseToolStripMenuItem, Me.ToolStripSeparator187})
         Me.InterestCalculatorToolStripMenuItem.Name = "InterestCalculatorToolStripMenuItem"
-        Me.InterestCalculatorToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.InterestCalculatorToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.InterestCalculatorToolStripMenuItem.Text = "Interest Calculator"
         '
         'InterestToolStripMenuItem
@@ -8366,25 +8385,25 @@ Partial Class MDIMain
         'ToolStripSeparator62
         '
         Me.ToolStripSeparator62.Name = "ToolStripSeparator62"
-        Me.ToolStripSeparator62.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator62.Size = New System.Drawing.Size(177, 6)
         '
         'REMINDERREPORT_MASTER
         '
         Me.REMINDERREPORT_MASTER.Name = "REMINDERREPORT_MASTER"
-        Me.REMINDERREPORT_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.REMINDERREPORT_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.REMINDERREPORT_MASTER.Text = "Reminder Report"
         '
         'ToolStripSeparator246
         '
         Me.ToolStripSeparator246.Name = "ToolStripSeparator246"
-        Me.ToolStripSeparator246.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator246.Size = New System.Drawing.Size(177, 6)
         '
         'LOGS_MASTER
         '
         Me.LOGS_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPDATELOGS_MASTER, Me.DELETELOGS_MASTER, Me.ToolStripSeparator247})
         Me.LOGS_MASTER.Enabled = False
         Me.LOGS_MASTER.Name = "LOGS_MASTER"
-        Me.LOGS_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.LOGS_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.LOGS_MASTER.Text = "Logs"
         '
         'UPDATELOGS_MASTER
@@ -8407,19 +8426,19 @@ Partial Class MDIMain
         'ToolStripSeparator54
         '
         Me.ToolStripSeparator54.Name = "ToolStripSeparator54"
-        Me.ToolStripSeparator54.Size = New System.Drawing.Size(172, 6)
+        Me.ToolStripSeparator54.Size = New System.Drawing.Size(177, 6)
         '
         'COSTREPORT_MASTER
         '
         Me.COSTREPORT_MASTER.Name = "COSTREPORT_MASTER"
-        Me.COSTREPORT_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.COSTREPORT_MASTER.Size = New System.Drawing.Size(180, 22)
         Me.COSTREPORT_MASTER.Text = "Cost Report"
         Me.COSTREPORT_MASTER.Visible = False
         '
         'TOOLCOSTREPORT
         '
         Me.TOOLCOSTREPORT.Name = "TOOLCOSTREPORT"
-        Me.TOOLCOSTREPORT.Size = New System.Drawing.Size(172, 6)
+        Me.TOOLCOSTREPORT.Size = New System.Drawing.Size(177, 6)
         Me.TOOLCOSTREPORT.Visible = False
         '
         'Utilitiesmenu
@@ -9669,25 +9688,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'TASKCHECKLIST_MASTER
-        '
-        Me.TASKCHECKLIST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TASKCHECKADD, Me.TASKCHECKEDIT})
-        Me.TASKCHECKLIST_MASTER.Name = "TASKCHECKLIST_MASTER"
-        Me.TASKCHECKLIST_MASTER.Size = New System.Drawing.Size(221, 22)
-        Me.TASKCHECKLIST_MASTER.Text = "Task Check Master"
-        '
-        'TASKCHECKADD
-        '
-        Me.TASKCHECKADD.Name = "TASKCHECKADD"
-        Me.TASKCHECKADD.Size = New System.Drawing.Size(180, 22)
-        Me.TASKCHECKADD.Text = "Add New Entry"
-        '
-        'TASKCHECKEDIT
-        '
-        Me.TASKCHECKEDIT.Name = "TASKCHECKEDIT"
-        Me.TASKCHECKEDIT.Size = New System.Drawing.Size(180, 22)
-        Me.TASKCHECKEDIT.Text = "Edit Existing Entry"
         '
         'MDIMain
         '
@@ -11010,7 +11010,7 @@ Partial Class MDIMain
     Friend WithEvents TASKADD As ToolStripMenuItem
     Friend WithEvents TASKEDIT As ToolStripMenuItem
     Friend WithEvents AddNewBeamUnloadEntryToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EditExistingBeamUploadEntryToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BEAMUNLOADEDIT As ToolStripMenuItem
     Friend WithEvents YARNLOOMEFFICIENCY_MASTER As ToolStripMenuItem
     Friend WithEvents YARNLOOMEFFICIENCY_ADD As ToolStripMenuItem
     Friend WithEvents YARNLOOMEFFICIENCY_EDIT As ToolStripMenuItem

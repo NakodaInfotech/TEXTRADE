@@ -28,6 +28,8 @@ Public Class BeamRecdWarper
 
     Sub TOTAL()
         Try
+            Dim TEMPWARPWT As Double
+            Dim TEMPSELWT As Double
             LBLTOTALJOBMTRS.Text = 0.0
             TXTTOTALMTRS.Text = 0.0
             LBLTAPLINE.Text = 0.0
@@ -42,6 +44,19 @@ Public Class BeamRecdWarper
                 End If
             Next
             TXTTOTALMTRS.Text = Format(Val(LBLTOTALBEAMMTRS.Text), "0.00")
+
+            'If ClientName = "SWPL" Then
+            If Val(TXTBEAMWT.Text.Trim) = 0 Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(DESIGNCARD.DESIGN_TOTALWARPWT, 0) AS TOTALWARPWT, ISNULL(DESIGNCARD.DESIGN_TOTALSELVEDGEWT, 0) AS TOTALSELWT, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME ", "", " DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id ", " AND ITEMMASTER.item_name = '" & GRIDBEAM.Item(GITEMNAME.Index, GRIDBEAM.CurrentRow.Index).Value & "' AND DESIGNCARD.DESIGN_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TEMPWARPWT = DT.Rows(0).Item("TOTALWARPWT")
+                    TEMPSELWT = DT.Rows(0).Item("TOTALSELWT")
+                End If
+                TXTBEAMWT.Text = Format(Val(TEMPWARPWT + TEMPSELWT) * Val(GRIDBEAM.Item(GBEAMMTRS.Index, GRIDBEAM.CurrentRow.Index).EditedFormattedValue), "0.00")
+            End If
+            'End If
+
 
         Catch ex As Exception
             Throw ex
@@ -402,14 +417,14 @@ Public Class BeamRecdWarper
 
             End If
 
-            If lbllocked.Visible = False Then
-                If MsgBox("Issue Beam Directly to Weaver?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                    Dim OBJWEAVER As New DirectIssueWeaver
-                    OBJWEAVER.ShowDialog()
-                    If OBJWEAVER.cmbname.Text.Trim = "" Then GoTo LINE1
-                    DIRECTISSUEWEAVER(OBJWEAVER.cmbname.Text.Trim)
-                End If
-            End If
+            'If lbllocked.Visible = False Then
+            '    If MsgBox("Issue Beam Directly to Weaver?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            '        Dim OBJWEAVER As New DirectIssueWeaver
+            '        OBJWEAVER.ShowDialog()
+            '        If OBJWEAVER.cmbname.Text.Trim = "" Then GoTo LINE1
+            ' DIRECTISSUEWEAVER(OBJWEAVER.cmbname.Text.Trim)
+            '    End If
+            'End If
 
 LINE1:
             If gridupload.RowCount > 0 Then SAVEUPLOAD()

@@ -29,6 +29,8 @@ Partial Class BeamUpload
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamUpload))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.txtbeamname = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.GRIDLOOMBEAM = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLOOMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -64,8 +66,6 @@ Partial Class BeamUpload
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.txtbeamname = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDLOOMBEAM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -105,6 +105,30 @@ Partial Class BeamUpload
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(593, 581)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'txtbeamname
+        '
+        Me.txtbeamname.BackColor = System.Drawing.Color.Linen
+        Me.txtbeamname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtbeamname.Location = New System.Drawing.Point(110, 131)
+        Me.txtbeamname.Name = "txtbeamname"
+        Me.txtbeamname.ReadOnly = True
+        Me.txtbeamname.Size = New System.Drawing.Size(242, 22)
+        Me.txtbeamname.TabIndex = 862
+        Me.txtbeamname.TabStop = False
+        Me.txtbeamname.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(28, 134)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(76, 14)
+        Me.Label4.TabIndex = 863
+        Me.Label4.Text = "Beam Name "
         '
         'GRIDLOOMBEAM
         '
@@ -263,6 +287,7 @@ Partial Class BeamUpload
         Me.GREYDATE.Name = "GREYDATE"
         Me.GREYDATE.Size = New System.Drawing.Size(82, 23)
         Me.GREYDATE.TabIndex = 0
+        Me.GREYDATE.TabStop = False
         Me.GREYDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.GREYDATE.ValidatingType = GetType(Date)
         '
@@ -523,30 +548,6 @@ Partial Class BeamUpload
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'txtbeamname
-        '
-        Me.txtbeamname.BackColor = System.Drawing.Color.Linen
-        Me.txtbeamname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbeamname.Location = New System.Drawing.Point(110, 131)
-        Me.txtbeamname.Name = "txtbeamname"
-        Me.txtbeamname.ReadOnly = True
-        Me.txtbeamname.Size = New System.Drawing.Size(242, 22)
-        Me.txtbeamname.TabIndex = 862
-        Me.txtbeamname.TabStop = False
-        Me.txtbeamname.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(28, 134)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(76, 14)
-        Me.Label4.TabIndex = 863
-        Me.Label4.Text = "Beam Name "
         '
         'BeamUpload
         '

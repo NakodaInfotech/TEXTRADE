@@ -148,17 +148,21 @@ Public Class LoomMaster
 
 
             Dim LOOMNO As String = ""
+            Dim GROUPINGSET As String = ""
             For Each ROW As DataGridViewRow In GRIDLOOM.Rows
                 If ROW.Cells(GLOOMNO.Index).Value <> Nothing Then
                     If LOOMNO = "" Then
                         LOOMNO = Val(ROW.Cells(GLOOMNO.Index).Value)
+                        GROUPINGSET = ROW.Cells(GGROUPINGSET.Index).Value.ToString
                     Else
                         LOOMNO = LOOMNO & "|" & Val(ROW.Cells(GLOOMNO.Index).Value)
+                        GROUPINGSET = GROUPINGSET & "|" & ROW.Cells(GGROUPINGSET.Index).Value.ToString
                     End If
                 End If
             Next
 
             alParaval.Add(LOOMNO)
+            alParaval.Add(GROUPINGSET)
 
             Dim OBJLOOM As New ClsLoomMaster
             OBJLOOM.alParaval = alParaval

@@ -243,6 +243,7 @@ Partial Class SelectBeamStock
         Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GMTRS.FieldName = "TOTALMTRS"
         Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.OptionsColumn.AllowEdit = False
         '
         'APPROXDATE
         '
