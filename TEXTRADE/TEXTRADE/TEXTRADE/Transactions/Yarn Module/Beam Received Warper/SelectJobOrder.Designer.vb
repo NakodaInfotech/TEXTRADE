@@ -43,6 +43,7 @@ Partial Class SelectJobOrder
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GPARTYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,7 +83,7 @@ Partial Class SelectJobOrder
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GJOBNO, Me.GJOBSRNO, Me.GDATE, Me.GNAME, Me.GITEMNAME, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GENDS, Me.GPICS, Me.GMTRS, Me.GTYPE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GJOBNO, Me.GJOBSRNO, Me.GDATE, Me.GNAME, Me.GPARTYNAME, Me.GITEMNAME, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GENDS, Me.GPICS, Me.GMTRS, Me.GTYPE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -124,8 +125,6 @@ Partial Class SelectJobOrder
         Me.GJOBSRNO.FieldName = "JOBSRNO"
         Me.GJOBSRNO.Name = "GJOBSRNO"
         Me.GJOBSRNO.OptionsColumn.AllowEdit = False
-        Me.GJOBSRNO.Visible = True
-        Me.GJOBSRNO.VisibleIndex = 2
         Me.GJOBSRNO.Width = 60
         '
         'GDATE
@@ -137,7 +136,7 @@ Partial Class SelectJobOrder
         Me.GDATE.Name = "GDATE"
         Me.GDATE.OptionsColumn.AllowEdit = False
         Me.GDATE.Visible = True
-        Me.GDATE.VisibleIndex = 3
+        Me.GDATE.VisibleIndex = 2
         Me.GDATE.Width = 70
         '
         'GNAME
@@ -147,7 +146,7 @@ Partial Class SelectJobOrder
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 4
+        Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 220
         '
         'GITEMNAME
@@ -269,6 +268,16 @@ Partial Class SelectJobOrder
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GPARTYNAME
+        '
+        Me.GPARTYNAME.Caption = "Party Name"
+        Me.GPARTYNAME.FieldName = "PARTYNAME"
+        Me.GPARTYNAME.Name = "GPARTYNAME"
+        Me.GPARTYNAME.OptionsColumn.AllowEdit = False
+        Me.GPARTYNAME.Visible = True
+        Me.GPARTYNAME.VisibleIndex = 4
+        Me.GPARTYNAME.Width = 150
+        '
         'SelectJobOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -312,4 +321,5 @@ Partial Class SelectJobOrder
     Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GJOBSRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPARTYNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class
