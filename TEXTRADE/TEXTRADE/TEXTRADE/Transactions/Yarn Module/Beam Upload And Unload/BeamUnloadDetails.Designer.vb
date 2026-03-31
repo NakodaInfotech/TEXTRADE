@@ -30,8 +30,8 @@ Partial Class BeamUnloadDetails
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLOOM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBEAM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOOMNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdone = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -96,7 +96,7 @@ Partial Class BeamUnloadDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GGREYNO, Me.GDATE, Me.GGODOWN, Me.GNAME, Me.GLOOM, Me.GBEAM, Me.GREMARKS, Me.gdone})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GGREYNO, Me.GDATE, Me.GGODOWN, Me.GNAME, Me.GLOOMNO, Me.GBEAMNO, Me.GREMARKS, Me.gdone})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -148,25 +148,25 @@ Partial Class BeamUnloadDetails
         Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 220
         '
-        'GLOOM
+        'GLOOMNO
         '
-        Me.GLOOM.Caption = "Loom No."
-        Me.GLOOM.FieldName = "LOOM"
-        Me.GLOOM.Name = "GLOOM"
-        Me.GLOOM.OptionsColumn.AllowEdit = False
-        Me.GLOOM.Visible = True
-        Me.GLOOM.VisibleIndex = 4
-        Me.GLOOM.Width = 94
+        Me.GLOOMNO.Caption = "Loom No."
+        Me.GLOOMNO.FieldName = "LOOMNO"
+        Me.GLOOMNO.Name = "GLOOMNO"
+        Me.GLOOMNO.OptionsColumn.AllowEdit = False
+        Me.GLOOMNO.Visible = True
+        Me.GLOOMNO.VisibleIndex = 4
+        Me.GLOOMNO.Width = 94
         '
-        'GBEAM
+        'GBEAMNO
         '
-        Me.GBEAM.Caption = "Beam No."
-        Me.GBEAM.FieldName = "BEAM"
-        Me.GBEAM.Name = "GBEAM"
-        Me.GBEAM.OptionsColumn.AllowEdit = False
-        Me.GBEAM.Visible = True
-        Me.GBEAM.VisibleIndex = 5
-        Me.GBEAM.Width = 89
+        Me.GBEAMNO.Caption = "Beam No."
+        Me.GBEAMNO.FieldName = "BEAMNO"
+        Me.GBEAMNO.Name = "GBEAMNO"
+        Me.GBEAMNO.OptionsColumn.AllowEdit = False
+        Me.GBEAMNO.Visible = True
+        Me.GBEAMNO.VisibleIndex = 5
+        Me.GBEAMNO.Width = 89
         '
         'GREMARKS
         '
@@ -295,7 +295,7 @@ Partial Class BeamUnloadDetails
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBEAM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBEAMNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gdone As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
@@ -308,5 +308,5 @@ Partial Class BeamUnloadDetails
     Friend WithEvents CMDEXIT As Button
     Friend WithEvents CMDEDIT As Button
     Friend WithEvents CMDADD As Button
-    Friend WithEvents GLOOM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLOOMNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

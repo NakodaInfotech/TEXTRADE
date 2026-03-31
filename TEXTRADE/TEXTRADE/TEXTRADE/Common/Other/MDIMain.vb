@@ -11689,4 +11689,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub BEAMUNLOADEDIT_Click(sender As Object, e As EventArgs) Handles BEAMUNLOADEDIT.Click
+        Try
+            Dim OBJYARNJO As New BeamUnloadDetails
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
