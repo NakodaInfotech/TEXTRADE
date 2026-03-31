@@ -10,6 +10,15 @@ Public Class YarnJobOrder
     Dim ALLOWMANUALJOBORDER As Boolean = False
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
+    Sub FILLCMB()
+        Try
+            FILLNAME(CMBNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+            FILLNAME(CMBPARTYNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
@@ -24,12 +33,14 @@ Public Class YarnJobOrder
         End If
         GETMAXNO()
         getsrno(GRIDBEAM)
+        TXTSRNO.Text = 1
         CMBSHADE.Text = ""
         TXTDESCRIPTION.Clear()
         TXTPONO.Clear()
         DTDATE.Text = Now.Date
         CMBITEMNAME.Text = ""
         CMBNAME.Text = ""
+        CMBPARTYNAME.Text = ""
         TXTTOTALMTRS.Clear()
         TXTREED.Clear()
         TXTREEDSPACE.Clear()
@@ -62,11 +73,9 @@ Public Class YarnJobOrder
             USERVIEW = DTROW(0).Item(3)
             USERDELETE = DTROW(0).Item(4)
             Cursor.Current = Cursors.WaitCursor
-            'fillcmb()
             CLEAR()
-            If ClientName = "SWPL" Then
-                ALLOWMANUALJOBORDER = True
-            End If
+            If ClientName = "SWPL" Then ALLOWMANUALJOBORDER = True
+
             If EDIT = True Then
                 SHOWDATA()
             Else
@@ -107,7 +116,7 @@ Public Class YarnJobOrder
         Dim OBJCMN As New ClsCommon
         If ALLOWMANUALJOBORDER = True Then
             If TXTJONO.Text <> "" And CMBNAME.Text.Trim <> "" And EDIT = False Then
-                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER.JOB_no,0) AS JONO ", "", " JOBORDER ", "  AND JOBORDER.JOB_no=" & TXTJONO.Text.Trim & "  AND JOBORDER.JOB_cmpid = " & CmpId & " AND JOBORDER.JOB_locationid = " & Locationid & " AND JOBORDER.JOB_yearid = " & YearId)
+                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER.JOB_no,0) AS JONO ", "", " JOBORDER ", "  AND JOBORDER.JOB_no=" & TXTJONO.Text.Trim & " AND JOBORDER.JOB_yearid = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     Ep.SetError(TXTJONO, "Job Order No Already Exist")
                     bln = False
@@ -117,6 +126,22 @@ Public Class YarnJobOrder
 
         If lbllocked.Visible = True And UserName <> "Admin" Then
             Ep.SetError(lbllocked, " Entry Locked  !!!")
+            bln = False
+        End If
+
+
+        If CMBNAME.Text.Trim = "" Then
+            Ep.SetError(CMBNAME, "Select Jobber Name")
+            bln = False
+        End If
+
+        If TXTPONO.Text.Trim = "" And ClientName = "SWPL" Then
+            Ep.SetError(TXTPONO, "Enter PO No")
+            bln = False
+        End If
+
+        If CMBPARTYNAME.Text.Trim = "" And ClientName = "SWPL" Then
+            Ep.SetError(CMBPARTYNAME, "Select Party Name")
             bln = False
         End If
 
@@ -145,20 +170,10 @@ Public Class YarnJobOrder
                     DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")).Date, "dd/MM/yyyy")
                     CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
                     TXTPONO.Text = dr("PONO")
-                    ' Reference and names
+                    CMBPARTYNAME.Text = Convert.ToString(dr("PARTYNAME").ToString)
                     TXTTOTALMTRS.Text = Val(dr("TOTALMTRS"))
                     txtremarks.Text = dr("REMARKS").ToString
-
                 Next
-
-                ''warp gridmatching data serializations
-                'Dim OBJCMN As New ClsCommon
-                'Dim dttable1 As DataTable = OBJCMN.SEARCH(" ISNULL(JOBORDER_WARPMATCHING.JOB_WARPSRNO, 0) As WARPGRIDSRNO, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPSYM, '') AS WARPGRIDSYM, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS WARPYARNQUALITY, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPDENIER, 0) AS WARPDENIER, ISNULL(MILLMASTER.MILL_NAME, '') AS WARPMILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS WARPSHADE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPPE, 0) AS WARPPE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPBE, 0) AS WARPBE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPTE, 0) AS WARPTE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPWT, 0.000) AS WARPWT, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPCONS, 0) AS WARPCONS, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPRATE, 0) AS WARPRATE, ISNULL(JOBORDER_WARPMATCHING.JOB_WARPCOST, 0) AS WARPCOST ", "", " JOBORDER_WARPMATCHING INNER JOIN YARNQUALITYMASTER ON JOBORDER_WARPMATCHING.JOB_WARPYARNQUALITYID = YARNQUALITYMASTER.YARN_ID AND JOBORDER_WARPMATCHING.JOB_YEARID = YARNQUALITYMASTER.YARN_YEARID LEFT OUTER JOIN MILLMASTER ON JOBORDER_WARPMATCHING.JOB_YEARID = MILLMASTER.MILL_YEARID AND MILLMASTER.MILL_ID = JOBORDER_WARPMATCHING.JOB_WARPMILLID LEFT OUTER JOIN COLORMASTER ON JOBORDER_WARPMATCHING.JOB_YEARID = COLORMASTER.COLOR_yearid AND COLORMASTER.COLOR_id = JOBORDER_WARPMATCHING.JOB_WARPCOLORID  ", " AND  JOBORDER_WARPMATCHING.JOB_NO = " & TEMPJONO & " AND JOBORDER_WARPMATCHING.JOB_YEARID = " & YearId & " ORDER BY WARPGRIDSRNO")
-                'If dttable1.Rows.Count > 0 Then
-                '    For Each DTR As DataRow In dttable1.Rows
-                '        GRIDBEAM.Rows.Add(Val(DTR("WARPGRIDSRNO")), DTR("WARPGRIDSYM").ToString, DTR("WARPYARNQUALITY").ToString, Format(DTR("WARPDENIER"), "0.00"), DTR("WARPMILLNAME").ToString, DTR("WARPSHADE").ToString, Format(DTR("WARPPE"), "0.00"), Format(DTR("WARPBE"), "0.00"), Format(DTR("WARPTE"), "0.00"), Format(DTR("WARPWT"), "0.000"), Format(DTR("WARPCONS"), "0.00"), Format(DTR("WARPRATE"), "0.00"), Format(DTR("WARPCOST"), "0.00"))
-                '    Next
-                'End If
 
                 Dim OBJCMN As New ClsCommon
                 Dim dttable1 As DataTable = OBJCMN.SEARCH("ISNULL(JOBORDER_DESC.JOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(JOBORDER_DESC.JOB_PARENTITEM, '') AS PARENTITEM, ISNULL(JOBORDER_DESC.JOB_REFNO, '') AS REFNO, ISNULL(JOBORDER_DESC.JOB_REED, 0) AS REED, ISNULL(JOBORDER_DESC.JOB_PICKS, 0) AS PICKS, ISNULL(JOBORDER_DESC.JOB_REEDSPACE, 0) AS REEDSPACE, ISNULL(JOBORDER_DESC.JOB_ENDS, 0) AS ENDS, ISNULL(JOBORDER_DESC.JOB_MTRS, 0) AS MTRS, ISNULL(JOBORDER_DESC.JOB_DESCRIPTION, '') AS DESCRIPTION, ISNULL(JOBORDER_DESC.JOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(JOBORDER_DESC.JOB_DONE, 0) AS DONE, ISNULL(JOBORDER_DESC.JOB_CLOSED, 0) AS CLOSED, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO ", "", " JOBORDER_DESC LEFT OUTER JOIN DESIGNMASTER ON JOBORDER_DESC.JOB_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON JOBORDER_DESC.JOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON JOBORDER_DESC.JOB_ITEMID = ITEMMASTER.item_id ", " AND  JOBORDER_DESC.JOB_NO = " & TEMPJONO & " AND JOBORDER_DESC.JOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
@@ -187,11 +202,6 @@ Public Class YarnJobOrder
                     Next
                 End If
 
-                If ClientName = "SWPL" Then
-                    CMBITEMNAME.Enabled = False
-                Else
-                    CMBITEMNAME.Enabled = True
-                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -212,14 +222,13 @@ Public Class YarnJobOrder
             alParaval.Add(Format(Convert.ToDateTime(DTDATE.Text).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(Val(TXTPONO.Text.Trim))
+            alParaval.Add(CMBPARTYNAME.Text.Trim)
             alParaval.Add(Val(TXTTOTALMTRS.Text.Trim))
             alParaval.Add(txtremarks.Text.Trim)
 
             alParaval.Add(CmpId)
-            alParaval.Add(Locationid)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
-            alParaval.Add(0)
 
             '*************************************************************************
             'GRID WARP
@@ -318,10 +327,7 @@ Public Class YarnJobOrder
                     Exit Sub
                 End If
                 IntResult = objDESIGN.SAVE()
-                'txtcardno.Text = IntResult.ToString()
                 MsgBox("Details Added")
-                'TEMPJONO = txtcardno.Text.Trim
-                'PRINTREPORT(txtcardno.Text.Trim)
             Else
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
@@ -330,7 +336,6 @@ Public Class YarnJobOrder
                 alParaval.Add(TEMPJONO)
                 IntResult = objDESIGN.UPDATE()
                 MsgBox("Details Updated")
-                'PRINTREPORT(TEMPJONO)
             End If
             EDIT = False
 
@@ -472,6 +477,64 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMBNAME_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBNAME.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPCODE <> "" Then CMBCODE.Text = OBJLEDGER.TEMPCODE
+                If OBJLEDGER.TEMPNAME <> "" Then CMBNAME.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
+        Try
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPARTYNAME_Enter(sender As Object, e As EventArgs) Handles CMBPARTYNAME.Enter
+        Try
+            If CMBPARTYNAME.Text.Trim = "" Then FILLNAME(CMBPARTYNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPARTYNAME_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CMBPARTYNAME.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJLEDGER As New SelectLedger
+                OBJLEDGER.STRSEARCH = " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                OBJLEDGER.ShowDialog()
+                If OBJLEDGER.TEMPCODE <> "" Then CMBCODE.Text = OBJLEDGER.TEMPCODE
+                If OBJLEDGER.TEMPNAME <> "" Then CMBPARTYNAME.Text = OBJLEDGER.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPARTYNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBPARTYNAME.Validating
+        Try
+            If CMBPARTYNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBPARTYNAME, CMBCODE, e, Me, TXTADD, " and (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS")
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub OpenToolStripButton_Click(sender As Object, e As EventArgs) Handles OpenToolStripButton.Click
         Try
             Dim OBJJO As New YarnJobOrderDetails
@@ -533,8 +596,6 @@ LINE1:
                 If MsgBox("Delete Job Order ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                 Dim alParaval As New ArrayList
                 alParaval.Add(TEMPJONO)
-                alParaval.Add(CmpId)
-                alParaval.Add(0)
                 alParaval.Add(YearId)
 
                 Dim clspo As New ClsJobOrder()
@@ -615,13 +676,6 @@ LINE1:
             Next
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
-    Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
-        Try
-            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, TXTADD, " and (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS")
-        Catch ex As Exception
-            Throw ex
         End Try
     End Sub
 
@@ -843,11 +897,11 @@ LINE1:
             If ClientName = "MMC" Then
                 CMDSELECTSO.Visible = True
                 TXTCOPYSONO.Enabled = False
+                CMBDESIGN.TabStop = True
+                CMBDESIGN.Enabled = True
             End If
 
             If ClientName = "SWPL" Then
-                CMBDESIGN.Enabled = True
-                CMBDESIGN.TabStop = False
                 CMBSHADE.Enabled = False
                 CMBSHADE.TabStop = False
 
@@ -878,8 +932,6 @@ LINE1:
             Throw ex
         End Try
     End Sub
-
-
 
     Private Sub CMBDESIGN_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGN.Validating
         Try

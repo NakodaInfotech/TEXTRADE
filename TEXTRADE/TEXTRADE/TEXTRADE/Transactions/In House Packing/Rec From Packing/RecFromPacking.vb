@@ -1,7 +1,6 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
-Imports System.Text.RegularExpressions
 
 
 Public Class RecFromPacking

@@ -39,6 +39,9 @@ Partial Class YarnJobOrder
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnJobOrder))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.CMBPARTYNAME = New System.Windows.Forms.ComboBox()
+        Me.CMDSELECTSO = New System.Windows.Forms.Button()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.TXTCOPYSONO = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -106,7 +109,6 @@ Partial Class YarnJobOrder
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CMDSELECTSO = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         Me.TABCONTROLDETAILS.SuspendLayout()
         Me.TBWEFT.SuspendLayout()
@@ -121,6 +123,8 @@ Partial Class YarnJobOrder
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label3)
+        Me.BlendPanel1.Controls.Add(Me.CMBPARTYNAME)
         Me.BlendPanel1.Controls.Add(Me.CMDSELECTSO)
         Me.BlendPanel1.Controls.Add(Me.Label18)
         Me.BlendPanel1.Controls.Add(Me.TXTCOPYSONO)
@@ -154,6 +158,46 @@ Partial Class YarnJobOrder
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1184, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'Label3
+        '
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(400, 45)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(81, 15)
+        Me.Label3.TabIndex = 947
+        Me.Label3.Text = "Party Name"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'CMBPARTYNAME
+        '
+        Me.CMBPARTYNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBPARTYNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBPARTYNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBPARTYNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBPARTYNAME.FormattingEnabled = True
+        Me.CMBPARTYNAME.Location = New System.Drawing.Point(482, 41)
+        Me.CMBPARTYNAME.MaxDropDownItems = 14
+        Me.CMBPARTYNAME.Name = "CMBPARTYNAME"
+        Me.CMBPARTYNAME.Size = New System.Drawing.Size(233, 23)
+        Me.CMBPARTYNAME.TabIndex = 946
+        '
+        'CMDSELECTSO
+        '
+        Me.CMDSELECTSO.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSELECTSO.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSELECTSO.FlatAppearance.BorderSize = 0
+        Me.CMDSELECTSO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSELECTSO.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDSELECTSO.Location = New System.Drawing.Point(546, 451)
+        Me.CMDSELECTSO.Name = "CMDSELECTSO"
+        Me.CMDSELECTSO.Size = New System.Drawing.Size(93, 28)
+        Me.CMDSELECTSO.TabIndex = 945
+        Me.CMDSELECTSO.Text = "Select &Order"
+        Me.CMDSELECTSO.UseVisualStyleBackColor = False
+        Me.CMDSELECTSO.Visible = False
         '
         'Label18
         '
@@ -205,7 +249,7 @@ Partial Class YarnJobOrder
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(33, 73)
+        Me.Label1.Location = New System.Drawing.Point(38, 73)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(81, 15)
         Me.Label1.TabIndex = 18
@@ -275,6 +319,7 @@ Partial Class YarnJobOrder
         Me.CMBDESIGN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBDESIGN.BackColor = System.Drawing.SystemColors.Window
+        Me.CMBDESIGN.Enabled = False
         Me.CMBDESIGN.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBDESIGN.FormattingEnabled = True
         Me.CMBDESIGN.Location = New System.Drawing.Point(183, 5)
@@ -282,6 +327,7 @@ Partial Class YarnJobOrder
         Me.CMBDESIGN.Name = "CMBDESIGN"
         Me.CMBDESIGN.Size = New System.Drawing.Size(101, 23)
         Me.CMBDESIGN.TabIndex = 2
+        Me.CMBDESIGN.TabStop = False
         '
         'TXTDESCRIPTION
         '
@@ -620,7 +666,7 @@ Partial Class YarnJobOrder
         Me.LBLPARTYNAME.Name = "LBLPARTYNAME"
         Me.LBLPARTYNAME.Size = New System.Drawing.Size(81, 15)
         Me.LBLPARTYNAME.TabIndex = 17
-        Me.LBLPARTYNAME.Text = "Party Name"
+        Me.LBLPARTYNAME.Text = "Jobber Name"
         Me.LBLPARTYNAME.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TXTADD
@@ -920,21 +966,6 @@ Partial Class YarnJobOrder
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'CMDSELECTSO
-        '
-        Me.CMDSELECTSO.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSELECTSO.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSELECTSO.FlatAppearance.BorderSize = 0
-        Me.CMDSELECTSO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSELECTSO.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTSO.Location = New System.Drawing.Point(546, 451)
-        Me.CMDSELECTSO.Name = "CMDSELECTSO"
-        Me.CMDSELECTSO.Size = New System.Drawing.Size(93, 28)
-        Me.CMDSELECTSO.TabIndex = 945
-        Me.CMDSELECTSO.Text = "Select &Order"
-        Me.CMDSELECTSO.UseVisualStyleBackColor = False
-        Me.CMDSELECTSO.Visible = False
-        '
         'YarnJobOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1032,4 +1063,15 @@ Partial Class YarnJobOrder
     Friend WithEvents CMBDESIGN As ComboBox
     Friend WithEvents CMBSHADE As ComboBox
     Friend WithEvents CMDSELECTSO As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents CMBPARTYNAME As ComboBox
+
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+        FILLCMB()
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
 End Class

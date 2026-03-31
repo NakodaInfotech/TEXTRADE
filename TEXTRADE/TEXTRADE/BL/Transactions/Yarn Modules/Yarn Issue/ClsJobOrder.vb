@@ -31,22 +31,19 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@PONO", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@PARTYNAME", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
 
-                'warp grid matching data serializations
 
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
@@ -105,22 +102,19 @@ Public Class ClsJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@PONO", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@PARTYNAME", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
 
-                'warp grid matching data serializations
 
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
@@ -167,43 +161,21 @@ Public Class ClsJobOrder
         Return intResult
     End Function
 
-    Public Function Delete() As Integer
+    Public Function DELETE() As Integer
         Dim intResult As Integer
         Try
             Dim strCommand As String = "SP_TRANS_YARNJOBORDER_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JOBNO", alParaval(0))) ' Or correct index
-                .Add(New SqlClient.SqlParameter("@CmpId", alParaval(1)))
-                .Add(New SqlClient.SqlParameter("@LocationId", alParaval(2)))
-                .Add(New SqlClient.SqlParameter("@YearId", alParaval(3)))
+                .Add(New SqlClient.SqlParameter("@YearId", alParaval(1)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
-            'Dim DT As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
-            'Return DT
         Catch ex As Exception
             Throw ex
         End Try
     End Function
 
-    'Public Function SelectDesignCard(ByVal designNo As String, ByVal Itemname As String, ByVal cmpId As Integer, ByVal locationId As Integer, ByVal yearId As Integer) As DataTable
-    '    Try
-    '        Dim strCommand As String = "SP_SELECT_DESIGN_CARD_FOR_EDIT"
-    '        Dim alParameter As New ArrayList
-    '        With alParameter
-    '            .Add(New SqlClient.SqlParameter("@DesignNo", designNo))
-    '            .Add(New SqlClient.SqlParameter("@Itemname", Itemname))
-    '            .Add(New SqlClient.SqlParameter("@CmpId", cmpId))
-    '            .Add(New SqlClient.SqlParameter("@LocationId", locationId))
-    '            .Add(New SqlClient.SqlParameter("@YearId", yearId))
-    '        End With
-    '        Dim dtTable As DataTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
-    '        Return dtTable
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Function
-    'Public Function SelectYarnJob(ByVal CARDNO As String, ByVal yearId As Integer) As DataTable
     Public Function SelectYarnJob(ByVal JOBNO As String, ByVal YearId As Integer) As DataTable
         Dim dtTable As DataTable
 
