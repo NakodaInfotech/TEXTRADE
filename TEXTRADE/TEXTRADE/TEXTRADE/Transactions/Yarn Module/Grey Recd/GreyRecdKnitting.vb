@@ -2176,6 +2176,7 @@ LINE1:
             End If
 
             If ClientName = "SWPL" Then
+                CMDSELECTJO.Visible = True
                 CMBQUALITY.TabStop = False
                 CMBDESIGN.TabStop = False
                 cmbcolor.TabStop = False
@@ -2384,4 +2385,11 @@ NEXTLINE:
         End Try
     End Function
 
+    Private Sub TXTLOOMNO_Validated(sender As Object, e As EventArgs) Handles TXTLOOMNO.Validated
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
