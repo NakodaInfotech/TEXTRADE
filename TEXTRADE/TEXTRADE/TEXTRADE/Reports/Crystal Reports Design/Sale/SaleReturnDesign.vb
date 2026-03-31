@@ -192,7 +192,7 @@ Public Class SaleReturnDesign
                     crpo.ReportSource = RPTSALERET_BRILLANTO
                 Else
                     crpo.ReportSource = RPTSALERET
-                    If ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "MILUXE" Then RPTSALERET.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "CHINTAN" Or ClientName = "MILUXE" Or ClientName = "KENCOT" Then RPTSALERET.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 End If
             End If
             crpo.Zoom(100)
@@ -432,12 +432,12 @@ Public Class SaleReturnDesign
                     OBJ = New SaleReturnReport_BRILLANTO
                 Else
                     OBJ = New SaleReturnReport
-                    If ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "MILUXE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "VINAYAK" Or ClientName = "SKF" Or ClientName = "MILUXE" Or ClientName = "KENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 End If
             ElseIf FRMSTRING = "SALERETURNCHALLAN" Then
                 strsearch = "{SALERETURNCHALLAN.SRCH_NO}=" & Val(SALRETNO) & " and {SALERETURNCHALLAN.SRCH_yearid}=" & YearId
                 OBJ = New SaleReturnChallanReport
-                If ClientName = "MILUXE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                If ClientName = "MILUXE" Or ClientName = "KENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
             End If
             crpo.SelectionFormula = strsearch
 

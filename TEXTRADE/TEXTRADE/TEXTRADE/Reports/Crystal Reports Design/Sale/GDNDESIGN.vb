@@ -544,7 +544,7 @@ Public Class GDNDESIGN
                     If WHITELABEL = True Then RPTGDN.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTGDN.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     If HIDEPCSDETAILS = True Then RPTGDN.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     If PRINTRATE = True Then RPTGDN.DataDefinition.FormulaFields("PRINTRATE").Text = 1 Else RPTGDN.DataDefinition.FormulaFields("PRINTRATE").Text = 0
-                    If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "SIMPLEX" Or ClientName = "CHINTAN" Or ClientName = "SIDDHPOLYCOT" Then RPTGDN.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "SIMPLEX" Or ClientName = "CHINTAN" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "KENCOT" Then RPTGDN.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
 
                     RPTGDN.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     crpo.ReportSource = RPTGDN
@@ -1302,7 +1302,7 @@ Public Class GDNDESIGN
                     If PARTYCHANGEADD <> "" Then RPTGDN.DataDefinition.FormulaFields("SHIPPINGADD").Text = "'" & PARTYCHANGEADD & "'"
                     If WHITELABEL = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
-                    If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "CHINTAN" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "CHINTAN" Or ClientName = "KENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                     OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                 End If
 
