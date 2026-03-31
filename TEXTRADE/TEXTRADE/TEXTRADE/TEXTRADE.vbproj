@@ -3181,10 +3181,22 @@
     <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnload.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnloadDetails.Designer.vb">
+      <DependentUpon>BeamUnloadDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnloadDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.Designer.vb">
       <DependentUpon>BeamUpload.vb</DependentUpon>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUploadDetails.Designer.vb">
+      <DependentUpon>BeamUploadDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUploadDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.Designer.vb">
@@ -10864,8 +10876,14 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnload.resx">
       <DependentUpon>BeamUnload.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUnloadDetails.resx">
+      <DependentUpon>BeamUnloadDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUpload.resx">
       <DependentUpon>BeamUpload.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUploadDetails.resx">
+      <DependentUpon>BeamUploadDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.resx">
       <DependentUpon>DirectIssueToSizer.vb</DependentUpon>
