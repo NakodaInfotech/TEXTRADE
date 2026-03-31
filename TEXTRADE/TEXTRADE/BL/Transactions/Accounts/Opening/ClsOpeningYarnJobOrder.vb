@@ -17,7 +17,7 @@ Public Class ClsOpeningYarnJobOrder
 #Region "Functions"
     Public Function SAVE() As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_OPENINGYARNJOBORDER_SAVE"
+            Dim strCommand As String = "SP_TRANS_OPENINGJOBORDER_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
@@ -50,6 +50,8 @@ Public Class ClsOpeningYarnJobOrder
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I += 1
@@ -89,7 +91,7 @@ Public Class ClsOpeningYarnJobOrder
         Dim intResult As Integer
 
         Try
-            Dim strCommand As String = "SP_TRANS_OPENINGYARNJOBORDER_UPDATE"
+            Dim strCommand As String = "SP_TRANS_OPENINGJOBORDER_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
                 Dim I As Integer = 0
@@ -122,6 +124,8 @@ Public Class ClsOpeningYarnJobOrder
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I += 1
@@ -165,7 +169,7 @@ Public Class ClsOpeningYarnJobOrder
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_OPENINGYARNJOBORDER_DELETE"
+            Dim strCommand As String = "SP_TRANS_OPENINGJOBORDER_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JOBNO", alParaval(0))) ' Or correct index
@@ -203,7 +207,7 @@ Public Class ClsOpeningYarnJobOrder
         Dim dtTable As DataTable
 
         Try
-            Dim strCommand As String = "SP_SELECTOPENINGYARNJOBORDER_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTOPENINGJOBORDER_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JOBNO", JOBNO))
