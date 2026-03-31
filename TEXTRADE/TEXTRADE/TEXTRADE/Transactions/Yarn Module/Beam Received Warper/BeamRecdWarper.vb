@@ -102,6 +102,10 @@ Public Class BeamRecdWarper
         fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
         CMBROLLNO.Enabled = True
 
+        LBLTOTALJOBMTRS.Text = 0.0
+        LBLTAPLINE.Text = 0.0
+        LBLTOTALBEAMMTRS.Text = 0.0
+
 
 
 
@@ -704,13 +708,13 @@ LINE1:
             End If
         Next
 
-        For Each row As DataGridViewRow In GRIDBEAM.Rows
-            If Val(row.Cells(GBEAMMTRS.Index).Value) > Val(row.Cells(GJOBMTRS.Index).Value) Then
-                EP.SetError(CMBOURGODOWN, "Beam Mtrs Cannot be Greater Than Job Mtrs")
-                row.DefaultCellStyle.BackColor = Color.LightGreen
-                bln = False
-            End If
-        Next
+        'For Each row As DataGridViewRow In GRIDBEAM.Rows
+        '    If Val(row.Cells(GBEAMMTRS.Index).Value) > Val(row.Cells(GJOBMTRS.Index).Value) Then
+        '        EP.SetError(CMBOURGODOWN, "Beam Mtrs Cannot be Greater Than Job Mtrs")
+        '        row.DefaultCellStyle.BackColor = Color.LightGreen
+        '        bln = False
+        '    End If
+        'Next
 
 
 
