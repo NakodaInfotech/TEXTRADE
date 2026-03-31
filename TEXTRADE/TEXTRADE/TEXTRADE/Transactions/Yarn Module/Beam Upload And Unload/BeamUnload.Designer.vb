@@ -23,10 +23,10 @@ Partial Class BeamUnload
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamUnload))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.GRIDLOOMBEAM = New System.Windows.Forms.DataGridView()
@@ -64,6 +64,8 @@ Partial Class BeamUnload
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.txtbeamname = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDLOOMBEAM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -74,6 +76,8 @@ Partial Class BeamUnload
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.txtbeamname)
+        Me.BlendPanel1.Controls.Add(Me.Label4)
         Me.BlendPanel1.Controls.Add(Me.GRIDLOOMBEAM)
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.CMBBEAM)
@@ -108,28 +112,28 @@ Partial Class BeamUnload
         Me.GRIDLOOMBEAM.AllowUserToDeleteRows = False
         Me.GRIDLOOMBEAM.AllowUserToResizeColumns = False
         Me.GRIDLOOMBEAM.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDLOOMBEAM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDLOOMBEAM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.GRIDLOOMBEAM.BackgroundColor = System.Drawing.Color.White
         Me.GRIDLOOMBEAM.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDLOOMBEAM.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDLOOMBEAM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDLOOMBEAM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.GRIDLOOMBEAM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDLOOMBEAM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GLOOMNO, Me.GBEAMNO})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDLOOMBEAM.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDLOOMBEAM.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRIDLOOMBEAM.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDLOOMBEAM.Location = New System.Drawing.Point(72, 159)
         Me.GRIDLOOMBEAM.MultiSelect = False
@@ -138,9 +142,9 @@ Partial Class BeamUnload
         Me.GRIDLOOMBEAM.RowHeadersVisible = False
         Me.GRIDLOOMBEAM.RowHeadersWidth = 30
         Me.GRIDLOOMBEAM.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDLOOMBEAM.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDLOOMBEAM.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDLOOMBEAM.RowTemplate.Height = 20
         Me.GRIDLOOMBEAM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDLOOMBEAM.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -179,7 +183,7 @@ Partial Class BeamUnload
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(47, 134)
+        Me.Label3.Location = New System.Drawing.Point(204, 106)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(59, 14)
         Me.Label3.TabIndex = 677
@@ -192,10 +196,10 @@ Partial Class BeamUnload
         Me.CMBBEAM.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBBEAM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBBEAM.FormattingEnabled = True
-        Me.CMBBEAM.Location = New System.Drawing.Point(110, 131)
+        Me.CMBBEAM.Location = New System.Drawing.Point(267, 103)
         Me.CMBBEAM.MaxDropDownItems = 14
         Me.CMBBEAM.Name = "CMBBEAM"
-        Me.CMBBEAM.Size = New System.Drawing.Size(147, 22)
+        Me.CMBBEAM.Size = New System.Drawing.Size(85, 22)
         Me.CMBBEAM.TabIndex = 3
         '
         'Label1
@@ -220,7 +224,7 @@ Partial Class BeamUnload
         Me.CMBLOOM.Location = New System.Drawing.Point(110, 103)
         Me.CMBLOOM.MaxDropDownItems = 14
         Me.CMBLOOM.Name = "CMBLOOM"
-        Me.CMBLOOM.Size = New System.Drawing.Size(147, 22)
+        Me.CMBLOOM.Size = New System.Drawing.Size(85, 22)
         Me.CMBLOOM.TabIndex = 2
         '
         'Label2
@@ -245,7 +249,7 @@ Partial Class BeamUnload
         Me.CMBGODOWN.Location = New System.Drawing.Point(110, 45)
         Me.CMBGODOWN.MaxDropDownItems = 14
         Me.CMBGODOWN.Name = "CMBGODOWN"
-        Me.CMBGODOWN.Size = New System.Drawing.Size(226, 23)
+        Me.CMBGODOWN.Size = New System.Drawing.Size(242, 23)
         Me.CMBGODOWN.TabIndex = 0
         '
         'GREYDATE
@@ -259,6 +263,7 @@ Partial Class BeamUnload
         Me.GREYDATE.Name = "GREYDATE"
         Me.GREYDATE.Size = New System.Drawing.Size(82, 23)
         Me.GREYDATE.TabIndex = 0
+        Me.GREYDATE.TabStop = False
         Me.GREYDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.GREYDATE.ValidatingType = GetType(Date)
         '
@@ -436,7 +441,7 @@ Partial Class BeamUnload
         Me.CMBNAME.Location = New System.Drawing.Point(110, 74)
         Me.CMBNAME.MaxDropDownItems = 14
         Me.CMBNAME.Name = "CMBNAME"
-        Me.CMBNAME.Size = New System.Drawing.Size(226, 22)
+        Me.CMBNAME.Size = New System.Drawing.Size(242, 22)
         Me.CMBNAME.TabIndex = 1
         '
         'ToolStrip1
@@ -520,6 +525,30 @@ Partial Class BeamUnload
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'txtbeamname
+        '
+        Me.txtbeamname.BackColor = System.Drawing.Color.Linen
+        Me.txtbeamname.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtbeamname.Location = New System.Drawing.Point(110, 131)
+        Me.txtbeamname.Name = "txtbeamname"
+        Me.txtbeamname.ReadOnly = True
+        Me.txtbeamname.Size = New System.Drawing.Size(242, 22)
+        Me.txtbeamname.TabIndex = 864
+        Me.txtbeamname.TabStop = False
+        Me.txtbeamname.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(28, 134)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(76, 14)
+        Me.Label4.TabIndex = 865
+        Me.Label4.Text = "Beam Name "
+        '
         'BeamUnload
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -579,4 +608,6 @@ Partial Class BeamUnload
     Friend WithEvents toolnext As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents txtbeamname As TextBox
+    Friend WithEvents Label4 As Label
 End Class

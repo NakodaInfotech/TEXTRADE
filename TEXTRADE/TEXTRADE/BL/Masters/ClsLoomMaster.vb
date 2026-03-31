@@ -39,6 +39,8 @@ Public Class ClsLoomMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@GROUPINGSET", alParaval(I)))
+                I += 1
 
             End With
 
@@ -73,6 +75,9 @@ Public Class ClsLoomMaster
                 .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
+                I += 1
+
+                .Add(New SqlClient.SqlParameter("@GROUPINGSET", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@LOOMID", alParaval(I)))
                 I += 1
