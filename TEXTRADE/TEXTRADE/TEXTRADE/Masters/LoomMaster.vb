@@ -6,6 +6,8 @@ Public Class LoomMaster
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Public LOOMID As Integer         'Used for tempname while edit mode
+    Public LOOMNO As Integer         'Used for tempname while edit mode
+    Public GROUPINGSET As String         'Used for tempname while edit mode
     Public EDIT As Boolean           'Used for edit
     Public WEAVERNAME As String
 
@@ -112,12 +114,13 @@ Public Class LoomMaster
 
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("LOOM_NO AS LOOMNO, LOOMMASTER.LOOM_ID AS LOOMID", "", " LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID INNER JOIN LEDGERS ON LOOM_WEAVERID = ACC_ID ", " AND ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND LOOM_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("LOOMMASTER_DESC.LOOM_NO AS LOOMNO , ISNULL(LOOMMASTER_DESC.LOOM_GROUPINGSET ,'') AS GROUPINGSET  , LOOMMASTER.LOOM_ID AS LOOMID", "", " LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID INNER JOIN LEDGERS ON LOOM_WEAVERID = ACC_ID ", " AND ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND LOOM_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 GRIDLOOM.RowCount = 0
                 LOOMID = DT.Rows(0).Item("LOOMID")
                 For Each DTROW As DataRow In DT.Rows
                     GRIDLOOM.Rows.Add(DTROW("LOOMNO"))
+                    GRIDLOOM.Rows.Add(DTROW("GROUPINGSET"))
                 Next
                 LBLTOTALLOOMS.Text = GRIDLOOM.RowCount
                 EDIT = True
@@ -148,21 +151,17 @@ Public Class LoomMaster
 
 
             Dim LOOMNO As String = ""
-            Dim GROUPINGSET As String = ""
             For Each ROW As DataGridViewRow In GRIDLOOM.Rows
                 If ROW.Cells(GLOOMNO.Index).Value <> Nothing Then
                     If LOOMNO = "" Then
                         LOOMNO = Val(ROW.Cells(GLOOMNO.Index).Value)
-                        GROUPINGSET = ROW.Cells(GGROUPINGSET.Index).Value.ToString
                     Else
                         LOOMNO = LOOMNO & "|" & Val(ROW.Cells(GLOOMNO.Index).Value)
-                        GROUPINGSET = GROUPINGSET & "|" & ROW.Cells(GGROUPINGSET.Index).Value.ToString
                     End If
                 End If
             Next
 
             alParaval.Add(LOOMNO)
-            alParaval.Add(GROUPINGSET)
 
             Dim OBJLOOM As New ClsLoomMaster
             OBJLOOM.alParaval = alParaval
