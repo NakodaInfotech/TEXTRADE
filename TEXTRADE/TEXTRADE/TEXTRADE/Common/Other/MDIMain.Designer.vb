@@ -657,6 +657,7 @@ Partial Class MDIMain
         Me.SALARYSLIP_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALARYSLIPADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALARYSLIPEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator349 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator257 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator256 = New System.Windows.Forms.ToolStripSeparator()
         Me.ACCOUNTS_SEPERATOR = New System.Windows.Forms.ToolStripSeparator()
@@ -1329,10 +1330,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.TASKCHECKLIST_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TASKCHECKADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TASKCHECKEDIT = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MenuStrip.SuspendLayout
+        Me.MenuStrip.SuspendLayout()
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
         Me.SuspendLayout
