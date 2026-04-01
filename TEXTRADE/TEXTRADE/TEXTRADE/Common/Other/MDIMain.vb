@@ -4311,7 +4311,7 @@ Public Class MDIMain
             ''Reading from Excel Woorkbook
             Dim cPart As Microsoft.Office.Interop.Excel.Range
             Dim oExcel As Microsoft.Office.Interop.Excel.Application = CreateObject("Excel.Application")
-            Dim oBook As Microsoft.Office.Interop.Excel.Workbook = oExcel.Workbooks.Open("E:\" & InputBox("Enter File Name").ToString.Trim, , False)
+            Dim oBook As Microsoft.Office.Interop.Excel.Workbook = oExcel.Workbooks.Open("D:\" & InputBox("Enter File Name").ToString.Trim, , False)
             Dim oSheet As New Microsoft.Office.Interop.Excel.Worksheet
             oSheet = oBook.Worksheets("Sheet1")
 
