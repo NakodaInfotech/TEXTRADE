@@ -13,6 +13,15 @@ Public Class GreyIssueProcess
     Dim PARTYCHALLANNO As String
     Dim ALLOWMANUALGRNNO As Boolean = False
 
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+        FILLCMB()
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
@@ -36,6 +45,7 @@ Public Class GreyIssueProcess
         TXTPURNAME.Clear()
         CHALLANDATE.Text = Now.Date
         txtchallan.Clear()
+        CMBGODOWN.Text = ""
 
         cmbtrans.Text = ""
         txtlrno.Clear()
@@ -288,6 +298,7 @@ Public Class GreyIssueProcess
             Dim FROMNO As String = ""
             Dim FROMSRNO As String = ""
             Dim FROMTYPE As String = ""
+            Dim BARCODE As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDISSUE.Rows
                 If row.Cells(0).Value <> Nothing Then
@@ -308,6 +319,7 @@ Public Class GreyIssueProcess
                         FROMNO = Val(row.Cells(GFROMNO.Index).Value)
                         FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
                         FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
 
                     Else
                         GRIDSRNO = GRIDSRNO & "|" & Val(row.Cells(gsrno.Index).Value)
@@ -326,6 +338,7 @@ Public Class GreyIssueProcess
                         FROMNO = FROMNO & "|" & Val(row.Cells(GFROMNO.Index).Value)
                         FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
                         FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
 
                     End If
                 End If
@@ -347,11 +360,13 @@ Public Class GreyIssueProcess
             alParaval.Add(FROMNO)
             alParaval.Add(FROMSRNO)
             alParaval.Add(FROMTYPE)
+            alParaval.Add(BARCODE)
 
             alParaval.Add(CMBAGENT.Text.Trim)
             alParaval.Add(TXTCRDAYS.Text.Trim)
             alParaval.Add(TXTREFLOTNO.Text.Trim)
 
+            alParaval.Add(CMBGODOWN.Text.Trim)
 
             Dim OBJGREYISS As New ClsGreyIssueProcess()
             OBJGREYISS.alParaval = alParaval
@@ -432,7 +447,6 @@ Public Class GreyIssueProcess
 
             Cursor.Current = Cursors.WaitCursor
 
-            fillcmb()
             clear()
 
             If EDIT = True Then
@@ -467,9 +481,10 @@ Public Class GreyIssueProcess
                         CMBAGENT.Text = Convert.ToString(dr("AGENT").ToString)
                         TXTCRDAYS.Text = dr("CRDAYS").ToString
                         TXTREFLOTNO.Text = dr("REFLOTNO")
+                        CMBGODOWN.Text = dr("GODOWN")
 
                         'Item Grid
-                        GRIDISSUE.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("RATE"), "0.00"), Format(dr("AMOUNT"), "0.00"), Val(dr("OUTPCS")), Val(dr("OUTMTRS")), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"))
+                        GRIDISSUE.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("RATE"), "0.00"), Format(dr("AMOUNT"), "0.00"), Val(dr("OUTPCS")), Val(dr("OUTMTRS")), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"), dr("BARCODE"))
 
                         If Val(dr("OUTMTRS")) > 0 Then
                             GRIDISSUE.Rows(GRIDISSUE.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
@@ -500,6 +515,7 @@ Public Class GreyIssueProcess
         Try
             If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
             If cmbtrans.Text.Trim = "" Then FILLNAME(cmbtrans, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'TRANSPORT'")
+            fillGODOWN(CMBGODOWN, False)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -570,7 +586,7 @@ Public Class GreyIssueProcess
         Try
 
             If CMBNAME.Text.Trim = "" Then
-                MsgBox("Select Party Name", MsgBoxStyle.Critical)
+                MsgBox("Select Dyeing Name", MsgBoxStyle.Critical)
                 CMBNAME.Focus()
                 Exit Sub
             End If
@@ -1015,6 +1031,103 @@ LINE1:
                 LBLREFLOTNO.Visible = True
                 TXTREFLOTNO.Visible = True
                 GRIDISSUE.ReadOnly = True
+            End If
+
+            If ClientName = "SWPL" Then
+                LBLGODOWN.Visible = True
+                CMBGODOWN.Visible = True
+                LBLBARCODE.Visible = True
+                TXTBARCODE.Visible = True
+                CMDSELECTGREY.Text = "Select &Stock"
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTBARCODE_Validated(sender As Object, e As EventArgs) Handles TXTBARCODE.Validated
+        Try
+            If ALLOWPACKINGSLIP = True Then Exit Sub
+
+            If TXTBARCODE.Text.Trim.Length > 0 Then
+
+                If CMBGODOWN.Text.Trim = "" Then
+                    MsgBox("Select Godown First", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 * ", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+
+                    'VALIDATE GODOWN
+                    If DT.Rows(0).Item("GODOWN") <> CMBGODOWN.Text.Trim Then
+                        MsgBox("Item Not in Selected Godown", MsgBoxStyle.Critical)
+                        TXTBARCODE.Clear()
+                        Exit Sub
+                    End If
+
+
+
+                    'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
+                    For Each ROW As DataGridViewRow In GRIDISSUE.Rows
+                        If LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(TXTBARCODE.Text.Trim) Then GoTo LINE1
+                    Next
+
+                    GRIDISSUE.Rows.Add(GRIDISSUE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("BALENO"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), Val(DT.Rows(0).Item("PCS")), DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), 0, 0, 0, 0, DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), DT.Rows(0).Item("BARCODE"))
+                    TOTAL()
+                    GRIDISSUE.FirstDisplayedScrollingRowIndex = GRIDISSUE.RowCount - 1
+
+
+LINE1:
+                    TXTBARCODE.Clear()
+                    TXTBARCODE.Focus()
+                Else
+                    MsgBox("Invalid Barcode", MsgBoxStyle.Critical)
+                    TXTBARCODE.Clear()
+                    TXTBARCODE.Focus()
+                End If
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTBARCODE_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTBARCODE.Validating
+        Try
+            If TXTBARCODE.Text.Trim <> "" And CHECKBARCODEERRORVALID = True Then
+                'CHECKING WHETHER IS IS GONE OUT OR NOT
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 TYPE, FROMNO", "", " OUTBARCODESTOCK ", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    MsgBox("Barcode Already Used in " & DT.Rows(0).Item("TYPE") & " Sr No " & DT.Rows(0).Item("FROMNO"))
+                    TXTBARCODE.Clear()
+                    e.Cancel = True
+                End If
+
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTBARCODE.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+                If CMBGODOWN.Text.Trim = "" Then
+                    MsgBox("Select Godown First", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
+                Dim OBJSTOCK As New SelectStockGDNGrid
+                OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
+                OBJSTOCK.ShowDialog()
+                Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                For Each DTROW As DataRow In DTBARCODE.Rows
+                    TXTBARCODE.Text = DTROW("BARCODE")
+                    TXTBARCODE_Validated(sender, e)
+                Next
             End If
         Catch ex As Exception
             Throw ex

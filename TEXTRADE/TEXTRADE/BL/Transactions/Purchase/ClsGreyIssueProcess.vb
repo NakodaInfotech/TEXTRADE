@@ -99,6 +99,8 @@ Public Class ClsGreyIssueProcess
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
 
 
                 .Add(New SqlClient.SqlParameter("@AGENT", alParaval(I)))
@@ -106,6 +108,8 @@ Public Class ClsGreyIssueProcess
                 .Add(New SqlClient.SqlParameter("@CRDAYS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
 
             End With
@@ -200,6 +204,8 @@ Public Class ClsGreyIssueProcess
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
 
 
                 .Add(New SqlClient.SqlParameter("@AGENT", alParaval(I)))
@@ -207,6 +213,8 @@ Public Class ClsGreyIssueProcess
                 .Add(New SqlClient.SqlParameter("@CRDAYS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
 
 

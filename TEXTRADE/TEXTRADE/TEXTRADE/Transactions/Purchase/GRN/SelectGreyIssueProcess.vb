@@ -62,7 +62,7 @@ Public Class SelectGreyIssueProcess
 
             Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
 
-            If Val(SELECTEDROWS.Length) > 1 And ClientName <> "SNCM" Then
+            If Val(SELECTEDROWS.Length) > 1 And ClientName <> "SNCM" And ClientName <> "SWPL" Then
                 MsgBox("You Can Select Only One Entry")
                 Exit Sub
             End If

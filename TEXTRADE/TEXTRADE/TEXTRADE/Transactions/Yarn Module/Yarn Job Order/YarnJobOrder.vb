@@ -987,7 +987,8 @@ LINE1:
 
                 Dim DTSO As New DataTable
                 Dim OBJSELECTSO As New SelectSO
-                OBJSELECTSO.PARTYNAME = CMBNAME.Text.Trim
+                'NO NEED OF HIS VALIDATION
+                'OBJSELECTSO.PARTYNAME = CMBNAME.Text.Trim
                 OBJSELECTSO.ShowDialog()
                 DTSO = OBJSELECTSO.DT
 

@@ -1937,14 +1937,14 @@ NEXTLINE:
     Private Sub cmdselectpo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdselectPO.Click
         Try
 
-            If cmbname.Text.Trim = "" And ClientName <> "AVIS" And ClientName <> "SNCM" And ClientName <> "REALCORPORATION" Then
+            If cmbname.Text.Trim = "" And ClientName <> "AVIS" And ClientName <> "SNCM" And ClientName <> "REALCORPORATION" And ClientName <> "SWPL" Then
                 MsgBox("Select Party Name", MsgBoxStyle.Critical)
                 cmbname.Focus()
                 Exit Sub
             End If
 
 
-            If CMBTONAME.Text.Trim = "" And (ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION") And FRMSTRING = "GRNJOB" Then
+            If CMBTONAME.Text.Trim = "" And (ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL") And FRMSTRING = "GRNJOB" Then
                 MsgBox("Select Dyeing Name", MsgBoxStyle.Critical)
                 CMBTONAME.Focus()
                 Exit Sub
@@ -1952,7 +1952,7 @@ NEXTLINE:
 
 
             Dim DTPO As New DataTable
-            If (ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION") And FRMSTRING = "GRNJOB" Then
+            If (ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL") And FRMSTRING = "GRNJOB" Then
                 Dim OBJSELECTPO As New SelectGreyIssueProcess
                 OBJSELECTPO.DYEINGNAME = CMBTONAME.Text.Trim
                 OBJSELECTPO.ShowDialog()
@@ -3613,7 +3613,7 @@ LINE1:
                 TXTCHNO.Visible = True
             End If
 
-            If ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Then
+            If ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL" Then
                 LBLDYEINGTYPE.Visible = False
                 CMBDYEINGTYPE.Visible = False
                 CMBQUALITY.TabStop = False

@@ -48,7 +48,7 @@ Public Class ProgramMaster
         CHKURGENT.CheckState = CheckState.Unchecked
         TXTCHGSAMT.Clear()
         CMBCHARGES.Text = ""
-        txtremarks.Clear()
+        If ClientName = "SWPL" Then txtremarks.Text = "CH NO : " & vbCrLf & "DT : " & vbCrLf & "ROLL : " Else txtremarks.Clear()
         TXTCHGSSRNO.Clear()
         GRIDDOUBLECLICK = False
         GETMAXNO()
@@ -693,7 +693,7 @@ NEXTLINE:
         getsrno(GRIDLOT)
         GRIDLOT.FirstDisplayedScrollingRowIndex = GRIDLOT.RowCount - 1
 
-        If ClientName <> "AVIS" Then
+        If ClientName <> "AVIS" And ClientName <> "SWPL" Then
             CMBITEMNAME.Text = ""
             CMBDESIGNNO.Text = ""
         End If
@@ -705,7 +705,7 @@ NEXTLINE:
         TXTGRNTYPE.Clear()
         TXTBARCODE.Clear()
         TXTSRNO.Text = GRIDLOT.RowCount + 1
-        CMBLOTNO.Focus()
+        If ClientName = "SWPL" Then CMBCOLOR.Focus() Else CMBLOTNO.Focus()
         CHKKHADI.CheckState = CheckState.Unchecked
         CHKABOVETOSCREEN.CheckState = CheckState.Unchecked
         CHKMISCRATE.CheckState = CheckState.Unchecked
@@ -1501,7 +1501,7 @@ NEXTLINE:
                 If CMBITEMNAME.Text.Trim <> "" And CMBDESIGNNO.Text.Trim <> "" And CMBCOLOR.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then FILLGRID()
 
                 'LOTNO AND COLOR NOT MANDATE
-            ElseIf ClientName = "REALCORPORATION" Then
+            ElseIf ClientName = "REALCORPORATION" Or ClientName = "SWPL" Then
                 If CMBITEMNAME.Text.Trim <> "" And Val(TXTPCS.Text.Trim) > 0 Then FILLGRID()
 
             Else
