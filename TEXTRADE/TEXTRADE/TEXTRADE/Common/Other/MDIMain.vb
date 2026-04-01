@@ -8414,9 +8414,9 @@ SKIPLINE:
                 End If
 
                 If IsDBNull(oSheet.Range("S" & I.ToString).Text) = False Then
-                    DTROWSAVE("DENIER") = oSheet.Range("S" & I.ToString).Text
+                    DTROWSAVE("DENIER") = Val(oSheet.Range("S" & I.ToString).Text)
                 Else
-                    DTROWSAVE("DENIER") = ""
+                    DTROWSAVE("DENIER") = 0
                 End If
 
                 If IsDBNull(oSheet.Range("T" & I.ToString).Text) = False Then
