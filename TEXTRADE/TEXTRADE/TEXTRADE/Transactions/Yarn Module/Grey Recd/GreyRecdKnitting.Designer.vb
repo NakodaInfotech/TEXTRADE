@@ -164,17 +164,21 @@ Partial Class GreyRecdKnitting
         Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TBJOBDETAILS = New System.Windows.Forms.TabPage()
         Me.GRIDJOBORDER = New System.Windows.Forms.DataGridView()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.POTHERITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PREFNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PGRNMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -1605,6 +1609,7 @@ Partial Class GreyRecdKnitting
         '
         'TBJOBDETAILS
         '
+        Me.TBJOBDETAILS.AutoScroll = True
         Me.TBJOBDETAILS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.TBJOBDETAILS.Controls.Add(Me.GRIDJOBORDER)
         Me.TBJOBDETAILS.Location = New System.Drawing.Point(4, 23)
@@ -1633,7 +1638,7 @@ Partial Class GreyRecdKnitting
         DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDJOBORDER.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle19
         Me.GRIDJOBORDER.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDJOBORDER.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PSRNO, Me.PITEMNAME, Me.PDESIGN, Me.PCOLOR, Me.PMTRS, Me.PFROMNO, Me.PFROMSRNO, Me.PFROMTYPE, Me.PGRNMTRS})
+        Me.GRIDJOBORDER.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PSRNO, Me.PITEMNAME, Me.PDESIGN, Me.PCOLOR, Me.POTHERITEMNAME, Me.PREFNO, Me.PPONO, Me.PPARTYNAME, Me.PMTRS, Me.PFROMNO, Me.PFROMSRNO, Me.PFROMTYPE, Me.PGRNMTRS})
         DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle20.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1657,9 +1662,19 @@ Partial Class GreyRecdKnitting
         Me.GRIDJOBORDER.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDJOBORDER.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDJOBORDER.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDJOBORDER.Size = New System.Drawing.Size(762, 297)
+        Me.GRIDJOBORDER.Size = New System.Drawing.Size(1197, 276)
         Me.GRIDJOBORDER.TabIndex = 4
         Me.GRIDJOBORDER.TabStop = False
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'EP
+        '
+        Me.EP.BlinkRate = 0
+        Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
+        Me.EP.ContainerControl = Me
         '
         'PSRNO
         '
@@ -1677,7 +1692,7 @@ Partial Class GreyRecdKnitting
         Me.PITEMNAME.ReadOnly = True
         Me.PITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.PITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PITEMNAME.Width = 150
+        Me.PITEMNAME.Width = 180
         '
         'PDESIGN
         '
@@ -1686,6 +1701,7 @@ Partial Class GreyRecdKnitting
         Me.PDESIGN.ReadOnly = True
         Me.PDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.PDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PDESIGN.Width = 80
         '
         'PCOLOR
         '
@@ -1694,7 +1710,41 @@ Partial Class GreyRecdKnitting
         Me.PCOLOR.ReadOnly = True
         Me.PCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.PCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PCOLOR.Width = 70
+        Me.PCOLOR.Width = 60
+        '
+        'POTHERITEMNAME
+        '
+        Me.POTHERITEMNAME.HeaderText = "Other item Name"
+        Me.POTHERITEMNAME.Name = "POTHERITEMNAME"
+        Me.POTHERITEMNAME.ReadOnly = True
+        Me.POTHERITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.POTHERITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.POTHERITEMNAME.Width = 180
+        '
+        'PREFNO
+        '
+        Me.PREFNO.HeaderText = "Ref No"
+        Me.PREFNO.Name = "PREFNO"
+        Me.PREFNO.ReadOnly = True
+        Me.PREFNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PREFNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
+        Me.PREFNO.Width = 80
+        '
+        'PPONO
+        '
+        Me.PPONO.HeaderText = "Po.No"
+        Me.PPONO.Name = "PPONO"
+        Me.PPONO.ReadOnly = True
+        Me.PPONO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.PPONO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.PPONO.Width = 80
+        '
+        'PPARTYNAME
+        '
+        Me.PPARTYNAME.HeaderText = "Party Name"
+        Me.PPARTYNAME.Name = "PPARTYNAME"
+        Me.PPARTYNAME.ReadOnly = True
+        Me.PPARTYNAME.Width = 150
         '
         'PMTRS
         '
@@ -1712,7 +1762,7 @@ Partial Class GreyRecdKnitting
         Me.PFROMNO.ReadOnly = True
         Me.PFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.PFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PFROMNO.Width = 70
+        Me.PFROMNO.Width = 60
         '
         'PFROMSRNO
         '
@@ -1730,7 +1780,7 @@ Partial Class GreyRecdKnitting
         Me.PFROMTYPE.ReadOnly = True
         Me.PFROMTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.PFROMTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.PFROMTYPE.Width = 90
+        Me.PFROMTYPE.Width = 60
         '
         'PGRNMTRS
         '
@@ -1740,16 +1790,6 @@ Partial Class GreyRecdKnitting
         Me.PGRNMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.PGRNMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.PGRNMTRS.Width = 80
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'EP
-        '
-        Me.EP.BlinkRate = 0
-        Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
-        Me.EP.ContainerControl = Me
         '
         'GreyRecdKnitting
         '
@@ -1910,6 +1950,10 @@ Partial Class GreyRecdKnitting
     Friend WithEvents PITEMNAME As DataGridViewTextBoxColumn
     Friend WithEvents PDESIGN As DataGridViewTextBoxColumn
     Friend WithEvents PCOLOR As DataGridViewTextBoxColumn
+    Friend WithEvents POTHERITEMNAME As DataGridViewTextBoxColumn
+    Friend WithEvents PREFNO As DataGridViewTextBoxColumn
+    Friend WithEvents PPONO As DataGridViewTextBoxColumn
+    Friend WithEvents PPARTYNAME As DataGridViewTextBoxColumn
     Friend WithEvents PMTRS As DataGridViewTextBoxColumn
     Friend WithEvents PFROMNO As DataGridViewTextBoxColumn
     Friend WithEvents PFROMSRNO As DataGridViewTextBoxColumn

@@ -666,6 +666,35 @@ PRINT 1,1")
                             oWrite.Dispose()
 
 
+                        ElseIf ClientName = "KENCOT" Then
+
+                            oWrite.WriteLine("<xpml><page quantity='0' pitch='38.0 mm'></xpml>SIZE 72.5 mm, 38 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+<xpml></page></xpml><xpml><page quantity='1' pitch='38.0 mm'></xpml>SET TEAR ON
+ON
+CLS
+CODEPAGE 1252
+TEXT 554,280,""0"",180,22,22,""" &  CMBMERCHANT.Text.Trim  & """
+TEXT 353,182,""0"",180,22,22,""" & CMBDESIGNNO.Text.Trim & """
+TEXT 554,85,""0"",180,18,18,""WIDTH""
+QRCODE 162,193,L,6,A,180,M2,S7,""" & TXTBARCODE.Text.Trim & """
+TEXT 170,49,""0"",180,9,9,""" & TXTBARCODE.Text.Trim & """
+TEXT 381,85,""0"",180,18,18,"":""
+TEXT 353,85,""0"",180,18,18,""" & TEMPWIDTH & """
+TEXT 554,182,""0"",180,22,22,""D. NO""
+TEXT 381,182,""0"",180,22,22,"":""
+BAR 22,209, 534, 3
+PRINT 1,1
+<xpml></page></xpml><xpml><end/></xpml>")
+                            oWrite.Dispose()
+
+
                         ElseIf ClientName = "KOTHARI" Then
 
                             oWrite.WriteLine("<xpml><page quantity='0' pitch='38.0 mm'></xpml>I8,A")
@@ -2019,6 +2048,35 @@ PRINT 1,1")
                                     oWrite.WriteLine("B380,57,2,1,2,4,37,N,""" & ROW("BARCODE") & """") 'BARCODE
                                     oWrite.WriteLine("A261,18,2,1,1,1,N,""" & ROW("BARCODE") & """") 'BARCODE
                                     oWrite.WriteLine("P1")
+                                    oWrite.Dispose()
+
+
+                                ElseIf ClientName = "KENCOT" Then
+
+                                    oWrite.WriteLine("<xpml><page quantity='0' pitch='38.0 mm'></xpml>SIZE 72.5 mm, 38 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+<xpml></page></xpml><xpml><page quantity='1' pitch='38.0 mm'></xpml>SET TEAR ON
+ON
+CLS
+CODEPAGE 1252
+TEXT 554,280,""0"",180,22,22,""" & ROW("ITEMNAME") & """
+TEXT 353,182,""0"",180,22,22,""" & ROW("DESIGNNO") & """
+TEXT 554,85,""0"",180,18,18,""WIDTH""
+QRCODE 162,193,L,6,A,180,M2,S7,""" & ROW("BARCODE") & """
+TEXT 170,49,""0"",180,9,9,""" & ROW("BARCODE") & """
+TEXT 381,85,""0"",180,18,18,"":""
+TEXT 353,85,""0"",180,18,18,""" & TEMPWIDTH & """
+TEXT 554,182,""0"",180,22,22,""D. NO""
+TEXT 381,182,""0"",180,22,22,"":""
+BAR 22,209, 534, 3
+PRINT 1,1
+<xpml></page></xpml><xpml><end/></xpml>")
                                     oWrite.Dispose()
 
 

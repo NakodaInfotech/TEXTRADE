@@ -496,8 +496,8 @@ Partial Class MDIMain
         Me.ToolStripSeparator38 = New System.Windows.Forms.ToolStripSeparator()
         Me.SALEAUTOPOSTADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator219 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AutoEWayToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AutoEInvoiceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GENERATEEWAY_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GENERATEEINV_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLANADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLANEDIT = New System.Windows.Forms.ToolStripMenuItem()
@@ -657,6 +657,7 @@ Partial Class MDIMain
         Me.SALARYSLIP_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALARYSLIPADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALARYSLIPEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator349 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator257 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator256 = New System.Windows.Forms.ToolStripSeparator()
         Me.ACCOUNTS_SEPERATOR = New System.Windows.Forms.ToolStripSeparator()
@@ -1329,7 +1330,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.MenuStrip.SuspendLayout
+        Me.MenuStrip.SuspendLayout()
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
         Me.SuspendLayout
@@ -4351,7 +4352,7 @@ Partial Class MDIMain
         '
         'SALE_MASTER
         '
-        Me.SALE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SALEADD, Me.SALEEDIT, Me.ToolStripSeparator38, Me.SALEAUTOPOSTADD, Me.ToolStripSeparator219, Me.AutoEWayToolStripMenuItem, Me.AutoEInvoiceToolStripMenuItem})
+        Me.SALE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SALEADD, Me.SALEEDIT, Me.ToolStripSeparator38, Me.SALEAUTOPOSTADD, Me.ToolStripSeparator219, Me.GENERATEEWAY_MASTER, Me.GENERATEEINV_MASTER, Me.ToolStripSeparator349})
         Me.SALE_MASTER.Enabled = False
         Me.SALE_MASTER.Name = "SALE_MASTER"
         Me.SALE_MASTER.Size = New System.Drawing.Size(206, 22)
@@ -4389,17 +4390,19 @@ Partial Class MDIMain
         Me.ToolStripSeparator219.Name = "ToolStripSeparator219"
         Me.ToolStripSeparator219.Size = New System.Drawing.Size(198, 6)
         '
-        'AutoEWayToolStripMenuItem
+        'GENERATEEWAY_MASTER
         '
-        Me.AutoEWayToolStripMenuItem.Name = "AutoEWayToolStripMenuItem"
-        Me.AutoEWayToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.AutoEWayToolStripMenuItem.Text = "Auto E-Way"
+        Me.GENERATEEWAY_MASTER.Enabled = False
+        Me.GENERATEEWAY_MASTER.Name = "GENERATEEWAY_MASTER"
+        Me.GENERATEEWAY_MASTER.Size = New System.Drawing.Size(201, 22)
+        Me.GENERATEEWAY_MASTER.Text = "Auto E-Way"
         '
-        'AutoEInvoiceToolStripMenuItem
+        'GENERATEEINV_MASTER
         '
-        Me.AutoEInvoiceToolStripMenuItem.Name = "AutoEInvoiceToolStripMenuItem"
-        Me.AutoEInvoiceToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.AutoEInvoiceToolStripMenuItem.Text = "Auto E-Invoice"
+        Me.GENERATEEINV_MASTER.Enabled = False
+        Me.GENERATEEINV_MASTER.Name = "GENERATEEINV_MASTER"
+        Me.GENERATEEINV_MASTER.Size = New System.Drawing.Size(201, 22)
+        Me.GENERATEEINV_MASTER.Text = "Auto E-Invoice"
         '
         'SALERETURNCHALLAN_MASTER
         '
@@ -9689,6 +9692,25 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
+        'TASKCHECKLIST_MASTER
+        '
+        Me.TASKCHECKLIST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TASKCHECKADD, Me.TASKCHECKEDIT})
+        Me.TASKCHECKLIST_MASTER.Name = "TASKCHECKLIST_MASTER"
+        Me.TASKCHECKLIST_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.TASKCHECKLIST_MASTER.Text = "Task Check Master"
+        '
+        'TASKCHECKADD
+        '
+        Me.TASKCHECKADD.Name = "TASKCHECKADD"
+        Me.TASKCHECKADD.Size = New System.Drawing.Size(180, 22)
+        Me.TASKCHECKADD.Text = "Add New Entry"
+        '
+        'TASKCHECKEDIT
+        '
+        Me.TASKCHECKEDIT.Name = "TASKCHECKEDIT"
+        Me.TASKCHECKEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.TASKCHECKEDIT.Text = "Edit Existing Entry"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -10906,9 +10928,9 @@ Partial Class MDIMain
     Friend WithEvents LRSTOCKVALUE_MENU As ToolStripMenuItem
     Friend WithEvents UpdatePendingLRStockToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LotPieceTypeToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AutoEWayToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GENERATEEWAY_MASTER As ToolStripMenuItem
     Friend WithEvents CutPackFilterToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AutoEInvoiceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GENERATEEINV_MASTER As ToolStripMenuItem
     Friend WithEvents SyncTimer As Timer
     Friend WithEvents YarnRelatedMasterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BeamMasterToolStripMenuItem As ToolStripMenuItem
@@ -11021,4 +11043,5 @@ Partial Class MDIMain
     Friend WithEvents TASKCHECKLIST_MASTER As ToolStripMenuItem
     Friend WithEvents TASKCHECKADD As ToolStripMenuItem
     Friend WithEvents TASKCHECKEDIT As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator349 As ToolStripSeparator
 End Class

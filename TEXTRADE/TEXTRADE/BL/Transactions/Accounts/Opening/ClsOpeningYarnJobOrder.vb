@@ -30,26 +30,27 @@ Public Class ClsOpeningYarnJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@PONO", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@PARTYNAME", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
+
 
                 'warp grid matching data serializations
 
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I += 1
@@ -102,26 +103,27 @@ Public Class ClsOpeningYarnJobOrder
                 I += 1
                 .Add(New SqlClient.SqlParameter("@PONO", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@PARTYNAME", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@locationid", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
-                I = I + 1
+
 
                 'warp grid matching data serializations
 
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DESIGN", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@SHADE", alParaval(I)))
                 I += 1
