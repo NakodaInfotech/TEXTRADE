@@ -55,10 +55,10 @@ Public Class LoomMaster
 
                 'GRID
                 Dim OBJCMN As New ClsCommon
-                dttable = OBJCMN.SEARCH(" LEDGERS.Acc_cmpname AS NAME, LOOMMASTER.LOOM_TOTALLOOMS AS TOTALLOOMS, LOOMMASTER.LOOM_YEARID, LOOMMASTER.LOOM_ID AS LOOMID ", "", "  LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID AND LOOMMASTER.LOOM_TOTALLOOMS = LOOMMASTER_DESC.LOOM_NO INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_ID = " & LOOMID & " AND LOOMMASTER.LOOM_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH("LOOMMASTER_DESC.LOOM_NO AS LOOMNO , ISNULL(LOOMMASTER_DESC.LOOM_GROUPINGSET ,'') AS GROUPINGSET  , LEDGERS.Acc_cmpname AS NAME, LOOMMASTER.LOOM_TOTALLOOMS AS TOTALLOOMS, LOOMMASTER.LOOM_YEARID, LOOMMASTER.LOOM_ID AS LOOMID ", "", " LOOMMASTER LEFT OUTER JOIN LOOMMASTER_DESC ON LOOMMASTER.LOOM_ID = LOOMMASTER_DESC.LOOM_ID INNER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " AND LOOMMASTER.LOOM_ID = " & LOOMID & " AND LOOMMASTER.LOOM_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     For Each DTR1 As DataRow In dttable.Rows
-                        GRIDLOOM.Rows.Add(DTR1("LOOMID"))
+                        GRIDLOOM.Rows.Add(DTR1("LOOMNO"), DTR1("GROUPINGSET"))
                     Next
                 End If
 
@@ -119,8 +119,7 @@ Public Class LoomMaster
                 GRIDLOOM.RowCount = 0
                 LOOMID = DT.Rows(0).Item("LOOMID")
                 For Each DTROW As DataRow In DT.Rows
-                    GRIDLOOM.Rows.Add(DTROW("LOOMNO"))
-                    GRIDLOOM.Rows.Add(DTROW("GROUPINGSET"))
+                    GRIDLOOM.Rows.Add(DTROW("LOOMNO"), DTROW("GROUPINGSET"))
                 Next
                 LBLTOTALLOOMS.Text = GRIDLOOM.RowCount
                 EDIT = True
@@ -151,17 +150,21 @@ Public Class LoomMaster
 
 
             Dim LOOMNO As String = ""
+            Dim GROUPINGSET As String = ""
             For Each ROW As DataGridViewRow In GRIDLOOM.Rows
                 If ROW.Cells(GLOOMNO.Index).Value <> Nothing Then
                     If LOOMNO = "" Then
                         LOOMNO = Val(ROW.Cells(GLOOMNO.Index).Value)
+                        GROUPINGSET = If(ROW.Cells(GGROUPINGSET.Index).Value IsNot Nothing, ROW.Cells(GGROUPINGSET.Index).Value.ToString, "")
                     Else
                         LOOMNO = LOOMNO & "|" & Val(ROW.Cells(GLOOMNO.Index).Value)
+                        GROUPINGSET = GROUPINGSET & "|" & If(ROW.Cells(GGROUPINGSET.Index).Value IsNot Nothing, ROW.Cells(GGROUPINGSET.Index).Value.ToString, "")
                     End If
                 End If
             Next
 
             alParaval.Add(LOOMNO)
+            alParaval.Add(GROUPINGSET)
 
             Dim OBJLOOM As New ClsLoomMaster
             OBJLOOM.alParaval = alParaval
