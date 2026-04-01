@@ -43,10 +43,11 @@ Partial Class LoomMaster
         Me.LBLTOTALLOOMS = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.GRIDLOOM = New System.Windows.Forms.DataGridView()
-        Me.GLOOMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GLOOMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGROUPINGSET = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDLOOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +75,7 @@ Partial Class LoomMaster
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(327, 449)
+        Me.BlendPanel1.Size = New System.Drawing.Size(349, 449)
         Me.BlendPanel1.TabIndex = 1
         '
         'TXTADD
@@ -260,7 +261,7 @@ Partial Class LoomMaster
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDLOOM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDLOOM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDLOOM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GLOOMNO})
+        Me.GRIDLOOM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GLOOMNO, Me.GGROUPINGSET})
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 9.75!)
@@ -273,7 +274,6 @@ Partial Class LoomMaster
         Me.GRIDLOOM.Location = New System.Drawing.Point(106, 41)
         Me.GRIDLOOM.MultiSelect = False
         Me.GRIDLOOM.Name = "GRIDLOOM"
-        Me.GRIDLOOM.ReadOnly = True
         Me.GRIDLOOM.RowHeadersVisible = False
         Me.GRIDLOOM.RowHeadersWidth = 30
         Me.GRIDLOOM.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
@@ -284,19 +284,9 @@ Partial Class LoomMaster
         Me.GRIDLOOM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDLOOM.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDLOOM.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDLOOM.Size = New System.Drawing.Size(129, 296)
+        Me.GRIDLOOM.Size = New System.Drawing.Size(226, 296)
         Me.GRIDLOOM.TabIndex = 823
         Me.GRIDLOOM.TabStop = False
-        '
-        'GLOOMNO
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GLOOMNO.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GLOOMNO.HeaderText = "Loom No"
-        Me.GLOOMNO.Name = "GLOOMNO"
-        Me.GLOOMNO.ReadOnly = True
-        Me.GLOOMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLOOMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'Label5
         '
@@ -330,10 +320,26 @@ Partial Class LoomMaster
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'GLOOMNO
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GLOOMNO.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GLOOMNO.HeaderText = "Loom No"
+        Me.GLOOMNO.Name = "GLOOMNO"
+        Me.GLOOMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLOOMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GGROUPINGSET
+        '
+        Me.GGROUPINGSET.HeaderText = "SET"
+        Me.GGROUPINGSET.Name = "GGROUPINGSET"
+        Me.GGROUPINGSET.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGROUPINGSET.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
         'LoomMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(327, 449)
+        Me.ClientSize = New System.Drawing.Size(349, 449)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.KeyPreview = True
@@ -365,8 +371,9 @@ Partial Class LoomMaster
     Friend WithEvents LBLTOTALLOOMS As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents GRIDLOOM As DataGridView
-    Friend WithEvents GLOOMNO As DataGridViewTextBoxColumn
     Friend WithEvents Label5 As Label
     Friend WithEvents CMBNAME As ComboBox
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents GLOOMNO As DataGridViewTextBoxColumn
+    Friend WithEvents GGROUPINGSET As DataGridViewTextBoxColumn
 End Class
