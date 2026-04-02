@@ -198,7 +198,7 @@ Public Class GreyJobIn
     Sub getmaxno()
         Try
             Dim DTTABLE As New DataTable
-            DTTABLE = getmax(" isnull(max(JI_no),0) + 1 ", " JobIn ", " and JI_yearid=" & YearId)
+            DTTABLE = getmax(" isnull(max(GJI_no),0) + 1 ", " GREYJOBIN ", " and GJI_yearid=" & YearId)
             If DTTABLE.Rows.Count > 0 Then
                 TXTJINO.Text = DTTABLE.Rows(0).Item(0)
             End If
@@ -299,7 +299,7 @@ Public Class GreyJobIn
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(TXTCHALLAN.Text.Trim)) Then
                     'for search
                     Dim objclscommon As New ClsCommon()
-                    Dim dt As DataTable = objclscommon.SEARCH(" JI_challanno, LEDGERS.ACC_cmpname", "", " JOBIN inner join LEDGERS on LEDGERS.ACC_id = JI_ledgerid ", " and JI_challanno = '" & TXTCHALLAN.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND JI_YEARID =" & YearId)
+                    Dim dt As DataTable = objclscommon.SEARCH(" GJI_challanno, LEDGERS.ACC_cmpname", "", " GREYJOBIN inner join LEDGERS on LEDGERS.ACC_id = GJI_ledgerid ", " and GJI_challanno = '" & TXTCHALLAN.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND GJI_YEARID =" & YearId)
                     If dt.Rows.Count > 0 Then
                         EP.SetError(TXTCHALLAN, "Challan No. Already Exists")
                         bln = False
@@ -314,7 +314,7 @@ Public Class GreyJobIn
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(TXTCHALLAN.Text.Trim)) Then
                     'for search
                     Dim objclscommon As New ClsCommon()
-                    Dim dt As DataTable = objclscommon.SEARCH(" JI_challanno, LEDGERS.ACC_cmpname", "", " JOBIN inner join LEDGERS on LEDGERS.ACC_id = JI_ledgerid INNER JOIN LEDGERS AS PARTYLEDGERS ON JI_PURLEDGERID = PARTYLEDGERS.ACC_ID ", " and JI_challanno = '" & TXTCHALLAN.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND PARTYLEDGERS.ACC_CMPNAME = '" & CMBPARTYNAME.Text.Trim & "' AND JI_YEARID =" & YearId)
+                    Dim dt As DataTable = objclscommon.SEARCH(" GJI_challanno, LEDGERS.ACC_cmpname", "", " GREYJOBIN inner join LEDGERS on LEDGERS.ACC_id = GJI_ledgerid INNER JOIN LEDGERS AS PARTYLEDGERS ON GJI_PURLEDGERID = PARTYLEDGERS.ACC_ID ", " and GJI_challanno = '" & TXTCHALLAN.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND PARTYLEDGERS.ACC_CMPNAME = '" & CMBPARTYNAME.Text.Trim & "' AND GJI_YEARID =" & YearId)
                     If dt.Rows.Count > 0 Then
                         If MsgBox("Challan No. Already Exists, Wish to Proceed?", MsgBoxStyle.Critical, "TEXTRADE") = MsgBoxResult.No Then
                             EP.SetError(TXTCHALLAN, "Challan No. Already Exists")
@@ -350,7 +350,7 @@ Public Class GreyJobIn
             If ALLOWMANUALJINO = True Then
                 If TXTJINO.Text <> "" And cmbname.Text.Trim <> "" And EDIT = False Then
                     Dim OBJCMN As New ClsCommon
-                    Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(JOBIN.JI_NO,0)  AS JINO", "", " JOBIN ", "  AND JOBIN.JI_NO=" & TXTJINO.Text.Trim & " AND JOBIN.JI_CMPID = " & CmpId & " AND JOBIN.JI_LOCATIONID = " & Locationid & " AND JOBIN.JI_YEARID = " & YearId)
+                    Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GREYJOBIN.GJI_NO,0)  AS JINO", "", " GREYJOBIN ", "  AND GREYJOBIN.GJI_NO=" & TXTJINO.Text.Trim & " AND GREYJOBIN.GJI_CMPID = " & CmpId & " AND GREYJOBIN.GJI_LOCATIONID = " & Locationid & " AND GREYJOBIN.GJI_YEARID = " & YearId)
                     If dttable.Rows.Count > 0 Then
                         EP.SetError(TXTJINO, "Job In No Already Exist")
                         bln = False
@@ -1081,7 +1081,7 @@ LINE1:
                         OUTMTRS = 0
                         FROMNO = TXTJINO.Text.Trim
                         FROMSRNO = row.Cells(gsrno.Index).Value.ToString
-                        FROMTYPE = "JOBIN"
+                        FROMTYPE = "GREYJOBIN"
                         GREYMTRS = Val(row.Cells(GJOMTRS.Index).Value)
 
 
@@ -1106,7 +1106,7 @@ LINE1:
                         OUTMTRS = OUTMTRS & "|" & row.Cells(GOUTMTRS.Index).Value.ToString
                         FROMNO = FROMNO & "|" & Val(TXTJINO.Text.Trim)
                         FROMSRNO = FROMSRNO & "|" & row.Cells(gsrno.Index).Value.ToString
-                        FROMTYPE = FROMTYPE & "|" & "JOBIN"
+                        FROMTYPE = FROMTYPE & "|" & "GREYJOBIN"
                         GREYMTRS = GREYMTRS & "|" & Val(row.Cells(GJOMTRS.Index).Value)
 
 
@@ -1293,7 +1293,7 @@ LINE1:
                     BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, TXTLOTNO.Text.Trim, ROW.Cells(GBALENO.Index).Value, GRIDDESC, Val(ROW.Cells(GMTRS.Index).Value), Val(ROW.Cells(gQty.Index).Value), Val(ROW.Cells(gcut.Index).Value), ROW.Cells(GRACK.Index).Value, TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, "", CMBPARTYNAME.Text.Trim, ROW.Cells(GSHELF.Index).Value, JOBINDATE.Text)
 
                     Dim OBJCMN As New ClsCommon
-                    dttable = OBJCMN.Execute_Any_String("UPDATE JOBIN Set JI_BARCODEPRINTED = 1 WHERE JI_NO = " & TEMPJOBINNO & " And JI_YEARID = " & YearId, "", "")
+                    dttable = OBJCMN.Execute_Any_String("UPDATE GREYJOBIN Set GJI_BARCODEPRINTED = 1 WHERE GJI_NO = " & TEMPGREYJOBINNO & " And GJI_YEARID = " & YearId, "", "")
                     LBLBARCODEPRINTED.Visible = True
 NEXTLINE:
 
@@ -3217,7 +3217,7 @@ NEXTLINE:
                 'UPLOAD()
                 Dim OBJCMN As New ClsCommon
                 'dttable = OBJCMN.search(" MATREC_GRIDSRNO AS GRIDSRNO, MATREC_REMARKS AS REMARKS, MATREC_NAME AS NAME, MATREC_IMGPATH AS IMGPATH, MATREC_NEWIMGPATH AS NEWIMGPATH", "", " MATERIAL_UPLOAD", " AND MATREC_NO = " & TEMPJOBINNO & " AND MATREC_CMPID = " & CmpId & " AND MATREC_LOCATIONID = " & Locationid & " AND MATREC_YEARID = " & YearId)
-                dttable = OBJCMN.SEARCH(" JI_GRIDSRNO AS GRIDSRNO, JI_REMARKS AS REMARKS, JI_NAME AS NAME, JI_IMGPATH AS IMGPATH, JI_NEWIMGPATH AS NEWIMGPATH", "", " JOBIN_UPLOAD", " AND JI_NO = " & TEMPJOBINNO & " AND JI_CMPID = " & CmpId & " AND JI_LOCATIONID = " & Locationid & " AND JI_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH(" GJI_GRIDSRNO AS GRIDSRNO, GJI_REMARKS AS REMARKS, GJI_NAME AS NAME, GJI_IMGPATH AS IMGPATH, GJI_NEWIMGPATH AS NEWIMGPATH", "", " GREYJOBIN_UPLOAD", " AND GJI_NO = " & TEMPGREYJOBINNO & " AND GJI_CMPID = " & CmpId & " AND GJI_LOCATIONID = " & Locationid & " AND GJI_YEARID = " & YearId)
 
                 If dttable.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable.Rows
@@ -3227,7 +3227,7 @@ NEXTLINE:
 
                 'ORDER GRID
                 'Dim OBJCMN As New ClsCommon
-                dttable = OBJCMN.SEARCH(" JOBIN_PROGDETAILS.JI_NO, JOBIN_PROGDETAILS.JI_GRIDSRNO AS GRIDSRNO, ISNULL(JOBIN_PROGDETAILS.JI_ORDERMTRS, 0) AS ORDERMTRS, ISNULL(JOBIN_PROGDETAILS.JI_FROMNO, 0) AS FROMNO, ISNULL(JOBIN_PROGDETAILS.JI_FROMSRNO, 0) AS FROMSRNO, ISNULL(JOBIN_PROGDETAILS.JI_FROMTYPE, '0') AS FROMTYPE, ISNULL(JOBIN_PROGDETAILS.JI_PCS, 0) AS GDNQTY, ISNULL(JOBIN_PROGDETAILS.JI_MTRS, 0) AS GDNMTRS, ISNULL(JOBIN_PROGDETAILS.JI_RATE, 0) AS RATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '0') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR", "", "  JOBIN_PROGDETAILS LEFT OUTER JOIN COLORMASTER ON JOBIN_PROGDETAILS.JI_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON JOBIN_PROGDETAILS.JI_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN ITEMMASTER ON JOBIN_PROGDETAILS.JI_ITEMID = ITEMMASTER.item_id", " AND JOBIN_PROGDETAILS.JI_NO = " & TEMPJOBINNO & " AND JOBIN_PROGDETAILS.JI_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH(" GREYJOBIN_PROGDETAILS.GJI_NO, GREYJOBIN_PROGDETAILS.GJI_GRIDSRNO AS GRIDSRNO, ISNULL(GREYJOBIN_PROGDETAILS.GJI_ORDERMTRS, 0) AS ORDERMTRS, ISNULL(GREYJOBIN_PROGDETAILS.GJI_FROMNO, 0) AS FROMNO, ISNULL(GREYJOBIN_PROGDETAILS.GJI_FROMSRNO, 0) AS FROMSRNO, ISNULL(GREYJOBIN_PROGDETAILS.GJI_FROMTYPE, '0') AS FROMTYPE, ISNULL(GREYJOBIN_PROGDETAILS.GJI_PCS, 0) AS GDNQTY, ISNULL(GREYJOBIN_PROGDETAILS.GJI_MTRS, 0) AS GDNMTRS, ISNULL(GREYJOBIN_PROGDETAILS.GJI_RATE, 0) AS RATE, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '0') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR", "", "  GREYJOBIN_PROGDETAILS LEFT OUTER JOIN COLORMASTER ON GREYJOBIN_PROGDETAILS.GJI_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON GREYJOBIN_PROGDETAILS.GJI_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN ITEMMASTER ON GREYJOBIN_PROGDETAILS.GJI_ITEMID = ITEMMASTER.item_id", " AND GREYJOBIN_PROGDETAILS.GJI_NO = " & TEMPGREYJOBINNO & " AND GREYJOBIN_PROGDETAILS.GJI_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable.Rows
                         GRIDORDER.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME"), DTR("DESIGN"), DTR("COLOR"), Val(DTR("ORDERMTRS")), Val(DTR("FROMNO")), Val(DTR("FROMSRNO")), DTR("FROMTYPE"), Val(DTR("GDNQTY")), Val(DTR("GDNMTRS")), Val(DTR("RATE")))
@@ -4049,7 +4049,7 @@ LINE1:
                 Dim OBJGDN As New GDNDESIGN
                 OBJGDN.MdiParent = MDIMain
                 OBJGDN.FRMSTRING = "GREYJOBIN"
-                OBJGDN.FORMULA = "{GREYJOBIN.JI_NO}=" & Val(JINO) & " and {GREYJOBIN.JI_yearid}=" & YearId
+                OBJGDN.FORMULA = "{GREYJOBIN.GJI_NO}=" & Val(JINO) & " and {GREYJOBIN.GJI_yearid}=" & YearId
                 OBJGDN.Show()
             End If
 
@@ -4058,7 +4058,7 @@ LINE1:
             '    OBJGDN.MdiParent = MDIMain
             '    OBJGDN.FRMSTRING = "JOBINPS"
             '    OBJGDN.BLANKPAPER = CHKBLANKPAPER.Checked
-            '    OBJGDN.FORMULA = "{JOBIN_DESC.JI_NO}=" & Val(JINO) & " and {JOBIN.JI_yearid}=" & YearId
+            '    OBJGDN.FORMULA = "{JOBIN_DESC.GJI_NO}=" & Val(JINO) & " and {JOBIN.GJI_yearid}=" & YearId
             '    OBJGDN.Show()
             'End If
         Catch ex As Exception
@@ -4329,7 +4329,7 @@ LINE1:
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(TXTCHALLAN.Text.Trim)) Then
                     'for search
                     Dim objclscommon As New ClsCommon()
-                    Dim dt As DataTable = objclscommon.SEARCH(" JI_challanno, LEDGERS.ACC_cmpname", "", " JOBIN inner join LEDGERS on LEDGERS.ACC_id = JI_ledgerid ", " and JI_challanno = '" & TXTCHALLAN.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND JI_YEARID =" & YearId)
+                    Dim dt As DataTable = objclscommon.SEARCH(" GJI_challanno, LEDGERS.ACC_cmpname", "", " GREYJOBIN inner join LEDGERS on LEDGERS.ACC_id = GJI_ledgerid ", " and GJI_challanno = '" & TXTCHALLAN.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND GJI_YEARID =" & YearId)
                     If dt.Rows.Count > 0 Then
                         MsgBox("Challan No. Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
                         e.Cancel = True
@@ -4343,7 +4343,7 @@ LINE1:
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(TXTCHALLAN.Text.Trim)) Then
                     'for search
                     Dim objclscommon As New ClsCommon()
-                    Dim dt As DataTable = objclscommon.SEARCH(" JI_challanno, LEDGERS.ACC_cmpname", "", " JOBIN inner join LEDGERS on LEDGERS.ACC_id = JI_ledgerid INNER JOIN LEDGERS AS PARTYLEDGERS ON JI_PURLEDGERID = PARTYLEDGERS.ACC_ID ", " and JI_challanno = '" & TXTCHALLAN.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND PARTYLEDGERS.ACC_CMPNAME = '" & CMBPARTYNAME.Text.Trim & "' AND JI_YEARID =" & YearId)
+                    Dim dt As DataTable = objclscommon.SEARCH(" GJI_challanno, LEDGERS.ACC_cmpname", "", " GREYJOBIN inner join LEDGERS on LEDGERS.ACC_id = GJI_ledgerid INNER JOIN LEDGERS AS PARTYLEDGERS ON GJI_PURLEDGERID = PARTYLEDGERS.ACC_ID ", " and GJI_challanno = '" & TXTCHALLAN.Text.Trim & "' and LEDGERS.ACC_cmpname = '" & cmbname.Text.Trim & "' AND PARTYLEDGERS.ACC_CMPNAME = '" & CMBPARTYNAME.Text.Trim & "' AND GJI_YEARID =" & YearId)
                     If dt.Rows.Count > 0 Then
                         If MsgBox("Challan No. Already Exists, Wish to Proceed?", MsgBoxStyle.Critical, "TEXTRADE") = MsgBoxResult.No Then e.Cancel = True
                     End If
@@ -4358,7 +4358,7 @@ LINE1:
         Try
             Dim BLN As Boolean = True
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(JI_BARCODE,'') AS BARCODE ", "", " JOBIN_DESC ", " AND JOBIN_DESC.JI_YEARID =  " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(GJI_BARCODE,'') AS BARCODE ", "", " GREYJOBIN_DESC ", " AND GREYJOBIN_DESC.GJI_YEARID =  " & YearId)
             If DT.Rows.Count > 0 Then
                 For Each DTR As DataRow In DT.Rows
                     For Each ROW As Windows.Forms.DataGridViewRow In GRIDJOBIN.Rows
@@ -4558,7 +4558,7 @@ LINE1:
         Try
             If Val(TXTJINO.Text.Trim) <> 0 And EDIT = False Then
                 Dim OBJCMN As New ClsCommon
-                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(JOBIN.JI_NO,0)  AS JINO", "", " JOBIN ", "  AND JOBIN.JI_NO=" & TXTJINO.Text.Trim & " AND JOBIN.JI_CMPID = " & CmpId & " AND JOBIN.JI_LOCATIONID = " & Locationid & " AND JOBIN.JI_YEARID = " & YearId)
+                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GREYJOBIN.GJI_NO,0)  AS JINO", "", " GREYJOBIN ", "  AND GREYJOBIN.GJI_NO=" & TXTJINO.Text.Trim & " AND GREYJOBIN.GJI_CMPID = " & CmpId & " AND GREYJOBIN.GJI_LOCATIONID = " & Locationid & " AND GREYJOBIN.GJI_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     MsgBox("Job In No Already Exists")
                     e.Cancel = True
@@ -4660,7 +4660,7 @@ LINE1:
             Dim DT As New DataTable
             Dim OBJCMN As New ClsCommon
             If EDIT = True Then SENDWHATSAPP(TEMPJOBINNO)
-            DT = OBJCMN.Execute_Any_String("UPDATE JOBIN SET JI_SENDWHATSAPP = 1 WHERE JI_NO = " & TEMPJOBINNO & " AND JI_YEARID = " & YearId, "", "")
+            DT = OBJCMN.Execute_Any_String("UPDATE GREYJOBIN SET GJI_SENDWHATSAPP = 1 WHERE GJI_NO = " & TEMPJOBINNO & " AND GJI_YEARID = " & YearId, "", "")
             LBLWHATSAPP.Visible = True
         Catch ex As Exception
             Throw ex
@@ -4681,11 +4681,11 @@ LINE1:
             Dim OBJJO As New GDNDESIGN
             OBJJO.MdiParent = MDIMain
             OBJJO.DIRECTPRINT = True
-            OBJJO.FRMSTRING = "JOBIN"
+            OBJJO.FRMSTRING = "GREYJOBIN"
             OBJJO.DIRECTMAIL = False
             OBJJO.DIRECTWHATSAPP = True
             OBJJO.PRINTSETTING = PRINTDIALOG
-            OBJJO.FORMULA = "{JOBIN.JI_NO}=" & Val(JINO) & " and {JOBIN.JI_yearid}=" & YearId
+            OBJJO.FORMULA = "{GREYJOBIN.GJI_NO}=" & Val(JINO) & " and {GREYJOBIN.GJI_yearid}=" & YearId
             OBJJO.JONO = Val(JINO)
             OBJJO.NOOFCOPIES = 1
             OBJJO.Show()
@@ -4693,8 +4693,8 @@ LINE1:
 
             Dim OBJWHATSAPP As New SendWhatsapp
             OBJWHATSAPP.PARTYNAME = cmbname.Text.Trim
-            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\JOBIN_" & Val(JINO) & ".pdf")
-            OBJWHATSAPP.FILENAME.Add("JOBIN_" & Val(JINO) & ".pdf")
+            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\GREYJOBIN_" & Val(JINO) & ".pdf")
+            OBJWHATSAPP.FILENAME.Add("GREYJOBIN_" & Val(JINO) & ".pdf")
             OBJWHATSAPP.ShowDialog()
 
         Catch ex As Exception
