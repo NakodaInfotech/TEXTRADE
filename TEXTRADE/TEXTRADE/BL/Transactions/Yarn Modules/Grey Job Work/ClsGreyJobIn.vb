@@ -21,7 +21,7 @@ Public Class ClsGreyJobIn
         Dim DTTABLE As DataTable
         Try
             'save purchase order
-            Dim strCommand As String = "SP_TRANS_JOB_JOBIN_SAVE"
+            Dim strCommand As String = "SP_TRANS_JOB_GREYJOBIN_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -220,7 +220,7 @@ Public Class ClsGreyJobIn
         Dim intResult As Integer
         Try
             'Update purchase order
-            Dim strCommand As String = "SP_TRANS_JOB_JOBIN_UPDATE"
+            Dim strCommand As String = "SP_TRANS_JOB_GREYJOBIN_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -421,7 +421,7 @@ Public Class ClsGreyJobIn
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTJI_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTGREYJI_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JINO", JobInNO))
@@ -440,7 +440,7 @@ Public Class ClsGreyJobIn
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_JOB_JOBIN_DELETE"
+            Dim strCommand As String = "SP_TRANS_JOB_GREYJOBIN_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JINO", alParaval(0)))
