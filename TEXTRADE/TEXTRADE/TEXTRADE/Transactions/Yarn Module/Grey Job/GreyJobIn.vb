@@ -980,7 +980,7 @@ LINE1:
             alParaval.Add("")  'SHIPTO
             alParaval.Add("")  'PARTYITEMNAME
 
-            Dim OBJJO As New ClsCuttingIssue()
+            Dim OBJJO As New ClsGreyJobOut()
             OBJJO.alParaval = alParaval
             If USERADD = False Then
                 MsgBox("Insufficient Rights")
@@ -4946,7 +4946,7 @@ NEXTLINE:
 
                         'FOR MANSI FETCH ALL GRID DATA FROM JOBOUT
                         If (ClientName = "MANSI" Or ClientName = "SNCM") And DT.Rows(0).Item("TYPE") = "JOBOUT" Then
-                            Dim objJO As New ClsCuttingIssue()
+                            Dim objJO As New ClsGreyJobOut()
                             Dim ALPARAVAL As New ArrayList
                             ALPARAVAL.Add(CMBJONO.Text.Trim)
                             ALPARAVAL.Add(CmpId)
