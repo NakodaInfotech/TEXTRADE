@@ -276,26 +276,27 @@ Public Class YearTransfer
                         MsgBox("Masters Transferred Successfully")
 
                     ElseIf FRMSTRING = "USERTRANSFER" Then
-                            TRANSFERUSER(SELECTEDYEARID)
-                            MsgBox("User Transferred Successfully")
+                        TRANSFERUSER(SELECTEDYEARID)
+                        MsgBox("User Transferred Successfully")
 
-                        ElseIf FRMSTRING = "AGENCYYEARTRANSFER" Then
+                    ElseIf FRMSTRING = "AGENCYYEARTRANSFER" Then
 
-                            TRANSFERAGENCYBILLS(SELECTEDYEARID)
+                        TRANSFERAGENCYSALEORDER(SELECTEDYEARID)
+                        TRANSFERAGENCYBILLS(SELECTEDYEARID)
 
-                            '******* TRANSFERRING DATA DONE ********
-                            'THIS CODE WILL AUTO RECO THE AGENCY INVOICE
-                            Dim CLSRECO As New ClsDataReco
-                            CLSRECO.alParaval.Add(CmpId)
-                            CLSRECO.alParaval.Add(0)
-                            CLSRECO.alParaval.Add(YearId)
-                            Dim INTRES As Integer = CLSRECO.AGENCYINVRECO()
-                            '*********************************************
+                        '******* TRANSFERRING DATA DONE ********
+                        'THIS CODE WILL AUTO RECO THE AGENCY INVOICE
+                        Dim CLSRECO As New ClsDataReco
+                        CLSRECO.alParaval.Add(CmpId)
+                        CLSRECO.alParaval.Add(0)
+                        CLSRECO.alParaval.Add(YearId)
+                        Dim INTRES As Integer = CLSRECO.AGENCYINVRECO()
+                        '*********************************************
 
-                            MsgBox("Agency Data Transferred Successfully")
+                        MsgBox("Agency Data Transferred Successfully")
 
-                        ElseIf FRMSTRING = "STOCKTRANSFER" Then
-                            TRANSFERSTOCK(SELECTEDYEARID)
+                    ElseIf FRMSTRING = "STOCKTRANSFER" Then
+                        TRANSFERSTOCK(SELECTEDYEARID)
 
 
                         'IF WE TRANSFER STOCK WE HAVE TO RECOSTOCK ALSO
@@ -1502,6 +1503,23 @@ Public Class YearTransfer
 
             OBJTRF.alParaval = ALPARAVAL
             INTRES = OBJTRF.TRANSFERGDN()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub TRANSFERAGENCYSALEORDER(ByVal SELECTEDYEARID As Integer)
+        Try
+            Dim ALPARAVAL As New ArrayList
+
+            ALPARAVAL.Add(SELECTEDYEARID)
+            ALPARAVAL.Add(CmpId)
+            ALPARAVAL.Add(Locationid)
+            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
+
+            OBJTRF.alParaval = ALPARAVAL
+            INTRES = OBJTRF.TRANSFERAGENCYSALEORDER()
         Catch ex As Exception
             Throw ex
         End Try
