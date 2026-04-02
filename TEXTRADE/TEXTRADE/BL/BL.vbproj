@@ -423,6 +423,8 @@
     <Compile Include="Transactions\Yarn Modules\Beam Upload And Unload\ClsBeamUnload.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Upload And Unload\ClsBeamUpload.vb" />
     <Compile Include="Transactions\Yarn Modules\BeamReceivedWarper\ClsBeamReceivedWarper.vb" />
+    <Compile Include="Transactions\Yarn Modules\Grey Job Work\ClsGreyJobIn.vb" />
+    <Compile Include="Transactions\Yarn Modules\Grey Job Work\ClsGreyJobOut.vb" />
     <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollIssueToSizer.vb" />
     <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollsRecdFromWarper.vb" />
     <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollsReturnFromWarper.vb" />
