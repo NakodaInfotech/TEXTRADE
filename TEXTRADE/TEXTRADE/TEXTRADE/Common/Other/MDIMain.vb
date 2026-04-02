@@ -11699,4 +11699,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AddNewJobInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GREYJOBINADD_CLICK.Click
+        Try
+            Dim OBJYARNJO As New GreyJobIn
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingJobInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GREYJOBIN_EDIT.Click
+        Try
+            Dim OBJYARNJO As New GreyJobInDetails
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

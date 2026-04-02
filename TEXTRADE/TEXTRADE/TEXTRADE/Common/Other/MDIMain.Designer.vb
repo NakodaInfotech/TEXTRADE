@@ -498,6 +498,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator219 = New System.Windows.Forms.ToolStripSeparator()
         Me.GENERATEEWAY_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.GENERATEEINV_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator349 = New System.Windows.Forms.ToolStripSeparator()
         Me.SALERETURNCHALLAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLANADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALERETURNCHALLANEDIT = New System.Windows.Forms.ToolStripMenuItem()
@@ -657,7 +658,6 @@ Partial Class MDIMain
         Me.SALARYSLIP_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALARYSLIPADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALARYSLIPEDIT = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator349 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator257 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator256 = New System.Windows.Forms.ToolStripSeparator()
         Me.ACCOUNTS_SEPERATOR = New System.Windows.Forms.ToolStripSeparator()
@@ -1330,7 +1330,14 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.MenuStrip.SuspendLayout()
+        Me.GreyJobWorkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GreyJobOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYJOBOUTADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYJOBOUTEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GreyJobInToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYJOBINADD_CLICK = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYJOBIN_EDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
         Me.SuspendLayout
@@ -4404,6 +4411,11 @@ Partial Class MDIMain
         Me.GENERATEEINV_MASTER.Size = New System.Drawing.Size(201, 22)
         Me.GENERATEEINV_MASTER.Text = "Auto E-Invoice"
         '
+        'ToolStripSeparator349
+        '
+        Me.ToolStripSeparator349.Name = "ToolStripSeparator349"
+        Me.ToolStripSeparator349.Size = New System.Drawing.Size(198, 6)
+        '
         'SALERETURNCHALLAN_MASTER
         '
         Me.SALERETURNCHALLAN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SALERETURNCHALLANADD, Me.SALERETURNCHALLANEDIT, Me.ToolStripSeparator106})
@@ -6992,7 +7004,7 @@ Partial Class MDIMain
         '
         'YARNMODULE_MENU
         '
-        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BEAMENTRY_MASTER, Me.ToolStripSeparator339, Me.GreyReceived_MENU, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.TOOLSTRIPYARNDYEINGPROGRAM, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNSTOCKADJUSTMENT_MASTER, Me.YARNLOAN_MASTER, Me.YARNRECDTOOLSTRIP, Me.YARNLOOMEFFICIENCY_MASTER})
+        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BEAMENTRY_MASTER, Me.ToolStripSeparator339, Me.GreyReceived_MENU, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.TOOLSTRIPYARNDYEINGPROGRAM, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNSTOCKADJUSTMENT_MASTER, Me.YARNLOAN_MASTER, Me.YARNRECDTOOLSTRIP, Me.YARNLOOMEFFICIENCY_MASTER, Me.GreyJobWorkToolStripMenuItem})
         Me.YARNMODULE_MENU.Name = "YARNMODULE_MENU"
         Me.YARNMODULE_MENU.Size = New System.Drawing.Size(87, 20)
         Me.YARNMODULE_MENU.Text = "Yarn Module"
@@ -9692,24 +9704,50 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'TASKCHECKLIST_MASTER
+        'GreyJobWorkToolStripMenuItem
         '
-        Me.TASKCHECKLIST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TASKCHECKADD, Me.TASKCHECKEDIT})
-        Me.TASKCHECKLIST_MASTER.Name = "TASKCHECKLIST_MASTER"
-        Me.TASKCHECKLIST_MASTER.Size = New System.Drawing.Size(221, 22)
-        Me.TASKCHECKLIST_MASTER.Text = "Task Check Master"
+        Me.GreyJobWorkToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GreyJobOutToolStripMenuItem, Me.GreyJobInToolStripMenuItem})
+        Me.GreyJobWorkToolStripMenuItem.Name = "GreyJobWorkToolStripMenuItem"
+        Me.GreyJobWorkToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.GreyJobWorkToolStripMenuItem.Text = "Grey Job Work"
         '
-        'TASKCHECKADD
+        'GreyJobOutToolStripMenuItem
         '
-        Me.TASKCHECKADD.Name = "TASKCHECKADD"
-        Me.TASKCHECKADD.Size = New System.Drawing.Size(180, 22)
-        Me.TASKCHECKADD.Text = "Add New Entry"
+        Me.GreyJobOutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBOUTADD, Me.GREYJOBOUTEDIT})
+        Me.GreyJobOutToolStripMenuItem.Name = "GreyJobOutToolStripMenuItem"
+        Me.GreyJobOutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GreyJobOutToolStripMenuItem.Text = "Grey Job Out"
         '
-        'TASKCHECKEDIT
+        'GREYJOBOUTADD
         '
-        Me.TASKCHECKEDIT.Name = "TASKCHECKEDIT"
-        Me.TASKCHECKEDIT.Size = New System.Drawing.Size(180, 22)
-        Me.TASKCHECKEDIT.Text = "Edit Existing Entry"
+        Me.GREYJOBOUTADD.Name = "GREYJOBOUTADD"
+        Me.GREYJOBOUTADD.Size = New System.Drawing.Size(181, 22)
+        Me.GREYJOBOUTADD.Text = " Add New Job Out "
+        '
+        'GREYJOBOUTEDIT
+        '
+        Me.GREYJOBOUTEDIT.Name = "GREYJOBOUTEDIT"
+        Me.GREYJOBOUTEDIT.Size = New System.Drawing.Size(181, 22)
+        Me.GREYJOBOUTEDIT.Text = "Edit Exixting Job Out"
+        '
+        'GreyJobInToolStripMenuItem
+        '
+        Me.GreyJobInToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBINADD_CLICK, Me.GREYJOBIN_EDIT})
+        Me.GreyJobInToolStripMenuItem.Name = "GreyJobInToolStripMenuItem"
+        Me.GreyJobInToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GreyJobInToolStripMenuItem.Text = "Grey Job In"
+        '
+        'GREYJOBINADD_CLICK
+        '
+        Me.GREYJOBINADD_CLICK.Name = "GREYJOBINADD_CLICK"
+        Me.GREYJOBINADD_CLICK.Size = New System.Drawing.Size(180, 22)
+        Me.GREYJOBINADD_CLICK.Text = "Add new Job In"
+        '
+        'GREYJOBIN_EDIT
+        '
+        Me.GREYJOBIN_EDIT.Name = "GREYJOBIN_EDIT"
+        Me.GREYJOBIN_EDIT.Size = New System.Drawing.Size(180, 22)
+        Me.GREYJOBIN_EDIT.Text = "Edit Existing Job In"
         '
         'MDIMain
         '
@@ -11044,4 +11082,11 @@ Partial Class MDIMain
     Friend WithEvents TASKCHECKADD As ToolStripMenuItem
     Friend WithEvents TASKCHECKEDIT As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator349 As ToolStripSeparator
+    Friend WithEvents GreyJobWorkToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GreyJobOutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GREYJOBOUTADD As ToolStripMenuItem
+    Friend WithEvents GREYJOBOUTEDIT As ToolStripMenuItem
+    Friend WithEvents GreyJobInToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GREYJOBINADD_CLICK As ToolStripMenuItem
+    Friend WithEvents GREYJOBIN_EDIT As ToolStripMenuItem
 End Class
