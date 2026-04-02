@@ -378,7 +378,7 @@ Public Class OpeningStockYarn
                             If Convert.ToBoolean(gridstock.Item(GDONE.Index, i - 1).Value) = False Then
 
                                 'WE WILL CREATE A NEW FUNCTION FOR YARNBARCODEPRINTING
-                                YARNBARCODEPRINTING(gridstock.Item(GBARCODE.Index, i - 1).Value, gridstock.Item(GYARNQUALITY.Index, i - 1).Value, gridstock.Item(GDESIGN.Index, i - 1).Value, gridstock.Item(GSHADE.Index, i - 1).Value, gridstock.Item(GLOTNO.Index, i - 1).Value, gridstock.Item(GLRNO.Index, i - 1).Value, gridstock.Item(GREMARKS.Index, i - 1).Value, Val(gridstock.Item(GWT.Index, i - 1).Value), Val(gridstock.Item(GBAGS.Index, i - 1).Value), gridstock.Item(GRACK.Index, i - 1).Value, TEMPHEADER, gridstock.Item(GBILLNO.Index, i - 1).Value, gridstock.Item(gtoname.Index, i - 1).Value, AccFrom.Date)
+                                BARCODEPRINTING(gridstock.Item(GBARCODE.Index, i - 1).Value, "FRESH", gridstock.Item(GYARNQUALITY.Index, i - 1).Value, gridstock.Item(GMILL.Index, i - 1).Value, gridstock.Item(GDESIGN.Index, i - 1).Value, gridstock.Item(GSHADE.Index, i - 1).Value, "", gridstock.Item(GLOTNO.Index, i - 1).Value, gridstock.Item(GLRNO.Index, i - 1).Value, gridstock.Item(GREMARKS.Index, i - 1).Value, Val(gridstock.Item(GWT.Index, i - 1).Value), Val(gridstock.Item(GBAGS.Index, i - 1).Value), 0, gridstock.Item(GRACK.Index, i - 1).Value, "YARN", "", 0, "", "", "", AccFrom.Date)
                             End If
 
                         Next

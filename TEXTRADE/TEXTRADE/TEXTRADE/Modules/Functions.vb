@@ -5509,72 +5509,78 @@ PRINT 1,1")
         End Try
     End Sub
 
-    Sub YARNBARCODEPRINTING(BARCODE As String, ITEMNAME As String, DESIGNNO As String, SHADE As String, LOTNO As String, BOXNO As String, GRIDDESC As String, WT As Double, BAGS As Double, Optional RACK As String = "", Optional TEMPHEADER As String = "", Optional WEAVERCHNO As String = "", Optional WEAVERNAME As String = "", Optional ENTRYDATE As String = "")
-        Try
+    '    Sub YARNBARCODEPRINTING(BARCODE As String, ITEMNAME As String, DESIGNNO As String, SHADE As String, LOTNO As String, BOXNO As String, GRIDDESC As String, WT As Double, BAGS As Double, Optional RACK As String = "", Optional TEMPHEADER As String = "", Optional WEAVERCHNO As String = "", Optional WEAVERNAME As String = "", Optional ENTRYDATE As String = "")
+    '        Try
 
-            Dim dirresults As String = ""
-            Dim oWrite As System.IO.StreamWriter
-            oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
+    '            Dim dirresults As String = ""
+    '            Dim oWrite As System.IO.StreamWriter
+    '            oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
 
-            If ClientName = "SWPL" Then
+    '            If ClientName = "SWPL" Then
 
-                'NORMAL BARCODE
-                oWrite.WriteLine("SIZE 99.10 mm, 50 mm
-GAP 3 mm, 0 mm
-DIRECTION 0,0
-REFERENCE 0,0
-OFFSET 0 mm
-SET PEEL OFF
-SET CUTTER OFF
-SET PARTIAL_CUTTER OFF
-SET TEAR ON
-CLS
-CODEPAGE 1252
-TEXT 754,380,""ROMAN.TTF"",180,1,14,""QUALITY""
-TEXT 488,380,""ROMAN.TTF"",180,1,14,""" & ITEMNAME & """
-TEXT 531,380,""ROMAN.TTF"",180,1,14,"":""
-TEXT 754,326,""ROMAN.TTF"",180,1,14,""DESIGN NO""
-TEXT 754,269,""ROMAN.TTF"",180,1,14,""SHADE""
-TEXT 754,210,""ROMAN.TTF"",180,1,14,""MTRS""
-TEXT 531,210,""ROMAN.TTF"",180,1,14,"":""
-TEXT 531,326,""ROMAN.TTF"",180,1,14,"":""
-TEXT 531,269,""ROMAN.TTF"",180,1,14,"":""
-TEXT 488,326,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
-TEXT 488,269,""ROMAN.TTF"",180,1,14,""" & SHADE & """
-TEXT 488,210,""ROMAN.TTF"",180,1,14,""" & Format(Val(WT), "0.00") & """
-TEXT 196,206,""ROMAN.TTF"",180,1,11,""" & LOTNO & """
-BARCODE 771,155,""128M"",99,0,180,4,8,""" & BARCODE & """
-TEXT 529,50,""ROMAN.TTF"",180,1,14,""" & BARCODE & """
-PRINT 1,1")
-                oWrite.Dispose()
+    '                'NORMAL BARCODE
+    '                oWrite.WriteLine("SIZE 99.1 mm, 76.2 mm
+    'GAP 3 mm, 0 mm
+    'DIRECTION 0,0
+    'REFERENCE 0,0
+    'OFFSET 0 mm
+    'SET PEEL OFF
+    'SET CUTTER OFF
+    'SET PARTIAL_CUTTER OFF
+    'SET TEAR ON
+    'CLS
+    'CODEPAGE 1252
+    'TEXT 743,580,""ROMAN.TTF"",180,1,18,""" & ITEMNAME & """
+    'QRCODE 283,296,L,10,A,180,M2,S7,""" & BARCODE & """
+    'TEXT 258,57,""ROMAN.TTF"",180,1,11,""" & BARCODE & """
+    'TEXT 743,357,""ROMAN.TTF"",180,1,14,""SHADE""
+    'TEXT 565,358,""ROMAN.TTF"",180,1,14,"":""
+    'TEXT 529,362,""ROMAN.TTF"",180,1,18,""" & SHADE & """
+    'TEXT 743,482,""ROMAN.TTF"",180,1,14,""MILL""
+    'TEXT 565,482,""ROMAN.TTF"",180,1,14,"":""
+    'TEXT 529,482,""ROMAN.TTF"",180,1,14,""" & MILLNAME & """
+    'TEXT 743,420,""ROMAN.TTF"",180,1,14,"BOX NO"
+    'TEXT 565,420,""ROMAN.TTF"",180,1,14,":"
+    'TEXT 529,420,""ROMAN.TTF"",180,1,14,"12345678910"
+    'TEXT 691,148,""ROMAN.TTF"",180,1,36,"SWPL"
+    'BAR 40,512, 718, 3
+    'TEXT 743,233,""ROMAN.TTF"",180,1,14,"NETT WT"
+    'TEXT 565,233,""ROMAN.TTF"",180,1,14,":"
+    'TEXT 529,233,""ROMAN.TTF"",180,1,14,"99.250"
+    'TEXT 743,295,""ROMAN.TTF"",180,1,14,"LOT NO"
+    'TEXT 565,295,""ROMAN.TTF"",180,1,14,":"
+    'TEXT 529,295,""ROMAN.TTF"",180,1,14,"L12456789"
+    'PRINT 1,1
+    '")
+    '                oWrite.Dispose()
 
 
-            End If
+    '            End If
 
-            'Printing Barcode
-            Dim psi As New ProcessStartInfo()
-            psi.FileName = "cmd.exe"
-            psi.RedirectStandardInput = False
-            psi.RedirectStandardOutput = True
-            psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
-            'psi.Arguments = "/c print D:\Barcode.txt"    ' specify your command
-            'psi.Arguments = "print /d:\\admin-pc\ARGOX D:\Barcode.txt"    ' specify your command
-            psi.UseShellExecute = False
+    '            'Printing Barcode
+    '            Dim psi As New ProcessStartInfo()
+    '            psi.FileName = "cmd.exe"
+    '            psi.RedirectStandardInput = False
+    '            psi.RedirectStandardOutput = True
+    '            psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
+    '            'psi.Arguments = "/c print D:\Barcode.txt"    ' specify your command
+    '            'psi.Arguments = "print /d:\\admin-pc\ARGOX D:\Barcode.txt"    ' specify your command
+    '            psi.UseShellExecute = False
 
-            Dim proc As Process
-            proc = Process.Start(psi)
-            dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
-            '// do something with result stream
-            proc.WaitForExit()
-            proc.Dispose()
+    '            Dim proc As Process
+    '            proc = Process.Start(psi)
+    '            dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
+    '            '// do something with result stream
+    '            proc.WaitForExit()
+    '            proc.Dispose()
 
-            'THIS LINE IS WRITTEN TO DISPOSE THE BARCODE NOTEPAD OBJECT, WHEN CURSOR COMES DIRECTLY ON NEXTLINE CODE
-            oWrite.Dispose()
+    '            'THIS LINE IS WRITTEN TO DISPOSE THE BARCODE NOTEPAD OBJECT, WHEN CURSOR COMES DIRECTLY ON NEXTLINE CODE
+    '            oWrite.Dispose()
 
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
+    '        Catch ex As Exception
+    '            Throw ex
+    '        End Try
+    '    End Sub
 
 
 
