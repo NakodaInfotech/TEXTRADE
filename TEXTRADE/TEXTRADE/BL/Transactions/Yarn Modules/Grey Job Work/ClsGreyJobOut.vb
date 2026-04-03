@@ -21,7 +21,7 @@ Public Class ClsGreyJobOut
         Dim DTTABLE As DataTable
         Try
             'save SALE order
-            Dim strCommand As String = "SP_TRANS_JOB_JOBOUT_SAVE"
+            Dim strCommand As String = "SP_TRANS_JOB_GREYJOBOUT_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -201,7 +201,7 @@ Public Class ClsGreyJobOut
         Dim intResult As Integer
         Try
             'Update SALE order
-            Dim strCommand As String = "SP_TRANS_JOB_JOBOUT_UPDATE"
+            Dim strCommand As String = "SP_TRANS_JOB_GREYJOBOUT_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -381,7 +381,7 @@ Public Class ClsGreyJobOut
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTJO_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTGREYJO_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JONO", alParaval(0)))
@@ -400,7 +400,7 @@ Public Class ClsGreyJobOut
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_JOB_JOBOUT_DELETE"
+            Dim strCommand As String = "SP_TRANS_JOB_GREYJOBOUT_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JONO", alParaval(0)))
@@ -417,7 +417,7 @@ Public Class ClsGreyJobOut
     Public Function CLOSE() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_JOB_JOBOUT_CLOSE"
+            Dim strCommand As String = "SP_TRANS_JOB_GREYJOBOUT_CLOSE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@JONO", alParaval(0)))
