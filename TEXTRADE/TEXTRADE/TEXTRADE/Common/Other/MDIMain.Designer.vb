@@ -7990,38 +7990,38 @@ Partial Class MDIMain
         '
         Me.GreyJobOutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBOUTADD, Me.GREYJOBOUTEDIT})
         Me.GreyJobOutToolStripMenuItem.Name = "GreyJobOutToolStripMenuItem"
-        Me.GreyJobOutToolStripMenuItem.Size = New System.Drawing.Size(141, 22)
+        Me.GreyJobOutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.GreyJobOutToolStripMenuItem.Text = "Grey Job Out"
         '
         'GREYJOBOUTADD
         '
         Me.GREYJOBOUTADD.Name = "GREYJOBOUTADD"
-        Me.GREYJOBOUTADD.Size = New System.Drawing.Size(181, 22)
+        Me.GREYJOBOUTADD.Size = New System.Drawing.Size(182, 22)
         Me.GREYJOBOUTADD.Text = " Add New Job Out "
         '
         'GREYJOBOUTEDIT
         '
         Me.GREYJOBOUTEDIT.Name = "GREYJOBOUTEDIT"
-        Me.GREYJOBOUTEDIT.Size = New System.Drawing.Size(181, 22)
-        Me.GREYJOBOUTEDIT.Text = "Edit Exixting Job Out"
+        Me.GREYJOBOUTEDIT.Size = New System.Drawing.Size(182, 22)
+        Me.GREYJOBOUTEDIT.Text = "Edit Existing Job Out"
         '
         'GreyJobInToolStripMenuItem
         '
         Me.GreyJobInToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBINADD_CLICK, Me.GREYJOBIN_EDIT})
         Me.GreyJobInToolStripMenuItem.Name = "GreyJobInToolStripMenuItem"
-        Me.GreyJobInToolStripMenuItem.Size = New System.Drawing.Size(141, 22)
+        Me.GreyJobInToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.GreyJobInToolStripMenuItem.Text = "Grey Job In"
         '
         'GREYJOBINADD_CLICK
         '
         Me.GREYJOBINADD_CLICK.Name = "GREYJOBINADD_CLICK"
-        Me.GREYJOBINADD_CLICK.Size = New System.Drawing.Size(174, 22)
+        Me.GREYJOBINADD_CLICK.Size = New System.Drawing.Size(180, 22)
         Me.GREYJOBINADD_CLICK.Text = "Add new Job In"
         '
         'GREYJOBIN_EDIT
         '
         Me.GREYJOBIN_EDIT.Name = "GREYJOBIN_EDIT"
-        Me.GREYJOBIN_EDIT.Size = New System.Drawing.Size(174, 22)
+        Me.GREYJOBIN_EDIT.Size = New System.Drawing.Size(180, 22)
         Me.GREYJOBIN_EDIT.Text = "Edit Existing Job In"
         '
         'AGENCYMODULE_MENU

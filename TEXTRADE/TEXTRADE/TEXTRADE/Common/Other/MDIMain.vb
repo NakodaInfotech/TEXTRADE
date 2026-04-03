@@ -12396,4 +12396,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub GREYJOBOUTADD_Click(sender As Object, e As EventArgs) Handles GREYJOBOUTADD.Click
+        Try
+            Dim OBJYARNJO As New GreyJobOut
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GREYJOBOUTEDIT_Click(sender As Object, e As EventArgs) Handles GREYJOBOUTEDIT.Click
+        Try
+            Dim OBJYARNJO As New GreyJobOutDetails
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
