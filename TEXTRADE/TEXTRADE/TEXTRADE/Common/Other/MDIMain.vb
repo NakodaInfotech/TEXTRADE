@@ -6292,678 +6292,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub UPLOADSTOCKMENU_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UPLOADSTOCKMENU.Click
-
-        'ONE TIME DATA UPLOAD FOR SAFFRON FROM CBS
-        Try
-            If InputBox("Enter Master Password") <> "Infosys@123" Then Exit Sub
-            'upload the files data
-            ''Reading from Excel Woorkbook
-            Dim cPart As Microsoft.Office.Interop.Excel.Range
-            Dim oExcel As Microsoft.Office.Interop.Excel.Application = CreateObject("Excel.Application")
-            Dim oBook As Microsoft.Office.Interop.Excel.Workbook = oExcel.Workbooks.Open("D:\" & InputBox("Enter File Name").ToString.Trim, , False)
-            Dim oSheet As New Microsoft.Office.Interop.Excel.Worksheet
-            oSheet = oBook.Worksheets("Sheet1")
-
-            'GRID
-            Dim ADDITEM As Boolean = True
-            Dim TEMPITEMNAME As String = ""
-
-            Dim DTSAVE As New System.Data.DataTable
-            DTSAVE.Columns.Add("ITEMNAME")
-            DTSAVE.Columns.Add("DESIGN")
-            DTSAVE.Columns.Add("COLOR")
-            DTSAVE.Columns.Add("UNIT")
-            DTSAVE.Columns.Add("BARCODE")
-            DTSAVE.Columns.Add("QTY")
-            DTSAVE.Columns.Add("MTRS")
-            DTSAVE.Columns.Add("HSNCODE")
-            DTSAVE.Columns.Add("PARTYNAME")
-            DTSAVE.Columns.Add("QUALITY")
-            DTSAVE.Columns.Add("LOTNO")
-            DTSAVE.Columns.Add("BALENO")
-            DTSAVE.Columns.Add("REMARKS")
-            DTSAVE.Columns.Add("GODOWN")
-            DTSAVE.Columns.Add("RACKNO")
-            DTSAVE.Columns.Add("DYEINGNAME")
-            DTSAVE.Columns.Add("CUT")
-            DTSAVE.Columns.Add("RATE")
-            DTSAVE.Columns.Add("BILLNO")
-            DTSAVE.Columns.Add("WT")
-            DTSAVE.Columns.Add("CATEGORY")
-            DTSAVE.Columns.Add("PIECETYPE")
-            DTSAVE.Columns.Add("DYEINGJOB")
-            DTSAVE.Columns.Add("CGSTPER")
-            DTSAVE.Columns.Add("SGSTPER")
-            DTSAVE.Columns.Add("IGSTPER")
-
-
-
-            Dim ARR As New ArrayList
-            Dim COLIND As Integer = 0
-            Dim DTROWSAVE As System.Data.DataRow = DTSAVE.NewRow()
-
-
-            Dim FROMROWNO As Integer = Val(InputBox("Enter Start Row No"))
-            Dim TOROWNO As Integer = Val(InputBox("Enter End Row No"))
-
-            For I As Integer = FROMROWNO To TOROWNO
-
-                If oSheet.Range("A" & I.ToString).Text = "PRODUCT TOTAL" Or oSheet.Range("A" & I.ToString).Text = "" Then
-                    ADDITEM = True
-                    GoTo SKIPLINE
-                End If
-
-                If ADDITEM = True Then
-                    If IsDBNull(oSheet.Range("A" & I.ToString).Text) = False Then
-                        DTROWSAVE("ITEMNAME") = oSheet.Range("A" & I.ToString).Text
-                        TEMPITEMNAME = DTROWSAVE("ITEMNAME")
-                        'FOR CBS REMOVE THE COMMENT BELOW
-                        'ADDITEM = False
-                    Else
-                        DTROWSAVE("ITEMNAME") = ""
-                    End If
-                Else
-                    'RETRIEVE SAME ITEMNAME
-                    DTROWSAVE("ITEMNAME") = TEMPITEMNAME
-                End If
-
-
-                If IsDBNull(oSheet.Range("B" & I.ToString).Text) = False Then
-                    DTROWSAVE("DESIGN") = oSheet.Range("B" & I.ToString).Text
-                Else
-                    DTROWSAVE("DESIGN") = ""
-                End If
-
-
-                If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
-                    DTROWSAVE("COLOR") = oSheet.Range("C" & I.ToString).Text
-                Else
-                    DTROWSAVE("COLOR") = ""
-                End If
-
-
-                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
-                    DTROWSAVE("UNIT") = oSheet.Range("D" & I.ToString).Text
-                Else
-                    DTROWSAVE("UNIT") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
-                    DTROWSAVE("BARCODE") = oSheet.Range("E" & I.ToString).Text
-                Else
-                    DTROWSAVE("BARCODE") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("F" & I.ToString).Text) = False Then
-                    DTROWSAVE("QTY") = Val(oSheet.Range("F" & I.ToString).Text)
-                Else
-                    DTROWSAVE("QTY") = 0
-                End If
-
-                If IsDBNull(oSheet.Range("G" & I.ToString).Text) = False Then
-                    DTROWSAVE("MTRS") = Val(oSheet.Range("G" & I.ToString).Text)
-                Else
-                    DTROWSAVE("MTRS") = 0
-                End If
-
-                If IsDBNull(oSheet.Range("H" & I.ToString).Text) = False Then
-                    DTROWSAVE("HSNCODE") = oSheet.Range("H" & I.ToString).Text
-                Else
-                    DTROWSAVE("HSNCODE") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("I" & I.ToString).Text) = False Then
-                    DTROWSAVE("PARTYNAME") = oSheet.Range("I" & I.ToString).Text
-                Else
-                    DTROWSAVE("PARTYNAME") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("J" & I.ToString).Text) = False Then
-                    DTROWSAVE("QUALITY") = oSheet.Range("J" & I.ToString).Text
-                Else
-                    DTROWSAVE("QUALITY") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("K" & I.ToString).Text) = False Then
-                    DTROWSAVE("LOTNO") = oSheet.Range("K" & I.ToString).Text
-                Else
-                    DTROWSAVE("LOTNO") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("L" & I.ToString).Text) = False Then
-                    DTROWSAVE("BALENO") = oSheet.Range("L" & I.ToString).Text
-                Else
-                    DTROWSAVE("BALENO") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("M" & I.ToString).Text) = False Then
-                    DTROWSAVE("REMARKS") = oSheet.Range("M" & I.ToString).Text
-                Else
-                    DTROWSAVE("REMARKS") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("N" & I.ToString).Text) = False Then
-                    DTROWSAVE("GODOWN") = oSheet.Range("N" & I.ToString).Text
-                Else
-                    DTROWSAVE("GODOWN") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("O" & I.ToString).Text) = False Then
-                    DTROWSAVE("RACKNO") = oSheet.Range("O" & I.ToString).Text
-                Else
-                    DTROWSAVE("RACKNO") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("P" & I.ToString).Text) = False Then
-                    DTROWSAVE("DYEINGNAME") = oSheet.Range("P" & I.ToString).Text
-                Else
-                    DTROWSAVE("DYEINGNAME") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("Q" & I.ToString).Text) = False Then
-                    DTROWSAVE("CUT") = oSheet.Range("Q" & I.ToString).Text
-                Else
-                    DTROWSAVE("CUT") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("R" & I.ToString).Text) = False Then
-                    DTROWSAVE("RATE") = Val(oSheet.Range("R" & I.ToString).Text)
-                Else
-                    DTROWSAVE("RATE") = 0
-                End If
-
-                If IsDBNull(oSheet.Range("S" & I.ToString).Text) = False Then
-                    DTROWSAVE("BILLNO") = Val(oSheet.Range("S" & I.ToString).Text)
-                Else
-                    DTROWSAVE("BILLNO") = 0
-                End If
-
-                If IsDBNull(oSheet.Range("T" & I.ToString).Text) = False Then
-                    DTROWSAVE("WT") = Val(oSheet.Range("T" & I.ToString).Text)
-                Else
-                    DTROWSAVE("WT") = 0
-                End If
-
-                If IsDBNull(oSheet.Range("U" & I.ToString).Text) = False Then
-                    DTROWSAVE("CATEGORY") = oSheet.Range("U" & I.ToString).Text
-                Else
-                    DTROWSAVE("CATEGORY") = ""
-                End If
-
-
-                If IsDBNull(oSheet.Range("V" & I.ToString).Text) = False Then
-                    DTROWSAVE("PIECETYPE") = oSheet.Range("V" & I.ToString).Text
-                Else
-                    DTROWSAVE("PIECETYPE") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("W" & I.ToString).Text) = False Then
-                    DTROWSAVE("DYEINGJOB") = oSheet.Range("W" & I.ToString).Text
-                Else
-                    DTROWSAVE("DYEINGJOB") = ""
-                End If
-
-                If IsDBNull(oSheet.Range("X" & I.ToString).Text) = False Then
-                    DTROWSAVE("CGSTPER") = Val(oSheet.Range("X" & I.ToString).Text)
-                Else
-                    DTROWSAVE("CGSTPER") = 0
-                End If
-
-                If IsDBNull(oSheet.Range("Y" & I.ToString).Text) = False Then
-                    DTROWSAVE("SGSTPER") = Val(oSheet.Range("Y" & I.ToString).Text)
-                Else
-                    DTROWSAVE("SGSTPER") = 0
-                End If
-
-                If IsDBNull(oSheet.Range("Z" & I.ToString).Text) = False Then
-                    DTROWSAVE("IGSTPER") = Val(oSheet.Range("Z" & I.ToString).Text)
-                Else
-                    DTROWSAVE("IGSTPER") = 0
-                End If
-
-
-
-                If Val(DTROWSAVE("MTRS")) = 0 Then GoTo SKIPLINE
-
-                Dim ALPARAVAL As New ArrayList
-                Dim OBJCMN As New ClsCommon
-                Dim DTTABLE As New DataTable
-
-
-
-
-
-                'HSN SAVE
-                If DTROWSAVE("HSNCODE") <> "" And Val(DTROWSAVE("CGSTPER")) > 0 And Val(DTROWSAVE("SGSTPER")) > 0 And Val(DTROWSAVE("IGSTPER")) > 0 Then
-                    DTTABLE = OBJCMN.SEARCH("HSN_ID AS HSNCODEID", "", "HSNMASTER", " AND HSN_CODE = '" & DTROWSAVE("HSNCODE") & "' AND HSN_YEARID = " & YearId)
-                    If DTTABLE.Rows.Count = 0 Then
-                        'ADD NEW HSN
-                        Dim OBJHSN As New ClsHSNMaster
-                        OBJHSN.alParaval.Add("Goods")    'HSNTYPE
-                        OBJHSN.alParaval.Add(UCase(DTROWSAVE("HSNCODE")))   'CODE
-                        OBJHSN.alParaval.Add(UCase(DTROWSAVE("HSNCODE")))   'ITEMDESC
-                        OBJHSN.alParaval.Add("") 'DESC
-                        OBJHSN.alParaval.Add(0)  'RATE
-                        OBJHSN.alParaval.Add(0)  'CGST
-                        OBJHSN.alParaval.Add(0)  'SGST
-                        OBJHSN.alParaval.Add(0)  'IGST
-                        OBJHSN.alParaval.Add(0)  'RATE1
-                        OBJHSN.alParaval.Add(0)  'CGST1
-                        OBJHSN.alParaval.Add(0)  'SGST1
-                        OBJHSN.alParaval.Add(0)  'IGST1
-                        OBJHSN.alParaval.Add(0)  'EXPCGST
-                        OBJHSN.alParaval.Add(0)  'EXPSGST
-                        OBJHSN.alParaval.Add(0)  'EXPIGST
-
-                        OBJHSN.alParaval.Add(CmpId)
-                        OBJHSN.alParaval.Add(Userid)
-                        OBJHSN.alParaval.Add(YearId)
-
-
-                        OBJHSN.alParaval.Add("2017-07-01") 'WEFDATE
-                        OBJHSN.alParaval.Add(0)  'GRIDRATE
-                        OBJHSN.alParaval.Add(Val(DTROWSAVE("CGSTPER")))  'GRIDCGST
-                        OBJHSN.alParaval.Add(Val(DTROWSAVE("SGSTPER")))  'GRIDSGST
-                        OBJHSN.alParaval.Add(Val(DTROWSAVE("IGSTPER")))  'GRIDIGST
-
-                        OBJHSN.alParaval.Add(0)  'GRIDRATE1
-                        OBJHSN.alParaval.Add(0)  'GRIDCGST1
-                        OBJHSN.alParaval.Add(0)  'GRIDSGST1
-                        OBJHSN.alParaval.Add(0)  'GRIDIGST1
-                        OBJHSN.alParaval.Add(0)  'GRIDEXPCGST
-                        OBJHSN.alParaval.Add(0)  'GRIDEXPSGST
-                        OBJHSN.alParaval.Add(0)  'GRIDEXPIGST
-
-                        Dim INTRESCAT As Integer = OBJHSN.SAVE()
-                    End If
-                End If
-
-
-
-
-
-
-
-
-                'CHECK WHETHER ITEMNAME IS PRESENT OR NOT IF NOT PRESENT THEN ADD NEW
-                If DTROWSAVE("ITEMNAME") <> "" Then
-                    DTTABLE = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", "ITEMMASTER ", "AND ITEM_NAME = '" & DTROWSAVE("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                    If DTTABLE.Rows.Count = 0 Then
-                        'ADD NEW ITEMNAME 
-                        ALPARAVAL.Clear()
-
-
-                        ALPARAVAL.Add("Finished Goods")
-                        ALPARAVAL.Add(DTROWSAVE("CATEGORY"))   'CATEGORY
-                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME")))        'DISPLAYNAME
-                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME"))) 'ITEMNAME
-
-                        ALPARAVAL.Add("")   'DEPARTMENT
-                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME")))        'CODE
-                        ALPARAVAL.Add(DTROWSAVE("UNIT"))
-                        ALPARAVAL.Add("")   'FOLD
-                        ALPARAVAL.Add(0)    'RATE
-                        ALPARAVAL.Add(0)    'VALUATIONRATE
-                        ALPARAVAL.Add(0)    'TRANSRATE
-                        ALPARAVAL.Add(0)    'CHCKINGRATE
-                        ALPARAVAL.Add(0)    'PACKINGRATE
-                        ALPARAVAL.Add(0)    'DESIGNRATE
-                        ALPARAVAL.Add(0)    'REORDER
-                        ALPARAVAL.Add(0)    'UPPER
-                        ALPARAVAL.Add(0)    'LOWER
-
-                        Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_ID, 0) AS HSNCODEID", "", " HSNMASTER", " AND HSN_CODE = '" & DTROWSAVE("HSNCODE") & "' AND HSN_YEARID = " & YearId)
-                        If DTHSN.Rows.Count > 0 Then ALPARAVAL.Add(DTROWSAVE("HSNCODE")) Else ALPARAVAL.Add(0) 'HSNCODEID
-
-                        ALPARAVAL.Add(0)    'BLOCKED
-                        ALPARAVAL.Add(0)    'HIDEINDESIGN
-
-                        ALPARAVAL.Add("")    'WIDTH
-                        ALPARAVAL.Add("")    'GREYWIDTH
-                        ALPARAVAL.Add(0)    'SHRINKFROM
-                        ALPARAVAL.Add(0)    'SHRINKTO
-                        ALPARAVAL.Add("")   'SELVEDGE
-
-                        ALPARAVAL.Add("")   'RATETYPE
-                        ALPARAVAL.Add("")   'RATE
-
-                        ALPARAVAL.Add("")   'YARNQUALITY
-                        ALPARAVAL.Add("")   'PER
-
-
-                        ALPARAVAL.Add("")   'GRIDSRNO
-                        ALPARAVAL.Add("")   'PROCESS
-
-                        ALPARAVAL.Add("")   'REMARKS
-                        ALPARAVAL.Add("MERCHANT")
-
-                        ALPARAVAL.Add(DBNull.Value)
-                        ALPARAVAL.Add("")   'WARP
-                        ALPARAVAL.Add("")   'WEFT
-
-                        ALPARAVAL.Add(CmpId)
-                        ALPARAVAL.Add(Locationid)
-                        ALPARAVAL.Add(Userid)
-                        ALPARAVAL.Add(YearId)
-                        ALPARAVAL.Add(0)
-
-
-                        ALPARAVAL.Add("")   'WARPSRNO
-                        ALPARAVAL.Add("")   'WARPQUALITY
-                        ALPARAVAL.Add("")   'WARPSHADE
-                        ALPARAVAL.Add("")   'WARPENDS
-                        ALPARAVAL.Add("")   'WARPWT
-                        ALPARAVAL.Add("")   'WARPRATE
-                        ALPARAVAL.Add("")   'WARPAMOUNT
-
-
-
-
-                        ALPARAVAL.Add(0)    'WARPTL
-                        ALPARAVAL.Add(0)    'WEFTTL
-                        ALPARAVAL.Add(0)    'REED
-                        ALPARAVAL.Add(0)    'REEDSPACE
-                        ALPARAVAL.Add(0)    'PICKS
-                        ALPARAVAL.Add(0)    'TOTALWT
-                        ALPARAVAL.Add(0)    'TOTALWARPWT
-                        ALPARAVAL.Add(0)    'TOTALWEFTWT
-                        ALPARAVAL.Add("")   'WEAVE
-                        ALPARAVAL.Add("")   'GREY CATEGORY
-
-                        ALPARAVAL.Add(0)    'ACTUALWT
-                        ALPARAVAL.Add(0)    'ACTUALAMT
-                        ALPARAVAL.Add(0)    'DHARAPER
-                        ALPARAVAL.Add(0)    'DHARAAMT
-                        ALPARAVAL.Add(0)    'WASTAGEPER
-                        ALPARAVAL.Add(0)    'WASTAGEAMT
-                        ALPARAVAL.Add(0)    'WEAVINGCHGS
-                        ALPARAVAL.Add(0)    'WEAVINGAMT
-                        ALPARAVAL.Add(0)    'GSTPER
-                        ALPARAVAL.Add(0)    'GSTAMT
-                        ALPARAVAL.Add(0)    'AMOUNT
-                        ALPARAVAL.Add(0)    'TOTALGSTPER
-                        ALPARAVAL.Add(0)    'TOTALAMT
-                        ALPARAVAL.Add(0)    'WARPTOTALAMT
-                        ALPARAVAL.Add(0)    'WEFTTOTALAMT
-
-                        ALPARAVAL.Add("")   'COLORNO
-                        ALPARAVAL.Add("")   'COLORSRNO
-                        ALPARAVAL.Add(0)    'VALUELOSSPER
-                        ALPARAVAL.Add("")   'COSTCENTERNAME
-                        ALPARAVAL.Add(0)    'ITEM GSM
-                        ALPARAVAL.Add(0)    'ITEM PERCENT
-                        ALPARAVAL.Add(0)    'GARMENT
-                        ALPARAVAL.Add(0)    'TOTALBEAMENDS
-                        ALPARAVAL.Add(0)    'TOTALWEFTENDS
-
-                        ALPARAVAL.Add(0)    'SHADESRNO
-                        ALPARAVAL.Add(0)    'SHADECOLORID
-
-                        ALPARAVAL.Add(0)    'SHADEITEMSRNO
-                        ALPARAVAL.Add(0)    'SHADEITEMID
-                        ALPARAVAL.Add(0)    'SHADEDESIGNID
-                        ALPARAVAL.Add(0)    'SHADEITEMCOLORID
-                        ALPARAVAL.Add(0)    'SHADEMTRS
-                        ALPARAVAL.Add(0)    'SHADEsrno
-
-                        ALPARAVAL.Add("")   'WEFTSRNO
-                        ALPARAVAL.Add("")   'WEFTQUALITY
-                        ALPARAVAL.Add("")   'WEFTSHADE
-                        ALPARAVAL.Add("")   'WEFTPICK
-                        ALPARAVAL.Add("")   'WEFTWT
-                        ALPARAVAL.Add("")   'WEFTRATE
-                        ALPARAVAL.Add("")   'WEFTAMOUNT
-                        ALPARAVAL.Add(0)    'WEFTSHADESRNO
-
-
-                        Dim objclsItemMaster As New clsItemmaster
-                        objclsItemMaster.alParaval = ALPARAVAL
-                        Dim IntResult As Integer = objclsItemMaster.SAVE()
-
-                    End If
-                End If
-
-
-                'DESIGN SAVE
-                If DTROWSAVE("DESIGN") <> "" Then
-                    DTTABLE = OBJCMN.SEARCH("DESIGN_ID AS DESIGNID", "", "DESIGNMASTER", " AND DESIGN_NO = '" & DTROWSAVE("DESIGN") & "' AND DESIGN_YEARID = " & YearId)
-                    If DTTABLE.Rows.Count = 0 Then
-                        'ADD NEW DESIGN
-                        Dim OBJDESIGN As New ClsDesignMaster
-                        OBJDESIGN.alParaval.Add(UCase(DTROWSAVE("DESIGN")))
-                        OBJDESIGN.alParaval.Add("") 'MILLNAME
-                        OBJDESIGN.alParaval.Add("") 'CADNO
-                        OBJDESIGN.alParaval.Add(0)  'PURRATE
-                        OBJDESIGN.alParaval.Add(0)  'SALERATE
-                        OBJDESIGN.alParaval.Add(0)  'WRATE
-                        OBJDESIGN.alParaval.Add("") 'REMARKS
-
-                        OBJDESIGN.alParaval.Add(0)  'FABRIC
-                        OBJDESIGN.alParaval.Add(0)  'DYEING
-                        OBJDESIGN.alParaval.Add(0)  'JOBWORK
-                        OBJDESIGN.alParaval.Add(0)  'FINISHING
-                        OBJDESIGN.alParaval.Add(0)  'EXTRA
-                        OBJDESIGN.alParaval.Add(0)  'TOTAL
-
-                        OBJDESIGN.alParaval.Add("") 'ITEM
-                        OBJDESIGN.alParaval.Add(0)  'BLOCKED
-
-                        OBJDESIGN.alParaval.Add(CmpId)
-                        OBJDESIGN.alParaval.Add(Locationid)
-                        OBJDESIGN.alParaval.Add(Userid)
-                        OBJDESIGN.alParaval.Add(YearId)
-                        OBJDESIGN.alParaval.Add(0)
-
-                        OBJDESIGN.alParaval.Add(DBNull.Value)
-
-                        OBJDESIGN.alParaval.Add("") 'GRIDSRNO
-                        OBJDESIGN.alParaval.Add("") 'BASE
-                        OBJDESIGN.alParaval.Add("") 'PRINT
-                        OBJDESIGN.alParaval.Add("") 'COLOR
-                        OBJDESIGN.alParaval.Add(0) 'COLORBLOCKED
-                        OBJDESIGN.alParaval.Add("") 'SHADETYPE
-
-                        OBJDESIGN.alParaval.Add("")   'LINE1
-                        OBJDESIGN.alParaval.Add("")   'LINE2
-                        OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
-                        OBJDESIGN.alParaval.Add("")    'DESIGNER
-
-
-
-
-                        Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
-                    End If
-                End If
-
-
-
-                'COLOR SAVE
-                If DTROWSAVE("COLOR") <> "" Then
-                    DTTABLE = OBJCMN.SEARCH("COLOR_ID AS COLORID", "", "COLORMASTER", " AND COLOR_NAME = '" & DTROWSAVE("COLOR") & "' AND COLOR_YEARID = " & YearId)
-                    If DTTABLE.Rows.Count = 0 Then
-                        'ADD NEW DESIGN
-                        Dim OBJCOLOR As New ClsColorMaster
-                        OBJCOLOR.alParaval.Add(UCase(DTROWSAVE("COLOR")))
-                        OBJCOLOR.alParaval.Add("")
-                        OBJCOLOR.alParaval.Add(CmpId)
-                        OBJCOLOR.alParaval.Add(Locationid)
-                        OBJCOLOR.alParaval.Add(Userid)
-                        OBJCOLOR.alParaval.Add(YearId)
-                        OBJCOLOR.alParaval.Add(0)
-
-                        Dim INTRESCAT As Integer = OBJCOLOR.save()
-                    End If
-                End If
-
-
-
-                'QUALITY SAVE
-                If DTROWSAVE("QUALITY") <> "" Then
-                    DTTABLE = OBJCMN.SEARCH("QUALITY_ID AS QUALITYID", "", "QUALITYMASTER", " AND QUALITY_NAME = '" & DTROWSAVE("QUALITY") & "' AND QUALITY_YEARID = " & YearId)
-                    If DTTABLE.Rows.Count = 0 Then
-                        'ADD NEW QUALITY
-                        Dim OBJQUALITY As New ClsQualityMaster
-                        OBJQUALITY.alParaval.Add(UCase(DTROWSAVE("QUALITY")))
-                        OBJQUALITY.alParaval.Add("")  'PROCECSS
-                        OBJQUALITY.alParaval.Add("")  'UNIT
-                        OBJQUALITY.alParaval.Add("")  'ITEMNAME
-                        OBJQUALITY.alParaval.Add(0) 'REED
-                        OBJQUALITY.alParaval.Add(0)  'PIK
-                        OBJQUALITY.alParaval.Add("")  'COUNT
-                        OBJQUALITY.alParaval.Add(0)  'WIDTH
-                        OBJQUALITY.alParaval.Add("") 'REMAKS
-
-                        OBJQUALITY.alParaval.Add("") 'WARP
-                        OBJQUALITY.alParaval.Add("") 'WEFT
-                        OBJQUALITY.alParaval.Add("") 'SELVEDGE
-
-
-                        OBJQUALITY.alParaval.Add(CmpId)
-                        OBJQUALITY.alParaval.Add(Locationid)
-                        OBJQUALITY.alParaval.Add(Userid)
-                        OBJQUALITY.alParaval.Add(YearId)
-                        OBJQUALITY.alParaval.Add(0)
-                        OBJQUALITY.alParaval.Add(DBNull.Value)
-                        Dim INTRESCAT As Integer = OBJQUALITY.save()
-                    End If
-                End If
-
-
-
-
-                'RACK SAVE
-                If DTROWSAVE("RACKNO") <> "" Then
-                    DTTABLE = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & DTROWSAVE("RACKNO") & "' AND RACK_YEARID = " & YearId)
-                    If DTTABLE.Rows.Count = 0 Then
-                        'ADD NEW DESIGN
-                        Dim OBJRACK As New ClsRackMaster
-                        OBJRACK.alParaval.Add(UCase(DTROWSAVE("RACKNO")))
-                        OBJRACK.alParaval.Add("")
-                        OBJRACK.alParaval.Add("")   'CATEGORY
-                        OBJRACK.alParaval.Add(CmpId)
-                        OBJRACK.alParaval.Add(Userid)
-                        OBJRACK.alParaval.Add(YearId)
-
-                        Dim INTRESCAT As Integer = OBJRACK.SAVE()
-                    End If
-                End If
-
-
-
-                'PIECETYPE SAVE
-                If DTROWSAVE("PIECETYPE") <> "" Then
-                    DTTABLE = OBJCMN.SEARCH("PIECETYPE_ID AS PIECETYPEID", "", "PIECETYPEMASTER", " AND PIECETYPE_NAME = '" & DTROWSAVE("PIECETYPE") & "' AND PIECETYPE_YEARID = " & YearId)
-                    If DTTABLE.Rows.Count = 0 Then
-                        'ADD NEW PIECETYPE
-                        Dim OBJPIECETYPE As New ClsPieceTypeMaster
-                        OBJPIECETYPE.alParaval.Add(UCase(DTROWSAVE("PIECETYPE")))
-                        OBJPIECETYPE.alParaval.Add("")
-                        OBJPIECETYPE.alParaval.Add(CmpId)
-                        OBJPIECETYPE.alParaval.Add(0)
-                        OBJPIECETYPE.alParaval.Add(Userid)
-                        OBJPIECETYPE.alParaval.Add(YearId)
-                        OBJPIECETYPE.alParaval.Add(0)   'TRANSFER
-
-                        Dim INTRESCAT As Integer = OBJPIECETYPE.save()
-                    End If
-                End If
-
-
-
-                'check whether ITEMNAME is already present or not
-                DTTABLE = OBJCMN.SEARCH("SM_BARCODE AS BARCODE", "", "STOCKMASTER ", " AND SM_BARCODE = '" & DTROWSAVE("BARCODE") & "' AND SM_YEARID = " & YearId)
-                If DTTABLE.Rows.Count > 0 Then GoTo SKIPLINE
-
-
-
-
-                'IF DYEINGJONB IS '' THEN ADD DYEING
-                If DTROWSAVE("DYEINGJOB") = "" Then DTROWSAVE("DYEINGJOB") = "DYEING"
-
-
-
-                'ADD IN STOCKMASTER
-                ALPARAVAL.Clear()
-                Dim OBJSM As New ClsStockMaster
-
-                ALPARAVAL.Add(AccFrom.Date)
-                ALPARAVAL.Add("INHOUSE")
-
-                ALPARAVAL.Add(I)
-                ALPARAVAL.Add(DTROWSAVE("LOTNO"))               'LOTNO
-                If DTROWSAVE("PIECETYPE") = "" Then ALPARAVAL.Add("FRESH") Else ALPARAVAL.Add(DTROWSAVE("PIECETYPE"))
-                ALPARAVAL.Add(DTROWSAVE("ITEMNAME"))
-                ALPARAVAL.Add(DTROWSAVE("QUALITY"))    'QUALITY
-                ALPARAVAL.Add(DTROWSAVE("DESIGN"))               'DESIGNNO
-                ALPARAVAL.Add(DTROWSAVE("COLOR"))               'COLOR    
-                ALPARAVAL.Add("")               'PROCESS
-                ALPARAVAL.Add(DTROWSAVE("PARTYNAME"))               'NAME
-                ALPARAVAL.Add(DTROWSAVE("DYEINGNAME"))               'TONAME
-                ALPARAVAL.Add(DTROWSAVE("BILLNO"))                'BILLNO
-                ALPARAVAL.Add(DTROWSAVE("GODOWN"))         'GODOWN
-                If Val(DTROWSAVE("CUT")) > 0 Then ALPARAVAL.Add(Val(DTROWSAVE("CUT"))) Else ALPARAVAL.Add(Val(DTROWSAVE("MTRS")))   'CUT
-                ALPARAVAL.Add(Val(DTROWSAVE("WT")))                    'WT
-                ALPARAVAL.Add(DTROWSAVE("UNIT"))
-                ALPARAVAL.Add(Val(DTROWSAVE("QTY")))
-                ALPARAVAL.Add(Val(DTROWSAVE("MTRS")))
-                ALPARAVAL.Add("") 'PER
-                ALPARAVAL.Add(DTROWSAVE("RACKNO"))                    'RACK
-                ALPARAVAL.Add("")                    'SHELF
-                ALPARAVAL.Add(Val(DTROWSAVE("RATE"))) 'RATE
-                ALPARAVAL.Add(Format(Val(DTROWSAVE("RATE")) * Val(DTROWSAVE("MTRS")), "0.00"))                    'AMOUNT
-                ALPARAVAL.Add("")                   'ADDLESS
-                ALPARAVAL.Add(0)                   'NETTRATE
-                ALPARAVAL.Add("")                   'PARTYCHALLANNO
-                ALPARAVAL.Add(DTROWSAVE("BALENO"))                   'BALENO
-                ALPARAVAL.Add("")                   'GRIDREMARKS
-
-                ALPARAVAL.Add(DTROWSAVE("DYEINGJOB"))    'DYEINGJOB
-                ALPARAVAL.Add("")                   'REMARKS
-                ALPARAVAL.Add("")                   'LRNO
-
-                ALPARAVAL.Add(DTROWSAVE("BARCODE"))
-
-                ALPARAVAL.Add(CmpId)
-                ALPARAVAL.Add(Locationid)
-                ALPARAVAL.Add(Userid)
-                ALPARAVAL.Add(YearId)
-                ALPARAVAL.Add(0)
-                ALPARAVAL.Add(0)    'PROGRAM DONE
-
-                OBJSM.alParaval = ALPARAVAL
-                DTTABLE = OBJSM.save()
-
-                'If DTROWSAVE("BARCODE") = "1609002784" Then
-                '    MsgBox("A")
-                'End If
-                DTROWSAVE = DTSAVE.NewRow()
-
-SKIPLINE:
-            Next
-
-            'Dim DV As DataView = gridBANKRECO.DataSource
-            'Dim DTNEW As DataTable = DV.Table
-            'If DT.Rows.Count > 0 Then
-            '    For Each ROW As System.Data.DataRow In DT.Rows
-            '        For Each DTNEWROW As DataRow In DTNEW.Rows
-            '            If ROW("CHQNO") = DTNEWROW("ChqNo") And (Val(ROW("AMOUNT")) = Val(DTNEWROW("dr")) Or Val(ROW("AMOUNT")) = Val(DTNEWROW("cr"))) Then
-            '                'If Format(Convert.ToDateTime(DTNEWROW("BillDate")).Date, "dd/MM/yyyy") <= Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy") Then DTNEWROW("RecoDate") = Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy")
-            '                If Format(Convert.ToDateTime(DTNEWROW("BillDate")).Date, "dd/MM/yyyy") <= Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy") Then DTNEWROW("RecoDate") = ROW("DATE")
-            '            End If
-            '        Next
-            '    Next
-            'End If
-
-
-            oBook.Close()
-
-            Exit Sub
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub UPLOADOPENINGBILL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UPLOADOPENINGBILLMENU.Click
 
         'ONE TIME DATA UPLOAD FOR OPENINGBILL
@@ -11715,6 +11043,1355 @@ SKIPLINE:
             Dim OBJYARNJO As New GreyJobInDetails
             OBJYARNJO.MdiParent = Me
             OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub OPSTOCKGREYINHOUSE_Click(sender As Object, e As EventArgs) Handles OPSTOCKGREYINHOUSE.Click
+        Try
+            Dim OBJ As New OpeningStockGrey
+            OBJ.FRMSTRING = "INHOUSE"
+            OBJ.MdiParent = Me
+            OBJ.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub OPSTOCKGREYATPARTY_Click(sender As Object, e As EventArgs) Handles OPSTOCKGREYATPARTY.Click
+        Try
+            Dim OBJ As New OpeningStockGrey
+            OBJ.FRMSTRING = "JOBBERSTOCK"
+            OBJ.MdiParent = Me
+            OBJ.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub UPLOADSTOCK_FINISHED_Click(sender As Object, e As EventArgs) Handles UPLOADSTOCK_FINISHED.Click
+
+        'ONE TIME DATA UPLOAD FOR SAFFRON FROM CBS
+        Try
+            If InputBox("Enter Master Password") <> "Infosys@123" Then Exit Sub
+            'upload the files data
+            ''Reading from Excel Woorkbook
+            Dim cPart As Microsoft.Office.Interop.Excel.Range
+            Dim oExcel As Microsoft.Office.Interop.Excel.Application = CreateObject("Excel.Application")
+            Dim oBook As Microsoft.Office.Interop.Excel.Workbook = oExcel.Workbooks.Open("D:\" & InputBox("Enter File Name").ToString.Trim, , False)
+            Dim oSheet As New Microsoft.Office.Interop.Excel.Worksheet
+            oSheet = oBook.Worksheets("Sheet1")
+
+            'GRID
+            Dim ADDITEM As Boolean = True
+            Dim TEMPITEMNAME As String = ""
+
+            Dim DTSAVE As New System.Data.DataTable
+            DTSAVE.Columns.Add("ITEMNAME")
+            DTSAVE.Columns.Add("DESIGN")
+            DTSAVE.Columns.Add("COLOR")
+            DTSAVE.Columns.Add("UNIT")
+            DTSAVE.Columns.Add("BARCODE")
+            DTSAVE.Columns.Add("QTY")
+            DTSAVE.Columns.Add("MTRS")
+            DTSAVE.Columns.Add("HSNCODE")
+            DTSAVE.Columns.Add("PARTYNAME")
+            DTSAVE.Columns.Add("QUALITY")
+            DTSAVE.Columns.Add("LOTNO")
+            DTSAVE.Columns.Add("BALENO")
+            DTSAVE.Columns.Add("REMARKS")
+            DTSAVE.Columns.Add("GODOWN")
+            DTSAVE.Columns.Add("RACKNO")
+            DTSAVE.Columns.Add("DYEINGNAME")
+            DTSAVE.Columns.Add("CUT")
+            DTSAVE.Columns.Add("RATE")
+            DTSAVE.Columns.Add("BILLNO")
+            DTSAVE.Columns.Add("WT")
+            DTSAVE.Columns.Add("CATEGORY")
+            DTSAVE.Columns.Add("PIECETYPE")
+            DTSAVE.Columns.Add("DYEINGJOB")
+            DTSAVE.Columns.Add("CGSTPER")
+            DTSAVE.Columns.Add("SGSTPER")
+            DTSAVE.Columns.Add("IGSTPER")
+
+
+
+            Dim ARR As New ArrayList
+            Dim COLIND As Integer = 0
+            Dim DTROWSAVE As System.Data.DataRow = DTSAVE.NewRow()
+
+
+            Dim FROMROWNO As Integer = Val(InputBox("Enter Start Row No"))
+            Dim TOROWNO As Integer = Val(InputBox("Enter End Row No"))
+
+            For I As Integer = FROMROWNO To TOROWNO
+
+                If oSheet.Range("A" & I.ToString).Text = "PRODUCT TOTAL" Or oSheet.Range("A" & I.ToString).Text = "" Then
+                    ADDITEM = True
+                    GoTo SKIPLINE
+                End If
+
+                If ADDITEM = True Then
+                    If IsDBNull(oSheet.Range("A" & I.ToString).Text) = False Then
+                        DTROWSAVE("ITEMNAME") = oSheet.Range("A" & I.ToString).Text
+                        TEMPITEMNAME = DTROWSAVE("ITEMNAME")
+                        'FOR CBS REMOVE THE COMMENT BELOW
+                        'ADDITEM = False
+                    Else
+                        DTROWSAVE("ITEMNAME") = ""
+                    End If
+                Else
+                    'RETRIEVE SAME ITEMNAME
+                    DTROWSAVE("ITEMNAME") = TEMPITEMNAME
+                End If
+
+
+                If IsDBNull(oSheet.Range("B" & I.ToString).Text) = False Then
+                    DTROWSAVE("DESIGN") = oSheet.Range("B" & I.ToString).Text
+                Else
+                    DTROWSAVE("DESIGN") = ""
+                End If
+
+
+                If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
+                    DTROWSAVE("COLOR") = oSheet.Range("C" & I.ToString).Text
+                Else
+                    DTROWSAVE("COLOR") = ""
+                End If
+
+
+                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
+                    DTROWSAVE("UNIT") = oSheet.Range("D" & I.ToString).Text
+                Else
+                    DTROWSAVE("UNIT") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
+                    DTROWSAVE("BARCODE") = oSheet.Range("E" & I.ToString).Text
+                Else
+                    DTROWSAVE("BARCODE") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("F" & I.ToString).Text) = False Then
+                    DTROWSAVE("QTY") = Val(oSheet.Range("F" & I.ToString).Text)
+                Else
+                    DTROWSAVE("QTY") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("G" & I.ToString).Text) = False Then
+                    DTROWSAVE("MTRS") = Val(oSheet.Range("G" & I.ToString).Text)
+                Else
+                    DTROWSAVE("MTRS") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("H" & I.ToString).Text) = False Then
+                    DTROWSAVE("HSNCODE") = oSheet.Range("H" & I.ToString).Text
+                Else
+                    DTROWSAVE("HSNCODE") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("I" & I.ToString).Text) = False Then
+                    DTROWSAVE("PARTYNAME") = oSheet.Range("I" & I.ToString).Text
+                Else
+                    DTROWSAVE("PARTYNAME") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("J" & I.ToString).Text) = False Then
+                    DTROWSAVE("QUALITY") = oSheet.Range("J" & I.ToString).Text
+                Else
+                    DTROWSAVE("QUALITY") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("K" & I.ToString).Text) = False Then
+                    DTROWSAVE("LOTNO") = oSheet.Range("K" & I.ToString).Text
+                Else
+                    DTROWSAVE("LOTNO") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("L" & I.ToString).Text) = False Then
+                    DTROWSAVE("BALENO") = oSheet.Range("L" & I.ToString).Text
+                Else
+                    DTROWSAVE("BALENO") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("M" & I.ToString).Text) = False Then
+                    DTROWSAVE("REMARKS") = oSheet.Range("M" & I.ToString).Text
+                Else
+                    DTROWSAVE("REMARKS") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("N" & I.ToString).Text) = False Then
+                    DTROWSAVE("GODOWN") = oSheet.Range("N" & I.ToString).Text
+                Else
+                    DTROWSAVE("GODOWN") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("O" & I.ToString).Text) = False Then
+                    DTROWSAVE("RACKNO") = oSheet.Range("O" & I.ToString).Text
+                Else
+                    DTROWSAVE("RACKNO") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("P" & I.ToString).Text) = False Then
+                    DTROWSAVE("DYEINGNAME") = oSheet.Range("P" & I.ToString).Text
+                Else
+                    DTROWSAVE("DYEINGNAME") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("Q" & I.ToString).Text) = False Then
+                    DTROWSAVE("CUT") = oSheet.Range("Q" & I.ToString).Text
+                Else
+                    DTROWSAVE("CUT") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("R" & I.ToString).Text) = False Then
+                    DTROWSAVE("RATE") = Val(oSheet.Range("R" & I.ToString).Text)
+                Else
+                    DTROWSAVE("RATE") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("S" & I.ToString).Text) = False Then
+                    DTROWSAVE("BILLNO") = Val(oSheet.Range("S" & I.ToString).Text)
+                Else
+                    DTROWSAVE("BILLNO") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("T" & I.ToString).Text) = False Then
+                    DTROWSAVE("WT") = Val(oSheet.Range("T" & I.ToString).Text)
+                Else
+                    DTROWSAVE("WT") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("U" & I.ToString).Text) = False Then
+                    DTROWSAVE("CATEGORY") = oSheet.Range("U" & I.ToString).Text
+                Else
+                    DTROWSAVE("CATEGORY") = ""
+                End If
+
+
+                If IsDBNull(oSheet.Range("V" & I.ToString).Text) = False Then
+                    DTROWSAVE("PIECETYPE") = oSheet.Range("V" & I.ToString).Text
+                Else
+                    DTROWSAVE("PIECETYPE") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("W" & I.ToString).Text) = False Then
+                    DTROWSAVE("DYEINGJOB") = oSheet.Range("W" & I.ToString).Text
+                Else
+                    DTROWSAVE("DYEINGJOB") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("X" & I.ToString).Text) = False Then
+                    DTROWSAVE("CGSTPER") = Val(oSheet.Range("X" & I.ToString).Text)
+                Else
+                    DTROWSAVE("CGSTPER") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("Y" & I.ToString).Text) = False Then
+                    DTROWSAVE("SGSTPER") = Val(oSheet.Range("Y" & I.ToString).Text)
+                Else
+                    DTROWSAVE("SGSTPER") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("Z" & I.ToString).Text) = False Then
+                    DTROWSAVE("IGSTPER") = Val(oSheet.Range("Z" & I.ToString).Text)
+                Else
+                    DTROWSAVE("IGSTPER") = 0
+                End If
+
+
+
+                If Val(DTROWSAVE("MTRS")) = 0 Then GoTo SKIPLINE
+
+                Dim ALPARAVAL As New ArrayList
+                Dim OBJCMN As New ClsCommon
+                Dim DTTABLE As New DataTable
+
+
+
+
+
+                'HSN SAVE
+                If DTROWSAVE("HSNCODE") <> "" And Val(DTROWSAVE("CGSTPER")) > 0 And Val(DTROWSAVE("SGSTPER")) > 0 And Val(DTROWSAVE("IGSTPER")) > 0 Then
+                    DTTABLE = OBJCMN.SEARCH("HSN_ID AS HSNCODEID", "", "HSNMASTER", " AND HSN_CODE = '" & DTROWSAVE("HSNCODE") & "' AND HSN_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW HSN
+                        Dim OBJHSN As New ClsHSNMaster
+                        OBJHSN.alParaval.Add("Goods")    'HSNTYPE
+                        OBJHSN.alParaval.Add(UCase(DTROWSAVE("HSNCODE")))   'CODE
+                        OBJHSN.alParaval.Add(UCase(DTROWSAVE("HSNCODE")))   'ITEMDESC
+                        OBJHSN.alParaval.Add("") 'DESC
+                        OBJHSN.alParaval.Add(0)  'RATE
+                        OBJHSN.alParaval.Add(0)  'CGST
+                        OBJHSN.alParaval.Add(0)  'SGST
+                        OBJHSN.alParaval.Add(0)  'IGST
+                        OBJHSN.alParaval.Add(0)  'RATE1
+                        OBJHSN.alParaval.Add(0)  'CGST1
+                        OBJHSN.alParaval.Add(0)  'SGST1
+                        OBJHSN.alParaval.Add(0)  'IGST1
+                        OBJHSN.alParaval.Add(0)  'EXPCGST
+                        OBJHSN.alParaval.Add(0)  'EXPSGST
+                        OBJHSN.alParaval.Add(0)  'EXPIGST
+
+                        OBJHSN.alParaval.Add(CmpId)
+                        OBJHSN.alParaval.Add(Userid)
+                        OBJHSN.alParaval.Add(YearId)
+
+
+                        OBJHSN.alParaval.Add("2017-07-01") 'WEFDATE
+                        OBJHSN.alParaval.Add(0)  'GRIDRATE
+                        OBJHSN.alParaval.Add(Val(DTROWSAVE("CGSTPER")))  'GRIDCGST
+                        OBJHSN.alParaval.Add(Val(DTROWSAVE("SGSTPER")))  'GRIDSGST
+                        OBJHSN.alParaval.Add(Val(DTROWSAVE("IGSTPER")))  'GRIDIGST
+
+                        OBJHSN.alParaval.Add(0)  'GRIDRATE1
+                        OBJHSN.alParaval.Add(0)  'GRIDCGST1
+                        OBJHSN.alParaval.Add(0)  'GRIDSGST1
+                        OBJHSN.alParaval.Add(0)  'GRIDIGST1
+                        OBJHSN.alParaval.Add(0)  'GRIDEXPCGST
+                        OBJHSN.alParaval.Add(0)  'GRIDEXPSGST
+                        OBJHSN.alParaval.Add(0)  'GRIDEXPIGST
+
+                        Dim INTRESCAT As Integer = OBJHSN.SAVE()
+                    End If
+                End If
+
+
+
+
+
+
+
+
+                'CHECK WHETHER ITEMNAME IS PRESENT OR NOT IF NOT PRESENT THEN ADD NEW
+                If DTROWSAVE("ITEMNAME") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", "ITEMMASTER ", "AND ITEM_NAME = '" & DTROWSAVE("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW ITEMNAME 
+                        ALPARAVAL.Clear()
+
+
+                        ALPARAVAL.Add("Finished Goods")
+                        ALPARAVAL.Add(DTROWSAVE("CATEGORY"))   'CATEGORY
+                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME")))        'DISPLAYNAME
+                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME"))) 'ITEMNAME
+
+                        ALPARAVAL.Add("")   'DEPARTMENT
+                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME")))        'CODE
+                        ALPARAVAL.Add(DTROWSAVE("UNIT"))
+                        ALPARAVAL.Add("")   'FOLD
+                        ALPARAVAL.Add(0)    'RATE
+                        ALPARAVAL.Add(0)    'VALUATIONRATE
+                        ALPARAVAL.Add(0)    'TRANSRATE
+                        ALPARAVAL.Add(0)    'CHCKINGRATE
+                        ALPARAVAL.Add(0)    'PACKINGRATE
+                        ALPARAVAL.Add(0)    'DESIGNRATE
+                        ALPARAVAL.Add(0)    'REORDER
+                        ALPARAVAL.Add(0)    'UPPER
+                        ALPARAVAL.Add(0)    'LOWER
+
+                        Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_ID, 0) AS HSNCODEID", "", " HSNMASTER", " AND HSN_CODE = '" & DTROWSAVE("HSNCODE") & "' AND HSN_YEARID = " & YearId)
+                        If DTHSN.Rows.Count > 0 Then ALPARAVAL.Add(DTROWSAVE("HSNCODE")) Else ALPARAVAL.Add(0) 'HSNCODEID
+
+                        ALPARAVAL.Add(0)    'BLOCKED
+                        ALPARAVAL.Add(0)    'HIDEINDESIGN
+
+                        ALPARAVAL.Add("")    'WIDTH
+                        ALPARAVAL.Add("")    'GREYWIDTH
+                        ALPARAVAL.Add(0)    'SHRINKFROM
+                        ALPARAVAL.Add(0)    'SHRINKTO
+                        ALPARAVAL.Add("")   'SELVEDGE
+
+                        ALPARAVAL.Add("")   'RATETYPE
+                        ALPARAVAL.Add("")   'RATE
+
+                        ALPARAVAL.Add("")   'YARNQUALITY
+                        ALPARAVAL.Add("")   'PER
+
+
+                        ALPARAVAL.Add("")   'GRIDSRNO
+                        ALPARAVAL.Add("")   'PROCESS
+
+                        ALPARAVAL.Add("")   'REMARKS
+                        ALPARAVAL.Add("MERCHANT")
+
+                        ALPARAVAL.Add(DBNull.Value)
+                        ALPARAVAL.Add("")   'WARP
+                        ALPARAVAL.Add("")   'WEFT
+
+                        ALPARAVAL.Add(CmpId)
+                        ALPARAVAL.Add(Locationid)
+                        ALPARAVAL.Add(Userid)
+                        ALPARAVAL.Add(YearId)
+                        ALPARAVAL.Add(0)
+
+
+                        ALPARAVAL.Add("")   'WARPSRNO
+                        ALPARAVAL.Add("")   'WARPQUALITY
+                        ALPARAVAL.Add("")   'WARPSHADE
+                        ALPARAVAL.Add("")   'WARPENDS
+                        ALPARAVAL.Add("")   'WARPWT
+                        ALPARAVAL.Add("")   'WARPRATE
+                        ALPARAVAL.Add("")   'WARPAMOUNT
+
+
+
+
+                        ALPARAVAL.Add(0)    'WARPTL
+                        ALPARAVAL.Add(0)    'WEFTTL
+                        ALPARAVAL.Add(0)    'REED
+                        ALPARAVAL.Add(0)    'REEDSPACE
+                        ALPARAVAL.Add(0)    'PICKS
+                        ALPARAVAL.Add(0)    'TOTALWT
+                        ALPARAVAL.Add(0)    'TOTALWARPWT
+                        ALPARAVAL.Add(0)    'TOTALWEFTWT
+                        ALPARAVAL.Add("")   'WEAVE
+                        ALPARAVAL.Add("")   'GREY CATEGORY
+
+                        ALPARAVAL.Add(0)    'ACTUALWT
+                        ALPARAVAL.Add(0)    'ACTUALAMT
+                        ALPARAVAL.Add(0)    'DHARAPER
+                        ALPARAVAL.Add(0)    'DHARAAMT
+                        ALPARAVAL.Add(0)    'WASTAGEPER
+                        ALPARAVAL.Add(0)    'WASTAGEAMT
+                        ALPARAVAL.Add(0)    'WEAVINGCHGS
+                        ALPARAVAL.Add(0)    'WEAVINGAMT
+                        ALPARAVAL.Add(0)    'GSTPER
+                        ALPARAVAL.Add(0)    'GSTAMT
+                        ALPARAVAL.Add(0)    'AMOUNT
+                        ALPARAVAL.Add(0)    'TOTALGSTPER
+                        ALPARAVAL.Add(0)    'TOTALAMT
+                        ALPARAVAL.Add(0)    'WARPTOTALAMT
+                        ALPARAVAL.Add(0)    'WEFTTOTALAMT
+
+                        ALPARAVAL.Add("")   'COLORNO
+                        ALPARAVAL.Add("")   'COLORSRNO
+                        ALPARAVAL.Add(0)    'VALUELOSSPER
+                        ALPARAVAL.Add("")   'COSTCENTERNAME
+                        ALPARAVAL.Add(0)    'ITEM GSM
+                        ALPARAVAL.Add(0)    'ITEM PERCENT
+                        ALPARAVAL.Add(0)    'GARMENT
+                        ALPARAVAL.Add(0)    'TOTALBEAMENDS
+                        ALPARAVAL.Add(0)    'TOTALWEFTENDS
+
+                        ALPARAVAL.Add(0)    'SHADESRNO
+                        ALPARAVAL.Add(0)    'SHADECOLORID
+
+                        ALPARAVAL.Add(0)    'SHADEITEMSRNO
+                        ALPARAVAL.Add(0)    'SHADEITEMID
+                        ALPARAVAL.Add(0)    'SHADEDESIGNID
+                        ALPARAVAL.Add(0)    'SHADEITEMCOLORID
+                        ALPARAVAL.Add(0)    'SHADEMTRS
+                        ALPARAVAL.Add(0)    'SHADEsrno
+
+                        ALPARAVAL.Add("")   'WEFTSRNO
+                        ALPARAVAL.Add("")   'WEFTQUALITY
+                        ALPARAVAL.Add("")   'WEFTSHADE
+                        ALPARAVAL.Add("")   'WEFTPICK
+                        ALPARAVAL.Add("")   'WEFTWT
+                        ALPARAVAL.Add("")   'WEFTRATE
+                        ALPARAVAL.Add("")   'WEFTAMOUNT
+                        ALPARAVAL.Add(0)    'WEFTSHADESRNO
+
+
+                        Dim objclsItemMaster As New clsItemmaster
+                        objclsItemMaster.alParaval = ALPARAVAL
+                        Dim IntResult As Integer = objclsItemMaster.SAVE()
+
+                    End If
+                End If
+
+
+                'DESIGN SAVE
+                If DTROWSAVE("DESIGN") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("DESIGN_ID AS DESIGNID", "", "DESIGNMASTER", " AND DESIGN_NO = '" & DTROWSAVE("DESIGN") & "' AND DESIGN_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJDESIGN As New ClsDesignMaster
+                        OBJDESIGN.alParaval.Add(UCase(DTROWSAVE("DESIGN")))
+                        OBJDESIGN.alParaval.Add("") 'MILLNAME
+                        OBJDESIGN.alParaval.Add("") 'CADNO
+                        OBJDESIGN.alParaval.Add(0)  'PURRATE
+                        OBJDESIGN.alParaval.Add(0)  'SALERATE
+                        OBJDESIGN.alParaval.Add(0)  'WRATE
+                        OBJDESIGN.alParaval.Add("") 'REMARKS
+
+                        OBJDESIGN.alParaval.Add(0)  'FABRIC
+                        OBJDESIGN.alParaval.Add(0)  'DYEING
+                        OBJDESIGN.alParaval.Add(0)  'JOBWORK
+                        OBJDESIGN.alParaval.Add(0)  'FINISHING
+                        OBJDESIGN.alParaval.Add(0)  'EXTRA
+                        OBJDESIGN.alParaval.Add(0)  'TOTAL
+
+                        OBJDESIGN.alParaval.Add("") 'ITEM
+                        OBJDESIGN.alParaval.Add(0)  'BLOCKED
+
+                        OBJDESIGN.alParaval.Add(CmpId)
+                        OBJDESIGN.alParaval.Add(Locationid)
+                        OBJDESIGN.alParaval.Add(Userid)
+                        OBJDESIGN.alParaval.Add(YearId)
+                        OBJDESIGN.alParaval.Add(0)
+
+                        OBJDESIGN.alParaval.Add(DBNull.Value)
+
+                        OBJDESIGN.alParaval.Add("") 'GRIDSRNO
+                        OBJDESIGN.alParaval.Add("") 'BASE
+                        OBJDESIGN.alParaval.Add("") 'PRINT
+                        OBJDESIGN.alParaval.Add("") 'COLOR
+                        OBJDESIGN.alParaval.Add(0) 'COLORBLOCKED
+                        OBJDESIGN.alParaval.Add("") 'SHADETYPE
+
+                        OBJDESIGN.alParaval.Add("")   'LINE1
+                        OBJDESIGN.alParaval.Add("")   'LINE2
+                        OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
+                        OBJDESIGN.alParaval.Add("")    'DESIGNER
+
+
+
+
+                        Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
+                    End If
+                End If
+
+
+
+                'COLOR SAVE
+                If DTROWSAVE("COLOR") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("COLOR_ID AS COLORID", "", "COLORMASTER", " AND COLOR_NAME = '" & DTROWSAVE("COLOR") & "' AND COLOR_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJCOLOR As New ClsColorMaster
+                        OBJCOLOR.alParaval.Add(UCase(DTROWSAVE("COLOR")))
+                        OBJCOLOR.alParaval.Add("")
+                        OBJCOLOR.alParaval.Add(CmpId)
+                        OBJCOLOR.alParaval.Add(Locationid)
+                        OBJCOLOR.alParaval.Add(Userid)
+                        OBJCOLOR.alParaval.Add(YearId)
+                        OBJCOLOR.alParaval.Add(0)
+
+                        Dim INTRESCAT As Integer = OBJCOLOR.save()
+                    End If
+                End If
+
+
+
+                'QUALITY SAVE
+                If DTROWSAVE("QUALITY") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("QUALITY_ID AS QUALITYID", "", "QUALITYMASTER", " AND QUALITY_NAME = '" & DTROWSAVE("QUALITY") & "' AND QUALITY_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW QUALITY
+                        Dim OBJQUALITY As New ClsQualityMaster
+                        OBJQUALITY.alParaval.Add(UCase(DTROWSAVE("QUALITY")))
+                        OBJQUALITY.alParaval.Add("")  'PROCECSS
+                        OBJQUALITY.alParaval.Add("")  'UNIT
+                        OBJQUALITY.alParaval.Add("")  'ITEMNAME
+                        OBJQUALITY.alParaval.Add(0) 'REED
+                        OBJQUALITY.alParaval.Add(0)  'PIK
+                        OBJQUALITY.alParaval.Add("")  'COUNT
+                        OBJQUALITY.alParaval.Add(0)  'WIDTH
+                        OBJQUALITY.alParaval.Add("") 'REMAKS
+
+                        OBJQUALITY.alParaval.Add("") 'WARP
+                        OBJQUALITY.alParaval.Add("") 'WEFT
+                        OBJQUALITY.alParaval.Add("") 'SELVEDGE
+
+
+                        OBJQUALITY.alParaval.Add(CmpId)
+                        OBJQUALITY.alParaval.Add(Locationid)
+                        OBJQUALITY.alParaval.Add(Userid)
+                        OBJQUALITY.alParaval.Add(YearId)
+                        OBJQUALITY.alParaval.Add(0)
+                        OBJQUALITY.alParaval.Add(DBNull.Value)
+                        Dim INTRESCAT As Integer = OBJQUALITY.save()
+                    End If
+                End If
+
+
+
+
+                'RACK SAVE
+                If DTROWSAVE("RACKNO") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & DTROWSAVE("RACKNO") & "' AND RACK_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJRACK As New ClsRackMaster
+                        OBJRACK.alParaval.Add(UCase(DTROWSAVE("RACKNO")))
+                        OBJRACK.alParaval.Add("")
+                        OBJRACK.alParaval.Add("")   'CATEGORY
+                        OBJRACK.alParaval.Add(CmpId)
+                        OBJRACK.alParaval.Add(Userid)
+                        OBJRACK.alParaval.Add(YearId)
+
+                        Dim INTRESCAT As Integer = OBJRACK.SAVE()
+                    End If
+                End If
+
+
+
+                'PIECETYPE SAVE
+                If DTROWSAVE("PIECETYPE") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("PIECETYPE_ID AS PIECETYPEID", "", "PIECETYPEMASTER", " AND PIECETYPE_NAME = '" & DTROWSAVE("PIECETYPE") & "' AND PIECETYPE_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW PIECETYPE
+                        Dim OBJPIECETYPE As New ClsPieceTypeMaster
+                        OBJPIECETYPE.alParaval.Add(UCase(DTROWSAVE("PIECETYPE")))
+                        OBJPIECETYPE.alParaval.Add("")
+                        OBJPIECETYPE.alParaval.Add(CmpId)
+                        OBJPIECETYPE.alParaval.Add(0)
+                        OBJPIECETYPE.alParaval.Add(Userid)
+                        OBJPIECETYPE.alParaval.Add(YearId)
+                        OBJPIECETYPE.alParaval.Add(0)   'TRANSFER
+
+                        Dim INTRESCAT As Integer = OBJPIECETYPE.save()
+                    End If
+                End If
+
+
+
+                'check whether ITEMNAME is already present or not
+                DTTABLE = OBJCMN.SEARCH("SM_BARCODE AS BARCODE", "", "STOCKMASTER ", " AND SM_BARCODE = '" & DTROWSAVE("BARCODE") & "' AND SM_YEARID = " & YearId)
+                If DTTABLE.Rows.Count > 0 Then GoTo SKIPLINE
+
+
+
+
+                'IF DYEINGJONB IS '' THEN ADD DYEING
+                If DTROWSAVE("DYEINGJOB") = "" Then DTROWSAVE("DYEINGJOB") = "DYEING"
+
+
+
+                'ADD IN STOCKMASTER
+                ALPARAVAL.Clear()
+                Dim OBJSM As New ClsStockMaster
+
+                ALPARAVAL.Add(AccFrom.Date)
+                ALPARAVAL.Add("INHOUSE")
+
+                ALPARAVAL.Add(I)
+                ALPARAVAL.Add(DTROWSAVE("LOTNO"))               'LOTNO
+                If DTROWSAVE("PIECETYPE") = "" Then ALPARAVAL.Add("FRESH") Else ALPARAVAL.Add(DTROWSAVE("PIECETYPE"))
+                ALPARAVAL.Add(DTROWSAVE("ITEMNAME"))
+                ALPARAVAL.Add(DTROWSAVE("QUALITY"))    'QUALITY
+                ALPARAVAL.Add(DTROWSAVE("DESIGN"))               'DESIGNNO
+                ALPARAVAL.Add(DTROWSAVE("COLOR"))               'COLOR    
+                ALPARAVAL.Add("")               'PROCESS
+                ALPARAVAL.Add(DTROWSAVE("PARTYNAME"))               'NAME
+                ALPARAVAL.Add(DTROWSAVE("DYEINGNAME"))               'TONAME
+                ALPARAVAL.Add(DTROWSAVE("BILLNO"))                'BILLNO
+                ALPARAVAL.Add(DTROWSAVE("GODOWN"))         'GODOWN
+                If Val(DTROWSAVE("CUT")) > 0 Then ALPARAVAL.Add(Val(DTROWSAVE("CUT"))) Else ALPARAVAL.Add(Val(DTROWSAVE("MTRS")))   'CUT
+                ALPARAVAL.Add(Val(DTROWSAVE("WT")))                    'WT
+                ALPARAVAL.Add(DTROWSAVE("UNIT"))
+                ALPARAVAL.Add(Val(DTROWSAVE("QTY")))
+                ALPARAVAL.Add(Val(DTROWSAVE("MTRS")))
+                ALPARAVAL.Add("") 'PER
+                ALPARAVAL.Add(DTROWSAVE("RACKNO"))                    'RACK
+                ALPARAVAL.Add("")                    'SHELF
+                ALPARAVAL.Add(Val(DTROWSAVE("RATE"))) 'RATE
+                ALPARAVAL.Add(Format(Val(DTROWSAVE("RATE")) * Val(DTROWSAVE("MTRS")), "0.00"))                    'AMOUNT
+                ALPARAVAL.Add("")                   'ADDLESS
+                ALPARAVAL.Add(0)                   'NETTRATE
+                ALPARAVAL.Add("")                   'PARTYCHALLANNO
+                ALPARAVAL.Add(DTROWSAVE("BALENO"))                   'BALENO
+                ALPARAVAL.Add("")                   'GRIDREMARKS
+
+                ALPARAVAL.Add(DTROWSAVE("DYEINGJOB"))    'DYEINGJOB
+                ALPARAVAL.Add("")                   'REMARKS
+                ALPARAVAL.Add("")                   'LRNO
+
+                ALPARAVAL.Add(DTROWSAVE("BARCODE"))
+
+                ALPARAVAL.Add(CmpId)
+                ALPARAVAL.Add(Locationid)
+                ALPARAVAL.Add(Userid)
+                ALPARAVAL.Add(YearId)
+                ALPARAVAL.Add(0)
+                ALPARAVAL.Add(0)    'PROGRAM DONE
+
+                OBJSM.alParaval = ALPARAVAL
+                DTTABLE = OBJSM.save()
+
+                'If DTROWSAVE("BARCODE") = "1609002784" Then
+                '    MsgBox("A")
+                'End If
+                DTROWSAVE = DTSAVE.NewRow()
+
+SKIPLINE:
+            Next
+
+            'Dim DV As DataView = gridBANKRECO.DataSource
+            'Dim DTNEW As DataTable = DV.Table
+            'If DT.Rows.Count > 0 Then
+            '    For Each ROW As System.Data.DataRow In DT.Rows
+            '        For Each DTNEWROW As DataRow In DTNEW.Rows
+            '            If ROW("CHQNO") = DTNEWROW("ChqNo") And (Val(ROW("AMOUNT")) = Val(DTNEWROW("dr")) Or Val(ROW("AMOUNT")) = Val(DTNEWROW("cr"))) Then
+            '                'If Format(Convert.ToDateTime(DTNEWROW("BillDate")).Date, "dd/MM/yyyy") <= Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy") Then DTNEWROW("RecoDate") = Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy")
+            '                If Format(Convert.ToDateTime(DTNEWROW("BillDate")).Date, "dd/MM/yyyy") <= Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy") Then DTNEWROW("RecoDate") = ROW("DATE")
+            '            End If
+            '        Next
+            '    Next
+            'End If
+
+
+            oBook.Close()
+
+            Exit Sub
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub UPLOADSTOCK_GREY_Click(sender As Object, e As EventArgs) Handles UPLOADSTOCK_GREY.Click
+
+        'ONE TIME DATA UPLOAD FOR SAFFRON FROM CBS
+        Try
+            If InputBox("Enter Master Password") <> "Infosys@123" Then Exit Sub
+            'upload the files data
+            ''Reading from Excel Woorkbook
+            Dim cPart As Microsoft.Office.Interop.Excel.Range
+            Dim oExcel As Microsoft.Office.Interop.Excel.Application = CreateObject("Excel.Application")
+            Dim oBook As Microsoft.Office.Interop.Excel.Workbook = oExcel.Workbooks.Open("D:\" & InputBox("Enter File Name").ToString.Trim, , False)
+            Dim oSheet As New Microsoft.Office.Interop.Excel.Worksheet
+            oSheet = oBook.Worksheets("Sheet1")
+
+            'GRID
+            Dim ADDITEM As Boolean = True
+            Dim TEMPITEMNAME As String = ""
+
+            Dim DTSAVE As New System.Data.DataTable
+            DTSAVE.Columns.Add("ITEMNAME")
+            DTSAVE.Columns.Add("DESIGN")
+            DTSAVE.Columns.Add("COLOR")
+            DTSAVE.Columns.Add("UNIT")
+            DTSAVE.Columns.Add("BARCODE")
+            DTSAVE.Columns.Add("QTY")
+            DTSAVE.Columns.Add("MTRS")
+            DTSAVE.Columns.Add("HSNCODE")
+            DTSAVE.Columns.Add("PARTYNAME")
+            DTSAVE.Columns.Add("QUALITY")
+            DTSAVE.Columns.Add("LOTNO")
+            DTSAVE.Columns.Add("BALENO")
+            DTSAVE.Columns.Add("REMARKS")
+            DTSAVE.Columns.Add("GODOWN")
+            DTSAVE.Columns.Add("RACKNO")
+            DTSAVE.Columns.Add("DYEINGNAME")
+            DTSAVE.Columns.Add("CUT")
+            DTSAVE.Columns.Add("RATE")
+            DTSAVE.Columns.Add("BILLNO")
+            DTSAVE.Columns.Add("WT")
+            DTSAVE.Columns.Add("CATEGORY")
+            DTSAVE.Columns.Add("PIECETYPE")
+            DTSAVE.Columns.Add("DYEINGJOB")
+            DTSAVE.Columns.Add("CGSTPER")
+            DTSAVE.Columns.Add("SGSTPER")
+            DTSAVE.Columns.Add("IGSTPER")
+
+
+
+            Dim ARR As New ArrayList
+            Dim COLIND As Integer = 0
+            Dim DTROWSAVE As System.Data.DataRow = DTSAVE.NewRow()
+
+
+            Dim FROMROWNO As Integer = Val(InputBox("Enter Start Row No"))
+            Dim TOROWNO As Integer = Val(InputBox("Enter End Row No"))
+
+            For I As Integer = FROMROWNO To TOROWNO
+
+                If oSheet.Range("A" & I.ToString).Text = "PRODUCT TOTAL" Or oSheet.Range("A" & I.ToString).Text = "" Then
+                    ADDITEM = True
+                    GoTo SKIPLINE
+                End If
+
+                If ADDITEM = True Then
+                    If IsDBNull(oSheet.Range("A" & I.ToString).Text) = False Then
+                        DTROWSAVE("ITEMNAME") = oSheet.Range("A" & I.ToString).Text
+                        TEMPITEMNAME = DTROWSAVE("ITEMNAME")
+                        'FOR CBS REMOVE THE COMMENT BELOW
+                        'ADDITEM = False
+                    Else
+                        DTROWSAVE("ITEMNAME") = ""
+                    End If
+                Else
+                    'RETRIEVE SAME ITEMNAME
+                    DTROWSAVE("ITEMNAME") = TEMPITEMNAME
+                End If
+
+
+                If IsDBNull(oSheet.Range("B" & I.ToString).Text) = False Then
+                    DTROWSAVE("DESIGN") = oSheet.Range("B" & I.ToString).Text
+                Else
+                    DTROWSAVE("DESIGN") = ""
+                End If
+
+
+                If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
+                    DTROWSAVE("COLOR") = oSheet.Range("C" & I.ToString).Text
+                Else
+                    DTROWSAVE("COLOR") = ""
+                End If
+
+
+                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
+                    DTROWSAVE("UNIT") = oSheet.Range("D" & I.ToString).Text
+                Else
+                    DTROWSAVE("UNIT") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
+                    DTROWSAVE("BARCODE") = oSheet.Range("E" & I.ToString).Text
+                Else
+                    DTROWSAVE("BARCODE") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("F" & I.ToString).Text) = False Then
+                    DTROWSAVE("QTY") = Val(oSheet.Range("F" & I.ToString).Text)
+                Else
+                    DTROWSAVE("QTY") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("G" & I.ToString).Text) = False Then
+                    DTROWSAVE("MTRS") = Val(oSheet.Range("G" & I.ToString).Text)
+                Else
+                    DTROWSAVE("MTRS") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("H" & I.ToString).Text) = False Then
+                    DTROWSAVE("HSNCODE") = oSheet.Range("H" & I.ToString).Text
+                Else
+                    DTROWSAVE("HSNCODE") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("I" & I.ToString).Text) = False Then
+                    DTROWSAVE("PARTYNAME") = oSheet.Range("I" & I.ToString).Text
+                Else
+                    DTROWSAVE("PARTYNAME") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("J" & I.ToString).Text) = False Then
+                    DTROWSAVE("QUALITY") = oSheet.Range("J" & I.ToString).Text
+                Else
+                    DTROWSAVE("QUALITY") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("K" & I.ToString).Text) = False Then
+                    DTROWSAVE("LOTNO") = oSheet.Range("K" & I.ToString).Text
+                Else
+                    DTROWSAVE("LOTNO") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("L" & I.ToString).Text) = False Then
+                    DTROWSAVE("BALENO") = oSheet.Range("L" & I.ToString).Text
+                Else
+                    DTROWSAVE("BALENO") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("M" & I.ToString).Text) = False Then
+                    DTROWSAVE("REMARKS") = oSheet.Range("M" & I.ToString).Text
+                Else
+                    DTROWSAVE("REMARKS") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("N" & I.ToString).Text) = False Then
+                    DTROWSAVE("GODOWN") = oSheet.Range("N" & I.ToString).Text
+                Else
+                    DTROWSAVE("GODOWN") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("O" & I.ToString).Text) = False Then
+                    DTROWSAVE("RACKNO") = oSheet.Range("O" & I.ToString).Text
+                Else
+                    DTROWSAVE("RACKNO") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("P" & I.ToString).Text) = False Then
+                    DTROWSAVE("DYEINGNAME") = oSheet.Range("P" & I.ToString).Text
+                Else
+                    DTROWSAVE("DYEINGNAME") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("Q" & I.ToString).Text) = False Then
+                    DTROWSAVE("CUT") = oSheet.Range("Q" & I.ToString).Text
+                Else
+                    DTROWSAVE("CUT") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("R" & I.ToString).Text) = False Then
+                    DTROWSAVE("RATE") = Val(oSheet.Range("R" & I.ToString).Text)
+                Else
+                    DTROWSAVE("RATE") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("S" & I.ToString).Text) = False Then
+                    DTROWSAVE("BILLNO") = Val(oSheet.Range("S" & I.ToString).Text)
+                Else
+                    DTROWSAVE("BILLNO") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("T" & I.ToString).Text) = False Then
+                    DTROWSAVE("WT") = Val(oSheet.Range("T" & I.ToString).Text)
+                Else
+                    DTROWSAVE("WT") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("U" & I.ToString).Text) = False Then
+                    DTROWSAVE("CATEGORY") = oSheet.Range("U" & I.ToString).Text
+                Else
+                    DTROWSAVE("CATEGORY") = ""
+                End If
+
+
+                If IsDBNull(oSheet.Range("V" & I.ToString).Text) = False Then
+                    DTROWSAVE("PIECETYPE") = oSheet.Range("V" & I.ToString).Text
+                Else
+                    DTROWSAVE("PIECETYPE") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("W" & I.ToString).Text) = False Then
+                    DTROWSAVE("DYEINGJOB") = oSheet.Range("W" & I.ToString).Text
+                Else
+                    DTROWSAVE("DYEINGJOB") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("X" & I.ToString).Text) = False Then
+                    DTROWSAVE("CGSTPER") = Val(oSheet.Range("X" & I.ToString).Text)
+                Else
+                    DTROWSAVE("CGSTPER") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("Y" & I.ToString).Text) = False Then
+                    DTROWSAVE("SGSTPER") = Val(oSheet.Range("Y" & I.ToString).Text)
+                Else
+                    DTROWSAVE("SGSTPER") = 0
+                End If
+
+                If IsDBNull(oSheet.Range("Z" & I.ToString).Text) = False Then
+                    DTROWSAVE("IGSTPER") = Val(oSheet.Range("Z" & I.ToString).Text)
+                Else
+                    DTROWSAVE("IGSTPER") = 0
+                End If
+
+
+
+                If Val(DTROWSAVE("MTRS")) = 0 Then GoTo SKIPLINE
+
+                Dim ALPARAVAL As New ArrayList
+                Dim OBJCMN As New ClsCommon
+                Dim DTTABLE As New DataTable
+
+
+
+
+
+                'HSN SAVE
+                If DTROWSAVE("HSNCODE") <> "" And Val(DTROWSAVE("CGSTPER")) > 0 And Val(DTROWSAVE("SGSTPER")) > 0 And Val(DTROWSAVE("IGSTPER")) > 0 Then
+                    DTTABLE = OBJCMN.SEARCH("HSN_ID AS HSNCODEID", "", "HSNMASTER", " AND HSN_CODE = '" & DTROWSAVE("HSNCODE") & "' AND HSN_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW HSN
+                        Dim OBJHSN As New ClsHSNMaster
+                        OBJHSN.alParaval.Add("Goods")    'HSNTYPE
+                        OBJHSN.alParaval.Add(UCase(DTROWSAVE("HSNCODE")))   'CODE
+                        OBJHSN.alParaval.Add(UCase(DTROWSAVE("HSNCODE")))   'ITEMDESC
+                        OBJHSN.alParaval.Add("") 'DESC
+                        OBJHSN.alParaval.Add(0)  'RATE
+                        OBJHSN.alParaval.Add(0)  'CGST
+                        OBJHSN.alParaval.Add(0)  'SGST
+                        OBJHSN.alParaval.Add(0)  'IGST
+                        OBJHSN.alParaval.Add(0)  'RATE1
+                        OBJHSN.alParaval.Add(0)  'CGST1
+                        OBJHSN.alParaval.Add(0)  'SGST1
+                        OBJHSN.alParaval.Add(0)  'IGST1
+                        OBJHSN.alParaval.Add(0)  'EXPCGST
+                        OBJHSN.alParaval.Add(0)  'EXPSGST
+                        OBJHSN.alParaval.Add(0)  'EXPIGST
+
+                        OBJHSN.alParaval.Add(CmpId)
+                        OBJHSN.alParaval.Add(Userid)
+                        OBJHSN.alParaval.Add(YearId)
+
+
+                        OBJHSN.alParaval.Add("2017-07-01") 'WEFDATE
+                        OBJHSN.alParaval.Add(0)  'GRIDRATE
+                        OBJHSN.alParaval.Add(Val(DTROWSAVE("CGSTPER")))  'GRIDCGST
+                        OBJHSN.alParaval.Add(Val(DTROWSAVE("SGSTPER")))  'GRIDSGST
+                        OBJHSN.alParaval.Add(Val(DTROWSAVE("IGSTPER")))  'GRIDIGST
+
+                        OBJHSN.alParaval.Add(0)  'GRIDRATE1
+                        OBJHSN.alParaval.Add(0)  'GRIDCGST1
+                        OBJHSN.alParaval.Add(0)  'GRIDSGST1
+                        OBJHSN.alParaval.Add(0)  'GRIDIGST1
+                        OBJHSN.alParaval.Add(0)  'GRIDEXPCGST
+                        OBJHSN.alParaval.Add(0)  'GRIDEXPSGST
+                        OBJHSN.alParaval.Add(0)  'GRIDEXPIGST
+
+                        Dim INTRESCAT As Integer = OBJHSN.SAVE()
+                    End If
+                End If
+
+
+
+
+
+
+
+
+                'CHECK WHETHER ITEMNAME IS PRESENT OR NOT IF NOT PRESENT THEN ADD NEW
+                If DTROWSAVE("ITEMNAME") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", "ITEMMASTER ", "AND ITEM_NAME = '" & DTROWSAVE("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW ITEMNAME 
+                        ALPARAVAL.Clear()
+
+
+                        ALPARAVAL.Add("Finished Goods")
+                        ALPARAVAL.Add(DTROWSAVE("CATEGORY"))   'CATEGORY
+                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME")))        'DISPLAYNAME
+                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME"))) 'ITEMNAME
+
+                        ALPARAVAL.Add("")   'DEPARTMENT
+                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME")))        'CODE
+                        ALPARAVAL.Add(DTROWSAVE("UNIT"))
+                        ALPARAVAL.Add("")   'FOLD
+                        ALPARAVAL.Add(0)    'RATE
+                        ALPARAVAL.Add(0)    'VALUATIONRATE
+                        ALPARAVAL.Add(0)    'TRANSRATE
+                        ALPARAVAL.Add(0)    'CHCKINGRATE
+                        ALPARAVAL.Add(0)    'PACKINGRATE
+                        ALPARAVAL.Add(0)    'DESIGNRATE
+                        ALPARAVAL.Add(0)    'REORDER
+                        ALPARAVAL.Add(0)    'UPPER
+                        ALPARAVAL.Add(0)    'LOWER
+
+                        Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_ID, 0) AS HSNCODEID", "", " HSNMASTER", " AND HSN_CODE = '" & DTROWSAVE("HSNCODE") & "' AND HSN_YEARID = " & YearId)
+                        If DTHSN.Rows.Count > 0 Then ALPARAVAL.Add(DTROWSAVE("HSNCODE")) Else ALPARAVAL.Add(0) 'HSNCODEID
+
+                        ALPARAVAL.Add(0)    'BLOCKED
+                        ALPARAVAL.Add(0)    'HIDEINDESIGN
+
+                        ALPARAVAL.Add("")    'WIDTH
+                        ALPARAVAL.Add("")    'GREYWIDTH
+                        ALPARAVAL.Add(0)    'SHRINKFROM
+                        ALPARAVAL.Add(0)    'SHRINKTO
+                        ALPARAVAL.Add("")   'SELVEDGE
+
+                        ALPARAVAL.Add("")   'RATETYPE
+                        ALPARAVAL.Add("")   'RATE
+
+                        ALPARAVAL.Add("")   'YARNQUALITY
+                        ALPARAVAL.Add("")   'PER
+
+
+                        ALPARAVAL.Add("")   'GRIDSRNO
+                        ALPARAVAL.Add("")   'PROCESS
+
+                        ALPARAVAL.Add("")   'REMARKS
+                        ALPARAVAL.Add("MERCHANT")
+
+                        ALPARAVAL.Add(DBNull.Value)
+                        ALPARAVAL.Add("")   'WARP
+                        ALPARAVAL.Add("")   'WEFT
+
+                        ALPARAVAL.Add(CmpId)
+                        ALPARAVAL.Add(Locationid)
+                        ALPARAVAL.Add(Userid)
+                        ALPARAVAL.Add(YearId)
+                        ALPARAVAL.Add(0)
+
+
+                        ALPARAVAL.Add("")   'WARPSRNO
+                        ALPARAVAL.Add("")   'WARPQUALITY
+                        ALPARAVAL.Add("")   'WARPSHADE
+                        ALPARAVAL.Add("")   'WARPENDS
+                        ALPARAVAL.Add("")   'WARPWT
+                        ALPARAVAL.Add("")   'WARPRATE
+                        ALPARAVAL.Add("")   'WARPAMOUNT
+
+
+
+
+                        ALPARAVAL.Add(0)    'WARPTL
+                        ALPARAVAL.Add(0)    'WEFTTL
+                        ALPARAVAL.Add(0)    'REED
+                        ALPARAVAL.Add(0)    'REEDSPACE
+                        ALPARAVAL.Add(0)    'PICKS
+                        ALPARAVAL.Add(0)    'TOTALWT
+                        ALPARAVAL.Add(0)    'TOTALWARPWT
+                        ALPARAVAL.Add(0)    'TOTALWEFTWT
+                        ALPARAVAL.Add("")   'WEAVE
+                        ALPARAVAL.Add("")   'GREY CATEGORY
+
+                        ALPARAVAL.Add(0)    'ACTUALWT
+                        ALPARAVAL.Add(0)    'ACTUALAMT
+                        ALPARAVAL.Add(0)    'DHARAPER
+                        ALPARAVAL.Add(0)    'DHARAAMT
+                        ALPARAVAL.Add(0)    'WASTAGEPER
+                        ALPARAVAL.Add(0)    'WASTAGEAMT
+                        ALPARAVAL.Add(0)    'WEAVINGCHGS
+                        ALPARAVAL.Add(0)    'WEAVINGAMT
+                        ALPARAVAL.Add(0)    'GSTPER
+                        ALPARAVAL.Add(0)    'GSTAMT
+                        ALPARAVAL.Add(0)    'AMOUNT
+                        ALPARAVAL.Add(0)    'TOTALGSTPER
+                        ALPARAVAL.Add(0)    'TOTALAMT
+                        ALPARAVAL.Add(0)    'WARPTOTALAMT
+                        ALPARAVAL.Add(0)    'WEFTTOTALAMT
+
+                        ALPARAVAL.Add("")   'COLORNO
+                        ALPARAVAL.Add("")   'COLORSRNO
+                        ALPARAVAL.Add(0)    'VALUELOSSPER
+                        ALPARAVAL.Add("")   'COSTCENTERNAME
+                        ALPARAVAL.Add(0)    'ITEM GSM
+                        ALPARAVAL.Add(0)    'ITEM PERCENT
+                        ALPARAVAL.Add(0)    'GARMENT
+                        ALPARAVAL.Add(0)    'TOTALBEAMENDS
+                        ALPARAVAL.Add(0)    'TOTALWEFTENDS
+
+                        ALPARAVAL.Add(0)    'SHADESRNO
+                        ALPARAVAL.Add(0)    'SHADECOLORID
+
+                        ALPARAVAL.Add(0)    'SHADEITEMSRNO
+                        ALPARAVAL.Add(0)    'SHADEITEMID
+                        ALPARAVAL.Add(0)    'SHADEDESIGNID
+                        ALPARAVAL.Add(0)    'SHADEITEMCOLORID
+                        ALPARAVAL.Add(0)    'SHADEMTRS
+                        ALPARAVAL.Add(0)    'SHADEsrno
+
+                        ALPARAVAL.Add("")   'WEFTSRNO
+                        ALPARAVAL.Add("")   'WEFTQUALITY
+                        ALPARAVAL.Add("")   'WEFTSHADE
+                        ALPARAVAL.Add("")   'WEFTPICK
+                        ALPARAVAL.Add("")   'WEFTWT
+                        ALPARAVAL.Add("")   'WEFTRATE
+                        ALPARAVAL.Add("")   'WEFTAMOUNT
+                        ALPARAVAL.Add(0)    'WEFTSHADESRNO
+
+
+                        Dim objclsItemMaster As New clsItemmaster
+                        objclsItemMaster.alParaval = ALPARAVAL
+                        Dim IntResult As Integer = objclsItemMaster.SAVE()
+
+                    End If
+                End If
+
+
+                'DESIGN SAVE
+                If DTROWSAVE("DESIGN") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("DESIGN_ID AS DESIGNID", "", "DESIGNMASTER", " AND DESIGN_NO = '" & DTROWSAVE("DESIGN") & "' AND DESIGN_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJDESIGN As New ClsDesignMaster
+                        OBJDESIGN.alParaval.Add(UCase(DTROWSAVE("DESIGN")))
+                        OBJDESIGN.alParaval.Add("") 'MILLNAME
+                        OBJDESIGN.alParaval.Add("") 'CADNO
+                        OBJDESIGN.alParaval.Add(0)  'PURRATE
+                        OBJDESIGN.alParaval.Add(0)  'SALERATE
+                        OBJDESIGN.alParaval.Add(0)  'WRATE
+                        OBJDESIGN.alParaval.Add("") 'REMARKS
+
+                        OBJDESIGN.alParaval.Add(0)  'FABRIC
+                        OBJDESIGN.alParaval.Add(0)  'DYEING
+                        OBJDESIGN.alParaval.Add(0)  'JOBWORK
+                        OBJDESIGN.alParaval.Add(0)  'FINISHING
+                        OBJDESIGN.alParaval.Add(0)  'EXTRA
+                        OBJDESIGN.alParaval.Add(0)  'TOTAL
+
+                        OBJDESIGN.alParaval.Add("") 'ITEM
+                        OBJDESIGN.alParaval.Add(0)  'BLOCKED
+
+                        OBJDESIGN.alParaval.Add(CmpId)
+                        OBJDESIGN.alParaval.Add(Locationid)
+                        OBJDESIGN.alParaval.Add(Userid)
+                        OBJDESIGN.alParaval.Add(YearId)
+                        OBJDESIGN.alParaval.Add(0)
+
+                        OBJDESIGN.alParaval.Add(DBNull.Value)
+
+                        OBJDESIGN.alParaval.Add("") 'GRIDSRNO
+                        OBJDESIGN.alParaval.Add("") 'BASE
+                        OBJDESIGN.alParaval.Add("") 'PRINT
+                        OBJDESIGN.alParaval.Add("") 'COLOR
+                        OBJDESIGN.alParaval.Add(0) 'COLORBLOCKED
+                        OBJDESIGN.alParaval.Add("") 'SHADETYPE
+
+                        OBJDESIGN.alParaval.Add("")   'LINE1
+                        OBJDESIGN.alParaval.Add("")   'LINE2
+                        OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
+                        OBJDESIGN.alParaval.Add("")    'DESIGNER
+
+
+
+
+                        Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
+                    End If
+                End If
+
+
+
+                'COLOR SAVE
+                If DTROWSAVE("COLOR") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("COLOR_ID AS COLORID", "", "COLORMASTER", " AND COLOR_NAME = '" & DTROWSAVE("COLOR") & "' AND COLOR_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJCOLOR As New ClsColorMaster
+                        OBJCOLOR.alParaval.Add(UCase(DTROWSAVE("COLOR")))
+                        OBJCOLOR.alParaval.Add("")
+                        OBJCOLOR.alParaval.Add(CmpId)
+                        OBJCOLOR.alParaval.Add(Locationid)
+                        OBJCOLOR.alParaval.Add(Userid)
+                        OBJCOLOR.alParaval.Add(YearId)
+                        OBJCOLOR.alParaval.Add(0)
+
+                        Dim INTRESCAT As Integer = OBJCOLOR.save()
+                    End If
+                End If
+
+
+
+                'QUALITY SAVE
+                If DTROWSAVE("QUALITY") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("QUALITY_ID AS QUALITYID", "", "QUALITYMASTER", " AND QUALITY_NAME = '" & DTROWSAVE("QUALITY") & "' AND QUALITY_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW QUALITY
+                        Dim OBJQUALITY As New ClsQualityMaster
+                        OBJQUALITY.alParaval.Add(UCase(DTROWSAVE("QUALITY")))
+                        OBJQUALITY.alParaval.Add("")  'PROCECSS
+                        OBJQUALITY.alParaval.Add("")  'UNIT
+                        OBJQUALITY.alParaval.Add("")  'ITEMNAME
+                        OBJQUALITY.alParaval.Add(0) 'REED
+                        OBJQUALITY.alParaval.Add(0)  'PIK
+                        OBJQUALITY.alParaval.Add("")  'COUNT
+                        OBJQUALITY.alParaval.Add(0)  'WIDTH
+                        OBJQUALITY.alParaval.Add("") 'REMAKS
+
+                        OBJQUALITY.alParaval.Add("") 'WARP
+                        OBJQUALITY.alParaval.Add("") 'WEFT
+                        OBJQUALITY.alParaval.Add("") 'SELVEDGE
+
+
+                        OBJQUALITY.alParaval.Add(CmpId)
+                        OBJQUALITY.alParaval.Add(Locationid)
+                        OBJQUALITY.alParaval.Add(Userid)
+                        OBJQUALITY.alParaval.Add(YearId)
+                        OBJQUALITY.alParaval.Add(0)
+                        OBJQUALITY.alParaval.Add(DBNull.Value)
+                        Dim INTRESCAT As Integer = OBJQUALITY.save()
+                    End If
+                End If
+
+
+
+
+                'RACK SAVE
+                If DTROWSAVE("RACKNO") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & DTROWSAVE("RACKNO") & "' AND RACK_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJRACK As New ClsRackMaster
+                        OBJRACK.alParaval.Add(UCase(DTROWSAVE("RACKNO")))
+                        OBJRACK.alParaval.Add("")
+                        OBJRACK.alParaval.Add("")   'CATEGORY
+                        OBJRACK.alParaval.Add(CmpId)
+                        OBJRACK.alParaval.Add(Userid)
+                        OBJRACK.alParaval.Add(YearId)
+
+                        Dim INTRESCAT As Integer = OBJRACK.SAVE()
+                    End If
+                End If
+
+
+
+                'PIECETYPE SAVE
+                If DTROWSAVE("PIECETYPE") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("PIECETYPE_ID AS PIECETYPEID", "", "PIECETYPEMASTER", " AND PIECETYPE_NAME = '" & DTROWSAVE("PIECETYPE") & "' AND PIECETYPE_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW PIECETYPE
+                        Dim OBJPIECETYPE As New ClsPieceTypeMaster
+                        OBJPIECETYPE.alParaval.Add(UCase(DTROWSAVE("PIECETYPE")))
+                        OBJPIECETYPE.alParaval.Add("")
+                        OBJPIECETYPE.alParaval.Add(CmpId)
+                        OBJPIECETYPE.alParaval.Add(0)
+                        OBJPIECETYPE.alParaval.Add(Userid)
+                        OBJPIECETYPE.alParaval.Add(YearId)
+                        OBJPIECETYPE.alParaval.Add(0)   'TRANSFER
+
+                        Dim INTRESCAT As Integer = OBJPIECETYPE.save()
+                    End If
+                End If
+
+
+
+                'check whether ITEMNAME is already present or not
+                DTTABLE = OBJCMN.SEARCH("SM_BARCODE AS BARCODE", "", "STOCKMASTER ", " AND SM_BARCODE = '" & DTROWSAVE("BARCODE") & "' AND SM_YEARID = " & YearId)
+                If DTTABLE.Rows.Count > 0 Then GoTo SKIPLINE
+
+
+
+
+                'IF DYEINGJONB IS '' THEN ADD DYEING
+                If DTROWSAVE("DYEINGJOB") = "" Then DTROWSAVE("DYEINGJOB") = "DYEING"
+
+
+
+                'ADD IN STOCKMASTER
+                ALPARAVAL.Clear()
+                Dim OBJSM As New ClsOpeningStockGrey
+
+                ALPARAVAL.Add(AccFrom.Date)
+                ALPARAVAL.Add("INHOUSE")
+
+                ALPARAVAL.Add(I)
+                ALPARAVAL.Add(DTROWSAVE("LOTNO"))               'LOTNO
+                If DTROWSAVE("PIECETYPE") = "" Then ALPARAVAL.Add("FRESH") Else ALPARAVAL.Add(DTROWSAVE("PIECETYPE"))
+                ALPARAVAL.Add(DTROWSAVE("ITEMNAME"))
+                ALPARAVAL.Add(DTROWSAVE("QUALITY"))    'QUALITY
+                ALPARAVAL.Add(DTROWSAVE("DESIGN"))               'DESIGNNO
+                ALPARAVAL.Add(DTROWSAVE("COLOR"))               'COLOR    
+                ALPARAVAL.Add("")               'PROCESS
+                ALPARAVAL.Add(DTROWSAVE("PARTYNAME"))               'NAME
+                ALPARAVAL.Add(DTROWSAVE("DYEINGNAME"))               'TONAME
+                ALPARAVAL.Add(DTROWSAVE("BILLNO"))                'BILLNO
+                ALPARAVAL.Add(DTROWSAVE("GODOWN"))         'GODOWN
+                If Val(DTROWSAVE("CUT")) > 0 Then ALPARAVAL.Add(Val(DTROWSAVE("CUT"))) Else ALPARAVAL.Add(Val(DTROWSAVE("MTRS")))   'CUT
+                ALPARAVAL.Add(Val(DTROWSAVE("WT")))                    'WT
+                ALPARAVAL.Add(DTROWSAVE("UNIT"))
+                ALPARAVAL.Add(Val(DTROWSAVE("QTY")))
+                ALPARAVAL.Add(Val(DTROWSAVE("MTRS")))
+                ALPARAVAL.Add("") 'PER
+                ALPARAVAL.Add(DTROWSAVE("RACKNO"))                    'RACK
+                ALPARAVAL.Add("")                    'SHELF
+                ALPARAVAL.Add(Val(DTROWSAVE("RATE"))) 'RATE
+                ALPARAVAL.Add(Format(Val(DTROWSAVE("RATE")) * Val(DTROWSAVE("MTRS")), "0.00"))                    'AMOUNT
+                ALPARAVAL.Add("")                   'ADDLESS
+                ALPARAVAL.Add(0)                   'NETTRATE
+                ALPARAVAL.Add("")                   'PARTYCHALLANNO
+                ALPARAVAL.Add(DTROWSAVE("BALENO"))                   'BALENO
+                ALPARAVAL.Add("")                   'GRIDREMARKS
+
+                ALPARAVAL.Add(DTROWSAVE("DYEINGJOB"))    'DYEINGJOB
+                ALPARAVAL.Add("")                   'REMARKS
+                ALPARAVAL.Add("")                   'LRNO
+
+                ALPARAVAL.Add(DTROWSAVE("BARCODE"))
+
+                ALPARAVAL.Add(CmpId)
+                ALPARAVAL.Add(Locationid)
+                ALPARAVAL.Add(Userid)
+                ALPARAVAL.Add(YearId)
+                ALPARAVAL.Add(0)
+                ALPARAVAL.Add(0)    'PROGRAM DONE
+
+                OBJSM.alParaval = ALPARAVAL
+                DTTABLE = OBJSM.save()
+
+                DTROWSAVE = DTSAVE.NewRow()
+
+SKIPLINE:
+            Next
+
+            oBook.Close()
+
+            Exit Sub
         Catch ex As Exception
             Throw ex
         End Try

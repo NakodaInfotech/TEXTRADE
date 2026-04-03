@@ -2455,6 +2455,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningProgramMaster.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningStockGrey.Designer.vb">
+      <DependentUpon>OpeningStockGrey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Accounts\Opening\OpeningStockGrey.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Accounts\Opening\OpeningStockRolls.Designer.vb">
       <DependentUpon>OpeningStockRolls.vb</DependentUpon>
     </Compile>
@@ -10539,6 +10545,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningProgramMaster.resx">
       <DependentUpon>OpeningProgramMaster.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockGrey.resx">
+      <DependentUpon>OpeningStockGrey.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningStockRolls.resx">
       <DependentUpon>OpeningStockRolls.vb</DependentUpon>
