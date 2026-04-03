@@ -3245,13 +3245,7 @@ NEXTLINE:
             Else
                 txtsrno.Text = 1
             End If
-            'TESTING 
-            Dim TEMPMSG As Integer = MsgBox("This Will Open Job Out File, Wish to Proceed?", MsgBoxStyle.YesNo)
-            If TEMPMSG = vbYes Then
-                Dim OBJCON As New GreyJobOut
-                OBJCON.MdiParent = MDIMain
-                OBJCON.Show()
-            End If
+
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
