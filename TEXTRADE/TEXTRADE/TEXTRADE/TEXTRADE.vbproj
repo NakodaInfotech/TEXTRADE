@@ -10921,6 +10921,9 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobIn.resx">
       <DependentUpon>GreyJobIn.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobInDetails.resx">
+      <DependentUpon>GreyJobInDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobOut.resx">
       <DependentUpon>GreyJobOut.vb</DependentUpon>
     </EmbeddedResource>

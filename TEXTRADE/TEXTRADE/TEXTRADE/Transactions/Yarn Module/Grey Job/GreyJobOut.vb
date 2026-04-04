@@ -891,9 +891,9 @@ Public Class GreyJobOut
                         TXTJONO.Text = TEMPJONO
                         TXTJONO.ReadOnly = True
 
-                        CMBTYPE.Text = Convert.ToString(dr("JOBOUTTYPE").ToString)
+                        CMBTYPE.Text = Convert.ToString(dr("GREYJOBOUTTYPE").ToString)
                         CMBTYPE.Enabled = False
-                        TXTTYPEJONO.Text = Val(dr("TYPEJOBOUTNO"))
+                        TXTTYPEJONO.Text = Val(dr("GREYTYPEJOBOUTNO"))
 
                         JODATE.Text = Format(Convert.ToDateTime(dr("JODATE")).Date, "dd/MM/yyyy")
                         CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
