@@ -12,7 +12,7 @@ Public Class GreyJobInDetails
         Me.Close()
     End Sub
 
-    Private Sub JOBINDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+    Private Sub GREYJOBINDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Try
             If e.KeyCode = Windows.Forms.Keys.Escape Then
                 Me.Close()
@@ -24,7 +24,7 @@ Public Class GreyJobInDetails
         End Try
     End Sub
 
-    Private Sub JOBINDetails_LOAD(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+    Private Sub GREYJOBINDetails_LOAD(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim DTROW() As DataRow
         DTROW = USERRIGHTS.Select("FormName = 'JOB IN'")
         USERADD = DTROW(0).Item(1)
@@ -65,7 +65,7 @@ Public Class GreyJobInDetails
         DTWHATSAPP.Columns.Add("ATTACHMENT")
         DTWHATSAPP.Columns.Add("FILENAME")
 
-        fillgrid(" AND dbo.JOBIN.JI_yearid=" & YearId & " order by dbo.JOBIN.JI_no ")
+        fillgrid(" AND dbo.GREYJOBIN.GJI_yearid=" & YearId & " order by dbo.GREYJOBIN.GJI_no ")
     End Sub
 
     Sub fillgrid(ByVal TEMPCONDITION)
@@ -77,7 +77,7 @@ Public Class GreyJobInDetails
 
             Dim objclsCMST As New ClsCommonMaster
             Dim dt As DataTable
-            dt = objclsCMST.search(" CAST(0 AS BIT) AS CHK,JOBIN.JI_no AS SRNO, JOBIN.JI_date AS DATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, JOBIN.JI_TOTALQTY AS TOTALPCS, JOBIN.JI_TOTALMTRS AS TOTALMTRS, ISNULL(JOBIN.JI_JOBOUTNO, 0) AS JONO, ISNULL(JOBIN.JI_remarks, '') AS REMARKS, ISNULL(JOBIN.JI_LOTNO, '') AS LOTNO, ISNULL(WEAVERLEDGERS.Acc_cmpname, '') AS WEAVERNAME, ISNULL(JOBIN.JI_WEAVERCHNO, '') AS WEAVERCHNO, ISNULL(JOBIN.JI_CHALLANNO, '') AS CHALLANNO, JOBIN.JI_TOTALAMOUNT AS TOTALAMOUNT, ISNULL(LEDGERS.ACC_WHATSAPPNO, '0') AS PARTYWHATSAPP, ISNULL(LEDGERS.Acc_email, '') AS PARTYEMAIL, ISNULL(USERMASTER.User_Name, '') AS USERNAME, ISNULL(MACHINEMASTER.MACHINE_NAME, '') AS MACHINE, ISNULL(CONTRACTMASTER.CONTRACT_NAME, '') AS OPERATOR, ISNULL(LEDGERS.Acc_email, '') AS PARTYEMAILID ", "", " JOBIN INNER JOIN LEDGERS ON JOBIN.JI_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN CONTRACTMASTER ON JOBIN.JI_CONTRACTORID = CONTRACTMASTER.CONTRACT_ID LEFT OUTER JOIN MACHINEMASTER ON JOBIN.JI_MACHINEID = MACHINEMASTER.MACHINE_ID LEFT OUTER JOIN USERMASTER ON JOBIN.JI_userid = USERMASTER.User_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON JOBIN.JI_ledgerid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN GODOWNMASTER ON JOBIN.ji_godownid = GODOWNMASTER.GODOWN_id LEFT OUTER JOIN LEDGERS AS WEAVERLEDGERS ON JOBIN.JI_PURLEDGERID = WEAVERLEDGERS.Acc_id", TEMPCONDITION)
+            dt = objclsCMST.search(" CAST(0 AS BIT) AS CHK,GREYJOBIN.GJI_no AS SRNO, GREYJOBIN.GJI_date AS DATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, GREYJOBIN.GJI_TOTALQTY AS TOTALPCS, GREYJOBIN.GJI_TOTALMTRS AS TOTALMTRS, ISNULL(GREYJOBIN.GJI_JOBOUTNO, 0) AS JONO, ISNULL(GREYJOBIN.GJI_remarks, '') AS REMARKS, ISNULL(GREYJOBIN.GJI_LOTNO, '') AS LOTNO, ISNULL(WEAVERLEDGERS.Acc_cmpname, '') AS WEAVERNAME, ISNULL(GREYJOBIN.GJI_WEAVERCHNO, '') AS WEAVERCHNO, ISNULL(GREYJOBIN.GJI_CHALLANNO, '') AS CHALLANNO, GREYJOBIN.GJI_TOTALAMOUNT AS TOTALAMOUNT, ISNULL(LEDGERS.ACC_WHATSAPPNO, '0') AS PARTYWHATSAPP, ISNULL(LEDGERS.Acc_email, '') AS PARTYEMAIL, ISNULL(USERMASTER.User_Name, '') AS USERNAME, ISNULL(MACHINEMASTER.MACHINE_NAME, '') AS MACHINE, ISNULL(CONTRACTMASTER.CONTRACT_NAME, '') AS OPERATOR, ISNULL(LEDGERS.Acc_email, '') AS PARTYEMAILID ", "", " GREYJOBIN INNER JOIN LEDGERS ON GREYJOBIN.GJI_ledgerid = LEDGERS.Acc_id LEFT OUTER JOIN CONTRACTMASTER ON GREYJOBIN.GJI_CONTRACTORID = CONTRACTMASTER.CONTRACT_ID LEFT OUTER JOIN MACHINEMASTER ON GREYJOBIN.GJI_MACHINEID = MACHINEMASTER.MACHINE_ID LEFT OUTER JOIN USERMASTER ON GREYJOBIN.GJI_userid = USERMASTER.User_id LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON GREYJOBIN.GJI_ledgerid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN GODOWNMASTER ON GREYJOBIN.GJI_godownid = GODOWNMASTER.GODOWN_id LEFT OUTER JOIN LEDGERS AS WEAVERLEDGERS ON GREYJOBIN.GJI_PURLEDGERID = WEAVERLEDGERS.Acc_id", TEMPCONDITION)
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -96,7 +96,7 @@ Public Class GreyJobInDetails
             End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                Dim objREQ As New JobIn
+                Dim objREQ As New GreyJobIn
                 objREQ.MdiParent = MDIMain
                 objREQ.EDIT = editval
                 objREQ.TEMPJOBINNO = JONO
@@ -120,13 +120,13 @@ Public Class GreyJobInDetails
     End Sub
 
     Private Sub TOOLGRIDDETAILS_Click(sender As Object, e As EventArgs) Handles TOOLGRIDDETAILS.Click
-        Try
-            Dim OBJJI As New JobInGridDetails
-            OBJJI.MdiParent = MDIMain
-            OBJJI.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
+        'Try
+        '    Dim OBJJI As New JobInGridDetails
+        '    OBJJI.MdiParent = MDIMain
+        '    OBJJI.Show()
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
     End Sub
 
     Private Sub gridpayment_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
@@ -146,7 +146,7 @@ Public Class GreyJobInDetails
         End Try
     End Sub
 
-    Private Sub JobInDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+    Private Sub greyJobInDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If ClientName = "KARAN" Then
                 GWEAVERNAME.Visible = True
@@ -249,7 +249,7 @@ Public Class GreyJobInDetails
 
     Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
         Try
-            fillgrid(" AND dbo.JOBIN.JI_yearid=" & YearId & " order by dbo.JOBIN.JI_no ")
+            fillgrid(" AND dbo.GREYJOBIN.GJI_yearid=" & YearId & " order by dbo.GREYJOBIN.GJI_no ")
         Catch ex As Exception
             Throw ex
         End Try
@@ -260,23 +260,23 @@ Public Class GreyJobInDetails
             Dim ALATTACHMENT As New ArrayList
             Dim FILENAME As New ArrayList
             If INVOICEMAIL = False And WHATSAPP = False Then
-                If PrintDialog.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PrintDialog.PrinterSettings Else Exit Sub
+                If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
             End If
             For I As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
                 Dim OBJJO As New GDNDESIGN
                 OBJJO.MdiParent = MDIMain
                 OBJJO.DIRECTPRINT = True
-                OBJJO.FRMSTRING = "JOBIN"
+                OBJJO.FRMSTRING = "GREYJOBIN"
                 OBJJO.DIRECTMAIL = INVOICEMAIL
                 OBJJO.DIRECTWHATSAPP = WHATSAPP
-                OBJJO.PRINTSETTING = PrintDialog
-                OBJJO.FORMULA = "{JOBIN.JI_NO}=" & Val(I) & " and {JOBIN.JI_yearid}=" & YearId
+                OBJJO.PRINTSETTING = PRINTDIALOG
+                OBJJO.FORMULA = "{GREYJOBIN.GJI_NO}=" & Val(I) & " and {GREYJOBIN.GJI_yearid}=" & YearId
                 OBJJO.JONO = Val(I)
                 OBJJO.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                 OBJJO.Show()
                 OBJJO.Close()
-                ALATTACHMENT.Add(Application.StartupPath & "\JOBIN_" & I & ".pdf")
-                FILENAME.Add("JOBIN_" & I & ".pdf")
+                ALATTACHMENT.Add(Application.StartupPath & "\GREYJOBIN_" & I & ".pdf")
+                FILENAME.Add("GREYJOBIN_" & I & ".pdf")
             Next
 
             If INVOICEMAIL Then
@@ -305,7 +305,7 @@ Public Class GreyJobInDetails
             DTMAIL.Rows.Clear()
             DTWHATSAPP.Rows.Clear()
             If INVOICEMAIL = False And WHATSAPP = False Then
-                If PrintDialog.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PrintDialog.PrinterSettings Else Exit Sub
+                If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
             End If
             'Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
             For I As Integer = 0 To Val(gridbill.RowCount - 1)
@@ -314,27 +314,27 @@ Public Class GreyJobInDetails
                     Dim OBJJO As New GDNDESIGN
                     OBJJO.MdiParent = MDIMain
                     OBJJO.DIRECTPRINT = True
-                    OBJJO.FRMSTRING = "JOBIN"
+                    OBJJO.FRMSTRING = "GREYJOBIN"
                     OBJJO.DIRECTMAIL = INVOICEMAIL
                     OBJJO.DIRECTWHATSAPP = WHATSAPP
-                    OBJJO.PRINTSETTING = PrintDialog
+                    OBJJO.PRINTSETTING = PRINTDIALOG
                     OBJJO.PARTYNAME = ROW("NAME")
-                    OBJJO.FORMULA = "{JOBIN.JI_NO}=" & Val(ROW("SRNO")) & " and {JOBIN.JI_yearid}=" & YearId
+                    OBJJO.FORMULA = "{GREYJOBIN.GJI_NO}=" & Val(ROW("SRNO")) & " and {GREYJOBIN.GJI_yearid}=" & YearId
                     OBJJO.JONO = Val(ROW("SRNO"))
                     OBJJO.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
                     OBJJO.Show()
                     OBJJO.Close()
-                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf")
-                    FILENAME.Add(ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf")
+                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("NAME") & "GREYJOBIN_" & Val(ROW("SRNO")) & ".pdf")
+                    FILENAME.Add(ROW("NAME") & "GREYJOBIN_" & Val(ROW("SRNO")) & ".pdf")
 
                     Dim OBJCMN As New ClsCommon
                     'ADDINT IN DTEMAIL
-                    DTMAIL.Rows.Add(ROW("SRNO"), 0, "", ROW("SRNO"), ROW("DATE"), ROW("NAME"), ROW("PARTYEMAILID"), "", "", "", UCase(CmpName) & " - REC No. " & ROW("SRNO") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf")
+                    DTMAIL.Rows.Add(ROW("SRNO"), 0, "", ROW("SRNO"), ROW("DATE"), ROW("NAME"), ROW("PARTYEMAILID"), "", "", "", UCase(CmpName) & " - REC No. " & ROW("SRNO") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "GREYJOBIN_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "GREYJOBIN_" & Val(ROW("SRNO")) & ".pdf")
                     'ADDING IN WHATSAPP
 
-                    DTWHATSAPP.Rows.Add(ROW("SRNO"), 0, "", ROW("SRNO"), ROW("DATE"), ROW("NAME"), ROW("PARTYWHATSAPP"), "", 0, "", UCase(CmpName) & " - Rec No. " & ROW("SRNO") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "JOBIN_" & Val(ROW("SRNO")) & ".pdf")
+                    DTWHATSAPP.Rows.Add(ROW("SRNO"), 0, "", ROW("SRNO"), ROW("DATE"), ROW("NAME"), ROW("PARTYWHATSAPP"), "", 0, "", UCase(CmpName) & " - Rec No. " & ROW("SRNO") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "GREYJOBIN_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "GREYJOBIN_" & Val(ROW("SRNO")) & ".pdf")
 
-                    If INVOICEMAIL = False And WHATSAPP = False Then Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE JOBIN SET JI_SENDWHATSAPP = 1 FROM JOBIN  WHERE JI_NO = " & Val(ROW("SRNO")) & " and  AND JI_YEARID = " & YearId, "", "")
+                    If INVOICEMAIL = False And WHATSAPP = False Then Dim DT As DataTable = OBJCMN.Execute_Any_String("UPDATE GREYJOBIN SET GJI_SENDWHATSAPP = 1 FROM GREYJOBIN  WHERE GJI_NO = " & Val(ROW("SRNO")) & " and  AND GJI_YEARID = " & YearId, "", "")
                 End If
             Next
 
