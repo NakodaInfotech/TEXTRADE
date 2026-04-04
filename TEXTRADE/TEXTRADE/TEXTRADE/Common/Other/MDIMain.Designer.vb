@@ -1342,6 +1342,9 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.GreyChallanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewGreyChallanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingGreyChallanToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7981,7 +7984,7 @@ Partial Class MDIMain
         '
         'GreyJobWorkToolStripMenuItem
         '
-        Me.GreyJobWorkToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GreyJobOutToolStripMenuItem, Me.GreyJobInToolStripMenuItem})
+        Me.GreyJobWorkToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GreyJobOutToolStripMenuItem, Me.GreyJobInToolStripMenuItem, Me.GreyChallanToolStripMenuItem})
         Me.GreyJobWorkToolStripMenuItem.Name = "GreyJobWorkToolStripMenuItem"
         Me.GreyJobWorkToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.GreyJobWorkToolStripMenuItem.Text = "Grey Job Work"
@@ -8015,13 +8018,13 @@ Partial Class MDIMain
         'GREYJOBINADD_CLICK
         '
         Me.GREYJOBINADD_CLICK.Name = "GREYJOBINADD_CLICK"
-        Me.GREYJOBINADD_CLICK.Size = New System.Drawing.Size(180, 22)
+        Me.GREYJOBINADD_CLICK.Size = New System.Drawing.Size(174, 22)
         Me.GREYJOBINADD_CLICK.Text = "Add new Job In"
         '
         'GREYJOBIN_EDIT
         '
         Me.GREYJOBIN_EDIT.Name = "GREYJOBIN_EDIT"
-        Me.GREYJOBIN_EDIT.Size = New System.Drawing.Size(180, 22)
+        Me.GREYJOBIN_EDIT.Size = New System.Drawing.Size(174, 22)
         Me.GREYJOBIN_EDIT.Text = "Edit Existing Job In"
         '
         'AGENCYMODULE_MENU
@@ -9786,6 +9789,25 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
+        'GreyChallanToolStripMenuItem
+        '
+        Me.GreyChallanToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewGreyChallanToolStripMenuItem, Me.EditExistingGreyChallanToolStripMenuItem})
+        Me.GreyChallanToolStripMenuItem.Name = "GreyChallanToolStripMenuItem"
+        Me.GreyChallanToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.GreyChallanToolStripMenuItem.Text = "Grey Challan"
+        '
+        'AddNewGreyChallanToolStripMenuItem
+        '
+        Me.AddNewGreyChallanToolStripMenuItem.Name = "AddNewGreyChallanToolStripMenuItem"
+        Me.AddNewGreyChallanToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.AddNewGreyChallanToolStripMenuItem.Text = "Add New Grey Challan"
+        '
+        'EditExistingGreyChallanToolStripMenuItem
+        '
+        Me.EditExistingGreyChallanToolStripMenuItem.Name = "EditExistingGreyChallanToolStripMenuItem"
+        Me.EditExistingGreyChallanToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.EditExistingGreyChallanToolStripMenuItem.Text = "Edit Existing Grey Challan"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -11131,4 +11153,7 @@ Partial Class MDIMain
     Friend WithEvents UPLOADSTOCK_FINISHED As ToolStripMenuItem
     Friend WithEvents UPLOADSTOCK_GREY As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator350 As ToolStripSeparator
+    Friend WithEvents GreyChallanToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddNewGreyChallanToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditExistingGreyChallanToolStripMenuItem As ToolStripMenuItem
 End Class

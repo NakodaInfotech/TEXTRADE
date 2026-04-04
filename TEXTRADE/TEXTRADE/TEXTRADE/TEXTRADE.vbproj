@@ -3205,6 +3205,24 @@
     <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUploadDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Challan\GreyGDN.Designer.vb">
+      <DependentUpon>GreyGDN.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Challan\GreyGDN.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Challan\GreyGDNDetails.Designer.vb">
+      <DependentUpon>GreyGDNDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Challan\GreyGDNDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Challan\GreyGDNGridDetaisl.Designer.vb">
+      <DependentUpon>GreyGDNGridDetaisl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Challan\GreyGDNGridDetaisl.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Grey Job\GreyJobIn.Designer.vb">
       <DependentUpon>GreyJobIn.vb</DependentUpon>
     </Compile>

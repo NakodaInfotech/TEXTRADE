@@ -12416,4 +12416,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AddNewGreyChallanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewGreyChallanToolStripMenuItem.Click
+        Try
+            Dim OBJYARNJO As New GreyGDN
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingGreyChallanToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditExistingGreyChallanToolStripMenuItem.Click
+        Try
+            Dim OBJYARNJO As New GreyGDNDetails
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
