@@ -10927,6 +10927,9 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobOut.resx">
       <DependentUpon>GreyJobOut.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobOutDetails.resx">
+      <DependentUpon>GreyJobOutDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.resx">
       <DependentUpon>DirectIssueToSizer.vb</DependentUpon>
     </EmbeddedResource>

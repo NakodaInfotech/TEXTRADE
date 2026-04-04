@@ -490,9 +490,9 @@ Partial Class GreyJobInDetails
         Me.lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.lbl.Location = New System.Drawing.Point(15, 32)
         Me.lbl.Name = "lbl"
-        Me.lbl.Size = New System.Drawing.Size(150, 14)
+        Me.lbl.Size = New System.Drawing.Size(177, 14)
         Me.lbl.TabIndex = 251
-        Me.lbl.Text = "Select a Job Out to Change"
+        Me.lbl.Text = "Select a Grey Job Out to Change"
         '
         'cmdok
         '
