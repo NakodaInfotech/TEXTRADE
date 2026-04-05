@@ -3205,6 +3205,24 @@
     <Compile Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUploadDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey GDN\GreyGDN.Designer.vb">
+      <DependentUpon>GreyGDN.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey GDN\GreyGDN.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey GDN\GreyGDNDetails.Designer.vb">
+      <DependentUpon>GreyGDNDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey GDN\GreyGDNDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey GDN\GreyGDNGridDetails.Designer.vb">
+      <DependentUpon>GreyGDNGridDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey GDN\GreyGDNGridDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Grey Job\GreyJobIn.Designer.vb">
       <DependentUpon>GreyJobIn.vb</DependentUpon>
     </Compile>
@@ -10917,6 +10935,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUploadDetails.resx">
       <DependentUpon>BeamUploadDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey GDN\GreyGDN.resx">
+      <DependentUpon>GreyGDN.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobIn.resx">
       <DependentUpon>GreyJobIn.vb</DependentUpon>

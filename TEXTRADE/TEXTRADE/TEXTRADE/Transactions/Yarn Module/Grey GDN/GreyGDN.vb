@@ -5,7 +5,7 @@ Imports BL
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
-Public Class GDN
+Public Class GreyGDN
 
     Dim IntResult As Integer
     Dim GRIDDOUBLECLICK, GRIDSTOREDOUBLECLICK As Boolean
@@ -220,7 +220,7 @@ Public Class GDN
 
     Sub GETMAXNO()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(gdn_no),0) + 1 ", " GDN ", " and gdn_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(gdn_no),0) + 1 ", " GREYGDN ", " and gdn_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then txtgdnno.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -2849,7 +2849,7 @@ LINE1:
 
     Private Sub CMBAGENT_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBAGENT.Validating
         Try
-            If CMBAGENT.Text.Trim <> "" Then namevalidate(CMBAGENT, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "AGENT")
+            If CMBAGENT.Text.Trim <> "" Then NAMEVALIDATE(CMBAGENT, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "AGENT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -2898,7 +2898,7 @@ LINE1:
 
     Private Sub CMBJOBBER_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBHASTE.Validating
         Try
-            If CMBHASTE.Text.Trim <> "" Then namevalidate(CMBHASTE, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'", "Sundry Debtors", "ACCOUNTS")
+            If CMBHASTE.Text.Trim <> "" Then NAMEVALIDATE(CMBHASTE, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'", "Sundry Debtors", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
@@ -3412,9 +3412,9 @@ LINE1:
     Private Sub CMBDISPATCHTO_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBDISPATCHTO.Enter
         Try
             If ClientName = "AVIS" Then
-                If CMBDISPATCHTO.Text.Trim = "" Then fillname(CMBDISPATCHTO, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND GROUP_NAME = 'HASTE DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
+                If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')  AND GROUP_NAME = 'HASTE DEBTORS' AND ACC_TYPE = 'ACCOUNTS'")
             Else
-                If CMBDISPATCHTO.Text.Trim = "" Then fillname(CMBDISPATCHTO, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND ACC_TYPE = 'ACCOUNTS'")
+                If CMBDISPATCHTO.Text.Trim = "" Then FILLNAME(CMBDISPATCHTO, EDIT, " And (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')   AND ACC_TYPE = 'ACCOUNTS'")
             End If
         Catch ex As Exception
             Throw ex
@@ -3461,7 +3461,7 @@ LINE1:
         If ClientName = "KENCOT" Then numdotkeypress(e, sender, Me)
     End Sub
 
-    Private Sub TOOLSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLSMS.Click
+    Private Sub TOOLSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If EDIT = False Then Exit Sub
         SMSCODE()
     End Sub

@@ -1280,10 +1280,8 @@ Public Class MDIMain
                         GP_TOOL.Enabled = True
                         GATEPASS_MASTER.Enabled = True
                         GATEPASSADD.Enabled = True
-                        'If ClientName = "AVIS" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SUPRIYA" Or ClientName = "YASHVI" Or ClientName = "RMANILAL" Or ClientName = "SONU" Or ClientName = "KOTHARI" Or ClientName = "MVIKASKUMAR" Or ClientName = "KARAN" Then
-                        '    STOCKADJUSTMENT_MASTER.Enabled = True
-                        '    STOCKADJUSTMENTADD.Enabled = True
-                        'End If
+
+
                         STOCKTAKING_MASTER.Enabled = True
                         STOCKTAKINGADD.Enabled = True
                         OPGDNADD.Enabled = True
@@ -1291,6 +1289,10 @@ Public Class MDIMain
                         'YARN STOCKABJUSTMENT
                         YARNSTOCKADJUSTMENT_MASTER.Enabled = True
                         YARNSTOCKADJUSTMENTADD.Enabled = True
+
+                        'GREYCHALLAN
+                        GREYGDN_MASTER.Enabled = True
+                        GREYGDNADD.Enabled = True
 
                     Else
                         GDNADD.Enabled = False
@@ -1306,6 +1308,7 @@ Public Class MDIMain
 
                         'YARN STOCKABJUSTMENT
                         YARNSTOCKADJUSTMENTADD.Enabled = False
+                        GREYGDNADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         GDN_MASTER.Enabled = True
@@ -1345,6 +1348,11 @@ Public Class MDIMain
                         'YARN STOCKABJUSTMENT
                         YARNSTOCKADJUSTMENT_MASTER.Enabled = True
                         YARNSTOCKADJUSTMENTEDIT.Enabled = True
+
+                        'GREYCHALLAN
+                        GREYGDN_MASTER.Enabled = True
+                        GREYGDNEDIT.Enabled = True
+
                     Else
                         GDNEDIT.Enabled = False
                         CHALLANTYPEEDIT.Enabled = False
@@ -1359,6 +1367,7 @@ Public Class MDIMain
 
                         'YARN STOCKABJUSTMENT
                         YARNSTOCKADJUSTMENTEDIT.Enabled = False
+                        GREYGDNEDIT.Enabled = False
 
                     End If
 
@@ -1431,6 +1440,8 @@ Public Class MDIMain
                         JOBOUTTYPEADD.Enabled = True
                         EMBPRODUCTION_MASTER.Enabled = True
                         EMBPRODUCTIONADD.Enabled = True
+                        GREYJOBOUT_MASTER.Enabled = True
+                        GREYJOBOUTADD.Enabled = True
                     Else
                         JOADD.Enabled = False
                         ISSUEPACKINGADD.Enabled = False
@@ -1438,6 +1449,7 @@ Public Class MDIMain
                         BEAMISSUEADD.Enabled = False
                         JOBOUTTYPEADD.Enabled = False
                         EMBPRODUCTIONADD.Enabled = False
+                        GREYJOBOUTADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         JOBOUTTYPE_MASTER.Enabled = True
@@ -1454,6 +1466,8 @@ Public Class MDIMain
                         JOBOUTTYPEEDIT.Enabled = True
                         EMBPRODUCTION_MASTER.Enabled = True
                         EMBPRODUCTIONEDIT.Enabled = True
+                        GREYJOBOUT_MASTER.Enabled = True
+                        GREYJOBOUTEDIT.Enabled = True
                     Else
                         JOEDIT.Enabled = False
                         ISSUEPACKINGEDIT.Enabled = False
@@ -1461,6 +1475,7 @@ Public Class MDIMain
                         BEAMISSUEEDIT.Enabled = False
                         JOBOUTTYPEEDIT.Enabled = False
                         EMBPRODUCTIONEDIT.Enabled = False
+                        GREYJOBOUTEDIT.Enabled = False
                     End If
 
 
@@ -1472,9 +1487,12 @@ Public Class MDIMain
                         RECPACKING_TOOL.Enabled = True
                         RECPACKING_MASTER.Enabled = True
                         RECPACKINGADD.Enabled = True
+                        GREYJOBIN_MASTER.Enabled = True
+                        GREYJOBINADD.Enabled = True
                     Else
                         JIADD.Enabled = False
                         RECPACKINGADD.Enabled = False
+                        GREYJOBINADD.Enabled = False
                     End If
                     If (DTROW(2) = True) Or (DTROW(3) = True) Or (DTROW(4) = True) Then
                         JI_MASTER.Enabled = True
@@ -1483,9 +1501,12 @@ Public Class MDIMain
                         RECPACKING_TOOL.Enabled = True
                         RECPACKING_MASTER.Enabled = True
                         RECPACKINGEDIT.Enabled = True
+                        GREYJOBIN_MASTER.Enabled = True
+                        GREYJOBINEDIT.Enabled = True
                     Else
                         JIEDIT.Enabled = False
                         RECPACKINGEDIT.Enabled = False
+                        GREYJOBINEDIT.Enabled = False
                     End If
 
 
@@ -3217,16 +3238,6 @@ Public Class MDIMain
             Dim ObjPRDetails As New PurchaseReturnDetails
             ObjPRDetails.MdiParent = Me
             ObjPRDetails.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub OutStockDetailsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OutStockDetailsToolStripMenuItem.Click
-        Try
-            Dim ObjOutStockReport As New OutStockReport
-            ObjOutStockReport.MdiParent = Me
-            ObjOutStockReport.Show()
         Catch ex As Exception
             Throw ex
         End Try
@@ -11028,7 +11039,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewJobInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GREYJOBINADD_CLICK.Click
+    Private Sub AddNewJobInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GREYJOBINADD.Click
         Try
             Dim OBJYARNJO As New GreyJobIn
             OBJYARNJO.MdiParent = Me
@@ -11038,7 +11049,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub EditExistingJobInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GREYJOBIN_EDIT.Click
+    Private Sub EditExistingJobInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GREYJOBINEDIT.Click
         Try
             Dim OBJYARNJO As New GreyJobInDetails
             OBJYARNJO.MdiParent = Me
@@ -12412,6 +12423,80 @@ SKIPLINE:
             Dim OBJYARNJO As New GreyJobOutDetails
             OBJYARNJO.MdiParent = Me
             OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub OPENINGSTOCKGREY_MASTER_Click(sender As Object, e As EventArgs) Handles OPENINGSTOCKGREY_MASTER.Click
+        Try
+            Dim OBJSTOCK As New OpeningStockReport
+            OBJSTOCK.MdiParent = Me
+            OBJSTOCK.FRMSTRING = "GREY"
+            OBJSTOCK.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GREYGDNADD_Click(sender As Object, e As EventArgs) Handles GREYGDNADD.Click
+        Try
+            Dim OBJGDN As New GreyGDN
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GREYGDNEDIT_Click(sender As Object, e As EventArgs) Handles GREYGDNEDIT.Click
+        Try
+            Dim OBJGDN As New GreyGDNDetails
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub FinishedOutStockDetailsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FinishedOutStockDetailsToolStripMenuItem.Click
+        Try
+            Dim ObjOutStockReport As New OutStockReport
+            ObjOutStockReport.MdiParent = Me
+            ObjOutStockReport.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GreyOutStockDetailsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GreyOutStockDetailsToolStripMenuItem.Click
+        Try
+            Dim ObjOutStockReport As New OutStockReport
+            ObjOutStockReport.MdiParent = Me
+            ObjOutStockReport.FRMSTRING = "GREY"
+            ObjOutStockReport.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GREYSTOCKDETAILS_MASTER_Click(sender As Object, e As EventArgs) Handles GREYSTOCKDETAILS_MASTER.Click
+        Try
+            Dim OBJSTOCK As New GodownwiseDetails
+            OBJSTOCK.FRMSTRING = "GREY"
+            OBJSTOCK.MdiParent = Me
+            OBJSTOCK.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GREYSTOCKSUMM_MASTER_Click(sender As Object, e As EventArgs) Handles GREYSTOCKSUMM_MASTER.Click
+        Try
+            Dim OBJSTOCK As New StockOnHandSummary
+            OBJSTOCK.MdiParent = Me
+            OBJSTOCK.FRMSTRING = "GREY"
+            OBJSTOCK.Show()
         Catch ex As Exception
             Throw ex
         End Try

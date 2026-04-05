@@ -1,11 +1,8 @@
 ﻿
 Imports BL
-Imports System.Windows.Forms
 Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class OutStockReport
-    Public EDIT As Boolean
-    Dim temppreqno As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Public FRMSTRING As String
 
@@ -40,7 +37,7 @@ Public Class OutStockReport
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-            fillgrid(" and yearid=" & YearId)
+            FILLGRID()
         Catch ex As Exception
             Throw ex
         End Try
@@ -48,7 +45,7 @@ Public Class OutStockReport
 
     Private Sub CMDREFRESH_Click(sender As Object, e As EventArgs) Handles CMDREFRESH.Click
         Try
-            fillgrid(" and yearid=" & YearId)
+            FILLGRID()
         Catch ex As Exception
             Throw ex
         End Try
@@ -68,14 +65,17 @@ Public Class OutStockReport
         End Try
     End Sub
 
-    Sub fillgrid(ByVal TEMPCONDITION)
+    Sub FILLGRID()
         Try
-            Dim objclsCMST As New ClsCommonMaster
-            Dim dt As DataTable
-            dt = objclsCMST.search(" BARCODE, TYPE, PIECETYPE, ITEMNAME AS ITEM, QUALITY, DESIGNNO AS DESIGN, JOBBERNAME AS TONAME, COLOR, GODOWN, MTRS, FROMNO, UNIT ", "", "  OUTBARCODESTOCK ", TEMPCONDITION)
-            gridbilldetails.DataSource = dt
-
-            If dt.Rows.Count > 0 Then
+            Dim OBJCMN As New ClsCommonMaster
+            Dim DT As New DataTable
+            If FRMSTRING = "GREY" Then
+                DT = OBJCMN.search(" BARCODE, TYPE, PIECETYPE, ITEMNAME AS ITEM, QUALITY, DESIGNNO AS DESIGN, JOBBERNAME AS TONAME, COLOR, GODOWN, MTRS, FROMNO, UNIT ", "", "  OUTGREYBARCODESTOCK ", " AND YEARID = " & YearId)
+            Else
+                DT = OBJCMN.search(" BARCODE, TYPE, PIECETYPE, ITEMNAME AS ITEM, QUALITY, DESIGNNO AS DESIGN, JOBBERNAME AS TONAME, COLOR, GODOWN, MTRS, FROMNO, UNIT ", "", "  OUTBARCODESTOCK ", " AND YEARID = " & YearId)
+            End If
+            gridbilldetails.DataSource = DT
+            If DT.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
                 gridbill.TopRowIndex = gridbill.RowCount - 15
             End If

@@ -615,7 +615,7 @@ Public Class GreyIssueProcess
                     Next
 
 
-                    GRIDISSUE.Rows.Add(0, DTROW("ITEMNAME"), "", DTROW("BALENO"), DTROW("DESIGNNO"), DTROW("COLOR"), Val(DTROW("PCS")), DTROW("UNIT"), Val(DTROW("MTRS")), Val(DTROW("RATE")), 0, 0, 0, DTROW("GREYRECNO"), DTROW("GRIDSRNO"), DTROW("TYPE"))
+                    GRIDISSUE.Rows.Add(0, DTROW("ITEMNAME"), "", DTROW("BALENO"), DTROW("DESIGNNO"), DTROW("COLOR"), Val(DTROW("PCS")), DTROW("UNIT"), Val(DTROW("MTRS")), Val(DTROW("RATE")), 0, 0, 0, DTROW("GREYRECNO"), DTROW("GRIDSRNO"), DTROW("TYPE"), "")
 
 NEXTLINE:
                 Next
@@ -1015,9 +1015,17 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs)
+        Try
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub CMBAGENT_Validating(sender As Object, e As CancelEventArgs) Handles CMBAGENT.Validating
         Try
-            If CMBAGENT.Text.Trim <> "" Then namevalidate(CMBAGENT, CMBCODE, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'", "Sundry Creditors", "AGENT")
+            If CMBAGENT.Text.Trim <> "" Then NAMEVALIDATE(CMBAGENT, CMBCODE, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'", "Sundry Creditors", "AGENT")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1033,12 +1041,11 @@ LINE1:
                 GRIDISSUE.ReadOnly = True
             End If
 
-            If ClientName = "SWPL" Then
+            If HIDEYARN = False Then
                 LBLGODOWN.Visible = True
                 CMBGODOWN.Visible = True
                 LBLBARCODE.Visible = True
                 TXTBARCODE.Visible = True
-                CMDSELECTGREY.Text = "Select &Stock"
             End If
         Catch ex As Exception
             Throw ex
