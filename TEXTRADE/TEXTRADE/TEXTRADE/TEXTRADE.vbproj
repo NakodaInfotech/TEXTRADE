@@ -10936,14 +10936,17 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Upload And Unload\BeamUploadDetails.resx">
       <DependentUpon>BeamUploadDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Yarn Module\Grey GDN\GreyGDN.resx">
-      <DependentUpon>GreyGDN.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobIn.resx">
       <DependentUpon>GreyJobIn.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobInDetails.resx">
+      <DependentUpon>GreyJobInDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobOut.resx">
       <DependentUpon>GreyJobOut.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobOutDetails.resx">
+      <DependentUpon>GreyJobOutDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.resx">
       <DependentUpon>DirectIssueToSizer.vb</DependentUpon>

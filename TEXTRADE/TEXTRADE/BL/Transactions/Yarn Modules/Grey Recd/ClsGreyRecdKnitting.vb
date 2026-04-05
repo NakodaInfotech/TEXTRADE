@@ -139,6 +139,14 @@ Public Class ClsGreyRecdKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@JOBORDERCOLOR", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDEROTHERITEMNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERREFNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERPONO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERPARTYNAME", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@JOBORDERMTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@JOBORDERFROMNO", alParaval(I)))
@@ -297,6 +305,14 @@ Public Class ClsGreyRecdKnitting
                 .Add(New SqlClient.SqlParameter("@JOBORDERDESIGN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@JOBORDERCOLOR", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDEROTHERITEMNAME", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERREFNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERPONO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@JOBORDERPARTYNAME", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@JOBORDERMTRS", alParaval(I)))
                 I = I + 1
