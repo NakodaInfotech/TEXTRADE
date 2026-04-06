@@ -731,6 +731,9 @@ Partial Class MDIMain
         Me.OPENINGSTOCKYARN = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator319 = New System.Windows.Forms.ToolStripSeparator()
         Me.OutStockDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FinishedOutStockDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GreyOutStockDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator352 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator208 = New System.Windows.Forms.ToolStripSeparator()
         Me.STOCKREPORTS_TOOL = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNREPORTS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -745,6 +748,9 @@ Partial Class MDIMain
         Me.GreyStockTransportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GreyStockProcessToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator266 = New System.Windows.Forms.ToolStripSeparator()
+        Me.GREYSTOCKDETAILS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYSTOCKSUMM_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator353 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator259 = New System.Windows.Forms.ToolStripSeparator()
         Me.BARCODERELATEDSTOCK_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ItemWiseStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -914,6 +920,33 @@ Partial Class MDIMain
         Me.CFORMAPPLICATION = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator128 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator206 = New System.Windows.Forms.ToolStripSeparator()
+        Me.OTHERREPORT_MAIN = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TCSReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TCSCHALLAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator239 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator237 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TDSReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TDSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TDSCHALLAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TDSDeductedNotDedictedReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator238 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator44 = New System.Windows.Forms.ToolStripSeparator()
+        Me.InterestCalculatorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InterestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IntrestCalculatorSummaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator60 = New System.Windows.Forms.ToolStripSeparator()
+        Me.InterestCalculatorBillWiseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator187 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator62 = New System.Windows.Forms.ToolStripSeparator()
+        Me.REMINDERREPORT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator246 = New System.Windows.Forms.ToolStripSeparator()
+        Me.LOGS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPDATELOGS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DELETELOGS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator247 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator54 = New System.Windows.Forms.ToolStripSeparator()
+        Me.COSTREPORT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TOOLCOSTREPORT = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNMODULE_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNPO_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNPOADD = New System.Windows.Forms.ToolStripMenuItem()
@@ -1013,6 +1046,10 @@ Partial Class MDIMain
         Me.GREYJOBIN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.GREYJOBINADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.GREYJOBINEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYGDN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYGDNADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYGDNEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator351 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator343 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNDYEINGPROGRAM_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNDYEINGPROGRAMADD = New System.Windows.Forms.ToolStripMenuItem()
@@ -1122,33 +1159,6 @@ Partial Class MDIMain
         Me.HOLDFORINTCALCMENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.LRSTOCKVALUE_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator302 = New System.Windows.Forms.ToolStripSeparator()
-        Me.OTHERREPORT_MAIN = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TCSReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TCSCHALLAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator239 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator237 = New System.Windows.Forms.ToolStripSeparator()
-        Me.TDSReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TDSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TDSCHALLAN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TDSDeductedNotDedictedReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator238 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator44 = New System.Windows.Forms.ToolStripSeparator()
-        Me.InterestCalculatorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.InterestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IntrestCalculatorSummaryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator60 = New System.Windows.Forms.ToolStripSeparator()
-        Me.InterestCalculatorBillWiseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator187 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator62 = New System.Windows.Forms.ToolStripSeparator()
-        Me.REMINDERREPORT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator246 = New System.Windows.Forms.ToolStripSeparator()
-        Me.LOGS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPDATELOGS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DELETELOGS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator247 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator54 = New System.Windows.Forms.ToolStripSeparator()
-        Me.COSTREPORT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TOOLCOSTREPORT = New System.Windows.Forms.ToolStripSeparator()
         Me.Utilitiesmenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeCompany = New System.Windows.Forms.ToolStripMenuItem()
         Me.BackupCompany = New System.Windows.Forms.ToolStripMenuItem()
@@ -1343,16 +1353,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.GREYGDN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GREYGDNADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GREYGDNEDIT = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator351 = New System.Windows.Forms.ToolStripSeparator()
-        Me.FinishedOutStockDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GreyOutStockDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator352 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GREYSTOCKDETAILS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GREYSTOCKSUMM_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator353 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -3123,25 +3123,26 @@ Partial Class MDIMain
         Me.TAX_MASTER.Name = "TAX_MASTER"
         Me.TAX_MASTER.Size = New System.Drawing.Size(184, 22)
         Me.TAX_MASTER.Text = "&Tax Master"
+        Me.TAX_MASTER.Visible = False
         '
         'TAXADD
         '
         Me.TAXADD.Enabled = False
         Me.TAXADD.Name = "TAXADD"
-        Me.TAXADD.Size = New System.Drawing.Size(159, 22)
+        Me.TAXADD.Size = New System.Drawing.Size(180, 22)
         Me.TAXADD.Text = "&Add New Tax"
         '
         'TAXEDIT
         '
         Me.TAXEDIT.Enabled = False
         Me.TAXEDIT.Name = "TAXEDIT"
-        Me.TAXEDIT.Size = New System.Drawing.Size(159, 22)
+        Me.TAXEDIT.Size = New System.Drawing.Size(180, 22)
         Me.TAXEDIT.Text = "&Edit Existing Tax"
         '
         'ToolStripSeparator115
         '
         Me.ToolStripSeparator115.Name = "ToolStripSeparator115"
-        Me.ToolStripSeparator115.Size = New System.Drawing.Size(156, 6)
+        Me.ToolStripSeparator115.Size = New System.Drawing.Size(177, 6)
         '
         'LOC_MASTER
         '
@@ -5521,7 +5522,7 @@ Partial Class MDIMain
         Me.PUR_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PurchaseOrderToolStripMenuItem1, Me.ToolStripSeparator68, Me.PurchaseGRNToolStripMenuItem, Me.GRNCheckingToolStripMenuItem, Me.ToolStripSeparator69, Me.MaterialReceiptToolStripMenuItem, Me.ToolStripSeparator91, Me.PurchaseInvoiceToolStripMenuItem, Me.MonthlyPurchaseAnalysisToolStripMenuItem, Me.PURCHASERETURNREPORTS, Me.ToolStripSeparator36, Me.CheckedGRNToolStripMenuItem1, Me.UncheckedGRNToolStripMenuItem1, Me.PendingInvoiceToolStripMenuItem1, Me.ToolStripSeparator43})
         Me.PUR_REPORTS.Enabled = False
         Me.PUR_REPORTS.Name = "PUR_REPORTS"
-        Me.PUR_REPORTS.Size = New System.Drawing.Size(180, 22)
+        Me.PUR_REPORTS.Size = New System.Drawing.Size(174, 22)
         Me.PUR_REPORTS.Text = "Purchase"
         '
         'PurchaseOrderToolStripMenuItem1
@@ -5612,14 +5613,14 @@ Partial Class MDIMain
         'PURREPORT_TOOLSTRIP
         '
         Me.PURREPORT_TOOLSTRIP.Name = "PURREPORT_TOOLSTRIP"
-        Me.PURREPORT_TOOLSTRIP.Size = New System.Drawing.Size(177, 6)
+        Me.PURREPORT_TOOLSTRIP.Size = New System.Drawing.Size(171, 6)
         '
         'JOB_REPORTS
         '
         Me.JOB_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PendingJoToolStripMenuItem, Me.ToolStripSeparator192, Me.JobOutFilterToolStripMenuItem, Me.JobInFilterToolStripMenuItem, Me.EMBPROD_FILTER, Me.CutPackFilterToolStripMenuItem, Me.ToolStripSeparator87, Me.JobOutDetailReportToolStripMenuItem, Me.ToolStripSeparator23})
         Me.JOB_REPORTS.Enabled = False
         Me.JOB_REPORTS.Name = "JOB_REPORTS"
-        Me.JOB_REPORTS.Size = New System.Drawing.Size(180, 22)
+        Me.JOB_REPORTS.Size = New System.Drawing.Size(174, 22)
         Me.JOB_REPORTS.Text = "Job Work"
         '
         'PendingJoToolStripMenuItem
@@ -5677,14 +5678,14 @@ Partial Class MDIMain
         'JOBREPORTS_TOOLSTRIP
         '
         Me.JOBREPORTS_TOOLSTRIP.Name = "JOBREPORTS_TOOLSTRIP"
-        Me.JOBREPORTS_TOOLSTRIP.Size = New System.Drawing.Size(177, 6)
+        Me.JOBREPORTS_TOOLSTRIP.Size = New System.Drawing.Size(171, 6)
         '
         'SALE_REPORTS
         '
         Me.SALE_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SaleOrderFilterToolStripMenuItem, Me.ToolStripSeparator50, Me.GDNFilterToolStripMenuItem, Me.ToolStripSeparator35, Me.SaleInvoiceFilterToolStripMenuItem, Me.MONTHLYSALEANALYSIS_REPORT, Me.SaleReturnFilterToolStripMenuItem, Me.ToolStripSeparator101, Me.PendingInvoiceToolStripMenuItem, Me.PendingInvoiceDetailsToolStripMenuItem, Me.MissingInvoiceNoToolStripMenuItem, Me.ToolStripSeparator73, Me.COVER, Me.ToolStripSeparator303})
         Me.SALE_REPORTS.Enabled = False
         Me.SALE_REPORTS.Name = "SALE_REPORTS"
-        Me.SALE_REPORTS.Size = New System.Drawing.Size(180, 22)
+        Me.SALE_REPORTS.Size = New System.Drawing.Size(174, 22)
         Me.SALE_REPORTS.Text = "Sale"
         '
         'SaleOrderFilterToolStripMenuItem
@@ -5787,32 +5788,32 @@ Partial Class MDIMain
         'ToolStripSeparator48
         '
         Me.ToolStripSeparator48.Name = "ToolStripSeparator48"
-        Me.ToolStripSeparator48.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator48.Size = New System.Drawing.Size(171, 6)
         '
         'PAYMENTREGISTER_MENU
         '
         Me.PAYMENTREGISTER_MENU.Enabled = False
         Me.PAYMENTREGISTER_MENU.Name = "PAYMENTREGISTER_MENU"
-        Me.PAYMENTREGISTER_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.PAYMENTREGISTER_MENU.Size = New System.Drawing.Size(174, 22)
         Me.PAYMENTREGISTER_MENU.Text = "Payment Register"
         '
         'RECEIPTREGISTER_MENU
         '
         Me.RECEIPTREGISTER_MENU.Enabled = False
         Me.RECEIPTREGISTER_MENU.Name = "RECEIPTREGISTER_MENU"
-        Me.RECEIPTREGISTER_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.RECEIPTREGISTER_MENU.Size = New System.Drawing.Size(174, 22)
         Me.RECEIPTREGISTER_MENU.Text = "Receipt Register"
         '
         'SALEREPORTS_TOOLSTRIP
         '
         Me.SALEREPORTS_TOOLSTRIP.Name = "SALEREPORTS_TOOLSTRIP"
-        Me.SALEREPORTS_TOOLSTRIP.Size = New System.Drawing.Size(177, 6)
+        Me.SALEREPORTS_TOOLSTRIP.Size = New System.Drawing.Size(171, 6)
         '
         'SAMPLEREPORT_MENU
         '
         Me.SAMPLEREPORT_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SAMPLEORDER_REPORTS, Me.ToolStripSeparator278})
         Me.SAMPLEREPORT_MENU.Name = "SAMPLEREPORT_MENU"
-        Me.SAMPLEREPORT_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.SAMPLEREPORT_MENU.Size = New System.Drawing.Size(174, 22)
         Me.SAMPLEREPORT_MENU.Text = "Sample Reports"
         '
         'SAMPLEORDER_REPORTS
@@ -5830,7 +5831,7 @@ Partial Class MDIMain
         '
         Me.STOREREPORT_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.STOREPURORDER_REPORTS, Me.ToolStripSeparator279})
         Me.STOREREPORT_MENU.Name = "STOREREPORT_MENU"
-        Me.STOREREPORT_MENU.Size = New System.Drawing.Size(180, 22)
+        Me.STOREREPORT_MENU.Size = New System.Drawing.Size(174, 22)
         Me.STOREREPORT_MENU.Text = "Store Repots"
         '
         'STOREPURORDER_REPORTS
@@ -5847,14 +5848,14 @@ Partial Class MDIMain
         'ToolStripSeparator277
         '
         Me.ToolStripSeparator277.Name = "ToolStripSeparator277"
-        Me.ToolStripSeparator277.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator277.Size = New System.Drawing.Size(171, 6)
         '
         'STOCK_REPORTS
         '
         Me.STOCK_REPORTS.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpeningStockToolStripMenuItem, Me.OutStockDetailsToolStripMenuItem, Me.ToolStripSeparator208, Me.STOCKREPORTS_TOOL, Me.YARNREPORTS_MASTER, Me.ToolStripSeparator51, Me.GreyRelatedStockReportsToolStripMenuItem, Me.ToolStripSeparator259, Me.BARCODERELATEDSTOCK_MENU, Me.ToolStripSeparator212, Me.InHousePackingStockSummaryToolStripMenuItem, Me.InHousePackingStockToolStripMenuItem, Me.ToolStripMenuItem1, Me.STOCKAGAINSTODERREPORT, Me.ToolStripSeparator53, Me.JobberStockToolStripMenuItem, Me.JobberStockDetailsToolStripMenuItem, Me.JobberItemShadeWiseStockDetailsToolStripMenuItem, Me.ToolStripSeparator52, Me.DyeingHouseStockToolStripMenuItem, Me.DyeingHouseStockDetailsToolStripMenuItem, Me.ToolStripSeparator86, Me.DesignWiseStockSummaryToolStripMenuItem, Me.ToolStripSeparator37})
         Me.STOCK_REPORTS.Enabled = False
         Me.STOCK_REPORTS.Name = "STOCK_REPORTS"
-        Me.STOCK_REPORTS.Size = New System.Drawing.Size(180, 22)
+        Me.STOCK_REPORTS.Size = New System.Drawing.Size(174, 22)
         Me.STOCK_REPORTS.Text = "Stocks"
         '
         'OpeningStockToolStripMenuItem
@@ -5910,6 +5911,23 @@ Partial Class MDIMain
         Me.OutStockDetailsToolStripMenuItem.Name = "OutStockDetailsToolStripMenuItem"
         Me.OutStockDetailsToolStripMenuItem.Size = New System.Drawing.Size(287, 22)
         Me.OutStockDetailsToolStripMenuItem.Text = "Out Stock Details"
+        '
+        'FinishedOutStockDetailsToolStripMenuItem
+        '
+        Me.FinishedOutStockDetailsToolStripMenuItem.Name = "FinishedOutStockDetailsToolStripMenuItem"
+        Me.FinishedOutStockDetailsToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.FinishedOutStockDetailsToolStripMenuItem.Text = "Finished Out Stock Details"
+        '
+        'GreyOutStockDetailsToolStripMenuItem
+        '
+        Me.GreyOutStockDetailsToolStripMenuItem.Name = "GreyOutStockDetailsToolStripMenuItem"
+        Me.GreyOutStockDetailsToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.GreyOutStockDetailsToolStripMenuItem.Text = "Grey Out Stock Details"
+        '
+        'ToolStripSeparator352
+        '
+        Me.ToolStripSeparator352.Name = "ToolStripSeparator352"
+        Me.ToolStripSeparator352.Size = New System.Drawing.Size(215, 6)
         '
         'ToolStripSeparator208
         '
@@ -5993,6 +6011,23 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator266.Name = "ToolStripSeparator266"
         Me.ToolStripSeparator266.Size = New System.Drawing.Size(180, 6)
+        '
+        'GREYSTOCKDETAILS_MASTER
+        '
+        Me.GREYSTOCKDETAILS_MASTER.Name = "GREYSTOCKDETAILS_MASTER"
+        Me.GREYSTOCKDETAILS_MASTER.Size = New System.Drawing.Size(183, 22)
+        Me.GREYSTOCKDETAILS_MASTER.Text = "Grey Stock Details"
+        '
+        'GREYSTOCKSUMM_MASTER
+        '
+        Me.GREYSTOCKSUMM_MASTER.Name = "GREYSTOCKSUMM_MASTER"
+        Me.GREYSTOCKSUMM_MASTER.Size = New System.Drawing.Size(183, 22)
+        Me.GREYSTOCKSUMM_MASTER.Text = "Grey Stock Summary"
+        '
+        'ToolStripSeparator353
+        '
+        Me.ToolStripSeparator353.Name = "ToolStripSeparator353"
+        Me.ToolStripSeparator353.Size = New System.Drawing.Size(180, 6)
         '
         'ToolStripSeparator259
         '
@@ -6172,14 +6207,14 @@ Partial Class MDIMain
         'LotStatusToolStripMenuItem
         '
         Me.LotStatusToolStripMenuItem.Name = "LotStatusToolStripMenuItem"
-        Me.LotStatusToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.LotStatusToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.LotStatusToolStripMenuItem.Text = "Lot Status"
         '
         'ManualMatchingToolStripMenuItem
         '
         Me.ManualMatchingToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddManualMatchingToolStripMenuItem, Me.ManualMatchingDetailToolStripMenuItem, Me.ToolStripSeparator8})
         Me.ManualMatchingToolStripMenuItem.Name = "ManualMatchingToolStripMenuItem"
-        Me.ManualMatchingToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ManualMatchingToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.ManualMatchingToolStripMenuItem.Text = "Manual Matching"
         '
         'AddManualMatchingToolStripMenuItem
@@ -6202,14 +6237,14 @@ Partial Class MDIMain
         'OPENINGBILLSGRID_MASTER
         '
         Me.OPENINGBILLSGRID_MASTER.Name = "OPENINGBILLSGRID_MASTER"
-        Me.OPENINGBILLSGRID_MASTER.Size = New System.Drawing.Size(180, 22)
+        Me.OPENINGBILLSGRID_MASTER.Size = New System.Drawing.Size(174, 22)
         Me.OPENINGBILLSGRID_MASTER.Text = "Opening Bills Grid"
         '
         'OtherReportsToolStripMenuItem
         '
         Me.OtherReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RegisterWisePurchaseSummaryToolStripMenuItem, Me.RegiserWiseSaleSummaryToolStripMenuItem, Me.DAILYACTIVITYFILTER_MASTER, Me.PENDINGDETAILS_MASTER, Me.GROSSPROFIT_MASTER, Me.ReOrderLevelReportToolStripMenuItem, Me.StockRegisterToolStripMenuItem, Me.ContractorReportToolStripMenuItem, Me.CATALOG_REPORTS, Me.EwayEntryDetailsToolStripMenuItem, Me.EINVOICECOUNTERREPORT_MASTER, Me.CHALLANSTOCKREG_MASTER, Me.ErrorInOpeningBillsReportToolStripMenuItem, Me.SOREPORT_MASTER, Me.SALARYREPORT_MASTER, Me.FollowupReportToolStripMenuItem, Me.ToolStripSeparator56, Me.DAILYGREYSTOCK_MASTER, Me.TOOLSTRIPGREYSTOCK, Me.PartyWiseBaleRateReportToolStripMenuItem, Me.RegisterProductWiseToolStripMenuItem, Me.LotPieceTypeToolStripMenuItem})
         Me.OtherReportsToolStripMenuItem.Name = "OtherReportsToolStripMenuItem"
-        Me.OtherReportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OtherReportsToolStripMenuItem.Size = New System.Drawing.Size(174, 22)
         Me.OtherReportsToolStripMenuItem.Text = "Other Reports"
         '
         'RegisterWisePurchaseSummaryToolStripMenuItem
@@ -6366,7 +6401,7 @@ Partial Class MDIMain
         'ToolStripSeparator155
         '
         Me.ToolStripSeparator155.Name = "ToolStripSeparator155"
-        Me.ToolStripSeparator155.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator155.Size = New System.Drawing.Size(171, 6)
         '
         'STORES_MASTER
         '
@@ -7039,6 +7074,166 @@ Partial Class MDIMain
         Me.ToolStripSeparator206.Name = "ToolStripSeparator206"
         Me.ToolStripSeparator206.Size = New System.Drawing.Size(192, 6)
         '
+        'OTHERREPORT_MAIN
+        '
+        Me.OTHERREPORT_MAIN.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TCSReportsToolStripMenuItem, Me.ToolStripSeparator237, Me.TDSReportsToolStripMenuItem, Me.ToolStripSeparator44, Me.InterestCalculatorToolStripMenuItem, Me.ToolStripSeparator62, Me.REMINDERREPORT_MASTER, Me.ToolStripSeparator246, Me.LOGS_MASTER, Me.ToolStripSeparator54, Me.COSTREPORT_MASTER, Me.TOOLCOSTREPORT})
+        Me.OTHERREPORT_MAIN.Enabled = False
+        Me.OTHERREPORT_MAIN.Name = "OTHERREPORT_MAIN"
+        Me.OTHERREPORT_MAIN.Size = New System.Drawing.Size(94, 20)
+        Me.OTHERREPORT_MAIN.Text = "&Other Reports"
+        '
+        'TCSReportsToolStripMenuItem
+        '
+        Me.TCSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TCSCHALLAN_MASTER, Me.ToolStripSeparator239})
+        Me.TCSReportsToolStripMenuItem.Name = "TCSReportsToolStripMenuItem"
+        Me.TCSReportsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.TCSReportsToolStripMenuItem.Text = "TCS Reports"
+        '
+        'TCSCHALLAN_MASTER
+        '
+        Me.TCSCHALLAN_MASTER.Name = "TCSCHALLAN_MASTER"
+        Me.TCSCHALLAN_MASTER.Size = New System.Drawing.Size(137, 22)
+        Me.TCSCHALLAN_MASTER.Text = "TCS Challan"
+        '
+        'ToolStripSeparator239
+        '
+        Me.ToolStripSeparator239.Name = "ToolStripSeparator239"
+        Me.ToolStripSeparator239.Size = New System.Drawing.Size(134, 6)
+        '
+        'ToolStripSeparator237
+        '
+        Me.ToolStripSeparator237.Name = "ToolStripSeparator237"
+        Me.ToolStripSeparator237.Size = New System.Drawing.Size(172, 6)
+        '
+        'TDSReportsToolStripMenuItem
+        '
+        Me.TDSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TDSToolStripMenuItem, Me.TDSCHALLAN_MASTER, Me.TDSDeductedNotDedictedReportToolStripMenuItem, Me.ToolStripSeparator238})
+        Me.TDSReportsToolStripMenuItem.Name = "TDSReportsToolStripMenuItem"
+        Me.TDSReportsToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.TDSReportsToolStripMenuItem.Text = "TDS Reports"
+        '
+        'TDSToolStripMenuItem
+        '
+        Me.TDSToolStripMenuItem.Name = "TDSToolStripMenuItem"
+        Me.TDSToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
+        Me.TDSToolStripMenuItem.Text = "TDS E-Filing"
+        '
+        'TDSCHALLAN_MASTER
+        '
+        Me.TDSCHALLAN_MASTER.Name = "TDSCHALLAN_MASTER"
+        Me.TDSCHALLAN_MASTER.Size = New System.Drawing.Size(273, 22)
+        Me.TDSCHALLAN_MASTER.Text = "TDS Challan"
+        '
+        'TDSDeductedNotDedictedReportToolStripMenuItem
+        '
+        Me.TDSDeductedNotDedictedReportToolStripMenuItem.Name = "TDSDeductedNotDedictedReportToolStripMenuItem"
+        Me.TDSDeductedNotDedictedReportToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
+        Me.TDSDeductedNotDedictedReportToolStripMenuItem.Text = "TDS Deducted / Not Deducted Report"
+        '
+        'ToolStripSeparator238
+        '
+        Me.ToolStripSeparator238.Name = "ToolStripSeparator238"
+        Me.ToolStripSeparator238.Size = New System.Drawing.Size(270, 6)
+        '
+        'ToolStripSeparator44
+        '
+        Me.ToolStripSeparator44.Name = "ToolStripSeparator44"
+        Me.ToolStripSeparator44.Size = New System.Drawing.Size(172, 6)
+        '
+        'InterestCalculatorToolStripMenuItem
+        '
+        Me.InterestCalculatorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InterestToolStripMenuItem, Me.IntrestCalculatorSummaryToolStripMenuItem, Me.ToolStripSeparator60, Me.InterestCalculatorBillWiseToolStripMenuItem, Me.ToolStripSeparator187})
+        Me.InterestCalculatorToolStripMenuItem.Name = "InterestCalculatorToolStripMenuItem"
+        Me.InterestCalculatorToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.InterestCalculatorToolStripMenuItem.Text = "Interest Calculator"
+        '
+        'InterestToolStripMenuItem
+        '
+        Me.InterestToolStripMenuItem.Name = "InterestToolStripMenuItem"
+        Me.InterestToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
+        Me.InterestToolStripMenuItem.Text = "Interest Calculator Detail"
+        '
+        'IntrestCalculatorSummaryToolStripMenuItem
+        '
+        Me.IntrestCalculatorSummaryToolStripMenuItem.Name = "IntrestCalculatorSummaryToolStripMenuItem"
+        Me.IntrestCalculatorSummaryToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
+        Me.IntrestCalculatorSummaryToolStripMenuItem.Text = "Intrest Calculator Summary"
+        '
+        'ToolStripSeparator60
+        '
+        Me.ToolStripSeparator60.Name = "ToolStripSeparator60"
+        Me.ToolStripSeparator60.Size = New System.Drawing.Size(225, 6)
+        '
+        'InterestCalculatorBillWiseToolStripMenuItem
+        '
+        Me.InterestCalculatorBillWiseToolStripMenuItem.Name = "InterestCalculatorBillWiseToolStripMenuItem"
+        Me.InterestCalculatorBillWiseToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
+        Me.InterestCalculatorBillWiseToolStripMenuItem.Text = "Interest Calculator Bill Wise"
+        '
+        'ToolStripSeparator187
+        '
+        Me.ToolStripSeparator187.Name = "ToolStripSeparator187"
+        Me.ToolStripSeparator187.Size = New System.Drawing.Size(225, 6)
+        '
+        'ToolStripSeparator62
+        '
+        Me.ToolStripSeparator62.Name = "ToolStripSeparator62"
+        Me.ToolStripSeparator62.Size = New System.Drawing.Size(172, 6)
+        '
+        'REMINDERREPORT_MASTER
+        '
+        Me.REMINDERREPORT_MASTER.Name = "REMINDERREPORT_MASTER"
+        Me.REMINDERREPORT_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.REMINDERREPORT_MASTER.Text = "Reminder Report"
+        '
+        'ToolStripSeparator246
+        '
+        Me.ToolStripSeparator246.Name = "ToolStripSeparator246"
+        Me.ToolStripSeparator246.Size = New System.Drawing.Size(172, 6)
+        '
+        'LOGS_MASTER
+        '
+        Me.LOGS_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPDATELOGS_MASTER, Me.DELETELOGS_MASTER, Me.ToolStripSeparator247})
+        Me.LOGS_MASTER.Enabled = False
+        Me.LOGS_MASTER.Name = "LOGS_MASTER"
+        Me.LOGS_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.LOGS_MASTER.Text = "Logs"
+        '
+        'UPDATELOGS_MASTER
+        '
+        Me.UPDATELOGS_MASTER.Name = "UPDATELOGS_MASTER"
+        Me.UPDATELOGS_MASTER.Size = New System.Drawing.Size(141, 22)
+        Me.UPDATELOGS_MASTER.Text = "Update Logs"
+        '
+        'DELETELOGS_MASTER
+        '
+        Me.DELETELOGS_MASTER.Name = "DELETELOGS_MASTER"
+        Me.DELETELOGS_MASTER.Size = New System.Drawing.Size(141, 22)
+        Me.DELETELOGS_MASTER.Text = "Delete Logs"
+        '
+        'ToolStripSeparator247
+        '
+        Me.ToolStripSeparator247.Name = "ToolStripSeparator247"
+        Me.ToolStripSeparator247.Size = New System.Drawing.Size(138, 6)
+        '
+        'ToolStripSeparator54
+        '
+        Me.ToolStripSeparator54.Name = "ToolStripSeparator54"
+        Me.ToolStripSeparator54.Size = New System.Drawing.Size(172, 6)
+        '
+        'COSTREPORT_MASTER
+        '
+        Me.COSTREPORT_MASTER.Name = "COSTREPORT_MASTER"
+        Me.COSTREPORT_MASTER.Size = New System.Drawing.Size(175, 22)
+        Me.COSTREPORT_MASTER.Text = "Cost Report"
+        Me.COSTREPORT_MASTER.Visible = False
+        '
+        'TOOLCOSTREPORT
+        '
+        Me.TOOLCOSTREPORT.Name = "TOOLCOSTREPORT"
+        Me.TOOLCOSTREPORT.Size = New System.Drawing.Size(172, 6)
+        Me.TOOLCOSTREPORT.Visible = False
+        '
         'YARNMODULE_MENU
         '
         Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BEAMENTRY_MASTER, Me.ToolStripSeparator339, Me.YARNLOOMEFFICIENCY_MASTER, Me.GreyReceived_MENU, Me.GreyJobWorkToolStripMenuItem, Me.GREYGDN_MASTER, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.TOOLSTRIPYARNDYEINGPROGRAM, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNSTOCKADJUSTMENT_MASTER, Me.YARNLOAN_MASTER, Me.YARNRECDTOOLSTRIP})
@@ -7663,7 +7858,7 @@ Partial Class MDIMain
         Me.GREYJOBOUT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBOUTADD, Me.GREYJOBOUTEDIT})
         Me.GREYJOBOUT_MASTER.Enabled = False
         Me.GREYJOBOUT_MASTER.Name = "GREYJOBOUT_MASTER"
-        Me.GREYJOBOUT_MASTER.Size = New System.Drawing.Size(180, 22)
+        Me.GREYJOBOUT_MASTER.Size = New System.Drawing.Size(141, 22)
         Me.GREYJOBOUT_MASTER.Text = "Grey Job Out"
         '
         'GREYJOBOUTADD
@@ -7685,7 +7880,7 @@ Partial Class MDIMain
         Me.GREYJOBIN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBINADD, Me.GREYJOBINEDIT})
         Me.GREYJOBIN_MASTER.Enabled = False
         Me.GREYJOBIN_MASTER.Name = "GREYJOBIN_MASTER"
-        Me.GREYJOBIN_MASTER.Size = New System.Drawing.Size(180, 22)
+        Me.GREYJOBIN_MASTER.Size = New System.Drawing.Size(141, 22)
         Me.GREYJOBIN_MASTER.Text = "Grey Job In"
         '
         'GREYJOBINADD
@@ -7701,6 +7896,33 @@ Partial Class MDIMain
         Me.GREYJOBINEDIT.Name = "GREYJOBINEDIT"
         Me.GREYJOBINEDIT.Size = New System.Drawing.Size(174, 22)
         Me.GREYJOBINEDIT.Text = "&Edit Existing Job In"
+        '
+        'GREYGDN_MASTER
+        '
+        Me.GREYGDN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYGDNADD, Me.GREYGDNEDIT, Me.ToolStripSeparator351})
+        Me.GREYGDN_MASTER.Enabled = False
+        Me.GREYGDN_MASTER.Name = "GREYGDN_MASTER"
+        Me.GREYGDN_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.GREYGDN_MASTER.Text = "Grey Challan"
+        '
+        'GREYGDNADD
+        '
+        Me.GREYGDNADD.Enabled = False
+        Me.GREYGDNADD.Name = "GREYGDNADD"
+        Me.GREYGDNADD.Size = New System.Drawing.Size(184, 22)
+        Me.GREYGDNADD.Text = "&Add New Challan"
+        '
+        'GREYGDNEDIT
+        '
+        Me.GREYGDNEDIT.Enabled = False
+        Me.GREYGDNEDIT.Name = "GREYGDNEDIT"
+        Me.GREYGDNEDIT.Size = New System.Drawing.Size(184, 22)
+        Me.GREYGDNEDIT.Text = "&Edit Existing Challan"
+        '
+        'ToolStripSeparator351
+        '
+        Me.ToolStripSeparator351.Name = "ToolStripSeparator351"
+        Me.ToolStripSeparator351.Size = New System.Drawing.Size(181, 6)
         '
         'ToolStripSeparator343
         '
@@ -8383,166 +8605,6 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator302.Name = "ToolStripSeparator302"
         Me.ToolStripSeparator302.Size = New System.Drawing.Size(210, 6)
-        '
-        'OTHERREPORT_MAIN
-        '
-        Me.OTHERREPORT_MAIN.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TCSReportsToolStripMenuItem, Me.ToolStripSeparator237, Me.TDSReportsToolStripMenuItem, Me.ToolStripSeparator44, Me.InterestCalculatorToolStripMenuItem, Me.ToolStripSeparator62, Me.REMINDERREPORT_MASTER, Me.ToolStripSeparator246, Me.LOGS_MASTER, Me.ToolStripSeparator54, Me.COSTREPORT_MASTER, Me.TOOLCOSTREPORT})
-        Me.OTHERREPORT_MAIN.Enabled = False
-        Me.OTHERREPORT_MAIN.Name = "OTHERREPORT_MAIN"
-        Me.OTHERREPORT_MAIN.Size = New System.Drawing.Size(94, 20)
-        Me.OTHERREPORT_MAIN.Text = "&Other Reports"
-        '
-        'TCSReportsToolStripMenuItem
-        '
-        Me.TCSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TCSCHALLAN_MASTER, Me.ToolStripSeparator239})
-        Me.TCSReportsToolStripMenuItem.Name = "TCSReportsToolStripMenuItem"
-        Me.TCSReportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.TCSReportsToolStripMenuItem.Text = "TCS Reports"
-        '
-        'TCSCHALLAN_MASTER
-        '
-        Me.TCSCHALLAN_MASTER.Name = "TCSCHALLAN_MASTER"
-        Me.TCSCHALLAN_MASTER.Size = New System.Drawing.Size(137, 22)
-        Me.TCSCHALLAN_MASTER.Text = "TCS Challan"
-        '
-        'ToolStripSeparator239
-        '
-        Me.ToolStripSeparator239.Name = "ToolStripSeparator239"
-        Me.ToolStripSeparator239.Size = New System.Drawing.Size(134, 6)
-        '
-        'ToolStripSeparator237
-        '
-        Me.ToolStripSeparator237.Name = "ToolStripSeparator237"
-        Me.ToolStripSeparator237.Size = New System.Drawing.Size(177, 6)
-        '
-        'TDSReportsToolStripMenuItem
-        '
-        Me.TDSReportsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TDSToolStripMenuItem, Me.TDSCHALLAN_MASTER, Me.TDSDeductedNotDedictedReportToolStripMenuItem, Me.ToolStripSeparator238})
-        Me.TDSReportsToolStripMenuItem.Name = "TDSReportsToolStripMenuItem"
-        Me.TDSReportsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.TDSReportsToolStripMenuItem.Text = "TDS Reports"
-        '
-        'TDSToolStripMenuItem
-        '
-        Me.TDSToolStripMenuItem.Name = "TDSToolStripMenuItem"
-        Me.TDSToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
-        Me.TDSToolStripMenuItem.Text = "TDS E-Filing"
-        '
-        'TDSCHALLAN_MASTER
-        '
-        Me.TDSCHALLAN_MASTER.Name = "TDSCHALLAN_MASTER"
-        Me.TDSCHALLAN_MASTER.Size = New System.Drawing.Size(273, 22)
-        Me.TDSCHALLAN_MASTER.Text = "TDS Challan"
-        '
-        'TDSDeductedNotDedictedReportToolStripMenuItem
-        '
-        Me.TDSDeductedNotDedictedReportToolStripMenuItem.Name = "TDSDeductedNotDedictedReportToolStripMenuItem"
-        Me.TDSDeductedNotDedictedReportToolStripMenuItem.Size = New System.Drawing.Size(273, 22)
-        Me.TDSDeductedNotDedictedReportToolStripMenuItem.Text = "TDS Deducted / Not Deducted Report"
-        '
-        'ToolStripSeparator238
-        '
-        Me.ToolStripSeparator238.Name = "ToolStripSeparator238"
-        Me.ToolStripSeparator238.Size = New System.Drawing.Size(270, 6)
-        '
-        'ToolStripSeparator44
-        '
-        Me.ToolStripSeparator44.Name = "ToolStripSeparator44"
-        Me.ToolStripSeparator44.Size = New System.Drawing.Size(177, 6)
-        '
-        'InterestCalculatorToolStripMenuItem
-        '
-        Me.InterestCalculatorToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InterestToolStripMenuItem, Me.IntrestCalculatorSummaryToolStripMenuItem, Me.ToolStripSeparator60, Me.InterestCalculatorBillWiseToolStripMenuItem, Me.ToolStripSeparator187})
-        Me.InterestCalculatorToolStripMenuItem.Name = "InterestCalculatorToolStripMenuItem"
-        Me.InterestCalculatorToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.InterestCalculatorToolStripMenuItem.Text = "Interest Calculator"
-        '
-        'InterestToolStripMenuItem
-        '
-        Me.InterestToolStripMenuItem.Name = "InterestToolStripMenuItem"
-        Me.InterestToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
-        Me.InterestToolStripMenuItem.Text = "Interest Calculator Detail"
-        '
-        'IntrestCalculatorSummaryToolStripMenuItem
-        '
-        Me.IntrestCalculatorSummaryToolStripMenuItem.Name = "IntrestCalculatorSummaryToolStripMenuItem"
-        Me.IntrestCalculatorSummaryToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
-        Me.IntrestCalculatorSummaryToolStripMenuItem.Text = "Intrest Calculator Summary"
-        '
-        'ToolStripSeparator60
-        '
-        Me.ToolStripSeparator60.Name = "ToolStripSeparator60"
-        Me.ToolStripSeparator60.Size = New System.Drawing.Size(225, 6)
-        '
-        'InterestCalculatorBillWiseToolStripMenuItem
-        '
-        Me.InterestCalculatorBillWiseToolStripMenuItem.Name = "InterestCalculatorBillWiseToolStripMenuItem"
-        Me.InterestCalculatorBillWiseToolStripMenuItem.Size = New System.Drawing.Size(228, 22)
-        Me.InterestCalculatorBillWiseToolStripMenuItem.Text = "Interest Calculator Bill Wise"
-        '
-        'ToolStripSeparator187
-        '
-        Me.ToolStripSeparator187.Name = "ToolStripSeparator187"
-        Me.ToolStripSeparator187.Size = New System.Drawing.Size(225, 6)
-        '
-        'ToolStripSeparator62
-        '
-        Me.ToolStripSeparator62.Name = "ToolStripSeparator62"
-        Me.ToolStripSeparator62.Size = New System.Drawing.Size(177, 6)
-        '
-        'REMINDERREPORT_MASTER
-        '
-        Me.REMINDERREPORT_MASTER.Name = "REMINDERREPORT_MASTER"
-        Me.REMINDERREPORT_MASTER.Size = New System.Drawing.Size(180, 22)
-        Me.REMINDERREPORT_MASTER.Text = "Reminder Report"
-        '
-        'ToolStripSeparator246
-        '
-        Me.ToolStripSeparator246.Name = "ToolStripSeparator246"
-        Me.ToolStripSeparator246.Size = New System.Drawing.Size(177, 6)
-        '
-        'LOGS_MASTER
-        '
-        Me.LOGS_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPDATELOGS_MASTER, Me.DELETELOGS_MASTER, Me.ToolStripSeparator247})
-        Me.LOGS_MASTER.Enabled = False
-        Me.LOGS_MASTER.Name = "LOGS_MASTER"
-        Me.LOGS_MASTER.Size = New System.Drawing.Size(180, 22)
-        Me.LOGS_MASTER.Text = "Logs"
-        '
-        'UPDATELOGS_MASTER
-        '
-        Me.UPDATELOGS_MASTER.Name = "UPDATELOGS_MASTER"
-        Me.UPDATELOGS_MASTER.Size = New System.Drawing.Size(141, 22)
-        Me.UPDATELOGS_MASTER.Text = "Update Logs"
-        '
-        'DELETELOGS_MASTER
-        '
-        Me.DELETELOGS_MASTER.Name = "DELETELOGS_MASTER"
-        Me.DELETELOGS_MASTER.Size = New System.Drawing.Size(141, 22)
-        Me.DELETELOGS_MASTER.Text = "Delete Logs"
-        '
-        'ToolStripSeparator247
-        '
-        Me.ToolStripSeparator247.Name = "ToolStripSeparator247"
-        Me.ToolStripSeparator247.Size = New System.Drawing.Size(138, 6)
-        '
-        'ToolStripSeparator54
-        '
-        Me.ToolStripSeparator54.Name = "ToolStripSeparator54"
-        Me.ToolStripSeparator54.Size = New System.Drawing.Size(177, 6)
-        '
-        'COSTREPORT_MASTER
-        '
-        Me.COSTREPORT_MASTER.Name = "COSTREPORT_MASTER"
-        Me.COSTREPORT_MASTER.Size = New System.Drawing.Size(180, 22)
-        Me.COSTREPORT_MASTER.Text = "Cost Report"
-        Me.COSTREPORT_MASTER.Visible = False
-        '
-        'TOOLCOSTREPORT
-        '
-        Me.TOOLCOSTREPORT.Name = "TOOLCOSTREPORT"
-        Me.TOOLCOSTREPORT.Size = New System.Drawing.Size(177, 6)
-        Me.TOOLCOSTREPORT.Visible = False
         '
         'Utilitiesmenu
         '
@@ -9809,67 +9871,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'GREYGDN_MASTER
-        '
-        Me.GREYGDN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYGDNADD, Me.GREYGDNEDIT, Me.ToolStripSeparator351})
-        Me.GREYGDN_MASTER.Enabled = False
-        Me.GREYGDN_MASTER.Name = "GREYGDN_MASTER"
-        Me.GREYGDN_MASTER.Size = New System.Drawing.Size(221, 22)
-        Me.GREYGDN_MASTER.Text = "Grey Challan"
-        '
-        'GREYGDNADD
-        '
-        Me.GREYGDNADD.Enabled = False
-        Me.GREYGDNADD.Name = "GREYGDNADD"
-        Me.GREYGDNADD.Size = New System.Drawing.Size(184, 22)
-        Me.GREYGDNADD.Text = "&Add New Challan"
-        '
-        'GREYGDNEDIT
-        '
-        Me.GREYGDNEDIT.Enabled = False
-        Me.GREYGDNEDIT.Name = "GREYGDNEDIT"
-        Me.GREYGDNEDIT.Size = New System.Drawing.Size(184, 22)
-        Me.GREYGDNEDIT.Text = "&Edit Existing Challan"
-        '
-        'ToolStripSeparator351
-        '
-        Me.ToolStripSeparator351.Name = "ToolStripSeparator351"
-        Me.ToolStripSeparator351.Size = New System.Drawing.Size(181, 6)
-        '
-        'FinishedOutStockDetailsToolStripMenuItem
-        '
-        Me.FinishedOutStockDetailsToolStripMenuItem.Name = "FinishedOutStockDetailsToolStripMenuItem"
-        Me.FinishedOutStockDetailsToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
-        Me.FinishedOutStockDetailsToolStripMenuItem.Text = "Finished Out Stock Details"
-        '
-        'GreyOutStockDetailsToolStripMenuItem
-        '
-        Me.GreyOutStockDetailsToolStripMenuItem.Name = "GreyOutStockDetailsToolStripMenuItem"
-        Me.GreyOutStockDetailsToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
-        Me.GreyOutStockDetailsToolStripMenuItem.Text = "Grey Out Stock Details"
-        '
-        'ToolStripSeparator352
-        '
-        Me.ToolStripSeparator352.Name = "ToolStripSeparator352"
-        Me.ToolStripSeparator352.Size = New System.Drawing.Size(215, 6)
-        '
-        'GREYSTOCKDETAILS_MASTER
-        '
-        Me.GREYSTOCKDETAILS_MASTER.Name = "GREYSTOCKDETAILS_MASTER"
-        Me.GREYSTOCKDETAILS_MASTER.Size = New System.Drawing.Size(183, 22)
-        Me.GREYSTOCKDETAILS_MASTER.Text = "Grey Stock Details"
-        '
-        'GREYSTOCKSUMM_MASTER
-        '
-        Me.GREYSTOCKSUMM_MASTER.Name = "GREYSTOCKSUMM_MASTER"
-        Me.GREYSTOCKSUMM_MASTER.Size = New System.Drawing.Size(183, 22)
-        Me.GREYSTOCKSUMM_MASTER.Text = "Grey Stock Summary"
-        '
-        'ToolStripSeparator353
-        '
-        Me.ToolStripSeparator353.Name = "ToolStripSeparator353"
-        Me.ToolStripSeparator353.Size = New System.Drawing.Size(180, 6)
         '
         'MDIMain
         '

@@ -1022,7 +1022,7 @@ LINE1:
                         Dim DT1 As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_PICKS,0) AS PICKS ", "", " ITEMMASTER", " AND ITEMMASTER.ITEM_NAME = '" & DTROW("ITEMNAME") & "' AND ITEMMASTER.item_yearid = " & YearId & "")
                         'If DT1.Rows.Count > 0 Then LBLRATE.Text = Format(Val(DT1.Rows(0).Item("LASTRATE")), "0.00")
 
-                        GRIDBEAM.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), "", "", 0, Format(Val(DT1.Rows(0).Item("PICKS")), "0.00"), 0, 0, Format(Val(DTROW("MTRS")), "0.00"), "")
+                        GRIDBEAM.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), "", DTROW("GRIDPARTYPONO"), 0, Format(Val(DT1.Rows(0).Item("PICKS")), "0.00"), 0, 0, Format(Val(DTROW("MTRS")), "0.00"), "")
 
 NEXTLINE:
                     Next

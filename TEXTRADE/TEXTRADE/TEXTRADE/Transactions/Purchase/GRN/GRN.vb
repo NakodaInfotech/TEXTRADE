@@ -74,7 +74,7 @@ Public Class GRN
             txtgrnno.BackColor = Color.Linen
         End If
 
-        If ClientName <> "AVIS" And ClientName <> "SNCM" Then cmbname.Enabled = True
+        If ClientName <> "AVIS" And ClientName <> "SNCM" And ClientName <> "SWPL" And ClientName <> "MMC" Then cmbname.Enabled = True
         If ClientName <> "AMAN" And ClientName <> "MANISH" Then cmbname.Text = ""
         CMBCMPNAME.Text = ""
         TXTCHNO.Clear()
@@ -1937,14 +1937,14 @@ NEXTLINE:
     Private Sub cmdselectpo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdselectPO.Click
         Try
 
-            If cmbname.Text.Trim = "" And ClientName <> "AVIS" And ClientName <> "SNCM" And ClientName <> "REALCORPORATION" And ClientName <> "SWPL" Then
+            If cmbname.Text.Trim = "" And ClientName <> "AVIS" And ClientName <> "SNCM" And ClientName <> "REALCORPORATION" And ClientName <> "SWPL" And ClientName <> "MMC" Then
                 MsgBox("Select Party Name", MsgBoxStyle.Critical)
                 cmbname.Focus()
                 Exit Sub
             End If
 
 
-            If CMBTONAME.Text.Trim = "" And (ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL") And FRMSTRING = "GRNJOB" Then
+            If CMBTONAME.Text.Trim = "" And (ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL" Or ClientName = "MMC") And FRMSTRING = "GRNJOB" Then
                 MsgBox("Select Dyeing Name", MsgBoxStyle.Critical)
                 CMBTONAME.Focus()
                 Exit Sub
@@ -1952,7 +1952,7 @@ NEXTLINE:
 
 
             Dim DTPO As New DataTable
-            If (ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL") And FRMSTRING = "GRNJOB" Then
+            If (ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL" Or ClientName = "MMC") And FRMSTRING = "GRNJOB" Then
                 Dim OBJSELECTPO As New SelectGreyIssueProcess
                 OBJSELECTPO.DYEINGNAME = CMBTONAME.Text.Trim
                 OBJSELECTPO.ShowDialog()
@@ -1969,6 +1969,9 @@ NEXTLINE:
                         End If
                     Next
                     cmbname.Text = DTPO.Rows(0).Item("PURNAME")
+
+                    If cmbname.Text.Trim = "" And (ClientName = "MMC" Or ClientName = "SWPL") Then cmbname.Text = CMBTONAME.Text.Trim
+
                     cmbtrans.Text = DTPO.Rows(0).Item("TRANSPORT")
                     txtlrno.Text = DTPO.Rows(0).Item("LRNO")
                     If ClientName = "AVIS" Then txtchallan.Text = DTPO.Rows(0).Item("LRNO")
@@ -1978,7 +1981,7 @@ NEXTLINE:
                     'TXTREFLOTNO.Text = Convert.ToString(DTPO.Rows(0).Item("REFLOTNO").ToString)
 
                     For Each ROW As DataRow In DTPO.Rows
-                        gridgrn.Rows.Add(0, "FRESH", ROW("ITEMNAME"), "", "", ROW("DESIGNNO"), "", ROW("COLOR"), Val(ROW("PCS")), "Pcs", 0, Val(ROW("MTRS")), "", "", 0, Val(ROW("RATE")), 0, 0, "Mtrs", 0, "", 0, 0, 0, Val(ROW("GREYISSNO")), Val(ROW("GRIDSRNO")), 0, ROW("TYPE"))
+                        gridgrn.Rows.Add(0, "FRESH", ROW("ITEMNAME"), "", ROW("BALENO"), ROW("DESIGNNO"), "", ROW("COLOR"), Val(ROW("PCS")), "Pcs", 0, Val(ROW("MTRS")), "", "", 0, Val(ROW("RATE")), 0, 0, "Mtrs", 0, "", 0, 0, 0, Val(ROW("GREYISSNO")), Val(ROW("GRIDSRNO")), 0, ROW("TYPE"))
                     Next
                 End If
 
@@ -3613,7 +3616,7 @@ LINE1:
                 TXTCHNO.Visible = True
             End If
 
-            If ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL" Then
+            If ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "SWPL" Or ClientName = "MMC" Then
                 LBLDYEINGTYPE.Visible = False
                 CMBDYEINGTYPE.Visible = False
                 CMBQUALITY.TabStop = False

@@ -2709,7 +2709,7 @@ LINESINGLE:
 
                     'OPEN THIS BOX IF SHADES ARE PRESENT FOR SELECTED DESIGN
                     DT = OBJCMN.SEARCH(" DESIGNMASTER_COLOR.DESIGN_SRNO", "", " DESIGNMASTER INNER JOIN DESIGNMASTER_COLOR On DESIGNMASTER.DESIGN_id = DESIGNMASTER_COLOR.DESIGN_ID ", " And DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId)
-                    If FETCHITEMWISEDESIGN = True And DT.Rows.Count > 0 And (ClientName = "YASHVI" Or ClientName = "MAHAVIRPOLYCOT") Then
+                    If FETCHITEMWISEDESIGN = True And DT.Rows.Count > 0 And (ClientName = "YASHVI" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "MMC") Then
                         Dim OBJ As New SelectItemSO
                         OBJ.ITEMNAME = cmbitemname.Text.Trim
                         OBJ.DESIGNNO = CMBDESIGN.Text.Trim

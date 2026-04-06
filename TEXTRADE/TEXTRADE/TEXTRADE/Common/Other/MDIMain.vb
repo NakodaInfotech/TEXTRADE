@@ -871,6 +871,8 @@ Public Class MDIMain
                         PROVISIONALBS_MASTER.Enabled = True
                         OPSTOCKGREYTRANS_MASTER.Enabled = True
                         OPSTOCKGREYPROCESS_MASTER.Enabled = True
+                        OPSTOCKGREYINHOUSE.Enabled = True
+                        OPSTOCKGREYATPARTY.Enabled = True
                     End If
 
                 ElseIf DTROW(0).ToString = "LOCATION MASTER" Then
