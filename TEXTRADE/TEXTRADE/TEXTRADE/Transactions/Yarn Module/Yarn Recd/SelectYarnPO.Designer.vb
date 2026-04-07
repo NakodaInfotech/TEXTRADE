@@ -31,6 +31,7 @@ Partial Class SelectYarnPO
         Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GYARNQUAALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPARTYSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,7 +43,7 @@ Partial Class SelectYarnPO
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GPARTYSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANSPORT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,7 +80,7 @@ Partial Class SelectYarnPO
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGRIDSRNO, Me.GYARNQUAALITY, Me.GDESIGNNO, Me.GPARTYSHADE, Me.GCOLOR, Me.GBAGS, Me.GWT, Me.GTYPE, Me.GRATE, Me.GDUEDATE, Me.GGROUPNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGRIDSRNO, Me.GYARNQUAALITY, Me.GDESIGNNO, Me.GPARTYSHADE, Me.GCOLOR, Me.GBAGS, Me.GWT, Me.GTYPE, Me.GRATE, Me.GDUEDATE, Me.GGROUPNAME, Me.GTRANSPORT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -155,6 +156,15 @@ Partial Class SelectYarnPO
         Me.GDESIGNNO.Visible = True
         Me.GDESIGNNO.VisibleIndex = 5
         Me.GDESIGNNO.Width = 100
+        '
+        'GPARTYSHADE
+        '
+        Me.GPARTYSHADE.Caption = "P. Shade"
+        Me.GPARTYSHADE.FieldName = "PSHADE"
+        Me.GPARTYSHADE.Name = "GPARTYSHADE"
+        Me.GPARTYSHADE.Visible = True
+        Me.GPARTYSHADE.VisibleIndex = 6
+        Me.GPARTYSHADE.Width = 100
         '
         'GCOLOR
         '
@@ -269,14 +279,11 @@ Partial Class SelectYarnPO
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GPARTYSHADE
+        'GTRANSPORT
         '
-        Me.GPARTYSHADE.Caption = "P. Shade"
-        Me.GPARTYSHADE.FieldName = "PSHADE"
-        Me.GPARTYSHADE.Name = "GPARTYSHADE"
-        Me.GPARTYSHADE.Visible = True
-        Me.GPARTYSHADE.VisibleIndex = 6
-        Me.GPARTYSHADE.Width = 100
+        Me.GTRANSPORT.Caption = "Transport"
+        Me.GTRANSPORT.FieldName = "TRANSNAME"
+        Me.GTRANSPORT.Name = "GTRANSPORT"
         '
         'SelectYarnPO
         '
@@ -320,4 +327,5 @@ Partial Class SelectYarnPO
     Friend WithEvents cmdexit As Button
     Friend WithEvents cmdok As Button
     Friend WithEvents GPARTYSHADE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTRANSPORT As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -97,6 +97,9 @@ Public Class GDNDESIGN
     Dim RPTGDN_LAXMI As New GDNReport_LAXMI
 
 
+    Dim RPTGREYGDN As New GreyGDNReport_COMMON
+
+
     Dim tempattachment As String
     Dim ConInfo As New CrystalDecisions.Shared.TableLogOnInfo
     Dim expo As New ExportOptions
@@ -253,6 +256,9 @@ Public Class GDNDESIGN
 
             ElseIf FRMSTRING = "GDNGARMENT" Then
                 crTables = RPTGDN_GARMENT.Database.Tables
+
+            ElseIf FRMSTRING = "GREYGDN" Then
+                crTables = RPTGREYGDN.Database.Tables
 
             ElseIf FRMSTRING = "GDN" Then
                 If ClientName = "SVS" Then
@@ -453,6 +459,16 @@ Public Class GDNDESIGN
                 RPTGDN_GARMENT.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                 crpo.ReportSource = RPTGDN_GARMENT
 
+            ElseIf FRMSTRING = "GREYGDN" Then
+                RPTGREYGDN.DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
+                RPTGREYGDN.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
+                If PARTYCHANGEADD <> "" Then RPTGREYGDN.DataDefinition.FormulaFields("SHIPPINGADD").Text = "'" & PARTYCHANGEADD & "'"
+                If WHITELABEL = True Then RPTGREYGDN.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTGREYGDN.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+                If HIDEPCSDETAILS = True Then RPTGREYGDN.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGREYGDN.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
+                If PRINTRATE = True Then RPTGREYGDN.DataDefinition.FormulaFields("PRINTRATE").Text = 1 Else RPTGREYGDN.DataDefinition.FormulaFields("PRINTRATE").Text = 0
+                RPTGREYGDN.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                crpo.ReportSource = RPTGREYGDN
+
             ElseIf FRMSTRING = "GDN" Then
                 If ClientName = "SVS" Then
                     crpo.ReportSource = RPTGDN_SVS
@@ -625,6 +641,9 @@ Public Class GDNDESIGN
             ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
                 tempattachment = "JOBOUT"
                 objmail.subject = "Job Challan"
+            ElseIf FRMSTRING = "GREYGDN" Then
+                tempattachment = "GREYCHALLAN"
+                objmail.subject = "Grey Challan"
             ElseIf FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Then
                 tempattachment = "GDN"
                 objmail.subject = "Challan"
@@ -672,8 +691,18 @@ Public Class GDNDESIGN
     Sub Transfer()
         Try
             Dim oDfDopt As New DiskFileDestinationOptions
+            If FRMSTRING = "GREYGDN" Then
+                oDfDopt.DiskFileName = Application.StartupPath & "\GREYCHALLAN.PDF"
+                RPTGREYGDN.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                RPTGREYGDN.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                expo = RPTGREYGDN.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTGREYGDN.Export()
+                RPTGREYGDN.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
 
-            If FRMSTRING = "GDN" Then
+            ElseIf FRMSTRING = "GDN" Then
                 oDfDopt.DiskFileName = Application.StartupPath & "\GDN.PDF"
 
                 If ClientName = "SVS" Then
@@ -1216,6 +1245,17 @@ Public Class GDNDESIGN
                 If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "CHINTAN" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                 OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
 
+
+            ElseIf FRMSTRING = "GREYGDN" Then
+                OBJ = New GreyGDNReport_COMMON
+                OBJ.DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
+                OBJ.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
+                If PARTYCHANGEADD <> "" Then RPTGDN.DataDefinition.FormulaFields("SHIPPINGADD").Text = "'" & PARTYCHANGEADD & "'"
+                If WHITELABEL = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+                If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
+                OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+
+
             ElseIf FRMSTRING = "GDN" Then
                 If ClientName = "SVS" Then
                     OBJ = New GDNReport_SVS
@@ -1425,6 +1465,8 @@ Public Class GDNDESIGN
                 TEMPATTACHMENT = "JOBIN"
             ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
                 TEMPATTACHMENT = "JOBOUT"
+            ElseIf FRMSTRING = "GREYGDN" Then
+                TEMPATTACHMENT = "GREYCHALLAN"
             ElseIf FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Then
                 TEMPATTACHMENT = "GDN"
             ElseIf FRMSTRING = "TRANSGDN" Then

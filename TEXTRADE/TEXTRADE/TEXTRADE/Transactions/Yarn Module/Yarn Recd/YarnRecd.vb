@@ -1045,6 +1045,7 @@ NEXTLINE:
                 cmbname.Text = DTPO.Rows(0).Item("NAME")
                 podate.Value = DTPO.Rows(0).Item("PODATE")
                 txtpono.Enabled = False
+                cmbtrans.Text = DTPO.Rows(0).Item("TRANSNAME")
 
 
                 'BEFORE ADDING THE ROW IN ORDERDER GRID CHECK WHETHER SAME ORDERNO AN SRNO IS PRESENT IN GRID OR NOT
@@ -1054,6 +1055,11 @@ NEXTLINE:
                     Next
 
                     GRIDORDER.Rows.Add(0, DTROW("YARNQUALITY"), DTROW("DESIGNNO"), DTROW("COLOR"), Val(DTROW("BAGS")), Val(DTROW("WT")), DTROW("PONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, Val(DTROW("RATE")))
+
+                    'ADD IN ITEMDEATSILS GRID
+                    If ClientName = "MMC" Then
+                        GRIDYARN.Rows.Add(Val(GRIDYARN.RowCount + 1), DTROW("YARNQUALITY"), "", DTROW("DESIGNNO"), "", "", DTROW("COLOR"), "", "", Format(DTROW("BAGS"), "0.00"), Format(DTROW("WT"), "0.00"), 0, "", Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", Format(Val(DTROW("RATE")), "0.00"), "Wt", 0, "")
+                    End If
 NEXTLINE:
                 Next
                 getsrno(GRIDORDER)

@@ -4,7 +4,6 @@ Imports System.IO
 Imports BL
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
-Imports DevExpress.XtraVerticalGrid.Rows
 
 Public Class GDN
 

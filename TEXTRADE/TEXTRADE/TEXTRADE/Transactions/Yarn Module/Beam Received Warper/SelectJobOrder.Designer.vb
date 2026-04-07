@@ -31,6 +31,7 @@ Partial Class SelectJobOrder
         Me.GJOBSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPARTYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREED = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -39,11 +40,12 @@ Partial Class SelectJobOrder
         Me.GPICS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPONO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GPARTYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GOTHERITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,7 +85,7 @@ Partial Class SelectJobOrder
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GJOBNO, Me.GJOBSRNO, Me.GDATE, Me.GNAME, Me.GPARTYNAME, Me.GITEMNAME, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GENDS, Me.GPICS, Me.GMTRS, Me.GTYPE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GJOBNO, Me.GJOBSRNO, Me.GDATE, Me.GNAME, Me.GPARTYNAME, Me.GITEMNAME, Me.GREFNO, Me.GREED, Me.GREEDSPACE, Me.GENDS, Me.GPICS, Me.GMTRS, Me.GTYPE, Me.GPONO, Me.GOTHERITEMNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -148,6 +150,16 @@ Partial Class SelectJobOrder
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 220
+        '
+        'GPARTYNAME
+        '
+        Me.GPARTYNAME.Caption = "Party Name"
+        Me.GPARTYNAME.FieldName = "PARTYNAME"
+        Me.GPARTYNAME.Name = "GPARTYNAME"
+        Me.GPARTYNAME.OptionsColumn.AllowEdit = False
+        Me.GPARTYNAME.Visible = True
+        Me.GPARTYNAME.VisibleIndex = 4
+        Me.GPARTYNAME.Width = 150
         '
         'GITEMNAME
         '
@@ -228,6 +240,14 @@ Partial Class SelectJobOrder
         Me.GTYPE.VisibleIndex = 12
         Me.GTYPE.Width = 120
         '
+        'GPONO
+        '
+        Me.GPONO.Caption = "Po No"
+        Me.GPONO.FieldName = "PONO"
+        Me.GPONO.Name = "GPONO"
+        Me.GPONO.Visible = True
+        Me.GPONO.VisibleIndex = 13
+        '
         'APPROXDATE
         '
         Me.APPROXDATE.AutoHeight = False
@@ -268,15 +288,13 @@ Partial Class SelectJobOrder
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GPARTYNAME
+        'GOTHERITEMNAME
         '
-        Me.GPARTYNAME.Caption = "Party Name"
-        Me.GPARTYNAME.FieldName = "PARTYNAME"
-        Me.GPARTYNAME.Name = "GPARTYNAME"
-        Me.GPARTYNAME.OptionsColumn.AllowEdit = False
-        Me.GPARTYNAME.Visible = True
-        Me.GPARTYNAME.VisibleIndex = 4
-        Me.GPARTYNAME.Width = 150
+        Me.GOTHERITEMNAME.Caption = "Other Item Name"
+        Me.GOTHERITEMNAME.FieldName = "OTHERITEMNAME"
+        Me.GOTHERITEMNAME.Name = "GOTHERITEMNAME"
+        Me.GOTHERITEMNAME.Visible = True
+        Me.GOTHERITEMNAME.VisibleIndex = 14
         '
         'SelectJobOrder
         '
@@ -322,4 +340,6 @@ Partial Class SelectJobOrder
     Friend WithEvents GENDS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GJOBSRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPONO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GOTHERITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

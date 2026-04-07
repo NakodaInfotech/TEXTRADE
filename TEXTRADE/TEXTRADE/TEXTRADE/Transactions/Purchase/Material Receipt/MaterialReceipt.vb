@@ -2,6 +2,7 @@
 Imports BL
 Imports System.IO
 Imports System.ComponentModel
+Imports DevExpress.XtraEditors.TextEditController.Win32
 
 Public Class MaterialReceipt
 
@@ -2856,7 +2857,7 @@ NEXTLINE:
     End Sub
 
     Sub PRINTREPORT()
-        Try 
+        Try
             If ClientName = "SNCM" AndAlso MsgBox("Wish to Print Packing Slip", MsgBoxStyle.YesNo) = vbYes Then
                 Dim OBJPS As New MATRECDesign
                 OBJPS.MdiParent = MDIMain
@@ -3286,7 +3287,7 @@ LINE1:
         End If
 
         If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" Then TXTCUT.Clear()
-        If ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SUBHLAXMI" And ClientName <> "SUPEEMA" And ClientName <> "SARAYU" And ClientName <> "SWPL" Then TXTBALENO.Clear()
+        If ClientName <> "DILIP" And ClientName <> "DILIPNEW" And ClientName <> "SUBHLAXMI" And ClientName <> "SUPEEMA" And ClientName <> "SARAYU" And ClientName <> "SWPL" And ClientName <> "MMC" Then TXTBALENO.Clear()
         TXTWT.Clear()
         TXTGRIDDESC.Clear()
         TXTMTRS.Clear()
@@ -3298,11 +3299,17 @@ LINE1:
         TXTPCSNO.Clear()
         If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "VINAYAK" Then
             TXTRECDMTRS.Focus()
-        ElseIf ClientName = "APPLE" Or ClientName = "MMC" Then
+        ElseIf ClientName = "APPLE" Then
             TXTBALENO.Focus()
-        ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "SUBHLAXMI" Or ClientName = "OWAIS" Or ClientName = "MAHAJAN" Or ClientName = "SWPL" Then
+        ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "SUBHLAXMI" Or ClientName = "OWAIS" Or ClientName = "MAHAJAN" Or ClientName = "SWPL" Or ClientName = "MMC" Then
             TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
-            If ClientName = "SWPL" Then TXTGRIDDESC.Focus() Else txtqty.Focus()
+            If ClientName = "SWPL" Then
+                TXTGRIDDESC.Focus()
+            ElseIf ClientName = "MMC" Then
+                CMBGRIDLOTNO.Focus()
+            Else
+                txtqty.Focus()
+            End If
         ElseIf ClientName = "SNCM" Then
 
             GRIDMTRS.EndEdit() '
@@ -3645,7 +3652,7 @@ LINE1:
                 TEMPROW = GRIDMATREC.CurrentRow.Index
                 If ClientName = "AVIS" Then
                     TXTRECDMTRS.Focus()
-                ElseIf ClientName = "SNCM" Then
+                ElseIf ClientName = "SNCM" Or ClientName = "MMC" Then
                     TXTBALENO.Focus()
                 Else
                     txtsrno.Focus()
@@ -3930,7 +3937,7 @@ LINE1:
                     If ClientName = "SOFTAS" Then
                         DT = OBJCMN.SEARCH(" 0 as SRNO, CHECKNO AS FROMNO, GRNTYPE AS FROMTYPE, '' AS BALENO, ITEMNAME, DESIGN, PARTYNAME ", "", " LOT_VIEW ", " AND LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "' AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND (ACCEPTEDPCS-RECDPCS) > 0 AND LOTCOMPLETED = 'FALSE' AND DYEINGJOB <> 'JOB' AND YEARID = " & YearId)
                     Else
-                        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "RADHA" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then
+                        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "RADHA" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "MMC" Then
                             DT = OBJCMN.SEARCH(" GRNNO AS SRNO, GRNNO AS FROMNO, GRNTYPE AS FROMTYPE, BALENO, PARTYNAME ", "", " LOT_VIEW_PCSDETAILS ", " AND BALENO NOT IN (SELECT DISTINCT BALENO FROM LOT_VIEW_PCSDETAILS WHERE LOTNO= '" & CMBGRIDLOTNO.Text.Trim & "' AND DYEINGJOB = 'DYEING' AND YEARID = " & YearId & " AND BALPCS<=0) AND BALPCS > 0 AND LOTCOMPLETED = 0 AND DYEINGJOB = 'DYEING' AND LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "' AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND YEARID = " & YearId)
                         Else
                             DT = OBJCMN.SEARCH(" SRNO, FROMNO, FROMTYPE, BALENO, '' AS PARTYNAME ", "", " (SELECT   DISTINCT  CHECKINGMASTER_DESC.CHECK_GRIDSRNO AS SRNO, CHECKINGMASTER.CHECK_NO AS FROMNO, (CASE WHEN ISNULL(CHECK_GRIDREMARKS,'') <> '' THEN ISNULL(CHECK_GRIDREMARKS,'') ELSE CAST(CHECKINGMASTER_DESC.CHECK_GRIDSRNO AS VARCHAR(10)) END) AS BALENO,'CHECKING' AS FROMTYPE, CHECKINGMASTER.CHECK_cmpid AS CMPID, CHECKINGMASTER.CHECK_locationid AS LOCATIONID, CHECKINGMASTER.CHECK_yearid AS YEARID FROM CHECKINGMASTER INNER JOIN CHECKINGMASTER_DESC ON CHECKINGMASTER.CHECK_NO = CHECKINGMASTER_DESC.CHECK_NO AND CHECKINGMASTER.CHECK_CMPID = CHECKINGMASTER_DESC.CHECK_CMPID AND CHECKINGMASTER.CHECK_LOCATIONID = CHECKINGMASTER_DESC.CHECK_LOCATIONID AND CHECKINGMASTER.CHECK_YEARID = CHECKINGMASTER_DESC.CHECK_YEARID  INNER JOIN LEDGERS ON CHECKINGMASTER.CHECK_LEDGERID = LEDGERS.Acc_id AND CHECKINGMASTER.CHECK_CMPID = LEDGERS.Acc_cmpid AND CHECKINGMASTER.CHECK_LOCATIONID = LEDGERS.Acc_locationid AND CHECKINGMASTER.CHECK_YEARID = LEDGERS.Acc_yearid  WHERE LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND (CHECKINGMASTER.CHECK_LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "') AND CHECKINGMASTER_DESC.CHECK_CHECKINGDONE = 0 AND CHECKINGMASTER_DESC.CHECK_APPROVED = 1 UNION ALL SELECT   DISTINCT  STOCKMASTER.SM_NO, STOCKMASTER.SM_NO AS FROMNO, (CASE WHEN VERSION_CLIENTNAME = 'VALIANT' THEN CAST(ISNULL(SM_BALENO,'') AS VARCHAR(100)) ELSE CAST(ISNULL(SM_REMARKS,'') AS VARCHAR(100)) END) AS BALENO, 'OPENING' AS FROMTYPE, SM_CMPID, SM_LOCATIONID, SM_YEARID  FROM STOCKMASTER INNER JOIN LEDGERS ON STOCKMASTER.SM_LEDGERIDTO = LEDGERS.Acc_id CROSS JOIN VERSION WHERE LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND SM_TYPE = 'JOBBERSTOCK' AND SM_LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "' AND (SM_PCS-SM_OUTPCS)>0) AS T ", " AND T.CMPID = " & CmpId & " AND T.LOCATIONID = " & Locationid & " AND T.YEARID = " & YearId)
@@ -3974,7 +3981,7 @@ LINE1:
 
                 Else
                     MsgBox("Invalid Lot No Entered", MsgBoxStyle.Critical)
-                    If ClientName = "YASHVI" Or ClientName = "VALIANT" Then
+                    If ClientName = "YASHVI" Or ClientName = "VALIANT" Or ClientName = "MMC" Then
                         'GET FROMTYPE EVENIF LOTNO IS CLOSED FOR YASHVI, WITHOUT YEARID, IT MAY BE CLOSED IN LAST YEAR
                         DT = OBJCMN.SEARCH(" GRNTYPE AS FROMTYPE ", "", " LOT_VIEW ", " AND LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "' AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND DYEINGJOB <> 'JOB'")
                         If DT.Rows.Count > 0 Then TXTFROMTYPE.Text = DT.Rows(0).Item("FROMTYPE") Else TXTFROMTYPE.Text = "OPENING"
@@ -4305,12 +4312,12 @@ LINE1:
             If ClientName = "PARAS" Then LBLCATEGORY.Visible = True
             If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "KDFAB" Or ClientName = "KCRAYON" Or ClientName = "RAJKRIPA" Then GBALENO.HeaderText = "Description"
             If ClientName = "SOFTAS" Then CMBLOTNO.DropDownStyle = ComboBoxStyle.DropDownList
-            If ClientName = "SUCCESS" Or ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Then
+            If ClientName = "SUCCESS" Or ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC" Then
                 CMBCHECKSRNO.Visible = False
                 CMBBALENO.Visible = True
                 TXTBALENO.Enabled = False
                 If ClientName = "MAHAVIRPOLYCOT" Then TXTCUT.ReadOnly = True
-                If ClientName = "SUCCESS" Then
+                If ClientName = "SUCCESS" Or ClientName = "MMC" Then
                     TXTBALENO.Enabled = True
                     TXTCUT.ReadOnly = False
                 End If
@@ -4341,16 +4348,6 @@ LINE1:
                 cmbcolor.TabStop = False
                 TXTCUT.TabStop = False
                 TXTWT.TabStop = False
-            End If
-
-            If ClientName = "BRILLANTO" Then
-                CMBQUALITY.TabStop = False
-                TXTBALENO.TabStop = False
-                TXTWT.TabStop = False
-                CMBRACK.TabStop = False
-                CMBSHELF.TabStop = False
-                txtqty.TabStop = False
-                TXTCUT.TabStop = False
             End If
 
             If ClientName = "AVIS" Then
@@ -4388,7 +4385,7 @@ LINE1:
                 TXTMTRS.BackColor = Color.White
             End If
 
-            If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then
+            If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "MMC" Then
                 TXTRATE.Visible = False
                 GRATE.Visible = False
                 CMBPER.Visible = False
@@ -4467,7 +4464,7 @@ LINE1:
             If CMBBALENO.Text.Trim <> "" And TXTFROMNO.Text.Trim <> "" And TXTFROMTYPE.Text.Trim <> "" And (CMBLOTNO.Text.Trim <> "" Or CMBGRIDLOTNO.Text.Trim <> "") And cmbname.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
                 Dim DT As New DataTable
-                If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Then
+                If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "MMC" Then
                     DT = OBJCMN.SEARCH(" ISNULL(BALMTRS,0) AS MTRS, ISNULL(DESIGN,'') AS DESIGNNO, ITEMNAME, GRNNO AS FROMSRNO, COLOR, PARTYDESIGNNO ", "", " LOT_VIEW_PCSDETAILS ", " AND DYEINGJOB = 'DYEING' AND BALENO = '" & CMBBALENO.Text.Trim & "' AND LOTNO = '" & CMBGRIDLOTNO.Text.Trim & "' AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND YEARID = " & YearId)
                 Else
                     If TXTFROMTYPE.Text.Trim = "OPENING" Then
@@ -4487,12 +4484,12 @@ LINE1:
                 End If
                 If DT.Rows.Count > 0 Then
                     CMBCHECKSRNO.Text = Val(DT.Rows(0).Item("FROMSRNO"))
-                    TXTBALENO.Text = CMBBALENO.Text.Trim
+                    If ClientName = "MMC" Then TXTBALENO.Text = TXTPCSNO.Text.Trim Else TXTBALENO.Text = CMBBALENO.Text.Trim
                     TXTMTRS.Text = Format(Val(DT.Rows(0).Item("MTRS")), "0.00")
                     If ClientName <> "VALIANT" Then TXTCUT.Text = Format(Val(DT.Rows(0).Item("MTRS")), "0.00")
                     CMBDESIGN.Text = DT.Rows(0).Item("DESIGNNO")
                     cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
-                    If ClientName = "VALIANT" Then
+                    If ClientName = "VALIANT" Or ClientName = "MMC" Then
                         cmbcolor.Text = DT.Rows(0).Item("COLOR")
                         TXTPCSNO.Text = DT.Rows(0).Item("PARTYDESIGNNO")
                     End If
@@ -4834,7 +4831,7 @@ NEXTLINE:
 
     Private Sub CMBBALENO_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBBALENO.KeyDown
         Try
-            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN") And e.KeyCode = Keys.F1 And CMBGRIDLOTNO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
+            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC") And e.KeyCode = Keys.F1 And CMBGRIDLOTNO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
                 Dim OBJSELECTPCS As New SelectPcsNoForMatRec
                 OBJSELECTPCS.DYEINGNAME = cmbname.Text.Trim
                 OBJSELECTPCS.LOTNO = CMBGRIDLOTNO.Text.Trim
@@ -4849,7 +4846,7 @@ NEXTLINE:
     Private Sub CMBBALENO_Validating(sender As Object, e As CancelEventArgs) Handles CMBBALENO.Validating
         Try
             'CHECKING WHETHER SAME BALENO IS SELECTED IN GRID BELOW OR NOT
-            If ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" And GRIDDOUBLECLICK = False And CMBBALENO.Text.Trim <> "" And CMBGRIDLOTNO.Text.Trim <> "" Then
+            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC") And GRIDDOUBLECLICK = False And CMBBALENO.Text.Trim <> "" And CMBGRIDLOTNO.Text.Trim <> "" Then
                 For Each ROW As DataGridViewRow In GRIDMATREC.Rows
                     If ROW.Cells(GLOTNO.Index).Value = CMBGRIDLOTNO.Text.Trim And ROW.Cells(GBALENO.Index).Value = CMBBALENO.Text.Trim Then
                         If MsgBox("Same Pcs No is already Taken, Wish to Proceed with Same PCS No", MsgBoxStyle.YesNo) = MsgBoxResult.No Then

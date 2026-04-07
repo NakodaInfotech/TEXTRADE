@@ -1869,7 +1869,7 @@ LINE1:
                 If ITEMCOSTCENTRE = True Then TXTRATE.Text = Format(Val(DT.Rows(0).Item("RATE")), "0.00")
                 If cmbname.Text.Trim = "" Then cmbname.Text = DT.Rows(0).Item("NAME")
                 If ClientName = "RADHA" Then TXTREFNO.Text = DT.Rows(0).Item("CHALLANNO")
-                If ClientName = "ANKUSH" Then
+                If ClientName = "ANKUSH" Or ClientName = "MMC" Then
                     TXTGRIDREMARKS.Text = DT.Rows(0).Item("BALENO")
                     TXTGRIDREMARKS.Focus()
                 End If
@@ -2113,7 +2113,7 @@ LINE1:
                 CMBPER.TabStop = False
             End If
 
-            If ClientName = "REALCORPORATION" Then gdesc.HeaderText = "Bale No"
+            If ClientName = "REALCORPORATION" Or ClientName = "MMC" Then gdesc.HeaderText = "Bale No"
 
             If ClientName = "RAJKRIPA" Then
                 CHKPRINTSERIES.Visible = True

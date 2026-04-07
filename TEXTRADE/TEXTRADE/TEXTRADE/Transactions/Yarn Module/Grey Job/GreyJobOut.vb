@@ -891,9 +891,9 @@ Public Class GreyJobOut
                         TXTJONO.Text = TEMPJONO
                         TXTJONO.ReadOnly = True
 
-                        CMBTYPE.Text = Convert.ToString(dr("JOBOUTTYPE").ToString)
+                        CMBTYPE.Text = Convert.ToString(dr("GREYJOBOUTTYPE").ToString)
                         CMBTYPE.Enabled = False
-                        TXTTYPEJONO.Text = Val(dr("TYPEJOBOUTNO"))
+                        TXTTYPEJONO.Text = Val(dr("GREYTYPEJOBOUTNO"))
 
                         JODATE.Text = Format(Convert.ToDateTime(dr("JODATE")).Date, "dd/MM/yyyy")
                         CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
@@ -1783,7 +1783,7 @@ LINE1:
         Try
             'GET MAX NO WITH RESPECT TO SELECTED GREYJOBOUTTYPE
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("isnull(max(GJO_TYPENO),0) + 1", "", "GREYJOBOUT INNER JOIN  GREYJOBOUTTYPEMASTER ON GJO_TYPEID = JOTYPE_ID", " AND JOTYPE_NAME = '" & CMBTYPE.Text.Trim & "' AND GJO_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("isnull(max(GJO_TYPENO),0) + 1", "", "GREYJOBOUT INNER JOIN  GREYJOBOUTTYPEMASTER ON GJO_TYPEID = GJOTYPE_ID", " AND GJOTYPE_NAME = '" & CMBTYPE.Text.Trim & "' AND GJO_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then TXTTYPEJONO.Text = Val(DT.Rows(0).Item(0))
         Catch ex As Exception
             Throw ex

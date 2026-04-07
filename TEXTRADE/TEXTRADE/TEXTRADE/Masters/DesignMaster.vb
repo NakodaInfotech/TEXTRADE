@@ -744,17 +744,17 @@ Public Class DesignMaster
             Dim dttable As DataTable = objclsJO.selectdesign(CMBCOPYDESIGN.Text.Trim, CmpId, Locationid, YearId)
 
             If dttable.Rows.Count = 0 Then
-                MsgBox("Design Not Found", MsgBoxStyle.Critical, "TEXPRO")
+                MsgBox("Design Not Found", MsgBoxStyle.Critical, "TEXTRADE")
                 CMBCOPYDESIGN.Text = ""
                 Exit Sub
             End If
 
-            If MsgBox("Copy data from design '" & CMBCOPYDESIGN.Text.Trim & "'?", MsgBoxStyle.YesNo, "TEXPRO") = MsgBoxResult.No Then
+            If MsgBox("Copy data from design '" & CMBCOPYDESIGN.Text.Trim & "'?", MsgBoxStyle.YesNo, "TEXTRADE") = MsgBoxResult.No Then
                 CMBCOPYDESIGN.Text = ""
                 Exit Sub
             End If
 
-            Clear()
+            'Clear()
             For Each dr As DataRow In dttable.Rows
                 CMBMILL.Text = dr("MILLNAME").ToString
                 TXTCADNO.Text = dr("CADNO").ToString
@@ -768,7 +768,7 @@ Public Class DesignMaster
                 TXTFINISHING.Text = Val(dr("FINISHING"))
                 TXTEXTRA.Text = Val(dr("EXTRA"))
                 TXTTOTAL.Text = Val(dr("TOTAL"))
-                CMBITEM.Text = dr("ITEMNAME").ToString
+                If CMBITEM.Text.Trim = "" Then CMBITEM.Text = dr("ITEMNAME").ToString
                 TXTLINE1.Text = dr("LINE1").ToString
                 TXTLINE2.Text = dr("LINE2").ToString
                 CMBPARENTDESIGNNO.Text = dr("PARENTDESIGNNO").ToString
@@ -786,7 +786,6 @@ Public Class DesignMaster
             End If
 
             CMBCOPYDESIGN.Text = ""
-            CMBDESIGNNO.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
