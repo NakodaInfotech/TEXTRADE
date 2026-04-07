@@ -585,7 +585,7 @@ LINE1:
                     'IF barcode is used the BARCODE printING WILL BE BLOCKED
                     If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
 
-                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(GYARNQUALITY.Index).Value, ROW.Cells(GMILLNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, "BOXES", ROW.Cells(GLOTNO.Index).Value, ROW.Cells(GLRNO.Index).Value, ROW.Cells(GGRIDREMARKS.Index).Value, Val(ROW.Cells(GWT.Index).Value), Val(ROW.Cells(GQTY.Index).Value), 0, ROW.Cells(GRACK.Index).Value, "YARN", "", 0, "", "", "", YARNDATE.Text)
+                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(GYARNQUALITY.Index).Value, ROW.Cells(GMILLNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, "BOXES", ROW.Cells(GJOBBERLOTNO.Index).Value, ROW.Cells(GLRNO.Index).Value, ROW.Cells(GGRIDREMARKS.Index).Value, Val(ROW.Cells(GWT.Index).Value), Val(ROW.Cells(GQTY.Index).Value), 0, ROW.Cells(GRACK.Index).Value, "YARN", "", 0, "", "", "", YARNDATE.Text)
 NEXTLINE:
 
                 Next
