@@ -23,6 +23,7 @@ Partial Class GreyGDN
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GreyGDN))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -44,7 +45,6 @@ Partial Class GreyGDN
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GreyGDN))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CHKTHIRDPARTY = New System.Windows.Forms.CheckBox()
         Me.LBLDYEINGRECNO = New System.Windows.Forms.Label()
@@ -129,6 +129,10 @@ Partial Class GreyGDN
         Me.Label6 = New System.Windows.Forms.Label()
         Me.cmbname = New System.Windows.Forms.ComboBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.SaveToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.tooldelete = New System.Windows.Forms.ToolStripButton()
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.toolprevious = New System.Windows.Forms.ToolStripButton()
@@ -221,10 +225,6 @@ Partial Class GreyGDN
         Me.SSTOREUNIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.OpenToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.SaveToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.tooldelete = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.SALELOCK, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -836,6 +836,7 @@ Partial Class GreyGDN
         Me.CMDSELECTSTOCK.TabIndex = 18
         Me.CMDSELECTSTOCK.Text = "Select S&tock"
         Me.CMDSELECTSTOCK.UseVisualStyleBackColor = False
+        Me.CMDSELECTSTOCK.Visible = False
         '
         'LBLGODOWN
         '
@@ -1334,6 +1335,42 @@ Partial Class GreyGDN
         Me.ToolStrip1.Size = New System.Drawing.Size(1238, 25)
         Me.ToolStrip1.TabIndex = 610
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'OpenToolStripButton
+        '
+        Me.OpenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.OpenToolStripButton.Image = CType(resources.GetObject("OpenToolStripButton.Image"), System.Drawing.Image)
+        Me.OpenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.OpenToolStripButton.Name = "OpenToolStripButton"
+        Me.OpenToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.OpenToolStripButton.Text = "&Open"
+        '
+        'SaveToolStripButton
+        '
+        Me.SaveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.SaveToolStripButton.Image = CType(resources.GetObject("SaveToolStripButton.Image"), System.Drawing.Image)
+        Me.SaveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SaveToolStripButton.Name = "SaveToolStripButton"
+        Me.SaveToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.SaveToolStripButton.Text = "&Save"
+        '
+        'PrintToolStripButton
+        '
+        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.PrintToolStripButton.Image = CType(resources.GetObject("PrintToolStripButton.Image"), System.Drawing.Image)
+        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.PrintToolStripButton.Name = "PrintToolStripButton"
+        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.PrintToolStripButton.Text = "&Print"
+        '
+        'tooldelete
+        '
+        Me.tooldelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.tooldelete.Image = CType(resources.GetObject("tooldelete.Image"), System.Drawing.Image)
+        Me.tooldelete.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tooldelete.Name = "tooldelete"
+        Me.tooldelete.Size = New System.Drawing.Size(23, 22)
+        Me.tooldelete.Text = "&Delete"
         '
         'TOOLWHATSAPP
         '
@@ -2403,42 +2440,6 @@ Partial Class GreyGDN
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'OpenToolStripButton
-        '
-        Me.OpenToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.OpenToolStripButton.Image = CType(resources.GetObject("OpenToolStripButton.Image"), System.Drawing.Image)
-        Me.OpenToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.OpenToolStripButton.Name = "OpenToolStripButton"
-        Me.OpenToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.OpenToolStripButton.Text = "&Open"
-        '
-        'SaveToolStripButton
-        '
-        Me.SaveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.SaveToolStripButton.Image = CType(resources.GetObject("SaveToolStripButton.Image"), System.Drawing.Image)
-        Me.SaveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.SaveToolStripButton.Name = "SaveToolStripButton"
-        Me.SaveToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.SaveToolStripButton.Text = "&Save"
-        '
-        'PrintToolStripButton
-        '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = CType(resources.GetObject("PrintToolStripButton.Image"), System.Drawing.Image)
-        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.PrintToolStripButton.Text = "&Print"
-        '
-        'tooldelete
-        '
-        Me.tooldelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tooldelete.Image = CType(resources.GetObject("tooldelete.Image"), System.Drawing.Image)
-        Me.tooldelete.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tooldelete.Name = "tooldelete"
-        Me.tooldelete.Size = New System.Drawing.Size(23, 22)
-        Me.tooldelete.Text = "&Delete"
         '
         'GreyGDN
         '

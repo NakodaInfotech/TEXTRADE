@@ -304,7 +304,7 @@ Public Class GreyGDN
 
             If ClientName <> "SANGHVI" And ClientName <> "TINUMINU" And ClientName <> "KDFAB" And ClientName <> "DJIMPEX" And ALLOWMANUALGDNNO = True Then
                 If Val(txtgdnno.Text.Trim) <> 0 And EDIT = False Then
-                    Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GDN.GDN_NO,0)  AS GDNNO", "", " GDN ", "  AND GDN.GDN_NO=" & txtgdnno.Text.Trim & " AND GDN.GDN_YEARID = " & YearId)
+                    Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GREYGDN.GDN_NO,0)  AS GDNNO", "", " GREYGDN ", "  AND GREYGDN.GDN_NO=" & txtgdnno.Text.Trim & " AND GREYGDN.GDN_YEARID = " & YearId)
                     If dttable.Rows.Count > 0 Then
                         EP.SetError(txtgdnno, "Challan No Already Exists")
                         bln = False
@@ -367,30 +367,9 @@ Public Class GreyGDN
                 End If
 
 
-                'THIS CODE IS OF NO USE.. AS THEY HAVE SHIFTED TO BARCODESTOCK
-                ''NEGATIVE STOCK NOT ALLLOWED
-                'If ClientName = "RUCHITA" Then
-                '    Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL((SUM(PCS)-SUM(ISSPCS)),0) AS TOTALPCS, ISNULL((SUM(MTRS)-SUM(ISSMTRS)),0) AS TOTALMTRS ", "", " STOCKREGISTER ", " AND ITEMNAME = '" & ROW.Cells(GITEMNAME.Index).Value & "' AND DESIGNNO = '" & ROW.Cells(GDESIGN.Index).Value & "' AND COLOR = '" & ROW.Cells(GSHADE.Index).Value & "' and GODOWN = '" & CMBGODOWN.Text.Trim & "' AND YEARID = " & YearId)
-                '    If DT.Rows.Count > 0 Then
-                '        If Val(DT.Rows(0).Item("TOTALMTRS")) <= 0 Then
-                '            ROW.DefaultCellStyle.BackColor = Color.LightGreen
-                '            If MsgBox("Mtrs not Present, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                '                EP.SetError(cmbname, "Mtrs Not Present")
-                '                bln = False
-                '            End If
-                '        End If
-                '    Else
-                '        ROW.DefaultCellStyle.BackColor = Color.LightGreen
-                '        If MsgBox("Mtrs not Present, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
-                '            EP.SetError(cmbname, "Mtrs Not Present")
-                '            bln = False
-                '        End If
-                '    End If
-                'End If
-
                 'CHECK WHETHER BARCODE IS USED OR NOT
                 If EDIT = False And ROW.Cells(GBARCODE.Index).Value <> "" And ALLOWBARCODEPRINT = True And CHECKBARCODEERRORVALID = True Then
-                    Dim DT As DataTable = OBJCMN.SEARCH("*", "", "OUTBARCODESTOCK", " AND BARCODE = '" & ROW.Cells(GBARCODE.Index).Value & "' AND YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("*", "", "OUTGREYBARCODESTOCK", " AND BARCODE = '" & ROW.Cells(GBARCODE.Index).Value & "' AND YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         EP.SetError(cmbname, "Barcode Already Used")
                         bln = False
@@ -565,7 +544,7 @@ CHECKNEXTLINEMTRS:
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(txttransref.Text.Trim)) Then
                     'for search
                     Dim objclscommon As New ClsCommon()
-                    Dim DT As DataTable = objclscommon.SEARCH(" GDN_TRANSREFNO", "", " GDN", " and GDN_TRANSREFNO= '" & txttransref.Text.Trim & "' AND GDN_YEARID =" & YearId)
+                    Dim DT As DataTable = objclscommon.SEARCH(" GDN_TRANSREFNO", "", " GREYGDN", " and GDN_TRANSREFNO= '" & txttransref.Text.Trim & "' AND GDN_YEARID =" & YearId)
                     If DT.Rows.Count > 0 Then
                         EP.SetError(txttransref, "Challan No. Already Exists")
                         bln = False
@@ -586,7 +565,7 @@ CHECKNEXTLINEMTRS:
 
             If ALLOWMANUALGDNNO = True Then
                 If txtgdnno.Text <> "" And cmbname.Text.Trim <> "" And EDIT = False Then
-                    Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GDN.GDN_NO,0)  AS GDNNO", "", " GDN ", "  AND GDN.GDN_NO=" & txtgdnno.Text.Trim & " AND GDN.GDN_YEARID = " & YearId)
+                    Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GREYGDN.GDN_NO,0)  AS GDNNO", "", " GREYGDN ", "  AND GREYGDN.GDN_NO=" & txtgdnno.Text.Trim & " AND GREYGDN.GDN_YEARID = " & YearId)
 
                     If dttable.Rows.Count > 0 Then
                         EP.SetError(txtgdnno, "Challan No Already Exist")
@@ -688,7 +667,7 @@ CHECKNEXTLINEMTRS:
                         If Val(ROW.Cells(OFROMNO.Index).Value) = Val(DTROW("SONO")) And Val(ROW.Cells(OFROMSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(OFROMTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
                     Next
                     GRIDORDER.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("QTY"), DTROW("MTRS"), DTROW("SONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, Val(DTROW("RATE")), DTROW("GRIDPARTYPONO"))
-                    'ADD DATA OF SALE ORDER IN GDN GRID ALSO
+                    'ADD DATA OF SALE ORDER IN GREYGDN GRID ALSO
                     If ClientName <> "SIDDHGIRI" Then CUT = Format(Val(DTROW("MTRS")) / Val(DTROW("QTY")), "0.00")
                     'GET PER FROM ITEMMASTER
                     If ClientName = "SIDDHGIRI" Then
@@ -725,181 +704,6 @@ NEXTLINE:
             cmdselectps.Enabled = True
             TOTAL()
             If ClientName = "AFW" Then CMBTRANS.Focus()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Sub RECOSAVE()
-        Try
-
-            Dim alParaval As New ArrayList
-
-            alParaval.Add(0)    'manualNO
-            alParaval.Add(Format(Convert.ToDateTime(GDNDATE.Text).Date, "MM/dd/yyyy"))
-            alParaval.Add(CMBGODOWN.Text.Trim)
-
-
-            alParaval.Add("")    'TRANS
-            alParaval.Add("")    'CHALLAN
-
-            alParaval.Add(Val(LBLTOTALPCS.Text))
-            alParaval.Add(Val(LBLTOTALMTRS.Text))
-            alParaval.Add(0)    'INPCS
-            alParaval.Add(0)    'INMTRS
-
-            alParaval.Add(txtremarks.Text.Trim)
-            alParaval.Add(CmpId)
-            alParaval.Add(Locationid)
-            alParaval.Add(Userid)
-            alParaval.Add(YearId)
-            alParaval.Add(0)
-
-
-            Dim gridsrno As String = ""
-            Dim PIECETYPE As String = ""
-            Dim ITEMNAME As String = ""
-            Dim QUALITY As String = ""
-            Dim DESIGN As String = ""
-            Dim COLOR As String = ""
-            Dim LOTNO As String = ""
-            Dim PCS As String = ""
-            Dim MTRS As String = ""
-
-            Dim BARCODE As String = "" 'BARCODE ADDED
-            Dim FROMNO As String = ""
-            Dim FROMSRNO As String = ""
-            Dim FROMTYPE As String = ""
-            Dim RATE As String = ""
-            Dim PER As String = ""
-            Dim AMOUNT As String = ""
-
-
-
-            For Each row As Windows.Forms.DataGridViewRow In GRIDGDN.Rows
-                Dim objclscommon As New ClsCommonMaster
-                Dim dt1 As DataTable = objclscommon.search(" ISNULL(MTRS,0) AS MTRS ", "", " BARCODESTOCK", " AND GODOWN='" & CMBGODOWN.Text.Trim & "' AND FROMNO= " & Val(row.Cells(GFROMNO.Index).Value) & " AND FROMSRNO= " & Val(row.Cells(GFROMSRNO.Index).Value) & " AND TYPE='" & row.Cells(GFROMTYPE.Index).Value & "' AND Yearid = " & YearId)
-                If dt1.Rows.Count > 0 Then
-                    If Val(dt1.Rows(0).Item(0)) <= 3 Then
-                        PRESENT = True
-                        TEMPMTRS = Val(dt1.Rows(0).Item(0))
-                        If gridsrno = "" Then
-                            gridsrno = row.Cells(GSRNO.Index).Value.ToString
-                            PIECETYPE = row.Cells(GPIECETYPE.Index).Value.ToString
-                            ITEMNAME = row.Cells(GITEMNAME.Index).Value.ToString
-                            QUALITY = row.Cells(GQUALITY.Index).Value.ToString
-                            DESIGN = row.Cells(GDESIGN.Index).Value.ToString
-                            COLOR = row.Cells(GSHADE.Index).Value.ToString
-                            LOTNO = row.Cells(GGRIDLOTNO.Index).Value.ToString
-                            PCS = row.Cells(Gpcs.Index).Value.ToString
-                            MTRS = TEMPMTRS
-                            RATE = row.Cells(GRATE.Index).Value
-                            PER = row.Cells(GPER.Index).Value
-                            AMOUNT = row.Cells(GAMOUNT.Index).Value
-                            BARCODE = row.Cells(GBARCODE.Index).Value.ToString
-                            FROMNO = row.Cells(GFROMNO.Index).Value.ToString
-                            FROMSRNO = row.Cells(GFROMSRNO.Index).Value.ToString
-                            FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
-
-                        Else
-                            gridsrno = gridsrno & "," & row.Cells(GSRNO.Index).Value.ToString
-                            PIECETYPE = PIECETYPE & "," & row.Cells(GPIECETYPE.Index).Value.ToString
-                            ITEMNAME = ITEMNAME & "," & row.Cells(GITEMNAME.Index).Value.ToString
-                            QUALITY = QUALITY & "," & row.Cells(GQUALITY.Index).Value.ToString
-                            DESIGN = DESIGN & "," & row.Cells(GDESIGN.Index).Value.ToString
-                            COLOR = COLOR & "," & row.Cells(GSHADE.Index).Value.ToString
-                            LOTNO = LOTNO & "," & row.Cells(GGRIDLOTNO.Index).Value.ToString
-                            PCS = PCS & "," & row.Cells(Gpcs.Index).Value.ToString
-                            MTRS = MTRS & "," & TEMPMTRS
-                            RATE = RATE & "|" & row.Cells(GRATE.Index).Value
-                            PER = PER & "|" & row.Cells(GPER.Index).Value
-                            AMOUNT = AMOUNT & "|" & row.Cells(GAMOUNT.Index).Value
-                            BARCODE = BARCODE & "," & row.Cells(GBARCODE.Index).Value.ToString
-                            FROMNO = FROMNO & "," & row.Cells(GFROMNO.Index).Value.ToString
-                            FROMSRNO = FROMSRNO & "," & row.Cells(GFROMSRNO.Index).Value.ToString
-                            FROMTYPE = FROMTYPE & "," & row.Cells(GFROMTYPE.Index).Value.ToString
-
-                        End If
-
-                    End If
-                End If
-            Next
-
-
-            alParaval.Add(gridsrno)
-            alParaval.Add(PIECETYPE)
-            alParaval.Add(ITEMNAME)
-            alParaval.Add(QUALITY)
-            alParaval.Add(DESIGN)
-            alParaval.Add(COLOR)
-            alParaval.Add(LOTNO)
-            alParaval.Add(PCS)
-            alParaval.Add(MTRS)
-            alParaval.Add(RATE)
-            alParaval.Add(PER)
-            alParaval.Add(AMOUNT)
-            alParaval.Add(BARCODE)
-            alParaval.Add(FROMNO)
-            alParaval.Add(FROMSRNO)
-            alParaval.Add(FROMTYPE)
-
-
-            Dim INGRIDSRNO As String = ""
-            Dim INPIECETYPE As String = ""
-            Dim INITEMNAME As String = ""
-            Dim INQUALITY As String = ""
-            Dim INBALENO As String = ""
-            Dim INGRIDDESC As String = ""
-            Dim INLOTNO As String = ""
-            Dim INDESIGN As String = ""
-            Dim INCOLOR As String = ""
-            Dim INCUT As String = ""
-            Dim INPCS As String = ""
-            Dim INQTYUNIT As String = ""
-            Dim INMTRS As String = ""
-            Dim INRACK As String = ""
-            Dim INSHELF As String = ""
-            Dim INBARCODE As String = ""
-            Dim INDONE As String = ""
-            Dim INOUTPCS As String = ""
-            Dim INOUTMTRS As String = ""
-
-            alParaval.Add(INGRIDSRNO)
-            alParaval.Add(INPIECETYPE)
-            alParaval.Add(INITEMNAME)
-            alParaval.Add(INQUALITY)
-            alParaval.Add(INBALENO)
-            alParaval.Add(INGRIDDESC)
-            alParaval.Add(INLOTNO)
-            alParaval.Add(INDESIGN)
-            alParaval.Add(INCOLOR)
-            alParaval.Add(INCUT)
-            alParaval.Add(INPCS)
-            alParaval.Add(INQTYUNIT)
-            alParaval.Add(INMTRS)
-            alParaval.Add(0)      'INMTRS
-            alParaval.Add("Mtrs")      'INPER
-            alParaval.Add(0)      'INAMOUNT
-            alParaval.Add(INRACK)
-            alParaval.Add(INSHELF)
-            alParaval.Add(INBARCODE)
-            alParaval.Add(INDONE)
-            alParaval.Add(INOUTPCS)
-            alParaval.Add(INOUTMTRS)
-
-            alParaval.Add("")   'NAME
-
-
-
-            alParaval.Add(LBLAMOUNT.Text.Trim)
-            alParaval.Add(0)
-            alParaval.Add(0)   'AVGRATE
-
-            Dim objclsPurord As New ClsStockAdjustment()
-            objclsPurord.alParaval = alParaval
-
-            If PRESENT = True Then Dim DT As DataTable = objclsPurord.SAVE()
-            MsgBox("Reco done Successfully!")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1147,7 +951,7 @@ NEXTLINE:
 
             If TEMPPROFORMANO > 0 Then GETDATA()
 
-            If ClientName = "MABHAY" Or ClientName = "SVS" Then Gpcs.ReadOnly = True
+            If ClientName = "SVS" Then Gpcs.ReadOnly = True
 
 
             If EDIT = True Then
@@ -1169,10 +973,10 @@ NEXTLINE:
                 Exit Sub
             End If
             Dim OBJCMN As New ClsCommon
-            Dim objclsGDN As New ClsGDN()
+            Dim objClsGreyGDN As New ClsGreyGDN()
             Dim dttable As New DataTable
 
-            dttable = objclsGDN.SELECTGDN(TEMPGDNNO, CmpId, Locationid, YearId)
+            dttable = objClsGreyGDN.SELECTGDN(TEMPGDNNO, CmpId, Locationid, YearId)
             If dttable.Rows.Count > 0 Then
 
                 For Each dr As DataRow In dttable.Rows
@@ -1252,7 +1056,7 @@ NEXTLINE:
 
                 'ORDER GRID
                 'Dim OBJCMN As New ClsCommon
-                dttable = OBJCMN.SEARCH(" GDN_SODETAILS.GDN_GRIDSRNO AS GRIDSRNO, ITEMMASTER.item_name AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, GDN_SODETAILS.GDN_ORDERPCS AS ORDERQTY, ISNULL(GDN_SODETAILS.GDN_ORDERMTRS,0) AS ORDERMTRS, GDN_SODETAILS.GDN_FROMNO AS FROMNO, GDN_SODETAILS.GDN_FROMSRNO AS FROMSRNO, GDN_SODETAILS.GDN_FROMTYPE AS FROMTYPE, GDN_SODETAILS.GDN_PCS AS GDNQTY, ISNULL(GDN_SODETAILS.GDN_MTRS,0) AS GDNMTRS, ISNULL(GDN_SODETAILS.GDN_RATE,0) AS RATE, ISNULL(GDN_SODETAILS.GDN_PARTYPONO,'') AS PARTYPONO ", "", " GDN_SODETAILS INNER JOIN ITEMMASTER ON GDN_SODETAILS.GDN_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON GDN_SODETAILS.GDN_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON GDN_SODETAILS.GDN_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND GDN_SODETAILS.GDN_NO = " & TEMPGDNNO & " AND GDN_SODETAILS.GDN_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH(" GREYGDN_SODETAILS.GDN_GRIDSRNO AS GRIDSRNO, ITEMMASTER.item_name AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, GREYGDN_SODETAILS.GDN_ORDERPCS AS ORDERQTY, ISNULL(GREYGDN_SODETAILS.GDN_ORDERMTRS,0) AS ORDERMTRS, GREYGDN_SODETAILS.GDN_FROMNO AS FROMNO, GREYGDN_SODETAILS.GDN_FROMSRNO AS FROMSRNO, GREYGDN_SODETAILS.GDN_FROMTYPE AS FROMTYPE, GREYGDN_SODETAILS.GDN_PCS AS GDNQTY, ISNULL(GREYGDN_SODETAILS.GDN_MTRS,0) AS GDNMTRS, ISNULL(GREYGDN_SODETAILS.GDN_RATE,0) AS RATE, ISNULL(GREYGDN_SODETAILS.GDN_PARTYPONO,'') AS PARTYPONO ", "", " GREYGDN_SODETAILS INNER JOIN ITEMMASTER ON GREYGDN_SODETAILS.GDN_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON GREYGDN_SODETAILS.GDN_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON GREYGDN_SODETAILS.GDN_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND GREYGDN_SODETAILS.GDN_NO = " & TEMPGDNNO & " AND GREYGDN_SODETAILS.GDN_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable.Rows
                         GRIDORDER.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME"), DTR("DESIGNNO"), DTR("COLOR"), Val(DTR("ORDERQTY")), Val(DTR("ORDERMTRS")), Val(DTR("FROMNO")), Val(DTR("FROMSRNO")), DTR("FROMTYPE"), Val(DTR("GDNQTY")), Val(DTR("GDNMTRS")), Val(DTR("RATE")), DTR("PARTYPONO"))
@@ -1263,7 +1067,7 @@ NEXTLINE:
 
 
                 'STORE GRID
-                dttable = OBJCMN.SEARCH("  GDN_STOREDETAILS.GDN_STORESRNO AS GRIDSTORESRNO, STOREITEMMASTER.STOREITEM_NAME AS STOREITEMNAME, GDN_STOREDETAILS.GDN_STOREQTY AS STOREQTY, UNITMASTER.unit_abbr AS STOREUNIT ", "", " GDN_STOREDETAILS INNER JOIN STOREITEMMASTER ON GDN_STOREDETAILS.GDN_STOREITEMID = STOREITEMMASTER.STOREITEM_ID INNER JOIN UNITMASTER ON GDN_STOREDETAILS.GDN_STOREUNITID = UNITMASTER.unit_id ", " AND GDN_STOREDETAILS.GDN_NO = " & TEMPGDNNO & " AND GDN_STOREDETAILS.GDN_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH("  GREYGDN_STOREDETAILS.GDN_STORESRNO AS GRIDSTORESRNO, STOREITEMMASTER.STOREITEM_NAME AS STOREITEMNAME, GREYGDN_STOREDETAILS.GDN_STOREQTY AS STOREQTY, UNITMASTER.unit_abbr AS STOREUNIT ", "", " GREYGDN_STOREDETAILS INNER JOIN STOREITEMMASTER ON GREYGDN_STOREDETAILS.GDN_STOREITEMID = STOREITEMMASTER.STOREITEM_ID INNER JOIN UNITMASTER ON GREYGDN_STOREDETAILS.GDN_STOREUNITID = UNITMASTER.unit_id ", " AND GREYGDN_STOREDETAILS.GDN_NO = " & TEMPGDNNO & " AND GREYGDN_STOREDETAILS.GDN_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable.Rows
                         GRIDCONSUME.Rows.Add(Val(DTR("GRIDSTORESRNO")), DTR("STOREITEMNAME"), Val(DTR("STOREQTY")), DTR("STOREUNIT"))
@@ -1585,27 +1389,19 @@ NEXTLINE:
             alParaval.Add(TXTDELIVERYADDRESS.Text.Trim)
             alParaval.Add(Val(LBLTOTALWT.Text.Trim))
 
-            Dim objclsgdn As New ClsGDN()
-            objclsgdn.alParaval = alParaval
+            Dim objClsGreyGDN As New ClsGreyGDN()
+            objClsGreyGDN.alParaval = alParaval
 
             If EDIT = False Then
                 If USERADD = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                Dim DTT As DataTable = objclsgdn.SAVE()
+                Dim DTT As DataTable = objClsGreyGDN.SAVE()
                 txtgdnno.Text = DTT.Rows(0).Item(0)
                 MsgBox("Details Added")
 
                 TEMPGDNNO = txtgdnno.Text.Trim
-                If ClientName = "RMANILAL" Then SENDDIRECTMAIL()
-
-                If ClientName = "SVS" Then
-                    If MsgBox("Wish To Stock Reco Directly?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                        RECOSAVE()
-                    End If
-                End If
-
 
             ElseIf EDIT = True Then
                 If USEREDIT = False Then
@@ -1614,30 +1410,19 @@ NEXTLINE:
                 End If
 
                 alParaval.Add(TEMPGDNNO)
-                IntResult = objclsgdn.UPDATE()
+                IntResult = objClsGreyGDN.UPDATE()
                 MsgBox("Details Updated")
 
             End If
 
             EDIT = False
 
-            'THEY DONT NEED PRINT
-            If ClientName <> "SNCM" And ClientName <> "AFW" Then
-                If ClientName = "SUPRIYA" Then SERVERPROP() Else PRINTREPORT(txtgdnno.Text.Trim)
-            End If
+            PRINTREPORT(txtgdnno.Text.Trim)
 
-            If ClientName = "AFW" And EDIT = False Then
-                Dim OBJSALE As New InvoiceMaster
-                OBJSALE.DIRECTINVOICE = True
-                OBJSALE.TEMPPARTYNAME = cmbname.Text.Trim
-                OBJSALE.TEMPPURNO = Val(TEMPGDNNO)
-                OBJSALE.MdiParent = MDIMain
-                OBJSALE.Show()
-            End If
 
             TEMPPROFORMANO = 0
             CLEAR()
-            If ClientName = "LEEFABRICO" Then GDNDATE.Focus() Else cmbname.Focus()
+            cmbname.Focus()
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1646,76 +1431,11 @@ NEXTLINE:
         End Try
     End Sub
 
-    Sub SERVERPROP()
-        Dim OBJ As New Object
-
-        If MsgBox("Wish to Print Challan?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-
-        If ClientName = "SUPRIYA" Then
-            OBJ = New GDNReport_SUPRIYA
-        ElseIf ClientName = "SUPEEMA" Then
-            OBJ = New GDNReport_SUPEEMA
-        End If
-
-        '**************** SET SERVER ************************
-        Dim crtableLogonInfo As New TableLogOnInfo
-        Dim crConnecttionInfo As New ConnectionInfo
-        Dim crTables As Tables
-        Dim crTable As Table
-
-        With crConnecttionInfo
-            .ServerName = SERVERNAME
-            .DatabaseName = DatabaseName
-            .UserID = DBUSERNAME
-            .Password = Dbpassword
-            .IntegratedSecurity = Dbsecurity
-        End With
-
-        crTables = OBJ.Database.Tables
-        For Each crTable In crTables
-            crtableLogonInfo = crTable.LogOnInfo
-            crtableLogonInfo.ConnectionInfo = crConnecttionInfo
-            crTable.ApplyLogOnInfo(crtableLogonInfo)
-        Next
-
-
-        Dim OBJCMN As New ClsCommon
-        Dim DT As New DataTable
-        'OBJ.PrintOptions.PaperSize = PaperSize.
-
-        'Dim c As Integer
-        'Dim doctoprint As New System.Drawing.Printing.PrintDocument()
-        'doctoprint.PrinterSettings.PrinterName = "EPSON fx-2175"
-        'Dim rawKind As Integer
-        'For c = 0 To doctoprint.PrinterSettings.PaperSizes.Count - 1
-        '    If doctoprint.PrinterSettings.PaperSizes(c).PaperName = "10x6" Then
-        '        rawKind = CInt(doctoprint.PrinterSettings.PaperSizes(c).GetType().GetField("kind", Reflection.BindingFlags.Instance Or Reflection.BindingFlags.NonPublic).GetValue(doctoprint.PrinterSettings.PaperSizes(c)))
-        '        Exit For
-        '    End If
-        'Next
-
-        'OBJ.PrintOptions.PaperSize = CType(rawKind, CrystalDecisions.Shared.PaperSize)
-        If ClientName = "SUPRIYA" Then OBJ.PrintOptions.PaperSize = PaperSize.DefaultPaperSize
-        OBJ.RecordSelectionFormula = "{GDN.GDN_no}=" & Val(txtgdnno.Text.Trim) & " and {GDN.GDN_yearid}=" & YearId
-        OBJ.PrintToPrinter(1, True, 0, 0)
-    End Sub
-
     Private Sub toolPREVIOUS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolprevious.Click
         Try
             GRIDGDN.RowCount = 0
 LINE1:
             TEMPGDNNO = Val(txtgdnno.Text) - 1
-
-            'IF WE DONT HAVE ANY PREVIOUS RECORDS THEN EXIT
-            If ClientName = "MIDAS" Then
-                Dim OBJCMN As New ClsCommon
-                Dim DTTABLE As DataTable = OBJCMN.SEARCH("GDN_NO AS GDNNO", "", "GDN", " AND GDN_NO <" & Val(txtgdnno.Text.Trim) & " AND GDN_YEARID =" & YearId)
-                If DTTABLE.Rows.Count = 0 Then
-                    CLEAR()
-                    EDIT = False
-                    Exit Sub
-                End If
-            End If
 
 
             If TEMPGDNNO > 0 Then
@@ -1786,243 +1506,27 @@ LINE1:
 
     Sub PRINTREPORT(ByVal GDNNO As Integer)
         Try
-            If ClientName = "SUPRIYA" Then
-                SERVERPROP()
-                Exit Sub
-            End If
+            'print is not yet given
+            'If MsgBox("Wish to Print Challan?", MsgBoxStyle.YesNo) = vbYes Then
 
-            If ClientName = "MOMAI" Or ClientName = "SHEETAL" Or ClientName = "ROVIRO" Then
-                If MsgBox("Wish to Print Label?", MsgBoxStyle.YesNo) = vbYes Then PRINTBARCODE()
-            End If
-
-
-            If MsgBox("Wish to Print Challan?", MsgBoxStyle.YesNo) = vbYes Then
-
-                Dim OBJGDN As New GDNDESIGN
-                OBJGDN.MdiParent = MDIMain
-                OBJGDN.FRMSTRING = "GDN"
-                OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(GDNNO) & " and {GDN.GDN_yearid}=" & YearId
-                OBJGDN.PARTYNAME = cmbname.Text.Trim
-                OBJGDN.agentname = CMBAGENT.Text.Trim
-                If (ClientName = "RAJKRIPA" Or ClientName = "MANISH" Or ClientName = "SSC" Or ClientName = "SNCM") AndAlso MsgBox("Wish to Print Rate?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.PRINTRATE = True
-                If ClientName = "MYCOT" Or ClientName = "SHUBHI" Then OBJGDN.PRINTRATE = True
-                If (ClientName = "MANSI" Or ClientName = "CHINTAN") AndAlso MsgBox("Print Challan for Garments?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.FRMSTRING = "GDNGARMENT"
-                OBJGDN.WHITELABEL = CHKWHITELABEL.Checked
-                OBJGDN.HIDEPCSDETAILS = CHKHIDEPCS.Checked
-                OBJGDN.PRINTINYARDS = CHKYARD.Checked
-                OBJGDN.THIRDPARTY = CHKTHIRDPARTY.Checked
-                If CHKCHANGEADD.CheckState = CheckState.Checked Then OBJGDN.PARTYCHANGEADD = TXTDELIVERYADDRESS.Text.Trim
-                OBJGDN.Show()
-            End If
-
-            If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "MSANCHITKUMAR" Then
-                Dim TEMPMSG2 As Integer = MsgBox("Wish to Print Challan Banner?", MsgBoxStyle.YesNo)
-                If TEMPMSG2 = vbYes Then
-                    Dim OBJGDN As New GDNDESIGN
-                    OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(GDNNO) & " and {GDN.GDN_yearid}=" & YearId
-                    OBJGDN.FRMSTRING = "GDNBANNER"
-                    OBJGDN.MdiParent = MDIMain
-                    OBJGDN.Show()
-                End If
-            End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Sub PRINTBARCODE()
-        Try
-
-            Dim PRINTMRP As Integer
-            Dim psi As New ProcessStartInfo()
-            Dim proc As Process
-            Dim dirresults As String = ""
-            Dim oWrite As System.IO.StreamWriter
-            oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
-
-            If ClientName = "MOMAI" Then GoTo MOMAILINE : 
+            '    Dim OBJGDN As New GDNDESIGN
+            '    OBJGDN.MdiParent = MDIMain
+            '    OBJGDN.FRMSTRING = "GREYGDN"
+            '    OBJGDN.FORMULA = "{GREYGDN.GDN_no}=" & Val(GDNNO) & " and {GREYGDN.GDN_yearid}=" & YearId
+            '    OBJGDN.PARTYNAME = cmbname.Text.Trim
+            '    OBJGDN.agentname = CMBAGENT.Text.Trim
+            '    If (ClientName = "RAJKRIPA" Or ClientName = "MANISH" Or ClientName = "SSC" Or ClientName = "SNCM") AndAlso MsgBox("Wish to Print Rate?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.PRINTRATE = True
+            '    If ClientName = "MYCOT" Or ClientName = "SHUBHI" Then OBJGDN.PRINTRATE = True
+            '    If (ClientName = "MANSI" Or ClientName = "CHINTAN") AndAlso MsgBox("Print Challan for Garments?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.FRMSTRING = "GDNGARMENT"
+            '    OBJGDN.WHITELABEL = CHKWHITELABEL.Checked
+            '    OBJGDN.HIDEPCSDETAILS = CHKHIDEPCS.Checked
+            '    OBJGDN.PRINTINYARDS = CHKYARD.Checked
+            '    OBJGDN.THIRDPARTY = CHKTHIRDPARTY.Checked
+            '    If CHKCHANGEADD.CheckState = CheckState.Checked Then OBJGDN.PARTYCHANGEADD = TXTDELIVERYADDRESS.Text.Trim
+            '    OBJGDN.Show()
+            'End If
 
 
-            If ClientName = "SHEETAL" Then
-                oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
-GAP 3 mm, 0 mm
-DIRECTION 0,0
-REFERENCE 0,0
-OFFSET 0 mm
-SET PEEL OFF
-SET CUTTER OFF
-SET PARTIAL_CUTTER OFF
-SET TEAR ON
-CLS
-CODEPAGE 1252
-TEXT 760,479,""ROMAN.TTF"",180,1,12,""NAME""
-TEXT 649,479,""ROMAN.TTF"",180,1,12,"":""
-TEXT 760,424,""ROMAN.TTF"",180,1,12,""TRANS""
-TEXT 649,424,""ROMAN.TTF"",180,1,12,"":""
-TEXT 760,258,""ROMAN.TTF"",180,1,12,""PCS""
-TEXT 649,258,""ROMAN.TTF"",180,1,12,"":""
-TEXT 625,479,""ROMAN.TTF"",180,1,12,""" & cmbname.Text.Trim & """
-TEXT 625,424,""ROMAN.TTF"",180,1,12,""" & CMBTRANS.Text.Trim & """
-TEXT 625,258,""ROMAN.TTF"",180,1,12,""" & Format(Val(LBLTOTALPCS.Text.Trim), "0") & """
-TEXT 760,314,""ROMAN.TTF"",180,1,12,""BALES""
-TEXT 649,314,""ROMAN.TTF"",180,1,12,"":""
-TEXT 625,314,""ROMAN.TTF"",180,1,12,""" & Format(Val(TXTBALENOFROM.Text.Trim), "0") & """
-TEXT 760,203,""ROMAN.TTF"",180,1,12,""MTRS""
-TEXT 625,203,""ROMAN.TTF"",180,1,12,""" & Format(Val(LBLTOTALMTRS.Text.Trim), "0.00") & """
-TEXT 649,203,""ROMAN.TTF"",180,1,12,"":""
-TEXT 760,369,""ROMAN.TTF"",180,1,12,""DATE""
-TEXT 649,369,""ROMAN.TTF"",180,1,12,"":""
-TEXT 625,369,""ROMAN.TTF"",180,1,12,""" & Format(Convert.ToDateTime(GDNDATE.Text), "dd/MM/yyyy") & """
-TEXT 751,577,""ROMAN.TTF"",180,1,22,""" & UCase(CmpName) & """
-BAR 19,501, 738, 3
-BARCODE 760,149,""128M"",102,0,180,3,6,""" & Val(txtgdnno.Text.Trim) & """
-TEXT 443,254,""ROMAN.TTF"",180,1,24,""CH NO""
-TEXT 229,254,""ROMAN.TTF"",180,1,24,"":""
-TEXT 206,254,""ROMAN.TTF"",180,1,24,""" & Val(txtgdnno.Text.Trim) & """
-PRINT 1,1")
-                oWrite.Dispose()
-
-
-            ElseIf ClientName = "ROVIRO" Then
-
-                oWrite.WriteLine("<xpml><page quantity='0' pitch='100.1 mm'></xpml>SIZE 99.10 mm, 100.1 mm
-GAP 3 mm, 0 mm
-DIRECTION 0,0
-REFERENCE 0,0
-OFFSET 0 mm
-SET PEEL OFF
-SET CUTTER OFF
-SET PARTIAL_CUTTER OFF
-<xpml></page></xpml><xpml><page quantity='1' pitch='100.1 mm'></xpml>SET TEAR ON
-CLS
-CODEPAGE 1252
-TEXT 773,594,""0"",180,16,16,""PARTY NAME""
-TEXT 511,594,""0"",180,16,16,"":""
-TEXT 479,594,""0"",180,16,16,""" & cmbname.Text.Trim & """
-TEXT 772,530,""0"",180,16,16,""TRANSPORT""
-TEXT 511,530,""0"",180,16,16,"":""
-TEXT 479,530,""0"",180,16,16,""" & CMBTRANS.Text.Trim & """
-TEXT 773,466,""0"",180,16,16,""CITY NAME""
-TEXT 479,466,""0"",180,17,16,""" & cmbcity.Text.Trim & """
-TEXT 511,466,""0"",180,16,16,"":""
-TEXT 773,402,""0"",180,16,16,""BALE NO""
-TEXT 479,402,""0"",180,17,16,""" & txtgdnno.Text.Trim & " X " & TXTBALENOFROM.Text.Trim & """
-TEXT 511,402,""0"",180,16,16,"":""
-QRCODE 253,399,L,8,A,180,M2,S7,""" & Val(txtgdnno.Text.Trim) & """
-PRINT 1,1
-<xpml></page></xpml><xpml><end/></xpml>")
-                oWrite.Dispose()
-
-
-
-            End If
-
-            'Printing Barcode
-            psi.FileName = "cmd.exe"
-            psi.RedirectStandardInput = False
-            psi.RedirectStandardOutput = True
-            psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
-            psi.UseShellExecute = False
-
-            proc = Process.Start(psi)
-            dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
-            proc.WaitForExit()
-            proc.Dispose()
-            Exit Sub
-
-
-
-
-
-
-MOMAILINE:
-            If ClientName = "MOMAI" Then
-                PRINTMRP = MsgBox("Wish to Print MRP?", MsgBoxStyle.YesNo)
-            End If
-
-            For Each ROW As DataGridViewRow In GRIDGDN.Rows
-
-                For I As Integer = 0 To Val(ROW.Cells(Gpcs.Index).Value) - 1
-
-
-                    oWrite = File.CreateText(Application.StartupPath & "\Barcode.txt")
-
-                    If ClientName = "MOMAI" Then
-
-                        oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>SIZE 47.5 mm, 25 mm")
-                        oWrite.WriteLine("GAP 3 mm, 0 mm")
-                        oWrite.WriteLine("DIRECTION 0,0")
-                        oWrite.WriteLine("REFERENCE 0,0")
-                        oWrite.WriteLine("OFFSET 0 mm")
-                        oWrite.WriteLine("SET PEEL OFF")
-                        oWrite.WriteLine("SET CUTTER OFF")
-                        oWrite.WriteLine("SET PARTIAL_CUTTER OFF")
-                        oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>SET TEAR ON")
-                        oWrite.WriteLine("CLS")
-                        oWrite.WriteLine("CODEPAGE 1252")
-                        oWrite.WriteLine("TEXT 365,188,""0"",180,14,14,""" & ROW.Cells(GITEMNAME.Index).Value & """")
-                        oWrite.WriteLine("TEXT 365,146,""0"",180,14,14,""" & ROW.Cells(GDESIGN.Index).Value & """")
-                        oWrite.WriteLine("TEXT 365,102,""0"",180,9,9,""" & ROW.Cells(GSHADE.Index).Value & """")
-                        oWrite.WriteLine("TEXT 172,101,""0"",180,8,8,""MRP""")
-
-
-                        Dim TEMPMRP As String = ""
-                        Dim OBJCMN As New ClsCommon
-                        'FIRST CHECK WITH LEDGER NAME IN WHERECLAUSE IF NO RECORD IS FOUND THEN GET DATA WITHOUT PARTY NAME
-                        Dim WHERECLAUSE As String = " AND ISNULL(LEDGERS.ACC_CMPNAME,'') = '" & cmbname.Text.Trim & "'"
-                        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(PL_RATE,0) AS RATE", "", "PRICELISTMASTER LEFT OUTER JOIN ITEMMASTER ON PL_ITEMID = ITEMMASTER.ITEM_ID LEFT OUTER JOIN DESIGNMASTER ON PL_DESIGNID = DESIGN_ID LEFT OUTER JOIN COLORMASTER ON PL_COLORID = COLORMASTER.COLOR_ID LEFT OUTER JOIN LEDGERS ON PL_LEDGERID = LEDGERS.ACC_ID ", " AND ITEMMASTER.ITEM_NAME = '" & ROW.Cells(GITEMNAME.Index).Value & "' AND DESIGNMASTER.DESIGN_NO = '" & ROW.Cells(GDESIGN.Index).Value & "' AND PL_YEARID = " & YearId & WHERECLAUSE)
-                        If DT.Rows.Count > 0 Then
-                            TEMPMRP = Val(DT.Rows(0).Item("RATE"))
-                        Else
-                            DT = OBJCMN.SEARCH("ISNULL(PL_RATE,0) AS RATE", "", "PRICELISTMASTER LEFT OUTER JOIN ITEMMASTER ON PL_ITEMID = ITEMMASTER.ITEM_ID LEFT OUTER JOIN DESIGNMASTER ON PL_DESIGNID = DESIGN_ID LEFT OUTER JOIN COLORMASTER ON PL_COLORID = COLORMASTER.COLOR_ID  LEFT OUTER JOIN LEDGERS ON PL_LEDGERID = LEDGERS.ACC_ID ", " AND ISNULL(LEDGERS.ACC_CMPNAME,'') = '' AND ITEMMASTER.ITEM_NAME = '" & ROW.Cells(GITEMNAME.Index).Value & "' AND DESIGNMASTER.DESIGN_NO = '" & ROW.Cells(GDESIGN.Index).Value & "' AND PL_YEARID = " & YearId)
-                            If DT.Rows.Count > 0 Then TEMPMRP = Val(DT.Rows(0).Item("RATE"))
-                        End If
-
-
-
-
-                        ''AS PER NEW MODIFICATIOSN WE HAVE TO PRINT MRP STATWISE
-                        ''GET STATENAME FROM LEDGERS
-                        'Dim DTSTATE As DataTable = OBJCMN.search("ISNULL(STATE_NAME,'') AS STATENAME", "", " LEDGERS INNER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATEMASTER.STATE_ID ", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND LEDGERS.ACC_YEARID = " & YearId)
-                        'Dim DT As DataTable = OBJCMN.search("ISNULL(MRP_MRP,0) AS RATE", "", "STATEWISEMRP INNER JOIN STATEMASTER ON MRP_STATEID = STATEMASTER.STATE_ID INNER JOIN ITEMMASTER ON MRP_ITEMID = ITEMMASTER.ITEM_ID", " AND ITEMMASTER.ITEM_NAME = '" & ROW.Cells(GITEMNAME.Index).Value & "' AND STATEMASTER.STATE_NAME = '" & DTSTATE.Rows(0).Item("STATENAME") & "' AND MRP_YEARID = " & YearId)
-                        'If DT.Rows.Count > 0 Then
-                        '    TEMPMRP = Val(DT.Rows(0).Item("RATE"))
-                        'End If
-
-
-
-                        If PRINTMRP = vbNo Then TEMPMRP = ""
-
-                        oWrite.WriteLine("TEXT 119,107,""0"",180,13,13, """ & TEMPMRP & """")
-                        oWrite.WriteLine("TEXT 98,71,""0"",180,4,4,""(Inc. of all Taxes)""")
-                        oWrite.WriteLine("TEXT 68,138,""0"",180,7,7,""1PCS""")
-                        oWrite.WriteLine("BARCODE 365,72,""128M"",52,0,180,1,2, """ & ROW.Cells(GBARCODE.Index).Value & """") 'BARCODE
-                        oWrite.WriteLine("TEXT 325,17,""0"",180,6,6, """ & ROW.Cells(GBARCODE.Index).Value & """")
-
-                        oWrite.WriteLine("PRINT 1,1")
-                        oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
-                        oWrite.Dispose()
-
-
-                    End If
-
-                    'Printing Barcode
-                    psi = New ProcessStartInfo()
-                    psi.FileName = "cmd.exe"
-                    psi.RedirectStandardInput = False
-                    psi.RedirectStandardOutput = True
-                    psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
-                    psi.UseShellExecute = False
-
-                    proc = Process.Start(psi)
-                    dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
-                    proc.WaitForExit()
-                    proc.Dispose()
-NEXTLINE:
-                    'THIS LINE IS WRITTEN TO DISPOSE THE BARCODE NOTEPAD OBJECT, WHEN CURSOR COMES DIRECTLY ON NEXTLINE CODE
-                    oWrite.Dispose()
-                Next
-            Next
         Catch ex As Exception
             Throw ex
         End Try
@@ -2229,23 +1733,6 @@ NEXTLINE:
                 If TEMPMSG = vbNo Then Exit Sub
 
 
-                'FIRST MAIL THE CHALLAN 
-                If ClientName = "AVIS" And CmpName <> "AVIS IMPEX" Then SENDDIRECTMAIL()
-
-
-
-                'DONE BY GULKIT
-                'BEFORE UPDATING REVERSE THE ENTRY IN SCHEDULEMASTER_DESC
-                'If ClientName = "SAFFRON" Then
-                '    Dim OBJCMN As New ClsCommon
-                '    Dim LOOPTABLE As DataTable = OBJCMN.search("  GDN.GDN_ledgerid AS LEDGERID, GDN_DESC.GDN_ITEMID AS ITEMID, GDN_DESC.GDN_COLORID AS COLORID, GDN_DESC.GDN_PCS AS PCS ", "", " GDN_DESC INNER JOIN GDN ON GDN_DESC.GDN_NO = GDN.GDN_NO AND GDN_DESC.GDN_YEARID = GDN.GDN_YEARID ", " AND GDN.GDN_NO = " & TEMPGDNNO & " AND GDN.GDN_YEARID = " & YearId)
-                '    For Each LOOPROW As DataRow In LOOPTABLE.Rows
-                '        Dim DTTEMP As DataTable = OBJCMN.search(" TOP 1 SCH_NO , SCH_GRIDSCHNO ", "", " SCHEDULEMASTER_DESC INNER JOIN LEDGERS ON SCHEDULEMASTER_DESC.SCH_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON SCHEDULEMASTER_DESC.SCH_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON SCHEDULEMASTER_DESC.SCH_COLORID = COLORMASTER.COLOR_id  ", " AND LEDGERS.ACC_ID = " & Val(LOOPROW("LEDGERID")) & " AND ISNULL(ITEM_ID, 0) = " & Val(LOOPROW("ITEMID")) & " AND ISNULL(COLORMASTER.COLOR_ID,0) = " & Val(LOOPROW("COLORID")) & " AND SCH_YEARID = " & YearId & " AND  SCHEDULEMASTER_DESC.SCH_RECDQTY > 0 ORDER BY SCH_NO , SCH_GRIDSCHNO DESC")
-                '        If DTTEMP.Rows.Count > 0 Then
-                '            Dim NEWTEMP As DataTable = OBJCMN.Execute_Any_String(" update SCHEDULEMASTER_DESC set  SCH_RECDQTY = SCH_RECDQTY - " & Val(LOOPROW("PCS")) & " WHERE SCH_NO = " & Val(DTTEMP.Rows(0).Item(0)) & " AND SCH_GRIDSCHNO = " & Val(DTTEMP.Rows(0).Item(1)) & " AND SCH_yearid= " & YearId, "", "")
-                '        End If
-                '    Next
-                'End If
 
                 Dim ALPARAVAL As New ArrayList
                 ALPARAVAL.Add(TEMPGDNNO)
@@ -2258,10 +1745,10 @@ NEXTLINE:
                 ALPARAVAL.Add(YearId)
                 ALPARAVAL.Add(ClientName)
 
-                Dim OBJGDN As New ClsGDN
+                Dim OBJGDN As New ClsGreyGDN
                 OBJGDN.alParaval = ALPARAVAL
                 Dim INTRES As Integer = OBJGDN.Delete
-                MsgBox("GDN Deleted")
+                MsgBox("GREYGDN Deleted")
 
                 CLEAR()
                 EDIT = False
@@ -2269,81 +1756,6 @@ NEXTLINE:
                 TEMPPROFORMANO = 0
 
             End If
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Sub SENDDIRECTMAIL()
-        Try
-
-            Dim ALATTACHMENT As New ArrayList
-            '**************** SET SERVER ************************
-            Dim crParameterFieldDefinitions As ParameterFieldDefinitions
-            Dim crParameterFieldDefinition As ParameterFieldDefinition
-            Dim crParameterValues As New ParameterValues
-            Dim crParameterDiscreteValue As New ParameterDiscreteValue
-
-            Dim crtableLogonInfo As New TableLogOnInfo
-            Dim crConnecttionInfo As New ConnectionInfo
-            Dim crTables As Tables
-            Dim crTable As Table
-
-            With crConnecttionInfo
-                .ServerName = SERVERNAME
-                .DatabaseName = DatabaseName
-                .UserID = DBUSERNAME
-                .Password = Dbpassword
-                .IntegratedSecurity = Dbsecurity
-            End With
-
-            Dim expo As New ExportOptions
-            Dim oDfDopt As New DiskFileDestinationOptions
-
-            Dim TOMAIL As String = ""
-            Dim SUBJECT As String = ""
-            Dim OBJ As New Object
-
-            If ClientName = "AVIS" Then
-                OBJ = New GDNReport_AVIS
-                TOMAIL = "infoavisindustries@gmail.com"
-                SUBJECT = "Deleted Challan"
-
-
-            ElseIf ClientName = "RMANILAL" Then
-                OBJ = New GDNReport_COMMON
-                'CHECK WHETHER EMAILID IS PRESENT IN LEDGER OR NOT, IF NOT THEN EXIT SUB WITH MESSAGE
-                Dim OBJCMN As New ClsCommon
-                Dim DTEMAIL As DataTable = OBJCMN.SEARCH("ACC_EMAIL AS EMAILID", "", "LEDGERS", "AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ACC_YEARID = " & YearId)
-                If DTEMAIL.Rows.Count > 0 AndAlso DTEMAIL.Rows(0).Item("EMAILID") = "" Then
-                    MsgBox("Add E-Mail id in Ledger", MsgBoxStyle.Critical)
-                    Exit Sub
-                Else
-                    TOMAIL = DTEMAIL.Rows(0).Item("EMAILID")
-                    SUBJECT = "Challan No. " & Val(TEMPGDNNO)
-                End If
-
-            End If
-
-            crTables = OBJ.Database.Tables
-            For Each crTable In crTables
-                crtableLogonInfo = crTable.LogOnInfo
-                crtableLogonInfo.ConnectionInfo = crConnecttionInfo
-                crTable.ApplyLogOnInfo(crtableLogonInfo)
-            Next
-
-            OBJ.RecordSelectionFormula = "{GDN.GDN_no}=" & Val(TEMPGDNNO) & " and {GDN.GDN_yearid}=" & YearId
-
-            oDfDopt.DiskFileName = Application.StartupPath & "\GDN_" & TEMPGDNNO & ".pdf"
-            expo = OBJ.ExportOptions
-            expo.ExportDestinationType = ExportDestinationType.DiskFile
-            expo.ExportFormatType = ExportFormatType.PortableDocFormat
-            expo.DestinationOptions = oDfDopt
-            OBJ.Export()
-            ALATTACHMENT.Add(oDfDopt.DiskFileName)
-
-            sendemail(TOMAIL, ALATTACHMENT(0), "", SUBJECT, ALATTACHMENT, ALATTACHMENT.Count, "", "", "", "", "")
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -2701,7 +2113,7 @@ NEXTLINE:
             If TXTBARCODE.Text.Trim <> "" And CHECKBARCODEERRORVALID = True Then
                 'CHECKING WHETHER IS IS GONE OUT OR NOT
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 TYPE, FROMNO", "", " OUTBARCODESTOCK ", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 TYPE, FROMNO", "", " OUTGREYBARCODESTOCK ", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     MsgBox("Barcode Already Used in " & DT.Rows(0).Item("TYPE") & " Sr No " & DT.Rows(0).Item("FROMNO"))
                     TXTBARCODE.Clear()
@@ -2725,21 +2137,11 @@ NEXTLINE:
             End If
 
             Dim DTGDN As New DataTable
-            If CMBHASTE.Text.Trim = "" Then
-                Dim OBJSELECTGDN As New SelectStockGDN
-                If ClientName <> "SANGHVI" And ClientName <> "TINUMINU" Then OBJSELECTGDN.GODOWN = CMBGODOWN.Text.Trim
-                If ALLOWPACKINGSLIP = True Then OBJSELECTGDN.FILTER = " AND BARCODE = ''"
-                If ALLOWPACKINGSLIP = True And cmbname.Text.Trim <> "" Then OBJSELECTGDN.FILTER = OBJSELECTGDN.FILTER & " AND JOBBERNAME = '" & cmbname.Text.Trim & "'"
-                If ClientName = "RADHA" Or ClientName = "AARYA" And cmbname.Text.Trim <> "" Then OBJSELECTGDN.FILTER = OBJSELECTGDN.FILTER & " AND PURNAME = '" & cmbname.Text.Trim & "'"
-                OBJSELECTGDN.ShowDialog()
-                DTGDN = OBJSELECTGDN.DT
-            Else
-                Dim OBJSELECTGDN As New SelectStockJobber
-                OBJSELECTGDN.TYPE = " PACKTOJOB"
-                OBJSELECTGDN.JOBBER = CMBHASTE.Text.Trim
-                OBJSELECTGDN.ShowDialog()
-                DTGDN = OBJSELECTGDN.DT
-            End If
+            Dim OBJSELECTGDN As New SelectStockGDN
+            OBJSELECTGDN.GODOWN = CMBGODOWN.Text.Trim
+            OBJSELECTGDN.FRMSTRING = "GREY"
+            OBJSELECTGDN.ShowDialog()
+            DTGDN = OBJSELECTGDN.DT
             If DTGDN.Rows.Count > 0 Then
                 For Each DTROWPS As DataRow In DTGDN.Rows
 
@@ -2798,42 +2200,21 @@ NEXTLINE:
                     If ClientName = "SSC" And DTROWPS("TYPE") = "PACKING" Then DTROWPS("BALENO") = DTROWPS("GRIDREMARKS")
 
 
-                    If ALLOWPACKINGSLIP = True Then
-                        'WE NEED TO FETCH ALL THE DATA FROM BARCODESTOCK WITH RESPECT TO SELECTED FROMNO AND YEARID
-                        'FOR MARKING WE NEED DETAILS AND FOR OTHERS WE WILL FETCH SUMMARY
-                        Dim DTPS As New DataTable
-                        If ClientName = "KOTHARI" Then
-                            DTPS = OBJCMN.SEARCH(" ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, SUM(PCS) AS PCS, CUT, SUM(MTRS) AS MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO ", "", " BARCODESTOCK ", " GROUP BY ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, CUT, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO, YEARID HAVING ROUND(SUM(MTRS),2) >0 AND GODOWN = '" & CMBGODOWN.Text.Trim & "' AND BARCODE = '' AND FROMNO = " & Val(DTROWPS("FROMNO")) & " AND YEARID = " & YearId)
-                        Else
-                            DTPS = OBJCMN.SEARCH(" ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, SUM(PCS) AS PCS, CUT, SUM(MTRS) AS MTRS, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO ", "", " BARCODESTOCK ", " GROUP BY ITEMNAME, QUALITY, DESIGNNO, COLOR, GODOWN, JOBBERNAME, UNIT, CUT, BARCODE, LOTNO, FROMNO, FROMSRNO, TYPE, PIECETYPE, BALENO, YEARID HAVING ROUND(SUM(MTRS),2) >0 AND GODOWN = '" & CMBGODOWN.Text.Trim & "' AND BARCODE = '' AND FROMNO = " & Val(DTROWPS("FROMNO")) & " AND FROMSRNO = " & Val(DTROWPS("FROMSRNO")) & "   AND YEARID = " & YearId)
-                        End If
-                        For Each DTROWBARCODE As DataRow In DTPS.Rows
-                            GRIDGDN.Rows.Add(0, DTROWBARCODE("PIECETYPE"), DTROWBARCODE("ITEMNAME"), DTROWBARCODE("QUALITY"), "", DTROWBARCODE("DESIGNNO"), DTROWBARCODE("COLOR"), DTROWBARCODE("BALENO"), DTROWBARCODE("LOTNO"), Val(DTROWBARCODE("PCS")), DTROWBARCODE("UNIT"), Format(Val(DTROWBARCODE("CUT")), "0.00"), Format(Val(DTROWBARCODE("MTRS")), "0.00"), CCRATE, PER, 0, DTROWBARCODE("BARCODE"), DTROWBARCODE("FROMNO"), DTROWBARCODE("FROMSRNO"), DTROWBARCODE("TYPE"), 0, 0, 0, "", 0)
-                        Next
-
-                    Else
-                        If ClientName = "SVS" Then
-                            GRIDGDN.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), "", DTROWPS("DESIGNNO"), DTROWPS("COLOR"), "", DTROWPS("LOTNO"), 1, DTROWPS("UNIT"), Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "", Val(DTROWPS("WT")))
-                        Else
-                            Dim GRIDDESC As String = ""
-                            If ClientName = "AVIS" Then GRIDDESC = DTROWPS("LOTNO")
-                            If ClientName = "KRFABRICS" Then
-                                GRIDDESC = DTROWPS("BALENO")
-                                DTROWPS("BALENO") = ""
-                            End If
-
-                            If ClientName = "AARYA" Then
-                                GRIDDESC = Val(DTROWPS("MTRS"))
-                                CUT = 0
-                                DTROWPS("MTRS") = 0
-                            End If
-                            If ClientName = "KENCOT" Or ClientName = "SAFFRON" Or ClientName = "NTC" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Or ClientName = "RAJKRIPA" Or ClientName = "MANSI" Then GRIDDESC = DTROWPS("GRIDREMARKS")
-
-                            GRIDGDN.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), GRIDDESC, DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("BALENO"), DTROWPS("LOTNO"), Val(DTROWPS("PCS")), DTROWPS("UNIT"), CUT, Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "", Val(DTROWPS("WT")))
-                        End If
+                    Dim GRIDDESC As String = ""
+                    If ClientName = "AVIS" Then GRIDDESC = DTROWPS("LOTNO")
+                    If ClientName = "KRFABRICS" Then
+                        GRIDDESC = DTROWPS("BALENO")
+                        DTROWPS("BALENO") = ""
                     End If
 
+                    If ClientName = "AARYA" Then
+                        GRIDDESC = Val(DTROWPS("MTRS"))
+                        CUT = 0
+                        DTROWPS("MTRS") = 0
+                    End If
+                    If ClientName = "KENCOT" Or ClientName = "SAFFRON" Or ClientName = "NTC" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Or ClientName = "RAJKRIPA" Or ClientName = "MANSI" Then GRIDDESC = DTROWPS("GRIDREMARKS")
 
+                    GRIDGDN.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), GRIDDESC, DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("BALENO"), DTROWPS("LOTNO"), Val(DTROWPS("PCS")), DTROWPS("UNIT"), CUT, Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "", Val(DTROWPS("WT")))
 
 LINE1:
                 Next
@@ -3289,7 +2670,7 @@ LINE1:
             Dim dt As New DataTable
             If txttransref.Text.Trim.Length > 0 And ClientName <> "KCRAYON" And ClientName <> "DJIMPEX" And ClientName <> "PARAS" And ClientName <> "SONU" And ClientName <> "AMAN" And ClientName <> "AARYA" And ClientName <> "RAJKRIPA" Then
                 If (EDIT = False) Or (EDIT = True And LCase(PARTYCHALLANNO) <> LCase(txttransref.Text.Trim)) Then
-                    dt = OBJCMN.SEARCH(" GDN.GDN_TRANSREFNO AS CHALLANNO ", "", " GDN ", " and GDN_TRANSREFNO = '" & txttransref.Text.Trim & "' AND GDN_YEARID = " & YearId)
+                    dt = OBJCMN.SEARCH(" GREYGDN.GDN_TRANSREFNO AS CHALLANNO ", "", " GREYGDN ", " and GDN_TRANSREFNO = '" & txttransref.Text.Trim & "' AND GDN_YEARID = " & YearId)
                     If dt.Rows.Count > 0 Then
                         MsgBox("Challan No. Already Exists", MsgBoxStyle.Critical, "TEXTRADE")
                         e.Cancel = True
@@ -3298,43 +2679,6 @@ LINE1:
             End If
 
 
-            'FOR AMAN WE NEED TO CHECK WHETHER THIS PARTYCHALLAN IS CORRECT OR NOT, IF CORRECT THEN CHECK WHETHER WE HAVE STOCK FOR THIS CHALLAN OR NOT
-            If (ClientName = "AMAN" Or ClientName = "AARYA") And txttransref.Text.Trim <> "" Then
-                Dim BALPCS As Double = 0
-                dt = OBJCMN.SEARCH(" CHALLANNO, SUM(PCS) AS INPCS, SUM(MTRS) AS INMTRS, SUM(PCS)-SUM(ISSPCS) AS BALPCS, SUM(MTRS)-SUM(ISSMTRS) AS BALMTRS ", "", " STOCKREGISTER ", " AND NAME = '" & cmbname.Text.Trim & "' AND CHALLANNO = '" & txttransref.Text.Trim & "' AND YEARID = " & YearId & " GROUP BY NAME, CHALLANNO ")
-                If dt.Rows.Count > 0 Then
-
-                    'CHECK THE STOCK
-                    BALPCS = Val(dt.Rows(0).Item("BALPCS"))
-
-                    'ON EDIT MODE ADD CHALLANPCS ALSO
-                    If EDIT = True Then
-                        Dim DTGDN As DataTable = OBJCMN.Execute_Any_String("SELECT GDN_TOTALPCS AS TOTALPCS FROM GDN WHERE GDN_NO = " & Val(txtgdnno.Text.Trim) & " AND GDN_YEARID = " & YearId, "", "")
-                        If DTGDN.Rows.Count > 0 Then BALPCS += Val(DTGDN.Rows(0).Item("TOTALPCS"))
-                    End If
-
-
-                    If Val(BALPCS) <= 0 Then
-                        MsgBox("Challan No not in Stock", MsgBoxStyle.Critical, "TEXTRADE")
-                        e.Cancel = True
-                    End If
-
-                    'IF PCS ARE IN STOCK AND WE HAVE LOCKED CHALLAN THEN ALSO VALIDATE
-                    'WE HAVE GIVE AN OPTION IN GRN TO LOCK THIS CHALLAN MANUALLY IF WE WANT TO CLOSE THIS
-                    'IF WE CLOSE THIS CHALLAN NO IN GRN THEN CHECK IT AND DONT ALLOW TO ENTER THAT CHALLANNO
-                    'WE HAVE USED LOTREADY CHECK BOX IN GRN FOR THIS PURPOSE
-                    Dim DTGRN As DataTable = OBJCMN.SEARCH("ISNULL(GRN_LOTREADY,0) AS CHALLANLOCK", "", " GRN INNER JOIN LEDGERS ON GRN_LEDGERID = LEDGERS.ACC_ID ", " AND LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND GRN_CHALLANNO = '" & txttransref.Text.Trim & "' AND GRN.GRN_YEARID = " & YearId)
-                    If DTGRN.Rows.Count > 0 Then
-                        If Convert.ToBoolean(DTGRN.Rows(0).Item("CHALLANLOCK")) = True Then
-                            MsgBox("Invalid Challan No., Challan has been Locked ", MsgBoxStyle.Critical, "TEXTRADE")
-                            e.Cancel = True
-                        End If
-                    End If
-                Else
-                    MsgBox("Invalid Challan No. ", MsgBoxStyle.Critical, "TEXTRADE")
-                    e.Cancel = True
-                End If
-            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -3348,7 +2692,7 @@ LINE1:
         Try
             If Val(txtgdnno.Text.Trim) <> 0 And EDIT = False Then
                 Dim OBJCMN As New ClsCommon
-                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GDN.GDN_NO,0)  AS GDNNO", "", " GDN ", "  AND GDN.GDN_NO=" & txtgdnno.Text.Trim & " AND GDN.GDN_YEARID = " & YearId)
+                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GREYGDN.GDN_NO,0)  AS GDNNO", "", " GREYGDN ", "  AND GREYGDN.GDN_NO=" & txtgdnno.Text.Trim & " AND GREYGDN.GDN_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     MsgBox("Challan No Already Exist")
                     e.Cancel = True
@@ -3375,7 +2719,7 @@ LINE1:
         Try
             'GET MAX NO WITH RESPECT TO SELECTED CHALLANTYPE
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("isnull(max(GDN_TYPENO),0) + 1", "", "GDN INNER JOIN  CHALLANTYPEMASTER ON GDN_TYPEID = CHALLANTYPE_ID", " AND CHALLANTYPE_NAME = '" & CMBTYPE.Text.Trim & "' AND GDN_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("isnull(max(GDN_TYPENO),0) + 1", "", "GREYGDN INNER JOIN  CHALLANTYPEMASTER ON GDN_TYPEID = CHALLANTYPE_ID", " AND CHALLANTYPE_NAME = '" & CMBTYPE.Text.Trim & "' AND GDN_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then TXTTYPECHALLANNO.Text = Val(DT.Rows(0).Item(0))
         Catch ex As Exception
             Throw ex
@@ -3485,7 +2829,7 @@ LINE1:
 
             If SENDMSG(MSG, TXTMOBILENO.Text.Trim) = "1701" Then
                 MsgBox("Message Sent")
-                DT = OBJCMN.Execute_Any_String("UPDATE GDN SET GDN_SMSSEND = 1 WHERE GDN_NO = " & TEMPGDNNO & " AND GDN_YEARID = " & YearId, "", "")
+                DT = OBJCMN.Execute_Any_String("UPDATE GREYGDN SET GDN_SMSSEND = 1 WHERE GDN_NO = " & TEMPGDNNO & " AND GDN_YEARID = " & YearId, "", "")
                 LBLSMS.Visible = True
             Else
                 MsgBox("Error Sending Message")
@@ -3523,7 +2867,7 @@ LINE1:
             Dim DT As New DataTable
             Dim OBJCMN As New ClsCommon
             If EDIT = True Then SENDWHATSAPP(TEMPGDNNO)
-            DT = OBJCMN.Execute_Any_String("UPDATE GDN SET GDN_SENDWHATSAPP = 1 WHERE GDN_NO = " & TEMPGDNNO & " AND GDN_YEARID = " & YearId, "", "")
+            DT = OBJCMN.Execute_Any_String("UPDATE GREYGDN SET GDN_SENDWHATSAPP = 1 WHERE GDN_NO = " & TEMPGDNNO & " AND GDN_YEARID = " & YearId, "", "")
             LBLWHATSAPP.Visible = True
         Catch ex As Exception
             Throw ex
@@ -3544,12 +2888,12 @@ LINE1:
             Dim OBJGDN As New GDNDESIGN
             OBJGDN.MdiParent = MDIMain
             OBJGDN.DIRECTPRINT = True
-            OBJGDN.FRMSTRING = "GDN"
+            OBJGDN.FRMSTRING = "GREYGDN"
             If ClientName = "MANSI" AndAlso MsgBox("Print Challan for Garments?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.FRMSTRING = "GDNGARMENT"
             OBJGDN.DIRECTMAIL = True
             OBJGDN.PARTYNAME = cmbname.Text.Trim
             OBJGDN.agentname = CMBAGENT.Text.Trim
-            OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(GDNNO) & " and {GDN.GDN_yearid}=" & YearId
+            OBJGDN.FORMULA = "{GREYGDN.GDN_no}=" & Val(GDNNO) & " and {GREYGDN.GDN_yearid}=" & YearId
             OBJGDN.JONO = GDNNO
             OBJGDN.NOOFCOPIES = 1
             OBJGDN.WHITELABEL = CHKWHITELABEL.Checked
@@ -3641,7 +2985,7 @@ LINE1:
 
 
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 * ", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 * ", "", "GREYBARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
 
                     'VALIDATE GODOWN
@@ -3774,6 +3118,7 @@ LINE1:
 
                 Dim OBJSTOCK As New SelectStockGDNGrid
                 OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
+                OBJSTOCK.FRMSTRING = "GREY"
                 OBJSTOCK.ShowDialog()
                 Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
                 For Each DTROW As DataRow In DTBARCODE.Rows

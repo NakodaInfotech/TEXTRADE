@@ -468,6 +468,12 @@
     <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\GDN\GreyGDNReport_COMMON.vb">
+      <DependentUpon>GreyGDNReport_COMMON.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -9339,6 +9345,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.resx">
       <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GreyGDNReport_COMMON.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GreyGDNReport_COMMON.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

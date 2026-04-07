@@ -21,7 +21,7 @@ Public Class ClsGreyGDN
         Dim DT As DataTable
         Try
             'save SALE order
-            Dim strCommand As String = "SP_TRANS_SALE_GDN_SAVE"
+            Dim strCommand As String = "SP_TRANS_GREYGDN_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -224,7 +224,7 @@ Public Class ClsGreyGDN
         Dim intResult As Integer
         Try
             'Update SALE order
-            Dim strCommand As String = "SP_TRANS_SALE_GDN_UPDATE"
+            Dim strCommand As String = "SP_TRANS_GREYGDN_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
@@ -428,7 +428,7 @@ Public Class ClsGreyGDN
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTGDN_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTGREYGDN_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@GDNno", GDNno))
@@ -447,7 +447,7 @@ Public Class ClsGreyGDN
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_SALE_GDN_DELETE"
+            Dim strCommand As String = "SP_TRANS_GREYGDN_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@GDNNO", alParaval(0)))
