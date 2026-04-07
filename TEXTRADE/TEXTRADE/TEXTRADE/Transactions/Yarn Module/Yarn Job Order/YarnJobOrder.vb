@@ -60,6 +60,10 @@ Public Class YarnJobOrder
         lbllocked.Visible = False
         PBlock.Visible = False
 
+        TXTFROM.Clear()
+        TXTTO.Clear()
+
+
 
         CMBDESIGN.Text = ""
 
@@ -557,10 +561,61 @@ LINE1:
     Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
         Try
             If EDIT = True Then PRINTREPORT()
+
+            If ClientName = "MMC" Then
+                PRINTBARCODE()
+            End If
+
+
+
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+
+
+    Sub PRINTBARCODE()
+        Try
+
+            'PRINT BARCODE
+            Dim TEMPMSG As Integer = MsgBox("Wish to Print Barcode?", MsgBoxStyle.YesNo)
+            If TEMPMSG = vbNo Then Exit Sub
+
+            GRIDBEAM.RowCount = 0
+            Dim objclsGRN As New ClsYarnJobOrder()
+            Dim dttable As DataTable = objclsGRN.SelectYarnJob(TEMPJONO, YearId)
+            If DTTABLE.Rows.Count > 0 Then
+                Dim OBJCMN As New ClsCommon
+                Dim dttable1 As DataTable = OBJCMN.SEARCH("ISNULL(YARNJOBORDER_DESC.YJOB_SRNO, 0) AS GRIDSRNO, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(YARNJOBORDER_DESC.YJOB_PARENTITEM, '') AS PARENTITEM, ISNULL(YARNJOBORDER_DESC.YJOB_REFNO, '') AS REFNO, ISNULL(YARNJOBORDER_DESC.YJOB_REED, 0) AS REED, ISNULL(YARNJOBORDER_DESC.YJOB_PICKS, 0) AS PICKS, ISNULL(YARNJOBORDER_DESC.YJOB_REEDSPACE, 0) AS REEDSPACE, ISNULL(YARNJOBORDER_DESC.YJOB_ENDS, 0) AS ENDS, ISNULL(YARNJOBORDER_DESC.YJOB_MTRS, 0) AS MTRS, ISNULL(YARNJOBORDER_DESC.YJOB_DESCRIPTION, '') AS DESCRIPTION, ISNULL(YARNJOBORDER_DESC.YJOB_OUTMTRS, 0) AS OUTMTRS, ISNULL(YARNJOBORDER_DESC.YJOB_DONE, 0) AS DONE, ISNULL(YARNJOBORDER_DESC.YJOB_CLOSED, 0) AS CLOSED, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO ", "", " YARNJOBORDER_DESC LEFT OUTER JOIN DESIGNMASTER ON YARNJOBORDER_DESC.YJOB_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON YARNJOBORDER_DESC.YJOB_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN ITEMMASTER ON YARNJOBORDER_DESC.YJOB_ITEMID = ITEMMASTER.item_id ", " AND  YARNJOBORDER_DESC.YJOB_NO = " & TEMPJONO & " AND YARNJOBORDER_DESC.YJOB_YEARID = " & YearId & " ORDER BY GRIDSRNO")
+                If dttable1.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable1.Rows
+                        GRIDBEAM.Rows.Add(Val(DTR("GRIDSRNO")), DTR("ITEMNAME").ToString, DTR("DESIGNNO").ToString, DTR("COLOR").ToString, DTR("PARENTITEM").ToString, DTR("REFNO").ToString, Format(DTR("REED"), "0.00"), Format(DTR("PICKS"), "0.00"), Format(DTR("REEDSPACE"), "0.00"), Format(DTR("ENDS"), "0.000"), Format(DTR("MTRS"), "0.00"), DTR("DESCRIPTION").ToString, Format(DTR("OUTMTRS"), "0.00"), Val(DTR("DONE")), Val(DTR("CLOSED")))
+                    Next
+                End If
+            End If
+
+
+            For Each ROW As DataGridViewRow In GRIDBEAM.Rows
+
+                'TO PRINT BARCODE FROM SELECTED SRNO
+                If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then
+                    If Val(ROW.Cells(GSRNO.Index).Value) < Val(TXTFROM.Text.Trim) Or Val(ROW.Cells(GSRNO.Index).Value) > Val(TXTTO.Text.Trim) Then GoTo NEXTLINE
+                End If
+
+                'IF barcode is used the BARCODE printING WILL BE BLOCKED
+                'If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
+
+                BARCODEPRINTING(ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value)
+
+NEXTLINE:
+
+            Next
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 
     Sub PRINTREPORT()
         Try
@@ -575,6 +630,84 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+
+
+    Sub BARCODEPRINTING(ITEMNAME As String, DESIGN As String, SHADE As String)
+        Try
+
+            Dim dirresults As String = ""
+            Dim oWrite As System.IO.StreamWriter
+            oWrite = IO.File.CreateText(Application.StartupPath & "\Barcode.txt")
+
+
+            If ClientName = "MMC" Then
+                oWrite.WriteLine("Size 101.6 mm, 76.2 mm")
+                oWrite.WriteLine("GAP 3 mm, 0 mm")
+                oWrite.WriteLine("DIRECTION 0, 0")
+                oWrite.WriteLine("REFERENCE 0, 0")
+                oWrite.WriteLine("OFFSET 0 mm")
+                oWrite.WriteLine("SET PEEL OFF")
+                oWrite.WriteLine("SET CUTTER OFF")
+                oWrite.WriteLine("SET PARTIAL_CUTTER OFF")
+                oWrite.WriteLine("SET TEAR ON")
+                oWrite.WriteLine("CLS")
+                oWrite.WriteLine("CODEPAGE 1252")
+                oWrite.WriteLine("Text 777, 571, ""ROMAN.TTF"", 180, 1, 18, ""ITEM""")
+                oWrite.WriteLine("Text 608, 571, ""ROMAN.TTF"", 180, 1, 18, "":""")
+                oWrite.WriteLine("TEXT 777,571,""ROMAN.TTF"",180,1,18,""" & ITEMNAME & """")
+                oWrite.WriteLine("Text 777, 491, ""ROMAN.TTF"", 180, 1, 18, ""D.NO""")
+                oWrite.WriteLine("TEXT 608,491,""ROMAN.TTF"",180,1,18,, 1, 18, "": """)
+                oWrite.WriteLine("Text 579, 491, ""ROMAN.TTF"", 180, 1, 18, """ & DESIGN & """")
+                oWrite.WriteLine("Text 777, 412, ""ROMAN.TTF"", 180, 1, 18, ""SHADE""")
+                oWrite.WriteLine("Text 608, 412, ""ROMAN.TTF"", 180, 1, 18, "": """)
+                oWrite.WriteLine("Text 579, 412, ""ROMAN.TTF"", 180, 1, 18, """ & SHADE & """")
+                oWrite.WriteLine("Text 777, 332, ""ROMAN.TTF"", 180, 1, 18, ""SO NO""")
+                oWrite.WriteLine("Text 608, 332, ""ROMAN.TTF"", 180, 1, 18, "":""")
+                oWrite.WriteLine("Text 579, 332, ""ROMAN.TTF"", 180, 1, 18, "" """)
+                oWrite.WriteLine("Text 777, 253, ""ROMAN.TTF"", 180, 1, 18, ""MTRS""")
+                oWrite.WriteLine("Text 608, 253, ""ROMAN.TTF"", 180, 1, 18, "":""")
+                oWrite.WriteLine("Text 777, 173, ""ROMAN.TTF"", 180, 1, 18, ""TAKA""")
+                oWrite.WriteLine("Text 608, 173, ""ROMAN.TTF"", 180, 1, 18, "":""")
+                oWrite.WriteLine("Text 366, 253, ""ROMAN.TTF"", 180, 1, 18, ""LOOM""")
+                oWrite.WriteLine("Text 219, 253, ""ROMAN.TTF"", 180, 1, 18, "":""")
+                oWrite.WriteLine("Text 777, 94, ""ROMAN.TTF"", 180, 1, 18, ""WIDTH""")
+                oWrite.WriteLine("Text 608, 94, ""ROMAN.TTF"", 180, 1, 18, "":""")
+                oWrite.WriteLine("Text 331, 94, ""ROMAN.TTF"", 180, 1, 18, ""SIZE""")
+                oWrite.WriteLine("Text 219, 94, ""ROMAN.TTF"", 180, 1, 18, "":""")
+                oWrite.WriteLine("Text 194, 253, ""ROMAN.TTF"", 180, 1, 18, "" """)
+                oWrite.WriteLine("Print 1, 1")
+
+                oWrite.Dispose()
+
+            End If
+
+
+            'Printing Barcode
+            Dim psi As New ProcessStartInfo()
+            psi.FileName = "cmd.exe"
+            psi.RedirectStandardInput = False
+            psi.RedirectStandardOutput = True
+            psi.Arguments = "/c print " & Application.StartupPath & "\Barcode.txt"    ' specify your command
+            'psi.Arguments = "/c print D:\Barcode.txt"    ' specify your command
+            'psi.Arguments = "print /d:\\admin-pc\ARGOX D:\Barcode.txt"    ' specify your command
+            psi.UseShellExecute = False
+
+            Dim proc As Process
+            proc = Process.Start(psi)
+            dirresults = proc.StandardOutput.ReadToEnd() ' // read from stdout
+            '// do something with result stream
+            proc.WaitForExit()
+            proc.Dispose()
+
+            'THIS LINE IS WRITTEN TO DISPOSE THE BARCODE NOTEPAD OBJECT, WHEN CURSOR COMES DIRECTLY ON NEXTLINE CODE
+            oWrite.Dispose()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 
     Private Sub tooldelete_Click(sender As Object, e As EventArgs) Handles tooldelete.Click
         Call cmddelete_Click(sender, e)
@@ -914,6 +1047,14 @@ LINE1:
                 GREEDSPACE.ReadOnly = True
                 GENDS.ReadOnly = True
                 GMTRS.ReadOnly = True
+
+                LBLFROM.Visible = True
+                LBLTO.Visible = True
+                TXTFROM.Visible = True
+                TXTTO.Visible = True
+
+
+
 
             End If
 
