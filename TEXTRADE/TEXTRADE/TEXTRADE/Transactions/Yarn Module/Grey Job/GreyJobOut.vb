@@ -237,7 +237,7 @@ Public Class GreyJobOut
                 'COZ IF THERE IS NO EWAYBILL NO IN DATABASE THEN USER CAN UPDATE THE EWAYBILLNO
                 DT = OBJCMN.SEARCH("GJO_EWAYBILLNO AS EWAYBILLNO", "", " GREYJOBOUT ", " AND GJO_NO = " & Val(TEMPJONO) & " AND GJO_YEARID = " & YearId)
                 If DT.Rows.Count > 0 AndAlso DT.Rows(0).Item("EWAYBILLNO") <> "" Then
-                    EP.SetError(TXTJONO, "Unable To Modify Job Out, Eway Bill already Generated")
+                    EP.SetError(TXTJONO, "Unable To Modify Grey Job Out, Eway Bill already Generated")
                     bln = False
                 End If
             End If
@@ -273,7 +273,7 @@ Public Class GreyJobOut
             End If
 
             If Val(TXTJONO.Text.Trim) = 0 Then
-                EP.SetError(TXTJONO, "Enter Job Out No")
+                EP.SetError(TXTJONO, "Enter Grey Job Out No")
                 bln = False
             End If
 
@@ -285,7 +285,7 @@ Public Class GreyJobOut
                 If TXTJONO.Text <> "" And CMBNAME.Text.Trim <> "" And EDIT = False Then
                     Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GREYJOBOUT.GJO_NO,0)  AS JONO", "", " GREYJOBOUT ", "  AND GREYJOBOUT.GJO_NO=" & TXTJONO.Text.Trim & " AND GREYJOBOUT.GJO_CMPID = " & CmpId & " AND GREYJOBOUT.GJO_LOCATIONID = " & Locationid & " AND GREYJOBOUT.GJO_YEARID = " & YearId)
                     If dttable.Rows.Count > 0 Then
-                        EP.SetError(TXTJONO, "Job Out No Already Exist")
+                        EP.SetError(TXTJONO, "Grey Job Out No Already Exist")
                         bln = False
                     End If
                 End If
@@ -293,12 +293,12 @@ Public Class GreyJobOut
 
             If ClientName = "SAFFRON" Or ClientName = "SAFFRONOFF" Then
                 If CMBTYPE.Text.Trim = "" Then
-                    EP.SetError(CMBTYPE, " Please Select Job Out Type")
+                    EP.SetError(CMBTYPE, " Please Select Grey Job Out Type")
                     bln = False
                 End If
 
                 If Val(TXTTYPEJONO.Text.Trim) = 0 Then
-                    EP.SetError(CMBTYPE, " Please Select Job Out Type")
+                    EP.SetError(CMBTYPE, " Please Select Grey Job Out Type")
                     bln = False
                 End If
             End If
@@ -324,7 +324,7 @@ Public Class GreyJobOut
                 If ClientName = "VINAYAK" Or ClientName = "SNCM" Then
                     TXTLOTNO.Text = Val(TXTJONO.Text.Trim) & "/" & Format(AccFrom.Date, "yy") & "-" & Format(AccTo.Date, "yy")
                 Else
-                    If MsgBox("Lot No is Kept Blank, Please Enter Lot No Or Job Out No in this Column, Wish to Proceed without Lot No?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                    If MsgBox("Lot No is Kept Blank, Please Enter Lot No Or Grey Job Out No in this Column, Wish to Proceed without Lot No?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
                         EP.SetError(TXTLOTNO, "Please fill Lot No/Entry No")
                         bln = False
                     End If
@@ -851,7 +851,7 @@ Public Class GreyJobOut
     Private Sub GREYJOBOUT_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'JOB OUT'")
+            DTROW = USERRIGHTS.Select("FormName = 'Grey Job Out'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -1475,16 +1475,16 @@ LINE1:
 
     Sub PRINTREPORT(ByVal JONO As Integer)
         Try
-            TEMPMSG = MsgBox("Wish to Print Grey Job Out?", MsgBoxStyle.YesNo)
+            TEMPMSG = MsgBox("Wish to Print Grey Grey Job Out?", MsgBoxStyle.YesNo)
             If TEMPMSG = vbYes Then
                 Dim OBJGDN As New GDNDESIGN
                 OBJGDN.MdiParent = MDIMain
                 If ClientName = "MANSI" Then
-                    If MsgBox("Print Job Out for Garments", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.FRMSTRING = "GREYJOBOUTGARMENT" Else OBJGDN.FRMSTRING = "GREYJOBOUT"
+                    If MsgBox("Print Grey Job Out for Garments", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.FRMSTRING = "GREYJOBOUTGARMENT" Else OBJGDN.FRMSTRING = "GREYJOBOUT"
                 Else
                     OBJGDN.FRMSTRING = "GREYJOBOUT"
                 End If
-                If (ClientName <> "TINUMINU" And ClientName <> "SIDDHGIRI" And ClientName <> "SNCM") AndAlso MsgBox("Wish to Print Job Out With GST...?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.GSTRPT = True
+                If (ClientName <> "TINUMINU" And ClientName <> "SIDDHGIRI" And ClientName <> "SNCM") AndAlso MsgBox("Wish to Print Grey Job Out With GST...?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.GSTRPT = True
                 OBJGDN.FORMULA = "{GREYJOBOUT.GJO_NO}=" & Val(JONO) & " and {GREYJOBOUT.GJO_yearid}=" & YearId
                 OBJGDN.HIDEPCSDETAILS = CHKHIDEPCS.Checked
                 OBJGDN.Show()
@@ -1504,7 +1504,7 @@ LINE1:
                 Exit Sub
             End If
 
-            TEMPMSG = MsgBox("Wish to Close Job Out?", MsgBoxStyle.YesNo)
+            TEMPMSG = MsgBox("Wish to Close Grey Job Out?", MsgBoxStyle.YesNo)
             If TEMPMSG = vbYes Then
                 TEMPMSG = MsgBox("Are you Sure?", MsgBoxStyle.YesNo)
                 If TEMPMSG = vbYes Then
@@ -1520,7 +1520,7 @@ LINE1:
                     Dim clsobjjo As New ClsGreyJobOut()
                     clsobjjo.alParaval = alParaval
                     intresult = clsobjjo.CLOSE()
-                    MsgBox("Job Out Closed")
+                    MsgBox("Grey Job Out Closed")
                     CLEAR()
 
                 Else
@@ -1545,7 +1545,7 @@ LINE1:
                     End If
                 End If
 
-                Dim TEMPMSG As Integer = MsgBox("Wish to Delete Job Out?", MsgBoxStyle.YesNo)
+                Dim TEMPMSG As Integer = MsgBox("Wish to Delete Grey Job Out?", MsgBoxStyle.YesNo)
                 If TEMPMSG = vbNo Then Exit Sub
 
                 Dim ALPARAVAL As New ArrayList
@@ -1557,7 +1557,7 @@ LINE1:
                 ALPARAVAL.Add(YearId)
                 OBJEMB.alParaval = ALPARAVAL
                 Dim INTRES As Integer = OBJEMB.Delete()
-                MsgBox("Job Out Deleted Succesfully")
+                MsgBox("Grey Job Out Deleted Succesfully")
                 CLEAR()
                 EDIT = False
                 CMBNAME.Focus()
@@ -1712,7 +1712,7 @@ LINE1:
                 Dim OBJCMN As New ClsCommon
                 Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GREYJOBOUT.GJO_NO,0)  AS JONO", "", " GREYJOBOUT ", "  AND GREYJOBOUT.GJO_NO=" & TXTJONO.Text.Trim & " AND GREYJOBOUT.GJO_CMPID = " & CmpId & " AND GREYJOBOUT.GJO_LOCATIONID = " & Locationid & " AND GREYJOBOUT.GJO_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
-                    MsgBox("Job Out No Already Exists")
+                    MsgBox("Grey Job Out No Already Exists")
                     e.Cancel = True
                 End If
             End If
