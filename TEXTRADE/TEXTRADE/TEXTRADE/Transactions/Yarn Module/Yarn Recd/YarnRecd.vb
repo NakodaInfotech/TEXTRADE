@@ -1752,7 +1752,7 @@ LINE1:
 
     Sub PRINTREPORT(ByVal INVOICENO As Integer)
         Try
-            If MsgBox("Wish To Print Barcode?", MsgBoxStyle.YesNo) = vbYes Then
+            If MsgBox("Wish To Print Yarn Recd?", MsgBoxStyle.YesNo) = vbYes Then
                 Dim OBJGRN As New GRNDesign
                 OBJGRN.MdiParent = MDIMain
                 OBJGRN.WHERECLAUSE = " {YARNRECD.YARN_NO}= " & INVOICENO & "  AND {YARNRECD.YARN_YEARID}=" & YearId
