@@ -15,6 +15,7 @@ Public Class GDNDESIGN
     Dim RPTJO_SVS As New JobOutReport_SVS
     Dim RPTJO_SAFFRON As New JOReport_SAFFRON
     Dim RPTJO As New JOReport_COMMON
+    Dim RPTGJO As New GREYJOReport_COMMON
     Dim RPTJO_MARKIN As New JOReport_MARKIN
     Dim RPTJO_KARAN As New JOReport_KARAN
     Dim RPTJO_CC As New JOReport_CC
@@ -206,6 +207,8 @@ Public Class GDNDESIGN
                 Else
                     crTables = RPTJO.Database.Tables
                 End If
+            ElseIf FRMSTRING = "GREYJOBOUT" Then
+                crTables = RPTGJO.Database.Tables
 
             ElseIf FRMSTRING = "JOTAKADETAILS" Then
                 crTables = RPTJOTAKA_SNCM.Database.Tables
@@ -391,6 +394,10 @@ Public Class GDNDESIGN
                     If HIDEPCSDETAILS = True Then RPTJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     If (ClientName = "ANOX" Or ClientName = "SURYODAYA") AndAlso MsgBox("Print Images?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then RPTJO.DataDefinition.FormulaFields("SHOWIMAGE").Text = "1"
                 End If
+            ElseIf FRMSTRING = "GREYJOBOUT" Then
+                crpo.ReportSource = RPTJO
+                If GSTRPT = True Then RPTJO.DataDefinition.FormulaFields("GSTRPT").Text = 1 Else RPTJO.DataDefinition.FormulaFields("GSTRPT").Text = 0
+                If HIDEPCSDETAILS = True Then RPTJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
 
             ElseIf FRMSTRING = "JOTAKADETAILS" Then
                 crpo.ReportSource = RPTJOTAKA_SNCM
@@ -1135,6 +1142,13 @@ Public Class GDNDESIGN
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTJOBANNER.Export()
+            ElseIf FRMSTRING = "GREYJOBOUT" Then
+                oDfDopt.DiskFileName = Application.StartupPath & "\GREYJOBOUT.PDF"
+                expo = RPTGJO.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTGJO.Export()
 
             ElseIf FRMSTRING = "PENDINGDETAILS" Then
                 oDfDopt.DiskFileName = Application.StartupPath & "\PENDINGDETAILS.PDF"
@@ -1434,6 +1448,7 @@ Public Class GDNDESIGN
                 If FRMSTRING = "PROFORMA" Then RPTPROFORMA.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
                 If FRMSTRING = "TRANSGDN" Then RPTTRANSGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
                 If FRMSTRING = "JOBOUT" Then RPTJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0) Else RPTJO_SAFFRON.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                If FRMSTRING = "GREYJOBOUT" Then RPTGJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
             End If
         Catch ex As Exception
             Throw ex

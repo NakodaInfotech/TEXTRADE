@@ -893,7 +893,7 @@ Public Class GreyJobOut
 
                         CMBTYPE.Text = Convert.ToString(dr("GREYJOBOUTTYPE").ToString)
                         CMBTYPE.Enabled = False
-                        TXTTYPEJONO.Text = Val(dr("GREYTYPEJOBOUTNO"))
+                        TXTTYPEJONO.Text = Val(dr("TYPEGREYJOBOUT_NO"))
 
                         JODATE.Text = Format(Convert.ToDateTime(dr("JODATE")).Date, "dd/MM/yyyy")
                         CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
@@ -1475,7 +1475,7 @@ LINE1:
 
     Sub PRINTREPORT(ByVal JONO As Integer)
         Try
-            TEMPMSG = MsgBox("Wish to Print Job Out?", MsgBoxStyle.YesNo)
+            TEMPMSG = MsgBox("Wish to Print Grey Job Out?", MsgBoxStyle.YesNo)
             If TEMPMSG = vbYes Then
                 Dim OBJGDN As New GDNDESIGN
                 OBJGDN.MdiParent = MDIMain
@@ -1491,65 +1491,7 @@ LINE1:
             End If
 
 
-            If ClientName = "SNCM" Then
-                Dim TEMPMSG2 As Integer = MsgBox("Wish to Print Taka Details?", MsgBoxStyle.YesNo)
-                If TEMPMSG2 = vbYes Then
 
-                    Dim OBJCM As New ClsCommon
-                    Dim DTINSERT As New DataTable
-                    Dim DT As DataTable = OBJCM.Execute_Any_String("DELETE FROM TEMPTAKADETAILS", " ", " WHERE TEMPTAKADETAILS.TAKA_YEARID = " & YearId)
-                    DT = OBJCM.SEARCH(" GREYJOBOUT.GJO_no AS JONO, GREYJOBOUT_DESC.GJO_BALENO AS BALENO, GREYJOBOUT_DESC.GJO_MTRS AS MTRS  ", "", " GREYJOBOUT INNER JOIN GREYJOBOUT_DESC ON GREYJOBOUT.GJO_no = GREYJOBOUT_DESC.GJO_NO AND GREYJOBOUT.GJO_yearid = GREYJOBOUT_DESC.GJO_YEARID ", " and GREYJOBOUT.GJO_NO = " & JONO & " and GREYJOBOUT.GJO_yearid =" & YearId & " ORDER BY GREYJOBOUT_DESC.GJO_BALENO")
-                    Dim TEMPSRNO As Integer = 1
-                    Dim TEMPBALE As String = ""
-                    For Each DTROWPS As DataRow In DT.Rows
-                        If TEMPBALE <> DTROWPS("BALENO") Then
-                            TEMPBALE = DTROWPS("BALENO")
-                            TEMPSRNO = 1
-                        End If
-                        DTINSERT = OBJCM.Execute_Any_String(" INSERT INTO TEMPTAKADETAILS VALUES (" & DTROWPS("JONO") & "," & TEMPSRNO & ",'" & DTROWPS("BALENO") & "'," & DTROWPS("MTRS") & "," & CmpId & "," & YearId & ") ", "", "")
-                        TEMPSRNO += 1
-                    Next
-
-                    Dim OBJGDN As New GDNDESIGN
-                    OBJGDN.FORMULA = "{TEMPTAKADETAILS.TAKA_JOBNO}=" & Val(JONO) & " and {TEMPTAKADETAILS.TAKA_yearid}=" & YearId
-                    OBJGDN.FRMSTRING = "JOTAKADETAILS"
-                    OBJGDN.MdiParent = MDIMain
-                    OBJGDN.Show()
-                End If
-            End If
-
-
-            If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MSANCHITKUMAR" Then
-                Dim TEMPMSG2 As Integer = MsgBox("Wish to Print Job Out Banner?", MsgBoxStyle.YesNo)
-                If TEMPMSG2 = vbYes Then
-                    Dim OBJGDN As New GDNDESIGN
-                    OBJGDN.FORMULA = "{GREYJOBOUT.GJO_NO}=" & Val(JONO) & " and {GREYJOBOUT.GJO_yearid}=" & YearId
-                    OBJGDN.FRMSTRING = "GREYJOBOUTBANNER"
-                    OBJGDN.MdiParent = MDIMain
-                    OBJGDN.Show()
-                End If
-            End If
-
-
-            If ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "TINUMINU" And ClientName <> "SNCM" AndAlso MsgBox("Wish to Print Cutting Sheet?", MsgBoxStyle.YesNo) = vbYes Then
-                Dim OBJGDN As New GDNDESIGN
-                OBJGDN.MdiParent = MDIMain
-                OBJGDN.FRMSTRING = "JOBCUTTING"
-                OBJGDN.FORMULA = "{GREYJOBOUT.GJO_NO}=" & Val(JONO) & " and {GREYJOBOUT.GJO_yearid}=" & YearId
-                OBJGDN.HIDEPCSDETAILS = CHKHIDEPCS.Checked
-                OBJGDN.Show()
-            End If
-
-
-            If ClientName = "KCRAYON" Then
-                If MsgBox("Wish to Print Job Sheet?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                    Dim OBJJO As New JobOutDesign
-                    OBJJO.MdiParent = MDIMain
-                    OBJJO.FRMSTRING = "JOBSHEET"
-                    OBJJO.WHERECLAUSE = "{GREYJOBOUT.GJO_NO}=" & Val(JONO) & " and {GREYJOBOUT.GJO_yearid}=" & YearId
-                    OBJJO.Show()
-                End If
-            End If
         Catch ex As Exception
             Throw ex
         End Try
