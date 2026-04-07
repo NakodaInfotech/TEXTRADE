@@ -220,7 +220,7 @@ Public Class GreyJobIn
             End If
 
             If Val(TXTJINO.Text.Trim) = 0 Then
-                EP.SetError(TXTJINO, "Enter Job In No")
+                EP.SetError(TXTJINO, "Enter Grey Job In No")
                 bln = False
             End If
 
@@ -233,7 +233,7 @@ Public Class GreyJobIn
             End If
 
             If (ClientName = "KARAN" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "YASHVI") And TXTLOTNO.Text.Trim = "" And CMBPARTYNAME.Text.Trim <> "" Then
-                EP.SetError(TXTLOTNO, "Please Enter Lot No in Job Out Entry First, Then make Job In Entry")
+                EP.SetError(TXTLOTNO, "Please Enter Lot No in Job Out Entry First, Then make Grey Job In Entry")
                 bln = False
             End If
 
@@ -352,7 +352,7 @@ Public Class GreyJobIn
                     Dim OBJCMN As New ClsCommon
                     Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GREYJOBIN.GJI_NO,0)  AS JINO", "", " GREYJOBIN ", "  AND GREYJOBIN.GJI_NO=" & TXTJINO.Text.Trim & " AND GREYJOBIN.GJI_CMPID = " & CmpId & " AND GREYJOBIN.GJI_LOCATIONID = " & Locationid & " AND GREYJOBIN.GJI_YEARID = " & YearId)
                     If dttable.Rows.Count > 0 Then
-                        EP.SetError(TXTJINO, "Job In No Already Exist")
+                        EP.SetError(TXTJINO, "Grey Job In No Already Exist")
                         bln = False
                     End If
                 End If
@@ -3105,7 +3105,7 @@ NEXTLINE:
 
     Private Sub GreyJobIn_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'JOB IN'")
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'Grey Job In'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -4045,7 +4045,7 @@ LINE1:
 
     Sub PRINTREPORT(ByVal JINO As Integer)
         Try
-            TEMPMSG = MsgBox("Wish to Print Job In?", MsgBoxStyle.YesNo)
+            TEMPMSG = MsgBox("Wish to Print Grey Job In?", MsgBoxStyle.YesNo)
             If TEMPMSG = vbYes Then
                 Dim OBJGDN As New GDNDESIGN
                 OBJGDN.MdiParent = MDIMain
@@ -4561,7 +4561,7 @@ LINE1:
                 Dim OBJCMN As New ClsCommon
                 Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(GREYJOBIN.GJI_NO,0)  AS JINO", "", " GREYJOBIN ", "  AND GREYJOBIN.GJI_NO=" & TXTJINO.Text.Trim & " AND GREYJOBIN.GJI_CMPID = " & CmpId & " AND GREYJOBIN.GJI_LOCATIONID = " & Locationid & " AND GREYJOBIN.GJI_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
-                    MsgBox("Job In No Already Exists")
+                    MsgBox("Grey Job In No Already Exists")
                     e.Cancel = True
                 End If
             End If
@@ -4996,7 +4996,7 @@ NEXTLINE:
 
                         'DONT ALLOW TO ENTER DATA IF LOT NO IS NOT ENTERED IN JOBOUT
                         If ClientName = "KARAN" And TXTLOTNO.Text.Trim = "" And CMBPARTYNAME.Text.Trim <> "" Then
-                            MsgBox("Please Enter Lot No in Job Out Entry First, Then make Job In Entry", MsgBoxStyle.Critical)
+                            MsgBox("Please Enter Lot No in Job Out Entry First, Then make Grey Job In Entry", MsgBoxStyle.Critical)
                             Exit Sub
                         End If
 

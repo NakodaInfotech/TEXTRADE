@@ -836,7 +836,6 @@ Partial Class GreyGDN
         Me.CMDSELECTSTOCK.TabIndex = 18
         Me.CMDSELECTSTOCK.Text = "Select S&tock"
         Me.CMDSELECTSTOCK.UseVisualStyleBackColor = False
-        Me.CMDSELECTSTOCK.Visible = False
         '
         'LBLGODOWN
         '

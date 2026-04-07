@@ -1506,25 +1506,21 @@ LINE1:
 
     Sub PRINTREPORT(ByVal GDNNO As Integer)
         Try
-            'print is not yet given
-            'If MsgBox("Wish to Print Challan?", MsgBoxStyle.YesNo) = vbYes Then
+            If MsgBox("Wish to Print Challan?", MsgBoxStyle.YesNo) = vbYes Then
 
-            '    Dim OBJGDN As New GDNDESIGN
-            '    OBJGDN.MdiParent = MDIMain
-            '    OBJGDN.FRMSTRING = "GREYGDN"
-            '    OBJGDN.FORMULA = "{GREYGDN.GDN_no}=" & Val(GDNNO) & " and {GREYGDN.GDN_yearid}=" & YearId
-            '    OBJGDN.PARTYNAME = cmbname.Text.Trim
-            '    OBJGDN.agentname = CMBAGENT.Text.Trim
-            '    If (ClientName = "RAJKRIPA" Or ClientName = "MANISH" Or ClientName = "SSC" Or ClientName = "SNCM") AndAlso MsgBox("Wish to Print Rate?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.PRINTRATE = True
-            '    If ClientName = "MYCOT" Or ClientName = "SHUBHI" Then OBJGDN.PRINTRATE = True
-            '    If (ClientName = "MANSI" Or ClientName = "CHINTAN") AndAlso MsgBox("Print Challan for Garments?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.FRMSTRING = "GDNGARMENT"
-            '    OBJGDN.WHITELABEL = CHKWHITELABEL.Checked
-            '    OBJGDN.HIDEPCSDETAILS = CHKHIDEPCS.Checked
-            '    OBJGDN.PRINTINYARDS = CHKYARD.Checked
-            '    OBJGDN.THIRDPARTY = CHKTHIRDPARTY.Checked
-            '    If CHKCHANGEADD.CheckState = CheckState.Checked Then OBJGDN.PARTYCHANGEADD = TXTDELIVERYADDRESS.Text.Trim
-            '    OBJGDN.Show()
-            'End If
+                Dim OBJGDN As New GDNDESIGN
+                OBJGDN.MdiParent = MDIMain
+                OBJGDN.FRMSTRING = "GREYGDN"
+                OBJGDN.FORMULA = "{GREYGDN.GDN_no}=" & Val(GDNNO) & " and {GREYGDN.GDN_yearid}=" & YearId
+                OBJGDN.PARTYNAME = cmbname.Text.Trim
+                OBJGDN.agentname = CMBAGENT.Text.Trim
+                OBJGDN.WHITELABEL = CHKWHITELABEL.Checked
+                OBJGDN.HIDEPCSDETAILS = CHKHIDEPCS.Checked
+                OBJGDN.PRINTINYARDS = CHKYARD.Checked
+                OBJGDN.THIRDPARTY = CHKTHIRDPARTY.Checked
+                If CHKCHANGEADD.CheckState = CheckState.Checked Then OBJGDN.PARTYCHANGEADD = TXTDELIVERYADDRESS.Text.Trim
+                OBJGDN.Show()
+            End If
 
 
         Catch ex As Exception
@@ -2803,38 +2799,6 @@ LINE1:
 
     Private Sub txttransref_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txttransref.KeyPress
         If ClientName = "KENCOT" Then numdotkeypress(e, sender, Me)
-    End Sub
-
-    Private Sub TOOLSMS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If EDIT = False Then Exit Sub
-        SMSCODE()
-    End Sub
-
-    Sub SMSCODE()
-        If ALLOWSMS = True Then
-            If TXTMOBILENO.Text.Trim = "" Then Exit Sub
-            If ClientName = "KOTHARI" And CMBDISPATCHTO.Text.Trim = "" Then Exit Sub
-
-            If MsgBox("Send SMS?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-            Dim MSG As String = ""
-            Dim OBJCMN As New ClsCommon
-            Dim DT As New DataTable
-
-            MSG = MSG & CMBDISPATCHTO.Text.Trim & " - " & cmbcity.Text.Trim & "\n"
-            MSG = MSG & "GOODS READY" & "\n"
-            MSG = MSG & "BALE NO." & txtgdnno.Text.Trim & " X " & TXTBALENOFROM.Text.Trim & "\n"
-            For Each ROW As DataGridViewRow In GRIDGDN.Rows
-                If ROW.Cells(GPER.Index).Value = "Mtrs" Then MSG = MSG & Val(ROW.Cells(GSRNO.Index).Value) & ") " & ROW.Cells(GITEMNAME.Index).Value & "-" & ROW.Cells(GPRINTDESC.Index).Value & " " & Format(Val(ROW.Cells(Gmtrs.Index).Value), "0.00") & " " & ROW.Cells(GPER.Index).Value & "\n" Else MSG = MSG & Val(ROW.Cells(GSRNO.Index).Value) & ") " & ROW.Cells(GITEMNAME.Index).Value & "-" & ROW.Cells(GPRINTDESC.Index).Value & "-" & Format(Val(ROW.Cells(Gpcs.Index).Value), "0") & " " & ROW.Cells(GPER.Index).Value & " " & "-" & " " & Format(Val(ROW.Cells(Gmtrs.Index).Value), "0.00") & " " & "MTRS" & "\n"
-            Next
-
-            If SENDMSG(MSG, TXTMOBILENO.Text.Trim) = "1701" Then
-                MsgBox("Message Sent")
-                DT = OBJCMN.Execute_Any_String("UPDATE GREYGDN SET GDN_SMSSEND = 1 WHERE GDN_NO = " & TEMPGDNNO & " AND GDN_YEARID = " & YearId, "", "")
-                LBLSMS.Visible = True
-            Else
-                MsgBox("Error Sending Message")
-            End If
-        End If
     End Sub
 
     Private Sub TXTMTRS_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTMTRS.Validating
