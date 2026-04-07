@@ -33,6 +33,7 @@ Public Class GDNDESIGN
 
 
     Dim RPTJI As New JobInReport_COMMON
+    Dim RPTGJI As New GreyJobInReport_COMMON
     Dim RPTJI_SVS As New JobInReport_SVS
     Dim RPTJI_AXIS As New JIReport_AXIS
     Dim RPTJI_SNCM As New JobInReport_SNCM
@@ -234,6 +235,9 @@ Public Class GDNDESIGN
                 Else
                     crTables = RPTJI.Database.Tables
                 End If
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                crTables = RPTGJI.Database.Tables
+
             ElseIf FRMSTRING = "JOBINPS" Then
                 crTables = RPTJI_SNCM.Database.Tables
 
@@ -395,9 +399,9 @@ Public Class GDNDESIGN
                     If (ClientName = "ANOX" Or ClientName = "SURYODAYA") AndAlso MsgBox("Print Images?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then RPTJO.DataDefinition.FormulaFields("SHOWIMAGE").Text = "1"
                 End If
             ElseIf FRMSTRING = "GREYJOBOUT" Then
-                crpo.ReportSource = RPTJO
-                If GSTRPT = True Then RPTJO.DataDefinition.FormulaFields("GSTRPT").Text = 1 Else RPTJO.DataDefinition.FormulaFields("GSTRPT").Text = 0
-                If HIDEPCSDETAILS = True Then RPTJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
+                crpo.ReportSource = RPTGJO
+                If GSTRPT = True Then RPTGJO.DataDefinition.FormulaFields("GSTRPT").Text = 1 Else RPTGJO.DataDefinition.FormulaFields("GSTRPT").Text = 0
+                If HIDEPCSDETAILS = True Then RPTGJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
 
             ElseIf FRMSTRING = "JOTAKADETAILS" Then
                 crpo.ReportSource = RPTJOTAKA_SNCM
@@ -422,6 +426,8 @@ Public Class GDNDESIGN
                 Else
                     crpo.ReportSource = RPTJI
                 End If
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                crpo.ReportSource = RPTGJI
             ElseIf FRMSTRING = "JOBINPS" Then
                 crpo.ReportSource = RPTJI_SNCM
                 If BLANKPAPER = True Then RPTJI_SNCM.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTJI_SNCM.DataDefinition.FormulaFields("WHITELABEL").Text = 0
@@ -1033,6 +1039,13 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTJI.Export()
                 End If
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                oDfDopt.DiskFileName = Application.StartupPath & "\GREYJOBIN.pdf"
+                expo = RPTGJI.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTGJI.Export()
             ElseIf FRMSTRING = "JOBINPS" Then
                 If ClientName = "SNCM" Then
                     oDfDopt.DiskFileName = Application.StartupPath & "\JOBINPS.pdf"
