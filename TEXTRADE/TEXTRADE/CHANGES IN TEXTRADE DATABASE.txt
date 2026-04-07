@@ -7544,7 +7544,7 @@ DONE IN MONOGRAM
 DONE IN YUMILONE
 
 **************************************************************************************************************
-BLOCKDATA --- BLOCK_AGENCYDATA --- BIT
+BLOCKDATA --- BLOCK_AGENCYDATA --- BIT ---  in between
 UPDATE BLOCKDATA SET BLOCK_AGENCYDATA = 0
 
 CHANGE INVOICEMASTER ---- INVOICE_ACKDATE TO DATETIME 
