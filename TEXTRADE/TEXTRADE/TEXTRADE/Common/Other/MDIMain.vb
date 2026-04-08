@@ -12504,4 +12504,13 @@ SKIPLINE:
         End Try
     End Sub
 
+    Private Sub BEAMUPLOADEDIT_Click(sender As Object, e As EventArgs) Handles BEAMUPLOADEDIT.Click
+        Try
+            Dim OBJYARNJO As New BeamUploadDetails
+            OBJYARNJO.MdiParent = Me
+            OBJYARNJO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
