@@ -10979,6 +10979,12 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Grey GDN\GreyGDN.resx">
       <DependentUpon>GreyGDN.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey GDN\GreyGDNDetails.resx">
+      <DependentUpon>GreyGDNDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey GDN\GreyGDNGridDetails.resx">
+      <DependentUpon>GreyGDNGridDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobIn.resx">
       <DependentUpon>GreyJobIn.vb</DependentUpon>
     </EmbeddedResource>
