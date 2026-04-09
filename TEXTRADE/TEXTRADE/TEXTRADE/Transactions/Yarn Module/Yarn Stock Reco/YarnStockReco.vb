@@ -314,7 +314,7 @@ Public Class YarnStockReco
             For Each row As Windows.Forms.DataGridViewRow In GRIDSTOCKOUT.Rows
                 If row.Cells(0).Value <> Nothing Then
                     If gridsrno = "" Then
-                        gridsrno = row.Cells(OSRNO.Index).Value.ToString
+                        gridsrno = row.Cells(OSRNO.Index).Value
                         ITEMNAME = row.Cells(OYARNQUALITY.Index).Value.ToString
                         MILLNAME = row.Cells(OMILLNAME.Index).Value.ToString
                         DESIGN = row.Cells(ODESIGN.Index).Value.ToString
@@ -338,7 +338,7 @@ Public Class YarnStockReco
 
 
                     Else
-                        gridsrno = gridsrno & "|" & row.Cells(OSRNO.Index).Value.ToString
+                        gridsrno = gridsrno & "|" & row.Cells(OSRNO.Index).Value
                         ITEMNAME = ITEMNAME & "|" & row.Cells(OYARNQUALITY.Index).Value.ToString
                         MILLNAME = MILLNAME & "|" & row.Cells(OMILLNAME.Index).Value.ToString
                         DESIGN = DESIGN & "|" & row.Cells(ODESIGN.Index).Value.ToString
@@ -355,10 +355,10 @@ Public Class YarnStockReco
                         RATE = RATE & "|" & row.Cells(ORATE.Index).Value
                         PER = PER & "|" & row.Cells(OPER.Index).Value.ToString
                         AMOUNT = AMOUNT & "|" & row.Cells(OAMOUNT.Index).Value
-                        BARCODE = BARCODE & "|" & row.Cells(OBARCODE.Index).Value
+                        BARCODE = BARCODE & "|" & row.Cells(OBARCODE.Index).Value.ToString
                         FROMNO = FROMNO & "|" & row.Cells(OFROMNO.Index).Value
                         FROMSRNO = FROMSRNO & "|" & row.Cells(OFROMSRNO.Index).Value
-                        FROMTYPE = FROMTYPE & "|" & row.Cells(OFROMTYPE.Index).Value
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(OFROMTYPE.Index).Value.ToString
 
                     End If
                 End If
@@ -378,6 +378,7 @@ Public Class YarnStockReco
             alParaval.Add(CONES)
             alParaval.Add(LRNO)
             alParaval.Add(RACK)
+            alParaval.Add(RATE)
             alParaval.Add(PER)
             alParaval.Add(AMOUNT)
             alParaval.Add(BARCODE)
@@ -412,10 +413,10 @@ Public Class YarnStockReco
 
 
 
-            For Each row As Windows.Forms.DataGridViewRow In GRIDSTOCKOUT.Rows
+            For Each row As Windows.Forms.DataGridViewRow In GRIDSTOCKIN.Rows
                 If row.Cells(0).Value <> Nothing Then
                     If INgridsrno = "" Then
-                        INgridsrno = row.Cells(gsrno.Index).Value.ToString
+                        INgridsrno = row.Cells(gsrno.Index).Value
                         INITEMNAME = row.Cells(GYARNQUALITY.Index).Value.ToString
                         INMILLNAME = row.Cells(GMILLNAME.Index).Value.ToString
                         INDESIGN = row.Cells(GDESIGN.Index).Value.ToString
@@ -440,7 +441,7 @@ Public Class YarnStockReco
 
 
                     Else
-                        INgridsrno = INgridsrno & "|" & row.Cells(gsrno.Index).Value.ToString
+                        INgridsrno = INgridsrno & "|" & row.Cells(gsrno.Index).Value
                         INITEMNAME = INITEMNAME & "|" & row.Cells(GYARNQUALITY.Index).Value.ToString
                         INMILLNAME = INMILLNAME & "|" & row.Cells(GMILLNAME.Index).Value.ToString
                         INDESIGN = INDESIGN & "|" & row.Cells(GDESIGN.Index).Value.ToString
@@ -482,6 +483,7 @@ Public Class YarnStockReco
             alParaval.Add(INCONES)
             alParaval.Add(INLRNO)
             alParaval.Add(INRACK)
+            alParaval.Add(INRATE)
             alParaval.Add(INPER)
             alParaval.Add(INAMOUNT)
             alParaval.Add(INBARCODE)
