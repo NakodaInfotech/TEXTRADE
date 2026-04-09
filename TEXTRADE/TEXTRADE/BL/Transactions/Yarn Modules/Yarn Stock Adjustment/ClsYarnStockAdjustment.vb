@@ -111,11 +111,11 @@ Public Class ClsYarnStockAdjustment
                 'INGRID PARAMETERS
                 .Add(New SqlClient.SqlParameter("@INGRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INITEMNAME", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INYARNQUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@INMILLNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("IN@DESIGN", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INDESIGN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@INPARTYLOTNO", alParaval(I)))
                 I = I + 1
@@ -256,11 +256,11 @@ Public Class ClsYarnStockAdjustment
                 'INGRID PARAMETERS
                 .Add(New SqlClient.SqlParameter("@INGRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@INITEMNAME", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INYARNQUALITY", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@INMILLNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("IN@DESIGN", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@INDESIGN", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@INPARTYLOTNO", alParaval(I)))
                 I = I + 1
