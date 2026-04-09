@@ -26,7 +26,7 @@ Public Class GreyJobInDetails
 
     Private Sub GREYJOBINDetails_LOAD(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim DTROW() As DataRow
-        DTROW = USERRIGHTS.Select("FormName = 'JOB IN'")
+        DTROW = USERRIGHTS.Select("FormName = 'Grey Job In'")
         USERADD = DTROW(0).Item(1)
         USEREDIT = DTROW(0).Item(2)
         USERVIEW = DTROW(0).Item(3)
@@ -164,14 +164,14 @@ Public Class GreyJobInDetails
             'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
             If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
                 If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
-                    MsgBox("Enter Proper Job In Nos", MsgBoxStyle.Critical)
+                    MsgBox("Enter Proper Grey Job In Nos", MsgBoxStyle.Critical)
                     Exit Sub
                 Else
-                    If MsgBox("Wish to Mail Job In from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    If MsgBox("Wish to Mail Grey Job In from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                     SERVERPROPDIRECT(True)
                 End If
             Else
-                If MsgBox("Wish to Mail Selected Job In ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish to Mail Selected Grey Job In ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPSELECTED(True)
                 End If
             End If
@@ -186,14 +186,14 @@ Public Class GreyJobInDetails
             'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
             If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
                 If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
-                    MsgBox("Enter Proper Job In Nos", MsgBoxStyle.Critical)
+                    MsgBox("Enter Proper Grey Job In Nos", MsgBoxStyle.Critical)
                     Exit Sub
                 Else
-                    If MsgBox("Wish to Whatsapp Job In from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    If MsgBox("Wish to Whatsapp Grey Job In from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                     SERVERPROPDIRECT(False, True)
                 End If
             Else
-                If MsgBox("Wish to Whatsapp Selected Job In ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish to Whatsapp Selected Grey Job In ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPSELECTED(False, True)
                 End If
             End If
@@ -210,15 +210,15 @@ Public Class GreyJobInDetails
             'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
             If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
                 If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
-                    MsgBox("Enter Proper Job In Nos", MsgBoxStyle.Critical)
+                    MsgBox("Enter Proper Grey Job In Nos", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
 
-                If MsgBox("Wish to Print Job In from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish to Print Grey Job In from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPDIRECT()
                 End If
             Else
-                If MsgBox("Wish to Print Selected Job In ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish to Print Selected Grey Job In ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPSELECTED()
                 End If
             End If
@@ -231,19 +231,19 @@ Public Class GreyJobInDetails
         Try
             Dim PATH As String = ""
             If FileIO.FileSystem.FileExists(PATH) = True Then FileIO.FileSystem.DeleteFile(PATH)
-            PATH = Application.StartupPath & "\Job In Details.XLS"
+            PATH = Application.StartupPath & "\Grey Job In Details.XLS"
 
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
             Dim PERIOD As String = ""
             PERIOD = AccFrom & " - " & AccTo
 
-            opti.SheetName = "Job In Details"
+            opti.SheetName = "Grey Job In Details"
             gridbill.ExportToXls(PATH, opti)
             EXCELCMPHEADER(PATH, "ob In Details", gridbill.VisibleColumns.Count + gridbill.GroupCount, "", PERIOD)
 
         Catch ex As Exception
-            MsgBox("Job In Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+            MsgBox("Grey Job In Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
 
@@ -282,7 +282,7 @@ Public Class GreyJobInDetails
             If INVOICEMAIL Then
                 Dim OBJMAIL As New SendMail
                 OBJMAIL.ALATTACHMENT = ALATTACHMENT
-                OBJMAIL.subject = "JOBIN"
+                OBJMAIL.subject = "GREYJOBIN"
                 OBJMAIL.ShowDialog()
             End If
 

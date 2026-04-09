@@ -3129,20 +3129,20 @@ Partial Class MDIMain
         '
         Me.TAXADD.Enabled = False
         Me.TAXADD.Name = "TAXADD"
-        Me.TAXADD.Size = New System.Drawing.Size(180, 22)
+        Me.TAXADD.Size = New System.Drawing.Size(159, 22)
         Me.TAXADD.Text = "&Add New Tax"
         '
         'TAXEDIT
         '
         Me.TAXEDIT.Enabled = False
         Me.TAXEDIT.Name = "TAXEDIT"
-        Me.TAXEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.TAXEDIT.Size = New System.Drawing.Size(159, 22)
         Me.TAXEDIT.Text = "&Edit Existing Tax"
         '
         'ToolStripSeparator115
         '
         Me.ToolStripSeparator115.Name = "ToolStripSeparator115"
-        Me.ToolStripSeparator115.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator115.Size = New System.Drawing.Size(156, 6)
         '
         'LOC_MASTER
         '

@@ -153,7 +153,10 @@ Public Class OpeningStockYarn
 
             TXTLOTNO.Clear()
             If ClientName <> "VAISHALI" Then CMBYARNQUALITY.Text = ""
-            CMBMILL.Text = ""
+            If ClientName <> "SWPL" Then
+                CMBMILL.Text = ""
+            End If
+
             CMBDESIGN.Text = ""
             CMBSHADE.Text = ""
             TXTREMARKS.Clear()
@@ -170,6 +173,8 @@ Public Class OpeningStockYarn
             TXTGRIDREMARKS.Clear()
             TXTRATE.Clear()
             TXTAMOUNT.Clear()
+            TXTBARCODE.Clear()
+
         End If
 
     End Sub

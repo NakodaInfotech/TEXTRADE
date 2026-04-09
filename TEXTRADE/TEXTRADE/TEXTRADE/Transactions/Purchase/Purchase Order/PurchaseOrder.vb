@@ -714,6 +714,10 @@ Public Class PurchaseOrder
             If Val(row.Cells(grate.Index).Value) <> 0 Then
                 If ClientName = "AVIS" Then
                     If CMBPER.Text = "Pcs" Then row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(gQty.Index).Value), "0.00") Else row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(GMTRS.Index).Value), "0.00")
+
+                ElseIf ClientName = "LAXMI" Then
+                    row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(gQty.Index).Value), "0.00")
+
                 Else
                     row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(GMTRS.Index).Value), "0.00")
                 End If

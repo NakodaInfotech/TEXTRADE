@@ -1543,7 +1543,7 @@ LINE1:
                 Exit Sub
             End If
 
-            Dim objpodtls As New GDNDetails
+            Dim objpodtls As New GreyGDNDetails
             objpodtls.MdiParent = MDIMain
             objpodtls.Show()
             objpodtls.BringToFront()
