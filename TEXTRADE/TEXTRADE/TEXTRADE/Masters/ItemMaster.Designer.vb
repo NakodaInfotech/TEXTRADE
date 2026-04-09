@@ -68,6 +68,37 @@ Partial Class ItemMaster
         Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ItemMaster))
         Me.BLENDPANEL1 = New VbPowerPack.BlendPanel()
+        Me.GRPRATE = New System.Windows.Forms.GroupBox()
+        Me.TXTRATE7 = New System.Windows.Forms.TextBox()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.TXTRATE2 = New System.Windows.Forms.TextBox()
+        Me.TXTRATE3 = New System.Windows.Forms.TextBox()
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.TXTRATE11 = New System.Windows.Forms.TextBox()
+        Me.TXTRATE15 = New System.Windows.Forms.TextBox()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.TXTRATE4 = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.TXTRATE1 = New System.Windows.Forms.TextBox()
+        Me.TXTRATE10 = New System.Windows.Forms.TextBox()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.TXTRATE5 = New System.Windows.Forms.TextBox()
+        Me.TXTRATE14 = New System.Windows.Forms.TextBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.TXTRATE9 = New System.Windows.Forms.TextBox()
+        Me.Label47 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TXTRATE12 = New System.Windows.Forms.TextBox()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.TXTRATE6 = New System.Windows.Forms.TextBox()
+        Me.TXTRATE8 = New System.Windows.Forms.TextBox()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TXTRATE13 = New System.Windows.Forms.TextBox()
         Me.GPMAINGROUP = New System.Windows.Forms.GroupBox()
         Me.GRPBEAMDETAILS = New System.Windows.Forms.GroupBox()
         Me.TXTTOTALBEAMENDS = New System.Windows.Forms.TextBox()
@@ -141,38 +172,8 @@ Partial Class ItemMaster
         Me.LBLGSM = New System.Windows.Forms.Label()
         Me.TXTPERCENT = New System.Windows.Forms.TextBox()
         Me.TXTGSM = New System.Windows.Forms.TextBox()
-        Me.TXTRATE15 = New System.Windows.Forms.TextBox()
         Me.LBLCOSTCENTER = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.CMBCOSTCENTERNAME = New System.Windows.Forms.ComboBox()
-        Me.TXTRATE10 = New System.Windows.Forms.TextBox()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.TXTRATE14 = New System.Windows.Forms.TextBox()
-        Me.TXTRATE9 = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label44 = New System.Windows.Forms.Label()
-        Me.TXTRATE8 = New System.Windows.Forms.TextBox()
-        Me.Label45 = New System.Windows.Forms.Label()
-        Me.TXTRATE13 = New System.Windows.Forms.TextBox()
-        Me.TXTRATE7 = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label46 = New System.Windows.Forms.Label()
-        Me.TXTRATE6 = New System.Windows.Forms.TextBox()
-        Me.TXTRATE12 = New System.Windows.Forms.TextBox()
-        Me.Label47 = New System.Windows.Forms.Label()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.TXTRATE5 = New System.Windows.Forms.TextBox()
-        Me.Label36 = New System.Windows.Forms.Label()
-        Me.TXTRATE1 = New System.Windows.Forms.TextBox()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.TXTRATE4 = New System.Windows.Forms.TextBox()
-        Me.Label41 = New System.Windows.Forms.Label()
-        Me.TXTRATE11 = New System.Windows.Forms.TextBox()
-        Me.Label37 = New System.Windows.Forms.Label()
-        Me.Label39 = New System.Windows.Forms.Label()
-        Me.TXTRATE3 = New System.Windows.Forms.TextBox()
-        Me.TXTRATE2 = New System.Windows.Forms.TextBox()
-        Me.Label38 = New System.Windows.Forms.Label()
         Me.TXTVALUELOSSPER = New System.Windows.Forms.TextBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.GPWARPWEFTCALC = New System.Windows.Forms.GroupBox()
@@ -304,8 +305,10 @@ Partial Class ItemMaster
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.GRPRATE = New System.Windows.Forms.GroupBox()
+        Me.CMBCOPYITEM = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.BLENDPANEL1.SuspendLayout()
+        Me.GRPRATE.SuspendLayout()
         Me.GPMAINGROUP.SuspendLayout()
         Me.GRPBEAMDETAILS.SuspendLayout()
         CType(Me.GRIDWARP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -325,12 +328,13 @@ Partial Class ItemMaster
         Me.GPRATE.SuspendLayout()
         CType(Me.GRIDRATE, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ep, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GRPRATE.SuspendLayout()
         Me.SuspendLayout()
         '
         'BLENDPANEL1
         '
         Me.BLENDPANEL1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BLENDPANEL1.Controls.Add(Me.CMBCOPYITEM)
+        Me.BLENDPANEL1.Controls.Add(Me.Label4)
         Me.BLENDPANEL1.Controls.Add(Me.GRPRATE)
         Me.BLENDPANEL1.Controls.Add(Me.GPMAINGROUP)
         Me.BLENDPANEL1.Controls.Add(Me.CHKGARMENT)
@@ -433,6 +437,346 @@ Partial Class ItemMaster
         Me.BLENDPANEL1.Name = "BLENDPANEL1"
         Me.BLENDPANEL1.Size = New System.Drawing.Size(1370, 581)
         Me.BLENDPANEL1.TabIndex = 0
+        '
+        'GRPRATE
+        '
+        Me.GRPRATE.BackColor = System.Drawing.Color.Transparent
+        Me.GRPRATE.Controls.Add(Me.TXTRATE7)
+        Me.GRPRATE.Controls.Add(Me.Label38)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE2)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE3)
+        Me.GRPRATE.Controls.Add(Me.Label39)
+        Me.GRPRATE.Controls.Add(Me.Label37)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE11)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE15)
+        Me.GRPRATE.Controls.Add(Me.Label41)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE4)
+        Me.GRPRATE.Controls.Add(Me.Label5)
+        Me.GRPRATE.Controls.Add(Me.Label28)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE1)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE10)
+        Me.GRPRATE.Controls.Add(Me.Label36)
+        Me.GRPRATE.Controls.Add(Me.Label42)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE5)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE14)
+        Me.GRPRATE.Controls.Add(Me.Label27)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE9)
+        Me.GRPRATE.Controls.Add(Me.Label47)
+        Me.GRPRATE.Controls.Add(Me.Label7)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE12)
+        Me.GRPRATE.Controls.Add(Me.Label44)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE6)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE8)
+        Me.GRPRATE.Controls.Add(Me.Label46)
+        Me.GRPRATE.Controls.Add(Me.Label45)
+        Me.GRPRATE.Controls.Add(Me.Label9)
+        Me.GRPRATE.Controls.Add(Me.TXTRATE13)
+        Me.GRPRATE.Location = New System.Drawing.Point(503, 461)
+        Me.GRPRATE.Name = "GRPRATE"
+        Me.GRPRATE.Size = New System.Drawing.Size(635, 84)
+        Me.GRPRATE.TabIndex = 981
+        Me.GRPRATE.TabStop = False
+        Me.GRPRATE.Visible = False
+        '
+        'TXTRATE7
+        '
+        Me.TXTRATE7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE7.Location = New System.Drawing.Point(298, 8)
+        Me.TXTRATE7.Name = "TXTRATE7"
+        Me.TXTRATE7.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE7.TabIndex = 38
+        Me.TXTRATE7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.BackColor = System.Drawing.Color.Transparent
+        Me.Label38.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label38.Location = New System.Drawing.Point(11, 60)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(41, 14)
+        Me.Label38.TabIndex = 988
+        Me.Label38.Text = "Rate 3"
+        '
+        'TXTRATE2
+        '
+        Me.TXTRATE2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE2.Location = New System.Drawing.Point(53, 32)
+        Me.TXTRATE2.Name = "TXTRATE2"
+        Me.TXTRATE2.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE2.TabIndex = 33
+        Me.TXTRATE2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTRATE3
+        '
+        Me.TXTRATE3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE3.Location = New System.Drawing.Point(53, 56)
+        Me.TXTRATE3.Name = "TXTRATE3"
+        Me.TXTRATE3.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE3.TabIndex = 34
+        Me.TXTRATE3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label39
+        '
+        Me.Label39.AutoSize = True
+        Me.Label39.BackColor = System.Drawing.Color.Transparent
+        Me.Label39.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label39.Location = New System.Drawing.Point(10, 36)
+        Me.Label39.Name = "Label39"
+        Me.Label39.Size = New System.Drawing.Size(41, 14)
+        Me.Label39.TabIndex = 986
+        Me.Label39.Text = "Rate 2"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.BackColor = System.Drawing.Color.Transparent
+        Me.Label37.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label37.Location = New System.Drawing.Point(133, 13)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(41, 14)
+        Me.Label37.TabIndex = 990
+        Me.Label37.Text = "Rate 4"
+        '
+        'TXTRATE11
+        '
+        Me.TXTRATE11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE11.Location = New System.Drawing.Point(423, 32)
+        Me.TXTRATE11.Name = "TXTRATE11"
+        Me.TXTRATE11.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE11.TabIndex = 42
+        Me.TXTRATE11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTRATE15
+        '
+        Me.TXTRATE15.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE15.Location = New System.Drawing.Point(548, 55)
+        Me.TXTRATE15.Name = "TXTRATE15"
+        Me.TXTRATE15.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE15.TabIndex = 46
+        Me.TXTRATE15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.BackColor = System.Drawing.Color.Transparent
+        Me.Label41.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label41.Location = New System.Drawing.Point(10, 12)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(41, 14)
+        Me.Label41.TabIndex = 984
+        Me.Label41.Text = "Rate 1"
+        '
+        'TXTRATE4
+        '
+        Me.TXTRATE4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE4.Location = New System.Drawing.Point(176, 9)
+        Me.TXTRATE4.Name = "TXTRATE4"
+        Me.TXTRATE4.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE4.TabIndex = 35
+        Me.TXTRATE4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(499, 59)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(47, 14)
+        Me.Label5.TabIndex = 1014
+        Me.Label5.Text = "Rate 15"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.BackColor = System.Drawing.Color.Transparent
+        Me.Label28.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label28.Location = New System.Drawing.Point(375, 36)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(47, 14)
+        Me.Label28.TabIndex = 1010
+        Me.Label28.Text = "Rate 11"
+        '
+        'TXTRATE1
+        '
+        Me.TXTRATE1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE1.Location = New System.Drawing.Point(53, 8)
+        Me.TXTRATE1.Name = "TXTRATE1"
+        Me.TXTRATE1.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE1.TabIndex = 32
+        Me.TXTRATE1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTRATE10
+        '
+        Me.TXTRATE10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE10.Location = New System.Drawing.Point(423, 8)
+        Me.TXTRATE10.Name = "TXTRATE10"
+        Me.TXTRATE10.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE10.TabIndex = 41
+        Me.TXTRATE10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.BackColor = System.Drawing.Color.Transparent
+        Me.Label36.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label36.Location = New System.Drawing.Point(133, 37)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(41, 14)
+        Me.Label36.TabIndex = 992
+        Me.Label36.Text = "Rate 5"
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.BackColor = System.Drawing.Color.Transparent
+        Me.Label42.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label42.Location = New System.Drawing.Point(374, 12)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(47, 14)
+        Me.Label42.TabIndex = 1002
+        Me.Label42.Text = "Rate 10"
+        '
+        'TXTRATE5
+        '
+        Me.TXTRATE5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE5.Location = New System.Drawing.Point(176, 33)
+        Me.TXTRATE5.Name = "TXTRATE5"
+        Me.TXTRATE5.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE5.TabIndex = 36
+        Me.TXTRATE5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTRATE14
+        '
+        Me.TXTRATE14.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE14.Location = New System.Drawing.Point(548, 31)
+        Me.TXTRATE14.Name = "TXTRATE14"
+        Me.TXTRATE14.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE14.TabIndex = 45
+        Me.TXTRATE14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label27
+        '
+        Me.Label27.AutoSize = True
+        Me.Label27.BackColor = System.Drawing.Color.Transparent
+        Me.Label27.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(376, 60)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(47, 14)
+        Me.Label27.TabIndex = 1011
+        Me.Label27.Text = "Rate 12"
+        '
+        'TXTRATE9
+        '
+        Me.TXTRATE9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE9.Location = New System.Drawing.Point(298, 56)
+        Me.TXTRATE9.Name = "TXTRATE9"
+        Me.TXTRATE9.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE9.TabIndex = 40
+        Me.TXTRATE9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label47
+        '
+        Me.Label47.AutoSize = True
+        Me.Label47.BackColor = System.Drawing.Color.Transparent
+        Me.Label47.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label47.Location = New System.Drawing.Point(132, 61)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(41, 14)
+        Me.Label47.TabIndex = 994
+        Me.Label47.Text = "Rate 6"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(501, 35)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(47, 14)
+        Me.Label7.TabIndex = 1013
+        Me.Label7.Text = "Rate 14"
+        '
+        'TXTRATE12
+        '
+        Me.TXTRATE12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE12.Location = New System.Drawing.Point(423, 56)
+        Me.TXTRATE12.Name = "TXTRATE12"
+        Me.TXTRATE12.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE12.TabIndex = 43
+        Me.TXTRATE12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.BackColor = System.Drawing.Color.Transparent
+        Me.Label44.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label44.Location = New System.Drawing.Point(255, 60)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(41, 14)
+        Me.Label44.TabIndex = 1000
+        Me.Label44.Text = "Rate 9"
+        '
+        'TXTRATE6
+        '
+        Me.TXTRATE6.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE6.Location = New System.Drawing.Point(176, 57)
+        Me.TXTRATE6.Name = "TXTRATE6"
+        Me.TXTRATE6.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE6.TabIndex = 37
+        Me.TXTRATE6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'TXTRATE8
+        '
+        Me.TXTRATE8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE8.Location = New System.Drawing.Point(298, 32)
+        Me.TXTRATE8.Name = "TXTRATE8"
+        Me.TXTRATE8.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE8.TabIndex = 39
+        Me.TXTRATE8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.BackColor = System.Drawing.Color.Transparent
+        Me.Label46.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label46.Location = New System.Drawing.Point(255, 12)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(41, 14)
+        Me.Label46.TabIndex = 996
+        Me.Label46.Text = "Rate 7"
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.BackColor = System.Drawing.Color.Transparent
+        Me.Label45.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label45.Location = New System.Drawing.Point(255, 36)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(41, 14)
+        Me.Label45.TabIndex = 998
+        Me.Label45.Text = "Rate 8"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(500, 11)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(47, 14)
+        Me.Label9.TabIndex = 1012
+        Me.Label9.Text = "Rate 13"
+        '
+        'TXTRATE13
+        '
+        Me.TXTRATE13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTRATE13.Location = New System.Drawing.Point(548, 7)
+        Me.TXTRATE13.Name = "TXTRATE13"
+        Me.TXTRATE13.Size = New System.Drawing.Size(73, 22)
+        Me.TXTRATE13.TabIndex = 44
+        Me.TXTRATE13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GPMAINGROUP
         '
@@ -1375,15 +1719,6 @@ Partial Class ItemMaster
         Me.TXTGSM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.TXTGSM.Visible = False
         '
-        'TXTRATE15
-        '
-        Me.TXTRATE15.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE15.Location = New System.Drawing.Point(548, 55)
-        Me.TXTRATE15.Name = "TXTRATE15"
-        Me.TXTRATE15.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE15.TabIndex = 46
-        Me.TXTRATE15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
         'LBLCOSTCENTER
         '
         Me.LBLCOSTCENTER.AutoSize = True
@@ -1395,17 +1730,6 @@ Partial Class ItemMaster
         Me.LBLCOSTCENTER.TabIndex = 1004
         Me.LBLCOSTCENTER.Text = "Cost Centre"
         Me.LBLCOSTCENTER.Visible = False
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(499, 59)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(47, 14)
-        Me.Label5.TabIndex = 1014
-        Me.Label5.Text = "Rate 15"
         '
         'CMBCOSTCENTERNAME
         '
@@ -1419,286 +1743,6 @@ Partial Class ItemMaster
         Me.CMBCOSTCENTERNAME.Size = New System.Drawing.Size(205, 23)
         Me.CMBCOSTCENTERNAME.TabIndex = 22
         Me.CMBCOSTCENTERNAME.Visible = False
-        '
-        'TXTRATE10
-        '
-        Me.TXTRATE10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE10.Location = New System.Drawing.Point(423, 8)
-        Me.TXTRATE10.Name = "TXTRATE10"
-        Me.TXTRATE10.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE10.TabIndex = 41
-        Me.TXTRATE10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.BackColor = System.Drawing.Color.Transparent
-        Me.Label42.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.Location = New System.Drawing.Point(374, 12)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(47, 14)
-        Me.Label42.TabIndex = 1002
-        Me.Label42.Text = "Rate 10"
-        '
-        'TXTRATE14
-        '
-        Me.TXTRATE14.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE14.Location = New System.Drawing.Point(548, 31)
-        Me.TXTRATE14.Name = "TXTRATE14"
-        Me.TXTRATE14.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE14.TabIndex = 45
-        Me.TXTRATE14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTRATE9
-        '
-        Me.TXTRATE9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE9.Location = New System.Drawing.Point(298, 56)
-        Me.TXTRATE9.Name = "TXTRATE9"
-        Me.TXTRATE9.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE9.TabIndex = 40
-        Me.TXTRATE9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(501, 35)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(47, 14)
-        Me.Label7.TabIndex = 1013
-        Me.Label7.Text = "Rate 14"
-        '
-        'Label44
-        '
-        Me.Label44.AutoSize = True
-        Me.Label44.BackColor = System.Drawing.Color.Transparent
-        Me.Label44.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label44.Location = New System.Drawing.Point(255, 60)
-        Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(41, 14)
-        Me.Label44.TabIndex = 1000
-        Me.Label44.Text = "Rate 9"
-        '
-        'TXTRATE8
-        '
-        Me.TXTRATE8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE8.Location = New System.Drawing.Point(298, 32)
-        Me.TXTRATE8.Name = "TXTRATE8"
-        Me.TXTRATE8.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE8.TabIndex = 39
-        Me.TXTRATE8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label45
-        '
-        Me.Label45.AutoSize = True
-        Me.Label45.BackColor = System.Drawing.Color.Transparent
-        Me.Label45.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label45.Location = New System.Drawing.Point(255, 36)
-        Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(41, 14)
-        Me.Label45.TabIndex = 998
-        Me.Label45.Text = "Rate 8"
-        '
-        'TXTRATE13
-        '
-        Me.TXTRATE13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE13.Location = New System.Drawing.Point(548, 7)
-        Me.TXTRATE13.Name = "TXTRATE13"
-        Me.TXTRATE13.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE13.TabIndex = 44
-        Me.TXTRATE13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTRATE7
-        '
-        Me.TXTRATE7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE7.Location = New System.Drawing.Point(298, 8)
-        Me.TXTRATE7.Name = "TXTRATE7"
-        Me.TXTRATE7.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE7.TabIndex = 38
-        Me.TXTRATE7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(500, 11)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(47, 14)
-        Me.Label9.TabIndex = 1012
-        Me.Label9.Text = "Rate 13"
-        '
-        'Label46
-        '
-        Me.Label46.AutoSize = True
-        Me.Label46.BackColor = System.Drawing.Color.Transparent
-        Me.Label46.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label46.Location = New System.Drawing.Point(255, 12)
-        Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(41, 14)
-        Me.Label46.TabIndex = 996
-        Me.Label46.Text = "Rate 7"
-        '
-        'TXTRATE6
-        '
-        Me.TXTRATE6.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE6.Location = New System.Drawing.Point(176, 57)
-        Me.TXTRATE6.Name = "TXTRATE6"
-        Me.TXTRATE6.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE6.TabIndex = 37
-        Me.TXTRATE6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTRATE12
-        '
-        Me.TXTRATE12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE12.Location = New System.Drawing.Point(423, 56)
-        Me.TXTRATE12.Name = "TXTRATE12"
-        Me.TXTRATE12.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE12.TabIndex = 43
-        Me.TXTRATE12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label47
-        '
-        Me.Label47.AutoSize = True
-        Me.Label47.BackColor = System.Drawing.Color.Transparent
-        Me.Label47.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label47.Location = New System.Drawing.Point(132, 61)
-        Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(41, 14)
-        Me.Label47.TabIndex = 994
-        Me.Label47.Text = "Rate 6"
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.BackColor = System.Drawing.Color.Transparent
-        Me.Label27.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(376, 60)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(47, 14)
-        Me.Label27.TabIndex = 1011
-        Me.Label27.Text = "Rate 12"
-        '
-        'TXTRATE5
-        '
-        Me.TXTRATE5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE5.Location = New System.Drawing.Point(176, 33)
-        Me.TXTRATE5.Name = "TXTRATE5"
-        Me.TXTRATE5.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE5.TabIndex = 36
-        Me.TXTRATE5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.BackColor = System.Drawing.Color.Transparent
-        Me.Label36.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label36.Location = New System.Drawing.Point(133, 37)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(41, 14)
-        Me.Label36.TabIndex = 992
-        Me.Label36.Text = "Rate 5"
-        '
-        'TXTRATE1
-        '
-        Me.TXTRATE1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE1.Location = New System.Drawing.Point(53, 8)
-        Me.TXTRATE1.Name = "TXTRATE1"
-        Me.TXTRATE1.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE1.TabIndex = 32
-        Me.TXTRATE1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.BackColor = System.Drawing.Color.Transparent
-        Me.Label28.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.Location = New System.Drawing.Point(375, 36)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(47, 14)
-        Me.Label28.TabIndex = 1010
-        Me.Label28.Text = "Rate 11"
-        '
-        'TXTRATE4
-        '
-        Me.TXTRATE4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE4.Location = New System.Drawing.Point(176, 9)
-        Me.TXTRATE4.Name = "TXTRATE4"
-        Me.TXTRATE4.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE4.TabIndex = 35
-        Me.TXTRATE4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label41
-        '
-        Me.Label41.AutoSize = True
-        Me.Label41.BackColor = System.Drawing.Color.Transparent
-        Me.Label41.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label41.Location = New System.Drawing.Point(10, 12)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(41, 14)
-        Me.Label41.TabIndex = 984
-        Me.Label41.Text = "Rate 1"
-        '
-        'TXTRATE11
-        '
-        Me.TXTRATE11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE11.Location = New System.Drawing.Point(423, 32)
-        Me.TXTRATE11.Name = "TXTRATE11"
-        Me.TXTRATE11.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE11.TabIndex = 42
-        Me.TXTRATE11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.BackColor = System.Drawing.Color.Transparent
-        Me.Label37.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.Location = New System.Drawing.Point(133, 13)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(41, 14)
-        Me.Label37.TabIndex = 990
-        Me.Label37.Text = "Rate 4"
-        '
-        'Label39
-        '
-        Me.Label39.AutoSize = True
-        Me.Label39.BackColor = System.Drawing.Color.Transparent
-        Me.Label39.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.Location = New System.Drawing.Point(10, 36)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(41, 14)
-        Me.Label39.TabIndex = 986
-        Me.Label39.Text = "Rate 2"
-        '
-        'TXTRATE3
-        '
-        Me.TXTRATE3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE3.Location = New System.Drawing.Point(53, 56)
-        Me.TXTRATE3.Name = "TXTRATE3"
-        Me.TXTRATE3.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE3.TabIndex = 34
-        Me.TXTRATE3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'TXTRATE2
-        '
-        Me.TXTRATE2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTRATE2.Location = New System.Drawing.Point(53, 32)
-        Me.TXTRATE2.Name = "TXTRATE2"
-        Me.TXTRATE2.Size = New System.Drawing.Size(73, 22)
-        Me.TXTRATE2.TabIndex = 33
-        Me.TXTRATE2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label38
-        '
-        Me.Label38.AutoSize = True
-        Me.Label38.BackColor = System.Drawing.Color.Transparent
-        Me.Label38.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label38.Location = New System.Drawing.Point(11, 60)
-        Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(41, 14)
-        Me.Label38.TabIndex = 988
-        Me.Label38.Text = "Rate 3"
         '
         'TXTVALUELOSSPER
         '
@@ -1976,7 +2020,7 @@ Partial Class ItemMaster
         Me.Label125.AutoSize = True
         Me.Label125.BackColor = System.Drawing.Color.Transparent
         Me.Label125.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label125.Location = New System.Drawing.Point(473, 283)
+        Me.Label125.Location = New System.Drawing.Point(473, 280)
         Me.Label125.Name = "Label125"
         Me.Label125.Size = New System.Drawing.Size(85, 15)
         Me.Label125.TabIndex = 975
@@ -1986,7 +2030,7 @@ Partial Class ItemMaster
         '
         Me.TXTTOTALAMOUNT.BackColor = System.Drawing.Color.Linen
         Me.TXTTOTALAMOUNT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTOTALAMOUNT.Location = New System.Drawing.Point(561, 279)
+        Me.TXTTOTALAMOUNT.Location = New System.Drawing.Point(561, 276)
         Me.TXTTOTALAMOUNT.Name = "TXTTOTALAMOUNT"
         Me.TXTTOTALAMOUNT.ReadOnly = True
         Me.TXTTOTALAMOUNT.Size = New System.Drawing.Size(69, 22)
@@ -2196,7 +2240,7 @@ Partial Class ItemMaster
         Me.Label20.AutoSize = True
         Me.Label20.BackColor = System.Drawing.Color.Transparent
         Me.Label20.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(321, 283)
+        Me.Label20.Location = New System.Drawing.Point(321, 280)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(80, 15)
         Me.Label20.TabIndex = 929
@@ -2214,7 +2258,7 @@ Partial Class ItemMaster
         'TXTTOTALWT
         '
         Me.TXTTOTALWT.BackColor = System.Drawing.Color.Linen
-        Me.TXTTOTALWT.Location = New System.Drawing.Point(403, 279)
+        Me.TXTTOTALWT.Location = New System.Drawing.Point(403, 276)
         Me.TXTTOTALWT.Name = "TXTTOTALWT"
         Me.TXTTOTALWT.ReadOnly = True
         Me.TXTTOTALWT.Size = New System.Drawing.Size(58, 23)
@@ -2331,7 +2375,7 @@ Partial Class ItemMaster
         'TXTDESIGNRATE
         '
         Me.TXTDESIGNRATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTDESIGNRATE.Location = New System.Drawing.Point(561, 251)
+        Me.TXTDESIGNRATE.Location = New System.Drawing.Point(561, 248)
         Me.TXTDESIGNRATE.Name = "TXTDESIGNRATE"
         Me.TXTDESIGNRATE.Size = New System.Drawing.Size(69, 22)
         Me.TXTDESIGNRATE.TabIndex = 21
@@ -2342,7 +2386,7 @@ Partial Class ItemMaster
         Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(485, 255)
+        Me.Label12.Location = New System.Drawing.Point(485, 252)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(73, 14)
         Me.Label12.TabIndex = 499
@@ -2351,7 +2395,7 @@ Partial Class ItemMaster
         'TXTPACKINGRATE
         '
         Me.TXTPACKINGRATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPACKINGRATE.Location = New System.Drawing.Point(403, 251)
+        Me.TXTPACKINGRATE.Location = New System.Drawing.Point(403, 248)
         Me.TXTPACKINGRATE.Name = "TXTPACKINGRATE"
         Me.TXTPACKINGRATE.Size = New System.Drawing.Size(58, 22)
         Me.TXTPACKINGRATE.TabIndex = 20
@@ -2362,7 +2406,7 @@ Partial Class ItemMaster
         Me.Label13.AutoSize = True
         Me.Label13.BackColor = System.Drawing.Color.Transparent
         Me.Label13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(324, 255)
+        Me.Label13.Location = New System.Drawing.Point(324, 252)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(76, 14)
         Me.Label13.TabIndex = 497
@@ -2371,7 +2415,7 @@ Partial Class ItemMaster
         'TXTCHECKINGRATE
         '
         Me.TXTCHECKINGRATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCHECKINGRATE.Location = New System.Drawing.Point(561, 223)
+        Me.TXTCHECKINGRATE.Location = New System.Drawing.Point(561, 220)
         Me.TXTCHECKINGRATE.Name = "TXTCHECKINGRATE"
         Me.TXTCHECKINGRATE.Size = New System.Drawing.Size(69, 22)
         Me.TXTCHECKINGRATE.TabIndex = 19
@@ -2382,7 +2426,7 @@ Partial Class ItemMaster
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(475, 227)
+        Me.Label11.Location = New System.Drawing.Point(475, 224)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(83, 14)
         Me.Label11.TabIndex = 495
@@ -2391,7 +2435,7 @@ Partial Class ItemMaster
         'TXTTRANSPORTRATE
         '
         Me.TXTTRANSPORTRATE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTTRANSPORTRATE.Location = New System.Drawing.Point(403, 223)
+        Me.TXTTRANSPORTRATE.Location = New System.Drawing.Point(403, 220)
         Me.TXTTRANSPORTRATE.Name = "TXTTRANSPORTRATE"
         Me.TXTTRANSPORTRATE.Size = New System.Drawing.Size(58, 22)
         Me.TXTTRANSPORTRATE.TabIndex = 18
@@ -2402,7 +2446,7 @@ Partial Class ItemMaster
         Me.Label8.AutoSize = True
         Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(314, 227)
+        Me.Label8.Location = New System.Drawing.Point(314, 224)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(86, 14)
         Me.Label8.TabIndex = 493
@@ -2421,7 +2465,7 @@ Partial Class ItemMaster
         'TXTWEFT
         '
         Me.TXTWEFT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTWEFT.Location = New System.Drawing.Point(403, 195)
+        Me.TXTWEFT.Location = New System.Drawing.Point(403, 193)
         Me.TXTWEFT.Name = "TXTWEFT"
         Me.TXTWEFT.Size = New System.Drawing.Size(58, 22)
         Me.TXTWEFT.TabIndex = 17
@@ -2433,7 +2477,7 @@ Partial Class ItemMaster
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(368, 199)
+        Me.Label10.Location = New System.Drawing.Point(368, 197)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(32, 14)
         Me.Label10.TabIndex = 491
@@ -2453,7 +2497,7 @@ Partial Class ItemMaster
         'TXTSHRINKTO
         '
         Me.TXTSHRINKTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSHRINKTO.Location = New System.Drawing.Point(561, 195)
+        Me.TXTSHRINKTO.Location = New System.Drawing.Point(561, 193)
         Me.TXTSHRINKTO.MaxLength = 50
         Me.TXTSHRINKTO.Name = "TXTSHRINKTO"
         Me.TXTSHRINKTO.Size = New System.Drawing.Size(69, 22)
@@ -2464,7 +2508,7 @@ Partial Class ItemMaster
         '
         Me.LBLTO.BackColor = System.Drawing.Color.Transparent
         Me.LBLTO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTO.Location = New System.Drawing.Point(502, 199)
+        Me.LBLTO.Location = New System.Drawing.Point(502, 197)
         Me.LBLTO.Name = "LBLTO"
         Me.LBLTO.Size = New System.Drawing.Size(56, 14)
         Me.LBLTO.TabIndex = 487
@@ -2474,7 +2518,7 @@ Partial Class ItemMaster
         'TXTSHRINKFROM
         '
         Me.TXTSHRINKFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTSHRINKFROM.Location = New System.Drawing.Point(561, 168)
+        Me.TXTSHRINKFROM.Location = New System.Drawing.Point(561, 167)
         Me.TXTSHRINKFROM.MaxLength = 50
         Me.TXTSHRINKFROM.Name = "TXTSHRINKFROM"
         Me.TXTSHRINKFROM.Size = New System.Drawing.Size(69, 22)
@@ -2485,7 +2529,7 @@ Partial Class ItemMaster
         '
         Me.LBLSHRINKFROM.BackColor = System.Drawing.Color.Transparent
         Me.LBLSHRINKFROM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLSHRINKFROM.Location = New System.Drawing.Point(419, 172)
+        Me.LBLSHRINKFROM.Location = New System.Drawing.Point(419, 171)
         Me.LBLSHRINKFROM.Name = "LBLSHRINKFROM"
         Me.LBLSHRINKFROM.Size = New System.Drawing.Size(139, 14)
         Me.LBLSHRINKFROM.TabIndex = 485
@@ -3277,45 +3321,29 @@ Partial Class ItemMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'GRPRATE
+        'CMBCOPYITEM
         '
-        Me.GRPRATE.BackColor = System.Drawing.Color.Transparent
-        Me.GRPRATE.Controls.Add(Me.TXTRATE7)
-        Me.GRPRATE.Controls.Add(Me.Label38)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE2)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE3)
-        Me.GRPRATE.Controls.Add(Me.Label39)
-        Me.GRPRATE.Controls.Add(Me.Label37)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE11)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE15)
-        Me.GRPRATE.Controls.Add(Me.Label41)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE4)
-        Me.GRPRATE.Controls.Add(Me.Label5)
-        Me.GRPRATE.Controls.Add(Me.Label28)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE1)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE10)
-        Me.GRPRATE.Controls.Add(Me.Label36)
-        Me.GRPRATE.Controls.Add(Me.Label42)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE5)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE14)
-        Me.GRPRATE.Controls.Add(Me.Label27)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE9)
-        Me.GRPRATE.Controls.Add(Me.Label47)
-        Me.GRPRATE.Controls.Add(Me.Label7)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE12)
-        Me.GRPRATE.Controls.Add(Me.Label44)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE6)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE8)
-        Me.GRPRATE.Controls.Add(Me.Label46)
-        Me.GRPRATE.Controls.Add(Me.Label45)
-        Me.GRPRATE.Controls.Add(Me.Label9)
-        Me.GRPRATE.Controls.Add(Me.TXTRATE13)
-        Me.GRPRATE.Location = New System.Drawing.Point(503, 461)
-        Me.GRPRATE.Name = "GRPRATE"
-        Me.GRPRATE.Size = New System.Drawing.Size(635, 84)
-        Me.GRPRATE.TabIndex = 981
-        Me.GRPRATE.TabStop = False
-        Me.GRPRATE.Visible = False
+        Me.CMBCOPYITEM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBCOPYITEM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBCOPYITEM.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBCOPYITEM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBCOPYITEM.FormattingEnabled = True
+        Me.CMBCOPYITEM.Location = New System.Drawing.Point(403, 303)
+        Me.CMBCOPYITEM.MaxDropDownItems = 14
+        Me.CMBCOPYITEM.Name = "CMBCOPYITEM"
+        Me.CMBCOPYITEM.Size = New System.Drawing.Size(227, 23)
+        Me.CMBCOPYITEM.TabIndex = 1022
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(341, 307)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(60, 14)
+        Me.Label4.TabIndex = 1023
+        Me.Label4.Text = "Copy Item"
         '
         'ItemMaster
         '
@@ -3330,6 +3358,8 @@ Partial Class ItemMaster
         Me.Text = "Item Master"
         Me.BLENDPANEL1.ResumeLayout(False)
         Me.BLENDPANEL1.PerformLayout()
+        Me.GRPRATE.ResumeLayout(False)
+        Me.GRPRATE.PerformLayout()
         Me.GPMAINGROUP.ResumeLayout(False)
         Me.GPMAINGROUP.PerformLayout()
         Me.GRPBEAMDETAILS.ResumeLayout(False)
@@ -3358,8 +3388,6 @@ Partial Class ItemMaster
         Me.GPRATE.PerformLayout()
         CType(Me.GRIDRATE, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Ep, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GRPRATE.ResumeLayout(False)
-        Me.GRPRATE.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3601,4 +3629,6 @@ Partial Class ItemMaster
     Friend WithEvents FAMOUNT As DataGridViewTextBoxColumn
     Friend WithEvents FSHADESRNO As DataGridViewTextBoxColumn
     Friend WithEvents GRPRATE As GroupBox
+    Friend WithEvents CMBCOPYITEM As ComboBox
+    Friend WithEvents Label4 As Label
 End Class

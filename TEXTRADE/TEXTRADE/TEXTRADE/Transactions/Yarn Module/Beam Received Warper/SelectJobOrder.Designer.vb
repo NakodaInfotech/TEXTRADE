@@ -41,11 +41,12 @@ Partial Class SelectJobOrder
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPONO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GOTHERITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GOTHERITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,6 +59,7 @@ Partial Class SelectJobOrder
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKSELECTALL)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
@@ -70,7 +72,7 @@ Partial Class SelectJobOrder
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(12, 12)
+        Me.gridbilldetails.Location = New System.Drawing.Point(12, 28)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
@@ -248,6 +250,14 @@ Partial Class SelectJobOrder
         Me.GPONO.Visible = True
         Me.GPONO.VisibleIndex = 13
         '
+        'GOTHERITEMNAME
+        '
+        Me.GOTHERITEMNAME.Caption = "Other Item Name"
+        Me.GOTHERITEMNAME.FieldName = "OTHERITEMNAME"
+        Me.GOTHERITEMNAME.Name = "GOTHERITEMNAME"
+        Me.GOTHERITEMNAME.Visible = True
+        Me.GOTHERITEMNAME.VisibleIndex = 14
+        '
         'APPROXDATE
         '
         Me.APPROXDATE.AutoHeight = False
@@ -267,7 +277,7 @@ Partial Class SelectJobOrder
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(640, 541)
+        Me.cmdexit.Location = New System.Drawing.Point(640, 547)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 9
@@ -281,20 +291,25 @@ Partial Class SelectJobOrder
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(554, 541)
+        Me.cmdok.Location = New System.Drawing.Point(554, 547)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 8
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GOTHERITEMNAME
+        'CHKSELECTALL
         '
-        Me.GOTHERITEMNAME.Caption = "Other Item Name"
-        Me.GOTHERITEMNAME.FieldName = "OTHERITEMNAME"
-        Me.GOTHERITEMNAME.Name = "GOTHERITEMNAME"
-        Me.GOTHERITEMNAME.Visible = True
-        Me.GOTHERITEMNAME.VisibleIndex = 14
+        Me.CHKSELECTALL.AutoSize = True
+        Me.CHKSELECTALL.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELECTALL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSELECTALL.ForeColor = System.Drawing.Color.Black
+        Me.CHKSELECTALL.Location = New System.Drawing.Point(37, 6)
+        Me.CHKSELECTALL.Name = "CHKSELECTALL"
+        Me.CHKSELECTALL.Size = New System.Drawing.Size(77, 18)
+        Me.CHKSELECTALL.TabIndex = 649
+        Me.CHKSELECTALL.Text = "Select All"
+        Me.CHKSELECTALL.UseVisualStyleBackColor = False
         '
         'SelectJobOrder
         '
@@ -308,6 +323,7 @@ Partial Class SelectJobOrder
         Me.Text = "Select Job Order"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
+        Me.BlendPanel1.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CHKEDIT, System.ComponentModel.ISupportInitialize).EndInit()
@@ -342,4 +358,5 @@ Partial Class SelectJobOrder
     Friend WithEvents GPARTYNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPONO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GOTHERITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKSELECTALL As CheckBox
 End Class
