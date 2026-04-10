@@ -481,7 +481,6 @@ Public Class SampleBarcode
 ^A0N,17,23^FD" & TEMPSHADE3MTRS & "^FS
 ^PQ1,0,1,Y
 ^XZ
-
 ")
                                 oWrite.Dispose()
 
