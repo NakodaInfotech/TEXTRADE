@@ -480,11 +480,6 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\Job Work\Job In\GreyJobInReport_COMMON1.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GreyJobInReport_COMMON.rpt</DependentUpon>
-    </Compile>
     <Compile Include="Reports\Crystal Reports\Job Work\Job Out\GREYJOReport_COMMON.vb">
       <DependentUpon>GREYJOReport_COMMON.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
