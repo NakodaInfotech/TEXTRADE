@@ -98,6 +98,19 @@ Public Class SelectJobOrder
             Throw ex
         End Try
     End Sub
+
+    Private Sub CHKSELECTALL_CheckedChanged(sender As Object, e As EventArgs) Handles CHKSELECTALL.CheckedChanged
+        Try
+            If gridbilldetails.Visible = True Then
+                For i As Integer = 0 To gridbill.RowCount - 1
+                    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                    dtrow("CHK") = CHKSELECTALL.Checked
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
 
