@@ -851,7 +851,7 @@ Public Class GreyJobOut
     Private Sub GREYJOBOUT_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'Grey Job Out'")
+            DTROW = USERRIGHTS.Select("FormName = 'Job Out'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -1009,7 +1009,7 @@ Public Class GreyJobOut
                 Exit Sub
             End If
 
-            Dim OBJEMB As New JobOutDetails
+            Dim OBJEMB As New GreyJobOutDetails
             OBJEMB.MdiParent = MDIMain
             OBJEMB.Show()
         Catch ex As Exception

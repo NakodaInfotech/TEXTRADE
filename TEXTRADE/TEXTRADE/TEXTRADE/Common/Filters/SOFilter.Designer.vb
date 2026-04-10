@@ -126,6 +126,7 @@ Partial Class SOFilter
         Me.GCHKMILL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RDBQUALITY = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GPFILTERS.SuspendLayout()
         Me.GPORDERNO.SuspendLayout()
@@ -160,7 +161,6 @@ Partial Class SOFilter
         '
         'BlendPanel2
         '
-        Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel2.Controls.Add(Me.GPFILTERS)
         Me.BlendPanel2.Controls.Add(Me.GPORDERNO)
         Me.BlendPanel2.Controls.Add(Me.CMBORDERTYPE)
@@ -485,7 +485,7 @@ Partial Class SOFilter
         '
         Me.GORDERNO.Caption = "Order No"
         Me.GORDERNO.FieldName = "ORDERNO"
-        Me.GORDERNO.ImageIndex = 0
+        Me.GORDERNO.ImageOptions.ImageIndex = 0
         Me.GORDERNO.Name = "GORDERNO"
         Me.GORDERNO.OptionsColumn.AllowEdit = False
         Me.GORDERNO.Visible = True
@@ -614,7 +614,7 @@ Partial Class SOFilter
         '
         Me.GITEMNAME.Caption = "Item Name"
         Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.ImageIndex = 0
+        Me.GITEMNAME.ImageOptions.ImageIndex = 0
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
@@ -698,7 +698,7 @@ Partial Class SOFilter
         '
         Me.GCOLOR.Caption = "Shade"
         Me.GCOLOR.FieldName = "COLOR"
-        Me.GCOLOR.ImageIndex = 0
+        Me.GCOLOR.ImageOptions.ImageIndex = 0
         Me.GCOLOR.Name = "GCOLOR"
         Me.GCOLOR.OptionsColumn.AllowEdit = False
         Me.GCOLOR.Visible = True
@@ -774,7 +774,7 @@ Partial Class SOFilter
         '
         Me.GDESIGN.Caption = "Design No"
         Me.GDESIGN.FieldName = "DESIGNNO"
-        Me.GDESIGN.ImageIndex = 0
+        Me.GDESIGN.ImageOptions.ImageIndex = 0
         Me.GDESIGN.Name = "GDESIGN"
         Me.GDESIGN.OptionsColumn.AllowEdit = False
         Me.GDESIGN.Visible = True
@@ -873,7 +873,7 @@ Partial Class SOFilter
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -1024,6 +1024,7 @@ Partial Class SOFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RDBQUALITY)
         Me.GroupBox3.Controls.Add(Me.RDBITEMGRIDREPORT)
         Me.GroupBox3.Controls.Add(Me.RDBITEMSMALL)
         Me.GroupBox3.Controls.Add(Me.RBDISPPER)
@@ -1047,9 +1048,9 @@ Partial Class SOFilter
         Me.RDBITEMGRIDREPORT.AutoSize = True
         Me.RDBITEMGRIDREPORT.Location = New System.Drawing.Point(14, 133)
         Me.RDBITEMGRIDREPORT.Name = "RDBITEMGRIDREPORT"
-        Me.RDBITEMGRIDREPORT.Size = New System.Drawing.Size(151, 18)
+        Me.RDBITEMGRIDREPORT.Size = New System.Drawing.Size(136, 18)
         Me.RDBITEMGRIDREPORT.TabIndex = 10
-        Me.RDBITEMGRIDREPORT.Text = "Item Wise(Grid Report)"
+        Me.RDBITEMGRIDREPORT.Text = "Item Wise(Grid Rep)"
         Me.RDBITEMGRIDREPORT.UseVisualStyleBackColor = True
         '
         'RDBITEMSMALL
@@ -1352,12 +1353,22 @@ Partial Class SOFilter
         '
         Me.GMILLNAME.Caption = "Mill Name"
         Me.GMILLNAME.FieldName = "MILLNAME"
-        Me.GMILLNAME.ImageIndex = 0
+        Me.GMILLNAME.ImageOptions.ImageIndex = 0
         Me.GMILLNAME.Name = "GMILLNAME"
         Me.GMILLNAME.OptionsColumn.AllowEdit = False
         Me.GMILLNAME.Visible = True
         Me.GMILLNAME.VisibleIndex = 1
         Me.GMILLNAME.Width = 200
+        '
+        'RDBQUALITY
+        '
+        Me.RDBQUALITY.AutoSize = True
+        Me.RDBQUALITY.Location = New System.Drawing.Point(147, 133)
+        Me.RDBQUALITY.Name = "RDBQUALITY"
+        Me.RDBQUALITY.Size = New System.Drawing.Size(95, 18)
+        Me.RDBQUALITY.TabIndex = 11
+        Me.RDBQUALITY.Text = "Quality Wise"
+        Me.RDBQUALITY.UseVisualStyleBackColor = True
         '
         'SOFilter
         '
@@ -1519,4 +1530,5 @@ Partial Class SOFilter
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents RBAGENT As RadioButton
     Friend WithEvents RBACCOUNT As RadioButton
+    Friend WithEvents RDBQUALITY As RadioButton
 End Class

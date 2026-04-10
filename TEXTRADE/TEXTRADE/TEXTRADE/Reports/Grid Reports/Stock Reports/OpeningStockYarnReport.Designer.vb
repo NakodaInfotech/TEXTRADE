@@ -35,6 +35,8 @@ Partial Class OpeningStockYarnReport
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPROCESSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTONAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -44,8 +46,6 @@ Partial Class OpeningStockYarnReport
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.GPROCESSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,7 +55,6 @@ Partial Class OpeningStockYarnReport
         'BlendPanel1
         '
         Me.BlendPanel1.AutoSize = True
-        Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.Label14)
@@ -204,6 +203,20 @@ Partial Class OpeningStockYarnReport
         Me.GCOLOR.VisibleIndex = 5
         Me.GCOLOR.Width = 80
         '
+        'GPROCESSNAME
+        '
+        Me.GPROCESSNAME.Caption = "Process Name"
+        Me.GPROCESSNAME.FieldName = "PROCESSNAME"
+        Me.GPROCESSNAME.Name = "GPROCESSNAME"
+        '
+        'GLRNO
+        '
+        Me.GLRNO.Caption = "LR No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 6
+        '
         'GTONAME
         '
         Me.GTONAME.Caption = "Jobber Name"
@@ -239,7 +252,7 @@ Partial Class OpeningStockYarnReport
         Me.GWT.Caption = "Wt"
         Me.GWT.DisplayFormat.FormatString = "0.00"
         Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GWT.FieldName = "Wt"
+        Me.GWT.FieldName = "WT"
         Me.GWT.Name = "GWT"
         Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GWT.Visible = True
@@ -283,20 +296,6 @@ Partial Class OpeningStockYarnReport
         Me.PrintToolStripButton.Name = "PrintToolStripButton"
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
-        '
-        'GPROCESSNAME
-        '
-        Me.GPROCESSNAME.Caption = "Process Name"
-        Me.GPROCESSNAME.FieldName = "PROCESSNAME"
-        Me.GPROCESSNAME.Name = "GPROCESSNAME"
-        '
-        'GLRNO
-        '
-        Me.GLRNO.Caption = "LR No"
-        Me.GLRNO.FieldName = "LRNO"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 6
         '
         'OpeningStockYarnReport
         '
