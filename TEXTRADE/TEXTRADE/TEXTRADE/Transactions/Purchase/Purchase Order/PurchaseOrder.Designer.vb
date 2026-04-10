@@ -338,7 +338,7 @@ Partial Class PurchaseOrder
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1198, 492)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
         '
         'GBYARNSTOCK
@@ -346,7 +346,7 @@ Partial Class PurchaseOrder
         Me.GBYARNSTOCK.BackColor = System.Drawing.Color.Linen
         Me.GBYARNSTOCK.Controls.Add(Me.Button1)
         Me.GBYARNSTOCK.Controls.Add(Me.GRIDMTRS1)
-        Me.GBYARNSTOCK.Location = New System.Drawing.Point(732, 362)
+        Me.GBYARNSTOCK.Location = New System.Drawing.Point(732, 448)
         Me.GBYARNSTOCK.Name = "GBYARNSTOCK"
         Me.GBYARNSTOCK.Size = New System.Drawing.Size(388, 125)
         Me.GBYARNSTOCK.TabIndex = 943
@@ -453,7 +453,7 @@ Partial Class PurchaseOrder
         Me.LBLORDERON.AutoSize = True
         Me.LBLORDERON.BackColor = System.Drawing.Color.Transparent
         Me.LBLORDERON.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLORDERON.Location = New System.Drawing.Point(942, 163)
+        Me.LBLORDERON.Location = New System.Drawing.Point(942, 154)
         Me.LBLORDERON.Name = "LBLORDERON"
         Me.LBLORDERON.Size = New System.Drawing.Size(55, 14)
         Me.LBLORDERON.TabIndex = 940
@@ -469,7 +469,7 @@ Partial Class PurchaseOrder
         Me.CMBORDERON.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBORDERON.FormattingEnabled = True
         Me.CMBORDERON.Items.AddRange(New Object() {"PCS", "MTRS"})
-        Me.CMBORDERON.Location = New System.Drawing.Point(1002, 158)
+        Me.CMBORDERON.Location = New System.Drawing.Point(1002, 149)
         Me.CMBORDERON.MaxDropDownItems = 14
         Me.CMBORDERON.Name = "CMBORDERON"
         Me.CMBORDERON.Size = New System.Drawing.Size(82, 22)
@@ -495,7 +495,7 @@ Partial Class PurchaseOrder
         Me.Label20.BackColor = System.Drawing.Color.Transparent
         Me.Label20.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.ForeColor = System.Drawing.Color.Black
-        Me.Label20.Location = New System.Drawing.Point(449, 162)
+        Me.Label20.Location = New System.Drawing.Point(449, 153)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(28, 15)
         Me.Label20.TabIndex = 751
@@ -505,7 +505,7 @@ Partial Class PurchaseOrder
         '
         Me.TXTCITY.BackColor = System.Drawing.Color.Linen
         Me.TXTCITY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCITY.Location = New System.Drawing.Point(480, 158)
+        Me.TXTCITY.Location = New System.Drawing.Point(480, 149)
         Me.TXTCITY.Name = "TXTCITY"
         Me.TXTCITY.ReadOnly = True
         Me.TXTCITY.Size = New System.Drawing.Size(85, 23)
@@ -518,7 +518,7 @@ Partial Class PurchaseOrder
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.Red
-        Me.Label11.Location = New System.Drawing.Point(1049, 343)
+        Me.Label11.Location = New System.Drawing.Point(1049, 429)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(69, 14)
         Me.Label11.TabIndex = 749
@@ -529,7 +529,7 @@ Partial Class PurchaseOrder
         Me.Label42.AutoSize = True
         Me.Label42.BackColor = System.Drawing.Color.LightGreen
         Me.Label42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label42.Location = New System.Drawing.Point(1028, 342)
+        Me.Label42.Location = New System.Drawing.Point(1028, 428)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(18, 17)
         Me.Label42.TabIndex = 748
@@ -541,7 +541,7 @@ Partial Class PurchaseOrder
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Red
-        Me.Label12.Location = New System.Drawing.Point(978, 343)
+        Me.Label12.Location = New System.Drawing.Point(978, 429)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(44, 14)
         Me.Label12.TabIndex = 747
@@ -552,7 +552,7 @@ Partial Class PurchaseOrder
         Me.Label13.AutoSize = True
         Me.Label13.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label13.Location = New System.Drawing.Point(957, 342)
+        Me.Label13.Location = New System.Drawing.Point(957, 428)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(18, 17)
         Me.Label13.TabIndex = 746
@@ -564,7 +564,7 @@ Partial Class PurchaseOrder
         Me.LBLCLOSED.BackColor = System.Drawing.Color.Transparent
         Me.LBLCLOSED.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLCLOSED.ForeColor = System.Drawing.Color.Red
-        Me.LBLCLOSED.Location = New System.Drawing.Point(360, 368)
+        Me.LBLCLOSED.Location = New System.Drawing.Point(360, 454)
         Me.LBLCLOSED.Name = "LBLCLOSED"
         Me.LBLCLOSED.Size = New System.Drawing.Size(53, 19)
         Me.LBLCLOSED.TabIndex = 675
@@ -577,7 +577,7 @@ Partial Class PurchaseOrder
         Me.LBLDYEINGTYPE.BackColor = System.Drawing.Color.Transparent
         Me.LBLDYEINGTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLDYEINGTYPE.ForeColor = System.Drawing.Color.Black
-        Me.LBLDYEINGTYPE.Location = New System.Drawing.Point(779, 162)
+        Me.LBLDYEINGTYPE.Location = New System.Drawing.Point(779, 153)
         Me.LBLDYEINGTYPE.Name = "LBLDYEINGTYPE"
         Me.LBLDYEINGTYPE.Size = New System.Drawing.Size(64, 14)
         Me.LBLDYEINGTYPE.TabIndex = 674
@@ -592,7 +592,7 @@ Partial Class PurchaseOrder
         Me.CMBORDERTYPE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBORDERTYPE.FormattingEnabled = True
         Me.CMBORDERTYPE.Items.AddRange(New Object() {"GREY", "FINISH", "WEAVER"})
-        Me.CMBORDERTYPE.Location = New System.Drawing.Point(845, 158)
+        Me.CMBORDERTYPE.Location = New System.Drawing.Point(845, 149)
         Me.CMBORDERTYPE.MaxDropDownItems = 14
         Me.CMBORDERTYPE.Name = "CMBORDERTYPE"
         Me.CMBORDERTYPE.Size = New System.Drawing.Size(82, 22)
@@ -612,7 +612,7 @@ Partial Class PurchaseOrder
         'TXTAMOUNT
         '
         Me.TXTAMOUNT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTAMOUNT.Location = New System.Drawing.Point(1072, 58)
+        Me.TXTAMOUNT.Location = New System.Drawing.Point(1072, 49)
         Me.TXTAMOUNT.Name = "TXTAMOUNT"
         Me.TXTAMOUNT.Size = New System.Drawing.Size(21, 23)
         Me.TXTAMOUNT.TabIndex = 661
@@ -623,7 +623,7 @@ Partial Class PurchaseOrder
         '
         Me.TXTPSHADE.BackColor = System.Drawing.Color.White
         Me.TXTPSHADE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPSHADE.Location = New System.Drawing.Point(641, 191)
+        Me.TXTPSHADE.Location = New System.Drawing.Point(641, 181)
         Me.TXTPSHADE.Name = "TXTPSHADE"
         Me.TXTPSHADE.Size = New System.Drawing.Size(72, 23)
         Me.TXTPSHADE.TabIndex = 15
@@ -633,7 +633,7 @@ Partial Class PurchaseOrder
         '
         Me.TXTPDESNO.BackColor = System.Drawing.Color.White
         Me.TXTPDESNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPDESNO.Location = New System.Drawing.Point(565, 191)
+        Me.TXTPDESNO.Location = New System.Drawing.Point(565, 181)
         Me.TXTPDESNO.Name = "TXTPDESNO"
         Me.TXTPDESNO.Size = New System.Drawing.Size(76, 23)
         Me.TXTPDESNO.TabIndex = 14
@@ -644,7 +644,7 @@ Partial Class PurchaseOrder
         Me.CMBDESIGN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBDESIGN.FormattingEnabled = True
-        Me.CMBDESIGN.Location = New System.Drawing.Point(404, 191)
+        Me.CMBDESIGN.Location = New System.Drawing.Point(404, 181)
         Me.CMBDESIGN.Name = "CMBDESIGN"
         Me.CMBDESIGN.Size = New System.Drawing.Size(90, 23)
         Me.CMBDESIGN.TabIndex = 12
@@ -655,7 +655,7 @@ Partial Class PurchaseOrder
         Me.LBLSMS.BackColor = System.Drawing.Color.Transparent
         Me.LBLSMS.Font = New System.Drawing.Font("Calibri", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLSMS.ForeColor = System.Drawing.Color.Black
-        Me.LBLSMS.Location = New System.Drawing.Point(934, 86)
+        Me.LBLSMS.Location = New System.Drawing.Point(934, 77)
         Me.LBLSMS.Name = "LBLSMS"
         Me.LBLSMS.Size = New System.Drawing.Size(140, 36)
         Me.LBLSMS.TabIndex = 657
@@ -679,7 +679,7 @@ Partial Class PurchaseOrder
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripButton, Me.SaveToolStripButton, Me.TOOLPRINT, Me.TOOLDELETE, Me.TOOLSMS, Me.TOOLWHATSAPP, Me.ToolStripSeparator1, Me.TOOLPREVIOUS, Me.TOOLNEXT, Me.ToolStripSeparator4})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1198, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 656
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -772,7 +772,7 @@ Partial Class PurchaseOrder
         Me.PODATE.BackColor = System.Drawing.Color.LemonChiffon
         Me.PODATE.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.PODATE.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite
-        Me.PODATE.Location = New System.Drawing.Point(844, 100)
+        Me.PODATE.Location = New System.Drawing.Point(844, 91)
         Me.PODATE.Mask = "00/00/0000"
         Me.PODATE.Name = "PODATE"
         Me.PODATE.Size = New System.Drawing.Size(82, 23)
@@ -786,7 +786,7 @@ Partial Class PurchaseOrder
         Me.CMBTRANS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CMBTRANS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBTRANS.FormattingEnabled = True
-        Me.CMBTRANS.Location = New System.Drawing.Point(480, 100)
+        Me.CMBTRANS.Location = New System.Drawing.Point(480, 91)
         Me.CMBTRANS.MaxDropDownItems = 14
         Me.CMBTRANS.Name = "CMBTRANS"
         Me.CMBTRANS.Size = New System.Drawing.Size(265, 22)
@@ -797,7 +797,7 @@ Partial Class PurchaseOrder
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(384, 104)
+        Me.Label7.Location = New System.Drawing.Point(384, 95)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(93, 14)
         Me.Label7.TabIndex = 655
@@ -808,7 +808,7 @@ Partial Class PurchaseOrder
         Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALMTRS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(641, 321)
+        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(641, 407)
         Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
         Me.LBLTOTALMTRS.Size = New System.Drawing.Size(83, 15)
         Me.LBLTOTALMTRS.TabIndex = 653
@@ -819,7 +819,7 @@ Partial Class PurchaseOrder
         '
         Me.TXTCUT.BackColor = System.Drawing.Color.White
         Me.TXTCUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCUT.Location = New System.Drawing.Point(823, 191)
+        Me.TXTCUT.Location = New System.Drawing.Point(823, 181)
         Me.TXTCUT.Name = "TXTCUT"
         Me.TXTCUT.Size = New System.Drawing.Size(40, 23)
         Me.TXTCUT.TabIndex = 18
@@ -855,7 +855,7 @@ Partial Class PurchaseOrder
         Me.gridpo.DefaultCellStyle = DataGridViewCellStyle34
         Me.gridpo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.gridpo.GridColor = System.Drawing.SystemColors.Control
-        Me.gridpo.Location = New System.Drawing.Point(14, 213)
+        Me.gridpo.Location = New System.Drawing.Point(14, 203)
         Me.gridpo.MultiSelect = False
         Me.gridpo.Name = "gridpo"
         Me.gridpo.ReadOnly = True
@@ -869,7 +869,7 @@ Partial Class PurchaseOrder
         Me.gridpo.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridpo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.gridpo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gridpo.Size = New System.Drawing.Size(1182, 102)
+        Me.gridpo.Size = New System.Drawing.Size(1182, 201)
         Me.gridpo.TabIndex = 22
         Me.gridpo.TabStop = False
         '
@@ -1135,7 +1135,7 @@ Partial Class PurchaseOrder
         Me.cmbitemname.DropDownWidth = 400
         Me.cmbitemname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbitemname.FormattingEnabled = True
-        Me.cmbitemname.Location = New System.Drawing.Point(44, 191)
+        Me.cmbitemname.Location = New System.Drawing.Point(44, 181)
         Me.cmbitemname.Name = "cmbitemname"
         Me.cmbitemname.Size = New System.Drawing.Size(180, 23)
         Me.cmbitemname.TabIndex = 9
@@ -1146,7 +1146,7 @@ Partial Class PurchaseOrder
         Me.Label37.BackColor = System.Drawing.Color.Transparent
         Me.Label37.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label37.ForeColor = System.Drawing.Color.Black
-        Me.Label37.Location = New System.Drawing.Point(410, 133)
+        Me.Label37.Location = New System.Drawing.Point(410, 124)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(67, 15)
         Me.Label37.TabIndex = 652
@@ -1156,7 +1156,7 @@ Partial Class PurchaseOrder
         '
         Me.TXTMTRS.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTMTRS.Location = New System.Drawing.Point(863, 191)
+        Me.TXTMTRS.Location = New System.Drawing.Point(863, 181)
         Me.TXTMTRS.Name = "TXTMTRS"
         Me.TXTMTRS.Size = New System.Drawing.Size(80, 23)
         Me.TXTMTRS.TabIndex = 19
@@ -1167,7 +1167,7 @@ Partial Class PurchaseOrder
         Me.TXTEMAILADD.BackColor = System.Drawing.Color.White
         Me.TXTEMAILADD.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
         Me.TXTEMAILADD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTEMAILADD.Location = New System.Drawing.Point(480, 129)
+        Me.TXTEMAILADD.Location = New System.Drawing.Point(480, 120)
         Me.TXTEMAILADD.Name = "TXTEMAILADD"
         Me.TXTEMAILADD.ReadOnly = True
         Me.TXTEMAILADD.Size = New System.Drawing.Size(265, 23)
@@ -1177,7 +1177,7 @@ Partial Class PurchaseOrder
         'txtrate
         '
         Me.txtrate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtrate.Location = New System.Drawing.Point(943, 191)
+        Me.txtrate.Location = New System.Drawing.Point(943, 181)
         Me.txtrate.Name = "txtrate"
         Me.txtrate.Size = New System.Drawing.Size(50, 23)
         Me.txtrate.TabIndex = 20
@@ -1189,7 +1189,7 @@ Partial Class PurchaseOrder
         Me.Label27.BackColor = System.Drawing.Color.Transparent
         Me.Label27.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.ForeColor = System.Drawing.Color.Black
-        Me.Label27.Location = New System.Drawing.Point(779, 133)
+        Me.Label27.Location = New System.Drawing.Point(779, 124)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(64, 15)
         Me.Label27.TabIndex = 650
@@ -1200,7 +1200,7 @@ Partial Class PurchaseOrder
         Me.TXTMOBILENO.BackColor = System.Drawing.Color.White
         Me.TXTMOBILENO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTMOBILENO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTMOBILENO.Location = New System.Drawing.Point(844, 129)
+        Me.TXTMOBILENO.Location = New System.Drawing.Point(844, 120)
         Me.TXTMOBILENO.Name = "TXTMOBILENO"
         Me.TXTMOBILENO.Size = New System.Drawing.Size(240, 23)
         Me.TXTMOBILENO.TabIndex = 6
@@ -1209,7 +1209,7 @@ Partial Class PurchaseOrder
         'txtgridremarks
         '
         Me.txtgridremarks.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtgridremarks.Location = New System.Drawing.Point(224, 191)
+        Me.txtgridremarks.Location = New System.Drawing.Point(224, 181)
         Me.txtgridremarks.Name = "txtgridremarks"
         Me.txtgridremarks.Size = New System.Drawing.Size(100, 23)
         Me.txtgridremarks.TabIndex = 10
@@ -1220,7 +1220,7 @@ Partial Class PurchaseOrder
         Me.CHKVERIFY.BackColor = System.Drawing.Color.Transparent
         Me.CHKVERIFY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHKVERIFY.ForeColor = System.Drawing.Color.Maroon
-        Me.CHKVERIFY.Location = New System.Drawing.Point(657, 370)
+        Me.CHKVERIFY.Location = New System.Drawing.Point(657, 456)
         Me.CHKVERIFY.Name = "CHKVERIFY"
         Me.CHKVERIFY.Size = New System.Drawing.Size(69, 19)
         Me.CHKVERIFY.TabIndex = 648
@@ -1233,7 +1233,7 @@ Partial Class PurchaseOrder
         Me.cmbtoname.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbtoname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbtoname.FormattingEnabled = True
-        Me.cmbtoname.Location = New System.Drawing.Point(993, 191)
+        Me.cmbtoname.Location = New System.Drawing.Point(993, 181)
         Me.cmbtoname.MaxDropDownItems = 14
         Me.cmbtoname.Name = "cmbtoname"
         Me.cmbtoname.Size = New System.Drawing.Size(202, 23)
@@ -1245,7 +1245,7 @@ Partial Class PurchaseOrder
         Me.Label26.BackColor = System.Drawing.Color.Transparent
         Me.Label26.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label26.ForeColor = System.Drawing.Color.Black
-        Me.Label26.Location = New System.Drawing.Point(43, 133)
+        Me.Label26.Location = New System.Drawing.Point(43, 124)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(64, 15)
         Me.Label26.TabIndex = 647
@@ -1255,7 +1255,7 @@ Partial Class PurchaseOrder
         '
         Me.txtqty.BackColor = System.Drawing.Color.White
         Me.txtqty.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtqty.Location = New System.Drawing.Point(713, 191)
+        Me.txtqty.Location = New System.Drawing.Point(713, 181)
         Me.txtqty.Name = "txtqty"
         Me.txtqty.Size = New System.Drawing.Size(60, 23)
         Me.txtqty.TabIndex = 16
@@ -1265,7 +1265,7 @@ Partial Class PurchaseOrder
         '
         Me.TXTDELPERIOD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTDELPERIOD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTDELPERIOD.Location = New System.Drawing.Point(109, 129)
+        Me.TXTDELPERIOD.Location = New System.Drawing.Point(109, 120)
         Me.TXTDELPERIOD.Name = "TXTDELPERIOD"
         Me.TXTDELPERIOD.Size = New System.Drawing.Size(65, 23)
         Me.TXTDELPERIOD.TabIndex = 4
@@ -1275,7 +1275,7 @@ Partial Class PurchaseOrder
         Me.txtsrno.BackColor = System.Drawing.Color.Linen
         Me.txtsrno.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtsrno.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.txtsrno.Location = New System.Drawing.Point(14, 191)
+        Me.txtsrno.Location = New System.Drawing.Point(14, 181)
         Me.txtsrno.Name = "txtsrno"
         Me.txtsrno.ReadOnly = True
         Me.txtsrno.Size = New System.Drawing.Size(30, 23)
@@ -1288,7 +1288,7 @@ Partial Class PurchaseOrder
         Me.Label25.BackColor = System.Drawing.Color.Transparent
         Me.Label25.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label25.ForeColor = System.Drawing.Color.Black
-        Me.Label25.Location = New System.Drawing.Point(349, 104)
+        Me.Label25.Location = New System.Drawing.Point(349, 95)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(16, 15)
         Me.Label25.TabIndex = 645
@@ -1311,7 +1311,7 @@ Partial Class PurchaseOrder
         Me.cmbqtyunit.BackColor = System.Drawing.Color.White
         Me.cmbqtyunit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbqtyunit.FormattingEnabled = True
-        Me.cmbqtyunit.Location = New System.Drawing.Point(773, 191)
+        Me.cmbqtyunit.Location = New System.Drawing.Point(773, 181)
         Me.cmbqtyunit.Name = "cmbqtyunit"
         Me.cmbqtyunit.Size = New System.Drawing.Size(50, 23)
         Me.cmbqtyunit.TabIndex = 17
@@ -1334,7 +1334,7 @@ Partial Class PurchaseOrder
         Me.CMBQUALITY.BackColor = System.Drawing.Color.White
         Me.CMBQUALITY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBQUALITY.FormattingEnabled = True
-        Me.CMBQUALITY.Location = New System.Drawing.Point(324, 191)
+        Me.CMBQUALITY.Location = New System.Drawing.Point(324, 181)
         Me.CMBQUALITY.Name = "CMBQUALITY"
         Me.CMBQUALITY.Size = New System.Drawing.Size(80, 23)
         Me.CMBQUALITY.TabIndex = 11
@@ -1345,7 +1345,7 @@ Partial Class PurchaseOrder
         Me.Label15.BackColor = System.Drawing.Color.Transparent
         Me.Label15.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.Black
-        Me.Label15.Location = New System.Drawing.Point(217, 133)
+        Me.Label15.Location = New System.Drawing.Point(217, 124)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(60, 15)
         Me.Label15.TabIndex = 644
@@ -1365,7 +1365,7 @@ Partial Class PurchaseOrder
         '
         Me.txtRefno.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtRefno.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtRefno.Location = New System.Drawing.Point(279, 129)
+        Me.txtRefno.Location = New System.Drawing.Point(279, 120)
         Me.txtRefno.Name = "txtRefno"
         Me.txtRefno.Size = New System.Drawing.Size(86, 23)
         Me.txtRefno.TabIndex = 5
@@ -1377,7 +1377,7 @@ Partial Class PurchaseOrder
         Me.CMBBROKER.BackColor = System.Drawing.Color.White
         Me.CMBBROKER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBBROKER.FormattingEnabled = True
-        Me.CMBBROKER.Location = New System.Drawing.Point(480, 71)
+        Me.CMBBROKER.Location = New System.Drawing.Point(480, 62)
         Me.CMBBROKER.MaxDropDownItems = 14
         Me.CMBBROKER.Name = "CMBBROKER"
         Me.CMBBROKER.Size = New System.Drawing.Size(265, 23)
@@ -1389,7 +1389,7 @@ Partial Class PurchaseOrder
         Me.LBLBROKER.BackColor = System.Drawing.Color.Transparent
         Me.LBLBROKER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLBROKER.ForeColor = System.Drawing.Color.Black
-        Me.LBLBROKER.Location = New System.Drawing.Point(434, 75)
+        Me.LBLBROKER.Location = New System.Drawing.Point(434, 66)
         Me.LBLBROKER.Name = "LBLBROKER"
         Me.LBLBROKER.Size = New System.Drawing.Size(43, 15)
         Me.LBLBROKER.TabIndex = 642
@@ -1409,7 +1409,7 @@ Partial Class PurchaseOrder
         '
         Me.PBlock.BackColor = System.Drawing.Color.Transparent
         Me.PBlock.Image = CType(resources.GetObject("PBlock.Image"), System.Drawing.Image)
-        Me.PBlock.Location = New System.Drawing.Point(419, 363)
+        Me.PBlock.Location = New System.Drawing.Point(419, 449)
         Me.PBlock.Name = "PBlock"
         Me.PBlock.Size = New System.Drawing.Size(60, 60)
         Me.PBlock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1432,7 +1432,7 @@ Partial Class PurchaseOrder
         Me.cmbcolor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cmbcolor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.cmbcolor.FormattingEnabled = True
-        Me.cmbcolor.Location = New System.Drawing.Point(494, 191)
+        Me.cmbcolor.Location = New System.Drawing.Point(494, 181)
         Me.cmbcolor.Name = "cmbcolor"
         Me.cmbcolor.Size = New System.Drawing.Size(71, 23)
         Me.cmbcolor.TabIndex = 13
@@ -1466,7 +1466,7 @@ Partial Class PurchaseOrder
         Me.cmddelete.FlatAppearance.BorderSize = 0
         Me.cmddelete.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmddelete.ForeColor = System.Drawing.Color.Black
-        Me.cmddelete.Location = New System.Drawing.Point(485, 402)
+        Me.cmddelete.Location = New System.Drawing.Point(485, 488)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
         Me.cmddelete.TabIndex = 26
@@ -1480,7 +1480,7 @@ Partial Class PurchaseOrder
         Me.cmdclear.FlatAppearance.BorderSize = 0
         Me.cmdclear.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdclear.ForeColor = System.Drawing.Color.Black
-        Me.cmdclear.Location = New System.Drawing.Point(571, 368)
+        Me.cmdclear.Location = New System.Drawing.Point(571, 454)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
         Me.cmdclear.TabIndex = 24
@@ -1494,7 +1494,7 @@ Partial Class PurchaseOrder
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(485, 368)
+        Me.cmdok.Location = New System.Drawing.Point(485, 454)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 23
@@ -1508,7 +1508,7 @@ Partial Class PurchaseOrder
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(571, 402)
+        Me.cmdexit.Location = New System.Drawing.Point(571, 488)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 27
@@ -1559,7 +1559,7 @@ Partial Class PurchaseOrder
         Me.Label39.AutoSize = True
         Me.Label39.BackColor = System.Drawing.Color.Transparent
         Me.Label39.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.Location = New System.Drawing.Point(16, 471)
+        Me.Label39.Location = New System.Drawing.Point(16, 557)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(55, 14)
         Me.Label39.TabIndex = 606
@@ -1571,7 +1571,7 @@ Partial Class PurchaseOrder
         Me.txtinwords.BackColor = System.Drawing.Color.Linen
         Me.txtinwords.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtinwords.ForeColor = System.Drawing.Color.DimGray
-        Me.txtinwords.Location = New System.Drawing.Point(72, 467)
+        Me.txtinwords.Location = New System.Drawing.Point(72, 553)
         Me.txtinwords.Name = "txtinwords"
         Me.txtinwords.ReadOnly = True
         Me.txtinwords.Size = New System.Drawing.Size(402, 22)
@@ -1584,7 +1584,7 @@ Partial Class PurchaseOrder
         Me.Label14.BackColor = System.Drawing.Color.Transparent
         Me.Label14.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.Black
-        Me.Label14.Location = New System.Drawing.Point(56, 104)
+        Me.Label14.Location = New System.Drawing.Point(56, 95)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(51, 15)
         Me.Label14.TabIndex = 547
@@ -1594,7 +1594,7 @@ Partial Class PurchaseOrder
         '
         Me.TXTCRDAYS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTCRDAYS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTCRDAYS.Location = New System.Drawing.Point(109, 100)
+        Me.TXTCRDAYS.Location = New System.Drawing.Point(109, 91)
         Me.TXTCRDAYS.Name = "TXTCRDAYS"
         Me.TXTCRDAYS.Size = New System.Drawing.Size(65, 23)
         Me.TXTCRDAYS.TabIndex = 2
@@ -1605,7 +1605,7 @@ Partial Class PurchaseOrder
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(221, 104)
+        Me.Label5.Location = New System.Drawing.Point(221, 95)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(56, 15)
         Me.Label5.TabIndex = 540
@@ -1615,7 +1615,7 @@ Partial Class PurchaseOrder
         '
         Me.txtdiscount.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtdiscount.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtdiscount.Location = New System.Drawing.Point(280, 100)
+        Me.txtdiscount.Location = New System.Drawing.Point(280, 91)
         Me.txtdiscount.Name = "txtdiscount"
         Me.txtdiscount.Size = New System.Drawing.Size(68, 23)
         Me.txtdiscount.TabIndex = 3
@@ -1627,7 +1627,7 @@ Partial Class PurchaseOrder
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(27, 162)
+        Me.Label1.Location = New System.Drawing.Point(27, 153)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(80, 15)
         Me.Label1.TabIndex = 538
@@ -1637,7 +1637,7 @@ Partial Class PurchaseOrder
         '
         Me.duedate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.duedate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.duedate.Location = New System.Drawing.Point(109, 158)
+        Me.duedate.Location = New System.Drawing.Point(109, 149)
         Me.duedate.Name = "duedate"
         Me.duedate.Size = New System.Drawing.Size(89, 23)
         Me.duedate.TabIndex = 7
@@ -1713,7 +1713,7 @@ Partial Class PurchaseOrder
         Me.lbltotalamt.BackColor = System.Drawing.Color.Transparent
         Me.lbltotalamt.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltotalamt.ForeColor = System.Drawing.Color.Black
-        Me.lbltotalamt.Location = New System.Drawing.Point(851, 321)
+        Me.lbltotalamt.Location = New System.Drawing.Point(851, 407)
         Me.lbltotalamt.Name = "lbltotalamt"
         Me.lbltotalamt.Size = New System.Drawing.Size(83, 15)
         Me.lbltotalamt.TabIndex = 535
@@ -1726,7 +1726,7 @@ Partial Class PurchaseOrder
         Me.GroupBox5.Controls.Add(Me.txtremarks)
         Me.GroupBox5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox5.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox5.Location = New System.Drawing.Point(12, 318)
+        Me.GroupBox5.Location = New System.Drawing.Point(12, 404)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(336, 150)
         Me.GroupBox5.TabIndex = 27
@@ -1749,7 +1749,7 @@ Partial Class PurchaseOrder
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(471, 321)
+        Me.Label10.Location = New System.Drawing.Point(471, 407)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(31, 14)
         Me.Label10.TabIndex = 534
@@ -1760,7 +1760,7 @@ Partial Class PurchaseOrder
         Me.lbltotalqty.BackColor = System.Drawing.Color.Transparent
         Me.lbltotalqty.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltotalqty.ForeColor = System.Drawing.Color.Black
-        Me.lbltotalqty.Location = New System.Drawing.Point(491, 321)
+        Me.lbltotalqty.Location = New System.Drawing.Point(491, 407)
         Me.lbltotalqty.Name = "lbltotalqty"
         Me.lbltotalqty.Size = New System.Drawing.Size(63, 15)
         Me.lbltotalqty.TabIndex = 533
@@ -1773,7 +1773,7 @@ Partial Class PurchaseOrder
         Me.lbllocked.BackColor = System.Drawing.Color.Transparent
         Me.lbllocked.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lbllocked.ForeColor = System.Drawing.Color.Red
-        Me.lbllocked.Location = New System.Drawing.Point(356, 392)
+        Me.lbllocked.Location = New System.Drawing.Point(356, 478)
         Me.lbllocked.Name = "lbllocked"
         Me.lbllocked.Size = New System.Drawing.Size(57, 19)
         Me.lbllocked.TabIndex = 445
@@ -1784,7 +1784,7 @@ Partial Class PurchaseOrder
         '
         Me.TXTPONO.BackColor = System.Drawing.Color.Linen
         Me.TXTPONO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTPONO.Location = New System.Drawing.Point(844, 70)
+        Me.TXTPONO.Location = New System.Drawing.Point(844, 61)
         Me.TXTPONO.Name = "TXTPONO"
         Me.TXTPONO.ReadOnly = True
         Me.TXTPONO.Size = New System.Drawing.Size(82, 23)
@@ -1798,7 +1798,7 @@ Partial Class PurchaseOrder
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(799, 74)
+        Me.Label4.Location = New System.Drawing.Point(799, 65)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(44, 15)
         Me.Label4.TabIndex = 444
@@ -1820,7 +1820,7 @@ Partial Class PurchaseOrder
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(69, 75)
+        Me.Label6.Location = New System.Drawing.Point(69, 66)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(38, 15)
         Me.Label6.TabIndex = 434
@@ -1832,7 +1832,7 @@ Partial Class PurchaseOrder
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(811, 103)
+        Me.Label9.Location = New System.Drawing.Point(811, 94)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(32, 15)
         Me.Label9.TabIndex = 433
@@ -1845,7 +1845,7 @@ Partial Class PurchaseOrder
         Me.cmbname.BackColor = System.Drawing.Color.LemonChiffon
         Me.cmbname.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbname.FormattingEnabled = True
-        Me.cmbname.Location = New System.Drawing.Point(109, 71)
+        Me.cmbname.Location = New System.Drawing.Point(109, 62)
         Me.cmbname.MaxDropDownItems = 14
         Me.cmbname.Name = "cmbname"
         Me.cmbname.Size = New System.Drawing.Size(259, 23)
@@ -2489,7 +2489,7 @@ Partial Class PurchaseOrder
         'PurchaseOrder
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1198, 492)
+        Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.LBLCATEGORY)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
