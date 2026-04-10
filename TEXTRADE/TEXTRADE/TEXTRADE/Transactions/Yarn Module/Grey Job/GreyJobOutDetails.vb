@@ -28,7 +28,7 @@ Public Class GreyJobOutDetails
 
     Private Sub GreyJobOutDetails_LOAD(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim DTROW() As DataRow
-        DTROW = USERRIGHTS.Select("FormName = 'Grey Job Out'")
+        DTROW = USERRIGHTS.Select("FormName = 'Job Out'")
         USERADD = DTROW(0).Item(1)
         USEREDIT = DTROW(0).Item(2)
         USERVIEW = DTROW(0).Item(3)
