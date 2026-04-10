@@ -265,6 +265,7 @@ Partial Class OpeningStockGrey
         Me.CHKPRINT.TabIndex = 716
         Me.CHKPRINT.Text = "Print Each Bar Code"
         Me.CHKPRINT.UseVisualStyleBackColor = False
+        Me.CHKPRINT.Visible = False
         '
         'TXTNO
         '

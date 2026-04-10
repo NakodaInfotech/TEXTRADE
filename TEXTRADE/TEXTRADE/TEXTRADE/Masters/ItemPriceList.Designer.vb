@@ -119,6 +119,7 @@ Partial Class ItemPriceList
         'Panel1
         '
         Me.Panel1.AutoScroll = True
+        Me.Panel1.BackColor = System.Drawing.Color.Transparent
         Me.Panel1.Controls.Add(Me.TXTRATE15)
         Me.Panel1.Controls.Add(Me.TXTRATE14)
         Me.Panel1.Controls.Add(Me.TXTRATE13)
@@ -144,7 +145,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE15.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE15.Enabled = False
-        Me.TXTRATE15.Location = New System.Drawing.Point(1371, 3)
+        Me.TXTRATE15.Location = New System.Drawing.Point(1376, 3)
         Me.TXTRATE15.Name = "TXTRATE15"
         Me.TXTRATE15.ReadOnly = True
         Me.TXTRATE15.Size = New System.Drawing.Size(85, 23)
@@ -156,7 +157,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE14.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE14.Enabled = False
-        Me.TXTRATE14.Location = New System.Drawing.Point(1286, 3)
+        Me.TXTRATE14.Location = New System.Drawing.Point(1291, 3)
         Me.TXTRATE14.Name = "TXTRATE14"
         Me.TXTRATE14.ReadOnly = True
         Me.TXTRATE14.Size = New System.Drawing.Size(85, 23)
@@ -168,7 +169,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE13.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE13.Enabled = False
-        Me.TXTRATE13.Location = New System.Drawing.Point(1201, 3)
+        Me.TXTRATE13.Location = New System.Drawing.Point(1206, 3)
         Me.TXTRATE13.Name = "TXTRATE13"
         Me.TXTRATE13.ReadOnly = True
         Me.TXTRATE13.Size = New System.Drawing.Size(85, 23)
@@ -180,7 +181,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE12.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE12.Enabled = False
-        Me.TXTRATE12.Location = New System.Drawing.Point(1116, 3)
+        Me.TXTRATE12.Location = New System.Drawing.Point(1121, 3)
         Me.TXTRATE12.Name = "TXTRATE12"
         Me.TXTRATE12.ReadOnly = True
         Me.TXTRATE12.Size = New System.Drawing.Size(85, 23)
@@ -192,7 +193,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE11.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE11.Enabled = False
-        Me.TXTRATE11.Location = New System.Drawing.Point(1031, 3)
+        Me.TXTRATE11.Location = New System.Drawing.Point(1036, 3)
         Me.TXTRATE11.Name = "TXTRATE11"
         Me.TXTRATE11.ReadOnly = True
         Me.TXTRATE11.Size = New System.Drawing.Size(85, 23)
@@ -230,7 +231,7 @@ Partial Class ItemPriceList
         '
         Me.GNAME.Caption = "Item Name"
         Me.GNAME.FieldName = "ITEMNAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.OptionsColumn.AllowFocus = False
@@ -383,7 +384,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE5.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE5.Enabled = False
-        Me.TXTRATE5.Location = New System.Drawing.Point(521, 3)
+        Me.TXTRATE5.Location = New System.Drawing.Point(526, 3)
         Me.TXTRATE5.Name = "TXTRATE5"
         Me.TXTRATE5.ReadOnly = True
         Me.TXTRATE5.Size = New System.Drawing.Size(85, 23)
@@ -395,7 +396,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE1.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE1.Enabled = False
-        Me.TXTRATE1.Location = New System.Drawing.Point(181, 3)
+        Me.TXTRATE1.Location = New System.Drawing.Point(186, 3)
         Me.TXTRATE1.Name = "TXTRATE1"
         Me.TXTRATE1.ReadOnly = True
         Me.TXTRATE1.Size = New System.Drawing.Size(85, 23)
@@ -407,7 +408,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE10.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE10.Enabled = False
-        Me.TXTRATE10.Location = New System.Drawing.Point(946, 3)
+        Me.TXTRATE10.Location = New System.Drawing.Point(951, 3)
         Me.TXTRATE10.Name = "TXTRATE10"
         Me.TXTRATE10.ReadOnly = True
         Me.TXTRATE10.Size = New System.Drawing.Size(85, 23)
@@ -419,7 +420,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE2.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE2.Enabled = False
-        Me.TXTRATE2.Location = New System.Drawing.Point(266, 3)
+        Me.TXTRATE2.Location = New System.Drawing.Point(271, 3)
         Me.TXTRATE2.Name = "TXTRATE2"
         Me.TXTRATE2.ReadOnly = True
         Me.TXTRATE2.Size = New System.Drawing.Size(85, 23)
@@ -431,7 +432,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE9.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE9.Enabled = False
-        Me.TXTRATE9.Location = New System.Drawing.Point(861, 3)
+        Me.TXTRATE9.Location = New System.Drawing.Point(866, 3)
         Me.TXTRATE9.Name = "TXTRATE9"
         Me.TXTRATE9.ReadOnly = True
         Me.TXTRATE9.Size = New System.Drawing.Size(85, 23)
@@ -443,7 +444,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE3.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE3.Enabled = False
-        Me.TXTRATE3.Location = New System.Drawing.Point(351, 3)
+        Me.TXTRATE3.Location = New System.Drawing.Point(356, 3)
         Me.TXTRATE3.Name = "TXTRATE3"
         Me.TXTRATE3.ReadOnly = True
         Me.TXTRATE3.Size = New System.Drawing.Size(85, 23)
@@ -455,7 +456,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE8.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE8.Enabled = False
-        Me.TXTRATE8.Location = New System.Drawing.Point(776, 3)
+        Me.TXTRATE8.Location = New System.Drawing.Point(781, 3)
         Me.TXTRATE8.Name = "TXTRATE8"
         Me.TXTRATE8.ReadOnly = True
         Me.TXTRATE8.Size = New System.Drawing.Size(85, 23)
@@ -467,7 +468,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE4.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE4.Enabled = False
-        Me.TXTRATE4.Location = New System.Drawing.Point(436, 3)
+        Me.TXTRATE4.Location = New System.Drawing.Point(441, 3)
         Me.TXTRATE4.Name = "TXTRATE4"
         Me.TXTRATE4.ReadOnly = True
         Me.TXTRATE4.Size = New System.Drawing.Size(85, 23)
@@ -479,7 +480,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE7.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE7.Enabled = False
-        Me.TXTRATE7.Location = New System.Drawing.Point(691, 3)
+        Me.TXTRATE7.Location = New System.Drawing.Point(696, 3)
         Me.TXTRATE7.Name = "TXTRATE7"
         Me.TXTRATE7.ReadOnly = True
         Me.TXTRATE7.Size = New System.Drawing.Size(85, 23)
@@ -491,7 +492,7 @@ Partial Class ItemPriceList
         '
         Me.TXTRATE6.BackColor = System.Drawing.Color.Linen
         Me.TXTRATE6.Enabled = False
-        Me.TXTRATE6.Location = New System.Drawing.Point(606, 3)
+        Me.TXTRATE6.Location = New System.Drawing.Point(611, 3)
         Me.TXTRATE6.Name = "TXTRATE6"
         Me.TXTRATE6.ReadOnly = True
         Me.TXTRATE6.Size = New System.Drawing.Size(85, 23)

@@ -673,67 +673,9 @@ Public Class OpeningStockGrey
 
                     If CHKPRINT.Checked = False And Val(TXTFROM.Text.Trim) = 0 Then Exit Sub
 
-                    Dim WHOLESALEBARCODE As Integer = 0
-                    If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then WHOLESALEBARCODE = MsgBox("Wish to Print Wholesale Barcode?", MsgBoxStyle.YesNo)
-
-                    Dim TEMPHEADER As String = ""
-                    If ClientName = "YASHVI" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type (M/N/Y/B)")
-                        If TEMPHEADER <> "M" And TEMPHEADER <> "N" And TEMPHEADER <> "Y" And TEMPHEADER <> "B" Then Exit Sub
-                        If TEMPHEADER = "M" Then TEMPHEADER = "MAFATLAL"
-                        If TEMPHEADER = "N" Then TEMPHEADER = ""
-                    End If
-
-                    If ClientName = "GELATO" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR MRP" & Chr(13) & "3 FOR WSP")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                    End If
-
-                    If ClientName = "RAJKRIPA" Or ClientName = "MOHATUL" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR LUMP" & Chr(13) & "2 FOR CUTPACK")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                    End If
-
-                    If ClientName = "KRISHNA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SIMPLEX" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR BOX STICKER")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                    End If
-
-                    If ClientName = "MANS" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR SALVATROE" & Chr(13) & "2 FOR DONBION" & Chr(13) & "2 FOR OCM")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                    End If
-
-                    If ClientName = "DAKSH" Or ClientName = "KUNAL" Or ClientName = "VALIANT" Or ClientName = "MILUXE" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                    End If
-
-                    If ClientName = "SST" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED" & Chr(13) & "3 FOR MRP")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                    End If
-
-                    If ClientName = "MANSI" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED" & Chr(13) & "3 FOR MRP" & Chr(13) & "4 FOR 100 X 50")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" Then Exit Sub
-                    End If
-
-
-                    Dim SUPRIYAHEADER As String = ""
-                    If ClientName = "SUPRIYA" Then
-                        TEMPHEADER = InputBox("Enter Sticker Type (1/2/3/4/5/6/7)")
-                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" And TEMPHEADER <> "5" And TEMPHEADER <> "6" And TEMPHEADER <> "7" Then Exit Sub
-                        If TEMPHEADER = "1" Or TEMPHEADER = "6" Then SUPRIYAHEADER = "ROYAL TEX"
-                        If TEMPHEADER = "2" Or TEMPHEADER = "7" Then SUPRIYAHEADER = "DEEP BLUE"
-                        If TEMPHEADER = "3" Then SUPRIYAHEADER = ""
-                        If TEMPHEADER = "4" Then SUPRIYAHEADER = "KAMDHENU"
-                        If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
-                    End If
-
 
                     If CHKPRINT.CheckState = CheckState.Checked Then
-                        BARCODEPRINTING(TXTBARCODE.Text.Trim, cmbpiecetype.Text.Trim, cmbmerchant.Text.Trim, cmbquality.Text.Trim, CMBDESIGNNO.Text.Trim, cmbcolor.Text.Trim, cmbunit.Text.Trim, TXTLOTNO.Text.Trim, TXTBALENO.Text.Trim, TXTREMARKS.Text.Trim, Val(txtMtrs.Text.Trim), Val(txtpcs.Text.Trim), Val(txtcut.Text.Trim), CMBRACK.Text.Trim, TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, TXTBILLNO.Text.Trim, cmbname.Text.Trim, CMBSHELF.Text.Trim, AccFrom.Date)
+                        BARCODEPRINTING(TXTBARCODE.Text.Trim, cmbpiecetype.Text.Trim, cmbmerchant.Text.Trim, cmbquality.Text.Trim, CMBDESIGNNO.Text.Trim, cmbcolor.Text.Trim, cmbunit.Text.Trim, TXTLOTNO.Text.Trim, TXTBALENO.Text.Trim, TXTREMARKS.Text.Trim, Val(txtMtrs.Text.Trim), Val(TXTWT.Text.Trim), Val(txtcut.Text.Trim), CMBRACK.Text.Trim, "GREY", "", "", TXTBILLNO.Text.Trim, cmbname.Text.Trim, CMBSHELF.Text.Trim, AccFrom.Date)
                     Else
                         If Val(TXTTO.Text.Trim) > 0 And Val(TXTFROM.Text.Trim) > 0 Then
                             If (Val(TXTTO.Text.Trim) < Val(TXTFROM.Text.Trim)) Or (Val(TXTFROM.Text.Trim) > gridstock.RowCount) Or (Val(TXTTO.Text.Trim) > gridstock.RowCount) Then
@@ -746,9 +688,17 @@ Public Class OpeningStockGrey
 
                             For i As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
 
+                                Dim TEMPHEADER As String = ""
+                                Dim QTY As Double = Val(gridstock.Item(Gpcs.Index, i - 1).Value)
+                                If ClientName = "SWPL" Then
+                                    If gridstock.Item(gcolor.Index, i - 1).Value = "" Then TEMPHEADER = "GREYWITHOUTCOLOR" Else TEMPHEADER = "GREY"
+                                    QTY = Val(gridstock.Item(GWT.Index, i - 1).Value)
+                                End If
+
+
                                 'IF barcode is used the BARCODE printING WILL BE BLOCKED
                                 If Convert.ToBoolean(gridstock.Item(gdone.Index, i - 1).Value) = False Then
-                                    BARCODEPRINTING(gridstock.Item(gBarcode.Index, i - 1).Value, gridstock.Item(gpiecetype.Index, i - 1).Value, gridstock.Item(GMERCHANT.Index, i - 1).Value, gridstock.Item(gQuality.Index, i - 1).Value, gridstock.Item(GDESIGN.Index, i - 1).Value, gridstock.Item(gcolor.Index, i - 1).Value, gridstock.Item(Gunit.Index, i - 1).Value, gridstock.Item(GLOTNO.Index, i - 1).Value, gridstock.Item(GBALENO.Index, i - 1).Value, gridstock.Item(GREMARKS.Index, i - 1).Value, Val(gridstock.Item(gMtrs.Index, i - 1).Value), Val(gridstock.Item(Gpcs.Index, i - 1).Value), Val(gridstock.Item(GCUT.Index, i - 1).Value), gridstock.Item(GRACK.Index, i - 1).Value, TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, gridstock.Item(GBILLNO.Index, i - 1).Value, gridstock.Item(gname.Index, i - 1).Value, gridstock.Item(GSHELF.Index, i - 1).Value, AccFrom.Date)
+                                    BARCODEPRINTING(gridstock.Item(gBarcode.Index, i - 1).Value, gridstock.Item(gpiecetype.Index, i - 1).Value, gridstock.Item(GMERCHANT.Index, i - 1).Value, gridstock.Item(gQuality.Index, i - 1).Value, gridstock.Item(GDESIGN.Index, i - 1).Value, gridstock.Item(gcolor.Index, i - 1).Value, gridstock.Item(Gunit.Index, i - 1).Value, gridstock.Item(GLOTNO.Index, i - 1).Value, gridstock.Item(GBALENO.Index, i - 1).Value, gridstock.Item(GREMARKS.Index, i - 1).Value, Val(gridstock.Item(gMtrs.Index, i - 1).Value), QTY, Val(gridstock.Item(GCUT.Index, i - 1).Value), gridstock.Item(GRACK.Index, i - 1).Value, TEMPHEADER, "", "", gridstock.Item(GBILLNO.Index, i - 1).Value, gridstock.Item(gname.Index, i - 1).Value, gridstock.Item(GSHELF.Index, i - 1).Value, AccFrom.Date)
                                 End If
 
                             Next
