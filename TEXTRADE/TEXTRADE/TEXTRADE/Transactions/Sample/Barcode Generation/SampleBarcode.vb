@@ -437,17 +437,17 @@ Public Class SampleBarcode
                                 Dim TEMPSHADE2MTRS As String = ""
                                 Dim TEMPSHADE3MTRS As String = ""
 
-                                DT = OBJCMN.SEARCH("TOP (3) DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name AS COLOR, SUM(BARCODESTOCK.MTRS) AS MTRS ", "", "  DESIGNMASTER INNER JOIN DESIGNMASTER_COLOR ON DESIGNMASTER.DESIGN_id = DESIGNMASTER_COLOR.DESIGN_ID AND DESIGNMASTER.DESIGN_yearid = DESIGNMASTER_COLOR.DESIGN_YEARID INNER JOIN COLORMASTER ON DESIGNMASTER_COLOR.DESIGN_COLORID = COLORMASTER.COLOR_id AND DESIGNMASTER_COLOR.DESIGN_YEARID = COLORMASTER.COLOR_yearid LEFT OUTER JOIN BARCODESTOCK ON DESIGNMASTER_COLOR.DESIGN_YEARID = BARCODESTOCK.YEARID AND DESIGNMASTER_COLOR.DESIGN_ID = BARCODESTOCK.DESIGNID AND  DESIGNMASTER_COLOR.DESIGN_COLORID = BARCODESTOCK.COLORID   ", " AND DESIGNMASTER.DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND DESIGNMASTER.DESIGN_yearid = " & YearId & " GROUP BY DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name")
+                                DT = OBJCMN.SEARCH("TOP (3) ISNULL(DESIGNMASTER.DESIGN_NO,'') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name,'') AS COLOR, SUM(BARCODESTOCK.MTRS) AS MTRS ", "", "  DESIGNMASTER INNER JOIN DESIGNMASTER_COLOR ON DESIGNMASTER.DESIGN_id = DESIGNMASTER_COLOR.DESIGN_ID AND DESIGNMASTER.DESIGN_yearid = DESIGNMASTER_COLOR.DESIGN_YEARID INNER JOIN COLORMASTER ON DESIGNMASTER_COLOR.DESIGN_COLORID = COLORMASTER.COLOR_id AND DESIGNMASTER_COLOR.DESIGN_YEARID = COLORMASTER.COLOR_yearid LEFT OUTER JOIN BARCODESTOCK ON DESIGNMASTER_COLOR.DESIGN_YEARID = BARCODESTOCK.YEARID AND DESIGNMASTER_COLOR.DESIGN_ID = BARCODESTOCK.DESIGNID AND  DESIGNMASTER_COLOR.DESIGN_COLORID = BARCODESTOCK.COLORID   ", " AND DESIGNMASTER.DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND DESIGNMASTER.DESIGN_yearid = " & YearId & " GROUP BY ISNULL(DESIGNMASTER.DESIGN_NO,''), ISNULL(COLORMASTER.COLOR_name,'')")
                                 If DT.Rows.Count > 0 Then
-                                    TEMPSHADE1 = DT.Rows(0).Item("COLOR").ToString.Substring(0, 12)
+                                    TEMPSHADE1 = DT.Rows(0).Item("COLOR").ToString.Substring(0, Math.Min(12, DT.Rows(0).Item("COLOR").ToString.Length))
                                     TEMPSHADE1MTRS = DT.Rows(0).Item("MTRS")
                                 End If
                                 If DT.Rows.Count > 1 Then
-                                    TEMPSHADE2 = DT.Rows(1).Item("COLOR").ToString.Substring(0, 12)
+                                    TEMPSHADE2 = DT.Rows(1).Item("COLOR").ToString.Substring(0, Math.Min(12, DT.Rows(1).Item("COLOR").ToString.Length))
                                     TEMPSHADE2MTRS = DT.Rows(1).Item("MTRS")
                                 End If
                                 If DT.Rows.Count > 2 Then
-                                    TEMPSHADE3 = DT.Rows(2).Item("COLOR").ToString.Substring(0, 12)
+                                    TEMPSHADE3 = DT.Rows(2).Item("COLOR").ToString.Substring(0, Math.Min(12, DT.Rows(2).Item("COLOR").ToString.Length))
                                     TEMPSHADE3MTRS = DT.Rows(2).Item("MTRS")
                                 End If
 
@@ -1827,33 +1827,6 @@ PRINT 1,1")
                                     If TEMPHEADER = 1 Then
 
 
-                                        '                                    oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>G0
-                                        'n
-                                        'M0500
-                                        'MT
-                                        'O0214
-                                        'V0
-                                        't1
-                                        'Kf0070
-                                        'c0000
-                                        'e
-                                        '<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>L
-                                        'D11
-                                        'H22
-                                        'ySPM
-                                        'A2
-                                        '1911C1200560007" & ROW("DESIGNNO") & "
-                                        '1911C0800790007" & ROW("ITEMNAME") & "
-                                        '1911C1200340007" & TEMPWIDTH & "
-                                        '1X1100000960000L187001
-                                        '1X1100000060000L187001
-                                        '1X1100000060000L001090
-                                        '1X1100000070185L001090
-                                        '1W1D44000001201352,LA," & ROW("BARCODE") & "
-                                        'Q0001
-                                        'E
-                                        '<xpml></page></xpml><xpml><end/></xpml>")
-                                        '                                    oWrite.Dispose()
 
                                         oWrite.WriteLine("^XA
 ^SZ2^JMA
@@ -1892,15 +1865,15 @@ PRINT 1,1")
 
                                         DT = OBJCMN.SEARCH("TOP (3) DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name AS COLOR, SUM(BARCODESTOCK.MTRS) AS MTRS ", "", "  DESIGNMASTER INNER JOIN DESIGNMASTER_COLOR ON DESIGNMASTER.DESIGN_id = DESIGNMASTER_COLOR.DESIGN_ID AND DESIGNMASTER.DESIGN_yearid = DESIGNMASTER_COLOR.DESIGN_YEARID INNER JOIN COLORMASTER ON DESIGNMASTER_COLOR.DESIGN_COLORID = COLORMASTER.COLOR_id AND DESIGNMASTER_COLOR.DESIGN_YEARID = COLORMASTER.COLOR_yearid LEFT OUTER JOIN BARCODESTOCK ON DESIGNMASTER_COLOR.DESIGN_YEARID = BARCODESTOCK.YEARID AND DESIGNMASTER_COLOR.DESIGN_ID = BARCODESTOCK.DESIGNID AND  DESIGNMASTER_COLOR.DESIGN_COLORID = BARCODESTOCK.COLORID   ", " AND DESIGNMASTER.DESIGN_NO = '" & ROW("DESIGNNO") & "' AND DESIGNMASTER.DESIGN_yearid = " & YearId & " GROUP BY DESIGNMASTER.DESIGN_NO, COLORMASTER.COLOR_name")
                                         If DT.Rows.Count > 0 Then
-                                            TEMPSHADE1 = DT.Rows(0).Item("COLOR").ToString.Substring(0, 12)
+                                            TEMPSHADE1 = DT.Rows(0).Item("COLOR").ToString.Substring(0, Math.Min(12, DT.Rows(0).Item("COLOR").ToString.Length))
                                             TEMPSHADE1MTRS = DT.Rows(0).Item("MTRS")
                                         End If
                                         If DT.Rows.Count > 1 Then
-                                            TEMPSHADE2 = DT.Rows(1).Item("COLOR").ToString.Substring(0, 12)
+                                            TEMPSHADE2 = DT.Rows(1).Item("COLOR").ToString.Substring(0, Math.Min(12, DT.Rows(1).Item("COLOR").ToString.Length))
                                             TEMPSHADE2MTRS = DT.Rows(1).Item("MTRS")
                                         End If
                                         If DT.Rows.Count > 2 Then
-                                            TEMPSHADE3 = DT.Rows(2).Item("COLOR").ToString.Substring(0, 12)
+                                            TEMPSHADE3 = DT.Rows(2).Item("COLOR").ToString.Substring(0, Math.Min(12, DT.Rows(2).Item("COLOR").ToString.Length))
                                             TEMPSHADE3MTRS = DT.Rows(2).Item("MTRS")
                                         End If
 
@@ -3407,6 +3380,7 @@ NEXTLINE:
             PRINTBARCODE()
         Catch ex As Exception
             Throw ex
+
         End Try
     End Sub
 
