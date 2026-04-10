@@ -9376,7 +9376,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Job Work\Job In\GreyJobInReport_COMMON.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GreyJobInReport_COMMON.vb</LastGenOutput>
+      <LastGenOutput>GreyJobInReport_COMMON1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Job Work\Job Out\GREYJOReport_COMMON.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

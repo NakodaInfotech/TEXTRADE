@@ -362,7 +362,7 @@ Public Class GDNDESIGN
                 crTable.ApplyLogOnInfo(crtableLogonInfo)
             Next
 
-            If FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Or FRMSTRING = "PROFORMA" Or FRMSTRING = "TRANSGDN" Or FRMSTRING = "JOBOUT" Or FRMSTRING = "JOTAKADETAILS" Or FRMSTRING = "JOBOUTBANNER" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBIN" Or FRMSTRING = "JOBINPS" Or FRMSTRING = "PACKINGSLIP" Or FRMSTRING = "GATEPASS" Or FRMSTRING = "GPPACKINGSLIP" Or FRMSTRING = "GPEXPPACKINGSLIP" Or FRMSTRING = "GODOWNTRANSFER" Or FRMSTRING = "GDNBANNER" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Or FRMSTRING = "GREYGDN" Then crpo.SelectionFormula = FORMULA
+            If FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Or FRMSTRING = "PROFORMA" Or FRMSTRING = "TRANSGDN" Or FRMSTRING = "JOBOUT" Or FRMSTRING = "JOTAKADETAILS" Or FRMSTRING = "JOBOUTBANNER" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBIN" Or FRMSTRING = "GREYJOBIN" Or FRMSTRING = "JOBINPS" Or FRMSTRING = "PACKINGSLIP" Or FRMSTRING = "GATEPASS" Or FRMSTRING = "GPPACKINGSLIP" Or FRMSTRING = "GPEXPPACKINGSLIP" Or FRMSTRING = "GODOWNTRANSFER" Or FRMSTRING = "GDNBANNER" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Or FRMSTRING = "GREYGDN" Then crpo.SelectionFormula = FORMULA
             If FRMSTRING = "PARTYWISE" Or FRMSTRING = "PARTYWISEDETAILS" Or FRMSTRING = "DESIGNWISE" Or FRMSTRING = "DESIGNWISEDETAILS" Or FRMSTRING = "PENDINGDETAILS" Or FRMSTRING = "DAILYACTIVITY" Then crpo.SelectionFormula = selfor_ss
 
 
@@ -648,10 +648,13 @@ Public Class GDNDESIGN
             If FRMSTRING = "JOBIN" Then
                 tempattachment = "JOBIN"
                 objmail.subject = "Job In"
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                tempattachment = "GREYJOBIN"
+                objmail.subject = "Grey Job In"
             ElseIf FRMSTRING = "JOBINPS" Then
                 tempattachment = "JOBINPS"
                 objmail.subject = "Job In Packing Slip"
-            ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
+            ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "GREYJOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
                 tempattachment = "JOBOUT"
                 objmail.subject = "Job Challan"
             ElseIf FRMSTRING = "GREYGDN" Then
@@ -1237,7 +1240,8 @@ Public Class GDNDESIGN
                     OBJ = New JOReport_COMMON
                     If ClientName = "ANOX" AndAlso MsgBox("Print Images?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJ.DataDefinition.FormulaFields("SHOWIMAGE").Text = "1"
                 End If
-
+            ElseIf FRMSTRING = "GREYJOBOUT" Then
+                OBJ = New GREYJOReport_COMMON
             ElseIf FRMSTRING = "EMBPRODUCTION" Then
                 OBJ = New EmbProdReport
 
@@ -1257,6 +1261,8 @@ Public Class GDNDESIGN
                 Else
                     OBJ = New JobInReport_COMMON
                 End If
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                OBJ = New GreyJobInReport_COMMON
 
             ElseIf FRMSTRING = "PACKINGSLIP" Then
                 If ClientName = "MARKIN" Then
@@ -1412,7 +1418,9 @@ Public Class GDNDESIGN
                     TEMPATTACHMENT = PARTYNAME & "JOBIN"
                     'ElseIf FRMSTRING = "JOBINPS" Then
                     '    TEMPATTACHMENT = "JOBINPS"
-                ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "EMBPRODUCTION" Then
+                ElseIf FRMSTRING = "GREYJOBIN" Then
+                    TEMPATTACHMENT = PARTYNAME & "GREYJOBIN"
+                ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "GREYJOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "EMBPRODUCTION" Then
                     TEMPATTACHMENT = PARTYNAME & "JO"
                 ElseIf FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Then
                     TEMPATTACHMENT = PARTYNAME & "GDN"
@@ -1491,7 +1499,9 @@ Public Class GDNDESIGN
             Dim TEMPATTACHMENT As String = ""
             If FRMSTRING = "JOBIN" Then
                 TEMPATTACHMENT = "JOBIN"
-            ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                TEMPATTACHMENT = "GREYJOBIN"
+            ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "GREYJOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
                 TEMPATTACHMENT = "JOBOUT"
             ElseIf FRMSTRING = "GREYGDN" Then
                 TEMPATTACHMENT = "GREYCHALLAN"
