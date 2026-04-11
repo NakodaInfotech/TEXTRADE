@@ -1,9 +1,10 @@
 ﻿
+Imports System.IO
 Imports BL
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 Imports DevExpress.XtraGrid.Views.Grid
-
+Imports System.Windows.Forms
 Public Class SaleOrderDetails
 
     Public EDIT As Boolean
@@ -53,6 +54,7 @@ Public Class SaleOrderDetails
             Dim objclsCMST As New ClsCommonMaster
             If CHKPENDING.Checked = True And ClientName = "AVIS" Then TEMPCONDITION = TEMPCONDITION & " AND ISNULL(SALEORDER_DESC.SO_CLOSED,0) = 'FALSE' AND (ROUND(((ISNULL(SALEORDER_DESC.SO_MTRS,0) - ISNULL(SALEORDER_DESC.SO_RECDMTRS,0)) / ISNULL(SALEORDER_DESC.SO_MTRS,0))*100,2)) >= 90"
             If CHKPENDING.Checked = True And ClientName <> "AVIS" Then TEMPCONDITION = TEMPCONDITION & " AND ISNULL(SALEORDER_DESC.SO_CLOSED,0) = 'FALSE'"
+            If CHKPENDING.Checked = True And ClientName = "ROVIRO" Then TEMPCONDITION = TEMPCONDITION & " AND ISNULL(SALEORDER_DESC.SO_CLOSED,0) = 'FALSE'"
             Dim dt As DataTable = objclsCMST.search(" CAST(0 AS BIT) AS CHK, SALEORDER.so_no AS SONO, SALEORDER.so_date AS SODATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(AGENTLEDGERS.Acc_cmpname, '') AS AGENTNAME, SALEORDER.so_pono AS PARTYPONO, SALEORDER.SO_DUEDATE AS DELDATE, ITEMMASTER.item_name AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR,   ISNULL(SALEORDER_DESC.SO_PARTYPONO, '') AS GRIDPARTYPONO, ISNULL(SALEORDER_DESC.SO_GRIDREMARKS, '') AS GRIDREMARKS, SALEORDER_DESC.SO_QTY AS PCS, SALEORDER_DESC.SO_CUT AS CUT,  SALEORDER_DESC.SO_MTRS AS MTRS, SALEORDER_DESC.SO_RATE AS RATE, SALEORDER_DESC.SO_QTY - SALEORDER_DESC.SO_RECDQTY AS BALPCS,  SALEORDER_DESC.SO_MTRS - ISNULL(SALEORDER_DESC.SO_RECDMTRS, 0) AS BALMTRS, SALEORDER.so_remarks AS REMARKS, ISNULL(SALEORDER_DESC.SO_CLOSED, 0) AS CLOSED,  ISNULL(SALEORDER.SO_FORWARD, '') AS FORWARD, ISNULL(SALEORDER_DESC.SO_CLOSEDDATE, GETDATE()) AS CLOSEDDATE, ISNULL(SALEORDER_DESC.SO_CLOSEDREASON, '') AS REASON,  SALEORDER_DESC.SO_AMOUNT AS AMOUNT, ISNULL(USERMASTER.User_Name, '') AS USERNAME, ISNULL(SALEORDER.SO_REFNO, '') AS REFNO, ISNULL(LEDGERS.ACC_WHATSAPPNO, '0') AS PARTYWHATSAAP,   ISNULL(LEDGERS.Acc_email, '') AS PARTYEMAIL, ISNULL(AGENTLEDGERS.Acc_email, '') AS AGENTEMAIL, ISNULL(AGENTLEDGERS.ACC_WHATSAPPNO, '0') AS AGENTWHATSAAP, ISNULL(SALEORDER_DESC.SO_PER, '')   AS PER , ISNULL(SALESMANMASTER.SALESMAN_NAME,'') AS SALESMAN , ISNULL(SHIPTOLEDGERS.Acc_cmpname,'') AS SHIPTO , ISNULL(HASTELEDGERS.Acc_cmpname,'') AS HASTE, COALESCE(PARENTDESIGNMASTER.DESIGN_NO, DESIGNMASTER.DESIGN_NO) AS PARENTDESIGNNO ", "", "SALEORDER_DESC INNER JOIN SALEORDER ON SALEORDER_DESC.SO_NO = SALEORDER.so_no AND SALEORDER_DESC.SO_YEARID = SALEORDER.SO_YEARID INNER JOIN  LEDGERS ON SALEORDER.so_ledgerid = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON SALEORDER_DESC.SO_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN LEDGERS AS SHIPTOLEDGERS ON SALEORDER.SO_PACKINGID = SHIPTOLEDGERS.Acc_id AND SALEORDER.SO_YEARID = SHIPTOLEDGERS.Acc_yearid LEFT OUTER JOIN LEDGERS AS HASTELEDGERS ON SALEORDER.so_HASTEID = HASTELEDGERS.Acc_id AND SALEORDER.SO_YEARID = HASTELEDGERS.Acc_yearid LEFT OUTER JOIN SALESMANMASTER ON SALEORDER.SO_SALESMANID = SALESMANMASTER.SALESMAN_ID LEFT OUTER JOIN COLORMASTER ON SALEORDER_DESC.SO_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON SALEORDER_DESC.SO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN DESIGNMASTER AS PARENTDESIGNMASTER ON DESIGNMASTER.DESIGN_PARENTDESIGNID = PARENTDESIGNMASTER.DESIGN_ID LEFT OUTER JOIN LEDGERS AS AGENTLEDGERS ON SALEORDER.so_Agentid = AGENTLEDGERS.Acc_id LEFT OUTER JOIN USERMASTER ON SALEORDER.SO_USERID = USERMASTER.User_id  ", TEMPCONDITION & " order by dbo.SALEORDER.SO_no, SALEORDER_DESC.SO_GRIDSRNO")
 
             If dt.Rows.Count > 0 Then
@@ -222,6 +224,49 @@ Public Class SaleOrderDetails
             Dim OBJINV As New ProgramStatusDetails
             OBJINV.MdiParent = MDIMain
             OBJINV.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDSAVELAYOUT_Click(sender As Object, e As EventArgs) Handles CMDSAVELAYOUT.Click
+        Try
+            Dim layoutFileName As String = $"{Me.Name}"
+            Dim layoutPath As String = System.IO.Path.Combine(Application.StartupPath, layoutFileName)
+            gridbill.SaveLayoutToXml(layoutPath)
+            'MessageBox.Show("Layout saved as: " & layoutFileName)
+
+
+
+
+            ' Prompt user for filename
+            Dim userFileName As String = InputBox("Enter a name for the layout file (without extension):", "Save Layout", Me.Name)
+
+            ' Exit if the user cancels or enters nothing
+            If String.IsNullOrWhiteSpace(userFileName) Then
+                MessageBox.Show("Save cancelled.")
+                Exit Sub
+            End If
+
+            ' Add .xml extension and construct path
+            Dim FileName As String = $"{userFileName}.xml"
+
+            ' Save layout to file
+            gridbill.SaveLayoutToXml(layoutPath)
+            MessageBox.Show("Layout saved as: " & FileName)
+
+            ' Read file content
+            Dim xmlContent As String = File.ReadAllText(layoutPath)
+
+
+
+            Dim OBJSELECTSG As New SelectCustomLayout
+            OBJSELECTSG.FORMNAMES = layoutFileName
+            OBJSELECTSG.FILENAME = FileName
+            OBJSELECTSG.FILES = xmlContent
+            OBJSELECTSG.ShowDialog()
+
+
         Catch ex As Exception
             Throw ex
         End Try
