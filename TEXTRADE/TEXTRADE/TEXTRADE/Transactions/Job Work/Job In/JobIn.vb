@@ -258,7 +258,7 @@ Public Class JobIn
                 End If
             End If
 
-            If lbllocked.Visible = True Then
+            If lbllocked.Visible = True And UserName <> "Admin" Then
                 EP.SetError(lbllocked, "Item Used, Item Locked")
                 bln = False
             End If
@@ -3925,9 +3925,11 @@ LINE1:
 
     Sub CALC()
         Try
-            If Val(txtqty.Text.Trim) > 0 And Val(TXTCUT.Text.Trim) > 0 Then TXTMTRS.Text = Format(Val(txtqty.Text.Trim) * Val(TXTCUT.Text.Trim), "0.00")
-            If Val(TXTMTRS.Text.Trim) > 0 Then TXTDIFF.Text = Format(Val(TXTJOMTRS.Text.Trim) - Val(TXTMTRS.Text.Trim), "0.00")
-            If CMBPER.Text = "Mtrs" Then TXTAMOUNT.Text = Format(Val(TXTRATE.Text.Trim) * Val(TXTMTRS.Text.Trim), "0.00") Else TXTAMOUNT.Text = Format(Val(TXTRATE.Text.Trim) * Val(txtqty.Text.Trim), "0.00")
+            If Val(txtqty.Text.Trim) > 0 And Val(TXTCUT.Text.Trim) > 0 Then
+                If ClientName = "VALIANT" Then TXTJOMTRS.Text = Format(Val(txtqty.Text.Trim) * Val(TXTCUT.Text.Trim), "0.00") Else TXTMTRS.Text = Format(Val(txtqty.Text.Trim) * Val(TXTCUT.Text.Trim), "0.00")
+                If Val(TXTMTRS.Text.Trim) > 0 Then TXTDIFF.Text = Format(Val(TXTJOMTRS.Text.Trim) - Val(TXTMTRS.Text.Trim), "0.00")
+                If CMBPER.Text = "Mtrs" Then TXTAMOUNT.Text = Format(Val(TXTRATE.Text.Trim) * Val(TXTMTRS.Text.Trim), "0.00") Else TXTAMOUNT.Text = Format(Val(TXTRATE.Text.Trim) * Val(txtqty.Text.Trim), "0.00")
+            End If
         Catch ex As Exception
             Throw ex
         End Try

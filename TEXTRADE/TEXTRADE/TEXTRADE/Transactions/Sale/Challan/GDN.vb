@@ -513,6 +513,7 @@ CHECKNEXTLINE:
                                 ROW.Cells(GSONO.Index).Value = Val(ORDROW.Cells(OFROMNO.Index).Value)
                                 ROW.Cells(GSOSRNO.Index).Value = Val(ORDROW.Cells(OFROMSRNO.Index).Value)
                                 ROW.Cells(GPARTYPONO.Index).Value = ORDROW.Cells(OPARTYPONO.Index).Value
+                                If ClientName = "MIRANO" Then ROW.Cells(GPRINTDESC.Index).Value = ORDROW.Cells(OPARTYPONO.Index).Value
                                 TEMPORDERROWNO = -1
                                 Exit For
 CHECKNEXTLINEMTRS:
@@ -525,6 +526,7 @@ CHECKNEXTLINEMTRS:
                             ROW.Cells(GSONO.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OFROMNO.Index).Value)
                             ROW.Cells(GSOSRNO.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OFROMSRNO.Index).Value)
                             ROW.Cells(GPARTYPONO.Index).Value = GRIDORDER.Rows(TEMPORDERROWNO).Cells(OPARTYPONO.Index).Value
+                            If ClientName = "MIRANO" Then ROW.Cells(GPRINTDESC.Index).Value = GRIDORDER.Rows(TEMPORDERROWNO).Cells(OPARTYPONO.Index).Value
                             TEMPORDERROWNO = -1
                         End If
                         If TEMPORDERMATCH = False Then
@@ -687,7 +689,13 @@ CHECKNEXTLINEMTRS:
                     For Each ROW As DataGridViewRow In GRIDORDER.Rows
                         If Val(ROW.Cells(OFROMNO.Index).Value) = Val(DTROW("SONO")) And Val(ROW.Cells(OFROMSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(OFROMTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
                     Next
-                    GRIDORDER.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("QTY"), DTROW("MTRS"), DTROW("SONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, Val(DTROW("RATE")), DTROW("GRIDPARTYPONO"))
+
+
+                    Dim GRIDPARTYPONO As String = DTROW("GRIDPARTYPONO")
+                    If ClientName = "MIRANO" Then GRIDPARTYPONO = DTROW("GRIDDESC")
+
+
+                    GRIDORDER.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("QTY"), DTROW("MTRS"), DTROW("SONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, Val(DTROW("RATE")), GRIDPARTYPONO)
                     'ADD DATA OF SALE ORDER IN GDN GRID ALSO
                     If ClientName <> "SIDDHGIRI" Then CUT = Format(Val(DTROW("MTRS")) / Val(DTROW("QTY")), "0.00")
                     'GET PER FROM ITEMMASTER
