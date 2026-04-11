@@ -70,7 +70,6 @@ Public Class SelectCustomLayout
             alparaval.Add(FILE)
             alparaval.Add(FILENAMES)
             alparaval.Add(CmpId)
-            alparaval.Add(YearId)
 
             Dim OBJMATCH As New CLSCUSTOMLAYOUT
             OBJMATCH.alParaval = alparaval

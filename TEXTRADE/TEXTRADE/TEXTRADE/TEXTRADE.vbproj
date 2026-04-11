@@ -474,6 +474,24 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Job Work\Job In\GreyJobInReport_COMMON.vb">
+      <DependentUpon>GreyJobInReport_COMMON.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Job Work\Job Out\GREYJOReport_COMMON.vb">
+      <DependentUpon>GREYJOReport_COMMON.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Purchase Order\POReport_LAXMI.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POReport_LAXMI.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.vb">
       <DependentUpon>CutPackContractorReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -701,6 +719,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RecReport_ABHEE.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Sale Order\SOStatusQualityWiseReport.vb">
+      <DependentUpon>SOStatusQualityWiseReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.vb">
       <DependentUpon>InvoiceReport_ABHEE.rpt</DependentUpon>
@@ -9350,6 +9374,18 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GreyGDNReport_COMMON.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Job Work\Job In\GreyJobInReport_COMMON.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GreyJobInReport_COMMON1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Job Work\Job Out\GREYJOReport_COMMON.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GREYJOReport_COMMON.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Purchase Order\POReport_LAXMI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>POReport_LAXMI.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Rec From Pack Reports\CutPackContractorReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CutPackContractorReport.vb</LastGenOutput>
@@ -9487,6 +9523,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Receipt\RecReport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RecReport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Sale Order\SOStatusQualityWiseReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SOStatusQualityWiseReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_ABHEE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -10948,6 +10988,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey GDN\GreyGDN.resx">
       <DependentUpon>GreyGDN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey GDN\GreyGDNDetails.resx">
+      <DependentUpon>GreyGDNDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey GDN\GreyGDNGridDetails.resx">
+      <DependentUpon>GreyGDNGridDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobIn.resx">
       <DependentUpon>GreyJobIn.vb</DependentUpon>

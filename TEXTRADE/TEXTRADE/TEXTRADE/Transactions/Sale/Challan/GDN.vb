@@ -477,7 +477,7 @@ CHECKNEXTLINE:
                             ROW.DefaultCellStyle.BackColor = Color.LightGreen
 
                             'SALEORDER MANDATORY 
-                            If ClientName = "AVIS" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Then
+                            If ClientName = "AVIS" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Or ClientName = "ANKUSH" Then
                                 EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
                                 bln = False
                             Else
@@ -513,6 +513,7 @@ CHECKNEXTLINE:
                                 ROW.Cells(GSONO.Index).Value = Val(ORDROW.Cells(OFROMNO.Index).Value)
                                 ROW.Cells(GSOSRNO.Index).Value = Val(ORDROW.Cells(OFROMSRNO.Index).Value)
                                 ROW.Cells(GPARTYPONO.Index).Value = ORDROW.Cells(OPARTYPONO.Index).Value
+                                If ClientName = "MIRANO" Then ROW.Cells(GPRINTDESC.Index).Value = ORDROW.Cells(OPARTYPONO.Index).Value
                                 TEMPORDERROWNO = -1
                                 Exit For
 CHECKNEXTLINEMTRS:
@@ -525,13 +526,14 @@ CHECKNEXTLINEMTRS:
                             ROW.Cells(GSONO.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OFROMNO.Index).Value)
                             ROW.Cells(GSOSRNO.Index).Value = Val(GRIDORDER.Rows(TEMPORDERROWNO).Cells(OFROMSRNO.Index).Value)
                             ROW.Cells(GPARTYPONO.Index).Value = GRIDORDER.Rows(TEMPORDERROWNO).Cells(OPARTYPONO.Index).Value
+                            If ClientName = "MIRANO" Then ROW.Cells(GPRINTDESC.Index).Value = GRIDORDER.Rows(TEMPORDERROWNO).Cells(OPARTYPONO.Index).Value
                             TEMPORDERROWNO = -1
                         End If
                         If TEMPORDERMATCH = False Then
                             ROW.DefaultCellStyle.BackColor = Color.LightGreen
 
                             'SALEORDER MANDATORY 
-                            If ClientName = "AVIS" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Or ClientName = "SNCM" Then
+                            If ClientName = "AVIS" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Or ClientName = "SNCM" Or ClientName = "ANKUSH" Then
                                 EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
                                 bln = False
                             Else
@@ -547,7 +549,7 @@ CHECKNEXTLINEMTRS:
 
             End If
 
-            If (ClientName = "AVIS" Or ClientName = "SUPEEMA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Or ClientName = "SNCM") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
+            If (ClientName = "AVIS" Or ClientName = "ANKUSH" Or ClientName = "SUPEEMA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Or ClientName = "SNCM") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
                 EP.SetError(cmbname, "Please Select Sale Order")
                 bln = False
             End If
@@ -687,7 +689,13 @@ CHECKNEXTLINEMTRS:
                     For Each ROW As DataGridViewRow In GRIDORDER.Rows
                         If Val(ROW.Cells(OFROMNO.Index).Value) = Val(DTROW("SONO")) And Val(ROW.Cells(OFROMSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(OFROMTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
                     Next
-                    GRIDORDER.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("QTY"), DTROW("MTRS"), DTROW("SONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, Val(DTROW("RATE")), DTROW("GRIDPARTYPONO"))
+
+
+                    Dim GRIDPARTYPONO As String = DTROW("GRIDPARTYPONO")
+                    If ClientName = "MIRANO" Then GRIDPARTYPONO = DTROW("GRIDDESC")
+
+
+                    GRIDORDER.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("QTY"), DTROW("MTRS"), DTROW("SONO"), DTROW("GRIDSRNO"), DTROW("TYPE"), 0, 0, Val(DTROW("RATE")), GRIDPARTYPONO)
                     'ADD DATA OF SALE ORDER IN GDN GRID ALSO
                     If ClientName <> "SIDDHGIRI" Then CUT = Format(Val(DTROW("MTRS")) / Val(DTROW("QTY")), "0.00")
                     'GET PER FROM ITEMMASTER

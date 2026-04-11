@@ -88,6 +88,7 @@ Public Class SaleInvoiceDesign
     Dim RPTSOSTATUSIMG As New SOStatusWithImgReport
     Dim RPTSODISPPER As New SODispatchPercentReport
     Dim RPTSOSTATUSITEMSMALL As New SOItemStatusSmallReport
+    Dim RPTSOSTATUSQUALITY As New SOStatusQualityWiseReport
 
     Dim RPTYARNSOSTATUSDTLS As New YarnSOStatusDetailsReport
 
@@ -191,6 +192,7 @@ Public Class SaleInvoiceDesign
             If FRMSTRING = "SOSTATUSIMG" Then crTables = RPTSOSTATUSIMG.Database.Tables
             If FRMSTRING = "SODISPPER" Then crTables = RPTSODISPPER.Database.Tables
             If FRMSTRING = "ORDERVSSTOCK" Then crTables = RPTORDERSTOCK.Database.Tables
+            If FRMSTRING = "SOSTATUSQUALITY" Then crTables = RPTSOSTATUSQUALITY.Database.Tables
 
             If FRMSTRING = "YARNSOSTATUSDTLS" Then crTables = RPTYARNSOSTATUSDTLS.Database.Tables
 
@@ -402,6 +404,10 @@ Public Class SaleInvoiceDesign
                 crpo.ReportSource = RPTSOSTATUSITEM
                 RPTSOSTATUSITEM.DataDefinition.FormulaFields("TYPE").Text = "'" & PENDINGSO & "'"
                 RPTSOSTATUSITEM.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+            ElseIf FRMSTRING = "SOSTATUSQUALITY" Then
+                crpo.ReportSource = RPTSOSTATUSQUALITY
+                RPTSOSTATUSQUALITY.DataDefinition.FormulaFields("TYPE").Text = "'" & PENDINGSO & "'"
+                RPTSOSTATUSQUALITY.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
             ElseIf FRMSTRING = "SOSTATUSITEMSMALL" Then
                 crpo.ReportSource = RPTSOSTATUSITEMSMALL
                 RPTSOSTATUSITEMSMALL.DataDefinition.FormulaFields("TYPE").Text = "'" & PENDINGSO & "'"
@@ -960,6 +966,12 @@ SKIPINVOICE:
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTSODISPPER.Export()
+            ElseIf FRMSTRING = "SOSTATUSQUALITY" Then
+                expo = RPTSOSTATUSQUALITY.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTSOSTATUSQUALITY.Export()
             ElseIf FRMSTRING = "ORDERVSSTOCK" Then
                 expo = RPTORDERSTOCK.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile

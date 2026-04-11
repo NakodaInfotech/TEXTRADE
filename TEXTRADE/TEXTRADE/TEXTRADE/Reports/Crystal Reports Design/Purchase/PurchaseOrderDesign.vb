@@ -10,6 +10,7 @@ Public Class PurchaseOrderDesign
     Public FORMULA As String
 
     Dim RPTPO As New POReport
+    Dim RPTPO_LAXMI As New POReport_LAXMI
     Dim RPTYARNPO As New YarnPOReport
     Dim RPTPO_YASHVI As New POReport_YASHVI
     Dim RPTSTORESPO As New StoresPurchaseOrderReport
@@ -72,6 +73,9 @@ Public Class PurchaseOrderDesign
             If FRMSTRING = "POREPORT" Then
                 If ClientName = "YASHVI" Then
                     crTables = RPTPO_YASHVI.Database.Tables
+                ElseIf ClientName = "LAXMI" Then
+                    crTables = RPTPO_LAXMI.Database.Tables
+
                 Else
                     crTables = RPTPO.Database.Tables
                 End If
@@ -92,6 +96,8 @@ Public Class PurchaseOrderDesign
             If FRMSTRING = "POREPORT" Then
                 If ClientName = "YASHVI" Then
                     crpo.ReportSource = RPTPO_YASHVI
+                ElseIf ClientName = "LAXMI" Then
+                    crpo.ReportSource = RPTPO_LAXMI
                 Else
                     RPTPO.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     If PRINTPARTYDESIGN = True Then RPTPO.DataDefinition.FormulaFields("PRINTPARTYDESIGN").Text = 1 Else RPTPO.DataDefinition.FormulaFields("PRINTPARTYDESIGN").Text = 0
@@ -186,6 +192,8 @@ Public Class PurchaseOrderDesign
             If FRMSTRING = "POREPORT" Then
                 If ClientName = "YASHVI" Then
                     OBJ = New POReport_YASHVI
+                ElseIf ClientName = "LAXMI" Then
+                    OBJ = New POReport_LAXMI
                 Else
                     OBJ = New POReport
                     If PRINTPARTYDESIGN = True Then OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
@@ -245,6 +253,13 @@ SKIPINVOICE:
                     expo.ExportFormatType = ExportFormatType.PortableDocFormat
                     expo.DestinationOptions = oDfDopt
                     RPTPO_YASHVI.Export()
+                ElseIf ClientName = "LAXMI" Then
+                    oDfDopt.DiskFileName = Application.StartupPath & "\POREPORT.PDF"
+                    expo = RPTPO_LAXMI.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTPO_LAXMI.Export()
                 Else
                     oDfDopt.DiskFileName = Application.StartupPath & "\POREPORT.PDF"
                     expo = RPTPO.ExportOptions

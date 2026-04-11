@@ -1,4 +1,5 @@
-﻿Imports System.ComponentModel
+﻿
+Imports System.ComponentModel
 Imports BL
 
 Public Class SOFilter
@@ -165,6 +166,8 @@ Public Class SOFilter
                     OBJGRN.FRMSTRING = "SOSTATUSIMG"
                 ElseIf RBDISPPER.Checked = True Then
                     OBJGRN.FRMSTRING = "SODISPPER"
+                ElseIf RDBQUALITY.Checked = True Then
+                    OBJGRN.FRMSTRING = "SOSTATUSQUALITY"
                 ElseIf RBORDERSTOCK.Checked = True And ClientName = "DRDRAPES" Then
                     OBJGRN.FRMSTRING = "ORDERVSSTOCK"
                 ElseIf RBORDERSTOCK.Checked = True Or RDBITEMGRIDREPORT.Checked = True Then

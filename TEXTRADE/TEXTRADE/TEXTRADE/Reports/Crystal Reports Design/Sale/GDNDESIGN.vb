@@ -15,6 +15,7 @@ Public Class GDNDESIGN
     Dim RPTJO_SVS As New JobOutReport_SVS
     Dim RPTJO_SAFFRON As New JOReport_SAFFRON
     Dim RPTJO As New JOReport_COMMON
+    Dim RPTGJO As New GREYJOReport_COMMON
     Dim RPTJO_MARKIN As New JOReport_MARKIN
     Dim RPTJO_KARAN As New JOReport_KARAN
     Dim RPTJO_CC As New JOReport_CC
@@ -32,6 +33,7 @@ Public Class GDNDESIGN
 
 
     Dim RPTJI As New JobInReport_COMMON
+    Dim RPTGJI As New GreyJobInReport_COMMON
     Dim RPTJI_SVS As New JobInReport_SVS
     Dim RPTJI_AXIS As New JIReport_AXIS
     Dim RPTJI_SNCM As New JobInReport_SNCM
@@ -206,6 +208,8 @@ Public Class GDNDESIGN
                 Else
                     crTables = RPTJO.Database.Tables
                 End If
+            ElseIf FRMSTRING = "GREYJOBOUT" Then
+                crTables = RPTGJO.Database.Tables
 
             ElseIf FRMSTRING = "JOTAKADETAILS" Then
                 crTables = RPTJOTAKA_SNCM.Database.Tables
@@ -231,6 +235,9 @@ Public Class GDNDESIGN
                 Else
                     crTables = RPTJI.Database.Tables
                 End If
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                crTables = RPTGJI.Database.Tables
+
             ElseIf FRMSTRING = "JOBINPS" Then
                 crTables = RPTJI_SNCM.Database.Tables
 
@@ -355,7 +362,7 @@ Public Class GDNDESIGN
                 crTable.ApplyLogOnInfo(crtableLogonInfo)
             Next
 
-            If FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Or FRMSTRING = "PROFORMA" Or FRMSTRING = "TRANSGDN" Or FRMSTRING = "JOBOUT" Or FRMSTRING = "JOTAKADETAILS" Or FRMSTRING = "JOBOUTBANNER" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBIN" Or FRMSTRING = "JOBINPS" Or FRMSTRING = "PACKINGSLIP" Or FRMSTRING = "GATEPASS" Or FRMSTRING = "GPPACKINGSLIP" Or FRMSTRING = "GPEXPPACKINGSLIP" Or FRMSTRING = "GODOWNTRANSFER" Or FRMSTRING = "GDNBANNER" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then crpo.SelectionFormula = FORMULA
+            If FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Or FRMSTRING = "PROFORMA" Or FRMSTRING = "TRANSGDN" Or FRMSTRING = "JOBOUT" Or FRMSTRING = "JOTAKADETAILS" Or FRMSTRING = "JOBOUTBANNER" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBIN" Or FRMSTRING = "GREYJOBIN" Or FRMSTRING = "JOBINPS" Or FRMSTRING = "PACKINGSLIP" Or FRMSTRING = "GATEPASS" Or FRMSTRING = "GPPACKINGSLIP" Or FRMSTRING = "GPEXPPACKINGSLIP" Or FRMSTRING = "GODOWNTRANSFER" Or FRMSTRING = "GDNBANNER" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Or FRMSTRING = "GREYGDN" Then crpo.SelectionFormula = FORMULA
             If FRMSTRING = "PARTYWISE" Or FRMSTRING = "PARTYWISEDETAILS" Or FRMSTRING = "DESIGNWISE" Or FRMSTRING = "DESIGNWISEDETAILS" Or FRMSTRING = "PENDINGDETAILS" Or FRMSTRING = "DAILYACTIVITY" Then crpo.SelectionFormula = selfor_ss
 
 
@@ -391,6 +398,10 @@ Public Class GDNDESIGN
                     If HIDEPCSDETAILS = True Then RPTJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     If (ClientName = "ANOX" Or ClientName = "SURYODAYA") AndAlso MsgBox("Print Images?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then RPTJO.DataDefinition.FormulaFields("SHOWIMAGE").Text = "1"
                 End If
+            ElseIf FRMSTRING = "GREYJOBOUT" Then
+                crpo.ReportSource = RPTGJO
+                If GSTRPT = True Then RPTGJO.DataDefinition.FormulaFields("GSTRPT").Text = 1 Else RPTGJO.DataDefinition.FormulaFields("GSTRPT").Text = 0
+                If HIDEPCSDETAILS = True Then RPTGJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGJO.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
 
             ElseIf FRMSTRING = "JOTAKADETAILS" Then
                 crpo.ReportSource = RPTJOTAKA_SNCM
@@ -415,6 +426,8 @@ Public Class GDNDESIGN
                 Else
                     crpo.ReportSource = RPTJI
                 End If
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                crpo.ReportSource = RPTGJI
             ElseIf FRMSTRING = "JOBINPS" Then
                 crpo.ReportSource = RPTJI_SNCM
                 If BLANKPAPER = True Then RPTJI_SNCM.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTJI_SNCM.DataDefinition.FormulaFields("WHITELABEL").Text = 0
@@ -635,10 +648,13 @@ Public Class GDNDESIGN
             If FRMSTRING = "JOBIN" Then
                 tempattachment = "JOBIN"
                 objmail.subject = "Job In"
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                tempattachment = "GREYJOBIN"
+                objmail.subject = "Grey Job In"
             ElseIf FRMSTRING = "JOBINPS" Then
                 tempattachment = "JOBINPS"
                 objmail.subject = "Job In Packing Slip"
-            ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
+            ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "GREYJOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
                 tempattachment = "JOBOUT"
                 objmail.subject = "Job Challan"
             ElseIf FRMSTRING = "GREYGDN" Then
@@ -1026,6 +1042,13 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTJI.Export()
                 End If
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                oDfDopt.DiskFileName = Application.StartupPath & "\GREYJOBIN.pdf"
+                expo = RPTGJI.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTGJI.Export()
             ElseIf FRMSTRING = "JOBINPS" Then
                 If ClientName = "SNCM" Then
                     oDfDopt.DiskFileName = Application.StartupPath & "\JOBINPS.pdf"
@@ -1135,6 +1158,13 @@ Public Class GDNDESIGN
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTJOBANNER.Export()
+            ElseIf FRMSTRING = "GREYJOBOUT" Then
+                oDfDopt.DiskFileName = Application.StartupPath & "\GREYJOBOUT.PDF"
+                expo = RPTGJO.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTGJO.Export()
 
             ElseIf FRMSTRING = "PENDINGDETAILS" Then
                 oDfDopt.DiskFileName = Application.StartupPath & "\PENDINGDETAILS.PDF"
@@ -1210,7 +1240,8 @@ Public Class GDNDESIGN
                     OBJ = New JOReport_COMMON
                     If ClientName = "ANOX" AndAlso MsgBox("Print Images?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJ.DataDefinition.FormulaFields("SHOWIMAGE").Text = "1"
                 End If
-
+            ElseIf FRMSTRING = "GREYJOBOUT" Then
+                OBJ = New GREYJOReport_COMMON
             ElseIf FRMSTRING = "EMBPRODUCTION" Then
                 OBJ = New EmbProdReport
 
@@ -1230,6 +1261,8 @@ Public Class GDNDESIGN
                 Else
                     OBJ = New JobInReport_COMMON
                 End If
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                OBJ = New GreyJobInReport_COMMON
 
             ElseIf FRMSTRING = "PACKINGSLIP" Then
                 If ClientName = "MARKIN" Then
@@ -1385,7 +1418,9 @@ Public Class GDNDESIGN
                     TEMPATTACHMENT = PARTYNAME & "JOBIN"
                     'ElseIf FRMSTRING = "JOBINPS" Then
                     '    TEMPATTACHMENT = "JOBINPS"
-                ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "EMBPRODUCTION" Then
+                ElseIf FRMSTRING = "GREYJOBIN" Then
+                    TEMPATTACHMENT = PARTYNAME & "GREYJOBIN"
+                ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "GREYJOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "EMBPRODUCTION" Then
                     TEMPATTACHMENT = PARTYNAME & "JO"
                 ElseIf FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Then
                     TEMPATTACHMENT = PARTYNAME & "GDN"
@@ -1434,6 +1469,7 @@ Public Class GDNDESIGN
                 If FRMSTRING = "PROFORMA" Then RPTPROFORMA.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
                 If FRMSTRING = "TRANSGDN" Then RPTTRANSGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
                 If FRMSTRING = "JOBOUT" Then RPTJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0) Else RPTJO_SAFFRON.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                If FRMSTRING = "GREYJOBOUT" Then RPTGJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
             End If
         Catch ex As Exception
             Throw ex
@@ -1463,7 +1499,9 @@ Public Class GDNDESIGN
             Dim TEMPATTACHMENT As String = ""
             If FRMSTRING = "JOBIN" Then
                 TEMPATTACHMENT = "JOBIN"
-            ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
+            ElseIf FRMSTRING = "GREYJOBIN" Then
+                TEMPATTACHMENT = "GREYJOBIN"
+            ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "GREYJOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "JOBOUTGARMENT" Or FRMSTRING = "EMBPRODUCTION" Then
                 TEMPATTACHMENT = "JOBOUT"
             ElseIf FRMSTRING = "GREYGDN" Then
                 TEMPATTACHMENT = "GREYCHALLAN"

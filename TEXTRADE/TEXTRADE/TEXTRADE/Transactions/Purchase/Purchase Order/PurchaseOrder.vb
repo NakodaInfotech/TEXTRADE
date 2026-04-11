@@ -714,6 +714,10 @@ Public Class PurchaseOrder
             If Val(row.Cells(grate.Index).Value) <> 0 Then
                 If ClientName = "AVIS" Then
                     If CMBPER.Text = "Pcs" Then row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(gQty.Index).Value), "0.00") Else row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(GMTRS.Index).Value), "0.00")
+
+                ElseIf ClientName = "LAXMI" Then
+                    row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(gQty.Index).Value), "0.00")
+
                 Else
                     row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(GMTRS.Index).Value), "0.00")
                 End If
@@ -1606,29 +1610,70 @@ LINE1:
     End Sub
 
     Private Sub cmbitemname_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbitemname.Validated
-        If cmbitemname.Text.Trim <> "" Then rateper() Else cmdok.Focus()
-        'GET CATEGORY
-        Dim OBJCMN As New ClsCommon
-        Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(CATEGORYMASTER.category_name, '') AS CATEGORY, ISNULL(UNITMASTER.unit_abbr, '') AS UNIT", "", " ITEMMASTER LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ITEM_YEARID = " & YearId)
-        If DT.Rows.Count > 0 Then
-            LBLCATEGORY.Text = DT.Rows(0).Item("CATEGORY")
-            If LCase(DT.Rows(0).Item("UNIT")) = "pcs" Then cmbqtyunit.Text = "Pcs"
-            If ClientName = "SIDDHGIRI" Or ClientName = "SNCM" And DT.Rows(0).Item("UNIT") <> "" Then cmbqtyunit.Text = DT.Rows(0).Item("UNIT")
-        End If
-        If ClientName = "SIDDHGIRI" And cmbitemname.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
-            DT = OBJCMN.SEARCH("  ISNULL(ITEM_RATE, 0) AS RATE,ISNULL(ITEM_FOLD, '') AS [DESC], ISNULL(CATEGORY_NAME,'') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEM_CATEGORYID = CATEGORY_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id ", " AND ITEMMASTER.item_name = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID='" & YearId & "' ")
+        Try
+
+            If cmbitemname.Text.Trim <> "" Then rateper() Else cmdok.Focus()
+
+            'GET CATEGORY
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(CATEGORYMASTER.category_name, '') AS CATEGORY, ISNULL(UNITMASTER.unit_abbr, '') AS UNIT", "", " ITEMMASTER LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ITEM_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
-                txtrate.Text = DT.Rows(0).Item("RATE")
+                LBLCATEGORY.Text = DT.Rows(0).Item("CATEGORY")
+                If LCase(DT.Rows(0).Item("UNIT")) = "pcs" Then cmbqtyunit.Text = "Pcs"
+                If ClientName = "SIDDHGIRI" Or ClientName = "SNCM" And DT.Rows(0).Item("UNIT") <> "" Then cmbqtyunit.Text = DT.Rows(0).Item("UNIT")
             End If
-        End If
-        If ClientName = "MAHAVIRPOLYCOT" Then
-            CMBDESIGN.Text = ""
-            cmbcolor.Text = ""
-        End If
-        If ClientName = "KARAN" AndAlso cmbname.Text <> "" And cmbitemname.Text <> "" Then
-            GRIDVIEW()
-        End If
+
+            If ClientName = "SIDDHGIRI" And cmbitemname.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
+                DT = OBJCMN.SEARCH("  ISNULL(ITEM_RATE, 0) AS RATE,ISNULL(ITEM_FOLD, '') AS [DESC], ISNULL(CATEGORY_NAME,'') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEM_CATEGORYID = CATEGORY_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id ", " AND ITEMMASTER.item_name = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID='" & YearId & "' ")
+                If DT.Rows.Count > 0 Then
+                    txtrate.Text = DT.Rows(0).Item("RATE")
+                End If
+            End If
+
+            If ClientName = "MAHAVIRPOLYCOT" Then
+                CMBDESIGN.Text = ""
+                cmbcolor.Text = ""
+            End If
+
+            If ClientName = "KARAN" AndAlso cmbname.Text <> "" And cmbitemname.Text <> "" Then
+                GRIDVIEW()
+            End If
+
+
+            'OPEN THIS BOX IF SHADES ARE PRESENT FOR SELECTED DESIGN
+            Dim DTITEM As New DataTable
+            DT = OBJCMN.SEARCH(" ITEMMASTER_COLOR.ITEM_SRNO", "", " ITEMMASTER INNER JOIN ITEMMASTER_COLOR ON ITEMMASTER.ITEM_id = ITEMMASTER_COLOR.ITEM_ID ", " AND ITEMMASTER.ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
+            If FETCHITEMWISESHADE = True And DT.Rows.Count > 0 Then
+                Dim OBJ As New SelectItemSO
+                OBJ.FRMSTRING = "PO"
+                OBJ.ITEMNAME = cmbitemname.Text.Trim
+                OBJ.DESIGNNO = CMBDESIGN.Text.Trim
+                OBJ.UNIT = cmbqtyunit.Text.Trim
+                OBJ.ShowDialog()
+                DTITEM = OBJ.DT
+            End If
+            If DTITEM.Rows.Count > 0 Then
+                For Each DTROWPS As DataRow In DTITEM.Rows
+                    gridpo.Rows.Add(0, cmbitemname.Text.Trim, "", "", "", "", "", "", 0, CMBDESIGN.Text.Trim, DTROWPS("COLOR"), "", "", Format(Val(DTROWPS("ORDERPCS")), "0.00"), cmbqtyunit.Text.Trim, Format(Val(DTROWPS("CUT")), "0.00"), Format(Val(DTROWPS("ORDERMTRS")), "0.00"), Val(txtrate.Text.Trim), "Mtrs", 0, 0, 0, 0, 0, cmbtoname.Text.Trim, 0)
+                Next
+                gridpo.FirstDisplayedScrollingRowIndex = gridpo.RowCount - 1
+                getsrno(gridpo)
+                total()
+
+                cmbitemname.Text = ""
+                CMBDESIGN.Text = ""
+                txtgridremarks.Clear()
+                txtrate.Clear()
+                cmbitemname.Focus()
+            End If
+
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
+
     Sub GRIDVIEW(Optional ROWNO As Integer = -1)
         Try
             GBYARNSTOCK.Visible = True

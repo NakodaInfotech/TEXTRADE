@@ -28,7 +28,7 @@ Public Class GreyJobOutDetails
 
     Private Sub GreyJobOutDetails_LOAD(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim DTROW() As DataRow
-        DTROW = USERRIGHTS.Select("FormName = 'JOB OUT'")
+        DTROW = USERRIGHTS.Select("FormName = 'Job Out'")
         USERADD = DTROW(0).Item(1)
         USEREDIT = DTROW(0).Item(2)
         USERVIEW = DTROW(0).Item(3)
@@ -118,19 +118,19 @@ Public Class GreyJobOutDetails
         Try
             Dim PATH As String = ""
             If FileIO.FileSystem.FileExists(PATH) = True Then FileIO.FileSystem.DeleteFile(PATH)
-            PATH = Application.StartupPath & "\Job Out Details.XLS"
+            PATH = Application.StartupPath & "\Grey Job Out Details.XLS"
 
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
             Dim PERIOD As String = ""
             PERIOD = AccFrom & " - " & AccTo
 
-            opti.SheetName = "Job Out Details"
+            opti.SheetName = "Grey Job Out Details"
             gridbill.ExportToXls(PATH, opti)
-            EXCELCMPHEADER(PATH, "Job Out Details", gridbill.VisibleColumns.Count + gridbill.GroupCount, "", PERIOD)
+            EXCELCMPHEADER(PATH, "Grey Job Out Details", gridbill.VisibleColumns.Count + gridbill.GroupCount, "", PERIOD)
 
         Catch ex As Exception
-            MsgBox("Job Out Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+            MsgBox("Grey Job Out Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
 
@@ -140,14 +140,14 @@ Public Class GreyJobOutDetails
             'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
             If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
                 If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
-                    MsgBox("Enter Proper Job Out Nos", MsgBoxStyle.Critical)
+                    MsgBox("Enter Proper Grey Job Out Nos", MsgBoxStyle.Critical)
                     Exit Sub
                 Else
-                    If MsgBox("Wish to Mail Job Out from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    If MsgBox("Wish to Mail Grey Job Out from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                     SERVERPROPDIRECT(True)
                 End If
             Else
-                If MsgBox("Wish to Mail Selected Job Out ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish to Mail Selected Grey Job Out ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPSELECTED(True)
                 End If
             End If
@@ -162,14 +162,14 @@ Public Class GreyJobOutDetails
             'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
             If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
                 If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
-                    MsgBox("Enter Proper Job Out Nos", MsgBoxStyle.Critical)
+                    MsgBox("Enter Proper Grey Job Out Nos", MsgBoxStyle.Critical)
                     Exit Sub
                 Else
-                    If MsgBox("Wish to Whatsapp Job Out from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    If MsgBox("Wish to Whatsapp Grey Job Out from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                     SERVERPROPDIRECT(False, True)
                 End If
             Else
-                If MsgBox("Wish to Whatsapp Selected Job Out ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish to Whatsapp Selected Grey Job Out ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPSELECTED(False, True)
                 End If
             End If
@@ -186,15 +186,15 @@ Public Class GreyJobOutDetails
             'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
             If Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0 Then
                 If Val(TXTFROM.Text.Trim) > Val(TXTTO.Text.Trim) Then
-                    MsgBox("Enter Proper Job Out Nos", MsgBoxStyle.Critical)
+                    MsgBox("Enter Proper Grey Job Out Nos", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
 
-                If MsgBox("Wish to Print Job Out from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish to Print Grey Job Out from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPDIRECT()
                 End If
             Else
-                If MsgBox("Wish to Print Selected Job Out Note ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish to Print Selected Grey Job Out Note ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPSELECTED()
                 End If
             End If
@@ -211,13 +211,13 @@ Public Class GreyJobOutDetails
             If INVOICEMAIL = False And WHATSAPP = False Then
                 If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
             End If
-            If MsgBox("Wish to Send Whatsapp of Job Out With GST...?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then GSTRPT = True
+            If MsgBox("Wish to Send Whatsapp of Grey Job Out With GST...?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then GSTRPT = True
             For I As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
                 Dim OBJJO As New GDNDESIGN
                 OBJJO.MdiParent = MDIMain
                 OBJJO.DIRECTPRINT = True
                 If ClientName = "MANSI" Then
-                    If MsgBox("Print Job Out for Garments", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJJO.FRMSTRING = "GREYJOBOUTGARMENT" Else OBJJO.FRMSTRING = "GREYJOBOUT"
+                    If MsgBox("Print Grey Job Out for Garments", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJJO.FRMSTRING = "GREYJOBOUTGARMENT" Else OBJJO.FRMSTRING = "GREYJOBOUT"
                 Else
                     OBJJO.FRMSTRING = "GREYJOBOUT"
                 End If
@@ -263,7 +263,7 @@ Public Class GreyJobOutDetails
                 If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
             End If
             Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
-            If MsgBox("Wish to Send Whatsapp of Job Out With GST...?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then GSTRPT = True
+            If MsgBox("Wish to Send Whatsapp of Grey Job Out With GST...?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then GSTRPT = True
             For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                 Dim ROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
 
@@ -271,7 +271,7 @@ Public Class GreyJobOutDetails
                 OBJJO.MdiParent = MDIMain
                 OBJJO.DIRECTPRINT = True
                 If ClientName = "MANSI" Then
-                    If MsgBox("Print Job Out for Garments", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJJO.FRMSTRING = "GREYJOBOUTGARMENT" Else OBJJO.FRMSTRING = "GREYJOBOUT"
+                    If MsgBox("Print Grey Job Out for Garments", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJJO.FRMSTRING = "GREYJOBOUTGARMENT" Else OBJJO.FRMSTRING = "GREYJOBOUT"
                 Else
                     OBJJO.FRMSTRING = "GREYJOBOUT"
                 End If
