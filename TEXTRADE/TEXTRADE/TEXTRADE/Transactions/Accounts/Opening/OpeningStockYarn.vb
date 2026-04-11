@@ -586,7 +586,6 @@ Public Class OpeningStockYarn
 
 
             If CMBYARNQUALITY.Text.Trim <> "" And Val(TXTWT.Text.Trim) > 0 Then
-                If ClientName <> "VAISHALI" And Val(TXTCONES.Text.Trim) = 0 Then Exit Sub
                 If cmbtype.Text.Trim = "GODOWNSTOCKYARN" Then
                     If CMBGODOWN.Text.Trim <> "" Then
                         CMBPROCESS.Text = ""
@@ -617,5 +616,11 @@ Public Class OpeningStockYarn
         End Try
     End Sub
 
-
+    Private Sub OpeningStockYarn_DoubleClick(sender As Object, e As EventArgs) Handles Me.DoubleClick
+        Try
+            TXTAMOUNT_Validated(Me, e)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
