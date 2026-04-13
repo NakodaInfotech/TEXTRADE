@@ -404,48 +404,51 @@ PRINT 1,1")
                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
                 End If
 
-                oWrite.WriteLine("SIZE 99.10 mm, 100.1 mm
-GAP 3 mm, 0 mm
+                oWrite.WriteLine("<xpml><page quantity='0' pitch='100.1 mm'></xpml>SIZE 99.10 mm, 100.1 mm
 DIRECTION 0,0
 REFERENCE 0,0
 OFFSET 0 mm
 SET PEEL OFF
 SET CUTTER OFF
 SET PARTIAL_CUTTER OFF
-SET TEAR ON
+<xpml></page></xpml><xpml><page quantity='1' pitch='100.1 mm'></xpml>SET TEAR ON
 CLS
 CODEPAGE 1252
-TEXT 721,594,""ROMAN.TTF"",180,1,16,""ITEM""
-TEXT 547,594,""ROMAN.TTF"",180,1,16,"":""
-TEXT 516,594,""ROMAN.TTF"",180,1,16,""" & ITEMNAME & """
-TEXT 721,530,""ROMAN.TTF"",180,1,16,""SHADE""
-TEXT 547,530,""ROMAN.TTF"",180,1,16,"":""
-TEXT 516,530,""ROMAN.TTF"",180,1,16,""" & SHADE & """
-TEXT 721,466,""ROMAN.TTF"",180,1,16,""LOT NO""
+TEXT 721,594,""0"",180,16,16,""ITEM""
+TEXT 547,594,""0"",180,16,16,"":"" 
+TEXT 516,594,""0"",180,16,16,""" & ITEMNAME & """
+TEXT 721,530,""0"",180,16,16,""SHADE""
+TEXT 547,530,""0"",180,16,16,"":"" 
+TEXT 516,530,""0"",180,16,16,""" &  SHADE & """
+TEXT 721,466,""0"",180,16,16,""LOT NO""
 TEXT 516,466,""0"",180,17,16,""" & LOTNO & """
-TEXT 547,466,""ROMAN.TTF"",180,1,16,"":""
-TEXT 721,402,""ROMAN.TTF"",180,1,16,""WIDTH""
+TEXT 547,466,""0"",180,16,16,""::""
+TEXT 721,402,""0"",180,16,16,""WIDTH""
 TEXT 516,402,""0"",180,17,16,""" & TEMPWIDTH & """
-TEXT 547,402,""ROMAN.TTF"",180,1,16,"":""
-TEXT 721,338,""ROMAN.TTF"",180,1,16,""MTRS""
-TEXT 516,338,""0"",180,17,16,""" & Format(Val(MTRS),"0.00") & """
-TEXT 547,338,""ROMAN.TTF"",180,1,16,"":""
-QRCODE 258,502,L,10,A,180,M2,S7,""" & BARCODE & """
-TEXT 253,274,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
-TEXT 663,178,""ROMAN.TTF"",180,1,16,""ITEM""
-TEXT 502,178,""ROMAN.TTF"",180,1,16,"":""
-TEXT 471,178,""ROMAN.TTF"",180,1,16,""" & ITEMNAME & """
-TEXT 663,119,""ROMAN.TTF"",180,1,16,""SHADE""
-TEXT 502,119,""ROMAN.TTF"",180,1,16,"":""
-TEXT 471,119,""ROMAN.TTF"",180,1,16,""" & SHADE & """
-TEXT 663,60,""ROMAN.TTF"",180,1,16,""MTRS""
-TEXT 471,60,""0"",180,17,16,""" & Format(Val(MTRS),"0.00") & """
-TEXT 502,60,""ROMAN.TTF"",180,1,16,"":""
+TEXT 547,402,""0"",180,16,16,"":""
+TEXT 721,338,""0"",180,16,16,""MTRS""
+TEXT 516,338,""0"",180,17,16,""" & Format(MTRS,"0.00") & """
+TEXT 547,338,""0"",180,16,16,"":""
+QRCODE 261,436,L,6,A,180,M2,S7,""" & BARCODE & """
+TEXT 298,291,""0"",180,12,12,""" & BARCODE & """
+TEXT 663,178,""0"",180,16,16,""ITEM""
+TEXT 502,178,""0"",180,16,16,"":""
+TEXT 471,178,""0"",180,16,16,""" & ITEMNAME & """
+TEXT 663,119,""0"",180,16,16,""SHADE""
+TEXT 503,119,""0"",180,16,16,"":""
+TEXT 471,119,""0"",180,16,16,""" & SHADE & """
+TEXT 663,60,""0"",180,16,16,""MTRS""
+TEXT 471,60,""0"",180,17,16,""" & Format(MTRS,"0.00") & """
+TEXT 502,60,""0"",180,16,16,"":""
 QRCODE 191,130,L,5,A,180,M2,S7,""" & BARCODE & """
-TEXT 721,274,""ROMAN.TTF"",180,1,16,""UNIT""
-TEXT 516,274,""0"",180,17,16,""" & UNIT & """
-TEXT 547,274,""ROMAN.TTF"",180,1,16,"":""
-PRINT 1,1")
+TEXT 721,274,""0"",180,16,16,""UNIT""
+TEXT 516,274,""0"",180,17,16,""LUMP""
+TEXT 547,274,""0"",180,16,16,"":""
+TEXT 172,530,""0"",180,16,16,""" & RACK & """
+TEXT 203,530,""0"",180,16,16,"":""
+TEXT 336,530,""0"",180,16,16,""RACK""
+PRINT 1,1
+<xpml></page></xpml><xpml><end/></xpml>")
                 oWrite.Dispose()
 
 
