@@ -298,7 +298,7 @@ Public Class SampleBarcode
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable = OBJCMN.search(" SB_BARCODE AS BARCODE ", "", " SAMPLEBARCODE ", " AND SB_NO = " & TXTNO.Text.Trim & " AND SB_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then TXTBARCODE.Text = DT.Rows(0).Item("BARCODE")
-            'PRINTBARCODE()
+            PRINTBARCODE()
         Catch ex As Exception
             Throw ex
         End Try
@@ -3259,6 +3259,8 @@ NEXTLINE:
                     Exit Sub
                 End If
                 SAVE()
+                ' BARCODE()
+
                 FILLGRID()
                 If ClientName = "KDFAB" Then
                     CMBDESIGNNO.Focus()
