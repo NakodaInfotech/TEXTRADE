@@ -116,7 +116,7 @@ Public Class OpeningStockYarn
 
         If GRIDDOUBLECLICK = False Then
 
-            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), TXTLOTNO.Text.Trim, CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, CMBPROCESS.Text.Trim, TXTREMARKS.Text.Trim, TXTLRNO.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBILLNO.Text.Trim, CMBTONAME.Text, CMBGODOWN.Text.Trim, Val(TXTBAGS.Text.Trim), Val(TXTWT.Text.Trim), Val(TXTCONES.Text.Trim), CMBRACK.Text.Trim, TXTGRIDREMARKS, TXTRATE.Text.Trim, CMBPER.Text.Trim, TXTAMOUNT.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
+            gridstock.Rows.Add(Val(txtsrno.Text.Trim), Val(TXTNO.Text.Trim), TXTLOTNO.Text.Trim, CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, CMBPROCESS.Text.Trim, TXTREMARKS.Text.Trim, TXTLRNO.Text.Trim, Format(LRDATE.Value.Date, "dd/MM/yyyy"), TXTBILLNO.Text.Trim, CMBTONAME.Text, CMBGODOWN.Text.Trim, Val(TXTBAGS.Text.Trim), Val(TXTWT.Text.Trim), Val(TXTCONES.Text.Trim), CMBRACK.Text.Trim, TXTGRIDREMARKS.Text.Trim, TXTRATE.Text.Trim, CMBPER.Text.Trim, TXTAMOUNT.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
             getsrno(gridstock)
             gridstock.FirstDisplayedScrollingRowIndex = gridstock.RowCount - 1
         ElseIf GRIDDOUBLECLICK = True Then
@@ -137,7 +137,7 @@ Public Class OpeningStockYarn
             gridstock.Item(GWT.Index, TEMPROW).Value = Val(TXTWT.Text.Trim)
             gridstock.Item(GCONES.Index, TEMPROW).Value = Val(TXTCONES.Text.Trim)
             gridstock.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
-            gridstock.Item(GGRIDREMARKS.Index, TEMPROW).Value = Val(TXTGRIDREMARKS.Text.Trim)
+            gridstock.Item(GGRIDREMARKS.Index, TEMPROW).Value = TXTGRIDREMARKS.Text.Trim
             gridstock.Item(GRATE.Index, TEMPROW).Value = Val(TXTRATE.Text.Trim)
             gridstock.Item(GPER.Index, TEMPROW).Value = CMBPER.Text.Trim
             gridstock.Item(GAMOUNT.Index, TEMPROW).Value = Val(TXTAMOUNT.Text.Trim)
