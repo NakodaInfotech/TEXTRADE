@@ -200,7 +200,7 @@ Public Class GRN
             If ClientName = "VINTAGEINDIA" Then
                 Me.Text = "Inward"
                 LBLGRN.Text = "Inward"
-                'TXTLOTNO.Text = txtgrnno.Text
+
             End If
 
 
@@ -269,6 +269,12 @@ Public Class GRN
             TXTLOTNO.Text = txtgrnno.Text.Trim
             TXTBALENO.Text = gridgrn.RowCount + 1
             cmbGodown.Enabled = True
+        End If
+        If ClientName = "VINTAGEINDIA" And FRMSTRING = "GRN FANCY" Then
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH(" MAX (grn_plotno) AS LOTNO  ", "", " GRN ", "   AND GRN_TYPE = 'FANCY MATERIAL' AND GRN_YEARID = " & YearId)
+
+            TXTLOTNO.Text = DT.Rows(0)("LOTNO").ToString()
         End If
         CMBSHIPTO.Text = ""
         TXTPARTYITEMNAME.Clear()
@@ -3771,10 +3777,10 @@ LINE1:
 
 
             If ClientName = "VINTAGEINDIA" Then
-                TXTLOTNO.Text = txtgrnno.Text.Trim
+                'TXTLOTNO.Text = txtgrnno.Text.Trim
                 GBALENO.HeaderText = "Pcs No"
                 cmdselectPO.TabStop = False
-                TXTLOTNO.TabStop = False
+                'TXTLOTNO.TabStop = False
                 'txtpono.BackColor = Color.Whites
                 txtpono.TabStop = False
                 txtpono.ReadOnly = False
