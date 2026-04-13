@@ -310,7 +310,11 @@ Public Class ShrinkageEntry
 
     Private Sub CMBDYEINGNAME_Enter(sender As Object, e As EventArgs) Handles CMBDYEINGNAME.Enter
         Try
-            If CMBDYEINGNAME.Text.Trim = "" Then fillname(CMBDYEINGNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+            If ClientName = "VINTAGEINDIA" Then
+                If CMBDYEINGNAME.Text.Trim = "" Then FILLNAME(CMBDYEINGNAME, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
+            Else
+                If CMBDYEINGNAME.Text.Trim = "" Then FILLNAME(CMBDYEINGNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='ACCOUNTS'")
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -334,7 +338,11 @@ Public Class ShrinkageEntry
 
     Private Sub CMBDYEINGNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBDYEINGNAME.Validating
         Try
-            If CMBDYEINGNAME.Text.Trim <> "" Then namevalidate(CMBDYEINGNAME, CMBCODE, e, Me, TXTADD, " AND GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry CREDITORS", "ACCOUNTS")
+            If ClientName = "VINTAGEINDIA" Then
+                If CMBDYEINGNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBDYEINGNAME, CMBCODE, e, Me, TXTADD, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors')", "Sundry debtors", "ACCOUNTS")
+            Else
+                If CMBDYEINGNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBDYEINGNAME, CMBCODE, e, Me, TXTADD, " AND GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry CREDITORS", "ACCOUNTS")
+            End If
         Catch ex As Exception
             Throw ex
         End Try

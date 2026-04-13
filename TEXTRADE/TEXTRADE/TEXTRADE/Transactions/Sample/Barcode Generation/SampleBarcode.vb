@@ -298,7 +298,7 @@ Public Class SampleBarcode
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable = OBJCMN.search(" SB_BARCODE AS BARCODE ", "", " SAMPLEBARCODE ", " AND SB_NO = " & TXTNO.Text.Trim & " AND SB_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then TXTBARCODE.Text = DT.Rows(0).Item("BARCODE")
-            'PRINTBARCODE()
+            PRINTBARCODE()
         Catch ex As Exception
             Throw ex
         End Try
@@ -469,15 +469,15 @@ Public Class SampleBarcode
 ^A0N,17,23^FD" & TEMPSHADE1 & "^FS
 ^FO288,72
 ^BQN,2,4^FDLA," & TXTBARCODE.Text.Trim & "^FS
-^FT8,138
+^FT8,139
 ^A0N,17,23^FD" & TEMPSHADE2 & "^FS
-^FT8,167
+^FT184,112
 ^A0N,17,23^FD" & TEMPSHADE3 & "^FS
-^FT184,138
-^A0N,17,23^FD" & TEMPSHADE1MTRS & "^FS
-^FT184,111
+^FT184,139
 ^A0N,17,23^FD" & TEMPSHADE2MTRS & "^FS
-^FT184,167
+^FT184,112
+^A0N,17,23^FD" & TEMPSHADE1MTRS & "^FS
+^FT184,168
 ^A0N,17,23^FD" & TEMPSHADE3MTRS & "^FS
 ^PQ1,0,1,Y
 ^XZ
@@ -1890,19 +1890,19 @@ PRINT 1,1")
 ^A0N,17,23^FD " & ROW("ITEMNAME") & "^FS
 ^FT8,64
 ^A0N,23,31^FD" & ROW("DESIGNNO") & "^FS
-^FT8,111
+^FT8,112
 ^A0N,17,23^FD" & TEMPSHADE1 & "^FS
 ^FO288,72
 ^BQN,2,4^FDLA," & ROW("BARCODE") & "^FS
-^FT8,138
+^FT8,139
 ^A0N,17,23^FD" & TEMPSHADE2 & "^FS
-^FT8,167
+^FT8,168
 ^A0N,17,23^FD" & TEMPSHADE3 & "^FS
-^FT184,138
-^A0N,17,23^FD" & TEMPSHADE1MTRS & "^FS
-^FT184,111
+^FT184,139
 ^A0N,17,23^FD" & TEMPSHADE2MTRS & "^FS
-^FT184,167
+^FT184,112
+^A0N,17,23^FD" & TEMPSHADE1MTRS & "^FS
+^FT184,168
 ^A0N,17,23^FD" & TEMPSHADE3MTRS & "^FS
 ^PQ1,0,1,Y
 ^XZ
@@ -3259,6 +3259,8 @@ NEXTLINE:
                     Exit Sub
                 End If
                 SAVE()
+                ' BARCODE()
+
                 FILLGRID()
                 If ClientName = "KDFAB" Then
                     CMBDESIGNNO.Focus()
