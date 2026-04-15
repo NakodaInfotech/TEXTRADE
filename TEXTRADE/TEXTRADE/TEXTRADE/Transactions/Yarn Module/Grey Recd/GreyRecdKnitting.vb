@@ -671,7 +671,7 @@ LINE1:
                     End If
 
 
-                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, "", ROW.Cells(GROLLNO.Index).Value, "", Val(ROW.Cells(GMTRS.Index).Value), Val(QTY), 0, ROW.Cells(GRACK.Index).Value, TEMPHEADER, "", "", "", "", ROW.Cells(GSHELF.Index).Value, GREYDATE.Text)
+                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, "", ROW.Cells(GROLLNO.Index).Value, "", Val(ROW.Cells(GMTRS.Index).Value), Val(QTY), 0, ROW.Cells(GRACK.Index).Value, TEMPHEADER, "", 0, "", "", ROW.Cells(GSHELF.Index).Value, GREYDATE.Text)
 NEXTLINE:
 
                 Next
