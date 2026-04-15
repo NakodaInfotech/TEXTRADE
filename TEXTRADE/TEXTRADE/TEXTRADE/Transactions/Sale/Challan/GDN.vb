@@ -1392,7 +1392,8 @@ NEXTLINE:
                         If ClientName = "RMANILAL" Or ClientName = "SUNCOTT" Then
                             BALENO = Val(txtgdnno.Text.Trim)
                         Else
-                            If row.Cells(GBALENO.Index).Value <> Nothing Then BALENO = row.Cells(GBALENO.Index).Value.ToString Else BALENO = ""
+                            'If row.Cells(GBALENO.Index).Value <> Nothing Then BALENO = row.Cells(GBALENO.Index).Value.ToString Else BALENO = ""
+                            If row.Cells(GBALENO.Index).Value IsNot Nothing AndAlso Not IsDBNull(row.Cells(GBALENO.Index).Value) Then BALENO = row.Cells(GBALENO.Index).Value.ToString Else BALENO = ""
                         End If
                         PCS = Val(row.Cells(Gpcs.Index).Value)
                         UNIT = row.Cells(GUNIT.Index).Value.ToString
@@ -1432,7 +1433,8 @@ NEXTLINE:
                         If ClientName = "RMANILAL" Or ClientName = "SUNCOTT" Then
                             BALENO = BALENO & "|" & Val(txtgdnno.Text.Trim)
                         Else
-                            If row.Cells(GBALENO.Index).Value <> Nothing Then BALENO = BALENO & "|" & row.Cells(GBALENO.Index).Value.ToString Else BALENO = BALENO & "|" & ""
+                            If row.Cells(GBALENO.Index).Value IsNot Nothing AndAlso Not IsDBNull(row.Cells(GBALENO.Index).Value) Then BALENO = BALENO & "|" & row.Cells(GBALENO.Index).Value.ToString Else BALENO = BALENO & "|" & ""
+
                         End If
                         PCS = PCS & "|" & Val(row.Cells(Gpcs.Index).Value)
                         UNIT = UNIT & "|" & row.Cells(GUNIT.Index).Value.ToString
