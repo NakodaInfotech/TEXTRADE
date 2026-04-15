@@ -1058,7 +1058,7 @@ NEXTLINE:
 
                     'ADD IN ITEMDEATSILS GRID
                     If ClientName = "MMC" Then
-                        GRIDYARN.Rows.Add(Val(GRIDYARN.RowCount + 1), DTROW("YARNQUALITY"), "", DTROW("DESIGNNO"), "", "", DTROW("COLOR"), "", "", Format(DTROW("BAGS"), "0.00"), Format(DTROW("WT"), "0.00"), 0, "", Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", Format(Val(DTROW("RATE")), "0.00"), "Wt", 0, "")
+                        GRIDYARN.Rows.Add(Val(GRIDYARN.RowCount + 1), DTROW("YARNQUALITY"), "", DTROW("DESIGNNO"), "", "", DTROW("COLOR"), "", "", Format(Val(DTROW("BAGS")), "0.00"), Format(Val(DTROW("WT")), "0.00"), 0, "", Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", Format(Val(DTROW("RATE")), "0.00"), "Wt", 0, "")
                     End If
 NEXTLINE:
                 Next

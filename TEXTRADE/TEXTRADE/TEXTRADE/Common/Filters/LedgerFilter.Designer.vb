@@ -30,8 +30,10 @@ Partial Class LedgerFilter
         Me.CHKREMARKS = New System.Windows.Forms.CheckBox()
         Me.CHKPANNO = New System.Windows.Forms.CheckBox()
         Me.CMBSIGN = New System.Windows.Forms.ComboBox()
+        Me.RBPARTYSTATEMENT = New System.Windows.Forms.RadioButton()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TXTAMT = New System.Windows.Forms.TextBox()
+        Me.RBTFORMAT = New System.Windows.Forms.RadioButton()
         Me.CHKHEADER = New System.Windows.Forms.CheckBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.RBSUMMRUNBAL = New System.Windows.Forms.RadioButton()
@@ -40,10 +42,8 @@ Partial Class LedgerFilter
         Me.RBCONFIRMATIONSUMM = New System.Windows.Forms.RadioButton()
         Me.RBPARTYSTATEMENTDTLS = New System.Windows.Forms.RadioButton()
         Me.RBCONFIRMATION = New System.Windows.Forms.RadioButton()
-        Me.RBPARTYSTATEMENT = New System.Windows.Forms.RadioButton()
         Me.RBSUMMARY = New System.Windows.Forms.RadioButton()
         Me.RBDETAILS = New System.Windows.Forms.RadioButton()
-        Me.RBTFORMAT = New System.Windows.Forms.RadioButton()
         Me.CHKINDEX = New System.Windows.Forms.CheckBox()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -55,6 +55,8 @@ Partial Class LedgerFilter
         Me.GUNDER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAGENTNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPARTYWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAGENTWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.RBSELECTED = New System.Windows.Forms.RadioButton()
         Me.RBALL = New System.Windows.Forms.RadioButton()
@@ -78,8 +80,6 @@ Partial Class LedgerFilter
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.lblname = New System.Windows.Forms.Label()
         Me.cmbname = New System.Windows.Forms.ComboBox()
-        Me.GPARTYWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GAGENTWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -99,10 +99,13 @@ Partial Class LedgerFilter
         Me.BlendPanel1.Controls.Add(Me.CMBGROUPOFCOMPANIES)
         Me.BlendPanel1.Controls.Add(Me.Label47)
         Me.BlendPanel1.Controls.Add(Me.CHKREMARKS)
+        Me.BlendPanel1.Controls.Add(Me.RBPARTYSTATEMENTDTLS)
         Me.BlendPanel1.Controls.Add(Me.CHKPANNO)
         Me.BlendPanel1.Controls.Add(Me.CMBSIGN)
+        Me.BlendPanel1.Controls.Add(Me.RBPARTYSTATEMENT)
         Me.BlendPanel1.Controls.Add(Me.Label6)
         Me.BlendPanel1.Controls.Add(Me.TXTAMT)
+        Me.BlendPanel1.Controls.Add(Me.RBTFORMAT)
         Me.BlendPanel1.Controls.Add(Me.CHKHEADER)
         Me.BlendPanel1.Controls.Add(Me.GroupBox5)
         Me.BlendPanel1.Controls.Add(Me.CHKINDEX)
@@ -202,6 +205,18 @@ Partial Class LedgerFilter
         Me.CMBSIGN.Size = New System.Drawing.Size(52, 23)
         Me.CMBSIGN.TabIndex = 669
         '
+        'RBPARTYSTATEMENT
+        '
+        Me.RBPARTYSTATEMENT.AutoSize = True
+        Me.RBPARTYSTATEMENT.BackColor = System.Drawing.Color.Transparent
+        Me.RBPARTYSTATEMENT.Location = New System.Drawing.Point(1031, 550)
+        Me.RBPARTYSTATEMENT.Name = "RBPARTYSTATEMENT"
+        Me.RBPARTYSTATEMENT.Size = New System.Drawing.Size(159, 19)
+        Me.RBPARTYSTATEMENT.TabIndex = 3
+        Me.RBPARTYSTATEMENT.Text = "Party Statement (F Form)"
+        Me.RBPARTYSTATEMENT.UseVisualStyleBackColor = False
+        Me.RBPARTYSTATEMENT.Visible = False
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -219,6 +234,18 @@ Partial Class LedgerFilter
         Me.TXTAMT.Name = "TXTAMT"
         Me.TXTAMT.Size = New System.Drawing.Size(71, 23)
         Me.TXTAMT.TabIndex = 668
+        '
+        'RBTFORMAT
+        '
+        Me.RBTFORMAT.AutoSize = True
+        Me.RBTFORMAT.BackColor = System.Drawing.Color.Transparent
+        Me.RBTFORMAT.Location = New System.Drawing.Point(1031, 526)
+        Me.RBTFORMAT.Name = "RBTFORMAT"
+        Me.RBTFORMAT.Size = New System.Drawing.Size(73, 19)
+        Me.RBTFORMAT.TabIndex = 0
+        Me.RBTFORMAT.Text = "T Format"
+        Me.RBTFORMAT.UseVisualStyleBackColor = False
+        Me.RBTFORMAT.Visible = False
         '
         'CHKHEADER
         '
@@ -242,12 +269,9 @@ Partial Class LedgerFilter
         Me.GroupBox5.Controls.Add(Me.RBPARTYMONTHLY)
         Me.GroupBox5.Controls.Add(Me.RBPARTYSUMM)
         Me.GroupBox5.Controls.Add(Me.RBCONFIRMATIONSUMM)
-        Me.GroupBox5.Controls.Add(Me.RBPARTYSTATEMENTDTLS)
         Me.GroupBox5.Controls.Add(Me.RBCONFIRMATION)
-        Me.GroupBox5.Controls.Add(Me.RBPARTYSTATEMENT)
         Me.GroupBox5.Controls.Add(Me.RBSUMMARY)
         Me.GroupBox5.Controls.Add(Me.RBDETAILS)
-        Me.GroupBox5.Controls.Add(Me.RBTFORMAT)
         Me.GroupBox5.Location = New System.Drawing.Point(993, 161)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(229, 353)
@@ -258,7 +282,7 @@ Partial Class LedgerFilter
         '
         Me.RBSUMMRUNBAL.AutoSize = True
         Me.RBSUMMRUNBAL.BackColor = System.Drawing.Color.Transparent
-        Me.RBSUMMRUNBAL.Location = New System.Drawing.Point(13, 237)
+        Me.RBSUMMRUNBAL.Location = New System.Drawing.Point(13, 161)
         Me.RBSUMMRUNBAL.Name = "RBSUMMRUNBAL"
         Me.RBSUMMRUNBAL.Size = New System.Drawing.Size(157, 19)
         Me.RBSUMMRUNBAL.TabIndex = 9
@@ -269,7 +293,7 @@ Partial Class LedgerFilter
         '
         Me.RBPARTYMONTHLY.AutoSize = True
         Me.RBPARTYMONTHLY.BackColor = System.Drawing.Color.Transparent
-        Me.RBPARTYMONTHLY.Location = New System.Drawing.Point(13, 212)
+        Me.RBPARTYMONTHLY.Location = New System.Drawing.Point(13, 137)
         Me.RBPARTYMONTHLY.Name = "RBPARTYMONTHLY"
         Me.RBPARTYMONTHLY.Size = New System.Drawing.Size(184, 19)
         Me.RBPARTYMONTHLY.TabIndex = 8
@@ -280,7 +304,7 @@ Partial Class LedgerFilter
         '
         Me.RBPARTYSUMM.AutoSize = True
         Me.RBPARTYSUMM.BackColor = System.Drawing.Color.Transparent
-        Me.RBPARTYSUMM.Location = New System.Drawing.Point(13, 187)
+        Me.RBPARTYSUMM.Location = New System.Drawing.Point(13, 113)
         Me.RBPARTYSUMM.Name = "RBPARTYSUMM"
         Me.RBPARTYSUMM.Size = New System.Drawing.Size(108, 19)
         Me.RBPARTYSUMM.TabIndex = 7
@@ -291,7 +315,7 @@ Partial Class LedgerFilter
         '
         Me.RBCONFIRMATIONSUMM.AutoSize = True
         Me.RBCONFIRMATIONSUMM.BackColor = System.Drawing.Color.Transparent
-        Me.RBCONFIRMATIONSUMM.Location = New System.Drawing.Point(13, 162)
+        Me.RBCONFIRMATIONSUMM.Location = New System.Drawing.Point(13, 89)
         Me.RBCONFIRMATIONSUMM.Name = "RBCONFIRMATIONSUMM"
         Me.RBCONFIRMATIONSUMM.Size = New System.Drawing.Size(205, 19)
         Me.RBCONFIRMATIONSUMM.TabIndex = 6
@@ -302,34 +326,24 @@ Partial Class LedgerFilter
         '
         Me.RBPARTYSTATEMENTDTLS.AutoSize = True
         Me.RBPARTYSTATEMENTDTLS.BackColor = System.Drawing.Color.Transparent
-        Me.RBPARTYSTATEMENTDTLS.Location = New System.Drawing.Point(13, 113)
+        Me.RBPARTYSTATEMENTDTLS.Location = New System.Drawing.Point(1037, 562)
         Me.RBPARTYSTATEMENTDTLS.Name = "RBPARTYSTATEMENTDTLS"
         Me.RBPARTYSTATEMENTDTLS.Size = New System.Drawing.Size(153, 19)
         Me.RBPARTYSTATEMENTDTLS.TabIndex = 5
         Me.RBPARTYSTATEMENTDTLS.Text = "Party Statement Details"
         Me.RBPARTYSTATEMENTDTLS.UseVisualStyleBackColor = False
+        Me.RBPARTYSTATEMENTDTLS.Visible = False
         '
         'RBCONFIRMATION
         '
         Me.RBCONFIRMATION.AutoSize = True
         Me.RBCONFIRMATION.BackColor = System.Drawing.Color.Transparent
-        Me.RBCONFIRMATION.Location = New System.Drawing.Point(13, 137)
+        Me.RBCONFIRMATION.Location = New System.Drawing.Point(13, 65)
         Me.RBCONFIRMATION.Name = "RBCONFIRMATION"
         Me.RBCONFIRMATION.Size = New System.Drawing.Size(161, 19)
         Me.RBCONFIRMATION.TabIndex = 4
         Me.RBCONFIRMATION.Text = "Party Confirmation Letter"
         Me.RBCONFIRMATION.UseVisualStyleBackColor = False
-        '
-        'RBPARTYSTATEMENT
-        '
-        Me.RBPARTYSTATEMENT.AutoSize = True
-        Me.RBPARTYSTATEMENT.BackColor = System.Drawing.Color.Transparent
-        Me.RBPARTYSTATEMENT.Location = New System.Drawing.Point(13, 89)
-        Me.RBPARTYSTATEMENT.Name = "RBPARTYSTATEMENT"
-        Me.RBPARTYSTATEMENT.Size = New System.Drawing.Size(159, 19)
-        Me.RBPARTYSTATEMENT.TabIndex = 3
-        Me.RBPARTYSTATEMENT.Text = "Party Statement (F Form)"
-        Me.RBPARTYSTATEMENT.UseVisualStyleBackColor = False
         '
         'RBSUMMARY
         '
@@ -354,17 +368,6 @@ Partial Class LedgerFilter
         Me.RBDETAILS.TabIndex = 1
         Me.RBDETAILS.Text = "Details"
         Me.RBDETAILS.UseVisualStyleBackColor = False
-        '
-        'RBTFORMAT
-        '
-        Me.RBTFORMAT.AutoSize = True
-        Me.RBTFORMAT.BackColor = System.Drawing.Color.Transparent
-        Me.RBTFORMAT.Location = New System.Drawing.Point(13, 65)
-        Me.RBTFORMAT.Name = "RBTFORMAT"
-        Me.RBTFORMAT.Size = New System.Drawing.Size(73, 19)
-        Me.RBTFORMAT.TabIndex = 0
-        Me.RBTFORMAT.Text = "T Format"
-        Me.RBTFORMAT.UseVisualStyleBackColor = False
         '
         'CHKINDEX
         '
@@ -485,6 +488,18 @@ Partial Class LedgerFilter
         Me.GAGENTNAME.Visible = True
         Me.GAGENTNAME.VisibleIndex = 4
         Me.GAGENTNAME.Width = 200
+        '
+        'GPARTYWHATSAPP
+        '
+        Me.GPARTYWHATSAPP.Caption = "Party Whatsapp"
+        Me.GPARTYWHATSAPP.FieldName = "PARTYWHATSAPP"
+        Me.GPARTYWHATSAPP.Name = "GPARTYWHATSAPP"
+        '
+        'GAGENTWHATSAPP
+        '
+        Me.GAGENTWHATSAPP.Caption = "AGENT WHATSAPP"
+        Me.GAGENTWHATSAPP.FieldName = "AGENTWHATSAPP"
+        Me.GAGENTWHATSAPP.Name = "GAGENTWHATSAPP"
         '
         'GroupBox4
         '
@@ -746,18 +761,6 @@ Partial Class LedgerFilter
         Me.cmbname.Name = "cmbname"
         Me.cmbname.Size = New System.Drawing.Size(264, 23)
         Me.cmbname.TabIndex = 0
-        '
-        'GPARTYWHATSAPP
-        '
-        Me.GPARTYWHATSAPP.Caption = "Party Whatsapp"
-        Me.GPARTYWHATSAPP.FieldName = "PARTYWHATSAPP"
-        Me.GPARTYWHATSAPP.Name = "GPARTYWHATSAPP"
-        '
-        'GAGENTWHATSAPP
-        '
-        Me.GAGENTWHATSAPP.Caption = "AGENT WHATSAPP"
-        Me.GAGENTWHATSAPP.FieldName = "AGENTWHATSAPP"
-        Me.GAGENTWHATSAPP.Name = "GAGENTWHATSAPP"
         '
         'LedgerFilter
         '

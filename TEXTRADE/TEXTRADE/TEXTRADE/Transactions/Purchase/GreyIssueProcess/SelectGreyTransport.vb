@@ -64,7 +64,7 @@ Public Class SelectGreyTransport
 
             Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
 
-            If Val(SELECTEDROWS.Length) > 1 And ClientName <> "OWAIS" Then
+            If Val(SELECTEDROWS.Length) > 1 And ClientName <> "MMC" Then
                 MsgBox("You Can Select Only One Entry")
                 Exit Sub
             End If

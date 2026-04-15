@@ -29,7 +29,7 @@ Public Class PaymentMaster
         Try
 
             If ClientName = "SUPEEMA" Then Exit Sub
-            If ClientName = "SUPEEMA" Then Exit Sub
+            If ClientName = "NTC" Then Exit Sub
             Dim USERACCOUNTSADD, USERACCOUNTSEDIT, USERACCOUNTSVIEW, USERACCOUNTSDELETE As Boolean
             Dim DTACCOUNTSROW() As DataRow
             DTACCOUNTSROW = USERRIGHTS.Select("FormName = 'ACCOUNT REPORTS'")

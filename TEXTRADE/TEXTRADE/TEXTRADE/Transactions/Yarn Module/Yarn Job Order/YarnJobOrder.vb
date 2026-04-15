@@ -605,7 +605,7 @@ LINE1:
                 'IF barcode is used the BARCODE printING WILL BE BLOCKED
                 'If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
 
-                BARCODEPRINTING(ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value)
+                BARCODEPRINTING(ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, ROW.Cells(GPARENTITEM.Index).Value)
 
 NEXTLINE:
 
@@ -633,7 +633,7 @@ NEXTLINE:
 
 
 
-    Sub BARCODEPRINTING(ITEMNAME As String, DESIGN As String, SHADE As String)
+    Sub BARCODEPRINTING(ITEMNAME As String, DESIGN As String, SHADE As String, LOOMNO As String)
         Try
 
             Dim dirresults As String = ""
@@ -642,41 +642,40 @@ NEXTLINE:
 
 
             If ClientName = "MMC" Then
-                oWrite.WriteLine("Size 101.6 mm, 76.2 mm")
-                oWrite.WriteLine("GAP 3 mm, 0 mm")
-                oWrite.WriteLine("DIRECTION 0, 0")
-                oWrite.WriteLine("REFERENCE 0, 0")
-                oWrite.WriteLine("OFFSET 0 mm")
-                oWrite.WriteLine("SET PEEL OFF")
-                oWrite.WriteLine("SET CUTTER OFF")
-                oWrite.WriteLine("SET PARTIAL_CUTTER OFF")
-                oWrite.WriteLine("SET TEAR ON")
-                oWrite.WriteLine("CLS")
-                oWrite.WriteLine("CODEPAGE 1252")
-                oWrite.WriteLine("Text 777, 571, ""ROMAN.TTF"", 180, 1, 18, ""ITEM""")
-                oWrite.WriteLine("Text 608, 571, ""ROMAN.TTF"", 180, 1, 18, "":""")
-                oWrite.WriteLine("TEXT 777,571,""ROMAN.TTF"",180,1,18,""" & ITEMNAME & """")
-                oWrite.WriteLine("Text 777, 491, ""ROMAN.TTF"", 180, 1, 18, ""D.NO""")
-                oWrite.WriteLine("TEXT 608,491,""ROMAN.TTF"",180,1,18,, 1, 18, "": """)
-                oWrite.WriteLine("Text 579, 491, ""ROMAN.TTF"", 180, 1, 18, """ & DESIGN & """")
-                oWrite.WriteLine("Text 777, 412, ""ROMAN.TTF"", 180, 1, 18, ""SHADE""")
-                oWrite.WriteLine("Text 608, 412, ""ROMAN.TTF"", 180, 1, 18, "": """)
-                oWrite.WriteLine("Text 579, 412, ""ROMAN.TTF"", 180, 1, 18, """ & SHADE & """")
-                oWrite.WriteLine("Text 777, 332, ""ROMAN.TTF"", 180, 1, 18, ""SO NO""")
-                oWrite.WriteLine("Text 608, 332, ""ROMAN.TTF"", 180, 1, 18, "":""")
-                oWrite.WriteLine("Text 579, 332, ""ROMAN.TTF"", 180, 1, 18, "" """)
-                oWrite.WriteLine("Text 777, 253, ""ROMAN.TTF"", 180, 1, 18, ""MTRS""")
-                oWrite.WriteLine("Text 608, 253, ""ROMAN.TTF"", 180, 1, 18, "":""")
-                oWrite.WriteLine("Text 777, 173, ""ROMAN.TTF"", 180, 1, 18, ""TAKA""")
-                oWrite.WriteLine("Text 608, 173, ""ROMAN.TTF"", 180, 1, 18, "":""")
-                oWrite.WriteLine("Text 366, 253, ""ROMAN.TTF"", 180, 1, 18, ""LOOM""")
-                oWrite.WriteLine("Text 219, 253, ""ROMAN.TTF"", 180, 1, 18, "":""")
-                oWrite.WriteLine("Text 777, 94, ""ROMAN.TTF"", 180, 1, 18, ""WIDTH""")
-                oWrite.WriteLine("Text 608, 94, ""ROMAN.TTF"", 180, 1, 18, "":""")
-                oWrite.WriteLine("Text 331, 94, ""ROMAN.TTF"", 180, 1, 18, ""SIZE""")
-                oWrite.WriteLine("Text 219, 94, ""ROMAN.TTF"", 180, 1, 18, "":""")
-                oWrite.WriteLine("Text 194, 253, ""ROMAN.TTF"", 180, 1, 18, "" """)
-                oWrite.WriteLine("Print 1, 1")
+                oWrite.WriteLine("SIZE 101.6 mm, 76.2 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 777,571,""ROMAN.TTF"",180,1,18,""ITEM""
+TEXT 608,571,""ROMAN.TTF"",180,1,18,"":""
+TEXT 579,571,""ROMAN.TTF"",180,1,18,""" & ITEMNAME & """
+TEXT 777,491,""ROMAN.TTF"",180,1,18,""D.NO""
+TEXT 608,491,""ROMAN.TTF"",180,1,18,"":""
+TEXT 579,491,""ROMAN.TTF"",180,1,18,""" & DESIGN & """
+TEXT 777,412,""ROMAN.TTF"",180,1,18,""SHADE""
+TEXT 608,412,""ROMAN.TTF"",180,1,18,"":""
+TEXT 579,412,""ROMAN.TTF"",180,1,18,""" & SHADE & """
+TEXT 777,332,""ROMAN.TTF"",180,1,18,""SO NO""
+TEXT 608,332,""ROMAN.TTF"",180,1,18,"":""
+TEXT 777,253,""ROMAN.TTF"",180,1,18,""MTRS""
+TEXT 608,253,""ROMAN.TTF"",180,1,18,"":""
+TEXT 777,173,""ROMAN.TTF"",180,1,18,""TAKA""
+TEXT 608,173,""ROMAN.TTF"",180,1,18,"":""
+TEXT 366,253,""ROMAN.TTF"",180,1,18,""LOOM""
+TEXT 219,253,""ROMAN.TTF"",180,1,18,"":""
+TEXT 777,94,""ROMAN.TTF"",180,1,18,""WIDTH""
+TEXT 608,94,""ROMAN.TTF"",180,1,18,"":""
+TEXT 331,94,""ROMAN.TTF"",180,1,18,""SIZE""
+TEXT 219,94,""ROMAN.TTF"",180,1,18,"":""
+TEXT 194,253,""ROMAN.TTF"",180,1,18,""" & LOOMNO & """
+PRINT 1,1")
 
                 oWrite.Dispose()
 
