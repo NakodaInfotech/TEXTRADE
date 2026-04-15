@@ -395,6 +395,11 @@ Public Class YarnPurchaseOrder
             bln = False
         End If
 
+        If GRIDPO.RowCount = 0 Then
+            EP.SetError(cmbname, " Please Enter Item Details")
+            bln = False
+        End If
+
         If lbllocked.Visible = True Or LBLCLOSED.Visible = True Then
             EP.SetError(lbllocked, "Entry Locked")
             bln = False

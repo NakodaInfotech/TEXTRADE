@@ -11679,7 +11679,7 @@ SKIPLINE:
                 Dim OBJSM As New ClsStockMaster
 
                 ALPARAVAL.Add(AccFrom.Date)
-                ALPARAVAL.Add("INHOUSE")
+                ALPARAVAL.Add("JOBBERSTOCK")
 
                 ALPARAVAL.Add(I)
                 ALPARAVAL.Add(DTROWSAVE("LOTNO"))               'LOTNO

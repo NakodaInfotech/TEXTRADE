@@ -3879,7 +3879,7 @@ LINE1:
 
             OBJSELECTPO.PARTYNAME = cmbname.Text.Trim
             If ClientName = "AVIS" Then OBJSELECTPO.FRMSTRING = "GATEPASS"
-            If ClientName = "MMC" Then OBJSELECTPO.FRMSTRING = "GREYCHALLAN"
+            'If ClientName = "MMC" Then OBJSELECTPO.FRMSTRING = "GREYCHALLAN"
             OBJSELECTPO.ShowDialog()
 
             DTTABLE = OBJSELECTPO.DT1
