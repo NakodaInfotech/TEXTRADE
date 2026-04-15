@@ -41,6 +41,7 @@ Partial Class LotFilter
         Me.dtfrom = New System.Windows.Forms.DateTimePicker()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
+        Me.CHKSHOWWEAVER = New System.Windows.Forms.CheckBox()
         Me.CMBTRANSPORT = New System.Windows.Forms.ComboBox()
         Me.CHKPARTRECDLOT = New System.Windows.Forms.CheckBox()
         Me.CMBDYEINGJOB = New System.Windows.Forms.ComboBox()
@@ -92,7 +93,6 @@ Partial Class LotFilter
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.CHKSHOWWEAVER = New System.Windows.Forms.CheckBox()
         CType(Me.RepositoryItemCheckEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -356,6 +356,18 @@ Partial Class LotFilter
         Me.BlendPanel2.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel2.TabIndex = 0
         '
+        'CHKSHOWWEAVER
+        '
+        Me.CHKSHOWWEAVER.AutoSize = True
+        Me.CHKSHOWWEAVER.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSHOWWEAVER.ForeColor = System.Drawing.Color.Black
+        Me.CHKSHOWWEAVER.Location = New System.Drawing.Point(201, 126)
+        Me.CHKSHOWWEAVER.Name = "CHKSHOWWEAVER"
+        Me.CHKSHOWWEAVER.Size = New System.Drawing.Size(100, 19)
+        Me.CHKSHOWWEAVER.TabIndex = 764
+        Me.CHKSHOWWEAVER.Text = "Show Weaver"
+        Me.CHKSHOWWEAVER.UseVisualStyleBackColor = False
+        '
         'CMBTRANSPORT
         '
         Me.CMBTRANSPORT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -587,7 +599,7 @@ Partial Class LotFilter
         'RDBLOTPIECETYPE
         '
         Me.RDBLOTPIECETYPE.AutoSize = True
-        Me.RDBLOTPIECETYPE.Location = New System.Drawing.Point(10, 182)
+        Me.RDBLOTPIECETYPE.Location = New System.Drawing.Point(10, 177)
         Me.RDBLOTPIECETYPE.Name = "RDBLOTPIECETYPE"
         Me.RDBLOTPIECETYPE.Size = New System.Drawing.Size(152, 18)
         Me.RDBLOTPIECETYPE.TabIndex = 7
@@ -597,7 +609,7 @@ Partial Class LotFilter
         'RBLOTTAGGING
         '
         Me.RBLOTTAGGING.AutoSize = True
-        Me.RBLOTTAGGING.Location = New System.Drawing.Point(10, 160)
+        Me.RBLOTTAGGING.Location = New System.Drawing.Point(10, 154)
         Me.RBLOTTAGGING.Name = "RBLOTTAGGING"
         Me.RBLOTTAGGING.Size = New System.Drawing.Size(124, 18)
         Me.RBLOTTAGGING.TabIndex = 6
@@ -608,7 +620,7 @@ Partial Class LotFilter
         'RBREGISTERSUMM
         '
         Me.RBREGISTERSUMM.AutoSize = True
-        Me.RBREGISTERSUMM.Location = New System.Drawing.Point(10, 136)
+        Me.RBREGISTERSUMM.Location = New System.Drawing.Point(10, 131)
         Me.RBREGISTERSUMM.Name = "RBREGISTERSUMM"
         Me.RBREGISTERSUMM.Size = New System.Drawing.Size(148, 18)
         Me.RBREGISTERSUMM.TabIndex = 5
@@ -618,7 +630,7 @@ Partial Class LotFilter
         'RBREGISTER
         '
         Me.RBREGISTER.AutoSize = True
-        Me.RBREGISTER.Location = New System.Drawing.Point(10, 112)
+        Me.RBREGISTER.Location = New System.Drawing.Point(10, 108)
         Me.RBREGISTER.Name = "RBREGISTER"
         Me.RBREGISTER.Size = New System.Drawing.Size(139, 18)
         Me.RBREGISTER.TabIndex = 4
@@ -628,7 +640,7 @@ Partial Class LotFilter
         'RBPCSDETAILS
         '
         Me.RBPCSDETAILS.AutoSize = True
-        Me.RBPCSDETAILS.Location = New System.Drawing.Point(10, 64)
+        Me.RBPCSDETAILS.Location = New System.Drawing.Point(10, 62)
         Me.RBPCSDETAILS.Name = "RBPCSDETAILS"
         Me.RBPCSDETAILS.Size = New System.Drawing.Size(116, 18)
         Me.RBPCSDETAILS.TabIndex = 2
@@ -639,7 +651,7 @@ Partial Class LotFilter
         'RBSUMMVALUE
         '
         Me.RBSUMMVALUE.AutoSize = True
-        Me.RBSUMMVALUE.Location = New System.Drawing.Point(10, 88)
+        Me.RBSUMMVALUE.Location = New System.Drawing.Point(10, 85)
         Me.RBSUMMVALUE.Name = "RBSUMMVALUE"
         Me.RBSUMMVALUE.Size = New System.Drawing.Size(156, 18)
         Me.RBSUMMVALUE.TabIndex = 3
@@ -662,7 +674,7 @@ Partial Class LotFilter
         'RBDETAILS
         '
         Me.RBDETAILS.AutoSize = True
-        Me.RBDETAILS.Location = New System.Drawing.Point(10, 40)
+        Me.RBDETAILS.Location = New System.Drawing.Point(10, 39)
         Me.RBDETAILS.Name = "RBDETAILS"
         Me.RBDETAILS.Size = New System.Drawing.Size(98, 18)
         Me.RBDETAILS.TabIndex = 1
@@ -932,18 +944,6 @@ Partial Class LotFilter
         Me.cmdexit.TabIndex = 11
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
-        '
-        'CHKSHOWWEAVER
-        '
-        Me.CHKSHOWWEAVER.AutoSize = True
-        Me.CHKSHOWWEAVER.BackColor = System.Drawing.Color.Transparent
-        Me.CHKSHOWWEAVER.ForeColor = System.Drawing.Color.Black
-        Me.CHKSHOWWEAVER.Location = New System.Drawing.Point(201, 126)
-        Me.CHKSHOWWEAVER.Name = "CHKSHOWWEAVER"
-        Me.CHKSHOWWEAVER.Size = New System.Drawing.Size(100, 19)
-        Me.CHKSHOWWEAVER.TabIndex = 764
-        Me.CHKSHOWWEAVER.Text = "Show Weaver"
-        Me.CHKSHOWWEAVER.UseVisualStyleBackColor = False
         '
         'LotFilter
         '
