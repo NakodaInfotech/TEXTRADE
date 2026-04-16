@@ -2691,7 +2691,7 @@ Public Class InvoiceMaster
         End If
 
 
-        If CMBAGENT.Text.Trim.Length = 0 And ClientName = "PARAS" Or ClientName = "SHAILESHTRADING" Then
+        If CMBAGENT.Text.Trim.Length = 0 And (ClientName = "PARAS" Or ClientName = "SHAILESHTRADING") Then
             EP.SetError(CMBAGENT, " Please Fill Agent Name ")
             bln = False
         End If
