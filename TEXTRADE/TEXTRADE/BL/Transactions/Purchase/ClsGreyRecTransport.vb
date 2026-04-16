@@ -96,6 +96,10 @@ Public Class ClsGreyRecTransport
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@OUTPCS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
@@ -146,7 +150,8 @@ Public Class ClsGreyRecTransport
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CRDAYS", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
+                I = I + 1
 
             End With
 
@@ -238,6 +243,10 @@ Public Class ClsGreyRecTransport
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@OUTPCS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
@@ -285,6 +294,8 @@ Public Class ClsGreyRecTransport
                 .Add(New SqlClient.SqlParameter("@AGENT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CRDAYS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@GREYRECNO", alParaval(I)))
