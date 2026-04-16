@@ -457,6 +457,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "LAXMI" Then    'SAYALI MADAM
+                    HIDEPAYROLL = False
                     If Now.Date > DateTime.Parse("15.12.2026 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000', VERSION_PCNAME='" & pcName & "'", "", "")
                         GoTo LINE1

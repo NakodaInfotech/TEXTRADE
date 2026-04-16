@@ -26,16 +26,15 @@ Partial Class GreyRecdKnittingDetails
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
-        Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.CMDREFRESH = New System.Windows.Forms.Button()
+        Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLAN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANDATE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -46,16 +45,18 @@ Partial Class GreyRecdKnittingDetails
         Me.GLOOMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GROLLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQTY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALQTY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAVGWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRECDAVGWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALQTY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +67,6 @@ Partial Class GreyRecdKnittingDetails
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
-        Me.BlendPanel1.Controls.Add(Me.CMDREFRESH)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
@@ -98,15 +98,6 @@ Partial Class GreyRecdKnittingDetails
         Me.toolStripSeparator.Name = "toolStripSeparator"
         Me.toolStripSeparator.Size = New System.Drawing.Size(6, 25)
         '
-        'TOOLREFRESH
-        '
-        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
-        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLREFRESH.Name = "TOOLREFRESH"
-        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLREFRESH.Text = "&Refresh"
-        '
         'PrintToolStripButton
         '
         Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -116,19 +107,19 @@ Partial Class GreyRecdKnittingDetails
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
-        'CMDREFRESH
+        'TOOLREFRESH
         '
-        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
-        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
-        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDREFRESH.ForeColor = System.Drawing.Color.Black
-        Me.CMDREFRESH.Location = New System.Drawing.Point(491, 541)
-        Me.CMDREFRESH.Name = "CMDREFRESH"
-        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
-        Me.CMDREFRESH.TabIndex = 654
-        Me.CMDREFRESH.Text = "&Refresh"
-        Me.CMDREFRESH.UseVisualStyleBackColor = False
+        Me.TOOLREFRESH.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLREFRESH.Image = Global.TEXTRADE.My.Resources.Resources.refresh1
+        Me.TOOLREFRESH.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLREFRESH.Name = "TOOLREFRESH"
+        Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLREFRESH.Text = "&Refresh"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'cmdexit
         '
@@ -137,7 +128,7 @@ Partial Class GreyRecdKnittingDetails
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(663, 541)
+        Me.cmdexit.Location = New System.Drawing.Point(620, 541)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 653
@@ -151,7 +142,7 @@ Partial Class GreyRecdKnittingDetails
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(577, 541)
+        Me.cmdok.Location = New System.Drawing.Point(534, 541)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 652
@@ -173,7 +164,7 @@ Partial Class GreyRecdKnittingDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GITEMNAME, Me.GYARNQUALITY, Me.GDESIGN, Me.GSHADE, Me.GLOOMNO, Me.GROLLNO, Me.GQTY, Me.GTOTALQTY, Me.GMTRS, Me.GTOTALMTRS, Me.GWT, Me.GTOTALWT, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GITEMNAME, Me.GYARNQUALITY, Me.GDESIGN, Me.GSHADE, Me.GLOOMNO, Me.GROLLNO, Me.GQTY, Me.GMTRS, Me.GWT, Me.GAVGWT, Me.GRECDAVGWT, Me.GTOTALQTY, Me.GTOTALMTRS, Me.GTOTALWT, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GGODOWN, Me.GREMARKS})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -203,23 +194,14 @@ Partial Class GreyRecdKnittingDetails
         Me.gdate.Visible = True
         Me.gdate.VisibleIndex = 1
         '
-        'GGODOWN
-        '
-        Me.GGODOWN.Caption = "Godown"
-        Me.GGODOWN.FieldName = "GODOWN"
-        Me.GGODOWN.Name = "GGODOWN"
-        Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 2
-        Me.GGODOWN.Width = 140
-        '
         'GNAME
         '
         Me.GNAME.Caption = "Jobber Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 3
+        Me.GNAME.VisibleIndex = 2
         Me.GNAME.Width = 180
         '
         'GCHALLAN
@@ -228,7 +210,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GCHALLAN.FieldName = "CHALLANNO"
         Me.GCHALLAN.Name = "GCHALLAN"
         Me.GCHALLAN.Visible = True
-        Me.GCHALLAN.VisibleIndex = 4
+        Me.GCHALLAN.VisibleIndex = 3
         Me.GCHALLAN.Width = 70
         '
         'GCHALLANDATE
@@ -237,7 +219,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GCHALLANDATE.FieldName = "CHALLANDATE"
         Me.GCHALLANDATE.Name = "GCHALLANDATE"
         Me.GCHALLANDATE.Visible = True
-        Me.GCHALLANDATE.VisibleIndex = 5
+        Me.GCHALLANDATE.VisibleIndex = 4
         '
         'GITEMNAME
         '
@@ -245,16 +227,14 @@ Partial Class GreyRecdKnittingDetails
         Me.GITEMNAME.FieldName = "ITEMNAME"
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 6
-        Me.GITEMNAME.Width = 100
+        Me.GITEMNAME.VisibleIndex = 5
+        Me.GITEMNAME.Width = 200
         '
         'GYARNQUALITY
         '
         Me.GYARNQUALITY.Caption = "Yarn Quality"
         Me.GYARNQUALITY.FieldName = "YARNQUALITY"
         Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.Visible = True
-        Me.GYARNQUALITY.VisibleIndex = 7
         Me.GYARNQUALITY.Width = 80
         '
         'GDESIGN
@@ -263,7 +243,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GDESIGN.FieldName = "DESIGN"
         Me.GDESIGN.Name = "GDESIGN"
         Me.GDESIGN.Visible = True
-        Me.GDESIGN.VisibleIndex = 8
+        Me.GDESIGN.VisibleIndex = 6
         Me.GDESIGN.Width = 80
         '
         'GSHADE
@@ -272,7 +252,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GSHADE.FieldName = "SHADE"
         Me.GSHADE.Name = "GSHADE"
         Me.GSHADE.Visible = True
-        Me.GSHADE.VisibleIndex = 9
+        Me.GSHADE.VisibleIndex = 7
         Me.GSHADE.Width = 80
         '
         'GLOOMNO
@@ -281,7 +261,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GLOOMNO.FieldName = "LOOMNO"
         Me.GLOOMNO.Name = "GLOOMNO"
         Me.GLOOMNO.Visible = True
-        Me.GLOOMNO.VisibleIndex = 10
+        Me.GLOOMNO.VisibleIndex = 8
         '
         'GROLLNO
         '
@@ -289,7 +269,8 @@ Partial Class GreyRecdKnittingDetails
         Me.GROLLNO.FieldName = "ROLLNO"
         Me.GROLLNO.Name = "GROLLNO"
         Me.GROLLNO.Visible = True
-        Me.GROLLNO.VisibleIndex = 11
+        Me.GROLLNO.VisibleIndex = 9
+        Me.GROLLNO.Width = 100
         '
         'GQTY
         '
@@ -298,18 +279,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GQTY.Name = "GQTY"
         Me.GQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GQTY.Visible = True
-        Me.GQTY.VisibleIndex = 12
-        '
-        'GTOTALQTY
-        '
-        Me.GTOTALQTY.Caption = "Total Qty"
-        Me.GTOTALQTY.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALQTY.FieldName = "TOTALQTY"
-        Me.GTOTALQTY.Name = "GTOTALQTY"
-        Me.GTOTALQTY.Visible = True
-        Me.GTOTALQTY.VisibleIndex = 13
-        Me.GTOTALQTY.Width = 60
+        Me.GQTY.VisibleIndex = 10
         '
         'GMTRS
         '
@@ -318,17 +288,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 14
-        '
-        'GTOTALMTRS
-        '
-        Me.GTOTALMTRS.Caption = "Total Mtrs."
-        Me.GTOTALMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 15
+        Me.GMTRS.VisibleIndex = 11
         '
         'GWT
         '
@@ -337,7 +297,44 @@ Partial Class GreyRecdKnittingDetails
         Me.GWT.Name = "GWT"
         Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 16
+        Me.GWT.VisibleIndex = 12
+        '
+        'GAVGWT
+        '
+        Me.GAVGWT.Caption = "Avg Wt"
+        Me.GAVGWT.DisplayFormat.FormatString = "0.000"
+        Me.GAVGWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GAVGWT.FieldName = "AVGWT"
+        Me.GAVGWT.Name = "GAVGWT"
+        Me.GAVGWT.Visible = True
+        Me.GAVGWT.VisibleIndex = 13
+        '
+        'GRECDAVGWT
+        '
+        Me.GRECDAVGWT.Caption = "Recd Avg Wt"
+        Me.GRECDAVGWT.DisplayFormat.FormatString = "0.000"
+        Me.GRECDAVGWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GRECDAVGWT.FieldName = "RECDAVGWT"
+        Me.GRECDAVGWT.Name = "GRECDAVGWT"
+        Me.GRECDAVGWT.Visible = True
+        Me.GRECDAVGWT.VisibleIndex = 14
+        '
+        'GTOTALQTY
+        '
+        Me.GTOTALQTY.Caption = "Total Qty"
+        Me.GTOTALQTY.DisplayFormat.FormatString = "0.00"
+        Me.GTOTALQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALQTY.FieldName = "TOTALQTY"
+        Me.GTOTALQTY.Name = "GTOTALQTY"
+        Me.GTOTALQTY.Width = 60
+        '
+        'GTOTALMTRS
+        '
+        Me.GTOTALMTRS.Caption = "Total Mtrs."
+        Me.GTOTALMTRS.DisplayFormat.FormatString = "0.00"
+        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
+        Me.GTOTALMTRS.Name = "GTOTALMTRS"
         '
         'GTOTALWT
         '
@@ -346,8 +343,6 @@ Partial Class GreyRecdKnittingDetails
         Me.GTOTALWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GTOTALWT.FieldName = "TOTALWT"
         Me.GTOTALWT.Name = "GTOTALWT"
-        Me.GTOTALWT.Visible = True
-        Me.GTOTALWT.VisibleIndex = 17
         Me.GTOTALWT.Width = 60
         '
         'GTRANSNAME
@@ -356,7 +351,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GTRANSNAME.FieldName = "TRANSNAME"
         Me.GTRANSNAME.Name = "GTRANSNAME"
         Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 18
+        Me.GTRANSNAME.VisibleIndex = 15
         Me.GTRANSNAME.Width = 150
         '
         'GLRNO
@@ -365,7 +360,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GLRNO.FieldName = "LRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 19
+        Me.GLRNO.VisibleIndex = 16
         '
         'GLRDATE
         '
@@ -375,7 +370,16 @@ Partial Class GreyRecdKnittingDetails
         Me.GLRDATE.FieldName = "LRDATE"
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.Visible = True
-        Me.GLRDATE.VisibleIndex = 20
+        Me.GLRDATE.VisibleIndex = 17
+        '
+        'GGODOWN
+        '
+        Me.GGODOWN.Caption = "Godown"
+        Me.GGODOWN.FieldName = "GODOWN"
+        Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.Visible = True
+        Me.GGODOWN.VisibleIndex = 18
+        Me.GGODOWN.Width = 140
         '
         'GREMARKS
         '
@@ -383,13 +387,8 @@ Partial Class GreyRecdKnittingDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 21
+        Me.GREMARKS.VisibleIndex = 19
         Me.GREMARKS.Width = 180
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'GreyRecdKnittingDetails
         '
@@ -412,7 +411,6 @@ Partial Class GreyRecdKnittingDetails
 
     End Sub
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
-    Friend WithEvents CMDREFRESH As System.Windows.Forms.Button
     Friend WithEvents cmdexit As System.Windows.Forms.Button
     Friend WithEvents cmdok As System.Windows.Forms.Button
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
@@ -445,4 +443,6 @@ Partial Class GreyRecdKnittingDetails
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents GLOOMNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents GAVGWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRECDAVGWT As DevExpress.XtraGrid.Columns.GridColumn
 End Class
