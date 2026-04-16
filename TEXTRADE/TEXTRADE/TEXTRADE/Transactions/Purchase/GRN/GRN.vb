@@ -270,12 +270,12 @@ Public Class GRN
             TXTBALENO.Text = gridgrn.RowCount + 1
             cmbGodown.Enabled = True
         End If
-        If ClientName = "VINTAGEINDIA" And FRMSTRING = "GRN FANCY" Then
-            Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH(" MAX (grn_plotno) AS LOTNO  ", "", " GRN ", "   AND GRN_TYPE = 'FANCY MATERIAL' AND GRN_YEARID = " & YearId)
+        'If ClientName = "VINTAGEINDIA" And FRMSTRING = "GRN FANCY" Then
+        '    Dim OBJCMN As New ClsCommon
+        '    Dim DT As DataTable = OBJCMN.SEARCH(" MAX (grn_plotno) AS LOTNO  ", "", " GRN ", "   AND GRN_TYPE = 'FANCY MATERIAL' AND GRN_YEARID = " & YearId)
 
-            TXTLOTNO.Text = DT.Rows(0)("LOTNO").ToString()
-        End If
+        '    TXTLOTNO.Text = DT.Rows(0)("LOTNO").ToString()
+        'End If
         CMBSHIPTO.Text = ""
         TXTPARTYITEMNAME.Clear()
         If ClientName = "LAXMI" Then
@@ -749,6 +749,11 @@ CHECKNEXTLINE:
                         bln = False
                     End If
                 End If
+            End If
+
+            If ClientName = "VINTAGEINDIA" And FRMSTRING = "GRN FANCY" And TXTLOTNO.Text.Trim = "" Then
+                EP.SetError(TXTLOTNO, "Enter Lot No.")
+                bln = False
             End If
             'CHEKC BARCODE IS PRESENT IN DATABASE OR NOT
             'THIS CODE IS OF NO USE, COZ WE HAVE ENTERED BARCODE IN SP
