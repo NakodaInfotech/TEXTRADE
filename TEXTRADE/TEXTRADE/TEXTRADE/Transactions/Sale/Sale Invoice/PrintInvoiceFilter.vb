@@ -220,7 +220,15 @@ Public Class PrintInvoiceFilter
             If ClientName = "SONU" Then CHKCUSTOMER.CheckState = CheckState.Unchecked
             If ClientName = "SUPRIYA" Then CHKOFFICE.CheckState = CheckState.Checked
             If ClientName = "SUPEEMA" Then CHKDUPLICATE.Text = "EXPORT COPY"
-            If ClientName = "CC"  Or ClientName = "C3" Then CHKRETAIL.Visible = True
+            If ClientName = "CC" Or ClientName = "C3" Then CHKRETAIL.Visible = True
+            If ClientName = "ANKUSH" Then
+                CHKCUSTOMER.Visible = False
+                CHKOFFICE.Visible = False
+                CHKDUPLICATE.Visible = False
+                CHKTRANSPORT.Checked = True
+                CHKCUSTOMER.Checked = False
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
