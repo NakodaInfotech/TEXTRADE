@@ -7875,6 +7875,12 @@ UPDATE ITEMMASTER_WEFTDETAILS SET ITEM_WEFTSHADESRNO = 0
 
 CHANGE TABLE NAME
 ITEMMASTER_WARPDETAILS      TO   ITEMMASTER_BEAMDETAILS 
+
+
+
+
+DONE IN SHAILESHTRADING
+
 ******************************************************************************************************
 OPENINGBILL --  BILL_ORDERNO VARCHAR(100)
                            BILL_CHANGEDATE AS DATE
