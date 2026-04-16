@@ -58,6 +58,7 @@ Public Class GreyReceivedTransport
         PBSoftCopy.ImageLocation = ""
         CMBAGENT.Text = ""
         TXTCRDAYS.Clear()
+        CMBGODOWN.Text = ""
 
 
         lbllocked.Visible = False
@@ -423,6 +424,9 @@ CHECKNEXTLINE:
             Dim WT As String = ""
             Dim RATE As String = ""
             Dim AMOUNT As String = ""
+            Dim BARCODE As String = ""
+            Dim GRIDDONE As String = ""
+
             Dim OUTPCS As String = ""
             Dim OUTMTRS As String = ""
 
@@ -442,6 +446,8 @@ CHECKNEXTLINE:
                         WT = Val(row.Cells(GWT.Index).Value)
                         RATE = Val(row.Cells(GRATE.Index).Value)
                         AMOUNT = Val(row.Cells(GAMT.Index).Value)
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = "1" Else GRIDDONE = "0"
                         OUTPCS = Val(row.Cells(GOUTPCS.Index).Value)
                         OUTMTRS = Val(row.Cells(GOUTMTRS.Index).Value)
 
@@ -459,6 +465,9 @@ CHECKNEXTLINE:
                         WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
                         RATE = RATE & "|" & Val(row.Cells(GRATE.Index).Value)
                         AMOUNT = AMOUNT & "|" & Val(row.Cells(GAMT.Index).Value)
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        If Convert.ToBoolean(row.Cells(GDONE.Index).Value) = True Then GRIDDONE = GRIDDONE & "|" & "1" Else GRIDDONE = GRIDDONE & "|" & "0"
+
                         OUTPCS = OUTPCS & "|" & Val(row.Cells(GOUTPCS.Index).Value)
                         OUTMTRS = OUTMTRS & "|" & Val(row.Cells(GOUTMTRS.Index).Value)
 
@@ -479,6 +488,8 @@ CHECKNEXTLINE:
             alParaval.Add(WT)
             alParaval.Add(RATE)
             alParaval.Add(AMOUNT)
+            alParaval.Add(BARCODE)
+            alParaval.Add(GRIDDONE)
             alParaval.Add(OUTPCS)
             alParaval.Add(OUTMTRS)
 
@@ -580,6 +591,7 @@ CHECKNEXTLINE:
 
             alParaval.Add(CMBAGENT.Text.Trim)
             alParaval.Add(TXTCRDAYS.Text.Trim)
+            alParaval.Add(CMBGODOWN.Text.Trim)
 
 
             Dim OBJGREYREC As New ClsGreyRecTransport()
@@ -713,12 +725,12 @@ CHECKNEXTLINE:
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
                         CMBAGENT.Text = Convert.ToString(dr("AGENT").ToString)
                         TXTCRDAYS.Text = dr("CRDAYS").ToString
-
+                        CMBGODOWN.Text = dr("GODOWN").ToString
                         'If Convert.ToBoolean(dr("SENDWHATSAPP")) = True Then LBLWHATSAPP.Visible = True
 
 
                         'Item Grid
-                        GRIDGRN.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("CUT"), "0.00"), Format(dr("MTRS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("RATE"), "0.00"), Format(dr("AMOUNT"), "0.00"), Val(dr("OUTPCS")), Val(dr("OUTMTRS")))
+                        GRIDGRN.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("CUT"), "0.00"), Format(dr("MTRS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("RATE"), "0.00"), Format(dr("AMOUNT"), "0.00"), dr("BARCODE").ToString, dr("GRIDDONE"), Val(dr("OUTPCS")), Val(dr("OUTMTRS")))
 
                         If Val(dr("OUTMTRS")) > 0 Then
                             GRIDGRN.Rows(GRIDGRN.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
@@ -969,7 +981,22 @@ NEXTLINE:
         If ClientName = "SVS" Or ClientName = "CC" Or ClientName = "GELATO" Or ClientName = "INDRANI" Then txtqty.Text = "1"
 
         If GRIDDOUBLECLICK = False Then
-            GRIDGRN.Rows.Add(Val(txtsrno.Text.Trim), cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, TXTBALENO.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), Format(Val(TXTAMT.Text.Trim), "0.00"), 0, 0)
+
+            If EDIT = True Then
+                'GET LAST BARCODE SRNO
+                Dim LSRNO As Integer = 0
+                Dim RSRNO As Integer = 0
+                Dim SNO As Integer = 0
+                LSRNO = InStr(GRIDGRN.Rows(GRIDGRN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                RSRNO = InStr(LSRNO + 1, GRIDGRN.Rows(GRIDGRN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                SNO = GRIDGRN.Rows(GRIDGRN.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
+
+                TXTBARCODE.Text = "T-" & Val(TXTGREYRECNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+            Else
+                TXTBARCODE.Text = "T-" & Val(TXTGREYRECNO.Text.Trim) & "/" & GRIDGRN.RowCount + 1 & "/" & YearId
+            End If
+
+            GRIDGRN.Rows.Add(Val(txtsrno.Text.Trim), cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, TXTBALENO.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), Format(Val(TXTAMT.Text.Trim), "0.00"), TXTBARCODE.Text.Trim, 0, 0, 0)
             getsrno(GRIDGRN)
         ElseIf GRIDDOUBLECLICK = True Then
 
@@ -986,6 +1013,8 @@ NEXTLINE:
             GRIDGRN.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
             GRIDGRN.Item(GRATE.Index, TEMPROW).Value = Format(Val(TXTRATE.Text.Trim), "0.00")
             GRIDGRN.Item(GAMT.Index, TEMPROW).Value = Format(Val(TXTAMT.Text.Trim), "0.00")
+            GRIDGRN.Item(GBARCODE.Index, TEMPROW).Value = TXTBARCODE.Text.Trim
+
             GRIDDOUBLECLICK = False
 
         End If
@@ -996,6 +1025,7 @@ NEXTLINE:
 
         If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Then TXTBALENO.Clear()
         If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
+        TXTBARCODE.Clear()
 
         TXTCUT.Clear()
         If ClientName = "INDRANI" Then TXTMTRS.Text = 1 Else TXTMTRS.Clear()
@@ -1159,6 +1189,8 @@ NEXTLINE:
                 TXTWT.Text = GRIDGRN.Item(GWT.Index, GRIDGRN.CurrentRow.Index).Value.ToString
                 TXTRATE.Text = GRIDGRN.Item(GRATE.Index, GRIDGRN.CurrentRow.Index).Value.ToString
                 TXTAMT.Text = GRIDGRN.Item(GAMT.Index, GRIDGRN.CurrentRow.Index).Value.ToString
+                TXTBARCODE.Text = GRIDGRN.Item(GBARCODE.Index, GRIDGRN.CurrentRow.Index).Value.ToString
+
 
                 TEMPROW = GRIDGRN.CurrentRow.Index
                 cmbitemname.Focus()
@@ -1784,6 +1816,22 @@ LINE1:
             If CMBAGENT.Text.Trim <> "" Then namevalidate(CMBAGENT, CMBCODE, e, Me, TXTADD, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='AGENT'", "Sundry Creditors", "AGENT")
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbGodown_Enter(sender As Object, e As EventArgs) Handles cmbGodown.Enter
+        Try
+            If cmbGodown.Text.Trim = "" Then fillGODOWN(cmbGodown, EDIT)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub cmbGodown_Validating(sender As Object, e As CancelEventArgs) Handles cmbGodown.Validating
+        Try
+            If cmbGodown.Text.Trim <> "" Then GODOWNVALIDATE(cmbGodown, e, Me)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 End Class
