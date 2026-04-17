@@ -365,7 +365,7 @@ Public Class GreyStockReco
                 'CHECK WHETHER BARCODE IS USED OR NOT
                 If EDIT = False And ROW.Cells(GBARCODE.Index).Value <> "" And ALLOWBARCODEPRINT = True And CHECKBARCODEERRORVALID = True Then
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.SEARCH("*", "", "OUTBARCODESTOCK", " AND BARCODE = '" & ROW.Cells(GBARCODE.Index).Value & "' AND YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("*", "", "OUTGREYBARCODESTOCK", " AND BARCODE = '" & ROW.Cells(GBARCODE.Index).Value & "' AND YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         EP.SetError(CMBNAME, "Barcode Already Used")
                         bln = False
@@ -1237,9 +1237,9 @@ LINE1:
                                     SNO = GRIDSTOCKIN.Rows(GRIDSTOCKIN.RowCount - 1).Cells(GINBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
                                 End If
 
-                                TXTINBARCODE.Text = "A-" & Val(TXTRECONO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+                                TXTINBARCODE.Text = "GA-" & Val(TXTRECONO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
                             Else
-                                TXTINBARCODE.Text = "A-" & Val(TXTRECONO.Text.Trim) & "/" & GRIDSTOCKIN.RowCount + 1 & "/" & YearId
+                                TXTINBARCODE.Text = "GA-" & Val(TXTRECONO.Text.Trim) & "/" & GRIDSTOCKIN.RowCount + 1 & "/" & YearId
                             End If
                         End If
                         FILLGRID()
@@ -1257,9 +1257,9 @@ LINE1:
                                 SNO = GRIDSTOCKIN.Rows(GRIDSTOCKIN.RowCount - 1).Cells(GINBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
                             End If
 
-                            TXTINBARCODE.Text = "A-" & Val(TXTRECONO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+                            TXTINBARCODE.Text = "GA-" & Val(TXTRECONO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
                         Else
-                            TXTINBARCODE.Text = "A-" & Val(TXTRECONO.Text.Trim) & "/" & GRIDSTOCKIN.RowCount + 1 & "/" & YearId
+                            TXTINBARCODE.Text = "GA-" & Val(TXTRECONO.Text.Trim) & "/" & GRIDSTOCKIN.RowCount + 1 & "/" & YearId
                         End If
                     End If
                     FILLGRID()
@@ -1293,7 +1293,7 @@ LINE1:
             If TXTBARCODE.Text.Trim <> "" And CHECKBARCODEERRORVALID = True Then
                 'CHECKING WHETHER IS IS GONE OUT OR NOT
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 TYPE, FROMNO", "", " OUTBARCODESTOCK ", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 TYPE, FROMNO", "", " OUTGREYBARCODESTOCK ", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     MsgBox("Barcode Already Used in " & DT.Rows(0).Item("TYPE") & " Sr No " & DT.Rows(0).Item("FROMNO"))
                     TXTBARCODE.Clear()
@@ -1763,7 +1763,7 @@ LINE1:
                 If ClientName = "SHEETAL" And Len(TXTBARCODE.Text.Trim) > 7 And Char.IsDigit(TXTBARCODE.Text(0)) = True Then TXTBARCODE.Text = TXTBARCODE.Text.Substring(0, TXTBARCODE.Text.Length - 1)
 
                 'GET DATA FROM BARCODE
-                DT = OBJCMN.SEARCH("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("TOP 1 *", "", "GREYBARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
 
                     'VALIDATE GODOWN
@@ -2342,6 +2342,24 @@ LINE1:
 
     Private Sub TXTBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTBARCODE.KeyDown
         Try
+            'If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+            '    If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
+
+            '    If CMBGODOWN.Text.Trim = "" Then
+            '        MsgBox("Select Godown First", MsgBoxStyle.Critical)
+            '        Exit Sub
+            '    End If
+
+            '    Dim OBJSTOCK As New SelectStockGDNGrid
+            '    OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
+            '    OBJSTOCK.ShowDialog()
+            '    Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+            '    For Each DTROW As DataRow In DTBARCODE.Rows
+            '        TXTBARCODE.Text = DTROW("BARCODE")
+            '        TXTBARCODE_Validated(sender, e)
+            '    Next
+            'End If
+
             If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
                 If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
 
@@ -2352,6 +2370,7 @@ LINE1:
 
                 Dim OBJSTOCK As New SelectStockGDNGrid
                 OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
+                OBJSTOCK.FRMSTRING = "GREY"
                 OBJSTOCK.ShowDialog()
                 Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
                 For Each DTROW As DataRow In DTBARCODE.Rows
