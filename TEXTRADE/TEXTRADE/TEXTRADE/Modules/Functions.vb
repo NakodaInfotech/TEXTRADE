@@ -10157,7 +10157,7 @@ line1:
         Dim bln As Boolean = True
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "BARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "GREYBARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
             If DT.Rows.Count > 0 Then bln = False
         Catch ex As Exception
             Throw ex
