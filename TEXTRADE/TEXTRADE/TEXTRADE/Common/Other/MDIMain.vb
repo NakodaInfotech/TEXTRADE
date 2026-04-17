@@ -12513,4 +12513,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub GREYSTOCKADJUSTMENT_ADD_Click(sender As Object, e As EventArgs) Handles GREYSTOCKADJUSTMENT_ADD.Click
+        Try
+            Dim OBJGDN As New GreyStockReco
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
