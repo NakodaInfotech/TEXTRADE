@@ -3295,6 +3295,12 @@
     <Compile Include="Transactions\Yarn Module\Grey Stock Reco\GreyStockRecoDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Stock Reco\GreyStockRecoInDetails.Designer.vb">
+      <DependentUpon>GreyStockRecoInDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Stock Reco\GreyStockRecoInDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.Designer.vb">
       <DependentUpon>DirectIssueToSizer.vb</DependentUpon>
     </Compile>
@@ -11034,6 +11040,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Stock Reco\GreyStockRecoDetails.resx">
       <DependentUpon>GreyStockRecoDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey Stock Reco\GreyStockRecoInDetails.resx">
+      <DependentUpon>GreyStockRecoInDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Rolls\DirectIssueToSizer.resx">
       <DependentUpon>DirectIssueToSizer.vb</DependentUpon>
