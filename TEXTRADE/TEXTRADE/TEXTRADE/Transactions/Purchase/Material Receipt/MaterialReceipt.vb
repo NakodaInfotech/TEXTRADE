@@ -4318,7 +4318,6 @@ LINE1:
                 TXTBALENO.Enabled = False
                 If ClientName = "MAHAVIRPOLYCOT" Then TXTCUT.ReadOnly = True
                 If ClientName = "SUCCESS" Or ClientName = "MMC" Then
-                    TXTBALENO.Enabled = True
                     TXTCUT.ReadOnly = False
                 End If
 
@@ -4484,7 +4483,7 @@ LINE1:
                 End If
                 If DT.Rows.Count > 0 Then
                     CMBCHECKSRNO.Text = Val(DT.Rows(0).Item("FROMSRNO"))
-                    If ClientName = "MMC" Then TXTBALENO.Text = TXTPCSNO.Text.Trim Else TXTBALENO.Text = CMBBALENO.Text.Trim
+                    TXTBALENO.Text = CMBBALENO.Text.Trim
                     TXTMTRS.Text = Format(Val(DT.Rows(0).Item("MTRS")), "0.00")
                     If ClientName <> "VALIANT" Then TXTCUT.Text = Format(Val(DT.Rows(0).Item("MTRS")), "0.00")
                     CMBDESIGN.Text = DT.Rows(0).Item("DESIGNNO")

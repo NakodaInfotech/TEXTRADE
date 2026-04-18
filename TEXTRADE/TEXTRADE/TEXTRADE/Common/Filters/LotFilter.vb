@@ -587,6 +587,13 @@ Public Class LotFilter
                 RBSUMMVALUE.Visible = True
             End If
 
+            If ClientName = "MMC" Or ClientName = "SWPL" Then
+                RBSUMMARY.Visible = False
+                RBDETAILS.Checked = True
+                RBREGISTER.Visible = False
+                RBREGISTERSUMM.Visible = False
+            End If
+
             If ClientName = "AVIS" Then RBLOTTAGGING.Visible = True
             If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SUPEEMA" Or ClientName = "SIDDHGIRI" Or ClientName = "INDRAPUJAFABRICS" Then CHKSHOWWEAVER.CheckState = CheckState.Checked
 
