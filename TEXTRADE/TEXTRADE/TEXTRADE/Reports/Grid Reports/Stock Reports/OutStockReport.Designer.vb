@@ -23,12 +23,14 @@ Partial Class OutStockReport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GENTRYNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPIECETYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,13 +44,12 @@ Partial Class OutStockReport
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GENTRYNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GOUTPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GOUTMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDONE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
-        Me.CMDREFRESH = New System.Windows.Forms.Button()
+        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,6 +69,20 @@ Partial Class OutStockReport
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 7
+        '
+        'CMDREFRESH
+        '
+        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
+        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
+        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDREFRESH.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDREFRESH.Location = New System.Drawing.Point(534, 541)
+        Me.CMDREFRESH.Name = "CMDREFRESH"
+        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
+        Me.CMDREFRESH.TabIndex = 257
+        Me.CMDREFRESH.Text = "&Refresh"
+        Me.CMDREFRESH.UseVisualStyleBackColor = False
         '
         'cmdexit
         '
@@ -98,7 +113,7 @@ Partial Class OutStockReport
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GBARCODE, Me.GTYPE, Me.GENTRYNO, Me.GPIECETYPE, Me.GITEM, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GNAME, Me.GTONAME, Me.GGODOWN, Me.GCUT, Me.GWT, Me.GPCS, Me.GUNIT, Me.GMTRS, Me.GOUTPCS, Me.GOUTMTRS, Me.GDONE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.GBARCODE, Me.GTYPE, Me.GENTRYNO, Me.GPIECETYPE, Me.GITEM, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GNAME, Me.GTONAME, Me.GGODOWN, Me.GCUT, Me.GWT, Me.GPCS, Me.GUNIT, Me.GMTRS, Me.GOUTPCS, Me.GOUTMTRS, Me.GDONE, Me.GBALENO})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -133,6 +148,15 @@ Partial Class OutStockReport
         Me.GTYPE.Visible = True
         Me.GTYPE.VisibleIndex = 1
         Me.GTYPE.Width = 100
+        '
+        'GENTRYNO
+        '
+        Me.GENTRYNO.Caption = "Entry No"
+        Me.GENTRYNO.FieldName = "FROMNO"
+        Me.GENTRYNO.Name = "GENTRYNO"
+        Me.GENTRYNO.Visible = True
+        Me.GENTRYNO.VisibleIndex = 2
+        Me.GENTRYNO.Width = 60
         '
         'GPIECETYPE
         '
@@ -251,15 +275,6 @@ Partial Class OutStockReport
         Me.GMTRS.VisibleIndex = 10
         Me.GMTRS.Width = 80
         '
-        'GENTRYNO
-        '
-        Me.GENTRYNO.Caption = "Entry No"
-        Me.GENTRYNO.FieldName = "FROMNO"
-        Me.GENTRYNO.Name = "GENTRYNO"
-        Me.GENTRYNO.Visible = True
-        Me.GENTRYNO.VisibleIndex = 2
-        Me.GENTRYNO.Width = 60
-        '
         'GOUTPCS
         '
         Me.GOUTPCS.Caption = "OUTPCS"
@@ -296,19 +311,13 @@ Partial Class OutStockReport
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
-        'CMDREFRESH
+        'GBALENO
         '
-        Me.CMDREFRESH.BackColor = System.Drawing.Color.Transparent
-        Me.CMDREFRESH.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDREFRESH.FlatAppearance.BorderSize = 0
-        Me.CMDREFRESH.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDREFRESH.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDREFRESH.Location = New System.Drawing.Point(534, 541)
-        Me.CMDREFRESH.Name = "CMDREFRESH"
-        Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
-        Me.CMDREFRESH.TabIndex = 257
-        Me.CMDREFRESH.Text = "&Refresh"
-        Me.CMDREFRESH.UseVisualStyleBackColor = False
+        Me.GBALENO.Caption = "Bale No"
+        Me.GBALENO.FieldName = "BALENO"
+        Me.GBALENO.Name = "GBALENO"
+        Me.GBALENO.Visible = True
+        Me.GBALENO.VisibleIndex = 11
         '
         'OutStockReport
         '
@@ -358,4 +367,5 @@ Partial Class OutStockReport
     Friend WithEvents PrintToolStripButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents GENTRYNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDREFRESH As Button
+    Friend WithEvents GBALENO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
