@@ -1103,6 +1103,9 @@ Partial Class MDIMain
         Me.YARNLOANEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator26 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNRECDTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
+        Me.GREYSTOCKADJUSTMENT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYSTOCKADJUSTMENT_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYSTOCKADJUSTMENT_EDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.AGENCYMODULE_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1353,6 +1356,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.UPLOADSTOCK_JOBBER = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7236,7 +7240,7 @@ Partial Class MDIMain
         '
         'YARNMODULE_MENU
         '
-        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BEAMENTRY_MASTER, Me.ToolStripSeparator339, Me.YARNLOOMEFFICIENCY_MASTER, Me.GreyReceived_MENU, Me.GreyJobWorkToolStripMenuItem, Me.GREYGDN_MASTER, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.TOOLSTRIPYARNDYEINGPROGRAM, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNSTOCKADJUSTMENT_MASTER, Me.YARNLOAN_MASTER, Me.YARNRECDTOOLSTRIP})
+        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BEAMENTRY_MASTER, Me.ToolStripSeparator339, Me.YARNLOOMEFFICIENCY_MASTER, Me.GreyReceived_MENU, Me.GreyJobWorkToolStripMenuItem, Me.GREYGDN_MASTER, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.TOOLSTRIPYARNDYEINGPROGRAM, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNSTOCKADJUSTMENT_MASTER, Me.YARNLOAN_MASTER, Me.YARNRECDTOOLSTRIP, Me.GREYSTOCKADJUSTMENT_MASTER})
         Me.YARNMODULE_MENU.Name = "YARNMODULE_MENU"
         Me.YARNMODULE_MENU.Size = New System.Drawing.Size(87, 20)
         Me.YARNMODULE_MENU.Text = "Yarn Module"
@@ -8270,6 +8274,25 @@ Partial Class MDIMain
         Me.YARNRECDTOOLSTRIP.Name = "YARNRECDTOOLSTRIP"
         Me.YARNRECDTOOLSTRIP.Size = New System.Drawing.Size(218, 6)
         '
+        'GREYSTOCKADJUSTMENT_MASTER
+        '
+        Me.GREYSTOCKADJUSTMENT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYSTOCKADJUSTMENT_ADD, Me.GREYSTOCKADJUSTMENT_EDIT})
+        Me.GREYSTOCKADJUSTMENT_MASTER.Name = "GREYSTOCKADJUSTMENT_MASTER"
+        Me.GREYSTOCKADJUSTMENT_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.GREYSTOCKADJUSTMENT_MASTER.Text = "Grey Stock Adjustment"
+        '
+        'GREYSTOCKADJUSTMENT_ADD
+        '
+        Me.GREYSTOCKADJUSTMENT_ADD.Name = "GREYSTOCKADJUSTMENT_ADD"
+        Me.GREYSTOCKADJUSTMENT_ADD.Size = New System.Drawing.Size(168, 22)
+        Me.GREYSTOCKADJUSTMENT_ADD.Text = "Add New Entry"
+        '
+        'GREYSTOCKADJUSTMENT_EDIT
+        '
+        Me.GREYSTOCKADJUSTMENT_EDIT.Name = "GREYSTOCKADJUSTMENT_EDIT"
+        Me.GREYSTOCKADJUSTMENT_EDIT.Size = New System.Drawing.Size(168, 22)
+        Me.GREYSTOCKADJUSTMENT_EDIT.Text = "Edit Existing Entry"
+        '
         'AGENCYMODULE_MENU
         '
         Me.AGENCYMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleToolStripMenuItem, Me.AToolStripMenuItem, Me.ToolStripSeparator311, Me.AgencyOpeningBillsToolStripMenuItem, Me.ToolStripSeparator309})
@@ -9286,7 +9309,7 @@ Partial Class MDIMain
         '
         'UPLOADSTOCKMENU
         '
-        Me.UPLOADSTOCKMENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPLOADSTOCK_FINISHED, Me.UPLOADSTOCK_GREY, Me.ToolStripSeparator350})
+        Me.UPLOADSTOCKMENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPLOADSTOCK_FINISHED, Me.UPLOADSTOCK_JOBBER, Me.UPLOADSTOCK_GREY, Me.ToolStripSeparator350})
         Me.UPLOADSTOCKMENU.Name = "UPLOADSTOCKMENU"
         Me.UPLOADSTOCKMENU.Size = New System.Drawing.Size(239, 22)
         Me.UPLOADSTOCKMENU.Text = "Upload Stock"
@@ -9871,6 +9894,12 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
+        '
+        'UPLOADSTOCK_JOBBER
+        '
+        Me.UPLOADSTOCK_JOBBER.Name = "UPLOADSTOCK_JOBBER"
+        Me.UPLOADSTOCK_JOBBER.Size = New System.Drawing.Size(196, 22)
+        Me.UPLOADSTOCK_JOBBER.Text = "Upload Jobber Stock"
         '
         'MDIMain
         '
@@ -11228,4 +11257,8 @@ Partial Class MDIMain
     Friend WithEvents GREYSTOCKDETAILS_MASTER As ToolStripMenuItem
     Friend WithEvents GREYSTOCKSUMM_MASTER As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator353 As ToolStripSeparator
+    Friend WithEvents GREYSTOCKADJUSTMENT_MASTER As ToolStripMenuItem
+    Friend WithEvents GREYSTOCKADJUSTMENT_ADD As ToolStripMenuItem
+    Friend WithEvents GREYSTOCKADJUSTMENT_EDIT As ToolStripMenuItem
+    Friend WithEvents UPLOADSTOCK_JOBBER As ToolStripMenuItem
 End Class
