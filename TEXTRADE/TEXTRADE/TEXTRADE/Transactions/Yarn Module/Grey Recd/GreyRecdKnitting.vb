@@ -1213,28 +1213,29 @@ NEXTLINE:
     End Sub
 
     Sub PRINTREPORT(ByVal YARNNO As Integer)
-        'Try
-        '    TEMPMSG = MsgBox("Wish to Print Yarn Issue?", MsgBoxStyle.YesNo)
-        '    If TEMPMSG = vbYes Then
-        '        Dim OBJGDN As New GDNDESIGN
-        '        OBJGDN.MdiParent = MDIMain
-        '        OBJGDN.FRMSTRING = "JOBOUT"
-        '        'OBJGDN.FORMULA = "{JOBOUT.JO_NO}=" & Val(JONO) & " and {JOBOUT.JO_yearid}=" & YearId
-        '        OBJGDN.Show()
-        '    End If
+        Try
+            'TEMPMSG = MsgBox("Wish to Print Yarn Issue?", MsgBoxStyle.YesNo)
+            'If TEMPMSG = vbYes Then
+            '    Dim OBJGDN As New GDNDESIGN
+            '    OBJGDN.MdiParent = MDIMain
+            '    OBJGDN.FRMSTRING = "JOBOUT"
+            '    'OBJGDN.FORMULA = "{JOBOUT.JO_NO}=" & Val(JONO) & " and {JOBOUT.JO_yearid}=" & YearId
+            '    OBJGDN.Show()
+            'End If
 
-        '    If ClientName = "KCRAYON" Then
-        '        If MsgBox("Wish to Print Job Sheet?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-        '            Dim OBJJO As New JobOutDesign
-        '            OBJJO.MdiParent = MDIMain
-        '            OBJJO.FRMSTRING = "JOBSHEET"
-        '            'OBJJO.WHERECLAUSE = "{JOBOUT.JO_NO}=" & Val(JONO) & " and {JOBOUT.JO_yearid}=" & YearId
-        '            OBJJO.Show()
-        '        End If
-        '    End If
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+            'If ClientName = "KCRAYON" Then
+            '    If MsgBox("Wish to Print Job Sheet?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            '        Dim OBJJO As New JobOutDesign
+            '        OBJJO.MdiParent = MDIMain
+            '        OBJJO.FRMSTRING = "JOBSHEET"
+            '        'OBJJO.WHERECLAUSE = "{JOBOUT.JO_NO}=" & Val(JONO) & " and {JOBOUT.JO_yearid}=" & YearId
+            '        OBJJO.Show()
+            '    End If
+            'End If
+            PRINTBARCODE()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub JOBOUT_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
