@@ -363,6 +363,10 @@ CHECKNEXTLINE:
                 End If
             End If
 
+            If ClientName <> "AVIS" And cmbGodown.Text.Trim.Length = 0 Then
+                EP.SetError(cmbGodown, "Please Select Godown")
+                bln = False
+            End If
 
             Return bln
         Catch ex As Exception

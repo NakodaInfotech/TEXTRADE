@@ -75,6 +75,11 @@ Partial Class GreyReceivedTransportDetails
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBAROCDE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCREATED = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMODIFIED = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMODIFIEDBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,7 +213,7 @@ Partial Class GreyReceivedTransportDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GPONO, Me.GPODATE, Me.GCHALLAN, Me.GCHALLANDATE, Me.GLRNO, Me.GLRDATE, Me.GITEMNAME, Me.GQUALITY, Me.GBALENO, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GQTYUNIT, Me.GCUT, Me.GMTRS, Me.GISSUEMTRS, Me.GBALMTRS, Me.GWT, Me.GRATE, Me.GAMT, Me.GTRANSPORT, Me.GREMARKS, Me.GAGENT, Me.GCRDAYS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GPONO, Me.GPODATE, Me.GCHALLAN, Me.GCHALLANDATE, Me.GLRNO, Me.GLRDATE, Me.GITEMNAME, Me.GQUALITY, Me.GBALENO, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GQTYUNIT, Me.GCUT, Me.GMTRS, Me.GISSUEMTRS, Me.GBALMTRS, Me.GWT, Me.GRATE, Me.GAMT, Me.GTRANSPORT, Me.GREMARKS, Me.GAGENT, Me.GCRDAYS, Me.GGODOWN, Me.GBAROCDE, Me.GCREATED, Me.GMODIFIED, Me.GMODIFIEDBY})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -555,6 +560,51 @@ Partial Class GreyReceivedTransportDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'GGODOWN
+        '
+        Me.GGODOWN.Caption = "Godown"
+        Me.GGODOWN.FieldName = "GODOWN"
+        Me.GGODOWN.Name = "GGODOWN"
+        Me.GGODOWN.Visible = True
+        Me.GGODOWN.VisibleIndex = 20
+        Me.GGODOWN.Width = 150
+        '
+        'GBAROCDE
+        '
+        Me.GBAROCDE.Caption = "Barcode"
+        Me.GBAROCDE.FieldName = "BAROCDE"
+        Me.GBAROCDE.Name = "GBAROCDE"
+        Me.GBAROCDE.Visible = True
+        Me.GBAROCDE.VisibleIndex = 21
+        Me.GBAROCDE.Width = 100
+        '
+        'GCREATED
+        '
+        Me.GCREATED.Caption = "Created"
+        Me.GCREATED.FieldName = "CREATED"
+        Me.GCREATED.Name = "GCREATED"
+        Me.GCREATED.Visible = True
+        Me.GCREATED.VisibleIndex = 22
+        Me.GCREATED.Width = 80
+        '
+        'GMODIFIED
+        '
+        Me.GMODIFIED.Caption = "Modified"
+        Me.GMODIFIED.FieldName = "MODIFIED"
+        Me.GMODIFIED.Name = "GMODIFIED"
+        Me.GMODIFIED.Visible = True
+        Me.GMODIFIED.VisibleIndex = 23
+        Me.GMODIFIED.Width = 80
+        '
+        'GMODIFIEDBY
+        '
+        Me.GMODIFIEDBY.Caption = "Modified By"
+        Me.GMODIFIEDBY.FieldName = "MODIFIEDBY"
+        Me.GMODIFIEDBY.Name = "GMODIFIEDBY"
+        Me.GMODIFIEDBY.Visible = True
+        Me.GMODIFIEDBY.VisibleIndex = 24
+        Me.GMODIFIEDBY.Width = 100
+        '
         'GreyReceivedTransportDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -627,4 +677,9 @@ Partial Class GreyReceivedTransportDetails
     Friend WithEvents TOOLREFRESH As ToolStripButton
     Friend WithEvents GAGENT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCRDAYS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBAROCDE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCREATED As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMODIFIED As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMODIFIEDBY As DevExpress.XtraGrid.Columns.GridColumn
 End Class
