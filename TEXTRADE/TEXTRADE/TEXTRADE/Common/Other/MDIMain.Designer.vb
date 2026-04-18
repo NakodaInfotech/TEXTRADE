@@ -1103,6 +1103,9 @@ Partial Class MDIMain
         Me.YARNLOANEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator26 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNRECDTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
+        Me.GREYSTOCKADJUSTMENT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYSTOCKADJUSTMENT_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GREYSTOCKADJUSTMENT_EDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.AGENCYMODULE_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1353,9 +1356,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.GREYSTOCKADJUSTMENT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GREYSTOCKADJUSTMENT_ADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GREYSTOCKADJUSTMENT_EDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UPLOADSTOCK_JOBBER = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7861,7 +7862,7 @@ Partial Class MDIMain
         Me.GREYJOBOUT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBOUTADD, Me.GREYJOBOUTEDIT})
         Me.GREYJOBOUT_MASTER.Enabled = False
         Me.GREYJOBOUT_MASTER.Name = "GREYJOBOUT_MASTER"
-        Me.GREYJOBOUT_MASTER.Size = New System.Drawing.Size(180, 22)
+        Me.GREYJOBOUT_MASTER.Size = New System.Drawing.Size(141, 22)
         Me.GREYJOBOUT_MASTER.Text = "Grey Job Out"
         '
         'GREYJOBOUTADD
@@ -7883,7 +7884,7 @@ Partial Class MDIMain
         Me.GREYJOBIN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBINADD, Me.GREYJOBINEDIT})
         Me.GREYJOBIN_MASTER.Enabled = False
         Me.GREYJOBIN_MASTER.Name = "GREYJOBIN_MASTER"
-        Me.GREYJOBIN_MASTER.Size = New System.Drawing.Size(180, 22)
+        Me.GREYJOBIN_MASTER.Size = New System.Drawing.Size(141, 22)
         Me.GREYJOBIN_MASTER.Text = "Grey Job In"
         '
         'GREYJOBINADD
@@ -8227,19 +8228,19 @@ Partial Class MDIMain
         'YARNSTOCKADJUSTMENTADD
         '
         Me.YARNSTOCKADJUSTMENTADD.Name = "YARNSTOCKADJUSTMENTADD"
-        Me.YARNSTOCKADJUSTMENTADD.Size = New System.Drawing.Size(180, 22)
+        Me.YARNSTOCKADJUSTMENTADD.Size = New System.Drawing.Size(168, 22)
         Me.YARNSTOCKADJUSTMENTADD.Text = "&Add New Entry"
         '
         'YARNSTOCKADJUSTMENTEDIT
         '
         Me.YARNSTOCKADJUSTMENTEDIT.Name = "YARNSTOCKADJUSTMENTEDIT"
-        Me.YARNSTOCKADJUSTMENTEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.YARNSTOCKADJUSTMENTEDIT.Size = New System.Drawing.Size(168, 22)
         Me.YARNSTOCKADJUSTMENTEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator163
         '
         Me.ToolStripSeparator163.Name = "ToolStripSeparator163"
-        Me.ToolStripSeparator163.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator163.Size = New System.Drawing.Size(165, 6)
         '
         'YARNLOAN_MASTER
         '
@@ -8272,6 +8273,25 @@ Partial Class MDIMain
         '
         Me.YARNRECDTOOLSTRIP.Name = "YARNRECDTOOLSTRIP"
         Me.YARNRECDTOOLSTRIP.Size = New System.Drawing.Size(218, 6)
+        '
+        'GREYSTOCKADJUSTMENT_MASTER
+        '
+        Me.GREYSTOCKADJUSTMENT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYSTOCKADJUSTMENT_ADD, Me.GREYSTOCKADJUSTMENT_EDIT})
+        Me.GREYSTOCKADJUSTMENT_MASTER.Name = "GREYSTOCKADJUSTMENT_MASTER"
+        Me.GREYSTOCKADJUSTMENT_MASTER.Size = New System.Drawing.Size(221, 22)
+        Me.GREYSTOCKADJUSTMENT_MASTER.Text = "Grey Stock Adjustment"
+        '
+        'GREYSTOCKADJUSTMENT_ADD
+        '
+        Me.GREYSTOCKADJUSTMENT_ADD.Name = "GREYSTOCKADJUSTMENT_ADD"
+        Me.GREYSTOCKADJUSTMENT_ADD.Size = New System.Drawing.Size(168, 22)
+        Me.GREYSTOCKADJUSTMENT_ADD.Text = "Add New Entry"
+        '
+        'GREYSTOCKADJUSTMENT_EDIT
+        '
+        Me.GREYSTOCKADJUSTMENT_EDIT.Name = "GREYSTOCKADJUSTMENT_EDIT"
+        Me.GREYSTOCKADJUSTMENT_EDIT.Size = New System.Drawing.Size(168, 22)
+        Me.GREYSTOCKADJUSTMENT_EDIT.Text = "Edit Existing Entry"
         '
         'AGENCYMODULE_MENU
         '
@@ -9289,7 +9309,7 @@ Partial Class MDIMain
         '
         'UPLOADSTOCKMENU
         '
-        Me.UPLOADSTOCKMENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPLOADSTOCK_FINISHED, Me.UPLOADSTOCK_GREY, Me.ToolStripSeparator350})
+        Me.UPLOADSTOCKMENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UPLOADSTOCK_FINISHED, Me.UPLOADSTOCK_JOBBER, Me.UPLOADSTOCK_GREY, Me.ToolStripSeparator350})
         Me.UPLOADSTOCKMENU.Name = "UPLOADSTOCKMENU"
         Me.UPLOADSTOCKMENU.Size = New System.Drawing.Size(239, 22)
         Me.UPLOADSTOCKMENU.Text = "Upload Stock"
@@ -9875,24 +9895,11 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'GREYSTOCKADJUSTMENT_MASTER
+        'UPLOADSTOCK_JOBBER
         '
-        Me.GREYSTOCKADJUSTMENT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYSTOCKADJUSTMENT_ADD, Me.GREYSTOCKADJUSTMENT_EDIT})
-        Me.GREYSTOCKADJUSTMENT_MASTER.Name = "GREYSTOCKADJUSTMENT_MASTER"
-        Me.GREYSTOCKADJUSTMENT_MASTER.Size = New System.Drawing.Size(221, 22)
-        Me.GREYSTOCKADJUSTMENT_MASTER.Text = "Grey Stock Adjustment"
-        '
-        'GREYSTOCKADJUSTMENT_ADD
-        '
-        Me.GREYSTOCKADJUSTMENT_ADD.Name = "GREYSTOCKADJUSTMENT_ADD"
-        Me.GREYSTOCKADJUSTMENT_ADD.Size = New System.Drawing.Size(180, 22)
-        Me.GREYSTOCKADJUSTMENT_ADD.Text = "Add New Entry"
-        '
-        'GREYSTOCKADJUSTMENT_EDIT
-        '
-        Me.GREYSTOCKADJUSTMENT_EDIT.Name = "GREYSTOCKADJUSTMENT_EDIT"
-        Me.GREYSTOCKADJUSTMENT_EDIT.Size = New System.Drawing.Size(180, 22)
-        Me.GREYSTOCKADJUSTMENT_EDIT.Text = "Edit Existing Entry"
+        Me.UPLOADSTOCK_JOBBER.Name = "UPLOADSTOCK_JOBBER"
+        Me.UPLOADSTOCK_JOBBER.Size = New System.Drawing.Size(196, 22)
+        Me.UPLOADSTOCK_JOBBER.Text = "Upload Jobber Stock"
         '
         'MDIMain
         '
@@ -11253,4 +11260,5 @@ Partial Class MDIMain
     Friend WithEvents GREYSTOCKADJUSTMENT_MASTER As ToolStripMenuItem
     Friend WithEvents GREYSTOCKADJUSTMENT_ADD As ToolStripMenuItem
     Friend WithEvents GREYSTOCKADJUSTMENT_EDIT As ToolStripMenuItem
+    Friend WithEvents UPLOADSTOCK_JOBBER As ToolStripMenuItem
 End Class
