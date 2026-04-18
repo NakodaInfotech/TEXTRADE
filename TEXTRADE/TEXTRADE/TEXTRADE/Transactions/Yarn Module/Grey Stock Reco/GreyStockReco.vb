@@ -1605,7 +1605,7 @@ LINE1:
                 Exit Sub
             End If
 
-            Dim OBJstock As New StockRecoDetails
+            Dim OBJstock As New GreyStockRecoDetails
             OBJstock.MdiParent = MDIMain
             OBJstock.Show()
         Catch ex As Exception
@@ -1630,7 +1630,7 @@ LINE1:
             Dim OBJSA As New SaleOrderDesign
             OBJSA.MdiParent = MDIMain
             OBJSA.FORMULA = "{GREYSTOCKADJUSTMENT.GREYSA_NO} = " & Val(TXTRECONO.Text.Trim) & " AND {GREYSTOCKADJUSTMENT.GREYSA_YEARID} = " & YearId
-            OBJSA.FRMSTRING = "STOCKRECO"
+            OBJSA.FRMSTRING = "GREYSTOCKRECO"
             OBJSA.Show()
         Catch ex As Exception
             Throw ex
