@@ -658,7 +658,7 @@ Public Class OpeningStockGrey
         Try
             'GET BARCODE NO FROM DATABASE
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH(" SMGREY_BARCODE AS BARCODE ", "", " STOCKMASTER ", " AND SMGREY_NO = " & Val(TXTNO.Text.Trim) & " AND SMGREY_CMPID = " & CmpId & " AND SMGREY_LOCATIONID = " & Locationid & " AND SMGREY_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" SMGREY_BARCODE AS BARCODE ", "", " STOCKMASTER_GREY ", " AND SMGREY_NO = " & Val(TXTNO.Text.Trim) & " AND SMGREY_CMPID = " & CmpId & " AND SMGREY_LOCATIONID = " & Locationid & " AND SMGREY_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then TXTBARCODE.Text = DT.Rows(0).Item("BARCODE")
             PRINTBARCODE()
         Catch ex As Exception
