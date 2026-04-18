@@ -12535,4 +12535,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub REPRINTGREYBARCODE_MASTER_Click(sender As Object, e As EventArgs) Handles REPRINTGREYBARCODE_MASTER.Click
+        Try
+            Dim OBJGDN As New ReprintGrey
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GREYSTOCKADJUSTMENT_EDIT_Click(sender As Object, e As EventArgs) Handles GREYSTOCKADJUSTMENT_EDIT.Click
+        Try
+            Dim OBJGDN As New GreyStockRecoDetails
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

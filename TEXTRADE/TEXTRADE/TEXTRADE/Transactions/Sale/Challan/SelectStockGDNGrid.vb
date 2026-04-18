@@ -104,4 +104,15 @@ Public Class SelectStockGDNGrid
             Throw ex
         End Try
     End Sub
+
+    Private Sub chkall_CheckedChanged(sender As Object, e As EventArgs) Handles chkall.CheckedChanged
+        Try
+            For i As Integer = 0 To gridbill.RowCount - 1
+                Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                dtrow("CHK") = chkall.Checked
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
