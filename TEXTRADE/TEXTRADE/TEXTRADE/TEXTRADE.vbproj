@@ -7423,6 +7423,12 @@
     <Compile Include="Utilities\Others\Reminder.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Others\ReprintGrey.Designer.vb">
+      <DependentUpon>ReprintGrey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Others\ReprintGrey.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Others\UpdateRounder.Designer.vb">
       <DependentUpon>UpdateRounder.vb</DependentUpon>
     </Compile>
@@ -13580,6 +13586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\Reminder.resx">
       <DependentUpon>Reminder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Others\ReprintGrey.resx">
+      <DependentUpon>ReprintGrey.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\UpdateRounder.resx">
       <DependentUpon>UpdateRounder.vb</DependentUpon>
