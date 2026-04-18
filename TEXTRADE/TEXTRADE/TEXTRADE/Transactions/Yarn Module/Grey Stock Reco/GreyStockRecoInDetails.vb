@@ -22,7 +22,7 @@ Public Class GreyStockRecoInDetails
 
     Private Sub StockRecoInDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim DTROW() As DataRow
-        DTROW = USERRIGHTS.Select("FormName = 'GDN'")
+        DTROW = USERRIGHTS.Select("FormName = 'GREYSTOCK ADJUSTMENT'")
         USERADD = DTROW(0).Item(1)
         USEREDIT = DTROW(0).Item(2)
         USERVIEW = DTROW(0).Item(3)

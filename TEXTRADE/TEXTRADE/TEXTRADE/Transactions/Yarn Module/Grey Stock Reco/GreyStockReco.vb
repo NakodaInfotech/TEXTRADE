@@ -117,7 +117,7 @@ Public Class GreyStockReco
     Private Sub StockReco_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'GDN'")
+            DTROW = USERRIGHTS.Select("FormName = 'GREYSTOCK ADJUSTMENT'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
@@ -1605,7 +1605,7 @@ LINE1:
                 Exit Sub
             End If
 
-            Dim OBJstock As New StockRecoDetails
+            Dim OBJstock As New GreyStockRecoDetails
             OBJstock.MdiParent = MDIMain
             OBJstock.Show()
         Catch ex As Exception
@@ -1630,7 +1630,7 @@ LINE1:
             Dim OBJSA As New SaleOrderDesign
             OBJSA.MdiParent = MDIMain
             OBJSA.FORMULA = "{GREYSTOCKADJUSTMENT.GREYSA_NO} = " & Val(TXTRECONO.Text.Trim) & " AND {GREYSTOCKADJUSTMENT.GREYSA_YEARID} = " & YearId
-            OBJSA.FRMSTRING = "STOCKRECO"
+            OBJSA.FRMSTRING = "GREYSTOCKRECO"
             OBJSA.Show()
         Catch ex As Exception
             Throw ex

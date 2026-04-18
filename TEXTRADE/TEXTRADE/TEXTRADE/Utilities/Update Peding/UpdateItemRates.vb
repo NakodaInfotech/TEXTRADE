@@ -56,6 +56,7 @@ Public Class UpdateItemRates
             MsgBox("Rate Updated Successfully")
             'Me.Close()
             fillgriditem()
+            TXTRATE.Clear()
 
         Catch ex As Exception
             Throw ex
