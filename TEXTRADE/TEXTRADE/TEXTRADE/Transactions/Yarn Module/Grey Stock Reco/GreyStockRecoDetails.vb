@@ -25,7 +25,7 @@ Public Class GreyStockRecoDetails
 
     Private Sub StockAdjustmentDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim DTROW() As DataRow
-        DTROW = USERRIGHTS.Select("FormName = 'GDN'")
+        DTROW = USERRIGHTS.Select("FormName = 'GREYSTOCK ADJUSTMENT'")
         USERADD = DTROW(0).Item(1)
         USEREDIT = DTROW(0).Item(2)
         USERVIEW = DTROW(0).Item(3)
@@ -87,7 +87,7 @@ Public Class GreyStockRecoDetails
 
     Private Sub TOOLSTOCKOUT_Click(sender As Object, e As EventArgs) Handles TOOLSTOCKOUT.Click
         Try
-            Dim OBJSTCK As New StockRecoOutDetails
+            Dim OBJSTCK As New GreyStockRecoOutDetails
             OBJSTCK.MdiParent = MDIMain
             OBJSTCK.Show()
         Catch ex As Exception
@@ -97,7 +97,7 @@ Public Class GreyStockRecoDetails
 
     Private Sub TOOLSTOCKIN_Click(sender As Object, e As EventArgs) Handles TOOLSTOCKIN.Click
         Try
-            Dim OBJSTOCK As New StockRecoInDetails
+            Dim OBJSTOCK As New GreyStockRecoInDetails
             OBJSTOCK.MdiParent = MDIMain
             OBJSTOCK.Show()
         Catch ex As Exception
@@ -132,7 +132,7 @@ Public Class GreyStockRecoDetails
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
 
-            Dim PATH As String = Application.StartupPath & "\Stock Adjustment Details.XLS"
+            Dim PATH As String = Application.StartupPath & "\Grey Stock Adjustment Details.XLS"
             Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
             opti.ShowGridLines = True
             opti.SheetName = "Grey Stock Adjustment Details"

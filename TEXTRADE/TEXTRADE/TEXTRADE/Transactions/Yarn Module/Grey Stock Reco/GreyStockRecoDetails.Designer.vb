@@ -349,7 +349,7 @@ Partial Class GreyStockRecoDetails
         Me.KeyPreview = True
         Me.Name = "GreyStockRecoDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "GreyStockRecoDetails"
+        Me.Text = "Grey Stock Reco Details"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()

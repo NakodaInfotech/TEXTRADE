@@ -117,7 +117,7 @@ Public Class GreyStockReco
     Private Sub StockReco_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'GDN'")
+            DTROW = USERRIGHTS.Select("FormName = 'GREYSTOCK ADJUSTMENT'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
