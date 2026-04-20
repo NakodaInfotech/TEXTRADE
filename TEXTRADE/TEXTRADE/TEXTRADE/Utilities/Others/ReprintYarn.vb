@@ -97,7 +97,7 @@ LINE1:
                     If LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(txtbarcode.Text.Trim) Then GoTo LINE1
                 Next
 
-                GRIDREPRINT.Rows.Add(0, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("YARNQUALITY"), DT.Rows(0).Item("MILLNAME"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("UNIT"), DT.Rows(0).Item("LOTNO"), DT.Rows(0).Item("LRNO"), DT.Rows(0).Item("REMARKS"), Format((Val(DT.Rows(0).Item("WT"))), "0.00"), Format((Val(DT.Rows(0).Item("BAGS"))), "0.00"), DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("RACK"), DT.Rows(0).Item("SHELF"), Format(DT.Rows(0).Item("DATE"), "dd/MM/yyyy"), Val(DT.Rows(0).Item("FROMNO")), Val(DT.Rows(0).Item("FROMSRNO")), DT.Rows(0).Item("FROMTYPE"))
+                GRIDREPRINT.Rows.Add(0, DT.Rows(0).Item("YARNQUALITY"), DT.Rows(0).Item("MILLNAME"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("LOTNO"), DT.Rows(0).Item("LRNO"), DT.Rows(0).Item("REMARKS"), Format((Val(DT.Rows(0).Item("WT"))), "0.00"), Format((Val(DT.Rows(0).Item("BAGS"))), "0.00"), DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("RACK"), DT.Rows(0).Item("SHELF"), Format(DT.Rows(0).Item("DATE"), "dd/MM/yyyy"), Val(DT.Rows(0).Item("FROMNO")), Val(DT.Rows(0).Item("FROMSRNO")), DT.Rows(0).Item("FROMTYPE"))
                 GRIDREPRINT.FirstDisplayedScrollingRowIndex = GRIDREPRINT.RowCount - 1
                 getsrno(GRIDREPRINT)
             Else
