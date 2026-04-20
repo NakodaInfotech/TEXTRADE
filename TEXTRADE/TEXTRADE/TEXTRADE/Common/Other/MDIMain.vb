@@ -3601,28 +3601,6 @@ Public Class MDIMain
         End Try
     End Sub
 
-    Private Sub RegisterWisePurchaseSummaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RegisterWisePurchaseSummaryToolStripMenuItem.Click
-        Try
-            Dim OBJFILTER As New filter
-            OBJFILTER.frmstring = "REGISTERPURCHASESUMMARY"
-            OBJFILTER.MdiParent = Me
-            OBJFILTER.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub RegiserWiseSaleSummaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RegiserWiseSaleSummaryToolStripMenuItem.Click
-        Try
-            Dim OBJFILTER As New filter
-            OBJFILTER.frmstring = "REGISTERSALESUMMARY"
-            OBJFILTER.MdiParent = Me
-            OBJFILTER.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub MERGELEDGER_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MERGELEDGER.Click
         Try
             Dim OBJMERGE As New MergeLedger
@@ -5669,7 +5647,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub DAILYGREYSTOCKADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DAILYGREYSTOCKADD.Click
+    Private Sub DAILYGREYSTOCKADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Dim OBJGSTOCK As New DailyGreyStock
             OBJGSTOCK.MdiParent = Me
@@ -5679,7 +5657,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub DAILYGREYSTOCKEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DAILYGREYSTOCKEDIT.Click
+    Private Sub DAILYGREYSTOCKEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Dim OBJGSTOCK As New DailyGreyStockDetails
             OBJGSTOCK.MdiParent = Me
@@ -10451,16 +10429,6 @@ SKIPLINE:
     Private Sub UpdatePendingLRStockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdatePendingLRStockToolStripMenuItem.Click
         Try
             Dim OBJLR As New UpdatePendingLrStock
-            OBJLR.MdiParent = Me
-            OBJLR.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub LotPieceTypeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LotPieceTypeToolStripMenuItem.Click
-        Try
-            Dim OBJLR As New LotPieceTypeSummary
             OBJLR.MdiParent = Me
             OBJLR.Show()
         Catch ex As Exception
