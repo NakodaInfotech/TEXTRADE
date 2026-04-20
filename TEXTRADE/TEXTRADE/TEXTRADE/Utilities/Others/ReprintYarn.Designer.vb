@@ -40,23 +40,23 @@ Partial Class ReprintYarn
         Me.txtcopies = New System.Windows.Forms.TextBox()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GJOBBERLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GRACK = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSHELF = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GYARNDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GYARNDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSHELF = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRACK = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GJOBBERLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.GRIDREPRINT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -235,92 +235,44 @@ Partial Class ReprintYarn
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GSRNO
+        'GFROMTYPE
         '
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 30
+        Me.GFROMTYPE.HeaderText = "FROMTYPE"
+        Me.GFROMTYPE.Name = "GFROMTYPE"
         '
-        'GYARNQUALITY
+        'GFROMSRNO
         '
-        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
-        Me.GYARNQUALITY.Name = "GYARNQUALITY"
-        Me.GYARNQUALITY.ReadOnly = True
-        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GYARNQUALITY.Width = 180
+        Me.GFROMSRNO.HeaderText = "FROMSRNO"
+        Me.GFROMSRNO.Name = "GFROMSRNO"
         '
-        'GMILLNAME
+        'GFROMNO
         '
-        Me.GMILLNAME.HeaderText = "Mill Name"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.ReadOnly = True
-        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMILLNAME.Width = 130
+        Me.GFROMNO.HeaderText = "FROMNO"
+        Me.GFROMNO.Name = "GFROMNO"
         '
-        'GDESIGN
+        'GYARNDATE
         '
-        Me.GDESIGN.HeaderText = "Design"
-        Me.GDESIGN.Name = "GDESIGN"
-        Me.GDESIGN.ReadOnly = True
-        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDESIGN.Width = 150
+        Me.GYARNDATE.HeaderText = "Yarn Date"
+        Me.GYARNDATE.Name = "GYARNDATE"
+        Me.GYARNDATE.ReadOnly = True
+        Me.GYARNDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GYARNDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
-        'GCOLOR
+        'GSHELF
         '
-        Me.GCOLOR.HeaderText = "Shade"
-        Me.GCOLOR.Name = "GCOLOR"
-        Me.GCOLOR.ReadOnly = True
-        Me.GCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GCOLOR.Width = 150
+        Me.GSHELF.HeaderText = "Shelf"
+        Me.GSHELF.Name = "GSHELF"
+        Me.GSHELF.ReadOnly = True
+        Me.GSHELF.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSHELF.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
-        'GJOBBERLOTNO
+        'GRACK
         '
-        Me.GJOBBERLOTNO.HeaderText = "Jobber Lot No"
-        Me.GJOBBERLOTNO.Name = "GJOBBERLOTNO"
-        Me.GJOBBERLOTNO.ReadOnly = True
-        Me.GJOBBERLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GJOBBERLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GLRNO
-        '
-        Me.GLRNO.HeaderText = "Lr No"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.ReadOnly = True
-        Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GLRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GGRIDREMARKS
-        '
-        Me.GGRIDREMARKS.HeaderText = "Description"
-        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
-        Me.GGRIDREMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GGRIDREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GGRIDREMARKS.Width = 130
-        '
-        'GWT
-        '
-        Me.GWT.HeaderText = "Wt"
-        Me.GWT.Name = "GWT"
-        Me.GWT.ReadOnly = True
-        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GWT.Width = 80
-        '
-        'GQTY
-        '
-        Me.GQTY.HeaderText = "Qty"
-        Me.GQTY.Name = "GQTY"
-        Me.GQTY.ReadOnly = True
-        Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GQTY.Width = 60
+        Me.GRACK.HeaderText = "Rack"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.ReadOnly = True
+        Me.GRACK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRACK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'GBARCODE
         '
@@ -331,44 +283,92 @@ Partial Class ReprintYarn
         Me.GBARCODE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GBARCODE.Width = 110
         '
-        'GRACK
+        'GQTY
         '
-        Me.GRACK.HeaderText = "Rack"
-        Me.GRACK.Name = "GRACK"
-        Me.GRACK.ReadOnly = True
-        Me.GRACK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRACK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GQTY.HeaderText = "Qty"
+        Me.GQTY.Name = "GQTY"
+        Me.GQTY.ReadOnly = True
+        Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GQTY.Width = 60
         '
-        'GSHELF
+        'GWT
         '
-        Me.GSHELF.HeaderText = "Shelf"
-        Me.GSHELF.Name = "GSHELF"
-        Me.GSHELF.ReadOnly = True
-        Me.GSHELF.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSHELF.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GWT.HeaderText = "Wt"
+        Me.GWT.Name = "GWT"
+        Me.GWT.ReadOnly = True
+        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GWT.Width = 80
         '
-        'GYARNDATE
+        'GGRIDREMARKS
         '
-        Me.GYARNDATE.HeaderText = "Yarn Date"
-        Me.GYARNDATE.Name = "GYARNDATE"
-        Me.GYARNDATE.ReadOnly = True
-        Me.GYARNDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GYARNDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGRIDREMARKS.HeaderText = "Description"
+        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
+        Me.GGRIDREMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGRIDREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGRIDREMARKS.Width = 130
         '
-        'GFROMNO
+        'GLRNO
         '
-        Me.GFROMNO.HeaderText = "FROMNO"
-        Me.GFROMNO.Name = "GFROMNO"
+        Me.GLRNO.HeaderText = "Lr No"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.ReadOnly = True
+        Me.GLRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GLRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
-        'GFROMSRNO
+        'GJOBBERLOTNO
         '
-        Me.GFROMSRNO.HeaderText = "FROMSRNO"
-        Me.GFROMSRNO.Name = "GFROMSRNO"
+        Me.GJOBBERLOTNO.HeaderText = "Jobber Lot No"
+        Me.GJOBBERLOTNO.Name = "GJOBBERLOTNO"
+        Me.GJOBBERLOTNO.ReadOnly = True
+        Me.GJOBBERLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GJOBBERLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
-        'GFROMTYPE
+        'GCOLOR
         '
-        Me.GFROMTYPE.HeaderText = "FROMTYPE"
-        Me.GFROMTYPE.Name = "GFROMTYPE"
+        Me.GCOLOR.HeaderText = "Shade"
+        Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.ReadOnly = True
+        Me.GCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GCOLOR.Width = 150
+        '
+        'GDESIGN
+        '
+        Me.GDESIGN.HeaderText = "Design"
+        Me.GDESIGN.Name = "GDESIGN"
+        Me.GDESIGN.ReadOnly = True
+        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDESIGN.Width = 150
+        '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.HeaderText = "Mill Name"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.ReadOnly = True
+        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMILLNAME.Width = 130
+        '
+        'GYARNQUALITY
+        '
+        Me.GYARNQUALITY.HeaderText = "Yarn Quality"
+        Me.GYARNQUALITY.Name = "GYARNQUALITY"
+        Me.GYARNQUALITY.ReadOnly = True
+        Me.GYARNQUALITY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GYARNQUALITY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GYARNQUALITY.Width = 180
+        '
+        'GSRNO
+        '
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 30
         '
         'ReprintYarn
         '
