@@ -533,7 +533,7 @@ CHECKNEXTLINEMTRS:
                             ROW.DefaultCellStyle.BackColor = Color.LightGreen
 
                             'SALEORDER MANDATORY 
-                            If ClientName = "AVIS" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Or ClientName = "SNCM" Or ClientName = "ANKUSH" Then
+                            If ClientName = "AVIS" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Or ClientName = "SNCM" Or ClientName = "ANKUSH" Or ClientName = "ROVIRO" Then
                                 EP.SetError(cmbname, "There are Items which are not Present in Selected Order")
                                 bln = False
                             Else
@@ -549,7 +549,7 @@ CHECKNEXTLINEMTRS:
 
             End If
 
-            If (ClientName = "AVIS" Or ClientName = "ANKUSH" Or ClientName = "SUPEEMA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Or ClientName = "SNCM") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
+            If (ClientName = "AVIS" Or ClientName = "ANKUSH" Or ClientName = "SUPEEMA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "NAYRA" Or ClientName = "SIDDHGIRI" Or ClientName = "SUPRIYA" Or ClientName = "SNCM" Or ClientName = "ROVIRO") And GRIDORDER.RowCount = 0 And CHALLANWITHOUTSO = False Then
                 EP.SetError(cmbname, "Please Select Sale Order")
                 bln = False
             End If

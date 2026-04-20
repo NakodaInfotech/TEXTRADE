@@ -260,7 +260,7 @@ LINE1:
     Sub SERVERPROPSELECTED()
         Try
 
-            If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings
+            If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
 
             For Each ROW As DataGridViewRow In GRIDREPRINT.Rows
                 '**************** SET SERVER ************************
@@ -287,17 +287,18 @@ LINE1:
 
 
                 Dim OBJ As New Object
+                Dim WHERECLAUSE As String = ""
                 If ROW.Cells(GFROMTYPE.Index).Value = "MATREC" Then
                     OBJ = New MatRecReport_SNCM
-                    OBJ.RecordSelectionFormula = "{MATERIALRECEIPT_desc.MATREC_BALENO}='" & ROW.Cells(GBALENO.Index).Value.ToString & "' AND {MATERIALRECEIPT_desc.MATREC_NO}=" & ROW.Cells(GFROMNO.Index).Value & " AND {MATERIALRECEIPT_desc.MATREC_GRIDSRNO}=" & ROW.Cells(GFROMSRNO.Index).Value & " AND {MATERIALRECEIPT.MATREC_yearid}=" & YearId
+                    WHERECLAUSE = " {MATERIALRECEIPT.MATREC_NO}=" & ROW.Cells(GFROMNO.Index).Value & " AND {MATERIALRECEIPT_DESC.MATREC_GRIDSRNO}=" & ROW.Cells(GFROMSRNO.Index).Value & " AND {MATERIALRECEIPT.MATREC_yearid}=" & YearId
 
                 ElseIf ROW.Cells(GFROMTYPE.Index).Value = "JOBIN" Then
                     OBJ = New JobInReport_SNCM
-                    OBJ.RecordSelectionFormula = "{JOBIN_DESC.JI_BALENO}='" & ROW.Cells(GBALENO.Index).Value.ToString & "' AND {JOBIN_DESC.JI_NO}=" & ROW.Cells(GFROMNO.Index).Value & " AND {JOBIN_DESC.JI_GRIDSRNO}=" & ROW.Cells(GFROMSRNO.Index).Value & " and {JOBIN.JI_yearid}=" & YearId
+                    WHERECLAUSE = "{JOBIN_DESC.JI_BALENO}='" & ROW.Cells(GBALENO.Index).Value.ToString & "' AND {JOBIN_DESC.JI_NO}=" & ROW.Cells(GFROMNO.Index).Value & " AND {JOBIN_DESC.JI_GRIDSRNO}=" & ROW.Cells(GFROMSRNO.Index).Value & " and {JOBIN.JI_yearid}=" & YearId
 
                 ElseIf ROW.Cells(GFROMTYPE.Index).Value = "OPENING" Then
                     OBJ = New OpeningReport_SNCM
-                    OBJ.RecordSelectionFormula = "{STOCKMASTER.SM_BALENO}='" & ROW.Cells(GBALENO.Index).Value.ToString & "' AND {STOCKMASTER.SM_NO}=" & ROW.Cells(GFROMNO.Index).Value & " AND {STOCKMASTER.MATREC_GRIDSRNO}=" & ROW.Cells(GFROMSRNO.Index).Value & " AND {MATERIALRECEIPT.MATREC_yearid}=" & YearId
+                    WHERECLAUSE = "{STOCKMASTER.SM_BALENO}='" & ROW.Cells(GBALENO.Index).Value.ToString & "' AND {STOCKMASTER.SM_LOTNO}='" & ROW.Cells(GLOTNO.Index).Value.ToString & "' AND {STOCKMASTER.SM_NO}=" & ROW.Cells(GFROMNO.Index).Value & " AND {STOCKMASTER.SM_yearid}=" & YearId
                 End If
 
                 crTables = OBJ.Database.Tables
@@ -307,11 +308,12 @@ LINE1:
                     crTable.ApplyLogOnInfo(crtableLogonInfo)
                 Next
 
-
+                OBJ.RecordSelectionFormula = WHERECLAUSE
+                OBJ.REFRESH
                 OBJ.PrintOptions.PrinterName = PRINTDIALOG.PrinterSettings.PrinterName
-                OBJ.PrintToPrinter(Val(txtcopies.Text.Trim), True, 0, 0)
-
-
+                OBJ.PrintToPrinter(Val(1), True, 0, 0)
+                OBJ.CLOSE()
+                OBJ.DISPOSE()
             Next
 
         Catch ex As Exception
