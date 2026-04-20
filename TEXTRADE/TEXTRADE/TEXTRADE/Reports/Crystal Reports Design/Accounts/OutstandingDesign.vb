@@ -488,7 +488,7 @@ Public Class OutstandingDesign
             OBJWHATSAPP.PARTYNAME = PARTYNAME
             OBJWHATSAPP.AGENTNAME = AGENTNAME
 
-            If File.Exists(Application.StartupPath & "\Outstanding Report" & ".PDF") And PARTYNAME <> "" Then My.Computer.FileSystem.RenameFile(Application.StartupPath & "\Outstanding Report" & ".PDF", PARTYNAME & "Outstanding Report" & ".PDF")
+            'If File.Exists(Application.StartupPath & "\Outstanding Report" & ".PDF") And PARTYNAME <> "" Then My.Computer.FileSystem.RenameFile(Application.StartupPath & "\Outstanding Report" & ".PDF", PARTYNAME & "Outstanding Report" & ".PDF")
 
             OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & PARTYNAME & "Outstanding Report" & ".PDF")
             OBJWHATSAPP.FILENAME.Add(PARTYNAME & "Outstanding Report.pdf")
