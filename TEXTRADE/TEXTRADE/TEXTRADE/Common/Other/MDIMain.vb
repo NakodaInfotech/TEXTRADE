@@ -12523,4 +12523,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub COMPLAINTREGISTER_MENU_Click(sender As Object, e As EventArgs) Handles COMPLAINTREGISTER_MENU.Click
+        Try
+            Dim OBJCOMPLAINT As New ComplaintRegisterReport
+            OBJCOMPLAINT.MdiParent = Me
+            OBJCOMPLAINT.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

@@ -810,6 +810,12 @@
     <Compile Include="Reports\Grid Reports\Opening Bills\OpeningBillsGrid.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\ComplaintRegisterReport.Designer.vb">
+      <DependentUpon>ComplaintRegisterReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\ComplaintRegisterReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.Designer.vb">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
     </Compile>

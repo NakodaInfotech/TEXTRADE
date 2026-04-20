@@ -789,6 +789,7 @@ Partial Class MDIMain
         Me.OtherReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DAILYACTIVITYFILTER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.PENDINGDETAILS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator64 = New System.Windows.Forms.ToolStripSeparator()
         Me.GROSSPROFIT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReOrderLevelReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StockRegisterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -799,6 +800,7 @@ Partial Class MDIMain
         Me.CHALLANSTOCKREG_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ErrorInOpeningBillsReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SOREPORT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.COMPLAINTREGISTER_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.SALARYREPORT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.FollowupReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator56 = New System.Windows.Forms.ToolStripSeparator()
@@ -1351,8 +1353,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolStripSeparator64 = New System.Windows.Forms.ToolStripSeparator()
-        Me.COMPLAINTREGISTER_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -6259,6 +6259,11 @@ Partial Class MDIMain
         Me.PENDINGDETAILS_MASTER.Size = New System.Drawing.Size(229, 22)
         Me.PENDINGDETAILS_MASTER.Text = "Pending Details"
         '
+        'ToolStripSeparator64
+        '
+        Me.ToolStripSeparator64.Name = "ToolStripSeparator64"
+        Me.ToolStripSeparator64.Size = New System.Drawing.Size(226, 6)
+        '
         'GROSSPROFIT_MASTER
         '
         Me.GROSSPROFIT_MASTER.Name = "GROSSPROFIT_MASTER"
@@ -6319,6 +6324,12 @@ Partial Class MDIMain
         Me.SOREPORT_MASTER.Name = "SOREPORT_MASTER"
         Me.SOREPORT_MASTER.Size = New System.Drawing.Size(229, 22)
         Me.SOREPORT_MASTER.Text = "SO Wise Report"
+        '
+        'COMPLAINTREGISTER_MENU
+        '
+        Me.COMPLAINTREGISTER_MENU.Name = "COMPLAINTREGISTER_MENU"
+        Me.COMPLAINTREGISTER_MENU.Size = New System.Drawing.Size(229, 22)
+        Me.COMPLAINTREGISTER_MENU.Text = "Complaint Register"
         '
         'SALARYREPORT_MASTER
         '
@@ -9858,17 +9869,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'ToolStripSeparator64
-        '
-        Me.ToolStripSeparator64.Name = "ToolStripSeparator64"
-        Me.ToolStripSeparator64.Size = New System.Drawing.Size(226, 6)
-        '
-        'COMPLAINTREGISTER_MENU
-        '
-        Me.COMPLAINTREGISTER_MENU.Name = "COMPLAINTREGISTER_MENU"
-        Me.COMPLAINTREGISTER_MENU.Size = New System.Drawing.Size(229, 22)
-        Me.COMPLAINTREGISTER_MENU.Text = "Complaint Register"
         '
         'MDIMain
         '
