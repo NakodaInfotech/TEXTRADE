@@ -98,4 +98,37 @@ Public Class CustomLayout
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
+
+    Private Sub GRIDNAME_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDNAME.KeyDown
+        Try
+            If e.KeyCode <> Keys.Delete Then Exit Sub
+            'If UserName = "Admin" Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView =
+                CType(GRIDNAME.MainView, DevExpress.XtraGrid.Views.Grid.GridView)
+
+                If view.SelectedRowsCount = 0 Then Exit Sub
+
+                If MsgBox("Delete selected record(s)?", MsgBoxStyle.YesNo + MsgBoxStyle.Question) = MsgBoxResult.No Then Exit Sub
+
+                Dim objClsCommon As New ClsCommon
+
+                For Each rowHandle In view.GetSelectedRows()
+                    If rowHandle < 0 Then Continue For
+
+                    Dim FILENAME As String = view.GetRowCellValue(rowHandle, "FILENAME")
+
+                    ' DELETE QUERY
+                    Dim sql As String = "DELETE FROM CUSTOMLAYOUTS WHERE CL_FILENAME = '" & FILENAME & "'"
+
+                    objClsCommon.Execute_Any_String(sql, "", "") ' <-- You must have this function
+                Next
+
+                ' Refresh grid
+                FILLGRID()
+            'End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 End Class
