@@ -36,13 +36,14 @@ Partial Class SelectYarnStock
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFROMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFROMSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GFROMTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.chkall = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,13 +54,14 @@ Partial Class SelectYarnStock
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.chkall)
         Me.BlendPanel1.Controls.Add(Me.CMDOK)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(1284, 561)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1284, 641)
         Me.BlendPanel1.TabIndex = 12
         '
         'CMDOK
@@ -69,7 +71,7 @@ Partial Class SelectYarnStock
         Me.CMDOK.FlatAppearance.BorderSize = 0
         Me.CMDOK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDOK.ForeColor = System.Drawing.Color.Black
-        Me.CMDOK.Location = New System.Drawing.Point(534, 521)
+        Me.CMDOK.Location = New System.Drawing.Point(534, 601)
         Me.CMDOK.Name = "CMDOK"
         Me.CMDOK.Size = New System.Drawing.Size(80, 28)
         Me.CMDOK.TabIndex = 257
@@ -83,7 +85,7 @@ Partial Class SelectYarnStock
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(620, 521)
+        Me.cmdexit.Location = New System.Drawing.Point(620, 601)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 2
@@ -93,12 +95,12 @@ Partial Class SelectYarnStock
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(19, 12)
+        Me.gridbilldetails.Location = New System.Drawing.Point(19, 36)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.CHK})
-        Me.gridbilldetails.Size = New System.Drawing.Size(1253, 497)
+        Me.gridbilldetails.Size = New System.Drawing.Size(1253, 549)
         Me.gridbilldetails.TabIndex = 256
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -203,18 +205,6 @@ Partial Class SelectYarnStock
         Me.GLRNO.VisibleIndex = 7
         Me.GLRNO.Width = 100
         '
-        'GTOTALCONES
-        '
-        Me.GTOTALCONES.Caption = "Cones"
-        Me.GTOTALCONES.DisplayFormat.FormatString = "0"
-        Me.GTOTALCONES.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALCONES.FieldName = "CONES"
-        Me.GTOTALCONES.Name = "GTOTALCONES"
-        Me.GTOTALCONES.OptionsColumn.AllowEdit = False
-        Me.GTOTALCONES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALCONES.Visible = True
-        Me.GTOTALCONES.VisibleIndex = 11
-        '
         'GBAGS
         '
         Me.GBAGS.Caption = "Bags"
@@ -251,6 +241,18 @@ Partial Class SelectYarnStock
         Me.GBARCODE.VisibleIndex = 10
         Me.GBARCODE.Width = 120
         '
+        'GTOTALCONES
+        '
+        Me.GTOTALCONES.Caption = "Cones"
+        Me.GTOTALCONES.DisplayFormat.FormatString = "0"
+        Me.GTOTALCONES.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALCONES.FieldName = "CONES"
+        Me.GTOTALCONES.Name = "GTOTALCONES"
+        Me.GTOTALCONES.OptionsColumn.AllowEdit = False
+        Me.GTOTALCONES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GTOTALCONES.Visible = True
+        Me.GTOTALCONES.VisibleIndex = 11
+        '
         'GFROMNO
         '
         Me.GFROMNO.Caption = "FROMNO"
@@ -274,10 +276,22 @@ Partial Class SelectYarnStock
         Me.GFROMTYPE.Visible = True
         Me.GFROMTYPE.VisibleIndex = 12
         '
+        'chkall
+        '
+        Me.chkall.AutoSize = True
+        Me.chkall.BackColor = System.Drawing.Color.Transparent
+        Me.chkall.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.chkall.Location = New System.Drawing.Point(53, 12)
+        Me.chkall.Name = "chkall"
+        Me.chkall.Size = New System.Drawing.Size(77, 18)
+        Me.chkall.TabIndex = 262
+        Me.chkall.Text = "Select &All"
+        Me.chkall.UseVisualStyleBackColor = False
+        '
         'SelectYarnStock
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1284, 561)
+        Me.ClientSize = New System.Drawing.Size(1284, 641)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -286,6 +300,7 @@ Partial Class SelectYarnStock
         Me.Text = "Select Yarn Stock"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.BlendPanel1.ResumeLayout(False)
+        Me.BlendPanel1.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CHK, System.ComponentModel.ISupportInitialize).EndInit()
@@ -314,4 +329,5 @@ Partial Class SelectYarnStock
     Friend WithEvents GFROMNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GFROMSRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GFROMTYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents chkall As CheckBox
 End Class

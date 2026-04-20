@@ -41,12 +41,10 @@ Partial Class ReprintYarn
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPIECETYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GYARNQUALITY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCOLOR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GUNIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GJOBBERLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GLRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -129,7 +127,7 @@ Partial Class ReprintYarn
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDREPRINT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDREPRINT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDREPRINT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GPIECETYPE, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GCOLOR, Me.GUNIT, Me.GJOBBERLOTNO, Me.GLRNO, Me.GGRIDREMARKS, Me.GWT, Me.GQTY, Me.GBARCODE, Me.GRACK, Me.GSHELF, Me.GYARNDATE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
+        Me.GRIDREPRINT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GCOLOR, Me.GJOBBERLOTNO, Me.GLRNO, Me.GGRIDREMARKS, Me.GWT, Me.GQTY, Me.GBARCODE, Me.GRACK, Me.GSHELF, Me.GYARNDATE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -246,14 +244,6 @@ Partial Class ReprintYarn
         Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GSRNO.Width = 30
         '
-        'GPIECETYPE
-        '
-        Me.GPIECETYPE.HeaderText = "Piece Type"
-        Me.GPIECETYPE.Name = "GPIECETYPE"
-        Me.GPIECETYPE.ReadOnly = True
-        Me.GPIECETYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPIECETYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
         'GYARNQUALITY
         '
         Me.GYARNQUALITY.HeaderText = "Yarn Quality"
@@ -289,15 +279,6 @@ Partial Class ReprintYarn
         Me.GCOLOR.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GCOLOR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GCOLOR.Width = 150
-        '
-        'GUNIT
-        '
-        Me.GUNIT.HeaderText = "Unit"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.ReadOnly = True
-        Me.GUNIT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GUNIT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GUNIT.Width = 60
         '
         'GJOBBERLOTNO
         '
@@ -433,12 +414,10 @@ Partial Class ReprintYarn
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GPIECETYPE As DataGridViewTextBoxColumn
     Friend WithEvents GYARNQUALITY As DataGridViewTextBoxColumn
     Friend WithEvents GMILLNAME As DataGridViewTextBoxColumn
     Friend WithEvents GDESIGN As DataGridViewTextBoxColumn
     Friend WithEvents GCOLOR As DataGridViewTextBoxColumn
-    Friend WithEvents GUNIT As DataGridViewTextBoxColumn
     Friend WithEvents GJOBBERLOTNO As DataGridViewTextBoxColumn
     Friend WithEvents GLRNO As DataGridViewTextBoxColumn
     Friend WithEvents GGRIDREMARKS As DataGridViewTextBoxColumn
