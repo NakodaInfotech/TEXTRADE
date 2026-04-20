@@ -3601,28 +3601,6 @@ Public Class MDIMain
         End Try
     End Sub
 
-    Private Sub RegisterWisePurchaseSummaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RegisterWisePurchaseSummaryToolStripMenuItem.Click
-        Try
-            Dim OBJFILTER As New filter
-            OBJFILTER.frmstring = "REGISTERPURCHASESUMMARY"
-            OBJFILTER.MdiParent = Me
-            OBJFILTER.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub RegiserWiseSaleSummaryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RegiserWiseSaleSummaryToolStripMenuItem.Click
-        Try
-            Dim OBJFILTER As New filter
-            OBJFILTER.frmstring = "REGISTERSALESUMMARY"
-            OBJFILTER.MdiParent = Me
-            OBJFILTER.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub MERGELEDGER_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MERGELEDGER.Click
         Try
             Dim OBJMERGE As New MergeLedger
@@ -5669,7 +5647,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub DAILYGREYSTOCKADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DAILYGREYSTOCKADD.Click
+    Private Sub DAILYGREYSTOCKADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Dim OBJGSTOCK As New DailyGreyStock
             OBJGSTOCK.MdiParent = Me
@@ -5679,7 +5657,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub DAILYGREYSTOCKEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DAILYGREYSTOCKEDIT.Click
+    Private Sub DAILYGREYSTOCKEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             Dim OBJGSTOCK As New DailyGreyStockDetails
             OBJGSTOCK.MdiParent = Me
@@ -10458,16 +10436,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub LotPieceTypeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LotPieceTypeToolStripMenuItem.Click
-        Try
-            Dim OBJLR As New LotPieceTypeSummary
-            OBJLR.MdiParent = Me
-            OBJLR.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub AutoEWayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GENERATEEWAY_MASTER.Click
         Try
             Dim OBJHOLD As New AutoEway
@@ -12531,6 +12499,36 @@ SKIPLINE:
             Dim OBJGDN As New GreyStockReco
             OBJGDN.MdiParent = Me
             OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub REPRINTGREYBARCODE_MASTER_Click(sender As Object, e As EventArgs) Handles REPRINTGREYBARCODE_MASTER.Click
+        Try
+            Dim OBJGDN As New ReprintGrey
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GREYSTOCKADJUSTMENT_EDIT_Click(sender As Object, e As EventArgs) Handles GREYSTOCKADJUSTMENT_EDIT.Click
+        Try
+            Dim OBJGDN As New GreyStockRecoDetails
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub COMPLAINTREGISTER_MENU_Click(sender As Object, e As EventArgs) Handles COMPLAINTREGISTER_MENU.Click
+        Try
+            Dim OBJCOMPLAINT As New ComplaintRegisterReport
+            OBJCOMPLAINT.MdiParent = Me
+            OBJCOMPLAINT.Show()
         Catch ex As Exception
             Throw ex
         End Try

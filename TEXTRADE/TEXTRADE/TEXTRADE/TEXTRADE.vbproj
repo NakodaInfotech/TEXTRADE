@@ -810,6 +810,12 @@
     <Compile Include="Reports\Grid Reports\Opening Bills\OpeningBillsGrid.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\ComplaintRegisterReport.Designer.vb">
+      <DependentUpon>ComplaintRegisterReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Other Reports\ComplaintRegisterReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.Designer.vb">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
     </Compile>
@@ -7429,6 +7435,12 @@
     <Compile Include="Utilities\Others\ReprintGrey.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utilities\Others\ReprintYarn.Designer.vb">
+      <DependentUpon>ReprintYarn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Others\ReprintYarn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Utilities\Others\UpdateRounder.Designer.vb">
       <DependentUpon>UpdateRounder.vb</DependentUpon>
     </Compile>
@@ -13589,6 +13601,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\ReprintGrey.resx">
       <DependentUpon>ReprintGrey.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Others\ReprintYarn.resx">
+      <DependentUpon>ReprintYarn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Others\UpdateRounder.resx">
       <DependentUpon>UpdateRounder.vb</DependentUpon>

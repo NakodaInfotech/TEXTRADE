@@ -97,6 +97,7 @@ Partial Class SOFilter
         Me.RDBCLOSED = New System.Windows.Forms.RadioButton()
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RDBQUALITY = New System.Windows.Forms.RadioButton()
         Me.RDBITEMGRIDREPORT = New System.Windows.Forms.RadioButton()
         Me.RDBITEMSMALL = New System.Windows.Forms.RadioButton()
         Me.RBDISPPER = New System.Windows.Forms.RadioButton()
@@ -126,7 +127,6 @@ Partial Class SOFilter
         Me.GCHKMILL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RDBQUALITY = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GPFILTERS.SuspendLayout()
         Me.GPORDERNO.SuspendLayout()
@@ -161,6 +161,7 @@ Partial Class SOFilter
         '
         'BlendPanel2
         '
+        Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel2.Controls.Add(Me.GPFILTERS)
         Me.BlendPanel2.Controls.Add(Me.GPORDERNO)
         Me.BlendPanel2.Controls.Add(Me.CMBORDERTYPE)
@@ -1043,6 +1044,16 @@ Partial Class SOFilter
         Me.GroupBox3.TabIndex = 8
         Me.GroupBox3.TabStop = False
         '
+        'RDBQUALITY
+        '
+        Me.RDBQUALITY.AutoSize = True
+        Me.RDBQUALITY.Location = New System.Drawing.Point(147, 133)
+        Me.RDBQUALITY.Name = "RDBQUALITY"
+        Me.RDBQUALITY.Size = New System.Drawing.Size(95, 18)
+        Me.RDBQUALITY.TabIndex = 11
+        Me.RDBQUALITY.Text = "Quality Wise"
+        Me.RDBQUALITY.UseVisualStyleBackColor = True
+        '
         'RDBITEMGRIDREPORT
         '
         Me.RDBITEMGRIDREPORT.AutoSize = True
@@ -1359,16 +1370,6 @@ Partial Class SOFilter
         Me.GMILLNAME.Visible = True
         Me.GMILLNAME.VisibleIndex = 1
         Me.GMILLNAME.Width = 200
-        '
-        'RDBQUALITY
-        '
-        Me.RDBQUALITY.AutoSize = True
-        Me.RDBQUALITY.Location = New System.Drawing.Point(147, 133)
-        Me.RDBQUALITY.Name = "RDBQUALITY"
-        Me.RDBQUALITY.Size = New System.Drawing.Size(95, 18)
-        Me.RDBQUALITY.TabIndex = 11
-        Me.RDBQUALITY.Text = "Quality Wise"
-        Me.RDBQUALITY.UseVisualStyleBackColor = True
         '
         'SOFilter
         '

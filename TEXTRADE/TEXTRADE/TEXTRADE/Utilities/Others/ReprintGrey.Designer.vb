@@ -31,6 +31,15 @@ Partial Class ReprintGrey
         Me.TXTBALENO = New System.Windows.Forms.TextBox()
         Me.CMDSELECTSTOCK = New System.Windows.Forms.Button()
         Me.GRIDREPRINT = New System.Windows.Forms.DataGridView()
+        Me.CHKBARCODE = New System.Windows.Forms.CheckBox()
+        Me.cmdprint = New System.Windows.Forms.Button()
+        Me.cmdcancel = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtbarcode = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtcopies = New System.Windows.Forms.TextBox()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPIECETYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -42,23 +51,16 @@ Partial Class ReprintGrey
         Me.GLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCUT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRACK = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GSHELF = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGREYDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBALENO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GSTAMPING = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CHKBARCODE = New System.Windows.Forms.CheckBox()
-        Me.cmdprint = New System.Windows.Forms.Button()
-        Me.cmdcancel = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtbarcode = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.txtcopies = New System.Windows.Forms.TextBox()
-        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         CType(Me.GRIDREPRINT, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -130,7 +132,7 @@ Partial Class ReprintGrey
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDREPRINT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDREPRINT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDREPRINT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GPRINTDESC, Me.GDESIGN, Me.GSHADE, Me.GUNIT, Me.GLOTNO, Me.GCUT, Me.GMTRS, Me.GBARCODE, Me.GRACK, Me.GSHELF, Me.GBALENO, Me.GSTAMPING, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
+        Me.GRIDREPRINT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GPRINTDESC, Me.GDESIGN, Me.GSHADE, Me.GUNIT, Me.GLOTNO, Me.GCUT, Me.GMTRS, Me.GQTY, Me.GBARCODE, Me.GRACK, Me.GSHELF, Me.GGREYDATE, Me.GBALENO, Me.GSTAMPING, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -155,6 +157,88 @@ Partial Class ReprintGrey
         Me.GRIDREPRINT.Size = New System.Drawing.Size(1199, 495)
         Me.GRIDREPRINT.TabIndex = 698
         Me.GRIDREPRINT.TabStop = False
+        '
+        'CHKBARCODE
+        '
+        Me.CHKBARCODE.AutoSize = True
+        Me.CHKBARCODE.BackColor = System.Drawing.Color.Transparent
+        Me.CHKBARCODE.Location = New System.Drawing.Point(332, 14)
+        Me.CHKBARCODE.Name = "CHKBARCODE"
+        Me.CHKBARCODE.Size = New System.Drawing.Size(136, 19)
+        Me.CHKBARCODE.TabIndex = 693
+        Me.CHKBARCODE.Text = "Whole Sale Barcode"
+        Me.CHKBARCODE.UseVisualStyleBackColor = False
+        Me.CHKBARCODE.Visible = False
+        '
+        'cmdprint
+        '
+        Me.cmdprint.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdprint.ForeColor = System.Drawing.Color.Black
+        Me.cmdprint.Location = New System.Drawing.Point(578, 541)
+        Me.cmdprint.Name = "cmdprint"
+        Me.cmdprint.Size = New System.Drawing.Size(80, 28)
+        Me.cmdprint.TabIndex = 694
+        Me.cmdprint.Text = "&Print"
+        Me.cmdprint.UseVisualStyleBackColor = True
+        '
+        'cmdcancel
+        '
+        Me.cmdcancel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdcancel.ForeColor = System.Drawing.Color.Black
+        Me.cmdcancel.Location = New System.Drawing.Point(664, 541)
+        Me.cmdcancel.Name = "cmdcancel"
+        Me.cmdcancel.Size = New System.Drawing.Size(80, 28)
+        Me.cmdcancel.TabIndex = 695
+        Me.cmdcancel.Text = "E&xit"
+        Me.cmdcancel.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(30, 16)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(51, 14)
+        Me.Label2.TabIndex = 697
+        Me.Label2.Text = "Barcode"
+        '
+        'txtbarcode
+        '
+        Me.txtbarcode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtbarcode.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtbarcode.Location = New System.Drawing.Point(82, 12)
+        Me.txtbarcode.Name = "txtbarcode"
+        Me.txtbarcode.Size = New System.Drawing.Size(129, 22)
+        Me.txtbarcode.TabIndex = 691
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(241, 16)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(44, 14)
+        Me.Label9.TabIndex = 696
+        Me.Label9.Text = "Copies"
+        '
+        'txtcopies
+        '
+        Me.txtcopies.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtcopies.Location = New System.Drawing.Point(282, 12)
+        Me.txtcopies.Name = "txtcopies"
+        Me.txtcopies.Size = New System.Drawing.Size(44, 22)
+        Me.txtcopies.TabIndex = 692
+        Me.txtcopies.Text = "1"
+        Me.txtcopies.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'PRINTDIALOG
+        '
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
         '
         'GSRNO
         '
@@ -253,6 +337,15 @@ Partial Class ReprintGrey
         Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GMTRS.Width = 80
         '
+        'GQTY
+        '
+        Me.GQTY.HeaderText = "Qty"
+        Me.GQTY.Name = "GQTY"
+        Me.GQTY.ReadOnly = True
+        Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GQTY.Width = 80
+        '
         'GBARCODE
         '
         Me.GBARCODE.HeaderText = "Barcode"
@@ -277,6 +370,14 @@ Partial Class ReprintGrey
         Me.GSHELF.ReadOnly = True
         Me.GSHELF.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GSHELF.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GGREYDATE
+        '
+        Me.GGREYDATE.HeaderText = "Grey Date"
+        Me.GGREYDATE.Name = "GGREYDATE"
+        Me.GGREYDATE.ReadOnly = True
+        Me.GGREYDATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGREYDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'GBALENO
         '
@@ -307,88 +408,6 @@ Partial Class ReprintGrey
         '
         Me.GFROMTYPE.HeaderText = "FROMTYPE"
         Me.GFROMTYPE.Name = "GFROMTYPE"
-        '
-        'CHKBARCODE
-        '
-        Me.CHKBARCODE.AutoSize = True
-        Me.CHKBARCODE.BackColor = System.Drawing.Color.Transparent
-        Me.CHKBARCODE.Location = New System.Drawing.Point(332, 14)
-        Me.CHKBARCODE.Name = "CHKBARCODE"
-        Me.CHKBARCODE.Size = New System.Drawing.Size(136, 19)
-        Me.CHKBARCODE.TabIndex = 693
-        Me.CHKBARCODE.Text = "Whole Sale Barcode"
-        Me.CHKBARCODE.UseVisualStyleBackColor = False
-        Me.CHKBARCODE.Visible = False
-        '
-        'cmdprint
-        '
-        Me.cmdprint.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdprint.ForeColor = System.Drawing.Color.Black
-        Me.cmdprint.Location = New System.Drawing.Point(578, 541)
-        Me.cmdprint.Name = "cmdprint"
-        Me.cmdprint.Size = New System.Drawing.Size(80, 28)
-        Me.cmdprint.TabIndex = 694
-        Me.cmdprint.Text = "&Print"
-        Me.cmdprint.UseVisualStyleBackColor = True
-        '
-        'cmdcancel
-        '
-        Me.cmdcancel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdcancel.ForeColor = System.Drawing.Color.Black
-        Me.cmdcancel.Location = New System.Drawing.Point(664, 541)
-        Me.cmdcancel.Name = "cmdcancel"
-        Me.cmdcancel.Size = New System.Drawing.Size(80, 28)
-        Me.cmdcancel.TabIndex = 695
-        Me.cmdcancel.Text = "E&xit"
-        Me.cmdcancel.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(30, 16)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(51, 14)
-        Me.Label2.TabIndex = 697
-        Me.Label2.Text = "Barcode"
-        '
-        'txtbarcode
-        '
-        Me.txtbarcode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.txtbarcode.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtbarcode.Location = New System.Drawing.Point(82, 12)
-        Me.txtbarcode.Name = "txtbarcode"
-        Me.txtbarcode.Size = New System.Drawing.Size(129, 22)
-        Me.txtbarcode.TabIndex = 691
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(241, 16)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(44, 14)
-        Me.Label9.TabIndex = 696
-        Me.Label9.Text = "Copies"
-        '
-        'txtcopies
-        '
-        Me.txtcopies.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtcopies.Location = New System.Drawing.Point(282, 12)
-        Me.txtcopies.Name = "txtcopies"
-        Me.txtcopies.Size = New System.Drawing.Size(44, 22)
-        Me.txtcopies.TabIndex = 692
-        Me.txtcopies.Text = "1"
-        Me.txtcopies.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'PRINTDIALOG
-        '
-        Me.PRINTDIALOG.AllowSelection = True
-        Me.PRINTDIALOG.AllowSomePages = True
-        Me.PRINTDIALOG.ShowHelp = True
-        Me.PRINTDIALOG.UseEXDialog = True
         '
         'ReprintGrey
         '
@@ -424,6 +443,15 @@ Partial Class ReprintGrey
     Friend WithEvents TXTBALENO As TextBox
     Friend WithEvents CMDSELECTSTOCK As Button
     Friend WithEvents GRIDREPRINT As DataGridView
+    Friend WithEvents CHKBARCODE As CheckBox
+    Friend WithEvents cmdprint As Button
+    Friend WithEvents cmdcancel As Button
+    Friend WithEvents Label2 As Label
+    Friend WithEvents txtbarcode As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtcopies As TextBox
+    Friend WithEvents PRINTDIALOG As PrintDialog
+    Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GPIECETYPE As DataGridViewTextBoxColumn
     Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
@@ -435,21 +463,14 @@ Partial Class ReprintGrey
     Friend WithEvents GLOTNO As DataGridViewTextBoxColumn
     Friend WithEvents GCUT As DataGridViewTextBoxColumn
     Friend WithEvents GMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents GQTY As DataGridViewTextBoxColumn
     Friend WithEvents GBARCODE As DataGridViewTextBoxColumn
     Friend WithEvents GRACK As DataGridViewTextBoxColumn
     Friend WithEvents GSHELF As DataGridViewTextBoxColumn
+    Friend WithEvents GGREYDATE As DataGridViewTextBoxColumn
     Friend WithEvents GBALENO As DataGridViewTextBoxColumn
     Friend WithEvents GSTAMPING As DataGridViewTextBoxColumn
     Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
-    Friend WithEvents CHKBARCODE As CheckBox
-    Friend WithEvents cmdprint As Button
-    Friend WithEvents cmdcancel As Button
-    Friend WithEvents Label2 As Label
-    Friend WithEvents txtbarcode As TextBox
-    Friend WithEvents Label9 As Label
-    Friend WithEvents txtcopies As TextBox
-    Friend WithEvents PRINTDIALOG As PrintDialog
-    Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
 End Class
