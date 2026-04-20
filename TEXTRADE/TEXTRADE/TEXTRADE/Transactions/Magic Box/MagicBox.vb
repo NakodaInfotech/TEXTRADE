@@ -1489,11 +1489,11 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Sub TXTCRDAYS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTCRDAYS.KeyPress, TXTDISCOUNT.KeyPress, TXTORDERNO.KeyPress, TXTDELPERIOD.KeyPress, txtQTY.KeyPress
+    Private Sub TXTCRDAYS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTCRDAYS.KeyPress, TXTORDERNO.KeyPress, TXTDELPERIOD.KeyPress, txtQTY.KeyPress
         numkeypress(e, sender, Me)
     End Sub
 
-    Private Sub TXTMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTMTRS.KeyPress, TXTRATE.KeyPress
+    Private Sub TXTMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTMTRS.KeyPress, TXTDISCOUNT.KeyPress, TXTRATE.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 

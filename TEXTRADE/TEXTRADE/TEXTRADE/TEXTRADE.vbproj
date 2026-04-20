@@ -9628,6 +9628,9 @@
     <EmbeddedResource Include="Reports\Grid Reports\Opening Bills\OpeningBillsGrid.resx">
       <DependentUpon>OpeningBillsGrid.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Other Reports\ComplaintRegisterReport.resx">
+      <DependentUpon>ComplaintRegisterReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Other Reports\DesignWithoutImage.resx">
       <DependentUpon>DesignWithoutImage.vb</DependentUpon>
     </EmbeddedResource>
