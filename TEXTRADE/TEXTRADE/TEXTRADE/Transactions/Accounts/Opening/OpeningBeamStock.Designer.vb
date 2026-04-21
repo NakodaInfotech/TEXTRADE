@@ -49,7 +49,6 @@ Partial Class OpeningBeamStock
         Me.TXTGAMANO = New System.Windows.Forms.TextBox()
         Me.TXTTOTALMTRS = New System.Windows.Forms.TextBox()
         Me.TXTBEAMNO = New System.Windows.Forms.TextBox()
-        Me.CMBBEAMNAME = New System.Windows.Forms.ComboBox()
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.CMBMILL = New System.Windows.Forms.ComboBox()
         Me.TXTREMARKS = New System.Windows.Forms.TextBox()
@@ -74,6 +73,7 @@ Partial Class OpeningBeamStock
         Me.GOUTMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GOUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
+        Me.TXTBAEMNAME = New System.Windows.Forms.TextBox()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -194,6 +194,7 @@ Partial Class OpeningBeamStock
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.TXTBAEMNAME)
         Me.Panel1.Controls.Add(Me.LBLTOTALBEAMWT)
         Me.Panel1.Controls.Add(Me.LBLTOTALROLLNO)
         Me.Panel1.Controls.Add(Me.CMBROLLNO)
@@ -206,7 +207,6 @@ Partial Class OpeningBeamStock
         Me.Panel1.Controls.Add(Me.TXTGAMANO)
         Me.Panel1.Controls.Add(Me.TXTTOTALMTRS)
         Me.Panel1.Controls.Add(Me.TXTBEAMNO)
-        Me.Panel1.Controls.Add(Me.CMBBEAMNAME)
         Me.Panel1.Controls.Add(Me.CMBNAME)
         Me.Panel1.Controls.Add(Me.CMBMILL)
         Me.Panel1.Controls.Add(Me.TXTREMARKS)
@@ -283,7 +283,7 @@ Partial Class OpeningBeamStock
         '
         'TXTBEAMWT
         '
-        Me.TXTBEAMWT.BackColor = System.Drawing.Color.White
+        Me.TXTBEAMWT.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTBEAMWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBEAMWT.Location = New System.Drawing.Point(1394, 3)
         Me.TXTBEAMWT.MaxLength = 200
@@ -297,7 +297,7 @@ Partial Class OpeningBeamStock
         Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(949, 487)
+        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(999, 487)
         Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
         Me.LBLTOTALMTRS.Size = New System.Drawing.Size(65, 15)
         Me.LBLTOTALMTRS.TabIndex = 832
@@ -350,7 +350,7 @@ Partial Class OpeningBeamStock
         '
         'TXTBEAMNO
         '
-        Me.TXTBEAMNO.BackColor = System.Drawing.Color.White
+        Me.TXTBEAMNO.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTBEAMNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBEAMNO.Location = New System.Drawing.Point(564, 3)
         Me.TXTBEAMNO.Name = "TXTBEAMNO"
@@ -358,23 +358,11 @@ Partial Class OpeningBeamStock
         Me.TXTBEAMNO.TabIndex = 3
         Me.TXTBEAMNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'CMBBEAMNAME
-        '
-        Me.CMBBEAMNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBBEAMNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBBEAMNAME.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBBEAMNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBBEAMNAME.FormattingEnabled = True
-        Me.CMBBEAMNAME.Location = New System.Drawing.Point(664, 3)
-        Me.CMBBEAMNAME.Name = "CMBBEAMNAME"
-        Me.CMBBEAMNAME.Size = New System.Drawing.Size(200, 23)
-        Me.CMBBEAMNAME.TabIndex = 4
-        '
         'CMBNAME
         '
         Me.CMBNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CMBNAME.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBNAME.BackColor = System.Drawing.Color.White
         Me.CMBNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBNAME.FormattingEnabled = True
         Me.CMBNAME.Location = New System.Drawing.Point(164, 3)
@@ -406,7 +394,7 @@ Partial Class OpeningBeamStock
         '
         'TXTTOTALENDS
         '
-        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.White
+        Me.TXTTOTALENDS.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTTOTALENDS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTTOTALENDS.Location = New System.Drawing.Point(864, 3)
         Me.TXTTOTALENDS.Name = "TXTTOTALENDS"
@@ -626,6 +614,15 @@ Partial Class OpeningBeamStock
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
+        'TXTBAEMNAME
+        '
+        Me.TXTBAEMNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTBAEMNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBAEMNAME.Location = New System.Drawing.Point(664, 3)
+        Me.TXTBAEMNAME.Name = "TXTBAEMNAME"
+        Me.TXTBAEMNAME.Size = New System.Drawing.Size(200, 23)
+        Me.TXTBAEMNAME.TabIndex = 4
+        '
         'OpeningBeamStock
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -694,4 +691,5 @@ Partial Class OpeningBeamStock
     Friend WithEvents GREMARKS As DataGridViewTextBoxColumn
     Friend WithEvents GOUTMTRS As DataGridViewTextBoxColumn
     Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
+    Friend WithEvents TXTBAEMNAME As TextBox
 End Class
