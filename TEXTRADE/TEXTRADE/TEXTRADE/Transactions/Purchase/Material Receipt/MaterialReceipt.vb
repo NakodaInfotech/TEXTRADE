@@ -2926,7 +2926,7 @@ NEXTLINE:
 
             Cursor.Current = Cursors.WaitCursor
 
-            If ClientName = "OWAIS" Then ALLOWMANUALMATRECNO = True
+            If ClientName = "MMC" Then ALLOWMANUALMATRECNO = True
             CLEAR()
 
             If ClientName = "SVS" Then
@@ -3876,7 +3876,7 @@ LINE1:
                     If ClientName = "SOFTAS" Then
                         DT = OBJCMN.SEARCH(" DISTINCT LOTNO ", "", " LOT_VIEW ", " AND BALPCS > 0 AND GRNTYPE <> 'JOBOUT' AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND YEARID = " & YearId & " AND (DYEINGJOB = 'DYEING' OR DYEINGJOB = '')")
                     Else
-                        If ClientName = "MAHAVIRPOLYCOT" Then
+                        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "MMC" Then
                             DT = OBJCMN.SEARCH(" DISTINCT LOTNO ", "", " LOT_VIEW_PCSDETAILS ", " AND BALPCS > 0 AND LOTCOMPLETED = 0 AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND YEARID = " & YearId)
                         Else
                             Dim WHERECLAUSE As String = ""
