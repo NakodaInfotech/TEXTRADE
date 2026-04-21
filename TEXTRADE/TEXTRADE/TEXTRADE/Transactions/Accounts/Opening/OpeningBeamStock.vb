@@ -270,14 +270,8 @@ Public Class OpeningBeamStock
                     FILLROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 " & strUsedRolls, "HAVING SUM(QTY - ISSQTY) >0")
                 End If
 
-
-                If ClientName = "SWPL" And EDIT = False Then
-                    GENERATECONSUMPTION()
-                End If
-
                 EDIT = False
                 CMBGODOWN.Focus()
-
             Else
                 MsgBox("Enter Proper Details")
             End If
@@ -288,49 +282,42 @@ Public Class OpeningBeamStock
     End Sub
 
     Private Sub OpeningStockRolls_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-        Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'OPENING'")
-        USERADD = DTROW(0).Item(1)
-        USEREDIT = DTROW(0).Item(2)
-        USERVIEW = DTROW(0).Item(3)
-        USERDELETE = DTROW(0).Item(4)
-
-        'Dim OBJSEARCH As New ClsCommon
-
-        If USEREDIT = False And USERVIEW = False Then
-            MsgBox("Insufficient Rights")
-            Exit Sub
-        End If
-
-        CMBTYPE.Text = FRMSTRING
-        FILLCMB()
-        openingdate.Value = AccFrom.Date
-
-        'Dim OBJOPSTOCK As New ClsOpeningBeamStock
-
-        'OBJOPSTOCK.alParaval.Add(0)
-        'OBJOPSTOCK.alParaval.Add(YearId)
-        'OBJOPSTOCK.GETSTOCKBEAM()
-        Dim OBJCMN As New ClsCommon
-        Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT        ISNULL(STOCKMASTER_BEAM.SMBEAM_NO, 0) AS OPBEAMSTOCKNO, ISNULL(STOCKMASTER_BEAM.SMBEAM_GRIDSRNO, 0) AS GRIDSRNO, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(MILLMASTER.MILL_NAME, '') AS MILL, ISNULL(STOCKMASTER_BEAM.SMBEAM_BEAMNO, '0') AS BEAMNO, ISNULL(BEAMMASTER.BEAM_NAME, '') AS BEAMNAME, ISNULL(STOCKMASTER_BEAM.SMBEAM_TOTALENDS, 0) AS TOTALENDS, ISNULL(STOCKMASTER_BEAM.SMBEAM_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(STOCKMASTER_BEAM.SMBEAM_GAMANO, 0) AS GAMANO, ISNULL(STOCKMASTER_BEAM.SMBEAM_SECTION, 0) AS SECTION, ISNULL(STOCKMASTER_BEAM.SMBEAM_ROLLNO, 0) AS INT, ISNULL(STOCKMASTER_BEAM.SMBEAM_BEAMWT, 0) AS BEAMWT, ISNULL(STOCKMASTER_BEAM.SMBEAM_REMARKS, '') AS REMARKS, ISNULL(STOCKMASTER_BEAM.SMBEAM_OUTWT, 0) AS OUTWT, ISNULL(STOCKMASTER_BEAM.SMBEAM_OUTMTRS, 0) AS OUTMTRS, ISNULL(STOCKMASTER_BEAM.SMBEAM_DONE, 0) AS DONE, ISNULL(STOCKMASTER_BEAM.SMBEAM_BREAKAGE, 0) AS BREAKAGE, STOCKMASTER_BEAM.SMBEAM_DATE AS DATE, ISNULL(STOREITEMMASTER.STOREITEM_NAME, '') AS ROLLNO FROM            STOCKMASTER_BEAM INNER JOIN GODOWNMASTER ON STOCKMASTER_BEAM.SMBEAM_GODOWNID = GODOWNMASTER.GODOWN_id INNER JOIN LEDGERS ON STOCKMASTER_BEAM.SMBEAM_SIZERID = LEDGERS.Acc_id INNER JOIN MILLMASTER ON STOCKMASTER_BEAM.SMBEAM_MILLID = MILLMASTER.MILL_ID INNER JOIN BEAMMASTER ON STOCKMASTER_BEAM.SMBEAM_BEAMID = BEAMMASTER.BEAM_ID LEFT OUTER JOIN STOREITEMMASTER ON STOCKMASTER_BEAM.SMBEAM_ROLLNO = STOREITEMMASTER.STOREITEM_ID  WHERE  STOCKMASTER_BEAM.SMBEAM_YEARID = " & YearId & " ORDER BY SMBEAM_NO", "", "")
-        If dttable.Rows.Count > 0 Then
-            For Each ROW As DataRow In dttable.Rows
-                openingdate.Value = Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy")
-
-                GRIDSTOCK.Rows.Add(Val(ROW("GRIDSRNO")), Val(ROW("OPBEAMSTOCKNO")), ROW("GODOWN"), ROW("NAME"), ROW("MILL"), Val(ROW("BEAMNO")), ROW("BEAMNAME"), Val(ROW("TOTALENDS")), Format(Val(ROW("TOTALMTRS")), "0.00"), Format(Val(ROW("GAMANO")), "0.00"), Format(Val(ROW("SECTION")), "0.00"), Val(ROW("ROLLNO")), Format(Val(ROW("BEAMWT")), "0.00"), Format(Val(ROW("BREAKAGE")), "0.00"), ROW("REMARKS"), Val(ROW("OUTMTRS")), Val(ROW("OUTWT")))
-                If Val(ROW("OUTMTRS")) > 0 Or Val(ROW("OUTWT")) > 0 Then GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
-            Next
-            GETSRNO(GRIDSTOCK)
-            GRIDSTOCK.FirstDisplayedScrollingRowIndex = GRIDSTOCK.RowCount - 1
-
-        End If
-        TOTAL()
-        txtsrno.Text = Val(GRIDSTOCK.RowCount) + 1
-        FILLROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
+        Try
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'OPENING'")
+            USERADD = DTROW(0).Item(1)
+            USEREDIT = DTROW(0).Item(2)
+            USERVIEW = DTROW(0).Item(3)
+            USERDELETE = DTROW(0).Item(4)
 
 
-        TOTAL()
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
 
+            CMBTYPE.Text = FRMSTRING
+            FILLCMB()
+            openingdate.Value = AccFrom.Date
+
+            Dim OBJCMN As New ClsCommon
+            Dim dttable As DataTable = OBJCMN.Execute_Any_String(" SELECT ISNULL(STOCKMASTER_BEAM.SMBEAM_NO, 0) AS OPBEAMSTOCKNO, ISNULL(STOCKMASTER_BEAM.SMBEAM_GRIDSRNO, 0) AS GRIDSRNO, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(MILLMASTER.MILL_NAME, '') AS MILL, ISNULL(STOCKMASTER_BEAM.SMBEAM_BEAMNO, '0') AS BEAMNO, ISNULL(BEAMMASTER.BEAM_NAME, '') AS BEAMNAME, ISNULL(STOCKMASTER_BEAM.SMBEAM_TOTALENDS, 0) AS TOTALENDS, ISNULL(STOCKMASTER_BEAM.SMBEAM_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(STOCKMASTER_BEAM.SMBEAM_GAMANO, 0) AS GAMANO, ISNULL(STOCKMASTER_BEAM.SMBEAM_SECTION, 0) AS SECTION, ISNULL(STOCKMASTER_BEAM.SMBEAM_ROLLNO, 0) AS INT, ISNULL(STOCKMASTER_BEAM.SMBEAM_BEAMWT, 0) AS BEAMWT, ISNULL(STOCKMASTER_BEAM.SMBEAM_REMARKS, '') AS REMARKS, ISNULL(STOCKMASTER_BEAM.SMBEAM_OUTWT, 0) AS OUTWT, ISNULL(STOCKMASTER_BEAM.SMBEAM_OUTMTRS, 0) AS OUTMTRS, ISNULL(STOCKMASTER_BEAM.SMBEAM_DONE, 0) AS DONE, ISNULL(STOCKMASTER_BEAM.SMBEAM_BREAKAGE, 0) AS BREAKAGE, STOCKMASTER_BEAM.SMBEAM_DATE AS DATE, ISNULL(STOREITEMMASTER.STOREITEM_NAME, '') AS ROLLNO FROM            STOCKMASTER_BEAM INNER JOIN GODOWNMASTER ON STOCKMASTER_BEAM.SMBEAM_GODOWNID = GODOWNMASTER.GODOWN_id INNER JOIN LEDGERS ON STOCKMASTER_BEAM.SMBEAM_SIZERID = LEDGERS.Acc_id INNER JOIN MILLMASTER ON STOCKMASTER_BEAM.SMBEAM_MILLID = MILLMASTER.MILL_ID INNER JOIN BEAMMASTER ON STOCKMASTER_BEAM.SMBEAM_BEAMID = BEAMMASTER.BEAM_ID LEFT OUTER JOIN STOREITEMMASTER ON STOCKMASTER_BEAM.SMBEAM_ROLLNO = STOREITEMMASTER.STOREITEM_ID  WHERE  STOCKMASTER_BEAM.SMBEAM_YEARID = " & YearId & " ORDER BY SMBEAM_NO", "", "")
+            If dttable.Rows.Count > 0 Then
+                For Each ROW As DataRow In dttable.Rows
+                    openingdate.Value = Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy")
+
+                    GRIDSTOCK.Rows.Add(Val(ROW("GRIDSRNO")), Val(ROW("OPBEAMSTOCKNO")), ROW("GODOWN"), ROW("NAME"), ROW("MILL"), Val(ROW("BEAMNO")), ROW("BEAMNAME"), Val(ROW("TOTALENDS")), Format(Val(ROW("TOTALMTRS")), "0.00"), Format(Val(ROW("GAMANO")), "0.00"), Format(Val(ROW("SECTION")), "0.00"), Val(ROW("ROLLNO")), Format(Val(ROW("BEAMWT")), "0.00"), Format(Val(ROW("BREAKAGE")), "0.00"), ROW("REMARKS"), Val(ROW("OUTMTRS")), Val(ROW("OUTWT")))
+                    If Val(ROW("OUTMTRS")) > 0 Or Val(ROW("OUTWT")) > 0 Then GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                Next
+                GETSRNO(GRIDSTOCK)
+                GRIDSTOCK.FirstDisplayedScrollingRowIndex = GRIDSTOCK.RowCount - 1
+            End If
+            txtsrno.Text = Val(GRIDSTOCK.RowCount) + 1
+            FILLROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
+            TOTAL()
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub GRIDSTOCK_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRIDSTOCK.CellDoubleClick
@@ -363,9 +350,6 @@ Public Class OpeningBeamStock
             TXTTOTALMTRS.Text = Val(GRIDSTOCK.Item(GTOTALMTRS.Index, e.RowIndex).Value)
             TXTGAMANO.Text = Val(GRIDSTOCK.Item(GGAMANO.Index, e.RowIndex).Value)
             TXTSECTION.Text = Val(GRIDSTOCK.Item(GSECTION.Index, e.RowIndex).Value)
-            'CMBROLLNO.Text = GRIDSTOCK.Item(GROLLNO.Index, e.RowIndex).Value
-            fillROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1", "")
-
             CMBROLLNO.Text = GRIDSTOCK.Item(GROLLNO.Index, e.RowIndex).Value.ToString
 
             TXTBEAMWT.Text = Val(GRIDSTOCK.Item(GBEAMWT.Index, e.RowIndex).Value)
@@ -408,17 +392,16 @@ Public Class OpeningBeamStock
                         Dim OBJNO As New ClsOpeningBeamStock
 
                         OBJNO.alParaval = ALPARAVAL
-                        'ALPARAVAL.Add(GRIDSTOCK.Rows(GRIDSTOCK.CurrentRow.Index).Cells(GOPBEAMSTOCKNO.Index).Value)
-                        ALPARAVAL.Add(GRIDSTOCK.Rows(GRIDSTOCK.CurrentRow.Index).Cells(GBEAMSTOCKNO.Index).Value)
+                        ALPARAVAL.Add(Val(GRIDSTOCK.CurrentRow.Cells(GBEAMSTOCKNO.Index).Value))
                         ALPARAVAL.Add(YearId)
 
                         Dim INTRES As DataTable = OBJNO.DELETE()
                         GRIDSTOCK.Rows.RemoveAt(GRIDSTOCK.CurrentRow.Index)
                         GETSRNO(GRIDSTOCK)
                         txtsrno.Text = GRIDSTOCK.RowCount + 1
+                        TOTAL()
 
                     End If
-                    TOTAL()
 
                 End If
             End If
@@ -428,80 +411,19 @@ Public Class OpeningBeamStock
         End Try
     End Sub
 
-    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
-        numdot3(e, sender, Me)
-    End Sub
-
     Private Sub TXTROLLS_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTTOTALENDS.KeyPress, TXTTOTALMTRS.KeyPress, TXTGAMANO.KeyPress, TXTSECTION.KeyPress, TXTBEAMWT.KeyPress, TXTBREAKAGE.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
-
-
-    Sub GENERATECONSUMPTION()
-
-        Try
-            For Each row As Windows.Forms.DataGridViewRow In GRIDSTOCK.Rows
-
-                Cursor.Current = Cursors.WaitCursor
-                Dim alParaval As New ArrayList
-
-                'alParaval.Add(Format(Convert.ToDateTime(openingdate.Text).Date, "MM/dd/yyyy"))
-                alParaval.Add(openingdate.Value.Date)
-                alParaval.Add(CMBGODOWN.Text.Trim)
-                alParaval.Add("")   'DEPARTMENT
-                alParaval.Add("")   'ISSUETO
-                alParaval.Add("")   ' CHALLANNO
-                alParaval.Add(1)     ' TOTALQTY
-                alParaval.Add("")    ' REMARKS
-                alParaval.Add(CmpId)
-                alParaval.Add(Userid)
-                alParaval.Add(YearId)
-
-                alParaval.Add(1)    'GRIDSRNO
-                alParaval.Add(row.Cells(GROLLNO.Index).Value.ToString)
-                alParaval.Add("")   'DESCRIPTION
-                alParaval.Add(1)   ' QTY
-
-                Dim TEMPUNIT As String = ""
-                Dim OBJCMN As New ClsCommon
-                Dim TEMPDT As DataTable = OBJCMN.SEARCH(" STOREITEMMASTER.STOREITEM_NAME AS ITEMNAME, UNITMASTER.unit_abbr AS UNIT ", "", " STOREITEMMASTER INNER JOIN UNITMASTER ON STOREITEMMASTER.STOREITEM_UNITID = UNITMASTER.unit_id ", " AND STOREITEMMASTER.STOREITEM_NAME =  '" & row.Cells(GROLLNO.Index).Value.ToString & "' ")
-                If TEMPDT.Rows.Count > 0 Then
-                    TEMPUNIT = TEMPDT.Rows(0).Item("UNIT")
-                End If
-
-                alParaval.Add(TEMPUNIT)
-                alParaval.Add("")  ' MACHINE
-                alParaval.Add("") ' TAKEN BY 
-
-                Dim OBJCONSUME As New ClsStoreConsumption
-                OBJCONSUME.alParaval = alParaval
-                Dim DTTABLE As DataTable = OBJCONSUME.SAVE()
-
-            Next
-
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        Finally
-            Cursor.Current = Cursors.Default
-        End Try
-
-
-    End Sub
-
     Private Sub TXTBEAMNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBEAMNO.Validating
-
-        If Val(TXTBEAMNO.Text) <> 0 Then
-            If GRIDSTOCK.RowCount > 0 Then
-                If Not CHECKBEAM() Then
-                    MsgBox("Beam No already Present in Grid below")
-                    TXTBEAMNO.Clear()
-                    e.Cancel = True
-                    Exit Sub
-                End If
+        If Val(TXTBEAMNO.Text) > 0 And GRIDSTOCK.RowCount > 0 Then
+            If Not CHECKBEAM() Then
+                MsgBox("Beam No already Present in Grid below")
+                TXTBEAMNO.Clear()
+                e.Cancel = True
+                Exit Sub
             End If
         End If
-
     End Sub
 
     Function CHECKBEAM() As Boolean
@@ -533,15 +455,13 @@ Public Class OpeningBeamStock
     End Function
 
     Private Sub CMBROLLNO_Validating(sender As Object, e As CancelEventArgs) Handles CMBROLLNO.Validating
-        'If CMBROLLNO.Text <> "" Then
-        If GRIDSTOCK.RowCount > 0 Then
-                If Not CHECKROLL() Then
-                    MsgBox("Roll No already Present in Grid below")
-                    CMBROLLNO.Text = ""
-                    e.Cancel = True
-                    Exit Sub
-                End If
+        If CMBROLLNO.Text <> "" And GRIDSTOCK.RowCount > 0 Then
+            If Not CHECKROLL() Then
+                MsgBox("Roll No already Present in Grid below")
+                CMBROLLNO.Text = ""
+                e.Cancel = True
+                Exit Sub
             End If
-        'End If
+        End If
     End Sub
 End Class
