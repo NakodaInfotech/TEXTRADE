@@ -10852,6 +10852,18 @@ SKIPLINE:
         Try
             Dim OBJOPENING As New OpeningBeamStock
             OBJOPENING.MdiParent = Me
+            OBJOPENING.FRMSTRING = "INHOUSE"
+            OBJOPENING.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub OPENINGBEAMSTOCKJOBBER_MASTER_Click(sender As Object, e As EventArgs) Handles OPENINGBEAMSTOCKJOBBER_MASTER.Click
+        Try
+            Dim OBJOPENING As New OpeningBeamStock
+            OBJOPENING.MdiParent = Me
+            OBJOPENING.FRMSTRING = "JOBBERSTOCK"
             OBJOPENING.Show()
         Catch ex As Exception
             Throw ex
@@ -12532,4 +12544,6 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+
 End Class

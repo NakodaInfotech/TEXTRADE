@@ -376,9 +376,10 @@ Partial Class MDIMain
         Me.ToolStripSeparator243 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator139 = New System.Windows.Forms.ToolStripSeparator()
         Me.PROVISIONALBS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator207 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator356 = New System.Windows.Forms.ToolStripSeparator()
         Me.OPENINGYARNJOBORDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.OPENINGYARNJOBORDER_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator207 = New System.Windows.Forms.ToolStripSeparator()
         Me.OPENST_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.INHOUSEST = New System.Windows.Forms.ToolStripMenuItem()
         Me.ATPARTYST = New System.Windows.Forms.ToolStripMenuItem()
@@ -397,7 +398,7 @@ Partial Class MDIMain
         Me.ROLLSTOCK_WARPER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator355 = New System.Windows.Forms.ToolStripSeparator()
         Me.OPENINGBEAMSTOCK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BeamStockAtJobberToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OPENINGBEAMSTOCKJOBBER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNSTOCKJOBBER_TOOL = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator100 = New System.Windows.Forms.ToolStripSeparator()
         Me.TRANSACTION_MENU = New System.Windows.Forms.ToolStripMenuItem()
@@ -1354,7 +1355,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolStripSeparator356 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -3616,10 +3616,10 @@ Partial Class MDIMain
         Me.PROVISIONALBS_MASTER.Size = New System.Drawing.Size(230, 22)
         Me.PROVISIONALBS_MASTER.Text = "Monthly Closing Stock Value"
         '
-        'ToolStripSeparator207
+        'ToolStripSeparator356
         '
-        Me.ToolStripSeparator207.Name = "ToolStripSeparator207"
-        Me.ToolStripSeparator207.Size = New System.Drawing.Size(227, 6)
+        Me.ToolStripSeparator356.Name = "ToolStripSeparator356"
+        Me.ToolStripSeparator356.Size = New System.Drawing.Size(227, 6)
         '
         'OPENINGYARNJOBORDER_MASTER
         '
@@ -3634,9 +3634,14 @@ Partial Class MDIMain
         Me.OPENINGYARNJOBORDER_ADD.Size = New System.Drawing.Size(251, 22)
         Me.OPENINGYARNJOBORDER_ADD.Text = "Add New Opening Yarn Job Order"
         '
+        'ToolStripSeparator207
+        '
+        Me.ToolStripSeparator207.Name = "ToolStripSeparator207"
+        Me.ToolStripSeparator207.Size = New System.Drawing.Size(227, 6)
+        '
         'OPENST_MASTER
         '
-        Me.OPENST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.INHOUSEST, Me.ATPARTYST, Me.ToolStripSeparator81, Me.OPSTOCKGREYINHOUSE, Me.OPSTOCKGREYATPARTY, Me.OPSTOCKGREYTRANS_MASTER, Me.OPSTOCKGREYPROCESS_MASTER, Me.ToolStripSeparator323, Me.OPENING_STORESTOCK, Me.ToolStripSeparator119, Me.YARNSTOCK_GODOWN, Me.YARNSTOCK_JOBBER, Me.ToolStripSeparator338, Me.ROLLSTOCK_GODOWN, Me.ROLLSTOCK_WARPER, Me.ToolStripSeparator355, Me.OPENINGBEAMSTOCK_MASTER, Me.BeamStockAtJobberToolStripMenuItem, Me.YARNSTOCKJOBBER_TOOL})
+        Me.OPENST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.INHOUSEST, Me.ATPARTYST, Me.ToolStripSeparator81, Me.OPSTOCKGREYINHOUSE, Me.OPSTOCKGREYATPARTY, Me.OPSTOCKGREYTRANS_MASTER, Me.OPSTOCKGREYPROCESS_MASTER, Me.ToolStripSeparator323, Me.OPENING_STORESTOCK, Me.ToolStripSeparator119, Me.YARNSTOCK_GODOWN, Me.YARNSTOCK_JOBBER, Me.ToolStripSeparator338, Me.ROLLSTOCK_GODOWN, Me.ROLLSTOCK_WARPER, Me.ToolStripSeparator355, Me.OPENINGBEAMSTOCK_MASTER, Me.OPENINGBEAMSTOCKJOBBER_MASTER, Me.YARNSTOCKJOBBER_TOOL})
         Me.OPENST_MASTER.Enabled = False
         Me.OPENST_MASTER.Name = "OPENST_MASTER"
         Me.OPENST_MASTER.Size = New System.Drawing.Size(184, 22)
@@ -3748,11 +3753,11 @@ Partial Class MDIMain
         Me.OPENINGBEAMSTOCK_MASTER.Size = New System.Drawing.Size(246, 22)
         Me.OPENINGBEAMSTOCK_MASTER.Text = "Beam Stock At Godown"
         '
-        'BeamStockAtJobberToolStripMenuItem
+        'OPENINGBEAMSTOCKJOBBER_MASTER
         '
-        Me.BeamStockAtJobberToolStripMenuItem.Name = "BeamStockAtJobberToolStripMenuItem"
-        Me.BeamStockAtJobberToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
-        Me.BeamStockAtJobberToolStripMenuItem.Text = "Beam Stock At Jobber"
+        Me.OPENINGBEAMSTOCKJOBBER_MASTER.Name = "OPENINGBEAMSTOCKJOBBER_MASTER"
+        Me.OPENINGBEAMSTOCKJOBBER_MASTER.Size = New System.Drawing.Size(246, 22)
+        Me.OPENINGBEAMSTOCKJOBBER_MASTER.Text = "Beam Stock At Jobber"
         '
         'YARNSTOCKJOBBER_TOOL
         '
@@ -9876,11 +9881,6 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'ToolStripSeparator356
-        '
-        Me.ToolStripSeparator356.Name = "ToolStripSeparator356"
-        Me.ToolStripSeparator356.Size = New System.Drawing.Size(227, 6)
-        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -11237,6 +11237,6 @@ Partial Class MDIMain
     Friend WithEvents COMPLAINTREGISTER_MENU As ToolStripMenuItem
     Friend WithEvents REPRINTYARNBARCODE_MASTER As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator355 As ToolStripSeparator
-    Friend WithEvents BeamStockAtJobberToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OPENINGBEAMSTOCKJOBBER_MASTER As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator356 As ToolStripSeparator
 End Class
