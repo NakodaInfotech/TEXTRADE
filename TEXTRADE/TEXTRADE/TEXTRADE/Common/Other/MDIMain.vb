@@ -10898,17 +10898,6 @@ SKIPLINE:
         End Try
     End Sub
 
-
-    Private Sub OPENINGBEAMSTOCKATJOBBER_ADD_Click(sender As Object, e As EventArgs) Handles OPENINGBEAMSTOCKATJOBBER_ADD.Click
-        Try
-            Dim OBJYARNJO As New OpeningBeamStockAtJobber
-            OBJYARNJO.MdiParent = Me
-            OBJYARNJO.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub OPENINGYARNJOBORDER_ADD_Click(sender As Object, e As EventArgs) Handles OPENINGYARNJOBORDER_ADD.Click
         Try
             Dim OBJYARNJO As New OpeningYarnJobOrder

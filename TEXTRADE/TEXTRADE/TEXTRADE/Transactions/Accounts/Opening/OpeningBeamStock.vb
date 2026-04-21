@@ -1,11 +1,8 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
-Imports DevExpress.CodeParser
-Imports DevExpress.XtraReports.UI
-Imports Org.BouncyCastle.Asn1
-Public Class OpeningBeamStock
 
+Public Class OpeningBeamStock
 
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK As Boolean
@@ -16,8 +13,6 @@ Public Class OpeningBeamStock
     Public FRMSTRING As String
     Dim NextBeamNo As Integer
     Dim MAXNO As Integer = 0
-    Dim CLEAR As Boolean = False
-
 
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
@@ -47,7 +42,7 @@ Public Class OpeningBeamStock
         End Try
     End Sub
 
-    Sub CLEARFUNCTION()
+    Sub CLEAR()
         TXTOPROLLSSTOCKNO.Clear()
         CMBNAME.Text = ""
         CMBOURGODOWN.Text = GETDEFAULTGODOWN()
@@ -127,28 +122,7 @@ Public Class OpeningBeamStock
         End Try
     End Sub
 
-    'Sub FILLGRID()
-    '    Try
-    '        Dim OBJOPSTOCK As New ClsOpeningBeamStock
-
-    '        OBJOPSTOCK.alParaval.Add(0)
-    '        OBJOPSTOCK.alParaval.Add(YearId)
-    '        Dim DTTABLE As DataTable = OBJOPSTOCK.GETSTOCKBEAM()
-    '        For Each ROW As DataRow In DTTABLE.Rows
-    '            openingdate.Value = Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yyyy")
-
-    '            GRIDSTOCK.Rows.Add(Val(ROW("OPBEAMSTOCKNO")), ROW("GODOWN"), ROW("NAME"), ROW("MILL"), Val(ROW("BEAMNO")), ROW("BEAMNAME"), Val(ROW("TOTALENDS")), Format(Val(ROW("TOTALMTRS")), "0.00"), Format(Val(ROW("GAMANO")), "0.00"), Format(Val(ROW("SECTION")), "0.00"), Val(ROW("ROLLNO")), Format(Val(ROW("BEAMWT")), "0.00"), Format(Val(ROW("BREAKAGE")), "0.00"), ROW("REMARKS"), Val(ROW("OUTMTRS")), Val(ROW("OUTWT")))
-    '            If Val(ROW("OUTMTRS")) > 0 Or Val(ROW("OUTWT")) > 0 Then GRIDSTOCK.Rows(GRIDSTOCK.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
-    '        Next
-
-    '        TOTAL()
-    '        getsrno(GRIDSTOCK)
-    '        txtsrno.Text = Val(GRIDSTOCK.RowCount) + 1
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
-    'End Sub
-    Sub fillgrid()
+    Sub FILLGRID()
 
         GRIDSTOCK.Enabled = True
 
@@ -177,91 +151,55 @@ Public Class OpeningBeamStock
 
             GRIDDOUBLECLICK = False
         End If
-        If CLEAR = True Then
-            txtsrno.Text = GRIDSTOCK.RowCount + 1
-            'CMBOURGODOWN.Text = ""
-            CMBNAME.Text = ""
-            CMBMILL.Text = ""
-            CMBBEAMNAME.Text = ""
-            TXTTOTALENDS.Clear()
-            TXTTOTALMTRS.Clear()
-            GetLastBeamNo()
+        txtsrno.Text = GRIDSTOCK.RowCount + 1
+        'CMBOURGODOWN.Text = ""
+        CMBNAME.Text = ""
+        CMBMILL.Text = ""
+        CMBBEAMNAME.Text = ""
+        TXTTOTALENDS.Clear()
+        TXTTOTALMTRS.Clear()
+        GetLastBeamNo()
 
-            TXTGAMANO.Clear()
-            TXTSECTION.Clear()
-            CMBROLLNO.DataSource = Nothing
-            CMBROLLNO.Text = ""
-            'If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, edit, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
-            If CMBROLLNO.Text = "" Then
-                Dim strUsedRolls As String = ""
-                For Each ROW As DataGridViewRow In GRIDSTOCK.Rows
-                    If ROW.IsNewRow Then Continue For
-                    If GRIDDOUBLECLICK = True And ROW.Index = TEMPROW Then Continue For
-                    Dim cellVal As String = If(ROW.Cells(GROLLNO.Index).Value IsNot Nothing, ROW.Cells(GROLLNO.Index).Value.ToString.Trim, "")
-                    If cellVal <> "" Then strUsedRolls = strUsedRolls & "'" & cellVal & "',"
-                Next
-                If strUsedRolls <> "" Then strUsedRolls = " AND ITEMNAME NOT IN (" & strUsedRolls.TrimEnd(",") & ") "
-                fillROLLITEM(CMBROLLNO, edit, "AND ROLLITEM = 1 " & strUsedRolls, "HAVING SUM(QTY - ISSQTY) >0")
-            End If
-            TXTBEAMWT.Clear()
-            TXTBREAKAGE.Clear()
-            TXTNO.Clear()
-            TXTREMARKS.Clear()
-            'getsrno(GRIDSTOCK)
-            TOTAL()
-
-            TXTBEAMNO.Focus()
-
-
-            TXTBEAMWT.Clear()
+        TXTGAMANO.Clear()
+        TXTSECTION.Clear()
+        CMBROLLNO.DataSource = Nothing
+        CMBROLLNO.Text = ""
+        'If CMBROLLNO.Text = "" Then fillROLLITEM(CMBROLLNO, edit, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
+        If CMBROLLNO.Text = "" Then
+            Dim strUsedRolls As String = ""
+            For Each ROW As DataGridViewRow In GRIDSTOCK.Rows
+                If ROW.IsNewRow Then Continue For
+                If GRIDDOUBLECLICK = True And ROW.Index = TEMPROW Then Continue For
+                Dim cellVal As String = If(ROW.Cells(GROLLNO.Index).Value IsNot Nothing, ROW.Cells(GROLLNO.Index).Value.ToString.Trim, "")
+                If cellVal <> "" Then strUsedRolls = strUsedRolls & "'" & cellVal & "',"
+            Next
+            If strUsedRolls <> "" Then strUsedRolls = " AND ITEMNAME NOT IN (" & strUsedRolls.TrimEnd(",") & ") "
+            fillROLLITEM(CMBROLLNO, edit, "AND ROLLITEM = 1 " & strUsedRolls, "HAVING SUM(QTY - ISSQTY) >0")
         End If
+        TXTBEAMWT.Clear()
+        TXTBREAKAGE.Clear()
+        TXTNO.Clear()
+        TXTREMARKS.Clear()
+        'getsrno(GRIDSTOCK)
+        TOTAL()
+
+        TXTBEAMNO.Focus()
+
+
+        TXTBEAMWT.Clear()
     End Sub
+
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
-    Private Function errorvalid() As Boolean
+
+    Private Function ERRORVALID() As Boolean
         Dim bln As Boolean = True
 
-        'If GRIDSTOCK.RowCount = 0 Then
-        '    EP.SetError(txtpcs, "Enter Item Details")
-        '    bln = False
-        'End If
 
-        'For Each row As DataGridViewRow In GRIDSTOCK.Rows
-        '    If Val(row.Cells(GTOTALMTRS.Index).Value) = 0 Then
-        '        EP.SetError(TXTTOTALMTRS, "Mtrs Cannot be 0")
-        '        bln = False
-        '    End If
-        '    If Val(row.Cells(gMtrs.Index).Value) = 0 Then
-        '        EP.SetError(cmbtype, "Mtrs Cannot be 0")
-        '        bln = False
-        '    End If
-        '    If row.Cells(gQuality.Index).Value = "" Then
-        '        EP.SetError(cmbtype, "Quality cannot be Blank")
-        '        bln = False
-        '    End If
-        '    If row.Cells(GMERCHANT.Index).Value = "" Then
-        '        EP.SetError(cmbtype, "Item Name cannot be Blank")
-        '        bln = False
-        '    End If
-        '    If row.Cells(Gunit.Index).Value = "" Then
-        '        EP.SetError(cmbtype, "Unit cannot be Blank")
-        '        bln = False
-        '    End If
-        '    If cmbtype.Text = "INHOUSE" Then
-        '        If row.Cells(GDESIGN.Index).Value = "" Then
-        '            EP.SetError(cmbtype, "Design cannot be Blank")
-        '            bln = False
-        '        End If
-        '    ElseIf cmbtype.Text = "JOBBERSTOCK" Then
-        '        If row.Cells(gtoname.Index).Value = "" Then
-        '            EP.SetError(cmbtype, "Jobber Name cannot be Blank")
-        '            bln = False
-        '        End If
-        '    End If
-        'Next
         Return bln
     End Function
+
     Private Sub TXTREMARKS_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TXTREMARKS.Validating
 
         If CMBOURGODOWN.Text.Trim <> "" And CMBNAME.Text.Trim <> "" And CMBBEAMNAME.Text.Trim <> "" And CMBMILL.Text.Trim <> "" And Val(TXTTOTALENDS.Text.Trim) > 0 And Val(TXTTOTALMTRS.Text.Trim) > 0 And CMBROLLNO.Text.Trim <> "" Then
@@ -315,8 +253,7 @@ Public Class OpeningBeamStock
 
 
             'GRIDSTOCK.RowCount = 0
-            CLEAR = True
-            fillgrid()
+            FILLGRID()
             If Not GRIDDOUBLECLICK Then
                 'fillROLLITEM(CMBROLLNO, edit, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
                 Dim strUsedRolls As String = ""
@@ -387,47 +324,9 @@ Public Class OpeningBeamStock
     End Sub
 
     Private Sub GRIDSTOCK_CellDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles GRIDSTOCK.CellDoubleClick
-        'Try
-        '    If e.RowIndex < 0 Then Exit Sub
-
-        '    If USEREDIT = False And USERVIEW = False Then
-        '        MsgBox("Insufficient Rights")
-        '        Exit Sub
-        '    End If
-
-        '    If GRIDSTOCK.Item(GOUTMTRS.Index, e.RowIndex).Value > 0 Or GRIDSTOCK.Item(GOUTWT.Index, e.RowIndex).Value > 0 Then
-        '        MsgBox("Rolls Locked, it is used further", MsgBoxStyle.Critical)
-        '        Exit Sub
-        '    End If
-
-
-        '    txtsrno.Text = GRIDSTOCK.Item(GGRIDSRNO.Index, GRIDSTOCK.CurrentRow.Index).Value.ToString
-        '    TXTOPROLLSSTOCKNO.Text = GRIDSTOCK.Item(GOPBEAMSTOCKNO.Index, e.RowIndex).Value
-        '    CMBOURGODOWN.Text = GRIDSTOCK.Item(GGODOWN.Index, e.RowIndex).Value
-        '    CMBNAME.Text = GRIDSTOCK.Item(GNAME.Index, e.RowIndex).Value
-        '    CMBMILL.Text = GRIDSTOCK.Item(GMILL.Index, e.RowIndex).Value
-        '    TXTBEAMNO.Text = Val(GRIDSTOCK.Item(GBEAMNO.Index, e.RowIndex).Value)
-        '    CMBBEAMNAME.Text = GRIDSTOCK.Item(GBEAMNAME.Index, e.RowIndex).Value
-        '    TXTTOTALENDS.Text = Val(GRIDSTOCK.Item(GTOTALENDS.Index, e.RowIndex).Value)
-        '    TXTTOTALMTRS.Text = Val(GRIDSTOCK.Item(GTOTALMTRS.Index, e.RowIndex).Value)
-        '    TXTGAMANO.Text = Val(GRIDSTOCK.Item(GGAMANO.Index, e.RowIndex).Value)
-        '    TXTSECTION.Text = Val(GRIDSTOCK.Item(GSECTION.Index, e.RowIndex).Value)
-        '    CMBROLLNO.Text = GRIDSTOCK.Item(GROLLNO.Index, e.RowIndex).Value
-        '    TXTBEAMWT.Text = GRIDSTOCK.Item(GBEAMWT.Index, e.RowIndex).Value
-        '    TXTBREAKAGE.Text = GRIDSTOCK.Item(GBREAKAGE.Index, e.RowIndex).Value
-        '    TXTREMARKS.Text = GRIDSTOCK.Item(GREMARKS.Index, e.RowIndex).Value
-
-        '    GRIDDOUBLECLICK = True
-        '    edit = True
-        '    TEMPROW = e.RowIndex
-        '    CMBNAME.Focus()
-
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
         EDITROW(e)
-
     End Sub
+
     Sub EDITROW(ByVal e As DataGridViewCellEventArgs)
         Try
             If e.RowIndex < 0 Then Exit Sub
@@ -543,8 +442,6 @@ Public Class OpeningBeamStock
         End Try
     End Sub
 
-
-
     Private Sub CMBMILL_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBMILL.Enter
         Try
             If CMBMILL.Text.Trim = "" Then FILLMILL(CMBMILL, edit)
@@ -561,21 +458,6 @@ Public Class OpeningBeamStock
         End Try
     End Sub
 
-    Private Sub CMBBEAMNAME_Enter(sender As Object, e As EventArgs) Handles CMBBEAMNAME.Enter
-        Try
-            If CMBBEAMNAME.Text.Trim = "" Then fillBEAM(CMBBEAMNAME, edit)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBBEAMNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBBEAMNAME.Validating
-        Try
-            If CMBBEAMNAME.Text.Trim <> "" Then BEAMVALIDATE(CMBBEAMNAME, e, Me)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
     Sub GENERATECONSUMPTION()
 
         Try
@@ -626,6 +508,7 @@ Public Class OpeningBeamStock
 
 
     End Sub
+
     Public Function GetGridMaxBeamNo() As Integer
         For Each r As DataGridViewRow In GRIDSTOCK.Rows
             If Not r.IsNewRow Then
@@ -636,7 +519,6 @@ Public Class OpeningBeamStock
         Next
     End Function
 
-
     Sub GetLastBeamNo()
         Dim NextBeamNo As Integer
         Dim OBJCMN As New ClsCommon
@@ -644,8 +526,6 @@ Public Class OpeningBeamStock
         If DT.Rows.Count > 0 Then NextBeamNo = DT.Rows(0).Item(0)
         TXTBEAMNO.Text = NextBeamNo
     End Sub
-
-
 
     Private Sub TXTBEAMNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBEAMNO.Validating
 
@@ -661,7 +541,6 @@ Public Class OpeningBeamStock
         End If
 
     End Sub
-
 
     Function CHECKBEAM() As Boolean
         Try
