@@ -486,6 +486,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Material Rec\OpeningReport_SNCM.vb">
+      <DependentUpon>OpeningReport_SNCM.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Purchase Order\POReport_LAXMI.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1161,12 +1167,6 @@
     </Compile>
     <Compile Include="Reports\Crystal Reports\Lot Status Reports\LotTaggingReport.vb">
       <DependentUpon>LotTaggingReport.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Crystal Reports\Material Rec\OpeningReport_SNCM.vb">
-      <DependentUpon>OpeningReport_SNCM.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <SubType>Component</SubType>
@@ -9430,6 +9430,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GREYJOReport_COMMON.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Material Rec\OpeningReport_SNCM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OpeningReport_SNCM.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Purchase Order\POReport_LAXMI.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>POReport_LAXMI.vb</LastGenOutput>
@@ -9825,10 +9829,6 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Lot Status Reports\LotTaggingReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>LotTaggingReport.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\Material Rec\OpeningReport_SNCM.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>OpeningReport_SNCM.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Material Rec\MatRecReport_SNCM.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -243,8 +243,7 @@ Public Class OutstandingFilter
             'OBJOUTSTAND.selfor_ss = " {@YEARID} in [" & TEMPCONDITION & "]"
 
 
-            OBJOUTSTAND.PARTYNAME = CMBPARTYNAME.Text.Trim
-            OBJOUTSTAND.AGENTNAME = CMBBROKERNAME.Text.Trim
+
             If LSTCMP.CheckedItems.Count > 1 Then OBJOUTSTAND.MULTICMP = 1 Else OBJOUTSTAND.MULTICMP = 0
 
             If chkdate.Checked = True Then
@@ -499,7 +498,8 @@ Public Class OutstandingFilter
             If CHKGROUPONNEWPG.Checked = True Then OBJOUTSTAND.NEWPAGE = CHKGROUPONNEWPG.Checked
             OBJOUTSTAND.INTEREST = Val(TXTINTEREST.Text.Trim)
             OBJOUTSTAND.INTDAYS = Val(TXTDAYS.Text.Trim)
-
+            If CMBPARTYNAME.Text.Trim <> "" Then OBJOUTSTAND.PARTYNAME = CMBPARTYNAME.Text.Trim
+            If CMBBROKERNAME.Text.Trim <> "" Then OBJOUTSTAND.AGENTNAME = CMBBROKERNAME.Text.Trim
             OBJOUTSTAND.Show()
             If SENDMAIL = True Or SENDWHATSAPP = True Then OBJOUTSTAND.Close()
 
