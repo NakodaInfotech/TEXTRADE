@@ -1889,7 +1889,7 @@ LINE1:
                 End If
 
 
-                If ClientName <> "AVIS" And ClientName <> "MAHAVIRPOLYCOT" And ClientName <> "SAFFRON" Then
+                If ClientName <> "AVIS" And ClientName <> "MAHAVIRPOLYCOT" And ClientName <> "SAFFRON" And ClientName <> "MSANCHITKUMAR" Then
                     'FETCH RACK
                     DT.Clear()
                     DT = OBJCMN.SEARCH("ISNULL(RACK,'') AS RACK", "", "ALLBARCODESTOCK", " AND BARCODE = '" & CMBBARCODE.Text.Trim & "' AND YEARID = " & YearId)
