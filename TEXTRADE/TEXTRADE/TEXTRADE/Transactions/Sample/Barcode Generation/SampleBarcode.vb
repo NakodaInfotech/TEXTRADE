@@ -2616,7 +2616,7 @@ PRINT 1,1")
                                     Dim TEMPRATE As Double = 0
                                     Dim TEMPAVG As Double = 0
 
-                                    DT = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_GSM, '') AS GSM, ISNULL(ITEMMASTER.ITEM_RATE, '') AS RATE ,ISNULL(ITEMMASTER.ITEM_FOLD, '') AS AVG  ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+                                    DT = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_GSM, '') AS GSM, ISNULL(ITEMMASTER.ITEM_RATE, '') AS RATE ,ISNULL(ITEMMASTER.ITEM_FOLD, '') AS AVG  ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
                                     If DT.Rows.Count > 0 Then
                                         TEMPGSM = Val(DT.Rows(0).Item("GSM"))
                                         TEMPRATE = Val(DT.Rows(0).Item("RATE"))
