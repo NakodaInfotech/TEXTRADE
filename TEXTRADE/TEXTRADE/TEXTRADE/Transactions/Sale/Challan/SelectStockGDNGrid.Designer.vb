@@ -22,8 +22,9 @@ Partial Class SelectStockGDNGrid
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.chkall = New System.Windows.Forms.CheckBox()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -58,12 +59,17 @@ Partial Class SelectStockGDNGrid
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDISPLAYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.chkall = New System.Windows.Forms.CheckBox()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
         '
         'BlendPanel1
         '
@@ -78,6 +84,18 @@ Partial Class SelectStockGDNGrid
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1334, 661)
         Me.BlendPanel1.TabIndex = 11
+        '
+        'chkall
+        '
+        Me.chkall.AutoSize = True
+        Me.chkall.BackColor = System.Drawing.Color.Transparent
+        Me.chkall.Font = New System.Drawing.Font("Calibri", 9.0!)
+        Me.chkall.Location = New System.Drawing.Point(40, 12)
+        Me.chkall.Name = "chkall"
+        Me.chkall.Size = New System.Drawing.Size(77, 18)
+        Me.chkall.TabIndex = 261
+        Me.chkall.Text = "Select &All"
+        Me.chkall.UseVisualStyleBackColor = False
         '
         'CMDOK
         '
@@ -138,10 +156,7 @@ Partial Class SelectStockGDNGrid
         'GCHK
         '
         Me.GCHK.Caption = "CHK"
-        RepositoryItemCheckEdit1.AutoHeight = False
-        RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
-        RepositoryItemCheckEdit1.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
-        Me.GCHK.ColumnEdit = RepositoryItemCheckEdit1
+        Me.GCHK.ColumnEdit = Me.RepositoryItemCheckEdit1
         Me.GCHK.FieldName = "CHK"
         Me.GCHK.Name = "GCHK"
         Me.GCHK.Visible = True
@@ -419,18 +434,6 @@ Partial Class SelectStockGDNGrid
         Me.GWT.Name = "GWT"
         Me.GWT.OptionsColumn.AllowEdit = False
         '
-        'chkall
-        '
-        Me.chkall.AutoSize = True
-        Me.chkall.BackColor = System.Drawing.Color.Transparent
-        Me.chkall.Font = New System.Drawing.Font("Calibri", 9.0!)
-        Me.chkall.Location = New System.Drawing.Point(40, 12)
-        Me.chkall.Name = "chkall"
-        Me.chkall.Size = New System.Drawing.Size(77, 18)
-        Me.chkall.TabIndex = 261
-        Me.chkall.Text = "Select &All"
-        Me.chkall.UseVisualStyleBackColor = False
-        '
         'SelectStockGDNGrid
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -439,13 +442,14 @@ Partial Class SelectStockGDNGrid
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
         Me.Name = "SelectStockGDNGrid"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Select Stock"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BlendPanel1.ResumeLayout(False)
         Me.BlendPanel1.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -487,4 +491,5 @@ Partial Class SelectStockGDNGrid
     Friend WithEvents CMDOK As Button
     Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents chkall As CheckBox
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

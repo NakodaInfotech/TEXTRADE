@@ -114,17 +114,11 @@ Public Class CustomLayout
 
                 For Each rowHandle In view.GetSelectedRows()
                     If rowHandle < 0 Then Continue For
-
-                    Dim FILENAME As String = view.GetRowCellValue(rowHandle, "FILENAME")
-
-                    ' DELETE QUERY
-                    Dim sql As String = "DELETE FROM CUSTOMLAYOUTS WHERE CL_FILENAME = '" & FILENAME & "'"
-
-                    objClsCommon.Execute_Any_String(sql, "", "") ' <-- You must have this function
-                Next
-
-                ' Refresh grid
-                FILLGRID()
+                Dim FILENAME As String = view.GetRowCellValue(rowHandle, "FILENAME")
+                Dim sql As String = "DELETE FROM CUSTOMLAYOUTS WHERE CL_FILENAME = '" & FILENAME & "'"
+                objClsCommon.Execute_Any_String(sql, "", "")
+            Next
+            FILLGRID()
             'End If
 
         Catch ex As Exception

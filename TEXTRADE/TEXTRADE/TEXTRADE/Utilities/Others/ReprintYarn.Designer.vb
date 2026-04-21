@@ -22,16 +22,13 @@ Partial Class ReprintYarn
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.CMDPRINTPS = New System.Windows.Forms.Button()
-        Me.lblbaleno = New System.Windows.Forms.Label()
-        Me.TXTBALENO = New System.Windows.Forms.TextBox()
         Me.CMDSELECTSTOCK = New System.Windows.Forms.Button()
         Me.GRIDREPRINT = New System.Windows.Forms.DataGridView()
-        Me.CHKBARCODE = New System.Windows.Forms.CheckBox()
         Me.cmdprint = New System.Windows.Forms.Button()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -72,28 +69,6 @@ Partial Class ReprintYarn
         Me.CMDPRINTPS.UseVisualStyleBackColor = True
         Me.CMDPRINTPS.Visible = False
         '
-        'lblbaleno
-        '
-        Me.lblbaleno.AutoSize = True
-        Me.lblbaleno.BackColor = System.Drawing.Color.Transparent
-        Me.lblbaleno.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblbaleno.Location = New System.Drawing.Point(494, 16)
-        Me.lblbaleno.Name = "lblbaleno"
-        Me.lblbaleno.Size = New System.Drawing.Size(50, 14)
-        Me.lblbaleno.TabIndex = 701
-        Me.lblbaleno.Text = "Bale No"
-        Me.lblbaleno.Visible = False
-        '
-        'TXTBALENO
-        '
-        Me.TXTBALENO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TXTBALENO.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTBALENO.Location = New System.Drawing.Point(546, 12)
-        Me.TXTBALENO.Name = "TXTBALENO"
-        Me.TXTBALENO.Size = New System.Drawing.Size(88, 22)
-        Me.TXTBALENO.TabIndex = 700
-        Me.TXTBALENO.Visible = False
-        '
         'CMDSELECTSTOCK
         '
         Me.CMDSELECTSTOCK.BackColor = System.Drawing.Color.Transparent
@@ -114,28 +89,28 @@ Partial Class ReprintYarn
         Me.GRIDREPRINT.AllowUserToDeleteRows = False
         Me.GRIDREPRINT.AllowUserToResizeColumns = False
         Me.GRIDREPRINT.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDREPRINT.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDREPRINT.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.GRIDREPRINT.BackgroundColor = System.Drawing.Color.White
         Me.GRIDREPRINT.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDREPRINT.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDREPRINT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDREPRINT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.GRIDREPRINT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDREPRINT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GYARNQUALITY, Me.GMILLNAME, Me.GDESIGN, Me.GCOLOR, Me.GJOBBERLOTNO, Me.GLRNO, Me.GGRIDREMARKS, Me.GWT, Me.GQTY, Me.GBARCODE, Me.GRACK, Me.GSHELF, Me.GYARNDATE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDREPRINT.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDREPRINT.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRIDREPRINT.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDREPRINT.Location = New System.Drawing.Point(18, 40)
         Me.GRIDREPRINT.MultiSelect = False
@@ -143,27 +118,15 @@ Partial Class ReprintYarn
         Me.GRIDREPRINT.RowHeadersVisible = False
         Me.GRIDREPRINT.RowHeadersWidth = 30
         Me.GRIDREPRINT.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDREPRINT.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDREPRINT.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDREPRINT.RowTemplate.Height = 20
         Me.GRIDREPRINT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPRINT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.GRIDREPRINT.Size = New System.Drawing.Size(1199, 495)
         Me.GRIDREPRINT.TabIndex = 698
         Me.GRIDREPRINT.TabStop = False
-        '
-        'CHKBARCODE
-        '
-        Me.CHKBARCODE.AutoSize = True
-        Me.CHKBARCODE.BackColor = System.Drawing.Color.Transparent
-        Me.CHKBARCODE.Location = New System.Drawing.Point(332, 14)
-        Me.CHKBARCODE.Name = "CHKBARCODE"
-        Me.CHKBARCODE.Size = New System.Drawing.Size(136, 19)
-        Me.CHKBARCODE.TabIndex = 693
-        Me.CHKBARCODE.Text = "Whole Sale Barcode"
-        Me.CHKBARCODE.UseVisualStyleBackColor = False
-        Me.CHKBARCODE.Visible = False
         '
         'cmdprint
         '
@@ -376,11 +339,8 @@ Partial Class ReprintYarn
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.CMDPRINTPS)
-        Me.Controls.Add(Me.lblbaleno)
-        Me.Controls.Add(Me.TXTBALENO)
         Me.Controls.Add(Me.CMDSELECTSTOCK)
         Me.Controls.Add(Me.GRIDREPRINT)
-        Me.Controls.Add(Me.CHKBARCODE)
         Me.Controls.Add(Me.cmdprint)
         Me.Controls.Add(Me.cmdcancel)
         Me.Controls.Add(Me.Label2)
@@ -400,11 +360,8 @@ Partial Class ReprintYarn
     End Sub
 
     Friend WithEvents CMDPRINTPS As Button
-    Friend WithEvents lblbaleno As Label
-    Friend WithEvents TXTBALENO As TextBox
     Friend WithEvents CMDSELECTSTOCK As Button
     Friend WithEvents GRIDREPRINT As DataGridView
-    Friend WithEvents CHKBARCODE As CheckBox
     Friend WithEvents cmdprint As Button
     Friend WithEvents cmdcancel As Button
     Friend WithEvents Label2 As Label
