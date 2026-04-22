@@ -175,7 +175,7 @@ Public Class RollsReturnFromWarper
 
             FILLCMB()
             CLEAR()
-
+            CMBGODOWN.Text = GETDEFAULTGODOWN()
 
             If EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then

@@ -123,7 +123,7 @@ Public Class GDNGridDetails
 
     Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
         Try
-            fillgrid(" AND CHALLANTYPE_NAME = '" & CMBTYPE.Text.Trim & "' and dbo.gdn.gdn_yearid=" & YearId & " ")
+            fillgrid("  and dbo.gdn.gdn_yearid=" & YearId & " ")
         Catch ex As Exception
             Throw ex
         End Try
