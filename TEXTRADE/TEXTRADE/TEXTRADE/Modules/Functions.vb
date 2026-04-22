@@ -8002,16 +8002,7 @@ line1:
             Throw ex
         End Try
     End Sub
-    Function GETDEFAULTGODOWN() As String
-        Try
-            Dim clscommon As New ClsCommon
-            Dim dt As DataTable
-            dt = clscommon.SEARCH(" GODOWN_NAME AS GODOWNNAME ", "", " GODOWNMASTER ", " and GODOWN_YEARID = " & YearId)
-            If dt.Rows.Count > 0 Then Return dt.Rows(0).Item("GODOWNNAME") Else Return ""
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
+
     Sub FILLPROCESS(ByRef CMBPROCESS As ComboBox)
         Try
             If CMBPROCESS.Text.Trim = "" Then
@@ -9719,23 +9710,19 @@ line1:
         End Try
     End Sub
 
-
-
-    Sub fillROLLITEM(ByRef CMBROLLITEM As ComboBox, ByRef edit As Boolean, ByVal CONDITION As String, Optional HAVING As String = "")
+    Sub FILLROLLITEM(ByRef CMBROLLITEM As ComboBox, ByRef edit As Boolean, ByVal CONDITION As String, Optional HAVING As String = "")
         Try
             Cursor.Current = Cursors.WaitCursor
-            'If CMBROLLITEM.Text.Trim = "" Then
             Dim objclscommon As New ClsCommonMaster
-                Dim dt As DataTable = objclscommon.search("ITEMID,ITEMNAME ,SUM(QTY) ", "", "STORESTOCKREGISTER ", "  and CMPID =" & CmpId & " AND YEARID =" & YearId & " " & CONDITION & "  GROUP BY  ITEMID,ITEMNAME " & HAVING)
-                If dt.Rows.Count > 0 Then
-                    dt.DefaultView.Sort = "ITEMNAME"
-                    CMBROLLITEM.DisplayMember = "ITEMNAME"
-                End If
-                CMBROLLITEM.DataSource = dt
-                CMBROLLITEM.SelectedIndex = -1
-                CMBROLLITEM.SelectAll()
-                CMBROLLITEM.Text = ""
-            'End If
+            Dim dt As DataTable = objclscommon.search("ITEMID,ITEMNAME ,SUM(QTY) ", "", "STORESTOCKREGISTER ", "  and CMPID =" & CmpId & " AND YEARID =" & YearId & " " & CONDITION & "  GROUP BY  ITEMID,ITEMNAME " & HAVING)
+            If dt.Rows.Count > 0 Then
+                dt.DefaultView.Sort = "ITEMNAME"
+                CMBROLLITEM.DisplayMember = "ITEMNAME"
+            End If
+            CMBROLLITEM.DataSource = dt
+            CMBROLLITEM.SelectedIndex = -1
+            CMBROLLITEM.SelectAll()
+            CMBROLLITEM.Text = ""
         Catch ex As Exception
             Throw ex
         Finally

@@ -32,7 +32,7 @@ Public Class YarnStockDesign
     Dim RPTPRODYARNSTOCKSUMM As New ProdYarnQualityWiseStockReport
     Dim RPTPRODDESIGNSTOCKSUMM As New ProdYarnDesignWiseStockReport
     Dim RPTPRODSHADESTOCKSUMM As New ProdYarnShadeWiseStockReport
-
+    Dim RPTYARNCATEGORYWISESTOCK As New YarnCategoryWiseStockReport
 
     'GREY RECD KNITTING REPORTS
     Dim RPTGREYRECDDETAILS As New GreyRecdDetailsReport
@@ -99,6 +99,8 @@ Public Class YarnStockDesign
             If FRMSTRING = "JOBBERGREYRECDSUMM" Then crTables = RPTJOBBERGREYRECDSUMM.Database.Tables
             If FRMSTRING = "ITEMGREYRECDDTLS" Then crTables = RPTITEMGREYRECDDETAILS.Database.Tables
             If FRMSTRING = "ITEMGREYRECDSUMM" Then crTables = RPTITEMGREYRECDSUMM.Database.Tables
+
+            If FRMSTRING = "CATEGORYWISESTOCK" Then crTables = RPTYARNCATEGORYWISESTOCK.Database.Tables
 
 
 
@@ -205,6 +207,9 @@ Public Class YarnStockDesign
                 RPTPRODSHADESTOCKSUMM.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
                 crpo.ReportSource = RPTPRODSHADESTOCKSUMM
 
+            ElseIf FRMSTRING = "CATEGORYWISESTOCK" Then
+                RPTYARNCATEGORYWISESTOCK.DataDefinition.FormulaFields("PERIOD").Text = "' CATEGORY WISE STOCK- " & PERIOD & "'"
+                crpo.ReportSource = RPTYARNCATEGORYWISESTOCK
 
             ElseIf FRMSTRING = "GREYRECDDTLS" Then
                 RPTGREYRECDDETAILS.DataDefinition.FormulaFields("PERIOD").Text = "' GREY RECD DETAILS- " & PERIOD & "'"
@@ -389,7 +394,12 @@ Public Class YarnStockDesign
                 expo.DestinationOptions = oDfDopt
                 RPTPRODSHADESTOCKSUMM.Export()
 
-
+            ElseIf FRMSTRING = "CATEGORYWISESTOCK" Then
+                expo = RPTYARNCATEGORYWISESTOCK.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTYARNCATEGORYWISESTOCK.Export()
 
             ElseIf FRMSTRING = "GREYRECDDTLS" Then
                 expo = RPTGREYRECDDETAILS.ExportOptions

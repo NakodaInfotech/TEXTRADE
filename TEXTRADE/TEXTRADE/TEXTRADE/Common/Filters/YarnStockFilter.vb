@@ -77,12 +77,19 @@ Public Class YarnStockFilter
                 OBJYARNBEAMSTOCK.MdiParent = MDIMain
                 OBJYARNBEAMSTOCK.Show()
                 Exit Sub
+
             End If
 
 
             Dim OBJSTOCK As New YarnStockDesign
             OBJSTOCK.MdiParent = MDIMain
-            OBJSTOCK.WHERECLAUSE = " {YARNSTOCKREGISTER.YEARID}=" & YearId
+            If RBYARNCATEGORYWISESTOCK.Checked = True Then
+                OBJSTOCK.WHERECLAUSE = "{YARNBARCODESTOCK.YEARID}=" & YearId
+
+            Else
+                OBJSTOCK.WHERECLAUSE = " {YARNSTOCKREGISTER.YEARID}=" & YearId
+
+            End If
 
             If chkdate.Checked = True Then
                 getFromToDate()
@@ -95,13 +102,23 @@ Public Class YarnStockFilter
                 OBJSTOCK.PERIOD = Format(AccFrom, "dd/MM/yyyy") & " - " & Format(AccTo, "dd/MM/yyyy")
             End If
 
-            If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
-            If CMBYARNQUALITY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.YARNQUALITY}='" & CMBYARNQUALITY.Text.Trim & "'"
-            If CMBMILLNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.MILLNAME}='" & CMBMILLNAME.Text.Trim & "'"
-            If CMBDESIGN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.DESIGNNO}='" & CMBDESIGN.Text.Trim & "'"
-            If CMBSHADE.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.COLOR}='" & CMBSHADE.Text.Trim & "'"
-            If CMBNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.NAME}='" & CMBNAME.Text.Trim & "'"
-            If CMBCATEGORY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.CATEGORY}='" & CMBCATEGORY.Text.Trim & "'"
+            If RBYARNCATEGORYWISESTOCK.Checked = True Then
+                If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNBARCODESTOCK.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
+                If CMBYARNQUALITY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNBARCODESTOCK.YARNQUALITY}='" & CMBYARNQUALITY.Text.Trim & "'"
+                If CMBSHADE.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNBARCODESTOCK.COLOR}='" & CMBSHADE.Text.Trim & "'"
+                If CMBCATEGORY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNBARCODESTOCK.CATEGORY}='" & CMBCATEGORY.Text.Trim & "'"
+
+            Else
+                If CMBGODOWN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.GODOWN}='" & CMBGODOWN.Text.Trim & "'"
+                If CMBYARNQUALITY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.YARNQUALITY}='" & CMBYARNQUALITY.Text.Trim & "'"
+                If CMBMILLNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.MILLNAME}='" & CMBMILLNAME.Text.Trim & "'"
+                If CMBDESIGN.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.DESIGNNO}='" & CMBDESIGN.Text.Trim & "'"
+                If CMBSHADE.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.COLOR}='" & CMBSHADE.Text.Trim & "'"
+                If CMBNAME.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.NAME}='" & CMBNAME.Text.Trim & "'"
+                If CMBCATEGORY.Text.Trim <> "" Then OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " and {YARNSTOCKREGISTER.CATEGORY}='" & CMBCATEGORY.Text.Trim & "'"
+            End If
+
+
 
             If RBYARNQUALITYSUMM.Checked = True Then
                 OBJSTOCK.FRMSTRING = "QUALITYSTOCKSUMM"
@@ -123,6 +140,8 @@ Public Class YarnStockFilter
                 OBJSTOCK.FRMSTRING = "FINISHBOXDETAIL"
             ElseIf RDBSHADEDETAIL.Checked = True Then
                 OBJSTOCK.FRMSTRING = "FINISHBOXSUMM"
+            ElseIf RBYARNCATEGORYWISESTOCK.Checked = True Then
+                OBJSTOCK.FRMSTRING = "CATEGORYWISESTOCK"
             End If
 
             OBJSTOCK.Show()

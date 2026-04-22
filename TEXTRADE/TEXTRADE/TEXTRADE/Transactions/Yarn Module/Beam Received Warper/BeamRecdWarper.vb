@@ -68,7 +68,7 @@ Public Class BeamRecdWarper
         CMDSELECTYARNISSUE.Enabled = True
         TXTBEAMRECDNO.Clear()
         DTBEAMRECDDATE.Text = Mydate
-        CMBOURGODOWN.Text = GETDEFAULTGODOWN()
+        CMBOURGODOWN.Text = USERGODOWN
         CMBNAME.Text = ""
         CMBMILLNAME.Text = ""
 
@@ -182,7 +182,6 @@ Public Class BeamRecdWarper
 
             FILLCMB()
             CLEAR()
-            CMBOURGODOWN.Text = GETDEFAULTGODOWN()
 
             If EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then

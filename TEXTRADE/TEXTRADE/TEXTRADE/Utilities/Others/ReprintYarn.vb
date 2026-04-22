@@ -42,7 +42,7 @@ LINE1:
     Sub clear()
         Try
             txtbarcode.Clear()
-            TXTBALENO.Clear()
+            'TXTBALENO.Clear()
             txtcopies.Text = 1
             GRIDREPRINT.RowCount = 0
         Catch ex As Exception
@@ -69,18 +69,18 @@ LINE1:
     End Sub
 
     Private Sub Reprint_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
-        If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then CHKBARCODE.Visible = True
-        'If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "KDFAB" Or ClientName = "ALENCOT" Then GPRINTDESC.Visible = True
-        If ClientName = "DEVEN" Then
-            CHKBARCODE.Visible = True
-            CHKBARCODE.Text = "Print In Yards"
-        End If
-        If ClientName = "SNCM" Then
-            TXTBALENO.Visible = True
-            CMDPRINTPS.Visible = True
-            lblbaleno.Visible = True
+        'If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then CHKBARCODE.Visible = True
+        ''If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "KDFAB" Or ClientName = "ALENCOT" Then GPRINTDESC.Visible = True
+        'If ClientName = "DEVEN" Then
+        '    CHKBARCODE.Visible = True
+        '    CHKBARCODE.Text = "Print In Yards"
+        'End If
+        'If ClientName = "SNCM" Then
+        '    TXTBALENO.Visible = True
+        '    CMDPRINTPS.Visible = True
+        '    lblbaleno.Visible = True
 
-        End If
+        'End If
     End Sub
 
     Private Sub txtbarcode_Validated(sender As Object, e As EventArgs) Handles txtbarcode.Validated

@@ -10852,6 +10852,18 @@ SKIPLINE:
         Try
             Dim OBJOPENING As New OpeningBeamStock
             OBJOPENING.MdiParent = Me
+            OBJOPENING.FRMSTRING = "INHOUSE"
+            OBJOPENING.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub OPENINGBEAMSTOCKJOBBER_MASTER_Click(sender As Object, e As EventArgs) Handles OPENINGBEAMSTOCKJOBBER_MASTER.Click
+        Try
+            Dim OBJOPENING As New OpeningBeamStock
+            OBJOPENING.MdiParent = Me
+            OBJOPENING.FRMSTRING = "JOBBERSTOCK"
             OBJOPENING.Show()
         Catch ex As Exception
             Throw ex
@@ -10891,17 +10903,6 @@ SKIPLINE:
     Private Sub AddNewEntryToolStripMenuItem8_Click_2(sender As Object, e As EventArgs) Handles BEAMUPLOADADD.Click
         Try
             Dim OBJYARNJO As New BeamUpload
-            OBJYARNJO.MdiParent = Me
-            OBJYARNJO.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-
-    Private Sub OPENINGBEAMSTOCKATJOBBER_ADD_Click(sender As Object, e As EventArgs) Handles OPENINGBEAMSTOCKATJOBBER_ADD.Click
-        Try
-            Dim OBJYARNJO As New OpeningBeamStockAtJobber
             OBJYARNJO.MdiParent = Me
             OBJYARNJO.Show()
         Catch ex As Exception
@@ -12543,4 +12544,6 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+
 End Class

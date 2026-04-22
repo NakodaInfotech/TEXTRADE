@@ -1046,7 +1046,7 @@ NEXTLINE:
             CMBDESIGN.Focus()
         ElseIf ClientName = "MOHATUL" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "ANOX" Then
             cmbcolor.Focus()
-        ElseIf ClientName = "GELATO" Then
+        ElseIf ClientName = "GELATO" Or Clientname = "MMC" Then
             cmbitemname.Focus()
         Else
             TXTMTRS.Focus()

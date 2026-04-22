@@ -376,11 +376,10 @@ Partial Class MDIMain
         Me.ToolStripSeparator243 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator139 = New System.Windows.Forms.ToolStripSeparator()
         Me.PROVISIONALBS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator207 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator356 = New System.Windows.Forms.ToolStripSeparator()
         Me.OPENINGYARNJOBORDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.OPENINGYARNJOBORDER_ADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OPENINGBEAMSTOCKATJOBBER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OPENINGBEAMSTOCKATJOBBER_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator207 = New System.Windows.Forms.ToolStripSeparator()
         Me.OPENST_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.INHOUSEST = New System.Windows.Forms.ToolStripMenuItem()
         Me.ATPARTYST = New System.Windows.Forms.ToolStripMenuItem()
@@ -397,8 +396,10 @@ Partial Class MDIMain
         Me.ToolStripSeparator338 = New System.Windows.Forms.ToolStripSeparator()
         Me.ROLLSTOCK_GODOWN = New System.Windows.Forms.ToolStripMenuItem()
         Me.ROLLSTOCK_WARPER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.YARNSTOCKJOBBER_TOOL = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator355 = New System.Windows.Forms.ToolStripSeparator()
         Me.OPENINGBEAMSTOCK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OPENINGBEAMSTOCKJOBBER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.YARNSTOCKJOBBER_TOOL = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator100 = New System.Windows.Forms.ToolStripSeparator()
         Me.TRANSACTION_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.PurchaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1243,6 +1244,7 @@ Partial Class MDIMain
         Me.ToolStripSeparator196 = New System.Windows.Forms.ToolStripSeparator()
         Me.ReprintBarcodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.REPRINTGREYBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.REPRINTYARNBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.CHANGEBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.EXPORTLABEL_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator84 = New System.Windows.Forms.ToolStripSeparator()
@@ -1353,7 +1355,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.REPRINTYARNBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -3456,7 +3457,7 @@ Partial Class MDIMain
         '
         'OPENING_MASTER
         '
-        Me.OPENING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPENINGBILL_MASTER, Me.OPENINGBALANCE, Me.OPENINGBANKRECO_MASTER, Me.OPENINGSTOCKVALUE, Me.ToolStripSeparator21, Me.OPPO_MASTER, Me.OPSO_MASTER, Me.OPPROGRAM_MASTER, Me.OPGDN_MASTER, Me.ToolStripSeparator139, Me.PROVISIONALBS_MASTER, Me.ToolStripSeparator207, Me.OPENINGYARNJOBORDER_MASTER, Me.OPENINGBEAMSTOCKATJOBBER_MASTER})
+        Me.OPENING_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPENINGBILL_MASTER, Me.OPENINGBALANCE, Me.OPENINGBANKRECO_MASTER, Me.OPENINGSTOCKVALUE, Me.ToolStripSeparator21, Me.OPPO_MASTER, Me.OPSO_MASTER, Me.OPPROGRAM_MASTER, Me.OPGDN_MASTER, Me.ToolStripSeparator139, Me.PROVISIONALBS_MASTER, Me.ToolStripSeparator356, Me.OPENINGYARNJOBORDER_MASTER, Me.ToolStripSeparator207})
         Me.OPENING_MASTER.Name = "OPENING_MASTER"
         Me.OPENING_MASTER.Size = New System.Drawing.Size(184, 22)
         Me.OPENING_MASTER.Text = "Openings"
@@ -3465,14 +3466,14 @@ Partial Class MDIMain
         '
         Me.OPENINGBILL_MASTER.Enabled = False
         Me.OPENINGBILL_MASTER.Name = "OPENINGBILL_MASTER"
-        Me.OPENINGBILL_MASTER.Size = New System.Drawing.Size(238, 22)
+        Me.OPENINGBILL_MASTER.Size = New System.Drawing.Size(230, 22)
         Me.OPENINGBILL_MASTER.Text = "Opening Bills"
         '
         'OPENINGBALANCE
         '
         Me.OPENINGBALANCE.Enabled = False
         Me.OPENINGBALANCE.Name = "OPENINGBALANCE"
-        Me.OPENINGBALANCE.Size = New System.Drawing.Size(238, 22)
+        Me.OPENINGBALANCE.Size = New System.Drawing.Size(230, 22)
         Me.OPENINGBALANCE.Text = "Opening Balance"
         Me.OPENINGBALANCE.Visible = False
         '
@@ -3480,27 +3481,27 @@ Partial Class MDIMain
         '
         Me.OPENINGBANKRECO_MASTER.Enabled = False
         Me.OPENINGBANKRECO_MASTER.Name = "OPENINGBANKRECO_MASTER"
-        Me.OPENINGBANKRECO_MASTER.Size = New System.Drawing.Size(238, 22)
+        Me.OPENINGBANKRECO_MASTER.Size = New System.Drawing.Size(230, 22)
         Me.OPENINGBANKRECO_MASTER.Text = "Opening Bank Reco"
         '
         'OPENINGSTOCKVALUE
         '
         Me.OPENINGSTOCKVALUE.Enabled = False
         Me.OPENINGSTOCKVALUE.Name = "OPENINGSTOCKVALUE"
-        Me.OPENINGSTOCKVALUE.Size = New System.Drawing.Size(238, 22)
+        Me.OPENINGSTOCKVALUE.Size = New System.Drawing.Size(230, 22)
         Me.OPENINGSTOCKVALUE.Text = "Opening/Closing Stock Value"
         '
         'ToolStripSeparator21
         '
         Me.ToolStripSeparator21.Name = "ToolStripSeparator21"
-        Me.ToolStripSeparator21.Size = New System.Drawing.Size(235, 6)
+        Me.ToolStripSeparator21.Size = New System.Drawing.Size(227, 6)
         '
         'OPPO_MASTER
         '
         Me.OPPO_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPPOADD, Me.OPPOEDIT, Me.ToolStripSeparator191})
         Me.OPPO_MASTER.Enabled = False
         Me.OPPO_MASTER.Name = "OPPO_MASTER"
-        Me.OPPO_MASTER.Size = New System.Drawing.Size(238, 22)
+        Me.OPPO_MASTER.Size = New System.Drawing.Size(230, 22)
         Me.OPPO_MASTER.Text = "&Opening Purchase Order"
         '
         'OPPOADD
@@ -3527,7 +3528,7 @@ Partial Class MDIMain
         Me.OPSO_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPSOADD, Me.OPSOEDIT, Me.ToolStripSeparator160})
         Me.OPSO_MASTER.Enabled = False
         Me.OPSO_MASTER.Name = "OPSO_MASTER"
-        Me.OPSO_MASTER.Size = New System.Drawing.Size(238, 22)
+        Me.OPSO_MASTER.Size = New System.Drawing.Size(230, 22)
         Me.OPSO_MASTER.Text = "&Opening Sale Order"
         '
         'OPSOADD
@@ -3554,7 +3555,7 @@ Partial Class MDIMain
         Me.OPPROGRAM_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPPROGRAMADD, Me.OPPROGRAMEDIT, Me.ToolStripSeparator186})
         Me.OPPROGRAM_MASTER.Enabled = False
         Me.OPPROGRAM_MASTER.Name = "OPPROGRAM_MASTER"
-        Me.OPPROGRAM_MASTER.Size = New System.Drawing.Size(238, 22)
+        Me.OPPROGRAM_MASTER.Size = New System.Drawing.Size(230, 22)
         Me.OPPROGRAM_MASTER.Text = "Opening Program Master"
         '
         'OPPROGRAMADD
@@ -3581,7 +3582,7 @@ Partial Class MDIMain
         Me.OPGDN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPGDNADD, Me.OPGDNEDIT, Me.ToolStripSeparator243})
         Me.OPGDN_MASTER.Enabled = False
         Me.OPGDN_MASTER.Name = "OPGDN_MASTER"
-        Me.OPGDN_MASTER.Size = New System.Drawing.Size(238, 22)
+        Me.OPGDN_MASTER.Size = New System.Drawing.Size(230, 22)
         Me.OPGDN_MASTER.Text = "Opening Challan"
         '
         'OPGDNADD
@@ -3606,25 +3607,25 @@ Partial Class MDIMain
         'ToolStripSeparator139
         '
         Me.ToolStripSeparator139.Name = "ToolStripSeparator139"
-        Me.ToolStripSeparator139.Size = New System.Drawing.Size(235, 6)
+        Me.ToolStripSeparator139.Size = New System.Drawing.Size(227, 6)
         '
         'PROVISIONALBS_MASTER
         '
         Me.PROVISIONALBS_MASTER.Enabled = False
         Me.PROVISIONALBS_MASTER.Name = "PROVISIONALBS_MASTER"
-        Me.PROVISIONALBS_MASTER.Size = New System.Drawing.Size(238, 22)
+        Me.PROVISIONALBS_MASTER.Size = New System.Drawing.Size(230, 22)
         Me.PROVISIONALBS_MASTER.Text = "Monthly Closing Stock Value"
         '
-        'ToolStripSeparator207
+        'ToolStripSeparator356
         '
-        Me.ToolStripSeparator207.Name = "ToolStripSeparator207"
-        Me.ToolStripSeparator207.Size = New System.Drawing.Size(235, 6)
+        Me.ToolStripSeparator356.Name = "ToolStripSeparator356"
+        Me.ToolStripSeparator356.Size = New System.Drawing.Size(227, 6)
         '
         'OPENINGYARNJOBORDER_MASTER
         '
         Me.OPENINGYARNJOBORDER_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPENINGYARNJOBORDER_ADD})
         Me.OPENINGYARNJOBORDER_MASTER.Name = "OPENINGYARNJOBORDER_MASTER"
-        Me.OPENINGYARNJOBORDER_MASTER.Size = New System.Drawing.Size(238, 22)
+        Me.OPENINGYARNJOBORDER_MASTER.Size = New System.Drawing.Size(230, 22)
         Me.OPENINGYARNJOBORDER_MASTER.Text = "Opening Yarn Job Order"
         '
         'OPENINGYARNJOBORDER_ADD
@@ -3633,22 +3634,14 @@ Partial Class MDIMain
         Me.OPENINGYARNJOBORDER_ADD.Size = New System.Drawing.Size(251, 22)
         Me.OPENINGYARNJOBORDER_ADD.Text = "Add New Opening Yarn Job Order"
         '
-        'OPENINGBEAMSTOCKATJOBBER_MASTER
+        'ToolStripSeparator207
         '
-        Me.OPENINGBEAMSTOCKATJOBBER_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OPENINGBEAMSTOCKATJOBBER_ADD})
-        Me.OPENINGBEAMSTOCKATJOBBER_MASTER.Name = "OPENINGBEAMSTOCKATJOBBER_MASTER"
-        Me.OPENINGBEAMSTOCKATJOBBER_MASTER.Size = New System.Drawing.Size(238, 22)
-        Me.OPENINGBEAMSTOCKATJOBBER_MASTER.Text = "Opening Beam Stock At Jobber"
-        '
-        'OPENINGBEAMSTOCKATJOBBER_ADD
-        '
-        Me.OPENINGBEAMSTOCKATJOBBER_ADD.Name = "OPENINGBEAMSTOCKATJOBBER_ADD"
-        Me.OPENINGBEAMSTOCKATJOBBER_ADD.Size = New System.Drawing.Size(289, 22)
-        Me.OPENINGBEAMSTOCKATJOBBER_ADD.Text = "Add New Opening Beam Stock At Jobber"
+        Me.ToolStripSeparator207.Name = "ToolStripSeparator207"
+        Me.ToolStripSeparator207.Size = New System.Drawing.Size(227, 6)
         '
         'OPENST_MASTER
         '
-        Me.OPENST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.INHOUSEST, Me.ATPARTYST, Me.ToolStripSeparator81, Me.OPSTOCKGREYINHOUSE, Me.OPSTOCKGREYATPARTY, Me.OPSTOCKGREYTRANS_MASTER, Me.OPSTOCKGREYPROCESS_MASTER, Me.ToolStripSeparator323, Me.OPENING_STORESTOCK, Me.ToolStripSeparator119, Me.YARNSTOCK_GODOWN, Me.YARNSTOCK_JOBBER, Me.ToolStripSeparator338, Me.ROLLSTOCK_GODOWN, Me.ROLLSTOCK_WARPER, Me.YARNSTOCKJOBBER_TOOL, Me.OPENINGBEAMSTOCK_MASTER})
+        Me.OPENST_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.INHOUSEST, Me.ATPARTYST, Me.ToolStripSeparator81, Me.OPSTOCKGREYINHOUSE, Me.OPSTOCKGREYATPARTY, Me.OPSTOCKGREYTRANS_MASTER, Me.OPSTOCKGREYPROCESS_MASTER, Me.ToolStripSeparator323, Me.OPENING_STORESTOCK, Me.ToolStripSeparator119, Me.YARNSTOCK_GODOWN, Me.YARNSTOCK_JOBBER, Me.ToolStripSeparator338, Me.ROLLSTOCK_GODOWN, Me.ROLLSTOCK_WARPER, Me.ToolStripSeparator355, Me.OPENINGBEAMSTOCK_MASTER, Me.OPENINGBEAMSTOCKJOBBER_MASTER, Me.YARNSTOCKJOBBER_TOOL})
         Me.OPENST_MASTER.Enabled = False
         Me.OPENST_MASTER.Name = "OPENST_MASTER"
         Me.OPENST_MASTER.Size = New System.Drawing.Size(184, 22)
@@ -3741,7 +3734,7 @@ Partial Class MDIMain
         '
         Me.ROLLSTOCK_GODOWN.Name = "ROLLSTOCK_GODOWN"
         Me.ROLLSTOCK_GODOWN.Size = New System.Drawing.Size(246, 22)
-        Me.ROLLSTOCK_GODOWN.Text = "Rolls Stock At Godown"
+        Me.ROLLSTOCK_GODOWN.Text = "Roll Stock At Godown"
         '
         'ROLLSTOCK_WARPER
         '
@@ -3749,17 +3742,28 @@ Partial Class MDIMain
         Me.ROLLSTOCK_WARPER.Size = New System.Drawing.Size(246, 22)
         Me.ROLLSTOCK_WARPER.Text = "Roll Stock At Warper"
         '
-        'YARNSTOCKJOBBER_TOOL
+        'ToolStripSeparator355
         '
-        Me.YARNSTOCKJOBBER_TOOL.Name = "YARNSTOCKJOBBER_TOOL"
-        Me.YARNSTOCKJOBBER_TOOL.Size = New System.Drawing.Size(243, 6)
-        Me.YARNSTOCKJOBBER_TOOL.Visible = False
+        Me.ToolStripSeparator355.Name = "ToolStripSeparator355"
+        Me.ToolStripSeparator355.Size = New System.Drawing.Size(243, 6)
         '
         'OPENINGBEAMSTOCK_MASTER
         '
         Me.OPENINGBEAMSTOCK_MASTER.Name = "OPENINGBEAMSTOCK_MASTER"
         Me.OPENINGBEAMSTOCK_MASTER.Size = New System.Drawing.Size(246, 22)
-        Me.OPENINGBEAMSTOCK_MASTER.Text = "Opening Beam Stock"
+        Me.OPENINGBEAMSTOCK_MASTER.Text = "Beam Stock At Godown"
+        '
+        'OPENINGBEAMSTOCKJOBBER_MASTER
+        '
+        Me.OPENINGBEAMSTOCKJOBBER_MASTER.Name = "OPENINGBEAMSTOCKJOBBER_MASTER"
+        Me.OPENINGBEAMSTOCKJOBBER_MASTER.Size = New System.Drawing.Size(246, 22)
+        Me.OPENINGBEAMSTOCKJOBBER_MASTER.Text = "Beam Stock At Jobber"
+        '
+        'YARNSTOCKJOBBER_TOOL
+        '
+        Me.YARNSTOCKJOBBER_TOOL.Name = "YARNSTOCKJOBBER_TOOL"
+        Me.YARNSTOCKJOBBER_TOOL.Size = New System.Drawing.Size(243, 6)
+        Me.YARNSTOCKJOBBER_TOOL.Visible = False
         '
         'ToolStripSeparator100
         '
@@ -9115,6 +9119,12 @@ Partial Class MDIMain
         Me.REPRINTGREYBARCODE_MASTER.Size = New System.Drawing.Size(190, 22)
         Me.REPRINTGREYBARCODE_MASTER.Text = "Reprint Grey Barcode"
         '
+        'REPRINTYARNBARCODE_MASTER
+        '
+        Me.REPRINTYARNBARCODE_MASTER.Name = "REPRINTYARNBARCODE_MASTER"
+        Me.REPRINTYARNBARCODE_MASTER.Size = New System.Drawing.Size(190, 22)
+        Me.REPRINTYARNBARCODE_MASTER.Text = "Reprint Yarn Barcode"
+        '
         'CHANGEBARCODE_MASTER
         '
         Me.CHANGEBARCODE_MASTER.Enabled = False
@@ -9870,12 +9880,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'REPRINTYARNBARCODE_MASTER
-        '
-        Me.REPRINTYARNBARCODE_MASTER.Name = "REPRINTYARNBARCODE_MASTER"
-        Me.REPRINTYARNBARCODE_MASTER.Size = New System.Drawing.Size(190, 22)
-        Me.REPRINTYARNBARCODE_MASTER.Text = "Reprint Yarn Barcode"
         '
         'MDIMain
         '
@@ -11183,8 +11187,6 @@ Partial Class MDIMain
     Friend WithEvents BEAMUPLOADADD As ToolStripMenuItem
     Friend WithEvents BEAMUPLOADEDIT As ToolStripMenuItem
     Friend WithEvents OPENINGYARNJOBORDER_MASTER As ToolStripMenuItem
-    Friend WithEvents OPENINGBEAMSTOCKATJOBBER_MASTER As ToolStripMenuItem
-    Friend WithEvents OPENINGBEAMSTOCKATJOBBER_ADD As ToolStripMenuItem
     Friend WithEvents OPENINGYARNJOBORDER_ADD As ToolStripMenuItem
     Friend WithEvents TASK_MASTER As ToolStripMenuItem
     Friend WithEvents TASKADD As ToolStripMenuItem
@@ -11234,4 +11236,7 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator64 As ToolStripSeparator
     Friend WithEvents COMPLAINTREGISTER_MENU As ToolStripMenuItem
     Friend WithEvents REPRINTYARNBARCODE_MASTER As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator355 As ToolStripSeparator
+    Friend WithEvents OPENINGBEAMSTOCKJOBBER_MASTER As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator356 As ToolStripSeparator
 End Class
