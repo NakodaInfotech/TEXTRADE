@@ -77,8 +77,8 @@ Public Class BeamRecdFromSizer
             TXTBEAMRECDNO.Clear()
             DTBEAMRECDDATE.Text = Mydate
             TXTPROGRAMNO.Clear()
-            CMBOURGODOWN.Text = GETDEFAULTGODOWN()
-            CMBNAME.Text = ""
+        If USERGODOWN <> "" Then CMBOURGODOWN.Text = USERGODOWN
+        CMBNAME.Text = ""
             CMBMILLNAME.Text = ""
             TXTCHALLANNO.Clear()
             DTCHALLANDATE.Text = Mydate
@@ -200,9 +200,8 @@ Public Class BeamRecdFromSizer
 
                 FILLCMB()
                 CLEAR()
-                CMBOURGODOWN.Text = GETDEFAULTGODOWN()
 
-                If EDIT = True Then
+            If EDIT = True Then
                     If USEREDIT = False And USERVIEW = False Then
                         MsgBox("Insufficient Rights")
                         Exit Sub
