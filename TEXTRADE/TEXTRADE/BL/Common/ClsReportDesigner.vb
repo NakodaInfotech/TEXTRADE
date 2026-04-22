@@ -15099,24 +15099,33 @@ fontItalic As Boolean = False)
 
 
     End Function
+
+    Private Function SanitizeExcelValue(value As String) As String
+        If String.IsNullOrEmpty(value) Then Return ""
+        value = value.Replace(vbCrLf, " ").Replace(vbLf, " ").Replace(vbCr, " ").Replace(vbTab, " ")
+        If value.Length > 32767 Then value = value.Substring(0, 32767)
+        Return value.Trim()
+    End Function
+
     Public Sub GenerateStockExcel(ByVal DT As System.Data.DataTable)
 
         Try
-            '========================
-            ' CREATE WORKSHEET
-            '========================
+            ' ===== GUARD =====
+            If DT Is Nothing OrElse DT.Rows.Count = 0 Then Return
+
             SetWorkSheet()
 
-            ' Columns A to O
-            For i As Integer = 1 To 15
-                Dim col As String = Chr(64 + i)
-                SetColumn(i.ToString(), col)
-                SetColumnWidth(col & ":" & col, 18)
-            Next
+            ' ===== COLUMNS A to O =====
+            Dim num As Integer = 1
+            Do
+                Dim text As String = Chr(64 + num).ToString()
+                SetColumn(num.ToString(), text)
+                SetColumnWidth(text & ":" & text, 18)
+                num += 1
+            Loop While num <= 15
 
+            ' ===== HEADER ROW =====
             RowIndex = 1
-
-            ' ================= HEADERS (EXACT MATCH WITH VASTRA) =================
             Write("Design Name/Number*", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
             Write("Sales Price", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
             Write("HSN Code", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
@@ -15132,12 +15141,10 @@ fontItalic As Boolean = False)
             Write("Size Rate", Range("13"), XlHAlign.xlHAlignCenter, , True, 10)
             Write("Stock", Range("14"), XlHAlign.xlHAlignCenter, , True, 10)
             Write("Third Party QR code", Range("15"), XlHAlign.xlHAlignCenter, , True, 10)
-
             SetBorder(RowIndex, "A1", "O1")
 
-            ' ================= DATA ROWS (SIZE + COLOR WISE) =================
+            ' ===== DATA ROWS =====
             For Each row As DataRow In DT.Rows
-
                 RowIndex += 1
 
                 Write(row("Design").ToString(), Range("1"), XlHAlign.xlHAlignLeft)
@@ -15145,33 +15152,102 @@ fontItalic As Boolean = False)
                 Write(row("HSNCode").ToString(), Range("3"), XlHAlign.xlHAlignCenter)
                 Write(row("GST").ToString(), Range("4"), XlHAlign.xlHAlignCenter)
                 Write(row("DESIGNTAG").ToString(), Range("5"), XlHAlign.xlHAlignLeft)
-
                 Write(row("SamplePrice").ToString(), Range("6"), XlHAlign.xlHAlignRight)
                 Write(row("SampleSource").ToString(), Range("7"), XlHAlign.xlHAlignLeft)
                 Write("", Range("8"), XlHAlign.xlHAlignLeft)
-
                 Write("1", Range("9"), XlHAlign.xlHAlignCenter)
                 Write("0", Range("10"), XlHAlign.xlHAlignCenter)
-
                 ' 🔥 MOST IMPORTANT FIELDS FOR VASTRA
                 Write(row("Color").ToString(), Range("11"), XlHAlign.xlHAlignLeft)
                 Write(row("Size").ToString(), Range("12"), XlHAlign.xlHAlignCenter)
                 Write(row("SizeRate").ToString(), Range("13"), XlHAlign.xlHAlignRight)
                 Write(row("Stock").ToString(), Range("14"), XlHAlign.xlHAlignRight)
-
                 Write("", Range("15"), XlHAlign.xlHAlignCenter)
 
-                SetBorder(RowIndex, "A" & RowIndex, "O" & RowIndex)
-
+                SetBorder(RowIndex, "A" & RowIndex.ToString(), "O" & RowIndex.ToString())
             Next
 
             SaveAndClose()
 
         Catch ex As Exception
-            Throw ex
+            Throw
         End Try
-
     End Sub
+
+
+    'Public Sub GenerateStockExcel(ByVal DT As System.Data.DataTable)
+
+    '    Try
+    '        '========================
+    '        ' CREATE WORKSHEET
+    '        '========================
+    '        SetWorkSheet()
+
+    '        ' Columns A to O
+    '        For i As Integer = 1 To 15
+    '            Dim col As String = Chr(64 + i)
+    '            SetColumn(i.ToString(), col)
+    '            SetColumnWidth(col & ":" & col, 18)
+    '        Next
+
+    '        RowIndex = 1
+
+    '        ' ================= HEADERS (EXACT MATCH WITH VASTRA) =================
+    '        Write("Design Name/Number*", Range("1"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Sales Price", Range("2"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("HSN Code", Range("3"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("GST (%)", Range("4"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Design Tag", Range("5"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Sample Design Price", Range("6"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Sample Design Source", Range("7"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Notes", Range("8"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Quantity Per Set", Range("9"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Minimum Stock Quantity", Range("10"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Colors", Range("11"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Size", Range("12"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Size Rate", Range("13"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Stock", Range("14"), XlHAlign.xlHAlignCenter, , True, 10)
+    '        Write("Third Party QR code", Range("15"), XlHAlign.xlHAlignCenter, , True, 10)
+
+    '        SetBorder(RowIndex, "A1", "O1")
+
+    '        ' ================= DATA ROWS (SIZE + COLOR WISE) =================
+    '        For Each row As DataRow In DT.Rows
+
+    '            RowIndex += 1
+
+    '            Write(row("Design").ToString(), Range("1"), XlHAlign.xlHAlignLeft)
+    '            Write(row("SalesPrice").ToString(), Range("2"), XlHAlign.xlHAlignRight)
+    '            Write(row("HSNCode").ToString(), Range("3"), XlHAlign.xlHAlignCenter)
+    '            Write(row("GST").ToString(), Range("4"), XlHAlign.xlHAlignCenter)
+    '            Write(row("DESIGNTAG").ToString(), Range("5"), XlHAlign.xlHAlignLeft)
+
+    '            Write(row("SamplePrice").ToString(), Range("6"), XlHAlign.xlHAlignRight)
+    '            Write(row("SampleSource").ToString(), Range("7"), XlHAlign.xlHAlignLeft)
+    '            Write("", Range("8"), XlHAlign.xlHAlignLeft)
+
+    '            Write("1", Range("9"), XlHAlign.xlHAlignCenter)
+    '            Write("0", Range("10"), XlHAlign.xlHAlignCenter)
+
+    '            ' 🔥 MOST IMPORTANT FIELDS FOR VASTRA
+    '            Write(row("Color").ToString(), Range("11"), XlHAlign.xlHAlignLeft)
+    '            Write(row("Size").ToString(), Range("12"), XlHAlign.xlHAlignCenter)
+    '            Write(row("SizeRate").ToString(), Range("13"), XlHAlign.xlHAlignRight)
+    '            Write(row("Stock").ToString(), Range("14"), XlHAlign.xlHAlignRight)
+
+    '            Write("", Range("15"), XlHAlign.xlHAlignCenter)
+
+    '            SetBorder(RowIndex, "A" & RowIndex, "O" & RowIndex)
+
+    '        Next
+
+    '        SaveAndClose()
+
+    '    Catch ex As Exception
+    '        Throw ex
+    '    End Try
+
+    'End Sub
 
 
 

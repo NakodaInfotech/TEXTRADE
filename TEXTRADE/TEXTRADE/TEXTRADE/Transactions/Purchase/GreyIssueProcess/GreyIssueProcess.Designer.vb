@@ -24,15 +24,15 @@ Partial Class GreyIssueProcess
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GreyIssueProcess))
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.LBLGODOWN = New System.Windows.Forms.Label()
         Me.CMBGODOWN = New System.Windows.Forms.ComboBox()
@@ -206,7 +206,7 @@ Partial Class GreyIssueProcess
         Me.CMBGODOWN.MaxDropDownItems = 14
         Me.CMBGODOWN.Name = "CMBGODOWN"
         Me.CMBGODOWN.Size = New System.Drawing.Size(228, 23)
-        Me.CMBGODOWN.TabIndex = 935
+        Me.CMBGODOWN.TabIndex = 3
         Me.CMBGODOWN.Visible = False
         '
         'LBLBARCODE
@@ -242,7 +242,7 @@ Partial Class GreyIssueProcess
         Me.TXTBARCODE.Location = New System.Drawing.Point(195, 127)
         Me.TXTBARCODE.Name = "TXTBARCODE"
         Me.TXTBARCODE.Size = New System.Drawing.Size(195, 23)
-        Me.TXTBARCODE.TabIndex = 728
+        Me.TXTBARCODE.TabIndex = 4
         Me.TXTBARCODE.Visible = False
         '
         'TXTREFLOTNO
@@ -253,7 +253,7 @@ Partial Class GreyIssueProcess
         Me.TXTREFLOTNO.MaxLength = 50
         Me.TXTREFLOTNO.Name = "TXTREFLOTNO"
         Me.TXTREFLOTNO.Size = New System.Drawing.Size(82, 23)
-        Me.TXTREFLOTNO.TabIndex = 8
+        Me.TXTREFLOTNO.TabIndex = 12
         Me.TXTREFLOTNO.Visible = False
         '
         'Label14
@@ -275,7 +275,7 @@ Partial Class GreyIssueProcess
         Me.TXTCRDAYS.Location = New System.Drawing.Point(822, 127)
         Me.TXTCRDAYS.Name = "TXTCRDAYS"
         Me.TXTCRDAYS.Size = New System.Drawing.Size(84, 23)
-        Me.TXTCRDAYS.TabIndex = 931
+        Me.TXTCRDAYS.TabIndex = 11
         '
         'CMBAGENT
         '
@@ -288,7 +288,7 @@ Partial Class GreyIssueProcess
         Me.CMBAGENT.MaxDropDownItems = 14
         Me.CMBAGENT.Name = "CMBAGENT"
         Me.CMBAGENT.Size = New System.Drawing.Size(257, 23)
-        Me.CMBAGENT.TabIndex = 929
+        Me.CMBAGENT.TabIndex = 7
         '
         'LBL1
         '
@@ -356,7 +356,7 @@ Partial Class GreyIssueProcess
         Me.lrdate.Location = New System.Drawing.Point(822, 98)
         Me.lrdate.Name = "lrdate"
         Me.lrdate.Size = New System.Drawing.Size(84, 23)
-        Me.lrdate.TabIndex = 7
+        Me.lrdate.TabIndex = 10
         '
         'Label17
         '
@@ -381,7 +381,7 @@ Partial Class GreyIssueProcess
         Me.cmbtrans.MaxDropDownItems = 14
         Me.cmbtrans.Name = "cmbtrans"
         Me.cmbtrans.Size = New System.Drawing.Size(228, 23)
-        Me.cmbtrans.TabIndex = 5
+        Me.cmbtrans.TabIndex = 8
         '
         'Label18
         '
@@ -415,7 +415,7 @@ Partial Class GreyIssueProcess
         Me.txtlrno.Location = New System.Drawing.Point(678, 98)
         Me.txtlrno.Name = "txtlrno"
         Me.txtlrno.Size = New System.Drawing.Size(84, 23)
-        Me.txtlrno.TabIndex = 6
+        Me.txtlrno.TabIndex = 9
         '
         'CHALLANDATE
         '
@@ -427,7 +427,7 @@ Partial Class GreyIssueProcess
         Me.CHALLANDATE.Mask = "00/00/0000"
         Me.CHALLANDATE.Name = "CHALLANDATE"
         Me.CHALLANDATE.Size = New System.Drawing.Size(80, 23)
-        Me.CHALLANDATE.TabIndex = 4
+        Me.CHALLANDATE.TabIndex = 6
         Me.CHALLANDATE.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePromptAndLiterals
         Me.CHALLANDATE.ValidatingType = GetType(Date)
         '
@@ -502,7 +502,7 @@ Partial Class GreyIssueProcess
         Me.cmddelete.Location = New System.Drawing.Point(540, 468)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(80, 28)
-        Me.cmddelete.TabIndex = 13
+        Me.cmddelete.TabIndex = 17
         Me.cmddelete.Text = "&Delete"
         Me.cmddelete.UseVisualStyleBackColor = False
         '
@@ -530,7 +530,7 @@ Partial Class GreyIssueProcess
         Me.cmdclear.Location = New System.Drawing.Point(454, 468)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(80, 28)
-        Me.cmdclear.TabIndex = 12
+        Me.cmdclear.TabIndex = 16
         Me.cmdclear.Text = "&Clear"
         Me.cmdclear.UseVisualStyleBackColor = False
         '
@@ -544,7 +544,7 @@ Partial Class GreyIssueProcess
         Me.cmdok.Location = New System.Drawing.Point(583, 434)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
-        Me.cmdok.TabIndex = 11
+        Me.cmdok.TabIndex = 15
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
@@ -558,7 +558,7 @@ Partial Class GreyIssueProcess
         Me.cmdexit.Location = New System.Drawing.Point(626, 468)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 14
+        Me.cmdexit.TabIndex = 18
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
@@ -605,7 +605,7 @@ Partial Class GreyIssueProcess
         Me.txtchallan.Location = New System.Drawing.Point(504, 70)
         Me.txtchallan.Name = "txtchallan"
         Me.txtchallan.Size = New System.Drawing.Size(80, 23)
-        Me.txtchallan.TabIndex = 3
+        Me.txtchallan.TabIndex = 5
         '
         'LBLCHALLAN
         '
@@ -640,7 +640,7 @@ Partial Class GreyIssueProcess
         Me.GroupBox5.Location = New System.Drawing.Point(14, 434)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(187, 107)
-        Me.GroupBox5.TabIndex = 10
+        Me.GroupBox5.TabIndex = 14
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Remarks"
         '
@@ -807,7 +807,7 @@ Partial Class GreyIssueProcess
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(1208, 261)
-        Me.TabControl1.TabIndex = 9
+        Me.TabControl1.TabIndex = 13
         '
         'TabPage1
         '
@@ -857,28 +857,28 @@ Partial Class GreyIssueProcess
         Me.GRIDISSUE.AllowUserToDeleteRows = False
         Me.GRIDISSUE.AllowUserToResizeColumns = False
         Me.GRIDISSUE.AllowUserToResizeRows = False
-        DataGridViewCellStyle28.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDISSUE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDISSUE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
         Me.GRIDISSUE.BackgroundColor = System.Drawing.Color.White
         Me.GRIDISSUE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDISSUE.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDISSUE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDISSUE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.GRIDISSUE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDISSUE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.gitemname, Me.GQUALITY, Me.GBALENO, Me.GDESIGN, Me.gcolor, Me.gQty, Me.gqtyunit, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GOUTPCS, Me.GOUTMTRS, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GBARCODE})
-        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle35.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDISSUE.DefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDISSUE.DefaultCellStyle = DataGridViewCellStyle17
         Me.GRIDISSUE.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDISSUE.Location = New System.Drawing.Point(2, 2)
         Me.GRIDISSUE.MultiSelect = False
@@ -886,9 +886,9 @@ Partial Class GreyIssueProcess
         Me.GRIDISSUE.RowHeadersVisible = False
         Me.GRIDISSUE.RowHeadersWidth = 30
         Me.GRIDISSUE.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDISSUE.RowsDefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDISSUE.RowsDefaultCellStyle = DataGridViewCellStyle18
         Me.GRIDISSUE.RowTemplate.Height = 20
         Me.GRIDISSUE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDISSUE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -908,8 +908,8 @@ Partial Class GreyIssueProcess
         '
         'gitemname
         '
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.gitemname.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.gitemname.DefaultCellStyle = DataGridViewCellStyle12
         Me.gitemname.HeaderText = "Item Name"
         Me.gitemname.Name = "gitemname"
         Me.gitemname.ReadOnly = True
@@ -953,10 +953,10 @@ Partial Class GreyIssueProcess
         '
         'gQty
         '
-        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle31.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle31.NullValue = Nothing
-        Me.gQty.DefaultCellStyle = DataGridViewCellStyle31
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.NullValue = Nothing
+        Me.gQty.DefaultCellStyle = DataGridViewCellStyle13
         Me.gQty.HeaderText = "Pcs"
         Me.gQty.Name = "gQty"
         Me.gQty.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -974,8 +974,8 @@ Partial Class GreyIssueProcess
         '
         'GMTRS
         '
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle32
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle14
         Me.GMTRS.HeaderText = "Mtrs."
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -984,8 +984,8 @@ Partial Class GreyIssueProcess
         '
         'GRATE
         '
-        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRATE.DefaultCellStyle = DataGridViewCellStyle15
         Me.GRATE.HeaderText = "Rate"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
@@ -994,8 +994,8 @@ Partial Class GreyIssueProcess
         '
         'GAMT
         '
-        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GAMT.DefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GAMT.DefaultCellStyle = DataGridViewCellStyle16
         Me.GAMT.HeaderText = "Amount"
         Me.GAMT.Name = "GAMT"
         Me.GAMT.ReadOnly = True

@@ -25,6 +25,8 @@ Public Class ClsOpeningBeamStock
                 Dim I As Integer = 0
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
@@ -85,6 +87,8 @@ Public Class ClsOpeningBeamStock
 
                 Dim I As Integer = 0
                 .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
