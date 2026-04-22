@@ -40,7 +40,7 @@ Public Class OpeningStockRolls
     Sub CLEAR()
         TXTOPROLLSSTOCKNO.Clear()
         CMBNAME.Text = ""
-        CMBOURGODOWN.Text = GETDEFAULTGODOWN()
+        CMBOURGODOWN.Text = USERGODOWN
         CMBYARNQUALITY.Text = ""
         CMBMILL.Text = ""
         TXTTOTALENDS.Clear()
@@ -189,7 +189,7 @@ Public Class OpeningStockRolls
 
         FILLCMB()
         FILLGRID()
-        CMBOURGODOWN.Text = GETDEFAULTGODOWN()
+        CMBOURGODOWN.Text = USERGODOWN
         TOTAL()
 
     End Sub

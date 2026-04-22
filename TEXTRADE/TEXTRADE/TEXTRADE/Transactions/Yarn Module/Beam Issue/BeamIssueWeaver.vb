@@ -26,7 +26,7 @@ Public Class BeamIssueWeaver
         TXTISSUENO.Clear()
         DTISSUEDATE.Text = Mydate
         cmbname.Text = ""
-        CMBOURGODOWN.Text = GETDEFAULTGODOWN()
+        CMBOURGODOWN.Text = USERGODOWN
         cmbtrans.Text = ""
         TXTVEHICALNO.Clear()
         TXTEWBNO.Clear()
@@ -155,7 +155,7 @@ Public Class BeamIssueWeaver
 
             FILLCMB()
             CLEAR()
-            CMBOURGODOWN.Text = GETDEFAULTGODOWN()
+            CMBOURGODOWN.Text = USERGODOWN
 
             If EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then
