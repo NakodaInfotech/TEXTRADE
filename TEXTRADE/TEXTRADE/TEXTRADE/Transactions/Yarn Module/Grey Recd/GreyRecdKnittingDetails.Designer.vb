@@ -57,6 +57,7 @@ Partial Class GreyRecdKnittingDetails
         Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,7 +165,7 @@ Partial Class GreyRecdKnittingDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GITEMNAME, Me.GYARNQUALITY, Me.GDESIGN, Me.GSHADE, Me.GLOOMNO, Me.GROLLNO, Me.GQTY, Me.GMTRS, Me.GWT, Me.GAVGWT, Me.GRECDAVGWT, Me.GTOTALQTY, Me.GTOTALMTRS, Me.GTOTALWT, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GGODOWN, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GITEMNAME, Me.GYARNQUALITY, Me.GDESIGN, Me.GSHADE, Me.GLOOMNO, Me.GROLLNO, Me.GQTY, Me.GMTRS, Me.GWT, Me.GAVGWT, Me.GRECDAVGWT, Me.GTOTALQTY, Me.GTOTALMTRS, Me.GTOTALWT, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GGODOWN, Me.GREMARKS, Me.GBARCODE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -390,6 +391,15 @@ Partial Class GreyRecdKnittingDetails
         Me.GREMARKS.VisibleIndex = 19
         Me.GREMARKS.Width = 180
         '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 20
+        Me.GBARCODE.Width = 100
+        '
         'GreyRecdKnittingDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -445,4 +455,5 @@ Partial Class GreyRecdKnittingDetails
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents GAVGWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GRECDAVGWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class

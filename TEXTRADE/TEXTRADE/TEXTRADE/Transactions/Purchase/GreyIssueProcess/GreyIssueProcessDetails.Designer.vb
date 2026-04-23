@@ -22,9 +22,10 @@ Partial Class GreyIssueProcessDetails
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GreyIssueProcessDetails))
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.imageList1 = New System.Windows.Forms.ImageList()
+        Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -61,6 +62,7 @@ Partial Class GreyIssueProcessDetails
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAGENT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCRDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.TOOLADDNEW = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
@@ -70,7 +72,7 @@ Partial Class GreyIssueProcessDetails
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GREFLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -217,7 +219,7 @@ Partial Class GreyIssueProcessDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GLRNO, Me.GLRDATE, Me.GITEMNAME, Me.GQUALITY, Me.GBALENO, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GQTYUNIT, Me.GMTRS, Me.GOUTMTRS, Me.GBALMTRS, Me.GRATE, Me.GAMT, Me.GPURNAME, Me.GTRANSPORT, Me.GREMARKS, Me.GAGENT, Me.GCRDAYS, Me.GREFLOTNO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GLRNO, Me.GLRDATE, Me.GITEMNAME, Me.GQUALITY, Me.GBALENO, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GQTYUNIT, Me.GMTRS, Me.GOUTMTRS, Me.GBALMTRS, Me.GRATE, Me.GAMT, Me.GPURNAME, Me.GTRANSPORT, Me.GREMARKS, Me.GAGENT, Me.GCRDAYS, Me.GREFLOTNO, Me.GBARCODE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -255,7 +257,7 @@ Partial Class GreyIssueProcessDetails
         '
         Me.GNAME.Caption = "Dyeing Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
@@ -314,6 +316,7 @@ Partial Class GreyIssueProcessDetails
         Me.GBALENO.Caption = "Bale No"
         Me.GBALENO.FieldName = "BALENO"
         Me.GBALENO.Name = "GBALENO"
+        Me.GBALENO.Width = 100
         '
         'GDESIGNNO
         '
@@ -440,6 +443,14 @@ Partial Class GreyIssueProcessDetails
         Me.GCRDAYS.Visible = True
         Me.GCRDAYS.VisibleIndex = 16
         '
+        'GREFLOTNO
+        '
+        Me.GREFLOTNO.Caption = "Ref Lot No"
+        Me.GREFLOTNO.FieldName = "REFLOTNO"
+        Me.GREFLOTNO.Name = "GREFLOTNO"
+        Me.GREFLOTNO.Visible = True
+        Me.GREFLOTNO.VisibleIndex = 18
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TOOLADDNEW, Me.toolStripSeparator, Me.TOOLREFRESH, Me.TOOLEXCEL, Me.TOOLMAIL, Me.TOOLWHATSAPP, Me.PrintToolStripButton, Me.ToolStripSeparator1})
@@ -512,13 +523,14 @@ Partial Class GreyIssueProcessDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'GREFLOTNO
+        'GBARCODE
         '
-        Me.GREFLOTNO.Caption = "Ref Lot No"
-        Me.GREFLOTNO.FieldName = "REFLOTNO"
-        Me.GREFLOTNO.Name = "GREFLOTNO"
-        Me.GREFLOTNO.Visible = True
-        Me.GREFLOTNO.VisibleIndex = 18
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 19
+        Me.GBARCODE.Width = 120
         '
         'GreyIssueProcessDetails
         '
@@ -588,4 +600,5 @@ Partial Class GreyIssueProcessDetails
     Friend WithEvents GCRDAYS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAGENT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREFLOTNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -178,7 +178,7 @@ Public Class DesignwiseStock
 
                 For I As Integer = 0 To gridbill.RowCount - 1
                     Dim ROW As DataRow = gridbill.GetDataRow(I)
-                    If ROW("BARCODE") = TXTBARCODE.Text.Trim And TXTBARCODE.Text.Trim <> "" Then
+                    If TXTBARCODE.Text.Trim <> "" AndAlso LCase(ROW("BARCODE").ToString()) = LCase(TXTBARCODE.Text.Trim) Then
                         ROW("SAMPLEMATCH") = True
                         MATCHFOUND = True
                         matchedRowIndex = I

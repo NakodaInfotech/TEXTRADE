@@ -1940,7 +1940,7 @@ LINE1:
                 TXTROLLNO.Focus()
             ElseIf ClientName = "SWPL" Then
                 TXTROLLNO.Text = Val(TXTROLLNO.Text.Trim) + 1
-                TXTLOOMNO.Focus()
+                cmbitemname.Focus()
             Else
                 cmbitemname.Focus()
             End If
