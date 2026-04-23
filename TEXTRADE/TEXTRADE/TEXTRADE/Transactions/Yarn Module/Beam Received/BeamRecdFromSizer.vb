@@ -77,7 +77,7 @@ Public Class BeamRecdFromSizer
         TXTBEAMRECDNO.Clear()
         DTBEAMRECDDATE.Text = Mydate
         TXTPROGRAMNO.Clear()
-        CMBOURGODOWN.Text = GETDEFAULTGODOWN()
+        If USERGODOWN <> "" Then CMBOURGODOWN.Text = USERGODOWN
         CMBNAME.Text = ""
         CMBMILLNAME.Text = ""
         TXTCHALLANNO.Clear()
@@ -200,7 +200,6 @@ Public Class BeamRecdFromSizer
 
             FILLCMB()
             CLEAR()
-            CMBOURGODOWN.Text = GETDEFAULTGODOWN()
 
             If EDIT = True Then
                 If USEREDIT = False And USERVIEW = False Then

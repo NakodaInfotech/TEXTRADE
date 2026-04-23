@@ -81,6 +81,8 @@ Public Class payment_advice
             If DIRECTPRINT = True Then
                 If FRMSTRING = "CHQPRINT" Then
                     PRINTDIRECTLYTOPRINTER()
+                ElseIf FRMSTRING = "CHQPRINTBACK" Then
+                    PRINTCHQBACKDIRECTLYTOPRINTER()
                 Else
                     PRINTDIRECTADVICE()
                 End If
@@ -381,6 +383,45 @@ Public Class payment_advice
             OBJ.RecordSelectionFormula = " {PAYMENTMASTER.PAYMENT_NO}= " & I & " And {REGISTERMASTER.REGISTER_NAME} = '" & REGNAME & "' and {PAYMENTMASTER.PAYMENT_YEARID} = " & YearId
             OBJ.PrintToPrinter(1, True, 0, 0)
 
+
+            OBJ.CLOSE()
+            OBJ.DISPOSE()
+
+        Next
+    End Sub
+
+    Sub PRINTCHQBACKDIRECTLYTOPRINTER()
+
+        For I As Integer = FROMNO To TONO
+
+            Dim OBJ As Object = New ChqPaymentBackReport
+
+            '**************** SET SERVER ************************
+            Dim crtableLogonInfo As New TableLogOnInfo
+            Dim crConnecttionInfo As New ConnectionInfo
+            Dim crTables As Tables
+            Dim crTable As Table
+
+            With crConnecttionInfo
+                .ServerName = SERVERNAME
+                .DatabaseName = DatabaseName
+                .UserID = DBUSERNAME
+                .Password = Dbpassword
+                .IntegratedSecurity = Dbsecurity
+            End With
+
+            crTables = OBJ.Database.Tables
+            For Each crTable In crTables
+                crtableLogonInfo = crTable.LogOnInfo
+                crtableLogonInfo.ConnectionInfo = crConnecttionInfo
+                crTable.ApplyLogOnInfo(crtableLogonInfo)
+            Next
+
+            OBJ.RecordSelectionFormula = " {PAYMENT_REPORT.PAYMENTNO}= " & I & " And {PAYMENT_REPORT.REGNAME} = '" & REGNAME & "' and {PAYMENT_REPORT.YEARID} = " & YearId
+            OBJ.PrintToPrinter(1, True, 0, 0)
+
+            OBJ.CLOSE()
+            OBJ.DISPOSE()
         Next
     End Sub
 
@@ -442,39 +483,42 @@ Public Class payment_advice
             ElseIf ClientName = "MAHAVIRPOLYCOT" And FRMSTRING = "ENVELOPE" Then
                 OBJ = New EnvelopeReport
             Else
-                    OBJ = New Paymentreport
-                    If ClientName = "CHINTAN" Or ClientName = "MILUXE" Then OBJPAY.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                End If
+                OBJ = New Paymentreport
+                If ClientName = "CHINTAN" Or ClientName = "MILUXE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+            End If
 
-                crTables = OBJ.Database.Tables
+            crTables = OBJ.Database.Tables
 
-                For Each crTable In crTables
-                    crtableLogonInfo = crTable.LogOnInfo
-                    crtableLogonInfo.ConnectionInfo = crConnecttionInfo
-                    crTable.ApplyLogOnInfo(crtableLogonInfo)
-                Next
+            For Each crTable In crTables
+                crtableLogonInfo = crTable.LogOnInfo
+                crtableLogonInfo.ConnectionInfo = crConnecttionInfo
+                crTable.ApplyLogOnInfo(crtableLogonInfo)
+            Next
 
-                OBJ.RecordSelectionFormula = strsearch
+            OBJ.RecordSelectionFormula = strsearch
 
 
-                If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
-                    OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
-                    OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
-                Else
-                    Dim expo As New ExportOptions
-                    Dim oDfDopt As New DiskFileDestinationOptions
-                    oDfDopt.DiskFileName = Application.StartupPath & "\" & LEDGERSNAME & "PAYMENT_" & payno & ".pdf"
+            If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
+                OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
+                OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
+            Else
+                Dim expo As New ExportOptions
+                Dim oDfDopt As New DiskFileDestinationOptions
+                oDfDopt.DiskFileName = Application.StartupPath & "\" & LEDGERSNAME & "PAYMENT_" & payno & ".pdf"
 
-                    'CHECK WHETHER FILE IS PRESENT OR NOT, IF PRESENT THEN DELETE FIRST AND THEN EXPORT
-                    If File.Exists(oDfDopt.DiskFileName) Then File.Delete(oDfDopt.DiskFileName)
-                    OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    expo = OBJ.ExportOptions
-                    expo.ExportDestinationType = ExportDestinationType.DiskFile
-                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                    expo.DestinationOptions = oDfDopt
-                    OBJ.Export()
-                    OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
-                End If
+                'CHECK WHETHER FILE IS PRESENT OR NOT, IF PRESENT THEN DELETE FIRST AND THEN EXPORT
+                If File.Exists(oDfDopt.DiskFileName) Then File.Delete(oDfDopt.DiskFileName)
+                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                expo = OBJ.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                OBJ.Export()
+                OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
+            End If
+
+            OBJ.CLOSE()
+            OBJ.DISPOSE()
         Catch ex As Exception
             Throw ex
         End Try

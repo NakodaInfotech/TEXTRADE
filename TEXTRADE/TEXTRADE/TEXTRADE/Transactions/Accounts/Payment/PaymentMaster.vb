@@ -386,7 +386,7 @@ Public Class PaymentMaster
 
             'getmaxno_PAYMENTmaster()
             Dim WHERECLAUSE As String = ""
-            If ClientName = "ABHEE" Then WHERECLAUSE = " AND groupmaster.group_SECONDARY = 'Sundry Creditors' "
+            If ClientName = "ABHEE" Then WHERECLAUSE = " AND groupmaster.group_SECONDARY <> 'Sundry Debtors' "
             fillledger(cmbname, EDIT, WHERECLAUSE & " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             fillledger(cmbaccname, EDIT, " and (groupmaster.group_secondary = 'BANK A/C' OR groupmaster.group_secondary = 'BANK OD A/C' OR groupmaster.group_secondary = 'CASH IN HAND') and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId)
             fillregister(cmbregister, " and register_type = 'PAYMENT'")

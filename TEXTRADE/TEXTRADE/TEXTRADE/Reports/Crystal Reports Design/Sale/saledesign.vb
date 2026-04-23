@@ -135,6 +135,15 @@ Public Class saledesign
     Private Sub saledesign_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
 
+
+            If DIRECTPRINT = True Then
+                PRINTDIRECTLYTOPRINTER()
+                Exit Sub
+            End If
+
+
+
+
             If FRMSTRING = "PARTYWISEDTLS" Then
                 OBJ = New InvoicePartyWiseDetails
             ElseIf FRMSTRING = "PARTYWISESUMM" Then
@@ -269,11 +278,6 @@ Public Class saledesign
 
 
 
-
-            If DIRECTPRINT = True Then
-                PRINTDIRECTLYTOPRINTER()
-                Exit Sub
-            End If
 
 
 SKIPINVOICE:
@@ -459,6 +463,8 @@ SKIPINVOICE:
             CRPO.Zoom(100)
             CRPO.Refresh()
             CRPO.Refresh()
+
+
 
         Catch Exp As LoadSaveReportException
             MsgBox("Incorrect path for loading report.",
@@ -883,8 +889,10 @@ SKIPINVOICE:
 
     Private Sub saledesign_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         Try
-            OBJ.CLOSE
-            OBJ.DISPOSE
+            If DIRECTPRINT = False Then
+                OBJ.CLOSE
+                OBJ.DISPOSE
+            End If
         Catch ex As Exception
             Throw ex
         End Try
