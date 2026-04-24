@@ -68,8 +68,10 @@ Public Class MergeParameter
 
     Private Sub cmbtype_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBTYPE.Validated
         Try
-            CMBOLDNAME.Text = ""
-            CMBREPLACE.Text = ""
+            'CMBOLDNAME.Text = ""
+            'CMBREPLACE.Text = ""
+            CMBOLDNAME.DataSource = Nothing
+            CMBREPLACE.DataSource = Nothing
 
             If CMBTYPE.Text.Trim = "AREA" Then
                 If CMBOLDNAME.Text.Trim = "" Then FILLAREA(CMBOLDNAME)
