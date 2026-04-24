@@ -100,19 +100,19 @@ Public Class YarnStockReco
 
 
                         'Item Grid
-                        If Val(dr("GRIDSRNO")) > 0 Then GRIDSTOCKOUT.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNITEMNAME").ToString, dr("MILL").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, dr("DESC").ToString, Val(dr("BAGS")), Format(Val(dr("WT")), "0.00"), Val(dr("CONES")), dr("LRNO"), dr("RACK").ToString, dr("PER").ToString, Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
+                        If Val(dr("GRIDSRNO")) > 0 Then GRIDSTOCKOUT.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNITEMNAME").ToString, dr("MILL").ToString, dr("DESIGN").ToString, dr("PARTYLOTNO").ToString, dr("PARTYCOLOR").ToString, dr("COLOR").ToString, dr("LOTNO").ToString, dr("DESC").ToString, Val(dr("BAGS")), Format(Val(dr("WT")), "0.00"), Val(dr("CONES")), dr("LRNO"), dr("RACK").ToString, Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE").ToString, Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE").ToString)
 
                     Next
 
 
 
-                    'GET DATA FROM STOCKADJUSTMENT_INDESC
+                    'GET DATA FROM YARNSTOCKADJUSTMENT_INDESC
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.SEARCH("YARNSTOCKADJUSTMENT_INDESC.YSA_GRIDSRNO AS GRIDSRNO, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS YARNITEMNAME, ISNULL(MILLMASTER.MILL_NAME, '') AS MILL, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_PARTYLOTNO, '') AS PARTYLOTNO, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_PARTYCOLOR, '') AS PARTYCOLOR,  ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_LOTNO, '') AS LOTNO, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_DESC, '') AS [DESC],  ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_BAGS, 0) AS BAGS, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_WT, 0) AS WT, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_CONES, 0) AS CONES,  ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_LRNO, '') AS LRNO, ISNULL(RACKMASTER.RACK_NAME, '') AS RACK, ISNULL(YARNSTOCKADJUSTMENT_INDESC.SA_RATE, 0) AS RATE, ISNULL(YARNSTOCKADJUSTMENT_INDESC.SA_PER, '') AS PER, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_AMOUNT, '') AS AMOUNT, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_BARCODE, '') AS BARCODE, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_DONE, 0) AS DONE, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_OUTBAGS, 0) AS OUTBAGS, ISNULL(YARNSTOCKADJUSTMENT_INDESC.YSA_OUTWT, 0) AS OUTWT ", "", " YARNSTOCKADJUSTMENT_INDESC LEFT OUTER JOIN RACKMASTER ON YARNSTOCKADJUSTMENT_INDESC.YSA_RACKID = RACKMASTER.RACK_ID LEFT OUTER JOIN COLORMASTER ON YARNSTOCKADJUSTMENT_INDESC.YSA_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON YARNSTOCKADJUSTMENT_INDESC.YSA_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN MILLMASTER ON YARNSTOCKADJUSTMENT_INDESC.YSA_MILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON YARNSTOCKADJUSTMENT_INDESC.YSA_ITEMID = YARNQUALITYMASTER.YARN_ID    ", " AND YARNSTOCKADJUSTMENT_INDESC.YSA_NO = " & TEMPRECONO & " AND YARNSTOCKADJUSTMENT_INDESC.YSA_YEARID = " & YearId & " ORDER BY YARNSTOCKADJUSTMENT_INDESC.YSA_GRIDSRNO")
 
                     For Each DR As DataRow In DT.Rows
                         'Item Grid
-                        GRIDSTOCKIN.Rows.Add(DR("GRIDSRNO").ToString, DR("YARNITEMNAME").ToString, DR("MILL").ToString, DR("DESIGN").ToString, DR("PARTYLOTNO").ToString, DR("PARTYCOLOR").ToString, DR("COLOR").ToString, DR("LOTNO").ToString, DR("DESC").ToString, Val(DR("BAGS")), Format(Val(DR("WT")), "0.00"), Val(DR("CONES")), DR("LRNO"), DR("RACK").ToString, DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("BARCODE").ToString, Val(DR("DONE")), Val(DR("OUTBAG")), Val(DR("OUTWT")))
+                        GRIDSTOCKIN.Rows.Add(DR("GRIDSRNO").ToString, DR("YARNITEMNAME").ToString, DR("MILL").ToString, DR("DESIGN").ToString, DR("PARTYLOTNO").ToString, DR("PARTYCOLOR").ToString, DR("COLOR").ToString, DR("LOTNO").ToString, DR("DESC").ToString, Val(DR("BAGS")), Format(Val(DR("WT")), "0.00"), Val(DR("CONES")), DR("LRNO"), DR("RACK").ToString, Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("BARCODE").ToString, Val(DR("DONE")), Val(DR("OUTBAGS")), Val(DR("OUTWT")))
 
 
                         TabControl1.SelectedIndex = 1
@@ -160,6 +160,8 @@ Public Class YarnStockReco
         TXTRATE.Clear()
         CMBPER.Text = ""
         TXTAMT.Clear()
+        TXTINBARCODE.Clear()
+
 
 
 
@@ -543,10 +545,10 @@ Public Class YarnStockReco
         Try
             LBLTOTALOUTBAGS.Text = 0.0
             LBLTOTALOUTWT.Text = 0.0
-            LBLTOTALOUTCONES.Text = 0.0
+            LBLTOTALOUTCONES.Text = 0
             LBLTOTALINBAGS.Text = 0.0
             LBLTOTALINWT.Text = 0.0
-            LBLTOTALINCONES.Text = 0.0
+            LBLTOTALINCONES.Text = 0
 
             TXTBAGSDIFF.Text = 0
             TXTWTDIFF.Text = 0.00
@@ -555,7 +557,7 @@ Public Class YarnStockReco
                 If ROW.Cells(OSRNO.Index).Value <> Nothing Then
                     LBLTOTALOUTBAGS.Text = Format(Val(LBLTOTALOUTBAGS.Text) + Val(ROW.Cells(OBAGS.Index).EditedFormattedValue), "0.00")
                     LBLTOTALOUTWT.Text = Format(Val(LBLTOTALOUTWT.Text) + Val(ROW.Cells(OWT.Index).EditedFormattedValue), "0.00")
-                    LBLTOTALOUTCONES.Text = Format(Val(LBLTOTALOUTCONES.Text) + Val(ROW.Cells(OCONES.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALOUTCONES.Text = Format(Val(LBLTOTALOUTCONES.Text) + Val(ROW.Cells(OCONES.Index).EditedFormattedValue), "0")
 
                 End If
             Next
@@ -564,11 +566,17 @@ Public Class YarnStockReco
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
                     LBLTOTALINBAGS.Text = Format(Val(LBLTOTALINBAGS.Text) + Val(ROW.Cells(GBAGS.Index).EditedFormattedValue), "0.00")
                     LBLTOTALINWT.Text = Format(Val(LBLTOTALINWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
-                    LBLTOTALINCONES.Text = Format(Val(LBLTOTALINCONES.Text) + Val(ROW.Cells(GCONES.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALINCONES.Text = Format(Val(LBLTOTALINCONES.Text) + Val(ROW.Cells(GCONES.Index).EditedFormattedValue), "0")
                 End If
             Next
             TXTBAGSDIFF.Text = Format(Val(LBLTOTALOUTBAGS.Text) - Val(LBLTOTALINBAGS.Text), "0")
             TXTWTDIFF.Text = Format(Val(LBLTOTALOUTWT.Text) - Val(LBLTOTALOUTWT.Text), "0.00")
+
+            If CMBPER.Text = "Bags" Then
+                TXTAMT.Text = Val(TXTBAGS.Text) * Val(TXTRATE.Text)
+            Else
+                TXTAMT.Text = Val(TXTWT.Text) * Val(TXTRATE.Text)
+            End If
 
 
         Catch ex As Exception
@@ -662,7 +670,7 @@ Public Class YarnStockReco
             GRIDSTOCKIN.Enabled = True
 
             If GRIDDOUBLECLICK = False Then
-                GRIDSTOCKIN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTPARTYLOTNO.Text.Trim, TXTPARTYCOLOR.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, TXTLOTNO.Text.Trim, TXTDESC.Text.Trim, Format(Val(TXTBAGS.Text.Trim), "0"), Format(Val(TXTWT.Text.Trim), "0.00"), Val(TXTCONES.Text.Trim), TXTLRNO.Text.Trim, CMBRACK.Text.Trim, Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"))
+                GRIDSTOCKIN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, CMBDESIGN.Text.Trim, TXTPARTYLOTNO.Text.Trim, TXTPARTYCOLOR.Text.Trim, cmbcolor.Text.Trim, TXTLOTNO.Text.Trim, TXTDESC.Text.Trim, Format(Val(TXTBAGS.Text.Trim), "0"), Format(Val(TXTWT.Text.Trim), "0.00"), Val(TXTCONES.Text.Trim), TXTLRNO.Text.Trim, CMBRACK.Text.Trim, Val(TXTRATE.Text.Trim), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), TXTINBARCODE.Text.Trim, 0, 0, 0)
                 GETSRNO(GRIDSTOCKIN)
 
             ElseIf GRIDDOUBLECLICK = True Then
@@ -1041,7 +1049,27 @@ LINE1:
     Private Sub TXTAMT_Validated(sender As Object, e As EventArgs) Handles TXTAMT.Validated
         Try
             If CMBYARNQUALITY.Text <> "" And Val(TXTBAGS.Text) <> 0 And Val(TXTWT.Text) <> 0 Then
+
+
+                If GRIDDOUBLECLICK = False Then
+                    If EDIT = True Then
+                        'GET LAST BARCODE SRNO
+                        Dim LSRNO As Integer = 0
+                        Dim RSRNO As Integer = 0
+                        Dim SNO As Integer = 0
+                        If GRIDSTOCKIN.RowCount > 0 Then
+                            LSRNO = InStr(GRIDSTOCKIN.Rows(GRIDSTOCKIN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                            RSRNO = InStr(LSRNO + 1, GRIDSTOCKIN.Rows(GRIDSTOCKIN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                            SNO = GRIDSTOCKIN.Rows(GRIDSTOCKIN.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
+                        End If
+
+                        TXTINBARCODE.Text = "YA-" & Val(TXTRECONO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+                    Else
+                        TXTINBARCODE.Text = "YA-" & Val(TXTRECONO.Text.Trim) & "/" & GRIDSTOCKIN.RowCount + 1 & "/" & YearId
+                    End If
+                End If
                 FILLGRID()
+
                 CMBYARNQUALITY.Focus()
             End If
 
@@ -1052,7 +1080,7 @@ LINE1:
 
     Private Sub CMBMILL_Enter(sender As Object, e As EventArgs) Handles CMBMILL.Enter
         Try
-            If CMBMILL.Text.Trim = "" Then fillunit(CMBMILL)
+            If CMBMILL.Text.Trim = "" Then FILLMILL(CMBMILL, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -1155,7 +1183,9 @@ LINE1:
         End Try
     End Sub
 
-
+    Private Sub CMBPER_Validating(sender As Object, e As CancelEventArgs) Handles CMBPER.Validating
+        TOTAL()
+    End Sub
 End Class
 
 
