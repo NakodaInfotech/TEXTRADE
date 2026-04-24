@@ -23,6 +23,7 @@ Partial Class GDNGridDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CMBTYPE = New System.Windows.Forms.ComboBox()
@@ -71,7 +72,7 @@ Partial Class GDNGridDetails
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
+        Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,6 +97,20 @@ Partial Class GDNGridDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(422, 536)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 809
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -161,7 +176,7 @@ Partial Class GDNGridDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GTYPECHALLANNO, Me.gsrno, Me.GCHALLANNO, Me.gdate, Me.GNAME, Me.GDESCRIPTION, Me.GPACKING, Me.GSONO, Me.GMULTISONO, Me.gSODATE, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GBALENO, Me.GGRIDLOTNO, Me.GUNIT, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GCATEGORY, Me.gtotalpcs, Me.GTOTALMTRS, Me.GTOTALBALES, Me.GBALENOFROM, Me.GJOBBERNAME, Me.GCONSIGNEE, Me.Gagent, Me.GPARTYPONO, Me.GHOLD, Me.GGRIDPARTYPONO, Me.GBARCODE, Me.GTRANSPORT, Me.GGRIDSONO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GTYPECHALLANNO, Me.gsrno, Me.GCHALLANNO, Me.gdate, Me.GNAME, Me.GDESCRIPTION, Me.GPACKING, Me.GSONO, Me.GMULTISONO, Me.gSODATE, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GBALENO, Me.GGRIDLOTNO, Me.GUNIT, Me.GRACK, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GCATEGORY, Me.gtotalpcs, Me.GTOTALMTRS, Me.GTOTALBALES, Me.GBALENOFROM, Me.GJOBBERNAME, Me.GCONSIGNEE, Me.Gagent, Me.GPARTYPONO, Me.GHOLD, Me.GGRIDPARTYPONO, Me.GBARCODE, Me.GTRANSPORT, Me.GGRIDSONO})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -325,7 +340,7 @@ Partial Class GDNGridDetails
         Me.GPER.FieldName = "PER"
         Me.GPER.Name = "GPER"
         Me.GPER.Visible = True
-        Me.GPER.VisibleIndex = 29
+        Me.GPER.VisibleIndex = 30
         '
         'GAMOUNT
         '
@@ -333,7 +348,7 @@ Partial Class GDNGridDetails
         Me.GAMOUNT.FieldName = "AMOUNT"
         Me.GAMOUNT.Name = "GAMOUNT"
         Me.GAMOUNT.Visible = True
-        Me.GAMOUNT.VisibleIndex = 30
+        Me.GAMOUNT.VisibleIndex = 31
         '
         'GCATEGORY
         '
@@ -341,7 +356,7 @@ Partial Class GDNGridDetails
         Me.GCATEGORY.FieldName = "CATEGORY"
         Me.GCATEGORY.Name = "GCATEGORY"
         Me.GCATEGORY.Visible = True
-        Me.GCATEGORY.VisibleIndex = 16
+        Me.GCATEGORY.VisibleIndex = 17
         '
         'gtotalpcs
         '
@@ -352,7 +367,7 @@ Partial Class GDNGridDetails
         Me.gtotalpcs.Name = "gtotalpcs"
         Me.gtotalpcs.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.gtotalpcs.Visible = True
-        Me.gtotalpcs.VisibleIndex = 17
+        Me.gtotalpcs.VisibleIndex = 18
         '
         'GTOTALMTRS
         '
@@ -363,7 +378,7 @@ Partial Class GDNGridDetails
         Me.GTOTALMTRS.Name = "GTOTALMTRS"
         Me.GTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 18
+        Me.GTOTALMTRS.VisibleIndex = 19
         '
         'GTOTALBALES
         '
@@ -374,7 +389,7 @@ Partial Class GDNGridDetails
         Me.GTOTALBALES.Name = "GTOTALBALES"
         Me.GTOTALBALES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALBALES.Visible = True
-        Me.GTOTALBALES.VisibleIndex = 19
+        Me.GTOTALBALES.VisibleIndex = 20
         '
         'GBALENOFROM
         '
@@ -384,7 +399,7 @@ Partial Class GDNGridDetails
         Me.GBALENOFROM.FieldName = "BALENOFROM"
         Me.GBALENOFROM.Name = "GBALENOFROM"
         Me.GBALENOFROM.Visible = True
-        Me.GBALENOFROM.VisibleIndex = 20
+        Me.GBALENOFROM.VisibleIndex = 21
         '
         'GJOBBERNAME
         '
@@ -392,7 +407,7 @@ Partial Class GDNGridDetails
         Me.GJOBBERNAME.FieldName = "JOBBERNAME"
         Me.GJOBBERNAME.Name = "GJOBBERNAME"
         Me.GJOBBERNAME.Visible = True
-        Me.GJOBBERNAME.VisibleIndex = 21
+        Me.GJOBBERNAME.VisibleIndex = 22
         Me.GJOBBERNAME.Width = 150
         '
         'GCONSIGNEE
@@ -401,7 +416,7 @@ Partial Class GDNGridDetails
         Me.GCONSIGNEE.FieldName = "CONSIGNEE"
         Me.GCONSIGNEE.Name = "GCONSIGNEE"
         Me.GCONSIGNEE.Visible = True
-        Me.GCONSIGNEE.VisibleIndex = 22
+        Me.GCONSIGNEE.VisibleIndex = 23
         Me.GCONSIGNEE.Width = 150
         '
         'Gagent
@@ -410,7 +425,7 @@ Partial Class GDNGridDetails
         Me.Gagent.FieldName = "AGENT"
         Me.Gagent.Name = "Gagent"
         Me.Gagent.Visible = True
-        Me.Gagent.VisibleIndex = 23
+        Me.Gagent.VisibleIndex = 24
         Me.Gagent.Width = 200
         '
         'GPARTYPONO
@@ -419,7 +434,7 @@ Partial Class GDNGridDetails
         Me.GPARTYPONO.FieldName = "PARTYPONO"
         Me.GPARTYPONO.Name = "GPARTYPONO"
         Me.GPARTYPONO.Visible = True
-        Me.GPARTYPONO.VisibleIndex = 24
+        Me.GPARTYPONO.VisibleIndex = 25
         '
         'GHOLD
         '
@@ -427,7 +442,7 @@ Partial Class GDNGridDetails
         Me.GHOLD.FieldName = "HOLDFORAPPROVAL"
         Me.GHOLD.Name = "GHOLD"
         Me.GHOLD.Visible = True
-        Me.GHOLD.VisibleIndex = 25
+        Me.GHOLD.VisibleIndex = 26
         '
         'GGRIDPARTYPONO
         '
@@ -435,7 +450,7 @@ Partial Class GDNGridDetails
         Me.GGRIDPARTYPONO.FieldName = "GRIDPARTYPONO"
         Me.GGRIDPARTYPONO.Name = "GGRIDPARTYPONO"
         Me.GGRIDPARTYPONO.Visible = True
-        Me.GGRIDPARTYPONO.VisibleIndex = 26
+        Me.GGRIDPARTYPONO.VisibleIndex = 27
         '
         'GBARCODE
         '
@@ -443,7 +458,7 @@ Partial Class GDNGridDetails
         Me.GBARCODE.FieldName = "BARCODE"
         Me.GBARCODE.Name = "GBARCODE"
         Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 27
+        Me.GBARCODE.VisibleIndex = 28
         Me.GBARCODE.Width = 120
         '
         'GTRANSPORT
@@ -452,7 +467,7 @@ Partial Class GDNGridDetails
         Me.GTRANSPORT.FieldName = "TRANSPORT"
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 28
+        Me.GTRANSPORT.VisibleIndex = 29
         Me.GTRANSPORT.Width = 200
         '
         'GGRIDSONO
@@ -461,7 +476,7 @@ Partial Class GDNGridDetails
         Me.GGRIDSONO.FieldName = "GRIDSONO"
         Me.GGRIDSONO.Name = "GGRIDSONO"
         Me.GGRIDSONO.Visible = True
-        Me.GGRIDSONO.VisibleIndex = 31
+        Me.GGRIDSONO.VisibleIndex = 32
         '
         'cmdexit
         '
@@ -548,19 +563,15 @@ Partial Class GDNGridDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'CMDSAVELAYOUT
+        'GRACK
         '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(422, 536)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 809
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
+        Me.GRACK.Caption = "Rack"
+        Me.GRACK.FieldName = "RACK"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.OptionsColumn.AllowEdit = False
+        Me.GRACK.Visible = True
+        Me.GRACK.VisibleIndex = 16
+        Me.GRACK.Width = 80
         '
         'GDNGridDetails
         '
@@ -633,4 +644,5 @@ Partial Class GDNGridDetails
     Friend WithEvents GAMOUNT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRIDSONO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GRACK As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -12545,5 +12545,13 @@ SKIPLINE:
         End Try
     End Sub
 
-
+    Private Sub YARNOUTSTOCK_MASTER_Click(sender As Object, e As EventArgs) Handles YARNOUTSTOCK_MASTER.Click
+        Try
+            Dim OBJGDN As New YarnOutStockReport
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

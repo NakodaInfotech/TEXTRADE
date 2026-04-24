@@ -1228,7 +1228,7 @@ LINE1:
             DTYARN = OBJSTOCK.DT
             If DTYARN.Rows.Count > 0 Then
                 For Each DTROW As DataRow In DTYARN.Rows
-                    GRIDYARN.Rows.Add(0, DTROW("YARNQUALITY"), DTROW("MILLNAME"), DTROW("DESIGNNO"), DTROW("COLOR"), DTROW("LOTNO"), Format(Val(DTROW("BAGS")), "0"), Format(Val(DTROW("WT")), "0.00"), Format(Val(DTROW("CONES")), "0"), DTROW("LRNO"), Format(DTLRDATE.Value.Date, "dd/MM/yyyy"))
+                    GRIDYARN.Rows.Add(0, DTROW("YARNQUALITY"), DTROW("MILLNAME"), DTROW("DESIGNNO"), DTROW("COLOR"), DTROW("LOTNO"), Format(Val(DTROW("BAGS")), "0"), Format(Val(DTROW("WT")), "0.00"), Format(Val(DTROW("CONES")), "0"), DTROW("LRNO"), Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), DTROW("BARCODE"), Format(Val(DTROW("FROMNO")), "0"), Format(Val(DTROW("FROMSRNO")), "0"), DTROW("FROMTYPE"))
                 Next
                 getsrno(GRIDYARN)
                 total()
