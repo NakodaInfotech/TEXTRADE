@@ -1661,7 +1661,7 @@ LINE1:
     Sub PRINTREPORT(ByVal INVOICENO As Integer)
         Try
 
-            TEMPMSG = MsgBox("Wish To Print Barcode?", MsgBoxStyle.YesNo)
+            TEMPMSG = MsgBox("Wish To Print Report?", MsgBoxStyle.YesNo)
             If TEMPMSG = vbYes Then
                 Dim OBJGRN As New GRNDesign
                 OBJGRN.MdiParent = MDIMain
