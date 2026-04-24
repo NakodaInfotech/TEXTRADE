@@ -156,6 +156,7 @@ Partial Class YarnStockReco
         Me.lblgrndate = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.TXTINBARCODE = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TBSTOCKOUT.SuspendLayout()
@@ -172,6 +173,7 @@ Partial Class YarnStockReco
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTINBARCODE)
         Me.BlendPanel1.Controls.Add(Me.TXTBARCODE)
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.TXTWTDIFF)
@@ -1486,6 +1488,17 @@ Partial Class YarnStockReco
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'TXTINBARCODE
+        '
+        Me.TXTINBARCODE.BackColor = System.Drawing.Color.White
+        Me.TXTINBARCODE.ForeColor = System.Drawing.Color.DimGray
+        Me.TXTINBARCODE.Location = New System.Drawing.Point(772, 30)
+        Me.TXTINBARCODE.Name = "TXTINBARCODE"
+        Me.TXTINBARCODE.ReadOnly = True
+        Me.TXTINBARCODE.Size = New System.Drawing.Size(10, 23)
+        Me.TXTINBARCODE.TabIndex = 935
+        Me.TXTINBARCODE.Visible = False
+        '
         'YarnStockReco
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1631,4 +1644,5 @@ Partial Class YarnStockReco
     Friend WithEvents GDONE As DataGridViewTextBoxColumn
     Friend WithEvents GOUTBAGS As DataGridViewTextBoxColumn
     Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
+    Friend WithEvents TXTINBARCODE As TextBox
 End Class
