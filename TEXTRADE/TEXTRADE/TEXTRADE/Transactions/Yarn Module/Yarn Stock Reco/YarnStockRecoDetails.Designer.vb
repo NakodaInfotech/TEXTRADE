@@ -42,13 +42,13 @@ Partial Class YarnStockRecoDetails
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALOUTBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALOUTWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALOUTCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALINBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALINWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALINCONES = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip2.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,7 +142,7 @@ Partial Class YarnStockRecoDetails
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(499, 547)
+        Me.cmdexit.Location = New System.Drawing.Point(586, 546)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 445
@@ -156,7 +156,7 @@ Partial Class YarnStockRecoDetails
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(413, 547)
+        Me.cmdok.Location = New System.Drawing.Point(500, 546)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 444
@@ -180,7 +180,7 @@ Partial Class YarnStockRecoDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GDATE, Me.GGODOWN, Me.GNAME, Me.GTRANSNAME, Me.GREMARKS, Me.GTOTALOUTBAGS, Me.GTOTALOUTWT, Me.GTOTALOUTCONES, Me.GTOTALINBAGS, Me.GTOTALINWT, Me.GTOTALINCONES})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSANO, Me.GDATE, Me.GGODOWN, Me.GNAME, Me.GTRANSNAME, Me.GTOTALOUTBAGS, Me.GTOTALOUTWT, Me.GTOTALOUTCONES, Me.GTOTALINBAGS, Me.GTOTALINWT, Me.GTOTALINCONES, Me.GREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
@@ -193,7 +193,7 @@ Partial Class YarnStockRecoDetails
         'GSANO
         '
         Me.GSANO.Caption = "Sr. No"
-        Me.GSANO.FieldName = "SANO"
+        Me.GSANO.FieldName = "RECONO"
         Me.GSANO.Name = "GSANO"
         Me.GSANO.OptionsColumn.AllowEdit = False
         Me.GSANO.Visible = True
@@ -242,16 +242,6 @@ Partial Class YarnStockRecoDetails
         Me.GTRANSNAME.VisibleIndex = 4
         Me.GTRANSNAME.Width = 150
         '
-        'GREMARKS
-        '
-        Me.GREMARKS.Caption = "Remarks"
-        Me.GREMARKS.FieldName = "REMARKS"
-        Me.GREMARKS.Name = "GREMARKS"
-        Me.GREMARKS.OptionsColumn.AllowEdit = False
-        Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 5
-        Me.GREMARKS.Width = 200
-        '
         'GTOTALOUTBAGS
         '
         Me.GTOTALOUTBAGS.Caption = "Total Out Bags"
@@ -259,7 +249,7 @@ Partial Class YarnStockRecoDetails
         Me.GTOTALOUTBAGS.Name = "GTOTALOUTBAGS"
         Me.GTOTALOUTBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALOUTBAGS.Visible = True
-        Me.GTOTALOUTBAGS.VisibleIndex = 6
+        Me.GTOTALOUTBAGS.VisibleIndex = 5
         Me.GTOTALOUTBAGS.Width = 100
         '
         'GTOTALOUTWT
@@ -269,7 +259,7 @@ Partial Class YarnStockRecoDetails
         Me.GTOTALOUTWT.Name = "GTOTALOUTWT"
         Me.GTOTALOUTWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)})
         Me.GTOTALOUTWT.Visible = True
-        Me.GTOTALOUTWT.VisibleIndex = 7
+        Me.GTOTALOUTWT.VisibleIndex = 6
         Me.GTOTALOUTWT.Width = 100
         '
         'GTOTALOUTCONES
@@ -279,7 +269,7 @@ Partial Class YarnStockRecoDetails
         Me.GTOTALOUTCONES.Name = "GTOTALOUTCONES"
         Me.GTOTALOUTCONES.OptionsColumn.AllowEdit = False
         Me.GTOTALOUTCONES.Visible = True
-        Me.GTOTALOUTCONES.VisibleIndex = 8
+        Me.GTOTALOUTCONES.VisibleIndex = 7
         Me.GTOTALOUTCONES.Width = 100
         '
         'GTOTALINBAGS
@@ -289,7 +279,7 @@ Partial Class YarnStockRecoDetails
         Me.GTOTALINBAGS.Name = "GTOTALINBAGS"
         Me.GTOTALINBAGS.OptionsColumn.AllowEdit = False
         Me.GTOTALINBAGS.Visible = True
-        Me.GTOTALINBAGS.VisibleIndex = 9
+        Me.GTOTALINBAGS.VisibleIndex = 8
         Me.GTOTALINBAGS.Width = 100
         '
         'GTOTALINWT
@@ -299,7 +289,7 @@ Partial Class YarnStockRecoDetails
         Me.GTOTALINWT.Name = "GTOTALINWT"
         Me.GTOTALINWT.OptionsColumn.AllowEdit = False
         Me.GTOTALINWT.Visible = True
-        Me.GTOTALINWT.VisibleIndex = 10
+        Me.GTOTALINWT.VisibleIndex = 9
         Me.GTOTALINWT.Width = 100
         '
         'GTOTALINCONES
@@ -309,8 +299,18 @@ Partial Class YarnStockRecoDetails
         Me.GTOTALINCONES.Name = "GTOTALINCONES"
         Me.GTOTALINCONES.OptionsColumn.AllowEdit = False
         Me.GTOTALINCONES.Visible = True
-        Me.GTOTALINCONES.VisibleIndex = 11
+        Me.GTOTALINCONES.VisibleIndex = 10
         Me.GTOTALINCONES.Width = 100
+        '
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.OptionsColumn.AllowEdit = False
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 11
+        Me.GREMARKS.Width = 200
         '
         'YarnStockRecoDetails
         '

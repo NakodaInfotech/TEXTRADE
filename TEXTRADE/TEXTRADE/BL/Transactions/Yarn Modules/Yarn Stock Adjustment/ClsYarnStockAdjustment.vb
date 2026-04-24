@@ -309,7 +309,7 @@ Public Class ClsYarnStockAdjustment
         Return 0
     End Function
 
-    Public Function SELECTSTOCKADJUSTMENT(ByVal RECONO As Integer, ByVal Cmpid As Integer, ByVal LocationID As Integer, ByVal YearID As Integer) As DataTable
+    Public Function SELECTYARNSTOCKADJUSTMENT(ByVal RECONO As Integer, ByVal Cmpid As Integer, ByVal LocationID As Integer, ByVal YearID As Integer) As DataTable
         Dim dtTable As DataTable
         Try
 

@@ -14,7 +14,7 @@ Public Class YarnStockOutDetails
     Private Sub YarnStockOutDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'STORESTOCKRECO'")
+            DTROW = USERRIGHTS.Select("FormName = 'YARNSTOCKRECO'")
             USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
