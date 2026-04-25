@@ -83,6 +83,14 @@ Public Class ClsYarnChallan
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
+                I = I + 1
 
 
                 'POGRID
@@ -187,6 +195,14 @@ Public Class ClsYarnChallan
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CONES", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
 
 
