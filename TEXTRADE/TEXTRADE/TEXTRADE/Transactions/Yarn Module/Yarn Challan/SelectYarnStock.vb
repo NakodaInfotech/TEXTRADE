@@ -6,6 +6,7 @@ Public Class SelectYarnStock
     Public DT As New DataTable
     Public GODOWN As String = ""
 
+
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Try
             Me.Close()
