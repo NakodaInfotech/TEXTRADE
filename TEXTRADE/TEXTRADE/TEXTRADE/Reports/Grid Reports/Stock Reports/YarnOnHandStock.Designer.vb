@@ -44,6 +44,7 @@ Partial Class YarnOnHandStock
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,7 +125,7 @@ Partial Class YarnOnHandStock
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GYARNQUALITY, Me.GCATEGORY, Me.GJOBBERNAME, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GTOTALCONES, Me.GTOTALBAGS, Me.GTOTALWT, Me.GBILLNO, Me.GRACK, Me.GBARCODE, Me.GGODOWN})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GYARNQUALITY, Me.GCATEGORY, Me.GJOBBERNAME, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GLOTNO, Me.GTOTALCONES, Me.GTOTALBAGS, Me.GTOTALWT, Me.GBILLNO, Me.GRACK, Me.GBARCODE, Me.GGODOWN, Me.GLRNO})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -277,6 +278,15 @@ Partial Class YarnOnHandStock
         Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
         Me.PrintToolStripButton.Text = "&Print"
         '
+        'GLRNO
+        '
+        Me.GLRNO.Caption = "Box No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.OptionsColumn.AllowEdit = False
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 11
+        '
         'YarnOnHandStock
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -320,4 +330,5 @@ Partial Class YarnOnHandStock
     Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOTALBAGS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
