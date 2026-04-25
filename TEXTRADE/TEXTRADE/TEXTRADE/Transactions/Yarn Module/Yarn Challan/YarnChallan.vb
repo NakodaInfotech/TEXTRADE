@@ -245,6 +245,11 @@ CHECKNEXTLINE:
             Dim qty As String = ""
             Dim WT As String = ""
             Dim CONES As String = ""
+            Dim BARCODE As String = ""
+
+            Dim FROMNO As String = ""
+            Dim FROMSRNO As String = ""
+            Dim FROMTYPE As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDYARN.Rows
                 If row.Cells(0).Value <> Nothing Then
@@ -258,7 +263,10 @@ CHECKNEXTLINE:
                         qty = Val(row.Cells(GQTY.Index).Value)
                         WT = Val(row.Cells(GWT.Index).Value)
                         CONES = Val(row.Cells(GCONES.Index).Value)
-
+                        BARCODE = row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = Val(row.Cells(GFROMNO.Index).Value)
+                        FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
+                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
                     Else
                         gridsrno = gridsrno & "|" & Val(row.Cells(gsrno.Index).Value)
                         YARNQUALITY = YARNQUALITY & "|" & row.Cells(GYARNQUALITY.Index).Value.ToString
@@ -269,6 +277,10 @@ CHECKNEXTLINE:
                         qty = qty & "|" & Val(row.Cells(GQTY.Index).Value)
                         WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
                         CONES = CONES & "|" & Val(row.Cells(GCONES.Index).Value)
+                        BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
+                        FROMNO = FROMNO & "|" & Val(row.Cells(GFROMNO.Index).Value)
+                        FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
 
                     End If
                 End If
@@ -283,7 +295,10 @@ CHECKNEXTLINE:
             alParaval.Add(qty)
             alParaval.Add(WT)
             alParaval.Add(CONES)
-
+            alParaval.Add(BARCODE)
+            alParaval.Add(FROMNO)
+            alParaval.Add(FROMSRNO)
+            alParaval.Add(FROMTYPE)
 
             Dim ORDERGRIDSRNO As String = ""
             Dim ORDERYARNQUALITY As String = ""
@@ -458,7 +473,7 @@ CHECKNEXTLINE:
                         TXTREFNO.Text = dr("REFNO").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
 
-                        GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNQUALITY"), dr("MILLNAME"), dr("DESIGNNO"), dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"))
+                        GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNQUALITY"), dr("MILLNAME"), dr("DESIGNNO"), dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("BARCODE"), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"))
 
                         If Val(dr("OUTWT")) > 0 Then
                             lbllocked.Visible = True
@@ -475,7 +490,7 @@ CHECKNEXTLINE:
                 'ORDER GRID
                 'Dim OBJCMN As New ClsCommon
                 Dim OBJCMN As New ClsCommon
-                dttable = OBJCMN.search(" YARNCHALLAN_SODETAILS.YARN_GRIDSRNO AS GRIDSRNO, YARNQUALITYMASTER.YARN_name AS YARNQUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, YARNCHALLAN_SODETAILS.YARN_ORDERBAGS AS ORDERBAGS, ISNULL(YARNCHALLAN_SODETAILS.YARN_ORDERWT,0) AS ORDERWT, YARNCHALLAN_SODETAILS.YARN_FROMNO AS FROMNO, YARNCHALLAN_SODETAILS.YARN_FROMSRNO AS FROMSRNO, YARNCHALLAN_SODETAILS.YARN_FROMTYPE AS FROMTYPE, YARNCHALLAN_SODETAILS.YARN_BAGS AS RECDBAGS, ISNULL(YARNCHALLAN_SODETAILS.YARN_WT,0) AS RECDWT, ISNULL(YARNCHALLAN_SODETAILS.YARN_RATE,0) AS RATE ", "", " YARNCHALLAN_SODETAILS INNER JOIN YARNQUALITYMASTER ON YARNCHALLAN_SODETAILS.YARN_YARNQUALITYID= YARNQUALITYMASTER.YARN_id LEFT OUTER JOIN COLORMASTER ON YARNCHALLAN_SODETAILS.YARN_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON YARNCHALLAN_SODETAILS.YARN_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND YARNCHALLAN_SODETAILS.YARN_NO = " & TEMPYARNNO & " AND YARNCHALLAN_SODETAILS.YARN_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH(" YARNCHALLAN_SODETAILS.YARN_GRIDSRNO AS GRIDSRNO, YARNQUALITYMASTER.YARN_name AS YARNQUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, YARNCHALLAN_SODETAILS.YARN_ORDERBAGS AS ORDERBAGS, ISNULL(YARNCHALLAN_SODETAILS.YARN_ORDERWT,0) AS ORDERWT, YARNCHALLAN_SODETAILS.YARN_FROMNO AS FROMNO, YARNCHALLAN_SODETAILS.YARN_FROMSRNO AS FROMSRNO, YARNCHALLAN_SODETAILS.YARN_FROMTYPE AS FROMTYPE, YARNCHALLAN_SODETAILS.YARN_BAGS AS RECDBAGS, ISNULL(YARNCHALLAN_SODETAILS.YARN_WT,0) AS RECDWT, ISNULL(YARNCHALLAN_SODETAILS.YARN_RATE,0) AS RATE ", "", " YARNCHALLAN_SODETAILS INNER JOIN YARNQUALITYMASTER ON YARNCHALLAN_SODETAILS.YARN_YARNQUALITYID= YARNQUALITYMASTER.YARN_id LEFT OUTER JOIN COLORMASTER ON YARNCHALLAN_SODETAILS.YARN_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON YARNCHALLAN_SODETAILS.YARN_DESIGNID = DESIGNMASTER.DESIGN_id  ", " AND YARNCHALLAN_SODETAILS.YARN_NO = " & TEMPYARNNO & " AND YARNCHALLAN_SODETAILS.YARN_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable.Rows
                         GRIDORDER.Rows.Add(Val(DTR("GRIDSRNO")), DTR("YARNQUALITY"), DTR("DESIGNNO"), DTR("COLOR"), Val(DTR("ORDERBAGS")), Val(DTR("ORDERWT")), Val(DTR("FROMNO")), Val(DTR("FROMSRNO")), DTR("FROMTYPE"), Val(DTR("RECDBAGS")), Val(DTR("RECDWT")), Val(DTR("RATE")))
@@ -511,8 +526,8 @@ CHECKNEXTLINE:
     Sub fillcmb()
         Try
             If CMBGODOWN.Text.Trim = "" Then fillGODOWN(CMBGODOWN, EDIT)
-            If CMBNAME.Text.Trim = "" Then fillname(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' and ACC_TYPE = 'ACCOUNTS'")
-            If CMBTRANSPORT.Text.Trim = "" Then fillname(CMBTRANSPORT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'TRANSPORT'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' and ACC_TYPE = 'ACCOUNTS'")
+            If CMBTRANSPORT.Text.Trim = "" Then FILLNAME(CMBTRANSPORT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' and ACC_TYPE = 'TRANSPORT'")
 
             fillYARNQUALITY(CMBYARNQUALITY, EDIT)
             FILLMILL(CMBMILL, EDIT)
@@ -542,7 +557,7 @@ CHECKNEXTLINE:
 
     Private Sub cmbtrans_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBTRANSPORT.Enter
         Try
-            If CMBTRANSPORT.Text.Trim = "" Then fillname(CMBTRANSPORT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='TRANSPORT'")
+            If CMBTRANSPORT.Text.Trim = "" Then FILLNAME(CMBTRANSPORT, EDIT, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE='TRANSPORT'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -550,7 +565,7 @@ CHECKNEXTLINE:
 
     Private Sub cmbtrans_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTRANSPORT.Validating
         Try
-            If CMBTRANSPORT.Text.Trim <> "" Then namevalidate(CMBTRANSPORT, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'", "Sundry Creditors", "TRANSPORT")
+            If CMBTRANSPORT.Text.Trim <> "" Then NAMEVALIDATE(CMBTRANSPORT, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'", "Sundry Creditors", "TRANSPORT")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -610,7 +625,7 @@ CHECKNEXTLINE:
                     'CHECK WHERTHER STOCK IS PRESENT OR NOT, IF PRESENT THEN ADD THAT ITEM IN ITEMGRID
                     If ClientName = "VAISHALI" Then
                         Dim OBJCMN As New ClsCommon
-                        Dim DTSTOCK As DataTable = OBJCMN.search("ISNULL(SUM(BAGS),0) AS BAGS", "", " YARNSTOCKVIEW ", " AND YARNQUALITY = '" & DTROW("YARNQUALITY") & "' AND COLOR = '" & DTROW("COLOR") & "' AND YEARID = " & YearId & " HAVING ISNULL(SUM(BAGS),0) > 0 ")
+                        Dim DTSTOCK As DataTable = OBJCMN.SEARCH("ISNULL(SUM(BAGS),0) AS BAGS", "", " YARNSTOCKVIEW ", " AND YARNQUALITY = '" & DTROW("YARNQUALITY") & "' AND COLOR = '" & DTROW("COLOR") & "' AND YEARID = " & YearId & " HAVING ISNULL(SUM(BAGS),0) > 0 ")
                         If DTPO.Rows.Count > 0 Then GRIDYARN.Rows.Add(0, DTROW("YARNQUALITY"), "", DTROW("DESIGNNO"), DTROW("COLOR"), "", Val(DTROW("BAGS")), Val(DTROW("WT")), 0)
                     End If
 
@@ -884,7 +899,7 @@ LINE1:
 
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then fillname(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' and ACC_TYPE = 'ACCOUNTS'")
+            If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' and ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -892,7 +907,7 @@ LINE1:
 
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then namevalidate(CMBNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'", "Sundry DEBTORS", "ACCOUNTS", CMBTRANSPORT.Text, "")
+            If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'", "Sundry DEBTORS", "ACCOUNTS", CMBTRANSPORT.Text, "")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1080,7 +1095,7 @@ LINE1:
                 'FETCH CONEWT FROM MILLMASTER
                 If Val(TXTWT.Text.Trim) = 0 And Val(TXTCONES.Text.Trim) <> 0 And CMBMILL.Text.Trim <> "" Then
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.search("ISNULL(MILL_REMARK,0) AS CONEWT", "", "MILLMASTER ", " AND MILL_NAME = '" & CMBMILL.Text.Trim & "' AND MILL_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MILL_REMARK,0) AS CONEWT", "", "MILLMASTER ", " AND MILL_NAME = '" & CMBMILL.Text.Trim & "' AND MILL_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then TXTWT.Text = Format(Val(TXTCONES.Text.Trim) * Val(DT.Rows(0).Item("CONEWT")), "0.00")
                 End If
             End If
@@ -1095,12 +1110,131 @@ LINE1:
                 'FETCH CONEWT FROM YARNQUALITYMASTER
                 If Val(TXTWT.Text.Trim) = 0 And Val(txtqty.Text.Trim) <> 0 And CMBYARNQUALITY.Text.Trim <> "" Then
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.search("ISNULL(YARN_BOXTUBEWT,0) AS BOXWT", "", "YARNQUALITYMASTER ", " AND YARN_NAME = '" & CMBYARNQUALITY.Text.Trim & "' AND YARN_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(YARN_BOXTUBEWT,0) AS BOXWT", "", "YARNQUALITYMASTER ", " AND YARN_NAME = '" & CMBYARNQUALITY.Text.Trim & "' AND YARN_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then TXTWT.Text = Format(Val(txtqty.Text.Trim) * Val(DT.Rows(0).Item("BOXWT")), "0.00")
                 End If
             End If
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TXTBARCODE_Validating(sender As Object, e As CancelEventArgs) Handles TXTBARCODE.Validating
+        Try
+            If TXTBARCODE.Text.Trim <> "" And CHECKBARCODEERRORVALID = True Then
+                'CHECKING WHETHER IS IS GONE OUT OR NOT
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 TYPE, FROMNO", "", " OUTYARNBARCODESTOCK ", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND CMPID = " & CmpId & " AND LOCATIONID = " & Locationid & " AND YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    MsgBox("Barcode Already Used in " & DT.Rows(0).Item("TYPE") & " Sr No " & DT.Rows(0).Item("FROMNO"))
+                    TXTBARCODE.Clear()
+                    e.Cancel = True
+                    'Else
+                    '    MsgBox("Invalid Barcode", MsgBoxStyle.Critical)
+                End If
+
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTBARCODE_Validated(sender As Object, e As EventArgs) Handles TXTBARCODE.Validated
+        Try
+            If ALLOWPACKINGSLIP = True Then Exit Sub
+
+            If TXTBARCODE.Text.Trim.Length > 0 Then
+
+                If CMBGODOWN.Text.Trim = "" Then
+                    MsgBox("Select Godown First", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
+
+                TXTBARCODE.Text = TXTBARCODE.Text.Replace(" TRIAL", "")
+
+
+
+
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 * ", "", "YARNBARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & "  AND YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+
+                    'VALIDATE GODOWN
+                    If DT.Rows(0).Item("GODOWN") <> CMBGODOWN.Text.Trim Then
+                        MsgBox("Item Not in Selected Godown", MsgBoxStyle.Critical)
+                        TXTBARCODE.Clear()
+                        Exit Sub
+                    End If
+
+
+
+                    'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
+                    For Each ROW As DataGridViewRow In GRIDYARN.Rows
+                        If LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(TXTBARCODE.Text.Trim) Then GoTo LINE1
+                    Next
+
+                    'Dim PCS As Double = 0
+
+                    'If ClientName = "TCOT" Or ClientName = "KCRAYON" Or ClientName = "SBA" Or ClientName = "AXIS" Or ClientName = "KRISHNA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SSC" Or ClientName = "VINIT" Or ClientName = "RUCHITA" Or ClientName = "SARAYU" Or ClientName = "VALIANT" Or ClientName = "MBB" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "CHINTAN" Or ClientName = "SHAILESHTRADING" Then PCS = Val(DT.Rows(0).Item("PCS")) Else PCS = 1
+
+                    'GET RATE FROM PRICELISTMASTER
+
+                    GRIDYARN.Rows.Add(GRIDYARN.RowCount + 1, DT.Rows(0).Item("YARNQUALITY"), DT.Rows(0).Item("MILLNAME"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("LOTNO"), Format(Val(DT.Rows(0).Item("BAGS")), "0.00"), Format(Val(DT.Rows(0).Item("WT")), "0.00"), Format(Val(DT.Rows(0).Item("CONES")), "0.00"), DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("FROMTYPE"))
+                    total()
+                    GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
+
+
+LINE1:
+                    TXTBARCODE.Clear()
+                    TXTBARCODE.Focus()
+                Else
+                    MsgBox("Invalid Barcode", MsgBoxStyle.Critical)
+                    TXTBARCODE.Clear()
+                    TXTBARCODE.Focus()
+                End If
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTBARCODE.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 And ALLOWYARNBARCODEPRINT = True Then
+                If CMBGODOWN.Text.Trim = "" Then
+                    MsgBox("Select Godown First", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
+                Dim OBJSTOCK As New SelectYarnStock
+                'OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
+                OBJSTOCK.ShowDialog()
+                Dim DTBARCODE As DataTable = OBJSTOCK.DT
+                For Each DTROW As DataRow In DTBARCODE.Rows
+                    TXTBARCODE.Text = DTROW("BARCODE")
+                    TXTBARCODE_Validated(sender, e)
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub YarnChallan_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If ALLOWYARNBARCODEPRINT = True Then
+            txtsrno.Visible = False
+            CMBYARNQUALITY.Visible = False
+            CMBMILL.Visible = False
+            CMBDESIGN.Visible = False
+            cmbcolor.Visible = False
+            TXTLOTNO.Visible = False
+            txtqty.Visible = False
+            TXTWT.Visible = False
+            TXTCONES.Visible = False
+            TXTBARCODE.Visible = True
+            LBLBARCODE.Visible = True
+        End If
     End Sub
 End Class
