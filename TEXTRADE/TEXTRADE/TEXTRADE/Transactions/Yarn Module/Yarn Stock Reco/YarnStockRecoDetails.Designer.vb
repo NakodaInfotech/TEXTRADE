@@ -193,7 +193,7 @@ Partial Class YarnStockRecoDetails
         'GSANO
         '
         Me.GSANO.Caption = "Sr. No"
-        Me.GSANO.FieldName = "SONO"
+        Me.GSANO.FieldName = "SANO"
         Me.GSANO.Name = "GSANO"
         Me.GSANO.OptionsColumn.AllowEdit = False
         Me.GSANO.Visible = True
