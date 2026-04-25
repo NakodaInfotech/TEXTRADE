@@ -115,6 +115,13 @@ Public Class YarnStockReco
                         GRIDSTOCKIN.Rows.Add(DR("GRIDSRNO").ToString, DR("YARNITEM").ToString, DR("MILL").ToString, DR("DESIGN").ToString, DR("PARTYLOTNO").ToString, DR("PARTYCOLOR").ToString, DR("COLOR").ToString, DR("LOTNO").ToString, DR("DESC").ToString, Val(DR("BAGS")), Format(Val(DR("WT")), "0.00"), Val(DR("CONES")), DR("LRNO"), DR("RACK").ToString, Format(Val(DR("RATE")), "0.00"), DR("PER").ToString, Format(Val(DR("AMOUNT")), "0.00"), DR("BARCODE").ToString, Val(DR("DONE")), Val(DR("OUTBAGS")), Val(DR("OUTWT")))
 
 
+                        If Convert.ToBoolean(DR("DONE")) = True Or Val(DR("OUTBAGS")) > 0 Or Val(DR("OUTWT")) > 0 Then
+                            GRIDSTOCKIN.Rows(GRIDSTOCKIN.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                            lbllocked.Visible = True
+                            PBLOCK.Visible = True
+                        End If
+
+
                         TabControl1.SelectedIndex = 1
                     Next
 
@@ -189,6 +196,9 @@ Public Class YarnStockReco
         End If
 
         CMDSELECTSTOCK.Enabled = True
+
+        lbllocked.Visible = False
+        PBLOCK.Visible = False
     End Sub
 
     Function ERRORVALID() As Boolean
@@ -228,6 +238,12 @@ Public Class YarnStockReco
 
             If Not datecheck(DTRECODATE.Text) Then
                 EP.SetError(DTRECODATE, "Date not in Accounting Year")
+                bln = False
+            End If
+
+
+            If lbllocked.Visible = True Then
+                EP.SetError(lbllocked, "Item Used !!!!")
                 bln = False
             End If
 
@@ -814,10 +830,17 @@ Public Class YarnStockReco
     Private Sub cmddelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmddelete.Click
         Try
             If EDIT = True Then
-                If MsgBox("Wish to Delete Stock Adjustment?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
+                If USERDELETE = False Then
+                    MsgBox("Insufficient Rights")
+                    Exit Sub
+                End If
+                If lbllocked.Visible = True Then
+                    MsgBox("Unable to Delete, Item Used", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
 
-
+                If MsgBox("Wish to Delete  Yarn Stock Adjustment?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                 Dim ALPARAVAL As New ArrayList
                 Dim OBSTOCK As New ClsYarnStockAdjustment
 
