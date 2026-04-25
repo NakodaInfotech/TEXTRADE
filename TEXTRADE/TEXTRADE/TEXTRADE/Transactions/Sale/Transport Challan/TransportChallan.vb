@@ -742,4 +742,19 @@ LINE1:
     Private Sub TRANSGDNDATE_GotFocus(sender As Object, e As EventArgs) Handles TRANSGDNDATE.GotFocus
         TRANSGDNDATE.SelectionStart = 0
     End Sub
+
+    Private Sub txtremarks_KeyDown(sender As Object, e As KeyEventArgs) Handles txtremarks.KeyDown
+        Try
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+                If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
