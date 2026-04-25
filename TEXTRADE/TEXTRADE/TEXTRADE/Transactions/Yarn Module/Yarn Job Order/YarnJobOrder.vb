@@ -605,7 +605,7 @@ LINE1:
                 'IF barcode is used the BARCODE printING WILL BE BLOCKED
                 'If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
 
-                BARCODEPRINTING(ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, ROW.Cells(GPARENTITEM.Index).Value)
+                BARCODEPRINTING(ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, ROW.Cells(GREFNO.Index).Value, ROW.Cells(GPARENTITEM.Index).Value)
 
 NEXTLINE:
 
@@ -633,7 +633,7 @@ NEXTLINE:
 
 
 
-    Sub BARCODEPRINTING(ITEMNAME As String, DESIGN As String, SHADE As String, LOOMNO As String)
+    Sub BARCODEPRINTING(ITEMNAME As String, DESIGN As String, SHADE As String, SONO As String, LOOMNO As String)
         Try
 
             Dim dirresults As String = ""
@@ -664,6 +664,7 @@ TEXT 608,412,""ROMAN.TTF"",180,1,18,"":""
 TEXT 579,412,""ROMAN.TTF"",180,1,18,""" & SHADE & """
 TEXT 777,332,""ROMAN.TTF"",180,1,18,""SO NO""
 TEXT 608,332,""ROMAN.TTF"",180,1,18,"":""
+TEXT 579,332,""ROMAN.TTF"",180,1,18,""" & SONO & """
 TEXT 777,253,""ROMAN.TTF"",180,1,18,""MTRS""
 TEXT 608,253,""ROMAN.TTF"",180,1,18,"":""
 TEXT 777,173,""ROMAN.TTF"",180,1,18,""TAKA""
@@ -1035,7 +1036,7 @@ PRINT 1,1")
 
                 GRIDBEAM.ReadOnly = False
                 GPARENTITEM.HeaderText = "Loom No"
-                'GPARENTITEM.ReadOnly = False
+                GPARENTITEM.ReadOnly = False
                 'GPICKS.ReadOnly = False
                 'GDESC.ReadOnly = False
                 GITEMNAME.ReadOnly = True
@@ -1051,10 +1052,6 @@ PRINT 1,1")
                 LBLTO.Visible = True
                 TXTFROM.Visible = True
                 TXTTO.Visible = True
-
-
-
-
             End If
 
             If ClientName = "SWPL" Then

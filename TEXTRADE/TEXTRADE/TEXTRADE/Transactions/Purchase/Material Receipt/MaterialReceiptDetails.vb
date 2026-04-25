@@ -132,7 +132,7 @@ Public Class MaterialReceiptDetails
     Private Sub MaterialReceiptDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If ClientName = "AVIS" Then GCONTDESIGNRECD.Visible = True
-            If ClientName = "VALIANT" Then GBALENO.Visible = False Else GPCSNO.Visible = False
+            If (ClientName = "VALIANT" Or ClientName = "MMC") Then GBALENO.Visible = False Else GPCSNO.Visible = False
         Catch ex As Exception
             Throw ex
         End Try

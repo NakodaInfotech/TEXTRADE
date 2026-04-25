@@ -1657,7 +1657,7 @@ LINE1:
             Dim DTTABLE As DataTable = OBJGDN.SELECTGDN(Val(TXTFETCHGDNNO.Text.Trim), CmpId, 0, YearId)
             If DTTABLE.Rows.Count > 0 Then
                 For Each DR As DataRow In DTTABLE.Rows
-                    GRIDSR.Rows.Add(Val(DR("GRIDSRNO")), DR("PIECETYPE"), DR("ITEMNAME"), DR("QUALITY"), DR("DESIGN"), "", DR("COLOR"), "", Format(Val(DR("CUT")), "0.00"), Format(Val(DR("PCS")), "0.00"), DR("UNIT").ToString, Format(Val(DR("MTRS")), "0.00"), 0, DR("PER"), 0, "", "", "", 0, 0, 0)
+                    GRIDSR.Rows.Add(Val(DR("GRIDSRNO")), DR("PIECETYPE"), DR("ITEMNAME"), DR("QUALITY"), DR("DESIGN"), "", DR("COLOR"), DR("BALENO"), Format(Val(DR("CUT")), "0.00"), Format(Val(DR("PCS")), "0.00"), DR("UNIT").ToString, Format(Val(DR("MTRS")), "0.00"), 0, DR("PER"), 0, "", "", "", 0, 0, 0)
                 Next
             End If
         Catch ex As Exception

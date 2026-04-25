@@ -615,7 +615,7 @@ Public Class GreyIssueProcess
                     Next
 
 
-                    GRIDISSUE.Rows.Add(0, DTROW("ITEMNAME"), "", DTROW("BALENO"), DTROW("DESIGNNO"), DTROW("COLOR"), Val(DTROW("PCS")), DTROW("UNIT"), Val(DTROW("MTRS")), Val(DTROW("RATE")), 0, 0, 0, DTROW("GREYRECNO"), DTROW("GRIDSRNO"), DTROW("TYPE"), "")
+                    GRIDISSUE.Rows.Add(0, DTROW("ITEMNAME"), "", DTROW("BALENO"), DTROW("DESIGNNO"), DTROW("COLOR"), Val(DTROW("PCS")), DTROW("UNIT"), Val(DTROW("MTRS")), Val(DTROW("RATE")), 0, 0, 0, DTROW("GREYRECNO"), DTROW("GRIDSRNO"), DTROW("TYPE"), DTROW("BARCODE"))
 
 NEXTLINE:
                 Next

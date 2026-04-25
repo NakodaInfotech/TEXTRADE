@@ -421,7 +421,7 @@ Public Class SaleInvoiceFilter
                 If CHKSUMMARY.CheckState = CheckState.Unchecked Then OBJSALE.FRMSTRING = "ITEMWISEDTLS" Else OBJSALE.FRMSTRING = "ITEMWISESUMM"
 
             ElseIf RDCATEGORY.Checked = True Then
-                If CHKSUMMARY.CheckState = CheckState.Checked Then OBJSALE.FRMSTRING = "CATEGORYWISESUMM"
+                OBJSALE.FRMSTRING = "CATEGORYWISESUMM"
 
             ElseIf RDITEMPERCENT.Checked = True Then
                 OBJSALE.FRMSTRING = "ITEMPERCENT"

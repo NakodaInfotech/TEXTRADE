@@ -41,12 +41,13 @@ Partial Class SelectGreyTransport
         Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAGENT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCRDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GAGENT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,7 +84,7 @@ Partial Class SelectGreyTransport
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GITEM, Me.GDESIGNNO, Me.GCOLOR, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GTRANSPORT, Me.GLRNO, Me.LRDATE, Me.GTYPE, Me.GGRIDSRNO, Me.GBALENO, Me.GREMARKS, Me.GAGENT, Me.GCRDAYS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GITEM, Me.GDESIGNNO, Me.GCOLOR, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GTRANSPORT, Me.GLRNO, Me.LRDATE, Me.GTYPE, Me.GGRIDSRNO, Me.GBALENO, Me.GREMARKS, Me.GAGENT, Me.GCRDAYS, Me.GBARCODE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -265,13 +266,21 @@ Partial Class SelectGreyTransport
         Me.GREMARKS.VisibleIndex = 13
         Me.GREMARKS.Width = 200
         '
+        'GAGENT
+        '
+        Me.GAGENT.Caption = "Agent"
+        Me.GAGENT.FieldName = "AGENT"
+        Me.GAGENT.Name = "GAGENT"
+        Me.GAGENT.Visible = True
+        Me.GAGENT.VisibleIndex = 14
+        '
         'GCRDAYS
         '
         Me.GCRDAYS.Caption = "Cr. days"
         Me.GCRDAYS.FieldName = "CRDAYS"
         Me.GCRDAYS.Name = "GCRDAYS"
         Me.GCRDAYS.Visible = True
-        Me.GCRDAYS.VisibleIndex = 14
+        Me.GCRDAYS.VisibleIndex = 15
         '
         'CHKEDIT
         '
@@ -314,13 +323,14 @@ Partial Class SelectGreyTransport
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GAGENT
+        'GBARCODE
         '
-        Me.GAGENT.Caption = "Agent"
-        Me.GAGENT.FieldName = "AGENT"
-        Me.GAGENT.Name = "GAGENT"
-        Me.GAGENT.Visible = True
-        Me.GAGENT.VisibleIndex = 14
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 16
+        Me.GBARCODE.Width = 120
         '
         'SelectGreyTransport
         '
@@ -368,4 +378,5 @@ Partial Class SelectGreyTransport
     Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCRDAYS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAGENT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
