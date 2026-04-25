@@ -472,6 +472,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GDNReport_VINTAGE.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GreyGDNReport_COMMON.vb">
       <DependentUpon>GreyGDNReport_COMMON.rpt</DependentUpon>
