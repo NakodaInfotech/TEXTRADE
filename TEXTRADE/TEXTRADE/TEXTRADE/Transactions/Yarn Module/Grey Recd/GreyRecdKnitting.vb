@@ -162,11 +162,12 @@ Public Class GreyRecdKnitting
                 End If
             End If
 
-            If lbllocked.Visible = True Then
-                EP.SetError(lbllocked, "Item Used, Item Locked")
-                bln = False
+            If ClientName <> "MMC" Then
+                If lbllocked.Visible = True Then
+                    EP.SetError(lbllocked, "Item Used, Item Locked")
+                    bln = False
+                End If
             End If
-
             For Each ROW As DataGridViewRow In GRIDGREY.Rows
                 If ROW.Cells(GWT.Index).Value = 0 Then
                     EP.SetError(TXTWT, "WT Cannot be 0")
@@ -1591,6 +1592,10 @@ NEXTLINE:
         Try
             If GRIDGREY.CurrentRow.Index >= 0 And GRIDGREY.Item(gsrno.Index, GRIDGREY.CurrentRow.Index).Value <> Nothing Then
 
+                If Convert.ToBoolean(GRIDGREY.Rows(GRIDGREY.CurrentRow.Index).Cells(GDONE.Index).Value) = True Then 'If row.Cells(16).Value <> "0" Then 
+                    MsgBox("Item Locked. ")
+                    Exit Sub
+                End If
                 GRIDDOUBLECLICK = True
                 txtsrno.Text = GRIDGREY.Item(gsrno.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 cmbitemname.Text = GRIDGREY.Item(gitemname.Index, GRIDGREY.CurrentRow.Index).Value.ToString
@@ -1872,6 +1877,12 @@ LINE1:
             If e.KeyCode = Keys.Delete And GRIDGREY.RowCount > 0 Then
                 If GRIDDOUBLECLICK = True Then
                     MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
+                    Exit Sub
+                End If
+
+                'DONT ALLOW TO DELETE ANY ROW IF LOCKED IS VISIBLE
+                If lbllocked.Visible = True Then
+                    MessageBox.Show("Unable to Delete Row, Sale Order is Locked")
                     Exit Sub
                 End If
                 GRIDGREY.Rows.RemoveAt(GRIDGREY.CurrentRow.Index)
