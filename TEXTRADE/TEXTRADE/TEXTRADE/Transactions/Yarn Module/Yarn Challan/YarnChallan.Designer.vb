@@ -852,7 +852,6 @@ Partial Class YarnChallan
         Me.TXTLOTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTLOTNO.Location = New System.Drawing.Point(773, 2)
         Me.TXTLOTNO.Name = "TXTLOTNO"
-        Me.TXTLOTNO.ReadOnly = True
         Me.TXTLOTNO.Size = New System.Drawing.Size(100, 23)
         Me.TXTLOTNO.TabIndex = 4
         Me.TXTLOTNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
