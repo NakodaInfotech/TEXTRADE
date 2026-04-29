@@ -480,6 +480,11 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\GRN\GRNReport_VINTAGE.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GRNReport_VINTAGE.rpt</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Job Work\Job In\GreyJobInReport_COMMON.vb">
       <DependentUpon>GreyJobInReport_COMMON.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -9425,6 +9430,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GreyGDNReport_COMMON.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GreyGDNReport_COMMON.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\GRN\GRNReport_VINTAGE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GRNReport_VINTAGE.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Job Work\Job In\GreyJobInReport_COMMON.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
