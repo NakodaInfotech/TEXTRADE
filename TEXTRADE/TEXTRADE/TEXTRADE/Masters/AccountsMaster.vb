@@ -2197,7 +2197,7 @@ line1:
             End If
 
 
-            If ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SUPRIYA" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MSANCHITKUMAR" Or ClientName = "MOHATUL" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "KARAN" Or ClientName = "PARAS" Or ClientName = "AVIS" Or ClientName = "MANSI" Or ClientName = "DEVEN" Or ClientName = "NAKODAINFOTECH" Or ClientName = "LEEFABRICO" Or ClientName = "REALCORPORATION" Or ClientName = "VINTAGEINDIA" Or ClientName = "CC" Or ClientName = "SNCM" Then CHKCOMMON.CheckState = CheckState.Unchecked
+            If ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SUPRIYA" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MSANCHITKUMAR" Or ClientName = "MOHATUL" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "KARAN" Or ClientName = "PARAS" Or ClientName = "AVIS" Or ClientName = "MANSI" Or ClientName = "DEVEN" Or ClientName = "NAKODAINFOTECH" Or ClientName = "LEEFABRICO" Or ClientName = "REALCORPORATION" Or ClientName = "CC" Or ClientName = "SNCM" Then CHKCOMMON.CheckState = CheckState.Unchecked
             If ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then LBLSALESMAN.Text = "Handler"
             If ClientName = "VINTAGEINDIA" Then CHKHOLD.CheckState = CheckState.Checked
         Catch ex As Exception
@@ -2422,7 +2422,7 @@ line1:
     Private Sub CMBBILLTO_Enter(sender As Object, e As EventArgs) Handles CMBBILLTO.Enter
         Try
             If CMBBILLTO.Text.Trim = "" Then
-                If ClientName = "AARYA" Then
+                If ClientName = "AARYA" Or ClientName = "VINTAGEINDIA" Then
                     FILLNAME(CMBBILLTO, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS')")
                 Else
                     FILLNAME(CMBBILLTO, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'")
@@ -2436,7 +2436,7 @@ line1:
     Private Sub CMBBILLTO_Validating(sender As Object, e As CancelEventArgs) Handles CMBBILLTO.Validating
         Try
             If CMBBILLTO.Text.Trim = "" Then
-                If ClientName = "AARYA" Then
+                If ClientName = "AARYA" Or ClientName = "VINTAGEINDIA" Then
                     NAMEVALIDATE(CMBBILLTO, cmbhotelcode, e, Me, TXTHOTELADD, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry CREDITORS')", "Sundry debtors", "ACCOUNTS")
                 Else
                     NAMEVALIDATE(CMBBILLTO, cmbhotelcode, e, Me, TXTHOTELADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS")

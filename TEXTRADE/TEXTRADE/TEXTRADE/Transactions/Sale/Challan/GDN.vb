@@ -2084,7 +2084,7 @@ NEXTLINE:
             If cmbname.Text.Trim <> "" Then
 
                 If ClientName = "VINTAGEINDIA" Then
-                    If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors')", "Sundry debtors", "ACCOUNTS")
+                    If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' OR GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors')", "Sundry debtors", "ACCOUNTS", CMBTRANS.Text, CMBAGENT.Text)
                 Else
                     NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry debtors'", "Sundry debtors", "ACCOUNTS", CMBTRANS.Text, CMBAGENT.Text)
                     'Dim OBJCMN As New ClsCommon
@@ -2647,6 +2647,10 @@ NEXTLINE:
                 CMBPER.TabStop = False
                 Gpcs.HeaderText = "Qty"
                 GBALENO.HeaderText = "Packing"
+            End If
+
+            If ClientName = "VINTAGEINDIA" Then
+                CHKHOLD.CheckState = CheckState.Unchecked
             End If
 
         Catch ex As Exception
