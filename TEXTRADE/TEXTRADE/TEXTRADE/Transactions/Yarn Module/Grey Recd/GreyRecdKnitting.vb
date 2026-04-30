@@ -1309,8 +1309,8 @@ NEXTLINE:
         TXTROLLNO.Clear()
         TXTWT.Clear()
         cmbqtyunit.Text = ""
-        If ClientName = "MMC" Or ClientName = "SWPL" Then cmbqtyunit.Text = "ROLL"
-
+        If ClientName = "SWPL" Then cmbqtyunit.Text = "ROLL"
+        If ClientName = "MMC" Then cmbqtyunit.Text = "TAKA"
         TXTMTRS.Clear()
         CMBRACK.Text = ""
         CMBSHELF.Text = ""
@@ -1942,13 +1942,14 @@ LINE1:
             TXTWT.Clear()
             TXTMTRS.Clear()
             TXTLOOMNO.Clear()
-            If ClientName <> "SWPL" Then TXTROLLNO.Clear()
+            If ClientName <> "SWPL" And ClientName <> "MMC" Then TXTROLLNO.Clear()
             CMBRACK.Text = ""
             CMBSHELF.Text = ""
             txtsrno.Text = GRIDGREY.RowCount + 1
 
             If ClientName = "MMC" Then
-                TXTROLLNO.Focus()
+                TXTROLLNO.Text = Val(TXTROLLNO.Text.Trim) + 1
+                cmbitemname.Focus()
             ElseIf ClientName = "SWPL" Then
                 TXTROLLNO.Text = Val(TXTROLLNO.Text.Trim) + 1
                 cmbitemname.Focus()
@@ -2210,6 +2211,8 @@ LINE1:
                 TXTLOOMNO.BackColor = Color.LemonChiffon
                 TXTMTRS.BackColor = Color.LemonChiffon
                 TXTWT.BackColor = Color.LemonChiffon
+                txtlrno.TabStop = True
+                lrdate.TabStop = True
             End If
 
             If ClientName = "SWPL" Then
@@ -2371,7 +2374,7 @@ NEXTLINE:
 
     Private Sub CMBDYEINGNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBDYEINGNAME.Validating
         Try
-            If CMBDYEINGNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBDYEINGNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'", "SUNDRY CREDITORS", "ACCOUNTS")
+            If CMBDYEINGNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBDYEINGNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'", "SUNDRY CREDITORS", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
