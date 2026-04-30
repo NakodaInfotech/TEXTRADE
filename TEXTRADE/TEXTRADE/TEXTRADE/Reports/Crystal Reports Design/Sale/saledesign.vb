@@ -862,7 +862,7 @@ SKIPINVOICE:
 
 
             Else
-                If FRMSTRING = "PROFORMA" Then
+                If FRMSTRING = "PROFORMAINVOICE" Then
                     oDfDopt.DiskFileName = Application.StartupPath & "\PROFORMA.PDF"
                 ElseIf FRMSTRING = "QUOTATION" Then
                     oDfDopt.DiskFileName = Application.StartupPath & "\QUOTATION.PDF"
