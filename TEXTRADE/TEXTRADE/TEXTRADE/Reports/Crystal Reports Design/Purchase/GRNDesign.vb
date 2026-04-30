@@ -25,6 +25,7 @@ Public Class GRNDesign
     Dim RPTGRN_AXIS As New GRN_AXIS
     Dim RPTGRNDYEING As New GRNDYEING_BRILLANTO
     Dim RPTGRNFINISH As New GRNFinishReport
+    Dim RPTGRN_VINTAGE As New GRNReport_VINTAGE
 
     Dim RPTGREYRECTRANSPORT As New GREYTransportReport
     Dim RPTLETTER As New GREYISSUELetter
@@ -119,7 +120,13 @@ Public Class GRNDesign
                 End If
             End If
 
-            If FRMSTRING = "FINISHGRN" Then crTables = RPTGRNFINISH.Database.Tables
+            If FRMSTRING = "FINISHGRN" Then
+                If ClientName = "VINTAGEINDIA" Then
+                    crTables = RPTGRN_VINTAGE.Database.Tables
+                Else
+                    crTables = RPTGRNFINISH.Database.Tables
+                End If
+            End If
 
             If FRMSTRING = "PARTYWISEDTLS" Then crTables = RPTPARTYDTLS.Database.Tables
             If FRMSTRING = "PARTYWISESUMM" Then crTables = RPTPARTYSUMM.Database.Tables
@@ -182,7 +189,11 @@ Public Class GRNDesign
                     crpo.ReportSource = RPTGRN
                 End If
             ElseIf FRMSTRING = "FINISHGRN" Then
-                crpo.ReportSource = RPTGRNFINISH
+                If ClientName = "VINTAGEINDIA" Then
+                    crpo.ReportSource = RPTGRN_VINTAGE
+                Else
+                    crpo.ReportSource = RPTGRNFINISH
+                End If
             ElseIf FRMSTRING = "WHOLESALEBARCODE" Then
                 crpo.ReportSource = RPTWHOLESALEBARCODE
             ElseIf FRMSTRING = "PARTYWISESUMM" Then
@@ -331,7 +342,11 @@ Public Class GRNDesign
                     OBJ = New GRNReport
                 End If
             ElseIf FRMSTRING = "FINISHGRN" Then
-                OBJ = New GRNFinishReport
+                If ClientName = "VINTAGEINDIA" Then
+                    OBJ = New GRNReport_VINTAGE
+                Else
+                    OBJ = New GRNFinishReport
+                End If
             End If
 
 
@@ -449,11 +464,20 @@ Public Class GRNDesign
                 End If
 
             ElseIf FRMSTRING = "FINISHGRN" Then
-                expo = RPTGRNFINISH.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTGRNFINISH.Export()
+                If ClientName = "VINTAGEINDIA" Then
+                    expo = RPTGRN_VINTAGE.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTGRN_VINTAGE.Export()
+                Else
+                    expo = RPTGRNFINISH.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTGRNFINISH.Export()
+                End If
+
 
             ElseIf FRMSTRING = "WHOLESALEBARCODE" Then
                 expo = RPTWHOLESALEBARCODE.ExportOptions

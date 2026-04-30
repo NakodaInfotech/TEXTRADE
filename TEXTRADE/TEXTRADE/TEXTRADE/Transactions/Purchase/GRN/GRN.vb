@@ -3426,8 +3426,11 @@ LINE1:
                 OBJGDN.MdiParent = MDIMain
                 If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VINIT" Then
                     If cmbtype.Text.Trim = "FANCY MATERIAL" Then OBJGDN.FRMSTRING = "FINISHGRN" Else OBJGDN.FRMSTRING = "GRN"
+
+                ElseIf ClientName = "VINTAGEINDIA" Then
+                    If cmbtype.Text.Trim = "FANCY MATERIAL" Then OBJGDN.FRMSTRING = "FINISHGRN" Else OBJGDN.FRMSTRING = "GRN"
                 Else
-                    OBJGDN.FRMSTRING = "GRN"
+                        OBJGDN.FRMSTRING = "GRN"
                 End If
                 OBJGDN.WHERECLAUSE = "{GRN.GRN_no}=" & Val(GRNNO) & " AND {GRN.GRN_TYPE} = '" & cmbtype.Text.Trim & "'  and {GRN.GRN_yearid}=" & YearId
                 If ClientName = "AARYA" Then OBJGDN.WHERECLAUSE = OBJGDN.WHERECLAUSE & " AND {GRN_DESC.GRN_OUTPCS} = 0"
