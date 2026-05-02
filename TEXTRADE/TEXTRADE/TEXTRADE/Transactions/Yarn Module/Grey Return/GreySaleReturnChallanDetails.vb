@@ -1,0 +1,3 @@
+﻿Public Class GreySaleReturnChallanDetails
+
+End Class
