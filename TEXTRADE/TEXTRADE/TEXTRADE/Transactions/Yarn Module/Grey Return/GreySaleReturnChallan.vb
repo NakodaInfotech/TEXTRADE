@@ -133,6 +133,12 @@ Public Class GreySaleReturnChallan
                 bln = False
             End If
 
+            If CMBNAME.Text.Trim.Length = 0 Then
+                EP.SetError(CMBNAME, " Please Select Party Name")
+                bln = False
+
+            End If
+
             If ClientName = "MNARESH" Then
                 If lbllocked.Visible = True Then
                     EP.SetError(lbllocked, "Sale Return Raised, Delete Sale Return First")
@@ -541,12 +547,6 @@ NEXTLINE:
             CLEAR()
             CMBNAME.Enabled = True
 
-            If ClientName = "SVS" Then
-                gQty.ReadOnly = True
-                TXTQTY.ReadOnly = True
-                TXTQTY.Text = 1
-                TXTQTY.BackColor = Color.Linen
-            End If
 
             If EDIT = True Then
 
@@ -1310,9 +1310,9 @@ LINE1:
                             RSRNO = InStr(LSRNO + 1, GRIDSR.Rows(GRIDSR.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
                             SNO = GRIDSR.Rows(GRIDSR.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
 
-                            TXTBARCODE.Text = "R-" & Val(TXTSRCHNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+                            TXTBARCODE.Text = "GR-" & Val(TXTSRCHNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
                         Else
-                            TXTBARCODE.Text = "R-" & Val(TXTSRCHNO.Text.Trim) & "/" & GRIDSR.RowCount + 1 & "/" & YearId
+                            TXTBARCODE.Text = "GR-" & Val(TXTSRCHNO.Text.Trim) & "/" & GRIDSR.RowCount + 1 & "/" & YearId
                         End If
                     End If
                 Next
@@ -1567,14 +1567,9 @@ LINE1:
                 Dim DT As New DataTable
                 'GET DATA FROM SAMPLE BARCODE
                 'no need for yearid clause here as we need to fetch this barcode in all acccouting year
-                DT = OBJCMN.SEARCH(" TOP 1 * ", "", " GREYOUTBARCODESTOCK ", " AND BARCODE = '" & TXTOUTBARCODE.Text.Trim & "'")
+                DT = OBJCMN.SEARCH(" TOP 1 * ", "", " OUTGREYBARCODESTOCK ", " AND BARCODE = '" & TXTOUTBARCODE.Text.Trim & "'")
                 If DT.Rows.Count > 0 Then
 
-                    'GET RATES 
-                    If ClientName = "REALCORPORATION" Then
-                        DT = OBJCMN.SEARCH("ISNULL(ITEMMASTER.ITEM_RATE,0) AS RATE", "", " ITEMMASTER ", " AND ITEMMASTER.ITEM_NAME = '" & DT.Rows(0).Item("ITEMNAME") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
-                        If DT.Rows.Count > 0 And ClientName = "REALCORPORATION" Then TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
-                    End If
 
                     GRIDSR.Rows.Add(GRIDSR.RowCount + 1, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", 0, 1, DT.Rows(0).Item("UNIT"), Val(DT.Rows(0).Item("MTRS")), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), "", "", "", 0, 0, 0)
                     GRIDSR.FirstDisplayedScrollingRowIndex = GRIDSR.RowCount - 1
