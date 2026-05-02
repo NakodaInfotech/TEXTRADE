@@ -69,6 +69,8 @@ Partial Class GreySaleReturnChallanDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -531,6 +533,13 @@ Partial Class GreySaleReturnChallanDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'PRINTDIALOG
+        '
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
+        '
         'GreySaleReturnChallanDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -599,4 +608,6 @@ Partial Class GreySaleReturnChallanDetails
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents cmdok As Button
+    Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
+    Friend WithEvents PRINTDIALOG As PrintDialog
 End Class

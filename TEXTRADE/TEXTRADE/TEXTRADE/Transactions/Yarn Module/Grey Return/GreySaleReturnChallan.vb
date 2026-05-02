@@ -720,9 +720,9 @@ NEXTLINE:
                                 RSRNO = InStr(LSRNO + 1, GRIDSR.Rows(GRIDSR.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
                                 SNO = GRIDSR.Rows(GRIDSR.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
 
-                                TXTBARCODE.Text = "R-" & Val(TXTSRCHNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+                                TXTBARCODE.Text = "GR-" & Val(TXTSRCHNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId
                             Else
-                                TXTBARCODE.Text = "R-" & Val(TXTSRCHNO.Text.Trim) & "/" & GRIDSR.RowCount + 1 & "/" & YearId
+                                TXTBARCODE.Text = "GR-" & Val(TXTSRCHNO.Text.Trim) & "/" & GRIDSR.RowCount + 1 & "/" & YearId
                             End If
                         End If
                         GRIDSR.Rows.Add(Val(TXTSRNO.Text.Trim), CMBPIECETYPE.Text.Trim, CMBITEMNAME.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, TXTGRIDREMARKS.Text.Trim, CMBCOLOR.Text.Trim, TXTBALENO.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTQTY.Text.Trim), "0.00"), CMBQTYUNIT.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
@@ -758,21 +758,14 @@ NEXTLINE:
             GRIDSR.FirstDisplayedScrollingRowIndex = GRIDSR.RowCount - 1
 
             TXTMTRS.Clear()
-            If ClientName <> "SHREENAKODA" And ClientName <> "ANKUSH" Then CMBRACK.Text = ""
-
-            If ClientName = "ANKUSH" Then
-                TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
-            End If
+            CMBRACK.Text = ""
 
             CMBSHELF.Text = ""
             TXTSRNO.Text = GRIDSR.RowCount + 1
-            If ClientName = "YASHVI" Then TXTCUT.Focus() Else CMBPIECETYPE.Focus()
-            If ClientName = "KCRAYON" Then TXTGRIDREMARKS.Clear()
-            If ClientName = "SUPRIYA" Then TXTCUT.Clear()
-            If ClientName = "AVIS" Or ClientName = "SUPRIYA" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Then
-                TXTGRIDREMARKS.Clear()
-                TXTMTRS.Focus()
-            End If
+            CMBPIECETYPE.Focus()
+            TXTGRIDREMARKS.Clear()
+            TXTCUT.Clear()
+
 
         Catch ex As Exception
             Throw ex
