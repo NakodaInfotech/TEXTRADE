@@ -139,17 +139,11 @@ Public Class GreySaleReturnChallan
 
             End If
 
-            If ClientName = "MNARESH" Then
-                If lbllocked.Visible = True Then
-                    EP.SetError(lbllocked, "Sale Return Raised, Delete Sale Return First")
-                    bln = False
-                End If
-            Else
 
-                If UserName <> "Admin" And lbllocked.Visible = True Then
-                    EP.SetError(lbllocked, "Item Used, Item Locked")
-                    bln = False
-                End If
+
+            If UserName <> "Admin" And lbllocked.Visible = True Then
+                EP.SetError(lbllocked, "Item Used, Item Locked")
+                bln = False
             End If
 
 
@@ -375,7 +369,7 @@ Public Class GreySaleReturnChallan
 
     Sub PRINTREPORT(ByVal SRNO As Integer)
         Try
-            If MsgBox("Wish to Print Sale Return?", MsgBoxStyle.YesNo) = vbYes Then
+            If MsgBox("Wish to Print Grey Sale Return?", MsgBoxStyle.YesNo) = vbYes Then
                 Dim OBJPUR As New SaleReturnDesign
                 OBJPUR.MdiParent = MDIMain
                 OBJPUR.FRMSTRING = "GREYSALERETURNCHALLAN"
@@ -407,6 +401,7 @@ Public Class GreySaleReturnChallan
                 For Each dr As DataRow In dttable.Rows
                     GRIDSR.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR"), dr("BALENO"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMOUNT")), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), 0, dr("OUTPCS"), dr("OUTMTRS"))
                 Next
+                Dim TEMPHEADER As String = ""
 
 
                 For Each ROW As DataGridViewRow In GRIDSR.Rows
@@ -417,7 +412,9 @@ Public Class GreySaleReturnChallan
 
                     Dim TEMPNAME As String = ""
 
-                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, TXTLOTNO.Text.Trim, ROW.Cells(GBALENO.Index).Value, ROW.Cells(gdesc.Index).Value, Val(ROW.Cells(GMTRS.Index).Value), Val(ROW.Cells(gQty.Index).Value), Val(ROW.Cells(gcut.Index).Value), ROW.Cells(GRACK.Index).Value, "", "", "", "", TEMPNAME, ROW.Cells(GSHELF.Index).Value)
+                    'BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, TXTLOTNO.Text.Trim, ROW.Cells(GBALENO.Index).Value, ROW.Cells(gdesc.Index).Value, Val(ROW.Cells(GMTRS.Index).Value), Val(ROW.Cells(gQty.Index).Value), Val(ROW.Cells(gcut.Index).Value), ROW.Cells(GRACK.Index).Value, "", "", "", "", TEMPNAME, ROW.Cells(GSHELF.Index).Value)
+                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, "", TXTLOTNO.Text.Trim, "", Val(ROW.Cells(GMTRS.Index).Value), Val(ROW.Cells(gQty.Index).Value), 0, ROW.Cells(GRACK.Index).Value, TEMPHEADER, "", 0, "", "", ROW.Cells(GSHELF.Index).Value, "")
+
                     Dim OBJCMN As New ClsCommon
                     dttable = OBJCMN.Execute_Any_String("UPDATE GREYSALERETURNCHALLAN SET GSRCH_BARCODEPRINTED = 1 WHERE GSRCH_NO = " & TEMPSRCHNO & " AND GSRCH_YEARID = " & YearId, "", "")
                     LBLBARCODEPRINTED.Visible = True
