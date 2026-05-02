@@ -5260,6 +5260,7 @@ SKIPLINE:
                 NOUSE_MASTER.Visible = True
                 NOUSE_MASTER.Enabled = True
             End If
+            If ClientName = "KOTHARI" Then SAMPLENOTE_MASTER.Visible = True
             If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then PRICELIST_MASTER.ShortcutKeys = Keys.Alt Or Keys.Control Or Keys.L
             If ClientName = "YASHVI" Then STOCKADJUSTMENT_MASTER.Text = "Item Correction"
             If ClientName = "MANIBHADRA" Or ClientName = "GELATO" Or ClientName = "INDRANI" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "KREEVE" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then GRNGREY_TOOL.Text = "Finish Inward"

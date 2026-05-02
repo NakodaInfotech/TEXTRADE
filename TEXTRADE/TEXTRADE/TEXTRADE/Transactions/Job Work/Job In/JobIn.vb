@@ -3440,9 +3440,9 @@ NEXTLINE:
 
             If ClientName = "AVIS" Or ClientName = "SMS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Then
                 TXTMTRS.Focus()
-            ElseIf ClientName = "VINTAGEINDIA" Or ClientName = "VALIANT" Then
+            ElseIf ClientName = "VINTAGEINDIA" Or ClientName = "VALIANT" Or ClientName = "MMC" Or ClientName = "SWPL" Then
                 CMBPCSNO.Focus()
-            ElseIf ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "SWPL" Then
+            ElseIf ClientName = "APPLE" Then
                 TXTBALENO.Focus()
             Else
                 CMBPIECETYPE.Focus()
@@ -4272,7 +4272,7 @@ LINE1:
             gqtyunit.ReadOnly = False
         End If
 
-        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "VINTAGEINDIA" Then
+        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "VINTAGEINDIA" Then
             TXTPCSNO.Visible = True
             TXTBALENO.Enabled = False
             txtqty.ReadOnly = True
@@ -4861,7 +4861,7 @@ NEXTLINE:
     Private Sub CMBPCSNO_Validating(sender As Object, e As CancelEventArgs) Handles CMBPCSNO.Validating
         Try
             'CHECKING WHETHER SAME BALENO IS SELECTED IN GRID BELOW OR NOT
-            If ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VINTAGEINDIA" And GRIDDOUBLECLICK = False And CMBPCSNO.Text.Trim <> "" And CMBJONO.Text.Trim <> "" Then
+            If (ClientName = "VALIANT" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VINTAGEINDIA") And GRIDDOUBLECLICK = False And CMBPCSNO.Text.Trim <> "" And CMBJONO.Text.Trim <> "" Then
                 For Each ROW As DataGridViewRow In GRIDJOBIN.Rows
                     If ROW.Cells(GBALENO.Index).Value = CMBPCSNO.Text.Trim Then
                         If MsgBox("Same Pcs No is already Taken, Wish to Proceed with Same PCS No", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
@@ -4881,7 +4881,7 @@ NEXTLINE:
             If CMBPCSNO.Text.Trim <> "" And TXTFROMNO.Text.Trim <> "" And TXTFROMTYPE.Text.Trim <> "" And CMBJONO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
                 Dim OBJCMN As New ClsCommon
                 Dim DT As New DataTable
-                If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "VINTAGEINDIA" Then
+                If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "VINTAGEINDIA" Then
                     DT = OBJCMN.SEARCH(" ISNULL(BALMTRS,0) AS MTRS, ISNULL(DESIGN,'') AS DESIGNNO, ITEMNAME, GRNNO AS FROMSRNO, COLOR, PARTYDESIGNNO ", "", " LOT_VIEW_PCSDETAILS ", " AND DYEINGJOB = 'JOB' AND BALENO = '" & CMBPCSNO.Text.Trim & "' AND GRNNO = " & Val(CMBJONO.Text.Trim) & " AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND YEARID = " & YearId)
 
                     'COMMENTED FOR SOME TIME
@@ -4937,7 +4937,7 @@ NEXTLINE:
 
                     Dim DTR As New DataTable
                     'FETCH PCS TO PCS DETAILS
-                    If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "VINTAGEINDIA" Then
+                    If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "VINTAGEINDIA" Then
                         DTR = OBJCMN.SEARCH(" 'FRESH' AS PIECETYPE, ITEMNAME AS ITEM, ISNULL(FORPROCESS,'') AS PROCESS, '' AS BARCODE, DESIGN AS DESIGNNO, LOTNO, CHALLANNO AS WEAVERCHNO, PARTYNAME AS WEAVERNAME, GRNSRNO AS GRIDSRNO, PURRATE AS RATE, GRNNO AS SRNO, GRNNO AS FROMNO, GRNTYPE AS FROMTYPE, BALENO ", "", " LOT_VIEW_PCSDETAILS ", " AND BALENO NOT IN (SELECT DISTINCT BALENO FROM LOT_VIEW_PCSDETAILS WHERE GRNNO = " & Val(CMBJONO.Text.Trim) & " AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND DYEINGJOB = 'JOB' AND YEARID = " & YearId & " AND BALPCS<=0) AND BALPCS > 0 AND LOTCOMPLETED = 0 AND GRNNO = " & Val(CMBJONO.Text.Trim) & " AND JOBBERNAME = '" & cmbname.Text.Trim & "' AND DYEINGJOB = 'JOB' AND YEARID = " & YearId)
                     Else
                         If DT.Rows(0).Item("TYPE") = "JOBOUT" Then
@@ -5186,4 +5186,18 @@ NEXTLINE:
             Throw ex
         End Try
     End Function
+
+    Private Sub CMBPCSNO_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBPCSNO.KeyDown
+        Try
+            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC" Or ClientName = "SWPL") And e.KeyCode = Keys.F1 And CMBJONO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
+                Dim OBJSELECTPCS As New SelectPcsNoForMatRec
+                OBJSELECTPCS.DYEINGNAME = cmbname.Text.Trim
+                OBJSELECTPCS.LOTNO = CMBJONO.Text.Trim
+                OBJSELECTPCS.ShowDialog()
+                If OBJSELECTPCS.SRNO > 0 Then CMBPCSNO.Text = OBJSELECTPCS.SRNO
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

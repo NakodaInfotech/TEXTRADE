@@ -4830,7 +4830,7 @@ NEXTLINE:
 
     Private Sub CMBBALENO_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBBALENO.KeyDown
         Try
-            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC") And e.KeyCode = Keys.F1 And CMBGRIDLOTNO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
+            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC" Or ClientName = "SWPL") And e.KeyCode = Keys.F1 And CMBGRIDLOTNO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
                 Dim OBJSELECTPCS As New SelectPcsNoForMatRec
                 OBJSELECTPCS.DYEINGNAME = cmbname.Text.Trim
                 OBJSELECTPCS.LOTNO = CMBGRIDLOTNO.Text.Trim

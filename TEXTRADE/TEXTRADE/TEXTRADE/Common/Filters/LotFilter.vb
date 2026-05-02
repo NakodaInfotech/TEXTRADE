@@ -416,7 +416,7 @@ Public Class LotFilter
 
 
             If RBSUMMARY.Checked = True Then
-                If ClientName = "VALIANT" Then
+                If ClientName = "VALIANT" Or ClientName = "MMC" Or ClientName = "SWPL" Then
                     OBJGRN.FRMSTRING = "LOTPCSSUMM"
                     OBJGRN.WHERECLAUSE = Replace(OBJGRN.WHERECLAUSE, "LOT_VIEW", "LOT_VIEW_DETAILS")
                 Else
@@ -588,7 +588,6 @@ Public Class LotFilter
             End If
 
             If ClientName = "MMC" Or ClientName = "SWPL" Then
-                RBSUMMARY.Visible = False
                 RBDETAILS.Checked = True
                 RBREGISTER.Visible = False
                 RBREGISTERSUMM.Visible = False

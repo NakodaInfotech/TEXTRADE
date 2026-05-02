@@ -2792,10 +2792,10 @@ NEXTLINE:
                     End If
 
                     'getting per AND RATE from itemmaster, PER FOR AXIS AND RATE FOR MAN
-                    If ClientName = "AXIS" Or ClientName = "MANS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Then
+                    If ClientName = "AXIS" Or ClientName = "MANS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Or ClientName = "MMC" Then
                         Dim DTPER As DataTable = OBJCMN.SEARCH("ISNULL(UNIT_ABBR,'Mtrs') AS PER, ISNULL(ITEMMASTER.ITEM_RATE,0) AS RATE", "", " ITEMMASTER LEFT OUTER JOIN UNITMASTER ON item_unitid = UNIT_ID ", " AND ITEMMASTER.ITEM_NAME = '" & DTROWPS("ITEMNAME") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
                         If DTPER.Rows.Count > 0 Then
-                            If ClientName = "AXIS" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Or ClientName = "LAXMI" Then If DTPER.Rows(0).Item("PER") = "Pcs" Then PER = "Pcs"
+                            If ClientName = "AXIS" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Or ClientName = "LAXMI" Or ClientName = "MMC" Then If DTPER.Rows(0).Item("PER") = "Pcs" Then PER = "Pcs"
                             If ClientName = "MANS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "REALCORPORATION" Then CCRATE = Val(DTPER.Rows(0).Item("RATE"))
                         End If
                     End If
@@ -3677,7 +3677,7 @@ LINE1:
                     Dim RATE As Double = 0
                     Dim PCS As Double = 0
 
-                    If ClientName = "TCOT" Or ClientName = "KCRAYON" Or ClientName = "SBA" Or ClientName = "AXIS" Or ClientName = "KRISHNA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SSC" Or ClientName = "VINIT" Or ClientName = "RUCHITA" Or ClientName = "SARAYU" Or ClientName = "VALIANT" Or ClientName = "MBB" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "CHINTAN" Or ClientName = "SHAILESHTRADING" Then PCS = Val(DT.Rows(0).Item("PCS")) Else PCS = 1
+                    If ClientName = "TCOT" Or ClientName = "KCRAYON" Or ClientName = "SBA" Or ClientName = "AXIS" Or ClientName = "KRISHNA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SSC" Or ClientName = "VINIT" Or ClientName = "RUCHITA" Or ClientName = "SARAYU" Or ClientName = "VALIANT" Or ClientName = "MBB" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "CHINTAN" Or ClientName = "SHAILESHTRADING" Or ClientName = "MMC" Then PCS = Val(DT.Rows(0).Item("PCS")) Else PCS = 1
 
                     If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                         Dim DTRATE As DataTable = OBJCMN.SEARCH("ISNULL(DESIGN_SALERATE,0) AS SALERATE, ISNULL(DESIGN_WRATE,0) AS WRATE", "", "DESIGNMASTER", " AND DESIGN_NO = '" & DT.Rows(0).Item("DESIGNNO") & "' AND DESIGN_YEARID = " & YearId)
@@ -3687,10 +3687,10 @@ LINE1:
 
 
                     'getting per AND RATE from itemmaster, PER FOR AXIS AND RATE FOR MAN
-                    If ClientName = "AXIS" Or ClientName = "MANS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "SHAILESHTRADING" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Then
+                    If ClientName = "AXIS" Or ClientName = "MANS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "SHAILESHTRADING" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Or ClientName = "MMC" Then
                         Dim DTPER As DataTable = OBJCMN.SEARCH("ISNULL(UNIT_ABBR,'Mtrs') AS PER, ISNULL(ITEMMASTER.ITEM_RATE,0) AS RATE", "", " ITEMMASTER LEFT OUTER JOIN UNITMASTER ON item_unitid = UNIT_ID ", " AND ITEMMASTER.ITEM_NAME = '" & DT.Rows(0).Item("ITEMNAME") & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
                         If DTPER.Rows.Count > 0 Then
-                            If ClientName = "AXIS" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "SHAILESHTRADING" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Then If DTPER.Rows(0).Item("PER") = "Pcs" Then PER = "Pcs"
+                            If ClientName = "AXIS" Or ClientName = "SIDDHGIRI" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "SHAILESHTRADING" Or ClientName = "REALCORPORATION" Or ClientName = "SUPEEMA" Or ClientName = "MMC" Then If DTPER.Rows(0).Item("PER") = "Pcs" Then PER = "Pcs"
                             If ClientName = "MANS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "REALCORPORATION" Then RATE = Val(DTPER.Rows(0).Item("RATE"))
                         End If
                     End If

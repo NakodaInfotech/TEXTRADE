@@ -632,7 +632,7 @@ LINE1:
 
     Sub PRINTREPORT()
         Try
-            If MsgBox("Wish to Print Price List?", MsgBoxStyle.YesNo) = vbNo Then Exit Sub
+            If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = vbNo Then Exit Sub
             Dim OBJSMP As New SampleOrderDesign
             OBJSMP.MdiParent = MDIMain
             OBJSMP.FRMSTRING = "SAMPLEPRICELIST"

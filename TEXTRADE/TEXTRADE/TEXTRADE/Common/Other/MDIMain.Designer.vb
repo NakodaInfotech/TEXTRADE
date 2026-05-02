@@ -735,6 +735,7 @@ Partial Class MDIMain
         Me.FinishedOutStockDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GreyOutStockDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator352 = New System.Windows.Forms.ToolStripSeparator()
+        Me.YARNOUTSTOCK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator208 = New System.Windows.Forms.ToolStripSeparator()
         Me.STOCKREPORTS_TOOL = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNREPORTS_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1355,7 +1356,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.YARNOUTSTOCK_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -4688,25 +4688,26 @@ Partial Class MDIMain
         Me.SAMPLENOTE_MASTER.Name = "SAMPLENOTE_MASTER"
         Me.SAMPLENOTE_MASTER.Size = New System.Drawing.Size(239, 22)
         Me.SAMPLENOTE_MASTER.Text = "Sample Note"
+        Me.SAMPLENOTE_MASTER.Visible = False
         '
         'SAMPLENOTEADD
         '
         Me.SAMPLENOTEADD.Enabled = False
         Me.SAMPLENOTEADD.Name = "SAMPLENOTEADD"
-        Me.SAMPLENOTEADD.Size = New System.Drawing.Size(168, 22)
+        Me.SAMPLENOTEADD.Size = New System.Drawing.Size(180, 22)
         Me.SAMPLENOTEADD.Text = "&Add New Entry"
         '
         'SAMPLENOTEEDIT
         '
         Me.SAMPLENOTEEDIT.Enabled = False
         Me.SAMPLENOTEEDIT.Name = "SAMPLENOTEEDIT"
-        Me.SAMPLENOTEEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.SAMPLENOTEEDIT.Size = New System.Drawing.Size(180, 22)
         Me.SAMPLENOTEEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator49
         '
         Me.ToolStripSeparator49.Name = "ToolStripSeparator49"
-        Me.ToolStripSeparator49.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator49.Size = New System.Drawing.Size(177, 6)
         '
         'SAMPLEPRICELIST_MASTER
         '
@@ -4720,20 +4721,20 @@ Partial Class MDIMain
         '
         Me.SAMPLEPRICELISTADD.Enabled = False
         Me.SAMPLEPRICELISTADD.Name = "SAMPLEPRICELISTADD"
-        Me.SAMPLEPRICELISTADD.Size = New System.Drawing.Size(186, 22)
-        Me.SAMPLEPRICELISTADD.Text = "&Add New Price List"
+        Me.SAMPLEPRICELISTADD.Size = New System.Drawing.Size(180, 22)
+        Me.SAMPLEPRICELISTADD.Text = "&Add New Entry"
         '
         'SAMPLEPRICELISTEDIT
         '
         Me.SAMPLEPRICELISTEDIT.Enabled = False
         Me.SAMPLEPRICELISTEDIT.Name = "SAMPLEPRICELISTEDIT"
-        Me.SAMPLEPRICELISTEDIT.Size = New System.Drawing.Size(186, 22)
-        Me.SAMPLEPRICELISTEDIT.Text = "&Edit Existing Price Lst"
+        Me.SAMPLEPRICELISTEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.SAMPLEPRICELISTEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator188
         '
         Me.ToolStripSeparator188.Name = "ToolStripSeparator188"
-        Me.ToolStripSeparator188.Size = New System.Drawing.Size(183, 6)
+        Me.ToolStripSeparator188.Size = New System.Drawing.Size(177, 6)
         '
         'ToolStripSeparator190
         '
@@ -5934,6 +5935,12 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator352.Name = "ToolStripSeparator352"
         Me.ToolStripSeparator352.Size = New System.Drawing.Size(215, 6)
+        '
+        'YARNOUTSTOCK_MASTER
+        '
+        Me.YARNOUTSTOCK_MASTER.Name = "YARNOUTSTOCK_MASTER"
+        Me.YARNOUTSTOCK_MASTER.Size = New System.Drawing.Size(218, 22)
+        Me.YARNOUTSTOCK_MASTER.Text = "Yarn Out Stock Details"
         '
         'ToolStripSeparator208
         '
@@ -9881,12 +9888,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'YARNOUTSTOCK_MASTER
-        '
-        Me.YARNOUTSTOCK_MASTER.Name = "YARNOUTSTOCK_MASTER"
-        Me.YARNOUTSTOCK_MASTER.Size = New System.Drawing.Size(218, 22)
-        Me.YARNOUTSTOCK_MASTER.Text = "Yarn Out Stock Details"
         '
         'MDIMain
         '
