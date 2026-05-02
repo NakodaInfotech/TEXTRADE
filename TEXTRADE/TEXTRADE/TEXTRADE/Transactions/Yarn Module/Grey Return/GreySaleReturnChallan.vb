@@ -409,70 +409,6 @@ Public Class GreySaleReturnChallan
                 Next
 
 
-                Dim WHOLESALEBARCODE As Integer = 0
-                If ClientName = "CC" Or ClientName = "C3" Then WHOLESALEBARCODE = MsgBox("Wish to Print Wholesale Barcode?", MsgBoxStyle.YesNo)
-
-
-                Dim TEMPHEADER As String = ""
-                If ClientName = "YASHVI" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type (M/N/Y/B)")
-                    If TEMPHEADER <> "M" And TEMPHEADER <> "N" And TEMPHEADER <> "Y" And TEMPHEADER <> "B" Then Exit Sub
-                    If TEMPHEADER = "M" Then TEMPHEADER = "MAFATLAL"
-                    If TEMPHEADER = "N" Then TEMPHEADER = ""
-                End If
-
-                If ClientName = "GELATO" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR MRP" & Chr(13) & "3 FOR WSP")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                End If
-
-                If ClientName = "DAKSH" Or ClientName = "KUNAL" Or ClientName = "VALIANT" Or ClientName = "MILUXE" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-                If ClientName = "SST" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED" & Chr(13) & "3 FOR MRP")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                End If
-
-                If ClientName = "MANSI" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR PRE PRINTED" & Chr(13) & "3 FOR MRP" & Chr(13) & "4 FOR 100 X 50")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" Then Exit Sub
-                End If
-
-                If ClientName = "RAJKRIPA" Or ClientName = "MOHATUL" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR LUMP" & Chr(13) & "2 FOR CUTPACK")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-                If ClientName = "MANS" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR SALVATROE" & Chr(13) & "2 FOR DONBION" & Chr(13) & "2 FOR OCM")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
-                End If
-
-                If ClientName = "AXIS" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR PCS" & Chr(13) & "2 FOR MTRS")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-                If ClientName = "KRISHNA" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SIMPLEX" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR NORMAL" & Chr(13) & "2 FOR BOX STICKER")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
-                End If
-
-
-                Dim SUPRIYAHEADER As String = ""
-                If ClientName = "SUPRIYA" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type (1/2/3/4/5/6/7)")
-                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" And TEMPHEADER <> "4" And TEMPHEADER <> "5" And TEMPHEADER <> "6" And TEMPHEADER <> "7" Then Exit Sub
-                    If TEMPHEADER = "1" Or TEMPHEADER = "6" Then SUPRIYAHEADER = "ROYAL TEX"
-                    If TEMPHEADER = "2" Or TEMPHEADER = "7" Then SUPRIYAHEADER = "DEEP BLUE"
-                    If TEMPHEADER = "3" Then SUPRIYAHEADER = ""
-                    If TEMPHEADER = "4" Then SUPRIYAHEADER = "KAMDHENU"
-                    If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
-                End If
-
                 For Each ROW As DataGridViewRow In GRIDSR.Rows
                     'TO PRINT BARCODE FROM SELECTED SRNO
                     If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then
@@ -480,9 +416,8 @@ Public Class GreySaleReturnChallan
                     End If
 
                     Dim TEMPNAME As String = ""
-                    If ClientName = "RAJKRIPA" Or ClientName = "MOMAI" Then TEMPNAME = CMBNAME.Text.Trim
 
-                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, TXTLOTNO.Text.Trim, ROW.Cells(GBALENO.Index).Value, ROW.Cells(gdesc.Index).Value, Val(ROW.Cells(GMTRS.Index).Value), Val(ROW.Cells(gQty.Index).Value), Val(ROW.Cells(gcut.Index).Value), ROW.Cells(GRACK.Index).Value, TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, "", TEMPNAME, ROW.Cells(GSHELF.Index).Value)
+                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, ROW.Cells(gitemname.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(gcolor.Index).Value, ROW.Cells(gqtyunit.Index).Value, TXTLOTNO.Text.Trim, ROW.Cells(GBALENO.Index).Value, ROW.Cells(gdesc.Index).Value, Val(ROW.Cells(GMTRS.Index).Value), Val(ROW.Cells(gQty.Index).Value), Val(ROW.Cells(gcut.Index).Value), ROW.Cells(GRACK.Index).Value, "", "", "", "", TEMPNAME, ROW.Cells(GSHELF.Index).Value)
                     Dim OBJCMN As New ClsCommon
                     dttable = OBJCMN.Execute_Any_String("UPDATE GREYSALERETURNCHALLAN SET GSRCH_BARCODEPRINTED = 1 WHERE GSRCH_NO = " & TEMPSRCHNO & " AND GSRCH_YEARID = " & YearId, "", "")
                     LBLBARCODEPRINTED.Visible = True
