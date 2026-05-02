@@ -3295,6 +3295,18 @@
     <Compile Include="Transactions\Yarn Module\Grey Job\GreyJobOutDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Return\GreySaleReturnChallan.Designer.vb">
+      <DependentUpon>GreySaleReturnChallan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Return\GreySaleReturnChallan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Return\GreySaleReturnChallanDetails.Designer.vb">
+      <DependentUpon>GreySaleReturnChallanDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Grey Return\GreySaleReturnChallanDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Grey Stock Reco\GreyStockReco.Designer.vb">
       <DependentUpon>GreyStockReco.vb</DependentUpon>
     </Compile>
@@ -11072,6 +11084,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Job\GreyJobOutDetails.resx">
       <DependentUpon>GreyJobOutDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey Return\GreySaleReturnChallan.resx">
+      <DependentUpon>GreySaleReturnChallan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Grey Return\GreySaleReturnChallanDetails.resx">
+      <DependentUpon>GreySaleReturnChallanDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Grey Stock Reco\GreyStockReco.resx">
       <DependentUpon>GreyStockReco.vb</DependentUpon>

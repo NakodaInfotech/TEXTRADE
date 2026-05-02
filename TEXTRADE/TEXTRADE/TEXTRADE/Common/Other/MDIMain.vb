@@ -12555,4 +12555,24 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub GREYSALERETURNCHALLAN_ADD_Click(sender As Object, e As EventArgs) Handles GREYSALERETURNCHALLAN_ADD.Click
+        Try
+            Dim OBJGDN As New GreySaleReturnChallan
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GREYSALERETURNCHALLAN_EDIT_Click(sender As Object, e As EventArgs) Handles GREYSALERETURNCHALLAN_EDIT.Click
+        Try
+            Dim OBJGDN As New GreySaleReturnChallanDetails
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
