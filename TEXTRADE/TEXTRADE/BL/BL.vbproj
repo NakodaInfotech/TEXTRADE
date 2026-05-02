@@ -427,6 +427,7 @@
     <Compile Include="Transactions\Yarn Modules\Grey GDN\ClsGreyGDN.vb" />
     <Compile Include="Transactions\Yarn Modules\Grey Job Work\ClsGreyJobIn.vb" />
     <Compile Include="Transactions\Yarn Modules\Grey Job Work\ClsGreyJobOut.vb" />
+    <Compile Include="Transactions\Yarn Modules\Grey Return\ClsGreySaleReturnChallan.vb" />
     <Compile Include="Transactions\Yarn Modules\Grey Stock Adjustment\ClsGreyStockAdjustment.vb" />
     <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollIssueToSizer.vb" />
     <Compile Include="Transactions\Yarn Modules\Rolls\ClsRollsRecdFromWarper.vb" />
