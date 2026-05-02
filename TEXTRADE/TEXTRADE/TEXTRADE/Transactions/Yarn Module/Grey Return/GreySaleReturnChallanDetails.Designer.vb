@@ -256,6 +256,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GRATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GRATE.FieldName = "RATE"
         Me.GRATE.Name = "GRATE"
+        Me.GRATE.OptionsColumn.AllowEdit = False
         Me.GRATE.Visible = True
         Me.GRATE.VisibleIndex = 12
         '
@@ -266,6 +267,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GAMOUNT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GAMOUNT.FieldName = "AMOUNT"
         Me.GAMOUNT.Name = "GAMOUNT"
+        Me.GAMOUNT.OptionsColumn.AllowEdit = False
         Me.GAMOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GAMOUNT.Visible = True
         Me.GAMOUNT.VisibleIndex = 14
@@ -275,6 +277,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GGRIDREMARKS.Caption = "Grid Remarks"
         Me.GGRIDREMARKS.FieldName = "GRIDREMARKS"
         Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
+        Me.GGRIDREMARKS.OptionsColumn.AllowEdit = False
         Me.GGRIDREMARKS.Visible = True
         Me.GGRIDREMARKS.VisibleIndex = 16
         '
@@ -304,6 +307,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GNOOFBALES.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GNOOFBALES.FieldName = "NOOFBALES"
         Me.GNOOFBALES.Name = "GNOOFBALES"
+        Me.GNOOFBALES.OptionsColumn.AllowEdit = False
         Me.GNOOFBALES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GNOOFBALES.Visible = True
         Me.GNOOFBALES.VisibleIndex = 18
@@ -313,6 +317,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GTRANSPORTNAME.Caption = "Transport Name"
         Me.GTRANSPORTNAME.FieldName = "TRANSNAME"
         Me.GTRANSPORTNAME.Name = "GTRANSPORTNAME"
+        Me.GTRANSPORTNAME.OptionsColumn.AllowEdit = False
         Me.GTRANSPORTNAME.Visible = True
         Me.GTRANSPORTNAME.VisibleIndex = 19
         Me.GTRANSPORTNAME.Width = 120
@@ -322,6 +327,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GLRNO.Caption = "LR No"
         Me.GLRNO.FieldName = "LRNO"
         Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.OptionsColumn.AllowEdit = False
         Me.GLRNO.Visible = True
         Me.GLRNO.VisibleIndex = 20
         '
@@ -332,6 +338,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GLRDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GLRDATE.FieldName = "LRDATE"
         Me.GLRDATE.Name = "GLRDATE"
+        Me.GLRDATE.OptionsColumn.AllowEdit = False
         Me.GLRDATE.Visible = True
         Me.GLRDATE.VisibleIndex = 21
         '
@@ -350,6 +357,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GPARTYWHATSAAP.Caption = "PartyWhatsaap No"
         Me.GPARTYWHATSAAP.FieldName = "PARTYWHATSAAP"
         Me.GPARTYWHATSAAP.Name = "GPARTYWHATSAAP"
+        Me.GPARTYWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GPARTYWHATSAAP.Visible = True
         Me.GPARTYWHATSAAP.VisibleIndex = 23
         '
@@ -358,6 +366,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GPARTYEMAIL.Caption = "Party Email ID"
         Me.GPARTYEMAIL.FieldName = "PARTYEMAIL"
         Me.GPARTYEMAIL.Name = "GPARTYEMAIL"
+        Me.GPARTYEMAIL.OptionsColumn.AllowEdit = False
         Me.GPARTYEMAIL.Visible = True
         Me.GPARTYEMAIL.VisibleIndex = 24
         '
@@ -366,6 +375,7 @@ Partial Class GreySaleReturnChallanDetails
         Me.GPER.Caption = "Per"
         Me.GPER.FieldName = "PER"
         Me.GPER.Name = "GPER"
+        Me.GPER.OptionsColumn.AllowEdit = False
         Me.GPER.Visible = True
         Me.GPER.VisibleIndex = 13
         '

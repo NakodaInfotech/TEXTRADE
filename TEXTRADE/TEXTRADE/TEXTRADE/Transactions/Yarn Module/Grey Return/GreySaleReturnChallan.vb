@@ -1640,7 +1640,7 @@ LINE1:
         Try
             If Val(TXTFETCHGDNNO.Text.Trim) = 0 Then Exit Sub
             If EDIT = True Then Exit Sub
-            Dim OBJGDN As New ClsGDN()
+            Dim OBJGDN As New ClsGreyGDN()
             Dim DTTABLE As DataTable = OBJGDN.SELECTGDN(Val(TXTFETCHGDNNO.Text.Trim), CmpId, 0, YearId)
             If DTTABLE.Rows.Count > 0 Then
                 For Each DR As DataRow In DTTABLE.Rows
