@@ -133,7 +133,11 @@ Public Class GDN
         TXTDESCRIPTION.Clear()
         CMBDESIGN.Text = ""
         CMBCOLOR.Text = ""
-        TXTBALENO.Clear()
+        If ClientName = "VINTAGEINDIA" Then
+            GETMAXBALENO()
+        Else
+            TXTBALENO.Clear()
+        End If
         TXTPCS.Clear()
         TXTCUT.Clear()
         TXTMTRS.Clear()
@@ -3200,7 +3204,14 @@ LINE1:
             TXTDESCRIPTION.Clear()
             CMBDESIGN.Text = ""
             CMBCOLOR.Text = ""
-            TXTBALENO.Clear()
+            If ClientName = "VINTAGEINDIA" Then
+                'TXTBALENO.Text = TXTBALENO.Text.Trim + 1
+                Dim CurrentNo As Integer = Val(TXTBALENO.Text.Trim)
+                Dim NextNo As Integer = ValidBaleNo(CurrentNo + 1)
+                TXTBALENO.Text = NextNo
+            Else
+                TXTBALENO.Clear()
+            End If
             TXTPCS.Clear()
             TXTCUT.Clear()
             TXTMTRS.Clear()
@@ -3853,4 +3864,44 @@ LINE1:
         End Try
     End Sub
 
+    Sub GETMAXBALENO()
+        Try
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(MAX(TRY_CAST(GDN_BALENO AS INT)), 0) + 1 AS NEXTBALENO", "", "GDN_DESC", " AND ISNULL(GDN_BALENO, '') <> '' AND TRY_CAST(GDN_BALENO AS INT) IS NOT NULL AND GDN_YEARID = " & YearId)
+
+            If DT.Rows.Count > 0 Then
+                TXTBALENO.Text = DT.Rows(0).Item("NEXTBALENO")
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Function CHECKBALENO(ByVal BaleNo As String) As Boolean
+        Try
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("GDN_BALENO", "", "GDN_DESC",
+                                                " AND GDN_BALENO = '" & BaleNo & "' AND GDN_YEARID = " & YearId)
+
+            If DT.Rows.Count > 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+    Function ValidBaleNo(ByVal CurrentBaleNo As Integer) As Integer
+        Try
+            Dim NextNo As Integer = CurrentBaleNo
+
+            Do While CHECKBALENO(NextNo)
+                NextNo += 1
+            Loop
+
+            Return NextNo
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
 End Class
