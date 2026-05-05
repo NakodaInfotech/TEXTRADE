@@ -596,7 +596,7 @@ Public Class InvoiceDetails
                 GTOCITY.VisibleIndex = GFROMCITY.VisibleIndex + 1
             End If
 
-            If ClientName = "ABHEE" Then
+            If ClientName = "ABHEE" Or ClientName = "MASHOK" Then
                 GCHANGEDATE.Visible = True
                 GCHANGEDATE.VisibleIndex = gdate.VisibleIndex + 1
             End If
@@ -605,6 +605,7 @@ Public Class InvoiceDetails
             Throw ex
         End Try
     End Sub
+
     Public Sub MergePDFFiles(ByVal inputFiles As List(Of String), ByVal outputFile As String)
 
         Dim document As New Document()
