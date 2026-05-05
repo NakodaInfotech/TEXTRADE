@@ -91,6 +91,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCREATED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHANGEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTDSAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -102,7 +103,7 @@ Partial Class PurchaseInvoiceDetails
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GTDSAMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHARGESNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,7 +209,7 @@ Partial Class PurchaseInvoiceDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GAGENT, Me.GPARTYBILLNO, Me.GCHALLANLOTNO, Me.GLRNO, Me.GEWAY, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GTRANSPORT, Me.GCOMPLAINT, Me.GCOMPLANTBY, Me.GCOMPLAINTDATE, Me.GCREATED, Me.GCHANGEDATE, Me.GTDSAMT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.gname, Me.GGSTIN, Me.GCITY, Me.GSTATENAME, Me.GSTATECODE, Me.GAGENT, Me.GPARTYBILLNO, Me.GCHALLANLOTNO, Me.GLRNO, Me.GEWAY, Me.GTOTALPCS, Me.GTOTALMTRS, Me.GBILLAMT, Me.GCHARGES, Me.GCHARGESNAME, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GTOTALCGSTAMT, Me.GTOTALSGSTAMT, Me.GTOTALIGSTAMT, Me.GTOTALWITHGST, Me.GAPPLYTCS, Me.GTCSPER, Me.GTCSAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GBROKERAGEPER, Me.GBROKERAGE, Me.GDISCPER, Me.GDISCOUNT, Me.GCDPER, Me.GCASHDISC, Me.GSPECIALREMARK, Me.GCOSTCENTERNAME, Me.GCREATEDBY, Me.GTRANSPORT, Me.GCOMPLAINT, Me.GCOMPLANTBY, Me.GCOMPLAINTDATE, Me.GCREATED, Me.GCHANGEDATE, Me.GTDSAMT})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Images = Me.imageList1
         Me.gridbill.Name = "gridbill"
@@ -376,7 +377,7 @@ Partial Class PurchaseInvoiceDetails
         '
         'GCHARGES
         '
-        Me.GCHARGES.Caption = "Charges"
+        Me.GCHARGES.Caption = "Chgs Amt"
         Me.GCHARGES.FieldName = "CHARGES"
         Me.GCHARGES.Name = "GCHARGES"
         Me.GCHARGES.OptionsColumn.AllowEdit = False
@@ -410,7 +411,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GDISAMT.OptionsColumn.AllowEdit = False
         Me.GDISAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GDISAMT.Visible = True
-        Me.GDISAMT.VisibleIndex = 32
+        Me.GDISAMT.VisibleIndex = 33
         '
         'GSPDISCAMT
         '
@@ -419,7 +420,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GSPDISCAMT.Name = "GSPDISCAMT"
         Me.GSPDISCAMT.OptionsColumn.AllowEdit = False
         Me.GSPDISCAMT.Visible = True
-        Me.GSPDISCAMT.VisibleIndex = 31
+        Me.GSPDISCAMT.VisibleIndex = 32
         '
         'GTOTALTAXABLEAMT
         '
@@ -429,7 +430,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GTOTALTAXABLEAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALTAXABLEAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALTAXABLEAMT.Visible = True
-        Me.GTOTALTAXABLEAMT.VisibleIndex = 16
+        Me.GTOTALTAXABLEAMT.VisibleIndex = 17
         Me.GTOTALTAXABLEAMT.Width = 80
         '
         'GTOTALCGSTAMT
@@ -440,7 +441,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GTOTALCGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALCGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALCGSTAMT.Visible = True
-        Me.GTOTALCGSTAMT.VisibleIndex = 17
+        Me.GTOTALCGSTAMT.VisibleIndex = 18
         Me.GTOTALCGSTAMT.Width = 80
         '
         'GTOTALSGSTAMT
@@ -451,7 +452,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GTOTALSGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALSGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALSGSTAMT.Visible = True
-        Me.GTOTALSGSTAMT.VisibleIndex = 18
+        Me.GTOTALSGSTAMT.VisibleIndex = 19
         Me.GTOTALSGSTAMT.Width = 80
         '
         'GTOTALIGSTAMT
@@ -462,7 +463,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GTOTALIGSTAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALIGSTAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALIGSTAMT.Visible = True
-        Me.GTOTALIGSTAMT.VisibleIndex = 19
+        Me.GTOTALIGSTAMT.VisibleIndex = 20
         Me.GTOTALIGSTAMT.Width = 80
         '
         'GTOTALWITHGST
@@ -482,7 +483,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GAPPLYTCS.Name = "GAPPLYTCS"
         Me.GAPPLYTCS.OptionsColumn.AllowEdit = False
         Me.GAPPLYTCS.Visible = True
-        Me.GAPPLYTCS.VisibleIndex = 20
+        Me.GAPPLYTCS.VisibleIndex = 21
         '
         'GTCSPER
         '
@@ -493,7 +494,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GTCSPER.Name = "GTCSPER"
         Me.GTCSPER.OptionsColumn.AllowEdit = False
         Me.GTCSPER.Visible = True
-        Me.GTCSPER.VisibleIndex = 21
+        Me.GTCSPER.VisibleIndex = 22
         '
         'GTCSAMT
         '
@@ -505,7 +506,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GTCSAMT.OptionsColumn.AllowEdit = False
         Me.GTCSAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTCSAMT.Visible = True
-        Me.GTCSAMT.VisibleIndex = 22
+        Me.GTCSAMT.VisibleIndex = 23
         '
         'GTOTALAMT
         '
@@ -517,7 +518,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GTOTALAMT.OptionsColumn.AllowEdit = False
         Me.GTOTALAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GTOTALAMT.Visible = True
-        Me.GTOTALAMT.VisibleIndex = 23
+        Me.GTOTALAMT.VisibleIndex = 24
         Me.GTOTALAMT.Width = 80
         '
         'GRETURN
@@ -529,7 +530,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GRETURN.Name = "GRETURN"
         Me.GRETURN.OptionsColumn.AllowEdit = False
         Me.GRETURN.Visible = True
-        Me.GRETURN.VisibleIndex = 24
+        Me.GRETURN.VisibleIndex = 25
         Me.GRETURN.Width = 80
         '
         'GPAIDAMT
@@ -541,7 +542,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GPAIDAMT.Name = "GPAIDAMT"
         Me.GPAIDAMT.OptionsColumn.AllowEdit = False
         Me.GPAIDAMT.Visible = True
-        Me.GPAIDAMT.VisibleIndex = 25
+        Me.GPAIDAMT.VisibleIndex = 26
         Me.GPAIDAMT.Width = 80
         '
         'GBALANCE
@@ -553,7 +554,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GBALANCE.Name = "GBALANCE"
         Me.GBALANCE.OptionsColumn.AllowEdit = False
         Me.GBALANCE.Visible = True
-        Me.GBALANCE.VisibleIndex = 26
+        Me.GBALANCE.VisibleIndex = 27
         Me.GBALANCE.Width = 80
         '
         'GREMARKS
@@ -563,7 +564,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.OptionsColumn.AllowEdit = False
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 27
+        Me.GREMARKS.VisibleIndex = 28
         Me.GREMARKS.Width = 145
         '
         'GBILLDISPUTE
@@ -573,7 +574,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GBILLDISPUTE.Name = "GBILLDISPUTE"
         Me.GBILLDISPUTE.OptionsColumn.AllowEdit = False
         Me.GBILLDISPUTE.Visible = True
-        Me.GBILLDISPUTE.VisibleIndex = 28
+        Me.GBILLDISPUTE.VisibleIndex = 29
         Me.GBILLDISPUTE.Width = 70
         '
         'GBILLCHECKED
@@ -583,7 +584,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GBILLCHECKED.Name = "GBILLCHECKED"
         Me.GBILLCHECKED.OptionsColumn.AllowEdit = False
         Me.GBILLCHECKED.Visible = True
-        Me.GBILLCHECKED.VisibleIndex = 29
+        Me.GBILLCHECKED.VisibleIndex = 30
         Me.GBILLCHECKED.Width = 70
         '
         'GPURTYPE
@@ -593,7 +594,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GPURTYPE.Name = "GPURTYPE"
         Me.GPURTYPE.OptionsColumn.AllowEdit = False
         Me.GPURTYPE.Visible = True
-        Me.GPURTYPE.VisibleIndex = 30
+        Me.GPURTYPE.VisibleIndex = 31
         '
         'GPARTYWHATSAAP
         '
@@ -602,7 +603,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GPARTYWHATSAAP.Name = "GPARTYWHATSAAP"
         Me.GPARTYWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GPARTYWHATSAAP.Visible = True
-        Me.GPARTYWHATSAAP.VisibleIndex = 33
+        Me.GPARTYWHATSAAP.VisibleIndex = 34
         '
         'GPARTYEMAIL
         '
@@ -611,7 +612,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GPARTYEMAIL.Name = "GPARTYEMAIL"
         Me.GPARTYEMAIL.OptionsColumn.AllowEdit = False
         Me.GPARTYEMAIL.Visible = True
-        Me.GPARTYEMAIL.VisibleIndex = 34
+        Me.GPARTYEMAIL.VisibleIndex = 35
         '
         'GAGENTWHATSAAP
         '
@@ -620,7 +621,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GAGENTWHATSAAP.Name = "GAGENTWHATSAAP"
         Me.GAGENTWHATSAAP.OptionsColumn.AllowEdit = False
         Me.GAGENTWHATSAAP.Visible = True
-        Me.GAGENTWHATSAAP.VisibleIndex = 35
+        Me.GAGENTWHATSAAP.VisibleIndex = 36
         '
         'GAGENTEMAIL
         '
@@ -629,7 +630,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GAGENTEMAIL.Name = "GAGENTEMAIL"
         Me.GAGENTEMAIL.OptionsColumn.AllowEdit = False
         Me.GAGENTEMAIL.Visible = True
-        Me.GAGENTEMAIL.VisibleIndex = 36
+        Me.GAGENTEMAIL.VisibleIndex = 37
         '
         'GBROKERAGEPER
         '
@@ -640,7 +641,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GBROKERAGEPER.Name = "GBROKERAGEPER"
         Me.GBROKERAGEPER.OptionsColumn.AllowEdit = False
         Me.GBROKERAGEPER.Visible = True
-        Me.GBROKERAGEPER.VisibleIndex = 37
+        Me.GBROKERAGEPER.VisibleIndex = 38
         '
         'GBROKERAGE
         '
@@ -652,7 +653,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GBROKERAGE.OptionsColumn.AllowEdit = False
         Me.GBROKERAGE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBROKERAGE.Visible = True
-        Me.GBROKERAGE.VisibleIndex = 38
+        Me.GBROKERAGE.VisibleIndex = 39
         '
         'GDISCPER
         '
@@ -663,7 +664,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GDISCPER.Name = "GDISCPER"
         Me.GDISCPER.OptionsColumn.AllowEdit = False
         Me.GDISCPER.Visible = True
-        Me.GDISCPER.VisibleIndex = 39
+        Me.GDISCPER.VisibleIndex = 40
         '
         'GDISCOUNT
         '
@@ -675,7 +676,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GDISCOUNT.OptionsColumn.AllowEdit = False
         Me.GDISCOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GDISCOUNT.Visible = True
-        Me.GDISCOUNT.VisibleIndex = 40
+        Me.GDISCOUNT.VisibleIndex = 41
         '
         'GCDPER
         '
@@ -686,7 +687,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCDPER.Name = "GCDPER"
         Me.GCDPER.OptionsColumn.AllowEdit = False
         Me.GCDPER.Visible = True
-        Me.GCDPER.VisibleIndex = 41
+        Me.GCDPER.VisibleIndex = 42
         '
         'GCASHDISC
         '
@@ -698,7 +699,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCASHDISC.OptionsColumn.AllowEdit = False
         Me.GCASHDISC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GCASHDISC.Visible = True
-        Me.GCASHDISC.VisibleIndex = 42
+        Me.GCASHDISC.VisibleIndex = 43
         '
         'GSPECIALREMARK
         '
@@ -707,7 +708,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GSPECIALREMARK.Name = "GSPECIALREMARK"
         Me.GSPECIALREMARK.OptionsColumn.AllowEdit = False
         Me.GSPECIALREMARK.Visible = True
-        Me.GSPECIALREMARK.VisibleIndex = 43
+        Me.GSPECIALREMARK.VisibleIndex = 44
         '
         'GCOSTCENTERNAME
         '
@@ -716,7 +717,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCOSTCENTERNAME.Name = "GCOSTCENTERNAME"
         Me.GCOSTCENTERNAME.OptionsColumn.AllowEdit = False
         Me.GCOSTCENTERNAME.Visible = True
-        Me.GCOSTCENTERNAME.VisibleIndex = 44
+        Me.GCOSTCENTERNAME.VisibleIndex = 45
         '
         'GCREATEDBY
         '
@@ -725,7 +726,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCREATEDBY.Name = "GCREATEDBY"
         Me.GCREATEDBY.OptionsColumn.AllowEdit = False
         Me.GCREATEDBY.Visible = True
-        Me.GCREATEDBY.VisibleIndex = 45
+        Me.GCREATEDBY.VisibleIndex = 46
         '
         'GTRANSPORT
         '
@@ -734,7 +735,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.OptionsColumn.AllowEdit = False
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 46
+        Me.GTRANSPORT.VisibleIndex = 47
         Me.GTRANSPORT.Width = 130
         '
         'GCOMPLAINT
@@ -744,7 +745,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCOMPLAINT.Name = "GCOMPLAINT"
         Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
         Me.GCOMPLAINT.Visible = True
-        Me.GCOMPLAINT.VisibleIndex = 47
+        Me.GCOMPLAINT.VisibleIndex = 48
         '
         'GCOMPLANTBY
         '
@@ -753,7 +754,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCOMPLANTBY.Name = "GCOMPLANTBY"
         Me.GCOMPLANTBY.OptionsColumn.AllowEdit = False
         Me.GCOMPLANTBY.Visible = True
-        Me.GCOMPLANTBY.VisibleIndex = 48
+        Me.GCOMPLANTBY.VisibleIndex = 49
         '
         'GCOMPLAINTDATE
         '
@@ -762,7 +763,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
         Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
         Me.GCOMPLAINTDATE.Visible = True
-        Me.GCOMPLAINTDATE.VisibleIndex = 49
+        Me.GCOMPLAINTDATE.VisibleIndex = 50
         '
         'GCREATED
         '
@@ -772,7 +773,7 @@ Partial Class PurchaseInvoiceDetails
         Me.GCREATED.FieldName = "CREATED"
         Me.GCREATED.Name = "GCREATED"
         Me.GCREATED.Visible = True
-        Me.GCREATED.VisibleIndex = 50
+        Me.GCREATED.VisibleIndex = 51
         Me.GCREATED.Width = 100
         '
         'GCHANGEDATE
@@ -782,6 +783,16 @@ Partial Class PurchaseInvoiceDetails
         Me.GCHANGEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GCHANGEDATE.FieldName = "CHANGEDATE"
         Me.GCHANGEDATE.Name = "GCHANGEDATE"
+        '
+        'GTDSAMT
+        '
+        Me.GTDSAMT.Caption = "TDS Amt"
+        Me.GTDSAMT.DisplayFormat.FormatString = "0.00"
+        Me.GTDSAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTDSAMT.FieldName = "TDSAMT"
+        Me.GTDSAMT.Name = "GTDSAMT"
+        Me.GTDSAMT.Visible = True
+        Me.GTDSAMT.VisibleIndex = 52
         '
         'imageList1
         '
@@ -922,15 +933,14 @@ Partial Class PurchaseInvoiceDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
-        'GTDSAMT
+        'GCHARGESNAME
         '
-        Me.GTDSAMT.Caption = "TDS Amt"
-        Me.GTDSAMT.DisplayFormat.FormatString = "0.00"
-        Me.GTDSAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTDSAMT.FieldName = "TDSAMT"
-        Me.GTDSAMT.Name = "GTDSAMT"
-        Me.GTDSAMT.Visible = True
-        Me.GTDSAMT.VisibleIndex = 51
+        Me.GCHARGESNAME.Caption = "Charges"
+        Me.GCHARGESNAME.FieldName = "CHGSDTLS"
+        Me.GCHARGESNAME.Name = "GCHARGESNAME"
+        Me.GCHARGESNAME.Visible = True
+        Me.GCHARGESNAME.VisibleIndex = 16
+        Me.GCHARGESNAME.Width = 200
         '
         'PurchaseInvoiceDetails
         '
@@ -1031,4 +1041,5 @@ Partial Class PurchaseInvoiceDetails
     Friend WithEvents GCREATED As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHANGEDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTDSAMT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCHARGESNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

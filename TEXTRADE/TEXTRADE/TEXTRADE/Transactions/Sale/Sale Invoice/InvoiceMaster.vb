@@ -6726,6 +6726,7 @@ NORATE:
                         LRDATE.Text = Convert.ToDateTime(INVOICEDATE.Text).Date
                         GPDATE.Text = Convert.ToDateTime(INVOICEDATE.Text).Date
                     End If
+                    If ClientName <> "ABHEE" And EDIT = False Then CHANGEDATE.Text = INVOICEDATE.Text
                     GETHSNCODE()
                 End If
             End If

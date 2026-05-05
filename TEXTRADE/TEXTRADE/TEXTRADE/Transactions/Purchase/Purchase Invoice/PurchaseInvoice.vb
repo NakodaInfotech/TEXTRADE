@@ -1,14 +1,7 @@
 ﻿
 
 Imports BL
-Imports System.IO
-Imports System.Net
 Imports System.ComponentModel
-Imports CrystalDecisions.CrystalReports.Engine
-Imports CrystalDecisions.Shared
-Imports RestSharp
-Imports Newtonsoft.Json
-Imports TaxProEInvoice.API
 
 Public Class PurchaseMaster
 
@@ -4265,6 +4258,7 @@ LINE1:
                         BILLDATE.Text = DTPARTYBILLDATE.Text
                         lrdate.Value = Convert.ToDateTime(DTPARTYBILLDATE.Text).Date
                         CHALLANDATE.Value = Convert.ToDateTime(DTPARTYBILLDATE.Text).Date
+                        If ClientName <> "ABHEE" And EDIT = False Then CHANGEDATE.Text = DTPARTYBILLDATE.Text
                     End If
                     If ClientName = "ABHEE" And Val(TXTCRDAYS.Text.Trim) > 0 Then DUEDATE.Value = DateAdd(DateInterval.Day, Val(TXTCRDAYS.Text.Trim), Convert.ToDateTime(DTPARTYBILLDATE.Text).Date)
                 End If
