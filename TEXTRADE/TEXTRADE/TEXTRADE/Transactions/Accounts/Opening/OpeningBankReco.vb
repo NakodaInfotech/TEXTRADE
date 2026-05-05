@@ -442,4 +442,32 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub GRIDBANKRECO_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDBANKRECO.KeyDown
+        Try
+
+            If e.KeyCode = Keys.Delete And GRIDBANKRECO.RowCount > 0 Then
+                'dont allow user if any of the grid line is in edit mode.....
+                'cmbitemname.Text.Trim <> Val(txtqty.Text) <> 0 And Val(txtamount.Text.Trim) <> 0 And cmbqtyunit.Text.Trim <> 
+                If GRIDDOUBLECLICK = True Then
+                    MessageBox.Show("Row is in Edited Mode, You Cannot Delete This Row")
+                    Exit Sub
+                End If
+                'end of block
+                GRIDBANKRECO.Rows.RemoveAt(GRIDBANKRECO.CurrentRow.Index)
+                TOTAL()
+
+                getsrno(GRIDBANKRECO)
+            ElseIf e.KeyCode = Keys.F5 Then
+                EDITROW()
+            ElseIf e.KeyCode = Keys.F12 And GRIDBANKRECO.RowCount > 0 Then
+                'If gridgrn.CurrentRow.Cells(gitemname.Index).Value <> "" Then
+                '    gridgrn.Rows.Add(CloneWithValues(gridgrn.CurrentRow))
+                '    getsrno(gridgrn)
+                '    total()
+                'End If
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 End Class
