@@ -279,6 +279,7 @@ Public Class PurchaseInvoiceGridDetails
             GFOOTERDISCAMT.Visible = True
             GFOOTERDISCAMT.VisibleIndex = GFOOTERDISCPER.VisibleIndex + 1
         End If
+
         If ClientName = "ABHEE" Then
             GDESIGNNO.Visible = False
             GCOLOR.Visible = False
@@ -286,6 +287,11 @@ Public Class PurchaseInvoiceGridDetails
             GFOLDPER.Visible = True
             GAQTY.VisibleIndex = 14
             GFOLDPER.VisibleIndex = 15
+        End If
+
+        If ClientName = "ABHEE" Or ClientName = "MASHOK" Then
+            GCHANGEDATE.Visible = True
+            GCHANGEDATE.VisibleIndex = gdate.VisibleIndex + 1
         End If
 
     End Sub
