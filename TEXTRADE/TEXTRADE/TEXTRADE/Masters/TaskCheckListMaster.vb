@@ -282,7 +282,7 @@ LINE1:
         GRIDDOUBLECLICK = False
         TabControl1.SelectedIndex = 0
         getmaxno()
-
+        GRIDTASK.AutoGenerateColumns = False
         LBLTOTALTASK.Text = 0.0
     End Sub
 
@@ -432,5 +432,42 @@ LINE1:
     '        Throw ex
     '    End Try
     'End Sub
+
+    Private Sub CMBTASKTYPE_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMBTASKTYPE.SelectedIndexChanged
+        Try
+            LoadTaskData(CMBTASKTYPE.Text.Trim.ToUpper())
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub LoadTaskData(ByVal taskType As String)
+        Try
+            Dim OBJCMN As New ClsCommon
+            Dim dt As DataTable
+            Dim condition As String = ""
+
+            If taskType = "DAILY" Then
+                condition = " AND TASK_type = 'DAILY' "
+
+            ElseIf taskType = "WEEKLY" Then
+                condition = " AND TASK_type IN ('DAILY','WEEKLY') "
+
+            ElseIf taskType = "MONTHLY" Then
+                condition = " AND TASK_type IN ('DAILY','WEEKLY','MONTHLY') "
+            End If
+
+            dt = OBJCMN.SEARCH("TASK_name AS TASK, TASK_remarks AS REMARKS", "", "TASKMASTER", condition)
+
+            If dt.Rows.Count > 0 Then
+                GRIDTASK.DataSource = dt
+            Else
+                GRIDTASK.DataSource = Nothing
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
 
 End Class
