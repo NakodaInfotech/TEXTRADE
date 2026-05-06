@@ -1307,7 +1307,7 @@ LINE1:
                     Dim GRIDREMARKS As String = ROW.Cells(gdesc.Index).Value
                     Dim TEMPNAME As String = ""
                     If ClientName = "NTC" Or ClientName = "KRFABRICS" Or ClientName = "KOTHARI" Then GRIDREMARKS = ROW.Cells(GBALENO.Index).Value
-                    If ClientName = "RAJKRIPA" Or ClientName = "MOMAI" Then TEMPNAME = cmbname.Text.Trim
+                    If ClientName = "RAJKRIPA" Or ClientName = "MOMAI" Or ClientName = "SYC" Then TEMPNAME = cmbname.Text.Trim
                     'IF barcode is used the BARCODE printING WILL BE BLOCKED
                     If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
 

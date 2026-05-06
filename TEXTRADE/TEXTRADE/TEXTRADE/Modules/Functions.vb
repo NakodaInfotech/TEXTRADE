@@ -694,6 +694,30 @@ PRINT 1,1")
 
             ElseIf ClientName = "SYC" Then
 
+                Dim OBJCMN As New ClsCommon
+                Dim DT As New DataTable
+
+                'SYABCDEFK100162
+                'SY is fixed for SYC
+                'ABCDEF is LEDGERS CODE (REMARKS COLUMN IN LEDGERS TABLE)
+                'K1 IS CATEGORY CODE (REMARKS COLUMN IN CATEGORYMASTER TABLE)
+                '001 IS DESIGNNO
+                '62 IS YEAR (LAST 2 DIGITS OF YEAR IN REVERSE ORDER)
+                Dim TEMPCODE As String = ""
+
+                If TEMPHEADER = "1" Then TEMPCODE = "SY" Else TEMPCODE = ""
+                If WEAVERNAME <> "" Then
+                    DT = OBJCMN.SEARCH(" ISNULL(LEDGERS.ACC_REMARKS,'') AS LEDGERCODE ", "", " LEDGERS ", " AND LEDGERS.ACC_CMPNAME = '" & WEAVERNAME & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then TEMPCODE = TEMPCODE & DT.Rows(0).Item("LEDGERCODE")
+                End If
+
+                DT = OBJCMN.SEARCH(" ISNULL(CATEGORYMASTER.CATEGORY_REMARKS, '') AS CATEGORYCODE ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then TEMPCODE = TEMPCODE & DT.Rows(0).Item("CATEGORYCODE")
+
+                TEMPCODE = TEMPCODE & DESIGNNO
+                TEMPCODE = TEMPCODE & StrReverse(Convert.ToDateTime(ENTRYDATE).Year.ToString().Substring(2, 2))
+
+
                 oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
 GAP 3 mm, 0 mm
 DIRECTION 0,0

@@ -477,15 +477,7 @@ Public Class MDIMain
     Sub SETENABILITY()
         Try
 
-            Dim objhp As New HomePage
-            'Dim OBJCMN As New ClsCommon
-            'Dim DT1 As DataTable = OBJCMN.search("HOME , PO, GRN, MATREC As matrec, INHOUSECHECK As inhouse, CHALLAN As gdn, JobOut As jobout, JobIn As jobin, ISSUEPACKING As isspack, RECPACKING As recpack, PURINVOICE As purchase, SALEINVOICE As sale, SHOWDASHBOARD As dashboard, RecOutstanding As recoutstanding, PayOutstanding As payoutstanding, PENDINGPO As pendingpo, PENDINGSO As pendingso, STOCKDETAILS As stock, SALEPURMONTHLY As monthly ", "", "SPECIALRIGHTS", " And USERID= " & Userid)
-            'If DT1.Rows.Count > 0 Then
-            '    HOME = DT1.Rows(0).Item(0)
 
-            'End If
-
-            objhp.MdiParent = Me
 
             'OPEN THESE RIGHTS FOR ALL USERS AS PER YASHVI
             If ClientName = "YASHVI" Or ClientName = "RMANILAL" Then
@@ -2026,7 +2018,11 @@ Public Class MDIMain
                 End If
             Next
 
-            If DASHBOARDTOOLVISIBLE = True Then objhp.Show()
+            If DASHBOARDTOOLVISIBLE = True Then
+                Dim objhp As New HomePage
+                objhp.MdiParent = Me
+                objhp.Show()
+            End If
 
         Catch ex As Exception
             Throw ex
