@@ -34,6 +34,7 @@ Partial Class InvoiceGridDetails
         Me.GPARTYPONO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHANGEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANDATE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -111,7 +112,8 @@ Partial Class InvoiceGridDetails
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GCHANGEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCRDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDUEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -217,7 +219,7 @@ Partial Class InvoiceGridDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GPARTYPONO, Me.gsrno, Me.gdate, Me.GCHANGEDATE, Me.GLRNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GREFNO, Me.gname, Me.GGSTNO, Me.GADDRESS, Me.GEWAYBILLNO, Me.GIRNNO, Me.GLRDATE, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GFOLDPER, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GPER, Me.GRATE, Me.GAMT, Me.GAGENT, Me.GSHIPPEDTO, Me.GPACKINGADD, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GSO, Me.GBALES, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GTRADING, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GSTATE, Me.GCITY, Me.GREGNAME, Me.GDESCRIPTION, Me.GMONTHNAME, Me.GGRIDTRANSPORT, Me.GGRIDLRNO, Me.GGRIDWT, Me.GGRIDPURNAME, Me.GGRIDPARTYBILLNO, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GPARTYPONO, Me.gsrno, Me.gdate, Me.GCHANGEDATE, Me.GLRNO, Me.GCHALLANNO, Me.GCHALLANDATE, Me.GREFNO, Me.gname, Me.GGSTNO, Me.GADDRESS, Me.GEWAYBILLNO, Me.GIRNNO, Me.GLRDATE, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GFOLDPER, Me.GBALENO, Me.GPCS, Me.GMTRS, Me.GPER, Me.GRATE, Me.GAMT, Me.GAGENT, Me.GSHIPPEDTO, Me.GPACKINGADD, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GSO, Me.GBALES, Me.GTOTALAMT, Me.GDISC, Me.GSPDISCAMT, Me.GCHARGES, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GGRANDTOTAL, Me.GRECDAMT, Me.GRETURNAMT, Me.GBALANCE, Me.GREMARKS, Me.GTRADING, Me.GDISPUTED, Me.GBILLCHECKED, Me.GSUPPLIERNAME, Me.GRECDDATE, Me.GSTATE, Me.GCITY, Me.GREGNAME, Me.GDESCRIPTION, Me.GMONTHNAME, Me.GGRIDTRANSPORT, Me.GGRIDLRNO, Me.GGRIDWT, Me.GGRIDPURNAME, Me.GGRIDPARTYBILLNO, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE, Me.GCRDAYS, Me.GDUEDATE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -259,6 +261,13 @@ Partial Class InvoiceGridDetails
         Me.gdate.OptionsColumn.AllowEdit = False
         Me.gdate.Visible = True
         Me.gdate.VisibleIndex = 3
+        '
+        'GCHANGEDATE
+        '
+        Me.GCHANGEDATE.Caption = "Change Dt"
+        Me.GCHANGEDATE.FieldName = "CHANGEDATE"
+        Me.GCHANGEDATE.Name = "GCHANGEDATE"
+        Me.GCHANGEDATE.OptionsColumn.AllowEdit = False
         '
         'GLRNO
         '
@@ -742,6 +751,7 @@ Partial Class InvoiceGridDetails
         Me.GTRADING.Caption = "Trading"
         Me.GTRADING.FieldName = "TRADING"
         Me.GTRADING.Name = "GTRADING"
+        Me.GTRADING.OptionsColumn.AllowEdit = False
         Me.GTRADING.Visible = True
         Me.GTRADING.VisibleIndex = 47
         '
@@ -825,6 +835,7 @@ Partial Class InvoiceGridDetails
         Me.GMONTHNAME.Caption = "Month"
         Me.GMONTHNAME.FieldName = "MONTHNAME"
         Me.GMONTHNAME.Name = "GMONTHNAME"
+        Me.GMONTHNAME.OptionsColumn.AllowEdit = False
         Me.GMONTHNAME.Visible = True
         Me.GMONTHNAME.VisibleIndex = 52
         '
@@ -873,6 +884,7 @@ Partial Class InvoiceGridDetails
         Me.GCOMPLAINT.Caption = "Complaint"
         Me.GCOMPLAINT.FieldName = "COMPLAINT"
         Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.OptionsColumn.AllowEdit = False
         Me.GCOMPLAINT.Visible = True
         Me.GCOMPLAINT.VisibleIndex = 53
         '
@@ -881,6 +893,7 @@ Partial Class InvoiceGridDetails
         Me.GCOMPLAINTBY.Caption = "Complaint By"
         Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
         Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.OptionsColumn.AllowEdit = False
         Me.GCOMPLAINTBY.Visible = True
         Me.GCOMPLAINTBY.VisibleIndex = 54
         '
@@ -889,6 +902,7 @@ Partial Class InvoiceGridDetails
         Me.GCOMPLAINTDATE.Caption = "Complaint Dt"
         Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
         Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.OptionsColumn.AllowEdit = False
         Me.GCOMPLAINTDATE.Visible = True
         Me.GCOMPLAINTDATE.VisibleIndex = 55
         '
@@ -1015,11 +1029,23 @@ Partial Class InvoiceGridDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
-        'GCHANGEDATE
+        'GCRDAYS
         '
-        Me.GCHANGEDATE.Caption = "Change Dt"
-        Me.GCHANGEDATE.FieldName = "CHANGEDATE"
-        Me.GCHANGEDATE.Name = "GCHANGEDATE"
+        Me.GCRDAYS.Caption = "Cr Days"
+        Me.GCRDAYS.DisplayFormat.FormatString = "0"
+        Me.GCRDAYS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCRDAYS.FieldName = "CRDAYS"
+        Me.GCRDAYS.Name = "GCRDAYS"
+        Me.GCRDAYS.OptionsColumn.AllowEdit = False
+        '
+        'GDUEDATE
+        '
+        Me.GDUEDATE.Caption = "Due Dt"
+        Me.GDUEDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GDUEDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GDUEDATE.FieldName = "DUEDATE"
+        Me.GDUEDATE.Name = "GDUEDATE"
+        Me.GDUEDATE.OptionsColumn.AllowEdit = False
         '
         'InvoiceGridDetails
         '
@@ -1132,4 +1158,6 @@ Partial Class InvoiceGridDetails
     Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHANGEDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCRDAYS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDUEDATE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
