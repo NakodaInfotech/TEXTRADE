@@ -787,7 +787,7 @@ Public Class PaymentMaster
 
             End If
             If ClientName = "NVAHAN" Or ClientName = "SAKARIA" Then SENDDIRECTMAIL()
-            If ClientName <> "SOFTAS" And ClientName <> "RMANILAL" And ClientName <> "ALENCOT" And ClientName <> "AVIS" And ClientName <> "RAJKRIPA" And ClientName <> "REVAANT" And ClientName <> "YUMILONE" And ClientName <> "SIDDHGIRI" And ClientName <> "NAKODAINFOTECH" And ClientName <> "ABHEE" Then PRINTREPORT()
+            If ClientName <> "SOFTAS" And ClientName <> "RMANILAL" And ClientName <> "ALENCOT" And ClientName <> "AVIS" And ClientName <> "RAJKRIPA" And ClientName <> "REVAANT" And ClientName <> "YUMILONE" And ClientName <> "SIDDHGIRI" And ClientName <> "NAKODAINFOTECH" And ClientName <> "ABHEE" And ClientName <> "MMC" Then PRINTREPORT()
             If ClientName <> "RAJKRIPA" Then Call toolnext_Click(sender, e) Else CLEAR()
             If ClientName = "AVIS" Or ClientName = "MAHAVIR" Or ClientName = "NAYRA" Or ClientName = "SONU" Or ClientName = "LEEFABRICO" Or ClientName = "SIDDHGIRI" Then ACCDATE.Focus() Else cmbaccname.Focus()
 

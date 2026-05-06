@@ -405,6 +405,9 @@ Public Class OpeningBills
             Dim COMPLAINTDATE As String = ""
             Dim ORDERNO As String = ""
             Dim CHANGEDATE As String = ""
+            Dim OLDTDS As String = ""
+            Dim OLDRETURN As String = ""
+            Dim OLDPAID As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDOPENING.Rows
@@ -452,6 +455,9 @@ Public Class OpeningBills
                         COMPLAINTDATE = row.Cells(GCOMPLAINTDATE.Index).Value
                         ORDERNO = row.Cells(GORDERNO.Index).Value
                         CHANGEDATE = Format(Convert.ToDateTime(row.Cells(GCHANGEDATE.Index).Value).Date, "MM/dd/yyyy")
+                        OLDTDS = Val(row.Cells(GOLDTDS.Index).Value)
+                        OLDRETURN = Val(row.Cells(GOLDRETURN.Index).Value)
+                        OLDPAID = Val(row.Cells(GOLDPAID.Index).Value)
 
                     Else
 
@@ -496,6 +502,9 @@ Public Class OpeningBills
                         COMPLAINTDATE = COMPLAINTDATE & "|" & row.Cells(GCOMPLAINTDATE.Index).Value
                         ORDERNO = ORDERNO & "|" & row.Cells(GORDERNO.Index).Value
                         CHANGEDATE = CHANGEDATE & "|" & Format(Convert.ToDateTime(row.Cells(GCHANGEDATE.Index).Value).Date, "MM/dd/yyyy")
+                        OLDTDS = OLDTDS & "|" & Val(row.Cells(GOLDTDS.Index).Value)
+                        OLDRETURN = OLDRETURN & "|" & Val(row.Cells(GOLDRETURN.Index).Value)
+                        OLDPAID = OLDPAID & "|" & Val(row.Cells(GOLDPAID.Index).Value)
 
                     End If
                 End If
@@ -543,6 +552,9 @@ Public Class OpeningBills
             alparaval.Add(COMPLAINTDATE)
             alparaval.Add(ORDERNO)
             alparaval.Add(CHANGEDATE)
+            alparaval.Add(OLDTDS)
+            alparaval.Add(OLDRETURN)
+            alparaval.Add(OLDPAID)
 
 
             Dim OBJOPENING As New ClsOpening

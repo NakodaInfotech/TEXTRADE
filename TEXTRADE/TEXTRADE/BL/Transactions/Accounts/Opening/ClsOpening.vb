@@ -125,7 +125,12 @@ Public Class ClsOpening
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CHANGEDATE", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@OLDTDS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OLDRETURN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OLDPAID", alParaval(I)))
+                I = I + 1
 
 
             End With

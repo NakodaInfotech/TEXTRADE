@@ -134,6 +134,9 @@ Partial Class OpeningBills
         Me.GCOMPLAINTDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GORDERNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCHANGEDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOLDTDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOLDRETURN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOLDPAID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.GRIDOPENING, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -429,7 +432,7 @@ Partial Class OpeningBills
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.GRIDOPENING.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDOPENING.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.GRIDOPENING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBILLTYPE, Me.GREGISTER, Me.GBILLNO, Me.GYEAR, Me.GBILLDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GAGENT, Me.GNARRATION, Me.GDISPUTE, Me.GDELIVERYAT, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GCHARGES, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRANDTOTAL, Me.GAMT, Me.GAMTPAIDREC, Me.GEXTRAAMT, Me.GRETURN, Me.GBALANCE, Me.GPRINTINITIALS, Me.GCD, Me.GITEMNAME, Me.GRATE, Me.GLRNO, Me.GGRIDREMARKS, Me.GINTCALC, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE, Me.GORDERNO, Me.GCHANGEDATE})
+        Me.GRIDOPENING.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBILLTYPE, Me.GREGISTER, Me.GBILLNO, Me.GYEAR, Me.GBILLDATE, Me.GCRDAYS, Me.GDUEDATE, Me.GAGENT, Me.GNARRATION, Me.GDISPUTE, Me.GDELIVERYAT, Me.GPCS, Me.GMTRS, Me.GTOTALAMT, Me.GCHARGES, Me.GTAXABLEAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGRANDTOTAL, Me.GAMT, Me.GAMTPAIDREC, Me.GEXTRAAMT, Me.GRETURN, Me.GBALANCE, Me.GPRINTINITIALS, Me.GCD, Me.GITEMNAME, Me.GRATE, Me.GLRNO, Me.GGRIDREMARKS, Me.GINTCALC, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDATE, Me.GORDERNO, Me.GCHANGEDATE, Me.GOLDTDS, Me.GOLDRETURN, Me.GOLDPAID})
         DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle17.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1160,6 +1163,27 @@ Partial Class OpeningBills
         Me.GCHANGEDATE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GCHANGEDATE.Visible = False
         '
+        'GOLDTDS
+        '
+        Me.GOLDTDS.HeaderText = "OLDTDS"
+        Me.GOLDTDS.Name = "GOLDTDS"
+        Me.GOLDTDS.ReadOnly = True
+        Me.GOLDTDS.Visible = False
+        '
+        'GOLDRETURN
+        '
+        Me.GOLDRETURN.HeaderText = "OLDRETURN"
+        Me.GOLDRETURN.Name = "GOLDRETURN"
+        Me.GOLDRETURN.ReadOnly = True
+        Me.GOLDRETURN.Visible = False
+        '
+        'GOLDPAID
+        '
+        Me.GOLDPAID.HeaderText = "OLDPAID"
+        Me.GOLDPAID.Name = "GOLDPAID"
+        Me.GOLDPAID.ReadOnly = True
+        Me.GOLDPAID.Visible = False
+        '
         'OpeningBills
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1275,4 +1299,7 @@ Partial Class OpeningBills
     Friend WithEvents GCOMPLAINTDATE As DataGridViewTextBoxColumn
     Friend WithEvents GORDERNO As DataGridViewTextBoxColumn
     Friend WithEvents GCHANGEDATE As DataGridViewTextBoxColumn
+    Friend WithEvents GOLDTDS As DataGridViewTextBoxColumn
+    Friend WithEvents GOLDRETURN As DataGridViewTextBoxColumn
+    Friend WithEvents GOLDPAID As DataGridViewTextBoxColumn
 End Class
