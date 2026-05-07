@@ -12,6 +12,7 @@ Public Class PLDesign
     Dim RPTINTSUMM As New InterestSummReport
     Dim RPTINTDTLS As New InterestDetailsReport
     Dim RPTINTBILLDTLS As New InterestBillWiseReport
+    Dim RPTINTBILLDTLS_ABHEE As New InterestBillWiseReport_ABHEE
     Dim RPTOUTSTANDING As New GridOutstandingPrintReport
     Dim RPTSALEANALYSIS As New GridSaleAnalysisPrintReport
     Dim RPTPURANALYSIS As New GridPurAnalysisPrintReport
@@ -68,7 +69,11 @@ Public Class PLDesign
             ElseIf frmstring = "INTERESTDTLS" Then
                 crTables = RPTINTDTLS.Database.Tables
             ElseIf frmstring = "INTERESTBILLDTLS" Then
-                crTables = RPTINTBILLDTLS.Database.Tables
+                If ClientName = "ABHEE" Then
+                    crTables = RPTINTBILLDTLS_ABHEE.Database.Tables
+                Else
+                    crTables = RPTINTBILLDTLS.Database.Tables
+                End If
             ElseIf frmstring = "OUTSTANDING" Then
                 crTables = RPTOUTSTANDING.Database.Tables
             ElseIf frmstring = "SALEANALYSIS" Then
@@ -98,15 +103,27 @@ Public Class PLDesign
                 RPTINTDTLS.Subreports("INTERESTDTLS_TERMSUMM").DataDefinition.FormulaFields("INTPER").Text = INTPER
                 RPTINTDTLS.Subreports("INTERESTDTLS_TERMSUMM").DataDefinition.FormulaFields("TEMPDAYS").Text = CALCDAYS
             ElseIf frmstring = "INTERESTBILLDTLS" Then
-                CRPO.ReportSource = RPTINTBILLDTLS
-                RPTINTBILLDTLS.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
-                RPTINTBILLDTLS.DataDefinition.FormulaFields("SIDEDAYS").Text = SIDEDAYS
-                RPTINTBILLDTLS.DataDefinition.FormulaFields("INTPER").Text = INTPER
-                RPTINTBILLDTLS.DataDefinition.FormulaFields("TDSPER").Text = TDSPER
-                RPTINTBILLDTLS.DataDefinition.FormulaFields("CALCDAYS").Text = CALCDAYS
-                RPTINTBILLDTLS.DataDefinition.FormulaFields("OVERRIDEDUEDATE").Text = OVERRIDEDUEDATE
-                RPTINTBILLDTLS.DataDefinition.FormulaFields("TILLDATE").Text = "#" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "#"
-                If CHANGEDUEDATE = True Then RPTINTBILLDTLS.DataDefinition.FormulaFields("DUEDATE").Text = "#" & Format(Convert.ToDateTime(DUEDATE).Date, "MM/dd/yyyy") & "#"
+                If ClientName = "ABHEE" Then
+                    CRPO.ReportSource = RPTINTBILLDTLS_ABHEE
+                    RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                    RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("SIDEDAYS").Text = SIDEDAYS
+                    RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("INTPER").Text = INTPER
+                    RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("TDSPER").Text = TDSPER
+                    RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("CALCDAYS").Text = CALCDAYS
+                    RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("OVERRIDEDUEDATE").Text = OVERRIDEDUEDATE
+                    RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("TILLDATE").Text = "#" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "#"
+                    If CHANGEDUEDATE = True Then RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("DUEDATE").Text = "#" & Format(Convert.ToDateTime(DUEDATE).Date, "MM/dd/yyyy") & "#"
+                Else
+                    CRPO.ReportSource = RPTINTBILLDTLS
+                    RPTINTBILLDTLS.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                    RPTINTBILLDTLS.DataDefinition.FormulaFields("SIDEDAYS").Text = SIDEDAYS
+                    RPTINTBILLDTLS.DataDefinition.FormulaFields("INTPER").Text = INTPER
+                    RPTINTBILLDTLS.DataDefinition.FormulaFields("TDSPER").Text = TDSPER
+                    RPTINTBILLDTLS.DataDefinition.FormulaFields("CALCDAYS").Text = CALCDAYS
+                    RPTINTBILLDTLS.DataDefinition.FormulaFields("OVERRIDEDUEDATE").Text = OVERRIDEDUEDATE
+                    RPTINTBILLDTLS.DataDefinition.FormulaFields("TILLDATE").Text = "#" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "#"
+                    If CHANGEDUEDATE = True Then RPTINTBILLDTLS.DataDefinition.FormulaFields("DUEDATE").Text = "#" & Format(Convert.ToDateTime(DUEDATE).Date, "MM/dd/yyyy") & "#"
+                End If
             ElseIf frmstring = "OUTSTANDING" Then
                 CRPO.ReportSource = RPTOUTSTANDING
             ElseIf frmstring = "SALEANALYSIS" Then
@@ -130,6 +147,7 @@ Public Class PLDesign
 
         End Try
     End Sub
+
     Sub PRINTDIRECTADVICE()
         Try
             Dim crParameterFieldDefinitions As ParameterFieldDefinitions
@@ -286,13 +304,23 @@ Public Class PLDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTINTDTLS.Export()
+
             ElseIf frmstring = "INTERESTBILLDTLS" Then
                 oDfDopt.DiskFileName = Application.StartupPath & "\INTERESTBILLDTLS.PDF"
-                expo = RPTINTBILLDTLS.ExportOptions
-                expo.ExportDestinationType = ExportDestinationType.DiskFile
-                expo.ExportFormatType = ExportFormatType.PortableDocFormat
-                expo.DestinationOptions = oDfDopt
-                RPTINTBILLDTLS.Export()
+                If ClientName = "ABHEE" Then
+                    expo = RPTINTBILLDTLS_ABHEE.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTINTBILLDTLS_ABHEE.Export()
+                Else
+                    expo = RPTINTBILLDTLS.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTINTBILLDTLS.Export()
+                End If
+
             ElseIf frmstring = "OUTSTANDING" Then
                 oDfDopt.DiskFileName = Application.StartupPath & "\OUTSTANDING.PDF"
                 expo = RPTOUTSTANDING.ExportOptions
