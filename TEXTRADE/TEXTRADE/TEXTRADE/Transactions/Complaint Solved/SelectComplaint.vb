@@ -1,0 +1,109 @@
+﻿Imports BL
+
+Public Class SelectComplaint
+
+    Public JOBBERNAME As String = ""
+    Public WCLAUSE As String = ""
+    Public DT As New DataTable
+
+    Private Sub CMDEXIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEXIT.Click
+        Try
+            Me.Close()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub SelectHSN_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        Try
+            If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
+                Me.Close()
+            ElseIf e.KeyCode = Keys.Oemcomma Then
+                e.SuppressKeyPress = True
+            ElseIf e.KeyCode = Keys.Enter Then
+                SendKeys.Send("{Tab}")
+            End If
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Sub FILLGRID()
+        Try
+            Dim WHERECLAUSE As String = " AND JOBBERNAME = '" & JOBBERNAME & "'"
+            Dim OBJCMN As New ClsCommon
+            Dim DTTABLE As New DataTable
+
+            DTTABLE = OBJCMN.SEARCH("* ", "", " COMPLAINTREGISTERVIEW ", " AND COMPLAINTREGISTERVIEW.YEARID=" & YearId & WHERECLAUSE & WCLAUSE & " AND (COMPLAINTREGISTERVIEW.COMPLAINTSOLVED = 'FALSE') ORDER BY BILLNO")
+            gridbilldetails.DataSource = DTTABLE
+            If DTTABLE.Rows.Count > 0 Then
+                gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                gridbill.TopRowIndex = gridbill.RowCount - 15
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDOK.Click
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            Dim OBJCMN As New ClsCommon
+
+            DT.Columns.Add("COMPLAINT")
+            DT.Columns.Add("COMPLAINTDATE")
+            DT.Columns.Add("COMPLAINTBY")
+
+            DT.Columns.Add("BILLINITIALS")
+            DT.Columns.Add("BILLNO")
+            DT.Columns.Add("REGISTER")
+            DT.Columns.Add("TYPE")
+
+
+            Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
+            For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
+                Dim DTROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
+                DT.Rows.Add(DTROW("COMPLAINT"), DTROW("COMPLAINTDATE"), DTROW("COMPLAINTBY"), DTROW("BILLINITIALS"), Val(DTROW("BILLNO")), DTROW("REGISTER"), DTROW("TYPE"))
+            Next
+
+            Me.Close()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.WaitCursor
+        End Try
+    End Sub
+
+    Private Sub SelectHSN_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Try
+            FILLGRID()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub SelectLotNo_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If LOTSTATUSONMTRS = True And ClientName <> "KRISHNA" Then
+                GREGISTER.Visible = False
+                'GRECDPCS.Visible = False
+                'GBALPCS.Visible = False
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMDEXCEL_Click(sender As Object, e As EventArgs) Handles CMDEXCEL.Click
+        Try
+            Dim PATH As String = Application.StartupPath & "\Select Lot Details.XLS"
+            Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
+            opti.ShowGridLines = True
+            opti.SheetName = "Select Lot Details"
+            gridbill.ExportToXls(PATH, opti)
+            EXCELCMPHEADER(PATH, "Select Lot Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
+        Catch ex As Exception
+            MsgBox("Select Lot Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+        End Try
+    End Sub
+End Class
