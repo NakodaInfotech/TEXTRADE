@@ -111,8 +111,8 @@ Public Class EmployeeMaster
             CMBSTATE.Text = ""
         End If
 
-        If CMBLEDGERNAME.Text.Trim = "" Then fillledger(CMBLEDGERNAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors') ")
-        If CMBLOANLEDGERNAME.Text.Trim = "" Then fillledger(CMBLOANLEDGERNAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors') ")
+        If CMBLEDGERNAME.Text.Trim = "" Then fillledger(CMBLEDGERNAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Capital A/C') ")
+        If CMBLOANLEDGERNAME.Text.Trim = "" Then fillledger(CMBLOANLEDGERNAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'Loans' or GROUPMASTER.GROUP_SECONDARY = 'Loans & Advances' or GROUPMASTER.GROUP_SECONDARY = 'Secured Loans'  or GROUPMASTER.GROUP_SECONDARY = 'Unsecured Loans') ")
         If CMBDEDUCTION.Text.Trim = "" Then fillledger(CMBDEDUCTION, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'Indirect Income' OR GROUPMASTER.GROUP_SECONDARY = 'Indirect Expenses' OR GROUPMASTER.GROUP_SECONDARY = 'Duties & Taxes'  OR GROUPMASTER.GROUP_SECONDARY = 'Direct Income'  OR GROUPMASTER.GROUP_SECONDARY = 'Loans & Advances') ")
         If CMBEARNINGS.Text.Trim = "" Then fillledger(CMBEARNINGS, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'Indirect Income' OR GROUPMASTER.GROUP_SECONDARY = 'Indirect Expenses' OR GROUPMASTER.GROUP_SECONDARY = 'Duties & Taxes'  OR GROUPMASTER.GROUP_SECONDARY = 'Direct Income'  OR GROUPMASTER.GROUP_SECONDARY = 'Loans & Advances') ")
 
@@ -1055,7 +1055,7 @@ line1:
 
     Private Sub CMBLEDGERNAME_Enter(sender As Object, e As EventArgs) Handles CMBLEDGERNAME.Enter
         Try
-            If CMBLEDGERNAME.Text.Trim = "" Then fillledger(CMBLEDGERNAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors') ")
+            If CMBLEDGERNAME.Text.Trim = "" Then fillledger(CMBLEDGERNAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Capital A/C') ")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1071,7 +1071,7 @@ line1:
 
     Private Sub CMBLEDGERNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBLEDGERNAME.Validating
         Try
-            If CMBLEDGERNAME.Text.Trim <> "" Then namevalidate(CMBLEDGERNAME, CMBACCCODE, e, Me, TXTTEMPADD, " AND (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors')", "Sundry Creditors")
+            If CMBLEDGERNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBLEDGERNAME, CMBACCCODE, e, Me, TXTTEMPADD, " AND (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' OR GROUPMASTER.GROUP_SECONDARY = 'Capital A/C')", "Sundry Creditors")
         Catch ex As Exception
             Throw ex
         End Try

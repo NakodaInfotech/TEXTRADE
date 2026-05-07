@@ -16,7 +16,7 @@ Public Class ComplaintRegisterReport
     Sub FILLGRID()
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("*", "", "COMPLAINTREGISTERVIEW", " AND YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("*", "", "COMPLAINTREGISTERVIEW", " AND YEARID = " & YearId & "  ORDER BY DATE, TYPE, BILLNO")
             gridbilldetails.DataSource = DT
             If DT.Rows.Count > 0 Then gridbill.FocusedRowHandle = gridbill.RowCount - 1
         Catch ex As Exception
