@@ -64,4 +64,71 @@ Public Class ComplaintRegisterReport
         End Try
     End Sub
 
+    Private Sub CMDWHATSAPP_Click(sender As Object, e As EventArgs) Handles CMDWHATSAPP.Click
+        Try
+            If ALLOWWHATSAPP = False Then Exit Sub
+
+            If Not CHECKWHASTAPPEXP() Then
+                MsgBox("Whatsapp Package has Expired, Kindly contact Nakoda Infotech on 02249724411", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+            If MsgBox("Send Whatsapp?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+
+            ' Prepare data for grid
+            ' TEMPOUTSTANDING()
+
+            ' Generate the PDF from DataGridView
+            Dim filePath As String = Application.StartupPath & "\ComplaintRegister.pdf"
+
+            'Enable text wrapping
+            gridbill.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+            gridbill.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+
+            'Auto adjust row height
+            gridbill.OptionsView.RowAutoHeight = True
+            gridbill.OptionsPrint.AutoWidth = False
+            'gridbill.BestFitColumns()
+            gridbill.OptionsPrint.PrintHeader = True
+
+            'Printing system
+            Dim ps As New PrintingSystem()
+
+            Dim link As New PrintableComponentLink(ps)
+
+            link.Component = gridbilldetails
+
+            'Landscape
+            link.Landscape = True
+
+            'Paper size
+            link.PaperKind = System.Drawing.Printing.PaperKind.A4
+
+            'Fit all columns in one page width
+            link.PrintingSystem.Document.AutoFitToPagesWidth = 1
+
+            'Narrow margins
+            link.Margins = New System.Drawing.Printing.Margins(1, 1, 1, 1)
+
+            'Create document
+            link.CreateDocument()
+
+            'Export
+            link.ExportToPdf(filePath)
+
+            MessageBox.Show("PDF Exported Successfully")
+
+            ' Prepare WhatsApp sending form
+            Dim OBJWHATSAPP As New SendWhatsapp
+            OBJWHATSAPP.PATH.Add(filePath)
+            OBJWHATSAPP.FILENAME.Add("ComplaintRegister.pdf")
+            OBJWHATSAPP.ShowDialog()
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
 End Class

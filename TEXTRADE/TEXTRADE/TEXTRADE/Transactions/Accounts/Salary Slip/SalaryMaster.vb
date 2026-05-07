@@ -1,6 +1,8 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.XtraBars
+Imports DevExpress.XtraMap
 
 Public Class SalaryMaster
 
@@ -192,14 +194,14 @@ Public Class SalaryMaster
                     TXTLOANEMI.Text = dt.Rows(0).Item("LOANEMI")
 
                     Dim OBJCMN As New ClsCommon
-                    dt = OBJCMN.search(" SALARYMASTER_DEDUCTION.SAL_SRNO AS SRNO, LEDGERS.Acc_cmpname AS DEDUCTION, SALARYMASTER_DEDUCTION.SAL_AMT AS DEDAMT ", "", " SALARYMASTER_DEDUCTION INNER JOIN LEDGERS ON SALARYMASTER_DEDUCTION.SAL_DEDID = LEDGERS.Acc_id ", " AND SAL_NO = " & TEMPSALNO & " AND SAL_YEARID = " & YearId)
+                    dt = OBJCMN.SEARCH(" SALARYMASTER_DEDUCTION.SAL_SRNO AS SRNO, LEDGERS.Acc_cmpname AS DEDUCTION, SALARYMASTER_DEDUCTION.SAL_AMT AS DEDAMT ", "", " SALARYMASTER_DEDUCTION INNER JOIN LEDGERS ON SALARYMASTER_DEDUCTION.SAL_DEDID = LEDGERS.Acc_id ", " AND SAL_NO = " & TEMPSALNO & " AND SAL_YEARID = " & YearId)
                     If dt.Rows.Count > 0 Then
                         For Each DTDED As DataRow In dt.Rows
                             GRIDDED.Rows.Add(DTDED("SRNO"), DTDED("DEDUCTION"), Format(Val(DTDED("DEDAMT")), "0.00"))
                         Next
                     End If
 
-                    dt = OBJCMN.search(" SALARYMASTER_EARNINGS.SAL_SRNO AS SRNO, LEDGERS.Acc_cmpname AS EARNINGS, SALARYMASTER_EARNINGS.SAL_AMT AS EARAMT ", "", " SALARYMASTER_EARNINGS INNER JOIN LEDGERS ON SALARYMASTER_EARNINGS.SAL_EARID = LEDGERS.Acc_id ", " AND SAL_NO = " & TEMPSALNO & " AND SAL_YEARID = " & YearId)
+                    dt = OBJCMN.SEARCH(" SALARYMASTER_EARNINGS.SAL_SRNO AS SRNO, LEDGERS.Acc_cmpname AS EARNINGS, SALARYMASTER_EARNINGS.SAL_AMT AS EARAMT ", "", " SALARYMASTER_EARNINGS INNER JOIN LEDGERS ON SALARYMASTER_EARNINGS.SAL_EARID = LEDGERS.Acc_id ", " AND SAL_NO = " & TEMPSALNO & " AND SAL_YEARID = " & YearId)
                     If dt.Rows.Count > 0 Then
                         For Each DTEAR As DataRow In dt.Rows
                             GRIDEAR.Rows.Add(DTEAR("SRNO"), DTEAR("EARNINGS"), Format(Val(DTEAR("EARAMT")), "0.00"))
@@ -408,7 +410,7 @@ Public Class SalaryMaster
 
                     'GET THE LATEST JOURNALNO
                     Dim OBJCMN As New ClsCommon
-                    Dim DTJV As DataTable = OBJCMN.search("isnull(MAX(JOURNAL_NO), 0) + 1 AS JVNO", "", " JOURNALMASTER INNER JOIN REGISTERMASTER ON JOURNAL_REGISTERID = REGISTERMASTER.REGISTER_ID ", " AND REGISTERMASTER.REGISTER_NAME = 'JOURNAL REGISTER' AND JOURNALMASTER.JOURNAL_YEARID = " & YearId)
+                    Dim DTJV As DataTable = OBJCMN.SEARCH("isnull(MAX(JOURNAL_NO), 0) + 1 AS JVNO", "", " JOURNALMASTER INNER JOIN REGISTERMASTER ON JOURNAL_REGISTERID = REGISTERMASTER.REGISTER_ID ", " AND REGISTERMASTER.REGISTER_NAME = 'JOURNAL REGISTER' AND JOURNALMASTER.JOURNAL_YEARID = " & YearId)
 
                     refno = refno & "|JV-" & Val(DTJV.Rows(0).Item("JVNO"))
                     debit = debit & "|" & 0
@@ -507,7 +509,12 @@ Public Class SalaryMaster
                     type = type & "|" & "Cr"
                     name = name & "|" & GRIDDED.Rows(I - 1).Cells(GDEDUCTION.Index).Value
                     paytype = paytype & "|" & "On Account"
-                    refno = refno & "|" & ""
+
+                    'IF DEDUCTION LEDGER IS TDS LEDGER THEN WE NEED TO ADD JVNO IN REFNO
+                    Dim OBJCMN As New ClsCommon
+                    Dim DTL As DataTable = OBJCMN.SEARCH("ACC_ID", "", "LEDGERS", " AND ACC_CMPNAME = '" & GRIDDED.Rows(I - 1).Cells(GDEDUCTION.Index).Value & "' AND ACC_TDSAC = 'TRUE' AND ACC_YEARID = " & YearId)
+                    If DTL.Rows.Count > 0 Then refno = refno & "|" & "JV-" & Val(TEMPJVNO) Else refno = refno & "|" & ""
+
                     debit = debit & "|" & 0
                     credit = credit & "|" & Val(GRIDDED.Rows(I - 1).Cells(GDEDAMT.Index).Value)
                     gridsrno = gridsrno & "|" & I + 1

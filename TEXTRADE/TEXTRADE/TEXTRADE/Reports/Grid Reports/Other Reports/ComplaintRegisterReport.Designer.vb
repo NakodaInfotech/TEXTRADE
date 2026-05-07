@@ -41,6 +41,7 @@ Partial Class ComplaintRegisterReport
         Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDWHATSAPP = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,6 +50,7 @@ Partial Class ComplaintRegisterReport
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDWHATSAPP)
         Me.BlendPanel1.Controls.Add(Me.CMDREFRESH)
         Me.BlendPanel1.Controls.Add(Me.CMDPRINT)
         Me.BlendPanel1.Controls.Add(Me.cmdcancel)
@@ -61,7 +63,7 @@ Partial Class ComplaintRegisterReport
         '
         'CMDREFRESH
         '
-        Me.CMDREFRESH.Location = New System.Drawing.Point(575, 545)
+        Me.CMDREFRESH.Location = New System.Drawing.Point(532, 545)
         Me.CMDREFRESH.Name = "CMDREFRESH"
         Me.CMDREFRESH.Size = New System.Drawing.Size(80, 28)
         Me.CMDREFRESH.TabIndex = 3
@@ -78,7 +80,7 @@ Partial Class ComplaintRegisterReport
         Me.CMDPRINT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CMDPRINT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDPRINT.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDPRINT.Location = New System.Drawing.Point(544, 545)
+        Me.CMDPRINT.Location = New System.Drawing.Point(501, 545)
         Me.CMDPRINT.Name = "CMDPRINT"
         Me.CMDPRINT.Size = New System.Drawing.Size(25, 21)
         Me.CMDPRINT.TabIndex = 4
@@ -91,7 +93,7 @@ Partial Class ComplaintRegisterReport
         Me.cmdcancel.FlatAppearance.BorderSize = 0
         Me.cmdcancel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdcancel.ForeColor = System.Drawing.Color.Black
-        Me.cmdcancel.Location = New System.Drawing.Point(661, 545)
+        Me.cmdcancel.Location = New System.Drawing.Point(618, 545)
         Me.cmdcancel.Name = "cmdcancel"
         Me.cmdcancel.Size = New System.Drawing.Size(80, 28)
         Me.cmdcancel.TabIndex = 5
@@ -237,6 +239,20 @@ Partial Class ComplaintRegisterReport
         Me.GTYPE.Visible = True
         Me.GTYPE.VisibleIndex = 11
         '
+        'CMDWHATSAPP
+        '
+        Me.CMDWHATSAPP.BackColor = System.Drawing.Color.Transparent
+        Me.CMDWHATSAPP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDWHATSAPP.FlatAppearance.BorderSize = 0
+        Me.CMDWHATSAPP.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDWHATSAPP.ForeColor = System.Drawing.Color.Black
+        Me.CMDWHATSAPP.Location = New System.Drawing.Point(704, 545)
+        Me.CMDWHATSAPP.Name = "CMDWHATSAPP"
+        Me.CMDWHATSAPP.Size = New System.Drawing.Size(80, 28)
+        Me.CMDWHATSAPP.TabIndex = 22
+        Me.CMDWHATSAPP.Text = "&Whatsapp"
+        Me.CMDWHATSAPP.UseVisualStyleBackColor = False
+        '
         'ComplaintRegisterReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -274,4 +290,5 @@ Partial Class ComplaintRegisterReport
     Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDWHATSAPP As Button
 End Class
