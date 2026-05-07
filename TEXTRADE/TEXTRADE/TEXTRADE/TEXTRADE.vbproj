@@ -2533,6 +2533,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningYarnJobOrderDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Complaint Solved\SelectComplaint.Designer.vb">
+      <DependentUpon>SelectComplaint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Complaint Solved\SelectComplaint.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\In House Packing\Issue To Packing\SelectIssueBarcodeGrid.Designer.vb">
       <DependentUpon>SelectIssueBarcodeGrid.vb</DependentUpon>
     </Compile>
@@ -10712,6 +10718,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningYarnJobOrderDetails.resx">
       <DependentUpon>OpeningYarnJobOrderDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Complaint Solved\SelectComplaint.resx">
+      <DependentUpon>SelectComplaint.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\In House Packing\Issue To Packing\SelectIssueBarcodeGrid.resx">
       <DependentUpon>SelectIssueBarcodeGrid.vb</DependentUpon>
