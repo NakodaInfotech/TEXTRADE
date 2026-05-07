@@ -253,6 +253,7 @@
     <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Opening\ClsAgencyOpeningBills.vb" />
     <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Accounts\ClsAgencyCreditNote.vb" />
     <Compile Include="Transactions\BlanketModule\ClsBlanketRepresentation.vb" />
+    <Compile Include="Transactions\Complaint Solved\ClsComplaintSolved.vb" />
     <Compile Include="Transactions\DyeingPriceList\ClsDyeingPriceList.vb" />
     <Compile Include="Transactions\Sale\ClsPosterOrder.vb" />
     <Compile Include="Transactions\Sale\ClsSalesEnquiry.vb" />

@@ -23,12 +23,12 @@ Partial Class ComplaintSolved
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ComplaintSolved))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -43,12 +43,15 @@ Partial Class ComplaintSolved
         Me.Label9 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TXTBILLNO = New System.Windows.Forms.TextBox()
         Me.GRIDSHRINKAGE = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCOMP = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCOMPDATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCOMPBY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBILLINITIALS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBILLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GREGISTER = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -61,7 +64,7 @@ Partial Class ComplaintSolved
         Me.LBLAVGSHRINKAGE = New System.Windows.Forms.Label()
         Me.LBLTOTALBALMTRS = New System.Windows.Forms.Label()
         Me.TXTCOMPLAINTDATE = New System.Windows.Forms.MaskedTextBox()
-        Me.TXTBILLNO = New System.Windows.Forms.TextBox()
+        Me.TXTBILLINITIALS = New System.Windows.Forms.TextBox()
         Me.TXTCOMPLAINTBY = New System.Windows.Forms.TextBox()
         Me.txtsrno = New System.Windows.Forms.TextBox()
         Me.LBLTOTALPCS = New System.Windows.Forms.Label()
@@ -88,6 +91,7 @@ Partial Class ComplaintSolved
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.CMBREGISTER = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -267,6 +271,8 @@ Partial Class ComplaintSolved
         '
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.CMBREGISTER)
+        Me.TabPage1.Controls.Add(Me.TXTBILLNO)
         Me.TabPage1.Controls.Add(Me.GRIDSHRINKAGE)
         Me.TabPage1.Controls.Add(Me.LBLTOTALRECDPCS)
         Me.TabPage1.Controls.Add(Me.LBLTOTALRECDMTRS)
@@ -277,7 +283,7 @@ Partial Class ComplaintSolved
         Me.TabPage1.Controls.Add(Me.LBLAVGSHRINKAGE)
         Me.TabPage1.Controls.Add(Me.LBLTOTALBALMTRS)
         Me.TabPage1.Controls.Add(Me.TXTCOMPLAINTDATE)
-        Me.TabPage1.Controls.Add(Me.TXTBILLNO)
+        Me.TabPage1.Controls.Add(Me.TXTBILLINITIALS)
         Me.TabPage1.Controls.Add(Me.TXTCOMPLAINTBY)
         Me.TabPage1.Controls.Add(Me.txtsrno)
         Me.TabPage1.Controls.Add(Me.LBLTOTALPCS)
@@ -292,34 +298,45 @@ Partial Class ComplaintSolved
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "1. Item Details"
         '
+        'TXTBILLNO
+        '
+        Me.TXTBILLNO.BackColor = System.Drawing.Color.White
+        Me.TXTBILLNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBILLNO.Location = New System.Drawing.Point(648, 1)
+        Me.TXTBILLNO.Name = "TXTBILLNO"
+        Me.TXTBILLNO.Size = New System.Drawing.Size(84, 23)
+        Me.TXTBILLNO.TabIndex = 810
+        Me.TXTBILLNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTBILLNO.Visible = False
+        '
         'GRIDSHRINKAGE
         '
         Me.GRIDSHRINKAGE.AllowUserToAddRows = False
         Me.GRIDSHRINKAGE.AllowUserToDeleteRows = False
         Me.GRIDSHRINKAGE.AllowUserToResizeColumns = False
         Me.GRIDSHRINKAGE.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDSHRINKAGE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDSHRINKAGE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         Me.GRIDSHRINKAGE.BackgroundColor = System.Drawing.Color.White
         Me.GRIDSHRINKAGE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDSHRINKAGE.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDSHRINKAGE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDSHRINKAGE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.GRIDSHRINKAGE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSHRINKAGE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GCOMP, Me.GCOMPDATE, Me.GCOMPBY, Me.GBILLNO, Me.GFROMNO, Me.GFROMSRNO, Me.GTYPE})
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSHRINKAGE.DefaultCellStyle = DataGridViewCellStyle5
+        Me.GRIDSHRINKAGE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GCOMP, Me.GCOMPDATE, Me.GCOMPBY, Me.GBILLINITIALS, Me.GBILLNO, Me.GREGISTER, Me.GFROMNO, Me.GFROMSRNO, Me.GTYPE})
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSHRINKAGE.DefaultCellStyle = DataGridViewCellStyle11
         Me.GRIDSHRINKAGE.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDSHRINKAGE.Location = New System.Drawing.Point(2, 23)
         Me.GRIDSHRINKAGE.MultiSelect = False
@@ -327,9 +344,9 @@ Partial Class ComplaintSolved
         Me.GRIDSHRINKAGE.RowHeadersVisible = False
         Me.GRIDSHRINKAGE.RowHeadersWidth = 30
         Me.GRIDSHRINKAGE.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDSHRINKAGE.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDSHRINKAGE.RowsDefaultCellStyle = DataGridViewCellStyle12
         Me.GRIDSHRINKAGE.RowTemplate.Height = 20
         Me.GRIDSHRINKAGE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSHRINKAGE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -374,16 +391,28 @@ Partial Class ComplaintSolved
         Me.GCOMPBY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GCOMPBY.Width = 133
         '
+        'GBILLINITIALS
+        '
+        Me.GBILLINITIALS.HeaderText = "Bill Initials"
+        Me.GBILLINITIALS.Name = "GBILLINITIALS"
+        Me.GBILLINITIALS.Width = 120
+        '
         'GBILLNO
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBILLNO.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBILLNO.DefaultCellStyle = DataGridViewCellStyle9
         Me.GBILLNO.HeaderText = "Bill No"
         Me.GBILLNO.Name = "GBILLNO"
         Me.GBILLNO.ReadOnly = True
         Me.GBILLNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GBILLNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBILLNO.Width = 120
+        Me.GBILLNO.Width = 84
+        '
+        'GREGISTER
+        '
+        Me.GREGISTER.HeaderText = "Register"
+        Me.GREGISTER.Name = "GREGISTER"
+        Me.GREGISTER.Width = 150
         '
         'GFROMNO
         '
@@ -407,8 +436,8 @@ Partial Class ComplaintSolved
         '
         'GTYPE
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTYPE.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GTYPE.DefaultCellStyle = DataGridViewCellStyle10
         Me.GTYPE.HeaderText = "Type"
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.ReadOnly = True
@@ -444,7 +473,7 @@ Partial Class ComplaintSolved
         '
         Me.TXTFROMTYPE.BackColor = System.Drawing.Color.White
         Me.TXTFROMTYPE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTFROMTYPE.Location = New System.Drawing.Point(648, 1)
+        Me.TXTFROMTYPE.Location = New System.Drawing.Point(882, 1)
         Me.TXTFROMTYPE.Name = "TXTFROMTYPE"
         Me.TXTFROMTYPE.Size = New System.Drawing.Size(150, 23)
         Me.TXTFROMTYPE.TabIndex = 6
@@ -525,16 +554,16 @@ Partial Class ComplaintSolved
         Me.TXTCOMPLAINTDATE.ValidatingType = GetType(Date)
         Me.TXTCOMPLAINTDATE.Visible = False
         '
-        'TXTBILLNO
+        'TXTBILLINITIALS
         '
-        Me.TXTBILLNO.BackColor = System.Drawing.Color.LemonChiffon
-        Me.TXTBILLNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TXTBILLNO.Location = New System.Drawing.Point(528, 1)
-        Me.TXTBILLNO.Name = "TXTBILLNO"
-        Me.TXTBILLNO.Size = New System.Drawing.Size(120, 23)
-        Me.TXTBILLNO.TabIndex = 5
-        Me.TXTBILLNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TXTBILLNO.Visible = False
+        Me.TXTBILLINITIALS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTBILLINITIALS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTBILLINITIALS.Location = New System.Drawing.Point(528, 1)
+        Me.TXTBILLINITIALS.Name = "TXTBILLINITIALS"
+        Me.TXTBILLINITIALS.Size = New System.Drawing.Size(120, 23)
+        Me.TXTBILLINITIALS.TabIndex = 5
+        Me.TXTBILLINITIALS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTBILLINITIALS.Visible = False
         '
         'TXTCOMPLAINTBY
         '
@@ -812,14 +841,27 @@ Partial Class ComplaintSolved
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'UpdateComplaint
+        'CMBREGISTER
+        '
+        Me.CMBREGISTER.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBREGISTER.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBREGISTER.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBREGISTER.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBREGISTER.FormattingEnabled = True
+        Me.CMBREGISTER.Location = New System.Drawing.Point(732, 1)
+        Me.CMBREGISTER.Name = "CMBREGISTER"
+        Me.CMBREGISTER.Size = New System.Drawing.Size(150, 23)
+        Me.CMBREGISTER.TabIndex = 811
+        Me.CMBREGISTER.Visible = False
+        '
+        'ComplaintSolved
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1234, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
-        Me.Name = "UpdateComplaint"
+        Me.Name = "ComplaintSolved"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Update Complaint"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -861,7 +903,7 @@ Partial Class ComplaintSolved
     Friend WithEvents LBLAVGSHRINKAGE As Label
     Friend WithEvents LBLTOTALBALMTRS As Label
     Friend WithEvents TXTCOMPLAINTDATE As MaskedTextBox
-    Friend WithEvents TXTBILLNO As TextBox
+    Friend WithEvents TXTBILLINITIALS As TextBox
     Friend WithEvents TXTCOMPLAINTBY As TextBox
     Friend WithEvents txtsrno As TextBox
     Friend WithEvents LBLTOTALPCS As Label
@@ -887,13 +929,17 @@ Partial Class ComplaintSolved
     Friend WithEvents TOOLPRIVIOUS As ToolStripButton
     Friend WithEvents toolnext As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents EP As ErrorProvider
+    Friend WithEvents TXTBILLNO As TextBox
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GCOMP As DataGridViewTextBoxColumn
     Friend WithEvents GCOMPDATE As DataGridViewTextBoxColumn
     Friend WithEvents GCOMPBY As DataGridViewTextBoxColumn
+    Friend WithEvents GBILLINITIALS As DataGridViewTextBoxColumn
     Friend WithEvents GBILLNO As DataGridViewTextBoxColumn
+    Friend WithEvents GREGISTER As DataGridViewTextBoxColumn
     Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GTYPE As DataGridViewTextBoxColumn
-    Friend WithEvents EP As ErrorProvider
+    Friend WithEvents CMBREGISTER As ComboBox
 End Class
