@@ -738,6 +738,12 @@
       <DependentUpon>RecReport_ABHEE.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Register\Interest Reports\InterestBillWiseReport_ABHEE.vb">
+      <DependentUpon>InterestBillWiseReport_ABHEE.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Sale Order\SOStatusQualityWiseReport.vb">
       <DependentUpon>SOStatusQualityWiseReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -4783,13 +4789,13 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\Register\Other Reports\InterestBillWiseReport.vb">
+    <Compile Include="Reports\Crystal Reports\Register\Interest Reports\InterestBillWiseReport.vb">
       <DependentUpon>InterestBillWiseReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\Register\Other Reports\InterestDetailsReport.vb">
+    <Compile Include="Reports\Crystal Reports\Register\Interest Reports\InterestDetailsReport.vb">
       <DependentUpon>InterestDetailsReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
@@ -5953,7 +5959,7 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reports\Crystal Reports\Register\Other Reports\InterestSummReport.vb">
+    <Compile Include="Reports\Crystal Reports\Register\Interest Reports\InterestSummReport.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InterestSummReport.rpt</DependentUpon>
@@ -9614,6 +9620,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RecReport_ABHEE.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Register\Interest Reports\InterestBillWiseReport_ABHEE.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InterestBillWiseReport_ABHEE.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Order\SOStatusQualityWiseReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>SOStatusQualityWiseReport.vb</LastGenOutput>
@@ -11925,11 +11935,11 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>LedgerBookAcConfirmReport.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\Register\Other Reports\InterestBillWiseReport.rpt">
+    <EmbeddedResource Include="Reports\Crystal Reports\Register\Interest Reports\InterestBillWiseReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InterestBillWiseReport.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\Register\Other Reports\InterestDetailsReport.rpt">
+    <EmbeddedResource Include="Reports\Crystal Reports\Register\Interest Reports\InterestDetailsReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InterestDetailsReport.vb</LastGenOutput>
     </EmbeddedResource>
@@ -12700,7 +12710,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RecMonthlyAdjustedReport.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Crystal Reports\Register\Other Reports\InterestSummReport.rpt">
+    <EmbeddedResource Include="Reports\Crystal Reports\Register\Interest Reports\InterestSummReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InterestSummReport.vb</LastGenOutput>
     </EmbeddedResource>
