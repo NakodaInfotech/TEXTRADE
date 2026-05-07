@@ -3151,6 +3151,12 @@
     <Compile Include="Transactions\Sample\Booklet Creation\SampleBookletCreationDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Update Complaint\UpdateComplaint.Designer.vb">
+      <DependentUpon>UpdateComplaint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Update Complaint\UpdateComplaint.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaverDetails.Designer.vb">
       <DependentUpon>BeamIssueWeaverDetails.vb</DependentUpon>
     </Compile>
@@ -11012,6 +11018,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Sample\Sample Booklet Inward\SampleBookletInwardDetails.resx">
       <DependentUpon>SampleBookletInwardDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Update Complaint\UpdateComplaint.resx">
+      <DependentUpon>UpdateComplaint.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaverDetails.resx">
       <DependentUpon>BeamIssueWeaverDetails.vb</DependentUpon>
