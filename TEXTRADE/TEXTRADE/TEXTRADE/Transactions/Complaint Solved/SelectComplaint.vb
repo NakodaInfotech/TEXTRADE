@@ -50,26 +50,20 @@ Public Class SelectComplaint
             Cursor.Current = Cursors.WaitCursor
             Dim OBJCMN As New ClsCommon
 
-            DT.Columns.Add("LOTNO")
-            DT.Columns.Add("DATE")
-            DT.Columns.Add("ITEMNAME")
-            DT.Columns.Add("ACCEPTEDPCS")
-            DT.Columns.Add("ACCEPTEDMTRS")
-            DT.Columns.Add("RECDPCS")
-            DT.Columns.Add("RECDMTRS")
-            DT.Columns.Add("BALPCS")
-            DT.Columns.Add("BALMTRS")
-            DT.Columns.Add("SHRINKAGE")
-            DT.Columns.Add("GRNNO")
-            DT.Columns.Add("GRNTYPE")
-            DT.Columns.Add("CHALLANNO")
-            DT.Columns.Add("DYEINGJOB")
-            DT.Columns.Add("LRNO")
+            DT.Columns.Add("COMPLAINT")
+            DT.Columns.Add("COMPLAINTDATE")
+            DT.Columns.Add("COMPLAINTBY")
+
+            DT.Columns.Add("BILLINITIALS")
+            DT.Columns.Add("BILLNO")
+            DT.Columns.Add("REGISTER")
+            DT.Columns.Add("TYPE")
+
 
             Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
             For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                 Dim DTROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
-                DT.Rows.Add(DTROW("LOTNO"), DTROW("DATE"), DTROW("ITEMNAME"), Val(DTROW("ACCEPTEDPCS")), Val(DTROW("ACCEPTEDMTRS")), Val(DTROW("RECDPCS")), Val(DTROW("RECDMTRS")), Val(DTROW("BALPCS")), Val(DTROW("BALMTRS")), Val(DTROW("SHRINKAGE")), Val(DTROW("GRNNO")), DTROW("GRNTYPE"), DTROW("JONO").ToString, DTROW("DYEINGJOB"), DTROW("LRNO"))
+                DT.Rows.Add(DTROW("COMPLAINT"), DTROW("COMPLAINTDATE"), DTROW("COMPLAINTBY"), DTROW("BILLINITIALS"), Val(DTROW("BILLNO")), DTROW("REGISTER"), DTROW("TYPE"))
             Next
 
             Me.Close()
@@ -91,9 +85,9 @@ Public Class SelectComplaint
     Private Sub SelectLotNo_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If LOTSTATUSONMTRS = True And ClientName <> "KRISHNA" Then
-                GPCS.Visible = False
-                GRECDPCS.Visible = False
-                GBALPCS.Visible = False
+                GREGISTER.Visible = False
+                'GRECDPCS.Visible = False
+                'GBALPCS.Visible = False
             End If
         Catch ex As Exception
             Throw ex
