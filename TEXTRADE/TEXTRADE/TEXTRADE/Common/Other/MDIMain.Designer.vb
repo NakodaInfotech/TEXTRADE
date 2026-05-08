@@ -1359,17 +1359,17 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolStripSeparator357 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator358 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator359 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator360 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator361 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator362 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator363 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator364 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator365 = New System.Windows.Forms.ToolStripSeparator()
-        Me.COMPLAINTSOLVED_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.COMPLAINTSOLVED_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        'Me.ToolStripSeparator357 = New System.Windows.Forms.ToolStripSeparator()
+        'Me.ToolStripSeparator358 = New System.Windows.Forms.ToolStripSeparator()
+        'Me.ToolStripSeparator359 = New System.Windows.Forms.ToolStripSeparator()
+        'Me.ToolStripSeparator360 = New System.Windows.Forms.ToolStripSeparator()
+        'Me.ToolStripSeparator361 = New System.Windows.Forms.ToolStripSeparator()
+        'Me.ToolStripSeparator362 = New System.Windows.Forms.ToolStripSeparator()
+        'Me.ToolStripSeparator363 = New System.Windows.Forms.ToolStripSeparator()
+        'Me.ToolStripSeparator364 = New System.Windows.Forms.ToolStripSeparator()
+        'Me.ToolStripSeparator365 = New System.Windows.Forms.ToolStripSeparator()
+        'Me.COMPLAINTSOLVED_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        'Me.COMPLAINTSOLVED_ADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7620,7 +7620,7 @@ Partial Class MDIMain
         '
         'BEAMENTRY_MASTER
         '
-        Me.BEAMENTRY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMRECDWARPER_MASTER, Me.ToolStripSeparator159, Me.BEAMRECDSIZER_MASTER, Me.BEAMISSUEWEAVER_MASTER, Me.ToolStripSeparator333, Me.BeamUploadUnload_MASTER, Me.ToolStripSeparator363})
+        Me.BEAMENTRY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMRECDWARPER_MASTER, Me.ToolStripSeparator159, Me.BEAMRECDSIZER_MASTER, Me.BEAMISSUEWEAVER_MASTER, Me.ToolStripSeparator333, Me.BeamUploadUnload_MASTER})
         Me.BEAMENTRY_MASTER.Name = "BEAMENTRY_MASTER"
         Me.BEAMENTRY_MASTER.Size = New System.Drawing.Size(221, 22)
         Me.BEAMENTRY_MASTER.Text = "Beam Entry"
@@ -7718,7 +7718,7 @@ Partial Class MDIMain
         '
         'BeamUploadUnload_MASTER
         '
-        Me.BeamUploadUnload_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMUPLOADADD, Me.BEAMUPLOADEDIT, Me.ToolStripSeparator365, Me.AddNewBeamUnloadEntryToolStripMenuItem, Me.BEAMUNLOADEDIT, Me.ToolStripSeparator364})
+        Me.BeamUploadUnload_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMUPLOADADD, Me.BEAMUPLOADEDIT, Me.AddNewBeamUnloadEntryToolStripMenuItem, Me.BEAMUNLOADEDIT})
         Me.BeamUploadUnload_MASTER.Name = "BeamUploadUnload_MASTER"
         Me.BeamUploadUnload_MASTER.Size = New System.Drawing.Size(207, 22)
         Me.BeamUploadUnload_MASTER.Text = "Beam Upload / Unload"
@@ -7754,7 +7754,7 @@ Partial Class MDIMain
         '
         'YARNLOOMEFFICIENCY_MASTER
         '
-        Me.YARNLOOMEFFICIENCY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNLOOMEFFICIENCY_ADD, Me.YARNLOOMEFFICIENCY_EDIT, Me.ToolStripSeparator362})
+        Me.YARNLOOMEFFICIENCY_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNLOOMEFFICIENCY_ADD, Me.YARNLOOMEFFICIENCY_EDIT})
         Me.YARNLOOMEFFICIENCY_MASTER.Name = "YARNLOOMEFFICIENCY_MASTER"
         Me.YARNLOOMEFFICIENCY_MASTER.Size = New System.Drawing.Size(221, 22)
         Me.YARNLOOMEFFICIENCY_MASTER.Text = "Yarn Loom Efficiency"
@@ -7842,14 +7842,14 @@ Partial Class MDIMain
         '
         'GreyJobWorkToolStripMenuItem
         '
-        Me.GreyJobWorkToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBOUT_MASTER, Me.GREYJOBIN_MASTER, Me.ToolStripSeparator359})
+        Me.GreyJobWorkToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBOUT_MASTER, Me.GREYJOBIN_MASTER})
         Me.GreyJobWorkToolStripMenuItem.Name = "GreyJobWorkToolStripMenuItem"
         Me.GreyJobWorkToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
         Me.GreyJobWorkToolStripMenuItem.Text = "Grey Job Work"
         '
         'GREYJOBOUT_MASTER
         '
-        Me.GREYJOBOUT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBOUTADD, Me.GREYJOBOUTEDIT, Me.ToolStripSeparator361})
+        Me.GREYJOBOUT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBOUTADD, Me.GREYJOBOUTEDIT})
         Me.GREYJOBOUT_MASTER.Enabled = False
         Me.GREYJOBOUT_MASTER.Name = "GREYJOBOUT_MASTER"
         Me.GREYJOBOUT_MASTER.Size = New System.Drawing.Size(180, 22)
@@ -7871,7 +7871,7 @@ Partial Class MDIMain
         '
         'GREYJOBIN_MASTER
         '
-        Me.GREYJOBIN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBINADD, Me.GREYJOBINEDIT, Me.ToolStripSeparator360})
+        Me.GREYJOBIN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYJOBINADD, Me.GREYJOBINEDIT})
         Me.GREYJOBIN_MASTER.Enabled = False
         Me.GREYJOBIN_MASTER.Name = "GREYJOBIN_MASTER"
         Me.GREYJOBIN_MASTER.Size = New System.Drawing.Size(180, 22)
@@ -8266,7 +8266,7 @@ Partial Class MDIMain
         '
         'GREYSTOCKADJUSTMENT_MASTER
         '
-        Me.GREYSTOCKADJUSTMENT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYSTOCKADJUSTMENT_ADD, Me.GREYSTOCKADJUSTMENT_EDIT, Me.ToolStripSeparator357})
+        Me.GREYSTOCKADJUSTMENT_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GREYSTOCKADJUSTMENT_ADD, Me.GREYSTOCKADJUSTMENT_EDIT})
         Me.GREYSTOCKADJUSTMENT_MASTER.Name = "GREYSTOCKADJUSTMENT_MASTER"
         Me.GREYSTOCKADJUSTMENT_MASTER.Size = New System.Drawing.Size(221, 22)
         Me.GREYSTOCKADJUSTMENT_MASTER.Text = "Grey Stock Adjustment"
@@ -8724,7 +8724,7 @@ Partial Class MDIMain
         '
         'UpdateEntriesToolStripMenuItem
         '
-        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.ToolStripMenuItem6, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP, Me.UpdatePendingLRStockToolStripMenuItem, Me.UPDATEROUNDER_MASTER, Me.COMPLAINTSOLVED_MASTER})
+        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.ToolStripMenuItem6, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP, Me.UpdatePendingLRStockToolStripMenuItem, Me.UPDATEROUNDER_MASTER})
         Me.UpdateEntriesToolStripMenuItem.Name = "UpdateEntriesToolStripMenuItem"
         Me.UpdateEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.UpdateEntriesToolStripMenuItem.Text = "Update Entries"
