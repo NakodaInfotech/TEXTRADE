@@ -79,6 +79,8 @@ Partial Class AccountsMaster
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.cmbrounder = New System.Windows.Forms.ComboBox()
+        Me.Label72 = New System.Windows.Forms.Label()
         Me.CMBBILLTO = New System.Windows.Forms.ComboBox()
         Me.LBLBILLTO = New System.Windows.Forms.Label()
         Me.Label71 = New System.Windows.Forms.Label()
@@ -229,8 +231,6 @@ Partial Class AccountsMaster
         Me.GMOBILENO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GEMAIL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.cmbrounder = New System.Windows.Forms.ComboBox()
-        Me.Label72 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.GROUPTDS.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -660,7 +660,7 @@ Partial Class AccountsMaster
         Me.CMBSECTION.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CMBSECTION.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBSECTION.FormattingEnabled = True
-        Me.CMBSECTION.Items.AddRange(New Object() {"192B", "193", "194", "194A", "194B", "194BB", "194C", "194D", "194EE", "194F", "194G", "194H", "194I", "194J", "194K", "194LA", "194Q", "194T"})
+        Me.CMBSECTION.Items.AddRange(New Object() {"192B", "193", "194", "194A", "194B", "194BB", "194C", "194D", "194EE", "194F", "194G", "194H", "194I", "194J", "194K", "194LA", "194Q", "194T", "1006", "1023", "1024", "1031", "1022", "1027", "1026", "1009", "1008"})
         Me.CMBSECTION.Location = New System.Drawing.Point(339, 45)
         Me.CMBSECTION.MaxDropDownItems = 14
         Me.CMBSECTION.Name = "CMBSECTION"
@@ -1048,6 +1048,30 @@ Partial Class AccountsMaster
         Me.TabPage1.Size = New System.Drawing.Size(1031, 402)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Details"
+        '
+        'cmbrounder
+        '
+        Me.cmbrounder.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cmbrounder.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.cmbrounder.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbrounder.FormattingEnabled = True
+        Me.cmbrounder.Location = New System.Drawing.Point(851, 370)
+        Me.cmbrounder.MaxDropDownItems = 14
+        Me.cmbrounder.Name = "cmbrounder"
+        Me.cmbrounder.Size = New System.Drawing.Size(159, 22)
+        Me.cmbrounder.TabIndex = 877
+        '
+        'Label72
+        '
+        Me.Label72.BackColor = System.Drawing.Color.Transparent
+        Me.Label72.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label72.ForeColor = System.Drawing.Color.Black
+        Me.Label72.Location = New System.Drawing.Point(773, 374)
+        Me.Label72.Name = "Label72"
+        Me.Label72.Size = New System.Drawing.Size(76, 14)
+        Me.Label72.TabIndex = 878
+        Me.Label72.Text = "Rounder"
+        Me.Label72.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CMBBILLTO
         '
@@ -2341,10 +2365,10 @@ Partial Class AccountsMaster
         Me.TabPage2.Controls.Add(Me.Label18)
         Me.TabPage2.Controls.Add(Me.Label9)
         Me.TabPage2.Controls.Add(Me.txtvatno)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 23)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1031, 402)
+        Me.TabPage2.Size = New System.Drawing.Size(1031, 403)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Bank Details / Other Details"
         '
@@ -2735,30 +2759,6 @@ Partial Class AccountsMaster
         Me.Ep.BlinkRate = 0
         Me.Ep.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.Ep.ContainerControl = Me
-        '
-        'cmbrounder
-        '
-        Me.cmbrounder.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cmbrounder.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.cmbrounder.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbrounder.FormattingEnabled = True
-        Me.cmbrounder.Location = New System.Drawing.Point(851, 370)
-        Me.cmbrounder.MaxDropDownItems = 14
-        Me.cmbrounder.Name = "cmbrounder"
-        Me.cmbrounder.Size = New System.Drawing.Size(159, 22)
-        Me.cmbrounder.TabIndex = 877
-        '
-        'Label72
-        '
-        Me.Label72.BackColor = System.Drawing.Color.Transparent
-        Me.Label72.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label72.ForeColor = System.Drawing.Color.Black
-        Me.Label72.Location = New System.Drawing.Point(773, 374)
-        Me.Label72.Name = "Label72"
-        Me.Label72.Size = New System.Drawing.Size(76, 14)
-        Me.Label72.TabIndex = 878
-        Me.Label72.Text = "Rounder"
-        Me.Label72.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'AccountsMaster
         '
