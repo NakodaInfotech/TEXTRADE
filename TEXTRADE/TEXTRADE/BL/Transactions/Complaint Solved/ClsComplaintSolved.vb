@@ -59,10 +59,10 @@ Public Class ClsComplaintSolved
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REGISTER", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
-                I = I + 1
+                '.Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
+                'I = I + 1
+                '.Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
+                'I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
 
@@ -123,10 +123,10 @@ Public Class ClsComplaintSolved
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REGISTER", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
-                I = I + 1
+                '.Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
+                'I = I + 1
+                '.Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
+                'I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
 

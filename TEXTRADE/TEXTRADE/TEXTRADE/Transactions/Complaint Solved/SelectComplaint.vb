@@ -30,7 +30,12 @@ Public Class SelectComplaint
 
     Sub FILLGRID()
         Try
-            Dim WHERECLAUSE As String = " AND JOBBERNAME = '" & JOBBERNAME & "'"
+            'Dim WHERECLAUSE As String = " AND NAME = '" & JOBBERNAME & "'"
+            Dim WHERECLAUSE As String = ""
+            If JOBBERNAME <> "" Then
+                WHERECLAUSE = " AND (COMPLAINTREGISTERVIEW.BUYERNAME = '" & JOBBERNAME & "'" &
+                  " OR COMPLAINTREGISTERVIEW.SELLERNAME = '" & JOBBERNAME & "')"
+            End If
             Dim OBJCMN As New ClsCommon
             Dim DTTABLE As New DataTable
 
@@ -63,7 +68,7 @@ Public Class SelectComplaint
             Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
             For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                 Dim DTROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
-                DT.Rows.Add(DTROW("COMPLAINT"), DTROW("COMPLAINTDATE"), DTROW("COMPLAINTBY"), DTROW("BILLINITIALS"), Val(DTROW("BILLNO")), DTROW("REGISTER"), DTROW("TYPE"))
+                DT.Rows.Add(DTROW("COMPLAINT"), DTROW("COMPLAINTDATE"), DTROW("COMPLAINTBY"), DTROW("BILLINITIALS"), Val(DTROW("BILLNO")), DTROW("REGNAME"), DTROW("TYPE"))
             Next
 
             Me.Close()

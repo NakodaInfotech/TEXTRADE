@@ -15,7 +15,7 @@ Public Class ComplaintSolved
 
     Sub GET_MAX_NO()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(LOT_NO),0) + 1 ", " LOTCOMPLETED ", " and LOT_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(COMP_NO),0) + 1 ", " COMPLAINTSOLVED ", " and COMP_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -71,8 +71,8 @@ Public Class ComplaintSolved
             Dim BILLINITIALS As String = ""
             Dim BILLNO As String = ""
             Dim REGISTER As String = ""
-            Dim FROMNO As String = ""
-            Dim FROMSRNO As String = ""
+            'Dim FROMNO As String = ""
+            'Dim FROMSRNO As String = ""
 
             Dim FROMTYPE As String = ""
 
@@ -84,14 +84,14 @@ Public Class ComplaintSolved
                         srno = row.Cells(GSRNO.Index).Value.ToString
                         COMPLAINT = row.Cells(GCOMP.Index).Value.ToString
                         COMPLAINTDATE = row.Cells(GCOMPDATE.Index).Value.ToString
-                        COMPLAINTBY = row.Cells(GCOMPDATE.Index).Value.ToString
-                        BILLINITIALS = Val(row.Cells(GBILLINITIALS.Index).Value.ToString)
+                        COMPLAINTBY = row.Cells(GCOMPBY.Index).Value.ToString
+                        BILLINITIALS = row.Cells(GBILLINITIALS.Index).Value.ToString
                         BILLNO = Val(row.Cells(GBILLNO.Index).Value)
-                        REGISTER = Val(row.Cells(GBILLNO.Index).Value.ToString)
-                        FROMNO = Val(row.Cells(GFROMNO.Index).Value)
-                        FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
+                        REGISTER = row.Cells(GREGISTER.Index).Value.ToString
+                        'FROMNO = Val(row.Cells(GFROMNO.Index).Value)
+                        'FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
 
-                        FROMTYPE = Val(row.Cells(GTYPE.Index).Value.ToString)
+                        FROMTYPE = row.Cells(GTYPE.Index).Value.ToString
 
                     Else
 
@@ -99,14 +99,14 @@ Public Class ComplaintSolved
                         COMPLAINT = COMPLAINT & "|" & row.Cells(GCOMP.Index).Value
                         COMPLAINTDATE = COMPLAINTDATE & "|" & row.Cells(GCOMPDATE.Index).Value
                         COMPLAINTBY = COMPLAINTBY & "|" & row.Cells(GCOMPBY.Index).Value
-                        BILLINITIALS = BILLINITIALS & "|" & Val(row.Cells(GBILLINITIALS.Index).Value)
+                        BILLINITIALS = BILLINITIALS & "|" & row.Cells(GBILLINITIALS.Index).Value
 
                         BILLNO = BILLNO & "|" & Val(row.Cells(GBILLNO.Index).Value)
-                        REGISTER = REGISTER & "|" & Val(row.Cells(GREGISTER.Index).Value)
-                        FROMNO = FROMNO & "|" & Val(row.Cells(GFROMNO.Index).Value)
-                        FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
+                        REGISTER = REGISTER & "|" & row.Cells(GREGISTER.Index).Value
+                        'FROMNO = FROMNO & "|" & Val(row.Cells(GFROMNO.Index).Value)
+                        'FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
 
-                        FROMTYPE = FROMTYPE & "|" & Val(row.Cells(GTYPE.Index).Value)
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(GTYPE.Index).Value
 
 
                     End If
@@ -123,8 +123,8 @@ Public Class ComplaintSolved
             alParaval.Add(BILLINITIALS)
             alParaval.Add(BILLNO)
             alParaval.Add(REGISTER)
-            alParaval.Add(FROMNO)
-            alParaval.Add(FROMSRNO)
+            'alParaval.Add(FROMNO)
+            'alParaval.Add(FROMSRNO)
             alParaval.Add(FROMTYPE)
 
 
@@ -338,8 +338,8 @@ Public Class ComplaintSolved
                         SKDATE.Text = Format(Convert.ToDateTime(dr("DATE")), "dd/MM/yyyy")
                         CMBNAME.Text = Convert.ToString(dr("NAME").ToString)
                         txtremarks.Text = Convert.ToString(dr("REMARKS").ToString)
-                        TXTLRNO.Text = Convert.ToString(dr("LRNO").ToString)
-                        GRIDSHRINKAGE.Rows.Add(dr("GRIDSRNO").ToString, dr("LOTNO"), dr("GRIDDATE").ToString, dr("ITEMNAME").ToString, Format(Val(dr("PCS")), "0"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RECDPCS")), "0"), Format(Val(dr("RECDMTRS")), "0.00"), Format(Val(dr("BALPCS")), "0.00"), Format(Val(dr("BALMTRS")), "0.00"), Format(Val(dr("SMPMTRS")), "0.00"), Format(Val(dr("SHRINKAGE")), "0.00"), Format(Val(dr("SHRINKAGEPER")), "0.00"), Val(dr("GRNNO")), dr("GRNTYPE"), dr("CHALLANNO"), dr("DYEINGJOB"))
+                        'TXTLRNO.Text = Convert.ToString(dr("LRNO").ToString)
+                        GRIDSHRINKAGE.Rows.Add(dr("COMPSRNO").ToString, dr("COMPLAINT"), dr("COMPLAINTDATE").ToString, dr("COMPLAINTBY").ToString, dr("BILLINITIALS").ToString, Val(dr("BILLNO")), dr("REGNAME").ToString, dr("FROMTYPE").ToString)
 
                     Next
 
@@ -541,18 +541,23 @@ LINE1:
             End If
 
 
-            Dim OBJLOT As New SelectLotNo
+            Dim OBJLOT As New SelectComplaint
             OBJLOT.JOBBERNAME = CMBNAME.Text.Trim
             OBJLOT.ShowDialog()
             Dim DTTABLE As DataTable = OBJLOT.DT
             If DTTABLE.Rows.Count > 0 Then
                 For Each DTROW As DataRow In DTTABLE.Rows
-                    TXTLRNO.Text = DTROW("LRNO")
+                    'TXTLRNO.Text = DTROW("LRNO")
 
                     'THEY NEED LRNO IN GRID
-                    If ClientName = "AVIS" Then DTROW("CHALLANNO") = DTROW("LRNO")
+                    'If ClientName = "AVIS" Then DTROW("CHALLANNO") = DTROW("LRNO")
+                    Dim RAWDATE As String = DTROW("COMPLAINTDATE").ToString().Trim()
+                    Dim COMPLAINTDATE As String = ""
 
-                    GRIDSHRINKAGE.Rows.Add(0, DTROW("LOTNO"), Format(Convert.ToDateTime(DTROW("DATE")).Date, "dd/MM/yyyy"), DTROW("ITEMNAME"), Format(Val(DTROW("ACCEPTEDPCS")), "0"), Format(Val(DTROW("ACCEPTEDMTRS")), "0.00"), Format(Val(DTROW("RECDPCS")), "0"), Format(Val(DTROW("RECDMTRS")), "0.00"), Format(Val(DTROW("BALPCS")), "0"), Format(Val(DTROW("BALMTRS")), "0.00"), 0, Format(Val(DTROW("SHRINKAGE")), "0.00"), Format((Val(DTROW("SHRINKAGE")) / Val(DTROW("ACCEPTEDMTRS"))) * 100, "0.00"), Val(DTROW("GRNNO")), DTROW("GRNTYPE"), DTROW("CHALLANNO"), DTROW("DYEINGJOB"))
+                    If RAWDATE <> "" AndAlso RAWDATE <> "__/__/____" Then
+                        COMPLAINTDATE = Format(Convert.ToDateTime(RAWDATE).Date, "dd/MM/yyyy")
+                    End If
+                    GRIDSHRINKAGE.Rows.Add(0, DTROW("COMPLAINT"), COMPLAINTDATE, DTROW("COMPLAINTBY"), DTROW("BILLINITIALS"), Val(DTROW("BILLNO")), DTROW("REGISTER"), DTROW("TYPE"))
                 Next
                 getsrno(GRIDSHRINKAGE)
                 'TOTAL()

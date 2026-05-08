@@ -28,15 +28,15 @@ Partial Class SelectComplaint
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBUYERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GREGISTER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSELLERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBILLINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREGISTER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.CMDEXIT = New System.Windows.Forms.Button()
-        Me.GSELLERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,15 +120,6 @@ Partial Class SelectComplaint
         Me.GCOMPLAINT.VisibleIndex = 2
         Me.GCOMPLAINT.Width = 200
         '
-        'GCOMPLAINTBY
-        '
-        Me.GCOMPLAINTBY.Caption = "Complaint By"
-        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
-        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
-        Me.GCOMPLAINTBY.Visible = True
-        Me.GCOMPLAINTBY.VisibleIndex = 3
-        Me.GCOMPLAINTBY.Width = 120
-        '
         'GCOMPLAINTDATE
         '
         Me.GCOMPLAINTDATE.Caption = "Complaint Date"
@@ -137,7 +128,16 @@ Partial Class SelectComplaint
         Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
         Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
         Me.GCOMPLAINTDATE.Visible = True
-        Me.GCOMPLAINTDATE.VisibleIndex = 5
+        Me.GCOMPLAINTDATE.VisibleIndex = 2
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 3
+        Me.GCOMPLAINTBY.Width = 120
         '
         'GBUYERNAME
         '
@@ -148,15 +148,14 @@ Partial Class SelectComplaint
         Me.GBUYERNAME.VisibleIndex = 6
         Me.GBUYERNAME.Width = 200
         '
-        'GREGISTER
+        'GSELLERNAME
         '
-        Me.GREGISTER.Caption = "Register"
-        Me.GREGISTER.FieldName = "REGISTER"
-        Me.GREGISTER.Name = "GREGISTER"
-        Me.GREGISTER.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GREGISTER.Visible = True
-        Me.GREGISTER.VisibleIndex = 7
-        Me.GREGISTER.Width = 150
+        Me.GSELLERNAME.Caption = "Seller Name"
+        Me.GSELLERNAME.FieldName = "SELLERNAME"
+        Me.GSELLERNAME.Name = "GSELLERNAME"
+        Me.GSELLERNAME.Visible = True
+        Me.GSELLERNAME.VisibleIndex = 4
+        Me.GSELLERNAME.Width = 200
         '
         'GBILLINITIALS
         '
@@ -167,6 +166,15 @@ Partial Class SelectComplaint
         Me.GBILLINITIALS.Visible = True
         Me.GBILLINITIALS.VisibleIndex = 7
         Me.GBILLINITIALS.Width = 120
+        '
+        'GREGISTER
+        '
+        Me.GREGISTER.Caption = "Register"
+        Me.GREGISTER.FieldName = "REGNAME"
+        Me.GREGISTER.Name = "GREGISTER"
+        Me.GREGISTER.Visible = True
+        Me.GREGISTER.VisibleIndex = 8
+        Me.GREGISTER.Width = 150
         '
         'GTYPE
         '
@@ -204,15 +212,6 @@ Partial Class SelectComplaint
         Me.CMDEXIT.TabIndex = 3
         Me.CMDEXIT.Text = "E&xit"
         Me.CMDEXIT.UseVisualStyleBackColor = False
-        '
-        'GSELLERNAME
-        '
-        Me.GSELLERNAME.Caption = "Seller Name"
-        Me.GSELLERNAME.FieldName = "SELLERNAME"
-        Me.GSELLERNAME.Name = "GSELLERNAME"
-        Me.GSELLERNAME.Visible = True
-        Me.GSELLERNAME.VisibleIndex = 4
-        Me.GSELLERNAME.Width = 200
         '
         'SelectComplaint
         '
