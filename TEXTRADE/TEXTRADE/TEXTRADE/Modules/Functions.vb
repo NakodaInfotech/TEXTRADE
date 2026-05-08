@@ -704,6 +704,7 @@ PRINT 1,1")
                 '001 IS DESIGNNO
                 '62 IS YEAR (LAST 2 DIGITS OF YEAR IN REVERSE ORDER)
                 Dim TEMPCODE As String = ""
+                Dim TEMPHSNCODE As String = ""
 
                 If TEMPHEADER = "1" Then TEMPCODE = "SY" Else TEMPCODE = ""
                 If WEAVERNAME <> "" Then
@@ -711,14 +712,17 @@ PRINT 1,1")
                     If DT.Rows.Count > 0 Then TEMPCODE = TEMPCODE & DT.Rows(0).Item("LEDGERCODE")
                 End If
 
-                DT = OBJCMN.SEARCH(" ISNULL(CATEGORYMASTER.CATEGORY_REMARKS, '') AS CATEGORYCODE ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then TEMPCODE = TEMPCODE & DT.Rows(0).Item("CATEGORYCODE")
+                DT = OBJCMN.SEARCH(" ISNULL(CATEGORYMASTER.CATEGORY_REMARKS, '') AS CATEGORYCODE, ISNULL(HSN_CODE,'') AS HSNCODE ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN HSNMASTER ON ITEM_HSNCODEID = HSNMASTER.HSN_ID", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TEMPCODE = TEMPCODE & DT.Rows(0).Item("CATEGORYCODE")
+                    TEMPHSNCODE = DT.Rows(0).Item("HSNCODE")
+                End If
 
                 TEMPCODE = TEMPCODE & DESIGNNO
                 TEMPCODE = TEMPCODE & StrReverse(Convert.ToDateTime(ENTRYDATE).Year.ToString().Substring(2, 2))
 
 
-                oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
+                oWrite.WriteLine("SIZE 47.5 mm, 38 mm
 GAP 3 mm, 0 mm
 DIRECTION 0,0
 REFERENCE 0,0
@@ -727,27 +731,16 @@ SET PEEL OFF
 SET CUTTER OFF
 SET PARTIAL_CUTTER OFF
 SET TEAR ON
+ON
 CLS
 CODEPAGE 1252
-TEXT 658,457,""ROMAN.TTF"",180,1,12,""QUALITY""
-TEXT 511,457,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,457,""ROMAN.TTF"",180,1,12,""" & ITEMNAME & """
-TEXT 658,399,""ROMAN.TTF"",180,1,12,""DESIGN""
-TEXT 511,399,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,401,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
-TEXT 658,341,""ROMAN.TTF"",180,1,12,""COLOR""
-TEXT 511,341,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,341,""ROMAN.TTF"",180,1,12,""" & SHADE & """
-TEXT 658,283,""ROMAN.TTF"",180,1,12,""MTRS""
-TEXT 511,283,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,283,""ROMAN.TTF"",180,1,12,""" & Format(Val(MTRS), "0.00") & """
-TEXT 658,225,""ROMAN.TTF"",180,1,12,""ROLL NO""
-TEXT 511,225,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,225,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
-BARCODE 658,173,""128M"",85,0,180,3,6,""" & BARCODE & """
-TEXT 320,285,""ROMAN.TTF"",180,1,12,""RACK""
-TEXT 217,285,""ROMAN.TTF"",180,1,12,"":""
-TEXT 193,285,""ROMAN.TTF"",180,1,12,""" & RACK & """
+TEXT 367,287,""ROMAN.TTF"",180,1,14,""" & TEMPCODE & """
+TEXT 367,242,""ROMAN.TTF"",180,1,14,""" & BALENO & """
+QRCODE 263,153,L,5,A,180,M2,S7,""" & BARCODE & """
+TEXT 311,39,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
+TEXT 367,199,""ROMAN.TTF"",180,1,11,""HSN""
+TEXT 299,199,""ROMAN.TTF"",180,1,11,"":""
+TEXT 279,199,""ROMAN.TTF"",180,1,11,""" & TEMPHSNCODE & """
 PRINT 1,1")
                 oWrite.Dispose()
 
