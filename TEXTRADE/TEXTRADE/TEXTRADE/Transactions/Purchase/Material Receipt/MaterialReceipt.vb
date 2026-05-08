@@ -4587,6 +4587,7 @@ NEXTLINE:
                     LBLHSN.Text = (DT.Rows(0).Item("HSNCODE"))
                     If ClientName = "MAHAVIRPOLYCOT" Then LBLHSN.Text = "I-" & LBLHSN.Text
                 End If
+                If ClientName = "SOFTAS" Then CMBDESIGN.Text = cmbitemname.Text.Trim
             End If
 
         Catch ex As Exception

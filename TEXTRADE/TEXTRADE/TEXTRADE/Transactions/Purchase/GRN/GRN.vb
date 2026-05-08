@@ -2087,19 +2087,19 @@ NEXTLINE:
             TEMPQTY = "1"
         End If
 
-        If ClientName = "SVS" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "GELATO" Or ClientName = "INDRANI" Or ClientName = "SST" Then txtqty.Text = "1"
+        If ClientName = "SVS" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "GELATO" Or ClientName = "INDRANI" Or ClientName = "SST" Or ClientName = "SYC" Then txtqty.Text = "1"
         If ClientName = "MOMAI" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Then
             If CMBPIECETYPE.Text.Trim = "FRESH" Then txtqty.Text = 1 Else TEMPQTY = 1
         End If
 
         If FRMSTRING = "GRN FANCY" And Val(TXTCUT.Text.Trim) > 0 Then
-            If ClientName = "SBA" Or ClientName = "POOJA" Or ClientName = "KARAN" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "MOHATUL" Or ClientName = "GELATO" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "AFW" Or ClientName = "SONU" Then txtqty.Text = "1"
+            If ClientName = "SBA" Or ClientName = "POOJA" Or ClientName = "KARAN" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "MOHATUL" Or ClientName = "GELATO" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "AFW" Or ClientName = "SONU" Or ClientName = "SYC" Then txtqty.Text = "1"
         End If
 
         If (ClientName = "SSC" Or ClientName = "MBB") And Val(TXTCUT.Text.Trim) = 0 Then TEMPQTY = 1
 
         If GRIDDOUBLECLICK = False Then
-            If ClientName = "CC" Or ClientName = "C3" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Or ClientName = "POOJA" Or ClientName = "SBA" Or ClientName = "MOMAI" Or ClientName = "INDRANI" Or ClientName = "GELATO" Or ClientName = "KARAN" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "MOHATUL" Or ClientName = "MNARESH" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "SONU" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "AFW" Then
+            If ClientName = "CC" Or ClientName = "C3" Or (ClientName = "AXIS" And Val(TXTMTRS.Text.Trim) = 0) Or ClientName = "POOJA" Or ClientName = "SBA" Or ClientName = "MOMAI" Or ClientName = "INDRANI" Or ClientName = "GELATO" Or ClientName = "KARAN" Or ClientName = "AVIS" Or ClientName = "SNCM" Or ClientName = "MOHATUL" Or ClientName = "MNARESH" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "SONU" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "AFW" Or ClientName = "SYC" Then
                 For I As Integer = 1 To TEMPQTY
                     If FRMSTRING = "GRN FANCY" Then
                         If GRIDDOUBLECLICK = False Then
@@ -4974,6 +4974,7 @@ LINE1:
                     If DT.Rows(0).Item("UNIT") <> "" Then cmbqtyunit.Text = DT.Rows(0).Item("UNIT")
                 End If
             End If
+            If ClientName = "SOFTAS" And cmbitemname.Text.Trim <> "" Then CMBDESIGN.Text = cmbitemname.Text.Trim
         Catch ex As Exception
             Throw ex
         End Try
@@ -5031,7 +5032,7 @@ LINE1:
         Try
             'MTRS NOT MANDATORY FOR MOMAI
             If CMBPIECETYPE.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And Val(txtqty.Text.Trim) > 0 And cmbqtyunit.Text.Trim <> "" Then
-                If ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "GELATO" And ClientName <> "KREEVE" And ClientName <> "LAXMI" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
+                If ClientName <> "MOMAI" And ClientName <> "AXIS" And ClientName <> "GELATO" And ClientName <> "KREEVE" And ClientName <> "SYC" And ClientName <> "LAXMI" And Val(TXTMTRS.Text.Trim) = 0 Then Exit Sub
 
                 If GRIDDOUBLECLICK = False And FRMSTRING = "GRN FANCY" Then
                     If EDIT = True Then

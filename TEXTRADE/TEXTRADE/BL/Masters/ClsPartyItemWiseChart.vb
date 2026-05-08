@@ -35,6 +35,8 @@ Public Class ClsPartyItemWiseChart
                 I += 1
                 .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@PARTYITEMNAME", alParaval(I)))
+                I += 1
                 .Add(New SqlClient.SqlParameter("@STAMPING", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CMPID", alParaval(I)))

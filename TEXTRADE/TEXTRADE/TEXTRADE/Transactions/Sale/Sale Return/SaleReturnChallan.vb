@@ -1060,6 +1060,7 @@ LINE1:
                 CMBCOLOR.Text = ""
             End If
 
+            If ClientName = "SOFTAS" And CMBITEMNAME.Text.Trim <> "" Then CMBDESIGN.Text = CMBITEMNAME.Text.Trim
         Catch ex As Exception
             Throw ex
         End Try

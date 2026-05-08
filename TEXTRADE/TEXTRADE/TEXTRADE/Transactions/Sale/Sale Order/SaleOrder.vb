@@ -685,7 +685,10 @@ Public Class SaleOrder
         End If
 
 
-
+        If CMBPACKINGTYPE.Text.Trim.Length = 0 Then
+            EP.SetError(CMBPACKINGTYPE, " Please Fill Packing Type")
+            bln = False
+        End If
 
 
         Dim OBJCMN As New ClsCommon
@@ -2146,7 +2149,8 @@ LINE1:
 
             If ClientName = "SOFTAS" Then
                 gdesc.ReadOnly = False
-                GPARTYPONO.HeaderText = "Series"
+                GPARTYPONO.HeaderText = "Party Item Name"
+                gdesc.HeaderText = "Series"
             End If
             If ClientName = "LAXMI" Then
                 LBLAGENT.Text = "Indent Name"
@@ -3765,7 +3769,7 @@ LINE1:
         SODATE.SelectAll()
     End Sub
 
-    Private Sub CMBGRIDREMARKS_Validated(sender As Object, e As EventArgs) Handles CMBGRIDREMARKS.Validated
+    Private Sub CMBGRIDREMARKS_Validated(sender As Object, e As EventArgs) Handles CMBGRIDREMARKS.Validated, TXTPARTYPONO.Validated
         Try
 
             'MAKE THIS STAMPING DEFAULT FOR PARTY
@@ -3776,7 +3780,7 @@ LINE1:
                 Dim DT As DataTable = OBJCMN.SEARCH("PAR_STAMPING AS STAMPING, PAR_NO AS PARNO", "", "PARTYITEMWISECHART INNER JOIN LEDGERS ON ACC_ID = PAR_LEDGERID INNER JOIN ITEMMASTER ON ITEM_ID = PAR_ITEMID", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND PAR_YEARID = " & YearId)
                 If DT.Rows.Count > 0 AndAlso LCase(DT.Rows(0).Item("STAMPING")) <> LCase(CMBGRIDREMARKS.Text.Trim) Then
                     If MsgBox("Wish to Make this Stamp Default for this Party & Item?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & CMBGRIDREMARKS.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
+                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & CMBGRIDREMARKS.Text.Trim & "', PAR_PARTYITEMNAME = '" & TXTPARTYPONO.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
                 ElseIf DT.Rows.Count = 0 Then
                     'ADD NEW STAMPING
                     Dim ALPARAVAL As New ArrayList
@@ -3786,6 +3790,7 @@ LINE1:
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
                     ALPARAVAL.Add(0)    'RATE
+                    ALPARAVAL.Add(TXTPARTYPONO.Text.Trim)
                     ALPARAVAL.Add(CMBGRIDREMARKS.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
