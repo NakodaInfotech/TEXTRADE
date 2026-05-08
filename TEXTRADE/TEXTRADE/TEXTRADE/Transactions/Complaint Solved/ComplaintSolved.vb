@@ -255,7 +255,7 @@ Public Class ComplaintSolved
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                If MsgBox("Wish to Delete Sinkage Entry?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                If MsgBox("Wish to Delete Complaint Entry?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
                 'DONE BY GULKIT
                 'BEFORE UPDATING REVERSE THE ENTRY IN SCHEDULEMASTER_DESC
