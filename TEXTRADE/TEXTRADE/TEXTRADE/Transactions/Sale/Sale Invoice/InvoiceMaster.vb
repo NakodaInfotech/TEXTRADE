@@ -9,6 +9,7 @@ Imports CrystalDecisions.Shared
 Imports RestSharp
 Imports Newtonsoft.Json
 Imports TaxProEInvoice.API
+Imports DevExpress.CodeParser
 
 Public Class InvoiceMaster
 
@@ -10456,6 +10457,13 @@ LINE1:
             Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(LEDGERS.ACC_WARNING,'') AS WARNINGTEXT ", "", " LEDGERS ", " and LEDGERS.acc_cmpname = '" & cmbtrans.Text.Trim & "' and LEDGERS.acc_YEARid = " & YearId)
             If DT.Rows.Count > 0 Then
                 If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
+            End If
+            If ClientName = "KENCOT" And cmbtrans.Text.Trim <> "" Then
+                Dim DT2 As DataTable = OBJCMN.SEARCH("ISNULL(VEHICLEMASTER.VEHICLE_NAME, '') AS VEHICLENO ", "", " VEHICLEMASTER LEFT OUTER JOIN LEDGERS ON VEHICLEMASTER.VEHICLE_TRANSID = LEDGERS.Acc_id LEFT OUTER JOIN INVOICEMASTER ON VEHICLEMASTER.VEHICLE_YEARID = INVOICEMASTER.INVOICE_YEARID AND VEHICLEMASTER.VEHICLE_TRANSID = INVOICEMASTER.INVOICE_TRANSID ", " and LEDGERS.acc_cmpname = '" & cmbtrans.Text.Trim & "' and VEHICLEMASTER.VEHICLE_YEARID = " & YearId)
+                If DT2.Rows.Count > 0 Then
+                    If TXTVEHICLENO.Text.Trim = "" Then TXTVEHICLENO.Text = DT2.Rows(0).Item("VEHICLENO")
+                    If TXTVEHICLENO.Text.Trim <> "" Then TXTVEHICLENO.Text = DT2.Rows(0).Item("VEHICLENO")
+                End If
             End If
         Catch ex As Exception
             Throw ex
