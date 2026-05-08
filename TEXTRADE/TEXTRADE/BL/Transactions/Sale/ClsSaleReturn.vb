@@ -190,6 +190,8 @@ Public Class ClsSaleReturn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
+                I = I + 1
 
                 '' *****CHARGES GRID********
                 .Add(New SqlClient.SqlParameter("@ESRNO", alParaval(I)))
@@ -453,6 +455,8 @@ Public Class ClsSaleReturn
                 .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
 
                 '' *****CHARGES GRID********

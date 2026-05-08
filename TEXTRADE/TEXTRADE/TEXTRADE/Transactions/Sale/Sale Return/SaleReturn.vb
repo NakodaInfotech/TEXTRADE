@@ -944,8 +944,7 @@ Public Class SaleReturn
             Dim OUTMTRS As String = ""
             Dim FROMNO As String = ""
             Dim FROMSRNO As String = ""
-
-            'Dim FROMTYPE As String = ""
+            Dim FROMTYPE As String = ""
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDSALRET.Rows
@@ -984,6 +983,7 @@ Public Class SaleReturn
                         OUTMTRS = row.Cells(GOUTMTRS.Index).Value
                         FROMNO = row.Cells(GFROMNO.Index).Value
                         FROMSRNO = row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value
 
                     Else
                         gridsrno = gridsrno & "|" & row.Cells(gsrno.Index).Value
@@ -1019,6 +1019,7 @@ Public Class SaleReturn
                         OUTMTRS = OUTMTRS & "|" & row.Cells(GOUTMTRS.Index).Value
                         FROMNO = FROMNO & "|" & row.Cells(GFROMNO.Index).Value
                         FROMSRNO = FROMSRNO & "|" & row.Cells(GFROMSRNO.Index).Value
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value
                     End If
                 End If
             Next
@@ -1053,6 +1054,7 @@ Public Class SaleReturn
             alParaval.Add(OUTMTRS)
             alParaval.Add(FROMNO)
             alParaval.Add(FROMSRNO)
+            alParaval.Add(FROMTYPE)
 
 
             'SAVING CHGS GRID
@@ -1277,7 +1279,7 @@ Public Class SaleReturn
                 Dim OBJPURCH As New ClsSaleReturn
                 Dim DTTABLE As DataTable = OBJPURCH.SELECTSALRET(Val(TXTSALRETNO.Text.Trim), CmpId, Locationid, YearId)
                 For Each dr As DataRow In DTTABLE.Rows
-                    GRIDSALRET.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("COLOR"), Format(Val(dr("AQTY")), "0.00"), Val(dr("AFOLDPER")), dr("BALENO"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMT")), "0.00"), dr("RACK").ToString, dr("SHELF").ToString, dr("BARCODE"), dr("GDNBARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"), dr("FROMNO"), dr("FROMSRNO"))
+                    GRIDSALRET.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("COLOR"), Format(Val(dr("AQTY")), "0.00"), Val(dr("AFOLDPER")), dr("BALENO"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMT")), "0.00"), dr("RACK").ToString, dr("SHELF").ToString, dr("BARCODE"), dr("GDNBARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"))
                 Next
 
 
@@ -1476,7 +1478,7 @@ NEXTLINE:
                         CMBCOSTCENTERNAME.Text = Convert.ToString(dr("COSTCENTERNAME"))
 
                         'Item Grid
-                        GRIDSALRET.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("COLOR"), Format(Val(dr("AQTY")), "0.00"), Val(dr("AFOLDPER")), dr("BALENO"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMT")), "0.00"), dr("RACK").ToString, dr("SHELF").ToString, dr("BARCODE"), dr("GDNBARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"), dr("FROMNO"), dr("FROMSRNO"))
+                        GRIDSALRET.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("HSNCODE").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("COLOR"), Format(Val(dr("AQTY")), "0.00"), Val(dr("AFOLDPER")), dr("BALENO"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("WT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMT")), "0.00"), dr("RACK").ToString, dr("SHELF").ToString, dr("BARCODE"), dr("GDNBARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"))
 
                         If Convert.ToBoolean(dr("GRIDDONE")) = True Then
                             GRIDSALRET.Rows(GRIDSALRET.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
@@ -1806,10 +1808,10 @@ NEXTLINE:
                             TXTBARCODE.Text = "SR-" & Val(TXTSALRETNO.Text.Trim) & "/" & GRIDSALRET.RowCount + 1 & "/" & YearId
                         End If
                     End If
-                    GRIDSALRET.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, TXTHSNCODE.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTAQTY.Text.Trim, Format(Val(TXTAFOLDPER.Text.Trim), "0.00"), TXTBALENO.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0, 0, 0)
+                    GRIDSALRET.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, TXTHSNCODE.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTAQTY.Text.Trim, Format(Val(TXTAFOLDPER.Text.Trim), "0.00"), TXTBALENO.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, "", 0, 0, 0, 0, 0, "")
                 Next
             Else
-                GRIDSALRET.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, TXTHSNCODE.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTAQTY.Text.Trim, Format(Val(TXTAFOLDPER.Text.Trim), "0.00"), TXTBALENO.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, 0, 0, 0)
+                GRIDSALRET.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, TXTHSNCODE.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTAQTY.Text.Trim, Format(Val(TXTAFOLDPER.Text.Trim), "0.00"), TXTBALENO.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, "", 0, 0, 0, 0, 0, "")
             End If
             getsrno(GRIDSALRET)
 
@@ -2634,10 +2636,10 @@ LINE1:
                     For Each DTROWPS As DataRow In DT.Rows
                         If EDIT = False Then
                             'GRIDSALRET.Rows.Add(0, "", DTROWPS("ITEM"), DTROWPS("HSNCODE"), DTROWPS("QUALITY"), DTROWPS("DESIGN"), DTROWPS("COLOR"), "0.00", "0.00", Format(Val(DTROWPS("PCS")), "0.00"), "Mtrs", Format(Val(DTROWPS("MTRS")), "0.00"), 0, DTROWPS("PER"), 0, "", "", "SR-" & Val(TXTSALRETNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId, DTROWPS("GDNBARCODE"), 0, 0, 0, DTROWPS("GDNNO"), DTROWPS("SRNO"))
-                            GRIDSALRET.Rows.Add(0, "FRESH", DTROWPS("ITEM"), DTROWPS("HSNCODE"), DTROWPS("QUALITY"), DTROWPS("DESIGN"), DTROWPS("COLOR"), 0, 0, DTROWPS("BALENO"), "0.00", "0.00", Format(Val(DTROWPS("PCS")), "0.00"), "Pcs", Format(Val(DTROWPS("MTRS")), "0.00"), Val(DTROWPS("RATE")), DTROWPS("PER"), 0, "", "", "SR-" & Val(TXTSALRETNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId, "", 0, 0, 0, DTROWPS("INVNO"), "")
+                            GRIDSALRET.Rows.Add(0, "FRESH", DTROWPS("ITEM"), DTROWPS("HSNCODE"), DTROWPS("QUALITY"), DTROWPS("DESIGN"), DTROWPS("COLOR"), 0, 0, DTROWPS("BALENO"), "0.00", "0.00", Format(Val(DTROWPS("PCS")), "0.00"), "Pcs", Format(Val(DTROWPS("MTRS")), "0.00"), Val(DTROWPS("RATE")), DTROWPS("PER"), 0, "", "", "SR-" & Val(TXTSALRETNO.Text.Trim) & "/" & SNO + 1 & "/" & YearId, "", 0, 0, 0, DTROWPS("INVNO"), 0, "")
 
                         Else
-                            GRIDSALRET.Rows.Add(0, "FRESH", DTROWPS("ITEM"), DTROWPS("HSNCODE"), DTROWPS("QUALITY"), DTROWPS("DESIGN"), DTROWPS("COLOR"), 0, 0, DTROWPS("BALENO"), "0.00", "0.00", Format(Val(DTROWPS("PCS")), "0.00"), "Pcs", Format(Val(DTROWPS("MTRS")), "0.00"), Val(DTROWPS("RATE")), DTROWPS("PER"), 0, "", "", "SR-" & Val(TXTSALRETNO.Text.Trim) & "/" & GRIDSALRET.RowCount + 1 & "/" & YearId, "", 0, 0, 0, DTROWPS("INVNO"), DTROWPS("INVNO"))
+                            GRIDSALRET.Rows.Add(0, "FRESH", DTROWPS("ITEM"), DTROWPS("HSNCODE"), DTROWPS("QUALITY"), DTROWPS("DESIGN"), DTROWPS("COLOR"), 0, 0, DTROWPS("BALENO"), "0.00", "0.00", Format(Val(DTROWPS("PCS")), "0.00"), "Pcs", Format(Val(DTROWPS("MTRS")), "0.00"), Val(DTROWPS("RATE")), DTROWPS("PER"), 0, "", "", "SR-" & Val(TXTSALRETNO.Text.Trim) & "/" & GRIDSALRET.RowCount + 1 & "/" & YearId, "", 0, 0, 0, DTROWPS("INVNO"), DTROWPS("INVNO"), "")
                         End If
                         SNO += 1
 
@@ -3521,7 +3523,7 @@ LINE1:
 
 
 
-                        GRIDSALRET.Rows.Add(0, dr("PIECETYPE"), dr("ITEM"), dr("HSNCODE"), dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, BALENO, "0.00", "0.00", Format(Val(dr("PCS")), "0.00"), dr("UNIT"), Format(Val(dr("MTRS")), "0.00"), INVRATE, PER, Format(Val(dr("AMOUNT")), "0.00"), "", "", "", "", 0, 0, 0, dr("SRCHNO"), "")
+                        GRIDSALRET.Rows.Add(0, dr("PIECETYPE"), dr("ITEM"), dr("HSNCODE"), dr("QUALITY"), dr("DESIGN"), dr("COLOR"), 0, 0, BALENO, "0.00", "0.00", Format(Val(dr("PCS")), "0.00"), dr("UNIT"), Format(Val(dr("MTRS")), "0.00"), INVRATE, PER, Format(Val(dr("AMOUNT")), "0.00"), "", "", "", "", 0, 0, 0, Val(dr("SRCHNO")), 0, dr("FROMTYPE"))
 
 
                         If dr("ITEM").ToString <> "" And Convert.ToDateTime(SALRETDATE.Text).Date >= "01/07/2017" Then
