@@ -42,6 +42,8 @@ Partial Class PartyItemWiseStamping
         Me.GSTAMPING = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TXTNO = New System.Windows.Forms.TextBox()
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
+        Me.GPARTYITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TXTPARTYITEMNAME = New System.Windows.Forms.TextBox()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +59,7 @@ Partial Class PartyItemWiseStamping
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.TXTPARTYITEMNAME)
         Me.BlendPanel1.Controls.Add(Me.TXTRATE)
         Me.BlendPanel1.Controls.Add(Me.TXTADD)
         Me.BlendPanel1.Controls.Add(Me.CMBCODE)
@@ -71,7 +74,7 @@ Partial Class PartyItemWiseStamping
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(884, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(1084, 581)
         Me.BlendPanel1.TabIndex = 0
         '
         'TXTRATE
@@ -79,7 +82,7 @@ Partial Class PartyItemWiseStamping
         Me.TXTRATE.BackColor = System.Drawing.Color.White
         Me.TXTRATE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTRATE.ForeColor = System.Drawing.Color.Black
-        Me.TXTRATE.Location = New System.Drawing.Point(537, 13)
+        Me.TXTRATE.Location = New System.Drawing.Point(543, 13)
         Me.TXTRATE.MaxLength = 10
         Me.TXTRATE.Name = "TXTRATE"
         Me.TXTRATE.Size = New System.Drawing.Size(100, 23)
@@ -116,7 +119,7 @@ Partial Class PartyItemWiseStamping
         Me.CMDCLEAR.Location = New System.Drawing.Point(316, 541)
         Me.CMDCLEAR.Name = "CMDCLEAR"
         Me.CMDCLEAR.Size = New System.Drawing.Size(80, 28)
-        Me.CMDCLEAR.TabIndex = 5
+        Me.CMDCLEAR.TabIndex = 6
         Me.CMDCLEAR.Text = "&Clear"
         Me.CMDCLEAR.UseVisualStyleBackColor = True
         '
@@ -125,7 +128,7 @@ Partial Class PartyItemWiseStamping
         Me.CMDEXIT.Location = New System.Drawing.Point(488, 541)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDEXIT.TabIndex = 7
+        Me.CMDEXIT.TabIndex = 8
         Me.CMDEXIT.Text = "E&xit"
         Me.CMDEXIT.UseVisualStyleBackColor = True
         '
@@ -134,7 +137,7 @@ Partial Class PartyItemWiseStamping
         Me.CMDDELETE.Location = New System.Drawing.Point(402, 541)
         Me.CMDDELETE.Name = "CMDDELETE"
         Me.CMDDELETE.Size = New System.Drawing.Size(80, 28)
-        Me.CMDDELETE.TabIndex = 6
+        Me.CMDDELETE.TabIndex = 7
         Me.CMDDELETE.Text = "&Delete"
         Me.CMDDELETE.UseVisualStyleBackColor = True
         '
@@ -143,11 +146,11 @@ Partial Class PartyItemWiseStamping
         Me.TXTSTAMPING.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTSTAMPING.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTSTAMPING.ForeColor = System.Drawing.Color.Black
-        Me.TXTSTAMPING.Location = New System.Drawing.Point(637, 13)
+        Me.TXTSTAMPING.Location = New System.Drawing.Point(843, 13)
         Me.TXTSTAMPING.MaxLength = 100
         Me.TXTSTAMPING.Name = "TXTSTAMPING"
         Me.TXTSTAMPING.Size = New System.Drawing.Size(190, 23)
-        Me.TXTSTAMPING.TabIndex = 3
+        Me.TXTSTAMPING.TabIndex = 4
         '
         'CMBITEM
         '
@@ -156,7 +159,7 @@ Partial Class PartyItemWiseStamping
         Me.CMBITEM.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBITEM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBITEM.FormattingEnabled = True
-        Me.CMBITEM.Location = New System.Drawing.Point(337, 13)
+        Me.CMBITEM.Location = New System.Drawing.Point(343, 13)
         Me.CMBITEM.MaxDropDownItems = 14
         Me.CMBITEM.MaxLength = 200
         Me.CMBITEM.Name = "CMBITEM"
@@ -170,8 +173,8 @@ Partial Class PartyItemWiseStamping
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
-        Me.gridbilldetails.Size = New System.Drawing.Size(845, 498)
-        Me.gridbilldetails.TabIndex = 4
+        Me.gridbilldetails.Size = New System.Drawing.Size(1052, 498)
+        Me.gridbilldetails.TabIndex = 5
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
         'gridbill
@@ -180,7 +183,7 @@ Partial Class PartyItemWiseStamping
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GID, Me.GPARTY, Me.GITEM, Me.GRATE, Me.GSTAMPING})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GID, Me.GPARTY, Me.GITEM, Me.GRATE, Me.GPARTYITEMNAME, Me.GSTAMPING})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -236,7 +239,7 @@ Partial Class PartyItemWiseStamping
         Me.GSTAMPING.FieldName = "STAMPING"
         Me.GSTAMPING.Name = "GSTAMPING"
         Me.GSTAMPING.Visible = True
-        Me.GSTAMPING.VisibleIndex = 3
+        Me.GSTAMPING.VisibleIndex = 4
         Me.GSTAMPING.Width = 190
         '
         'TXTNO
@@ -244,7 +247,7 @@ Partial Class PartyItemWiseStamping
         Me.TXTNO.BackColor = System.Drawing.Color.LemonChiffon
         Me.TXTNO.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTNO.ForeColor = System.Drawing.Color.Black
-        Me.TXTNO.Location = New System.Drawing.Point(450, 0)
+        Me.TXTNO.Location = New System.Drawing.Point(456, 0)
         Me.TXTNO.Name = "TXTNO"
         Me.TXTNO.Size = New System.Drawing.Size(50, 23)
         Me.TXTNO.TabIndex = 672
@@ -258,17 +261,37 @@ Partial Class PartyItemWiseStamping
         Me.CMBNAME.BackColor = System.Drawing.Color.LemonChiffon
         Me.CMBNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMBNAME.FormattingEnabled = True
-        Me.CMBNAME.Location = New System.Drawing.Point(37, 13)
+        Me.CMBNAME.Location = New System.Drawing.Point(43, 13)
         Me.CMBNAME.MaxDropDownItems = 14
         Me.CMBNAME.MaxLength = 200
         Me.CMBNAME.Name = "CMBNAME"
         Me.CMBNAME.Size = New System.Drawing.Size(300, 23)
         Me.CMBNAME.TabIndex = 0
         '
+        'GPARTYITEMNAME
+        '
+        Me.GPARTYITEMNAME.Caption = "Party Item Name"
+        Me.GPARTYITEMNAME.FieldName = "PARTYITEMNAME"
+        Me.GPARTYITEMNAME.Name = "GPARTYITEMNAME"
+        Me.GPARTYITEMNAME.Visible = True
+        Me.GPARTYITEMNAME.VisibleIndex = 3
+        Me.GPARTYITEMNAME.Width = 200
+        '
+        'TXTPARTYITEMNAME
+        '
+        Me.TXTPARTYITEMNAME.BackColor = System.Drawing.Color.LemonChiffon
+        Me.TXTPARTYITEMNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTPARTYITEMNAME.ForeColor = System.Drawing.Color.Black
+        Me.TXTPARTYITEMNAME.Location = New System.Drawing.Point(643, 13)
+        Me.TXTPARTYITEMNAME.MaxLength = 100
+        Me.TXTPARTYITEMNAME.Name = "TXTPARTYITEMNAME"
+        Me.TXTPARTYITEMNAME.Size = New System.Drawing.Size(200, 23)
+        Me.TXTPARTYITEMNAME.TabIndex = 3
+        '
         'PartyItemWiseStamping
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(884, 581)
+        Me.ClientSize = New System.Drawing.Size(1084, 581)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -303,4 +326,6 @@ Partial Class PartyItemWiseStamping
     Friend WithEvents TXTADD As System.Windows.Forms.TextBox
     Friend WithEvents TXTRATE As TextBox
     Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPARTYITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TXTPARTYITEMNAME As TextBox
 End Class

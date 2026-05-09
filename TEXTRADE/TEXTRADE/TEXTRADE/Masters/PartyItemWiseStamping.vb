@@ -59,12 +59,13 @@ Public Class PartyItemWiseStamping
             End If
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.search(" ISNULL(PARTYITEMWISECHART.PAR_NO, 0) AS ID, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(PARTYITEMWISECHART.PAR_RATE,0) AS RATE, ISNULL(ITEMMASTER.item_name, '') AS ITEM, ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", " AND PAR_YEARID = " & YearId & " AND PAR_CMPID = " & CmpId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_NO, 0) AS ID, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(PARTYITEMWISECHART.PAR_RATE,0) AS RATE, ISNULL(ITEMMASTER.item_name, '') AS ITEM, ISNULL(PARTYITEMWISECHART.PAR_PARTYITEMNAME, '') AS PARTYITEMNAME, ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", " AND PAR_YEARID = " & YearId & " AND PAR_CMPID = " & CmpId)
 
             gridbilldetails.DataSource = DT
             CMBNAME.Text = ""
             CMBITEM.Text = ""
             TXTRATE.Clear()
+            TXTPARTYITEMNAME.Clear()
             TXTSTAMPING.Clear()
             TXTNO.Clear()
             EP.Clear()
@@ -100,6 +101,7 @@ Public Class PartyItemWiseStamping
             CMBNAME.Text = ""
             CMBITEM.Text = ""
             TXTRATE.Clear()
+            TXTPARTYITEMNAME.Clear()
             TXTSTAMPING.Clear()
             gridbilldetails.DataSource = Nothing
 
@@ -222,6 +224,7 @@ Public Class PartyItemWiseStamping
             ALPARAVAL.Add(CMBNAME.Text.Trim)
             ALPARAVAL.Add(CMBITEM.Text.Trim)
             ALPARAVAL.Add(Val(TXTRATE.Text.Trim))
+            ALPARAVAL.Add(TXTPARTYITEMNAME.Text.Trim)
             ALPARAVAL.Add(TXTSTAMPING.Text.Trim)
             ALPARAVAL.Add(CmpId)
             ALPARAVAL.Add(Userid)
@@ -287,6 +290,7 @@ Public Class PartyItemWiseStamping
                 CMBNAME.Text = gridbill.GetFocusedRowCellValue("NAME")
                 CMBITEM.Text = gridbill.GetFocusedRowCellValue("ITEM")
                 TXTRATE.Text = Val(gridbill.GetFocusedRowCellValue("RATE"))
+                TXTPARTYITEMNAME.Text = gridbill.GetFocusedRowCellValue("PARTYITEMNAME")
                 TXTSTAMPING.Text = gridbill.GetFocusedRowCellValue("STAMPING")
                 CMBNAME.Focus()
             End If

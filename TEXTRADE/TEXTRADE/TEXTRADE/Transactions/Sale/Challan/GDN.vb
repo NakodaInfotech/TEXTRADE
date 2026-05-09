@@ -4,6 +4,7 @@ Imports System.IO
 Imports BL
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
+Imports DevExpress.Pdf.Native.BouncyCastle.Asn1.GM
 
 Public Class GDN
 
@@ -162,6 +163,8 @@ Public Class GDN
             CMBPER.Text = "Pcs"
             Gpcs.HeaderText = "Qty"
         End If
+        GRIDSUMM.RowCount = 0
+
     End Sub
 
     Sub TOTAL()
@@ -186,6 +189,28 @@ Public Class GDN
                 Next
             End If
             BALECOUNT()
+
+
+            GRIDSUMM.RowCount = 0
+            Dim DONE As Boolean = False
+            For Each ROW As DataGridViewRow In GRIDGDN.Rows
+                DONE = False
+                If Val(ROW.Cells(Gpcs.Index).EditedFormattedValue) > 0 Then
+                    If GRIDSUMM.RowCount = 0 Then
+                        GRIDSUMM.Rows.Add(ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, Format(Val(ROW.Cells(Gpcs.Index).EditedFormattedValue), "0.00"), Format(Val(ROW.Cells(Gmtrs.Index).EditedFormattedValue), "0.00"))
+                    Else
+                        For Each SUMMROW As DataGridViewRow In GRIDSUMM.Rows
+                            If SUMMROW.Cells(SITEMNAME.Index).Value = ROW.Cells(GITEMNAME.Index).Value And SUMMROW.Cells(SDESIGNNO.Index).Value = ROW.Cells(GDESIGN.Index).Value And SUMMROW.Cells(SSHADE.Index).Value = ROW.Cells(GSHADE.Index).Value Then
+                                SUMMROW.Cells(SPCS.Index).Value = Format(Val(SUMMROW.Cells(SPCS.Index).EditedFormattedValue) + Val(ROW.Cells(Gpcs.Index).EditedFormattedValue), "0.00")
+                                SUMMROW.Cells(SMTRS.Index).Value = Format(Val(SUMMROW.Cells(SMTRS.Index).EditedFormattedValue) + Val(ROW.Cells(Gmtrs.Index).EditedFormattedValue), "0.00")
+                                DONE = True
+                            End If
+                        Next
+                        If DONE = False Then GRIDSUMM.Rows.Add(ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, Format(Val(ROW.Cells(Gpcs.Index).EditedFormattedValue), "0.00"), Format(Val(ROW.Cells(Gmtrs.Index).EditedFormattedValue), "0.00"))
+                    End If
+                End If
+            Next
+
         Catch ex As Exception
             Throw ex
         End Try

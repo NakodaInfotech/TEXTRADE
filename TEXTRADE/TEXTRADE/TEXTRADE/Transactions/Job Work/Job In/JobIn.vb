@@ -4797,6 +4797,7 @@ NEXTLINE:
                         End If
                     End If
                 End If
+                If ClientName = "SOFTAS" Then CMBDESIGN.Text = cmbitemname.Text.Trim
             End If
         Catch ex As Exception
             Throw ex
