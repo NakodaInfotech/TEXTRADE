@@ -1008,7 +1008,13 @@ NEXTLINE:
 
     Private Sub TXTNARRATION_Validated(sender As Object, e As EventArgs) Handles TXTNARRATION.Validated
         Try
-            If CMBSAMPLETYPE.Text.Trim <> "" Then
+            If GRIDSPL.RowCount > 50 And ClientName = "SNCM" Then
+                MsgBox("Max 50 rows allowed in Grid", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+
+            If CMBSAMPLETYPE.Text.Trim <> "" And CMBITEMNAME.Text.Trim <> "" Then
                 fillgrid()
             Else
                 MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
