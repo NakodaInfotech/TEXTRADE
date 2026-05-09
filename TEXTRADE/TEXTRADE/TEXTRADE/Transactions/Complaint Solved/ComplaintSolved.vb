@@ -495,7 +495,7 @@ LINE1:
                 Exit Sub
             End If
 
-            Dim objpodtls As New ShrinkageEntryDetails
+            Dim objpodtls As New ComplaintSolvedDetails
             objpodtls.MdiParent = MDIMain
             objpodtls.Show()
         Catch ex As Exception
