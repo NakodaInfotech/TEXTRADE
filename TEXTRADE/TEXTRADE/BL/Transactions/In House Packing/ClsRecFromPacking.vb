@@ -82,6 +82,8 @@ Public Class ClsRecFromPacking
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@SERIES", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@CUT", alParaval(I)))
@@ -198,6 +200,8 @@ Public Class ClsRecFromPacking
                 .Add(New SqlClient.SqlParameter("@DESIGNNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@SERIES", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@COLOR", alParaval(I)))
                 I = I + 1

@@ -61,6 +61,7 @@ Public Class RecFromPacking
         cmbitemname.Text = ""
         CMBQUALITY.Text = ""
         CMBDESIGN.Text = ""
+        TXTSERIES.Clear()
         cmbcolor.Text = ""
         TXTCUT.Clear()
         txtqty.Text = 1
@@ -389,6 +390,7 @@ Public Class RecFromPacking
             Dim QUALITY As String = ""
             Dim DESIGN As String = ""
             Dim gridremarks As String = ""
+            Dim SERIES As String = ""
             Dim COLOR As String = ""
             Dim CUT As String = ""
             Dim QTY As String = ""
@@ -417,6 +419,7 @@ Public Class RecFromPacking
                             QUALITY = row.Cells(GQUALITY.Index).Value.ToString
                             DESIGN = row.Cells(GDESIGN.Index).Value.ToString
                             gridremarks = row.Cells(gdesc.Index).Value.ToString
+                            SERIES = row.Cells(GSERIES.Index).Value.ToString
                             COLOR = row.Cells(gcolor.Index).Value.ToString
                             CUT = row.Cells(gcut.Index).Value.ToString
                             QTY = row.Cells(gQty.Index).Value.ToString
@@ -448,6 +451,7 @@ Public Class RecFromPacking
                             QUALITY = QUALITY & "|" & row.Cells(GQUALITY.Index).Value.ToString
                             DESIGN = DESIGN & "|" & row.Cells(GDESIGN.Index).Value.ToString
                             gridremarks = gridremarks & "|" & row.Cells(gdesc.Index).Value.ToString
+                            SERIES = SERIES & "|" & row.Cells(GSERIES.Index).Value.ToString
                             COLOR = COLOR & "|" & row.Cells(gcolor.Index).Value.ToString
                             CUT = CUT & "|" & row.Cells(gcut.Index).Value
                             QTY = QTY & "|" & row.Cells(gQty.Index).Value
@@ -485,6 +489,7 @@ Public Class RecFromPacking
                             QUALITY = row.Cells(ALLQUALITY.Index).Value.ToString
                             DESIGN = row.Cells(ALLDESIGN.Index).Value.ToString
                             gridremarks = row.Cells(ALLDESC.Index).Value.ToString
+                            SERIES = ""
                             COLOR = row.Cells(ALLCOLOR.Index).Value.ToString
                             CUT = row.Cells(ALLCUT.Index).Value.ToString
                             QTY = row.Cells(ALLQTY.Index).Value.ToString
@@ -515,6 +520,7 @@ Public Class RecFromPacking
                             QUALITY = QUALITY & "|" & row.Cells(ALLQUALITY.Index).Value.ToString
                             DESIGN = DESIGN & "|" & row.Cells(ALLDESIGN.Index).Value.ToString
                             gridremarks = gridremarks & "|" & row.Cells(ALLDESC.Index).Value.ToString
+                            SERIES = SERIES & "|" & ""
                             COLOR = COLOR & "|" & row.Cells(ALLCOLOR.Index).Value.ToString
                             CUT = CUT & "|" & row.Cells(ALLCUT.Index).Value
                             QTY = QTY & "|" & row.Cells(ALLQTY.Index).Value
@@ -549,6 +555,7 @@ Public Class RecFromPacking
             alParaval.Add(QUALITY)
             alParaval.Add(DESIGN)
             alParaval.Add(gridremarks)
+            alParaval.Add(SERIES)
             alParaval.Add(COLOR)
             alParaval.Add(CUT)
             alParaval.Add(QTY)
@@ -652,7 +659,7 @@ Public Class RecFromPacking
                 OBJREC.alParaval.Add(YearId)
                 Dim dttable As DataTable = OBJREC.SELECTRECPACKING()
                 For Each dr As DataRow In dttable.Rows
-                    GRIDREC.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMOUNT")), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), 0, dr("OUTPCS"), dr("OUTMTRS"), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"))
+                    GRIDREC.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("SERIES").ToString, dr("COLOR"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER").ToString, Format(Val(dr("AMOUNT")), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), 0, dr("OUTPCS"), dr("OUTMTRS"), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"))
                 Next
 
 
@@ -741,6 +748,7 @@ Public Class RecFromPacking
                     If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
                     Dim BALENO As String = ""
                     If ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "ANKUSH" Then BALENO = ROW.Cells(gdesc.Index).Value
+                    If ClientName = "SOFTAS" And CHKPRINTSERIES.Checked = True Then BALENO = ROW.Cells(GSERIES.Index).Value
 
                     'FOR AVIS GET LOTNO FROM ISSUE TO PACK FOR EACH ENTRY NO
                     Dim OBJCMN As New ClsCommon
@@ -926,7 +934,7 @@ NEXTLINE:
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
 
                         If HIDEALLISSUE = True Then
-                            GRIDREC.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), 0, dr("OUTPCS"), dr("OUTMTRS"), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"))
+                            GRIDREC.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("SERIES").ToString, dr("COLOR"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), 0, dr("OUTPCS"), dr("OUTMTRS"), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"))
                         Else
                             GRIDALLREC.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEM").ToString, dr("QUALITY").ToString, dr("DESIGN").ToString, dr("GRIDREMARKS").ToString, dr("COLOR"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("qty")), "0.00"), dr("UNIT").ToString, Format(Val(dr("MTRS")), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), 0, dr("OUTPCS"), dr("OUTMTRS"), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"), Val(dr("GRIDSRNO")))
 
@@ -1108,10 +1116,10 @@ NEXTLINE:
                                 TXTBARCODE.Text = "P-" & Val(TXTRECNO.Text.Trim) & "/" & GRIDREC.RowCount + 1 & "/" & YearId
                             End If
                         End If
-                        GRIDREC.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, TXTGRIDREMARKS.Text.Trim, cmbcolor.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, Val(TXTFROMNO.Text.Trim), Val(TXTFROMSRNO.Text.Trim), TXTFROMTYPE.Text.Trim)
+                        GRIDREC.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, TXTGRIDREMARKS.Text.Trim, TXTSERIES.Text.Trim, cmbcolor.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, Val(TXTFROMNO.Text.Trim), Val(TXTFROMSRNO.Text.Trim), TXTFROMTYPE.Text.Trim)
                     Next
                 Else
-                    GRIDREC.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, TXTGRIDREMARKS.Text.Trim, cmbcolor.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, Val(TXTFROMNO.Text.Trim), Val(TXTFROMSRNO.Text.Trim), TXTFROMTYPE.Text.Trim)
+                    GRIDREC.Rows.Add(Val(txtsrno.Text.Trim), CMBPIECETYPE.Text.Trim, cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, TXTGRIDREMARKS.Text.Trim, TXTSERIES.Text.Trim, cmbcolor.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(txtqty.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTRATE.Text.Trim), "0.00"), CMBPER.Text.Trim, Format(Val(TXTAMOUNT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0, Val(TXTFROMNO.Text.Trim), Val(TXTFROMSRNO.Text.Trim), TXTFROMTYPE.Text.Trim)
                 End If
                 getsrno(GRIDREC)
 
@@ -1122,6 +1130,7 @@ NEXTLINE:
                 GRIDREC.Item(GQUALITY.Index, TEMPROW).Value = CMBQUALITY.Text.Trim
                 GRIDREC.Item(GDESIGN.Index, TEMPROW).Value = CMBDESIGN.Text.Trim
                 GRIDREC.Item(gdesc.Index, TEMPROW).Value = TXTGRIDREMARKS.Text.Trim
+                GRIDREC.Item(GSERIES.Index, TEMPROW).Value = TXTSERIES.Text.Trim
                 GRIDREC.Item(gcolor.Index, TEMPROW).Value = cmbcolor.Text.Trim
                 GRIDREC.Item(gcut.Index, TEMPROW).Value = Format(Val(TXTCUT.Text.Trim), "0.00")
                 GRIDREC.Item(gQty.Index, TEMPROW).Value = Val(txtqty.Text.Trim)
@@ -1144,19 +1153,14 @@ NEXTLINE:
             If ClientName = "YASHVI" Then TXTMTRS.Text = Val(TXTRUNNINGBAL.Text.Trim) Else TXTMTRS.Clear()
             If ClientName <> "SHREENAKODA" And ClientName <> "SOFTAS" And ClientName <> "MOHATUL" And ClientName <> "ANKUSH" Then CMBRACK.Text = ""
             CMBSHELF.Text = ""
+            If ClientName <> "SOFTAS" Then TXTSERIES.Clear()
             txtsrno.Text = GRIDREC.RowCount + 1
             If ClientName = "YASHVI" Or ClientName = "SHREENAKODA" Then TXTCUT.Focus() Else CMBPIECETYPE.Focus()
             If ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then TXTMTRS.Focus()
 
-            'If ClientName = "ANKUSH" Then
-            '    IncrementBaleNo(TXTGRIDREMARKS.Text.Trim)
-            'End If
             If ClientName = "KCRAYON" Or ClientName = "SWPL" Or ClientName = "APPLE" Or ClientName = "MMC" Then TXTGRIDREMARKS.Clear()
             If ClientName = "SUPRIYA" Or ClientName = "YASHVI" Then TXTCUT.Clear()
-            'TXTRATE.Clear()
             TXTAMOUNT.Clear()
-
-
 
             If ClientName = "SUPRIYA" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "AVIS" Then
                 TXTGRIDREMARKS.Clear()
@@ -1167,15 +1171,7 @@ NEXTLINE:
                 TXTMTRS.Focus()
             End If
 
-
-            If ClientName = "ANKUSH" Then
-                TXTGRIDREMARKS.Text = Val(TXTGRIDREMARKS.Text.Trim) + 1
-            End If
-
-
-
-
-
+            If ClientName = "ANKUSH" Then TXTGRIDREMARKS.Text = Val(TXTGRIDREMARKS.Text.Trim) + 1
 
         Catch ex As Exception
             Throw ex
@@ -1438,6 +1434,7 @@ LINE1:
                 CMBDESIGN.Text = GRIDREC.Item(GDESIGN.Index, GRIDREC.CurrentRow.Index).Value.ToString
 
                 TXTGRIDREMARKS.Text = GRIDREC.Item(gdesc.Index, GRIDREC.CurrentRow.Index).Value.ToString
+                TXTSERIES.Text = GRIDREC.Item(GSERIES.Index, GRIDREC.CurrentRow.Index).Value.ToString
                 TEMPBALENO = GRIDREC.Item(gdesc.Index, GRIDREC.CurrentRow.Index).Value.ToString
 
                 cmbcolor.Text = GRIDREC.Item(gcolor.Index, GRIDREC.CurrentRow.Index).Value.ToString
@@ -1559,10 +1556,11 @@ LINE1:
                 Dim WHERECLAUSE As String = ""
                 If (ClientName = "YASHVI" Or ClientName = "SOFTAS") Then WHERECLAUSE = " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' "
                 If (ClientName = "RAJKRIPA" And CHKPRINTSERIES.CheckState = CheckState.Checked) Or ClientName = "YASHVI" Or ClientName = "SOFTAS" Then
-                    DT = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & sender.Text.Trim & "' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING, ISNULL(PARTYITEMWISECHART.PAR_PARTYITEMNAME, '') AS PARTYITEMNAME", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & sender.Text.Trim & "' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         For Each DTROW As DataRow In DT.Rows
-                            TXTGRIDREMARKS.Text = (DT.Rows(0).Item("STAMPING"))
+                            TXTGRIDREMARKS.Text = DT.Rows(0).Item("STAMPING")
+                            If ClientName = "SOFTAS" Then TXTSERIES.Text = DT.Rows(0).Item("PARTYITEMNAME")
                         Next
                     End If
                 End If
@@ -1914,7 +1912,7 @@ LINE1:
                 Dim DT As DataTable = OBJCMN.SEARCH("PAR_STAMPING AS STAMPING, PAR_NO AS PARNO", "", "PARTYITEMWISECHART INNER JOIN LEDGERS ON ACC_ID = PAR_LEDGERID INNER JOIN ITEMMASTER ON ITEM_ID = PAR_ITEMID", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND PAR_YEARID = " & YearId)
                 If DT.Rows.Count > 0 AndAlso DT.Rows(0).Item("STAMPING") <> TXTGRIDREMARKS.Text.Trim Then
                     If MsgBox("Wish to Make this Stamp Default for this Party & Item?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & TXTGRIDREMARKS.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
+                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & TXTGRIDREMARKS.Text.Trim & "', PAR_PARTYITEMNAME = '" & TXTSERIES.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
                 ElseIf DT.Rows.Count = 0 Then
                     'ADD NEW STAMPING
                     Dim ALPARAVAL As New ArrayList
@@ -1923,7 +1921,8 @@ LINE1:
                     ALPARAVAL.Add(0)
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
-                    ALPARAVAL.Add(0)
+                    ALPARAVAL.Add(0)    'RATE
+                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTSERIES.Text.Trim) Else ALPARAVAL.Add("")
                     ALPARAVAL.Add(TXTGRIDREMARKS.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
@@ -2105,9 +2104,26 @@ LINE1:
                 txtqty.ReadOnly = False
                 CMBQUALITY.TabStop = False
                 If ClientName = "SOFTAS" Then
+                    gdesc.HeaderText = "Series"
                     TOOLREFRESH.Visible = True
                     CHKPRINTSERIES.Visible = True
                     If CmpName = "SIDDHIM COTFAB LLP" Then CHKPRINTSERIES.CheckState = True
+                    TXTSERIES.Visible = True
+                    GSERIES.Visible = True
+                    cmbcolor.Left = TXTSERIES.Left + TXTSERIES.Width
+                    TXTCUT.Left = cmbcolor.Left + cmbcolor.Width
+                    txtqty.Left = TXTCUT.Left + TXTCUT.Width
+                    lbltotalqty.Left += TXTSERIES.Width
+                    cmbqtyunit.Left = txtqty.Left + txtqty.Width
+                    TXTMTRS.Left = cmbqtyunit.Left + cmbqtyunit.Width
+                    LBLTOTALMTRS.Left += TXTSERIES.Width
+                    TXTRATE.Left = TXTMTRS.Left + TXTMTRS.Width
+                    CMBPER.Left = TXTRATE.Left + TXTRATE.Width
+                    TXTAMOUNT.Left = CMBPER.Left + CMBPER.Width
+                    LBLTOTALAMOUNT.Left += TXTSERIES.Width
+                    CMBRACK.Left = TXTAMOUNT.Left + TXTAMOUNT.Width
+                    CMBSHELF.Left = CMBRACK.Left + CMBRACK.Width
+                    GRIDREC.Width += GSERIES.Width
                     TXTFROMNO.Focus()
                 End If
                 TXTRATE.TabStop = False
@@ -2589,25 +2605,40 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub TXTSERIES_Validated(sender As Object, e As EventArgs) Handles TXTSERIES.Validated
+        Try
+            'MAKE THIS STAMPING DEFAULT FOR PARTY, ONLY FOR SOFTAS
+            If (ClientName = "SOFTAS") And TXTGRIDREMARKS.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTSERIES.Text.Trim <> "" Then
 
-    'Function IncrementBaleNo(baleNo As String) As String
-    '    If String.IsNullOrEmpty(baleNo) Then Return baleNo
+                'FIRST CHECK WHETHER THIS STAMP FOR THIS PARTY AND ITEM IS PRESENT OR NOT, IF NOT THEN CREATE NEW OR ELSE UPDATE
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("PAR_STAMPING AS STAMPING, PAR_NO AS PARNO", "", "PARTYITEMWISECHART INNER JOIN LEDGERS ON ACC_ID = PAR_LEDGERID INNER JOIN ITEMMASTER ON ITEM_ID = PAR_ITEMID", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND PAR_YEARID = " & YearId)
+                If DT.Rows.Count > 0 AndAlso LCase(DT.Rows(0).Item("STAMPING")) <> LCase(TXTGRIDREMARKS.Text.Trim) Then
+                    If MsgBox("Wish to Make this Stamp Default for this Party & Item?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & TXTGRIDREMARKS.Text.Trim & "', PAR_PARTYITEMNAME = '" & TXTSERIES.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
+                ElseIf DT.Rows.Count = 0 Then
+                    'ADD NEW STAMPING
+                    Dim ALPARAVAL As New ArrayList
+                    Dim OBJCONFIG As New ClsPartyItemWiseChart
 
-    '    ' Last numeric sequence dhundo using Regex
-    '    Dim match As Match = Regex.Match(baleNo, "^(.*?)(\d+)(\D*)$")
+                    ALPARAVAL.Add(0)
+                    ALPARAVAL.Add(cmbname.Text.Trim)
+                    ALPARAVAL.Add(cmbitemname.Text.Trim)
+                    ALPARAVAL.Add(0)    'RATE
+                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTSERIES.Text.Trim) Else ALPARAVAL.Add("")
+                    ALPARAVAL.Add(TXTGRIDREMARKS.Text.Trim)
+                    ALPARAVAL.Add(CmpId)
+                    ALPARAVAL.Add(Userid)
+                    ALPARAVAL.Add(YearId)
 
-    '    If match.Success Then
-    '        Dim prefix As String = match.Groups(1).Value      ' e.g. "ASD", "ASD7485/"
-    '        Dim numStr As String = match.Groups(2).Value      ' e.g. "45263", "01"
-    '        Dim suffix As String = match.Groups(3).Value      ' e.g. "" (usually empty)
+                    OBJCONFIG.alParaval = ALPARAVAL
 
-    '        ' Increment karo, leading zeros maintain karo
-    '        Dim incremented As String = (CInt(numStr) + 1).ToString().PadLeft(numStr.Length, "0"c)
-
-    '        Return prefix & incremented & suffix
-    '    End If
-
-    '    Return baleNo ' Koi digit nahi mili toh as-is return
-    'End Function
+                    Dim INT As Integer = OBJCONFIG.SAVE()
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
 End Class

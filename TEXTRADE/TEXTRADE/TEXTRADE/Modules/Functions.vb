@@ -4251,11 +4251,11 @@ PRINT 1,1")
                 oWrite.WriteLine("A2")
 
                 oWrite.WriteLine("1911A1400740009WIDTH")
-                If TEMPHEADER = "PRINTSERIES" Then
-                    oWrite.WriteLine("1911C2401530009" & ITEMNAME)
-                Else
-                    If GRIDDESC <> "" Then oWrite.WriteLine("1911C2401530009" & GRIDDESC) Else oWrite.WriteLine("1911C2401530009" & ITEMNAME)
-                End If
+                'IF PRINTSERIES IS CHECKED THEN WE NEED TO PRINT PARTY ITEMNAME, WHICH IS FETCHED IN BALENO COLUMN
+                If TEMPHEADER = "PRINTSERIES" Then oWrite.WriteLine("1911C2401530009" & BALENO) Else oWrite.WriteLine("1911C2401530009" & ITEMNAME)
+
+                'If GRIDDESC <> "" Then oWrite.WriteLine("1911C2401530009" & GRIDDESC) Else oWrite.WriteLine("1911C2401530009" & ITEMNAME)
+
                 oWrite.WriteLine("1911A1401030009SHADE")
                 oWrite.WriteLine("1911A1401030089:")
                 oWrite.WriteLine("1911A1401030100" & SHADE)

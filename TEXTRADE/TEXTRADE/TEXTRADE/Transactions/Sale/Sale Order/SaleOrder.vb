@@ -327,9 +327,12 @@ Public Class SaleOrder
         Else
             cmbcolor.Text = ""
         End If
-        If ClientName <> "SIDDHGIRI" Then TXTPARTYPONO.Clear()
+
         If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then txtQTY.Clear()
-        If ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" Then TXTMTRS.Clear()
+        If ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" Then
+            TXTPARTYPONO.Clear()
+            TXTMTRS.Clear()
+        End If
 
         If ClientName = "LAXMI" Then
             CMBPER.Text = "Qty"
@@ -2149,7 +2152,7 @@ LINE1:
 
             If ClientName = "SOFTAS" Then
                 gdesc.ReadOnly = False
-                GPARTYPONO.HeaderText = "Party Item Name"
+                GPARTYPONO.HeaderText = "Party Item"
                 gdesc.HeaderText = "Series"
             End If
             If ClientName = "LAXMI" Then
@@ -2776,10 +2779,11 @@ LINESINGLE:
                 Dim WHERECLAUSE As String = ""
                 If (ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MSANCHITKUMAR") Then WHERECLAUSE = " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' "
                 If ClientName = "RAJKRIPA" Or ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MSANCHITKUMAR" Then
-                    DT = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING, ISNULL(PAR_RATE,0) AS RATE", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & cmbitemname.Text.Trim & " ' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING, ISNULL(PARTYITEMWISECHART.PAR_PARTYITEMNAME, '') AS PARTYITEMNAME, ISNULL(PAR_RATE,0) AS RATE", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & cmbitemname.Text.Trim & " ' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
                     If DT.Rows.Count > 0 AndAlso txtgridremarks.Text.Trim = "" Then
                         CMBGRIDREMARKS.Text = DT.Rows(0).Item("STAMPING")
                         txtgridremarks.Text = DT.Rows(0).Item("STAMPING")
+                        If ClientName = "SOFTAS" Then TXTPARTYPONO.Text = DT.Rows(0).Item("PARTYITEMNAME")
                         TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
                     End If
                 End If
@@ -2860,7 +2864,7 @@ LINESINGLE:
                 Dim DT As DataTable = OBJCMN.SEARCH("PAR_STAMPING AS STAMPING, PAR_NO AS PARNO", "", "PARTYITEMWISECHART INNER JOIN LEDGERS ON ACC_ID = PAR_LEDGERID INNER JOIN ITEMMASTER ON ITEM_ID = PAR_ITEMID", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND PAR_YEARID = " & YearId)
                 If DT.Rows.Count > 0 AndAlso LCase(DT.Rows(0).Item("STAMPING")) <> LCase(txtgridremarks.Text.Trim) Then
                     If MsgBox("Wish to Make this Stamp Default for this Party & Item?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
-                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & txtgridremarks.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
+                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & txtgridremarks.Text.Trim & "', PAR_PARTYITEMNAME = '" & TXTPARTYPONO.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
                 ElseIf DT.Rows.Count = 0 Then
                     'ADD NEW STAMPING
                     Dim ALPARAVAL As New ArrayList
@@ -2870,6 +2874,7 @@ LINESINGLE:
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
                     ALPARAVAL.Add(0)    'RATE
+                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTPARTYPONO.Text.Trim) Else ALPARAVAL.Add("")
                     ALPARAVAL.Add(txtgridremarks.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
@@ -3769,7 +3774,7 @@ LINE1:
         SODATE.SelectAll()
     End Sub
 
-    Private Sub CMBGRIDREMARKS_Validated(sender As Object, e As EventArgs) Handles CMBGRIDREMARKS.Validated, TXTPARTYPONO.Validated
+    Private Sub CMBGRIDREMARKS_Validated(sender As Object, e As EventArgs) Handles CMBGRIDREMARKS.Validated
         Try
 
             'MAKE THIS STAMPING DEFAULT FOR PARTY
@@ -3790,7 +3795,7 @@ LINE1:
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
                     ALPARAVAL.Add(0)    'RATE
-                    ALPARAVAL.Add(TXTPARTYPONO.Text.Trim)
+                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTPARTYPONO.Text.Trim) Else ALPARAVAL.Add("")
                     ALPARAVAL.Add(CMBGRIDREMARKS.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
@@ -3923,6 +3928,42 @@ LINESINGLE:
                 End If
             End If
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTPARTYPONO_Validated(sender As Object, e As EventArgs) Handles TXTPARTYPONO.Validated
+        Try
+            'MAKE THIS STAMPING DEFAULT FOR PARTY, ONLY FOR SOFTAS
+            If (ClientName = "SOFTAS") And txtgridremarks.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTPARTYPONO.Text.Trim <> "" Then
+
+                'FIRST CHECK WHETHER THIS STAMP FOR THIS PARTY AND ITEM IS PRESENT OR NOT, IF NOT THEN CREATE NEW OR ELSE UPDATE
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(PAR_STAMPING,'') AS STAMPING, ISNULL(PAR_PARTYITEMNAME,'') AS PARTYITEMNAME, PAR_NO AS PARNO", "", "PARTYITEMWISECHART INNER JOIN LEDGERS ON ACC_ID = PAR_LEDGERID INNER JOIN ITEMMASTER ON ITEM_ID = PAR_ITEMID", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND PAR_YEARID = " & YearId)
+                If DT.Rows.Count > 0 AndAlso LCase(DT.Rows(0).Item("PARTYITEMNAME")) <> LCase(TXTPARTYPONO.Text.Trim) Then
+                    If MsgBox("Wish to Make this Stamp Default for this Party & Item?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    DT = OBJCMN.Execute_Any_String("UPDATE PARTYITEMWISECHART SET PAR_STAMPING = '" & txtgridremarks.Text.Trim & "', PAR_PARTYITEMNAME = '" & TXTPARTYPONO.Text.Trim & "' WHERE PAR_NO = " & Val(DT.Rows(0).Item("PARNO")) & " AND PAR_YEARID = " & YearId, "", "")
+                ElseIf DT.Rows.Count = 0 Then
+                    'ADD NEW STAMPING
+                    Dim ALPARAVAL As New ArrayList
+                    Dim OBJCONFIG As New ClsPartyItemWiseChart
+
+                    ALPARAVAL.Add(0)
+                    ALPARAVAL.Add(cmbname.Text.Trim)
+                    ALPARAVAL.Add(cmbitemname.Text.Trim)
+                    ALPARAVAL.Add(0)    'RATE
+                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTPARTYPONO.Text.Trim) Else ALPARAVAL.Add("")
+                    ALPARAVAL.Add(txtgridremarks.Text.Trim)
+                    ALPARAVAL.Add(CmpId)
+                    ALPARAVAL.Add(Userid)
+                    ALPARAVAL.Add(YearId)
+
+                    OBJCONFIG.alParaval = ALPARAVAL
+
+                    Dim INT As Integer = OBJCONFIG.SAVE()
+                End If
+            End If
         Catch ex As Exception
             Throw ex
         End Try
