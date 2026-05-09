@@ -69,7 +69,7 @@ Public Class PLDesign
             ElseIf frmstring = "INTERESTDTLS" Then
                 crTables = RPTINTDTLS.Database.Tables
             ElseIf frmstring = "INTERESTBILLDTLS" Then
-                If ClientName = "ABHEE" Then
+                If ClientName = "ABHEE" Or ClientName = "MASHOK" Then
                     crTables = RPTINTBILLDTLS_ABHEE.Database.Tables
                 Else
                     crTables = RPTINTBILLDTLS.Database.Tables
@@ -103,7 +103,7 @@ Public Class PLDesign
                 RPTINTDTLS.Subreports("INTERESTDTLS_TERMSUMM").DataDefinition.FormulaFields("INTPER").Text = INTPER
                 RPTINTDTLS.Subreports("INTERESTDTLS_TERMSUMM").DataDefinition.FormulaFields("TEMPDAYS").Text = CALCDAYS
             ElseIf frmstring = "INTERESTBILLDTLS" Then
-                If ClientName = "ABHEE" Then
+                If ClientName = "ABHEE" Or ClientName = "MASHOK" Then
                     CRPO.ReportSource = RPTINTBILLDTLS_ABHEE
                     RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
                     RPTINTBILLDTLS_ABHEE.DataDefinition.FormulaFields("SIDEDAYS").Text = SIDEDAYS
@@ -307,7 +307,7 @@ Public Class PLDesign
 
             ElseIf frmstring = "INTERESTBILLDTLS" Then
                 oDfDopt.DiskFileName = Application.StartupPath & "\INTERESTBILLDTLS.PDF"
-                If ClientName = "ABHEE" Then
+                If ClientName = "ABHEE" Or ClientName = "MASHOK" Then
                     expo = RPTINTBILLDTLS_ABHEE.ExportOptions
                     expo.ExportDestinationType = ExportDestinationType.DiskFile
                     expo.ExportFormatType = ExportFormatType.PortableDocFormat
