@@ -1022,6 +1022,7 @@ Partial Class MDIMain
         Me.UpdatePendingLRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPDATEROUNDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.COMPLAINTSOLVED_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.COMPLAINTSOLVED_ADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator90 = New System.Windows.Forms.ToolStripSeparator()
         Me.SendMailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendMailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1360,7 +1361,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.COMPLAINTSOLVED_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.COMPLAINTSOLVED_EDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7297,30 +7298,30 @@ Partial Class MDIMain
         'MERGELEDGER
         '
         Me.MERGELEDGER.Name = "MERGELEDGER"
-        Me.MERGELEDGER.Size = New System.Drawing.Size(180, 22)
+        Me.MERGELEDGER.Size = New System.Drawing.Size(167, 22)
         Me.MERGELEDGER.Text = "Merge Ledger"
         '
         'MergeParameterToolStripMenuItem
         '
         Me.MergeParameterToolStripMenuItem.Name = "MergeParameterToolStripMenuItem"
-        Me.MergeParameterToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.MergeParameterToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.MergeParameterToolStripMenuItem.Text = "Merge Parameter"
         '
         'ToolStripSeparator193
         '
         Me.ToolStripSeparator193.Name = "ToolStripSeparator193"
-        Me.ToolStripSeparator193.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator193.Size = New System.Drawing.Size(164, 6)
         '
         'UNUSEDLEDGERS_MASTER
         '
         Me.UNUSEDLEDGERS_MASTER.Name = "UNUSEDLEDGERS_MASTER"
-        Me.UNUSEDLEDGERS_MASTER.Size = New System.Drawing.Size(180, 22)
+        Me.UNUSEDLEDGERS_MASTER.Size = New System.Drawing.Size(167, 22)
         Me.UNUSEDLEDGERS_MASTER.Text = "Un-Used Ledgers"
         '
         'ToolStripSeparator195
         '
         Me.ToolStripSeparator195.Name = "ToolStripSeparator195"
-        Me.ToolStripSeparator195.Size = New System.Drawing.Size(177, 6)
+        Me.ToolStripSeparator195.Size = New System.Drawing.Size(164, 6)
         '
         'UpdateEntriesToolStripMenuItem
         '
@@ -7690,10 +7691,16 @@ Partial Class MDIMain
         '
         'COMPLAINTSOLVED_MASTER
         '
-        Me.COMPLAINTSOLVED_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.COMPLAINTSOLVED_ADD})
+        Me.COMPLAINTSOLVED_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.COMPLAINTSOLVED_ADD, Me.COMPLAINTSOLVED_EDIT})
         Me.COMPLAINTSOLVED_MASTER.Name = "COMPLAINTSOLVED_MASTER"
         Me.COMPLAINTSOLVED_MASTER.Size = New System.Drawing.Size(253, 22)
         Me.COMPLAINTSOLVED_MASTER.Text = "Complaint Solved"
+        '
+        'COMPLAINTSOLVED_ADD
+        '
+        Me.COMPLAINTSOLVED_ADD.Name = "COMPLAINTSOLVED_ADD"
+        Me.COMPLAINTSOLVED_ADD.Size = New System.Drawing.Size(180, 22)
+        Me.COMPLAINTSOLVED_ADD.Text = "Add New Entry"
         '
         'ToolStripSeparator90
         '
@@ -9920,11 +9927,11 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'COMPLAINTSOLVED_ADD
+        'COMPLAINTSOLVED_EDIT
         '
-        Me.COMPLAINTSOLVED_ADD.Name = "COMPLAINTSOLVED_ADD"
-        Me.COMPLAINTSOLVED_ADD.Size = New System.Drawing.Size(180, 22)
-        Me.COMPLAINTSOLVED_ADD.Text = "Add New Entry"
+        Me.COMPLAINTSOLVED_EDIT.Name = "COMPLAINTSOLVED_EDIT"
+        Me.COMPLAINTSOLVED_EDIT.Size = New System.Drawing.Size(180, 22)
+        Me.COMPLAINTSOLVED_EDIT.Text = "Edit Existing Entry"
         '
         'MDIMain
         '
@@ -11290,4 +11297,5 @@ Partial Class MDIMain
     Friend WithEvents GREYSALERETURNCHALLAN_EDIT As ToolStripMenuItem
     Friend WithEvents COMPLAINTSOLVED_MASTER As ToolStripMenuItem
     Friend WithEvents COMPLAINTSOLVED_ADD As ToolStripMenuItem
+    Friend WithEvents COMPLAINTSOLVED_EDIT As ToolStripMenuItem
 End Class
