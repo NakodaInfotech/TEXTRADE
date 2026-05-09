@@ -3,6 +3,7 @@ Imports BL
 Imports System.IO
 Imports System.ComponentModel
 Imports System.Net
+Imports DevExpress.XtraRichEdit.Import.Doc
 
 Public Class GRN
 
@@ -1277,6 +1278,11 @@ LINE1:
                     If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
                 End If
 
+                If ClientName = "SYC" Then
+                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR SY" & Chr(13) & "2 FOR JV")
+                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
+                End If
+
                 If ClientName = "AXIS" Then
                     TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR PCS" & Chr(13) & "2 FOR MTRS")
                     If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
@@ -2239,7 +2245,7 @@ LINE1:
 
         gridgrn.FirstDisplayedScrollingRowIndex = gridgrn.RowCount - 1
 
-        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "BIGAPPLE" Or ClientName = "MASHOK" Or ClientName = "SWPL" Or ClientName = "MMC" Then TXTBALENO.Clear()
+        If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "BRILLANTO" Or ClientName = "INDRANI" Or ClientName = "VINIT" Or ClientName = "VALIANT" Or ClientName = "KARAN" Or ClientName = "SYC" Or ClientName = "MASHOK" Or ClientName = "SWPL" Or ClientName = "MMC" Then TXTBALENO.Clear()
         If ClientName = "APPLE" Or ClientName = "ANKUSH" Then TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
         If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
 
@@ -2267,7 +2273,13 @@ LINE1:
             txtqty.Focus()
         ElseIf ClientName = "MOHATUL" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "ANOX" Or ClientName = "MANISH" Or ClientName = "AFW" Then
             cmbcolor.Focus()
-        ElseIf ClientName = "GELATO" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "LEEFABRICO" Or ClientName = "SONU" Or ClientName = "SIDDHPOLYCOT" Then
+        ElseIf ClientName = "SYC" Then
+            cmbitemname.Text = ""
+            CMBDESIGN.Text = ""
+            cmbcolor.Text = ""
+            cmbitemname.Focus()
+
+        ElseIf ClientName = "GELATO" Or ClientName = "CC" Or ClientName = "C3" Or ClientName = "LEEFABRICO" Or ClientName = "SONU" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "SYC" Then
             cmbitemname.Focus()
             If ClientName = "LEEFABRICO" Or ClientName = "SIDDHPOLYCOT" Then txtqty.Clear()
         Else

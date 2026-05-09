@@ -1,6 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.XtraRichEdit.Model
 
 Public Class OpeningStock
 
@@ -304,7 +305,7 @@ Public Class OpeningStock
 
         If CLEAR = True Then
             txtsrno.Text = gridstock.RowCount + 1
-            If ClientName = "REALCORPORATION" Then
+            If ClientName = "REALCORPORATION" Or ClientName = "SYC" Then
                 cmbmerchant.Text = ""
                 CMBDESIGNNO.Text = ""
                 cmbcolor.Text = ""
@@ -341,6 +342,49 @@ Public Class OpeningStock
             End If
         End If
 
+    End Sub
+
+    Sub CLEARTEXTBOX()
+        Try
+            txtsrno.Text = gridstock.RowCount + 1
+            If ClientName = "REALCORPORATION" Or ClientName = "SYC" Then
+                cmbmerchant.Text = ""
+                CMBDESIGNNO.Text = ""
+                cmbcolor.Text = ""
+            End If
+
+            If ClientName <> "TINUMINU" And ClientName <> "RADHA" Then cmbname.Text = ""
+            If ClientName <> "RADHA" Then TXTBILLNO.Clear()
+
+            TXTWT.Clear()
+            txtcut.Clear()
+            txtpcs.Text = 1
+            TXTYARDS.Clear()
+            txtMtrs.Clear()
+            If ClientName <> "KRFABRICS" Then CMBRACK.Text = ""
+            CMBSHELF.Text = ""
+            'CMBPER.Text = ""
+            TXTRATE.Clear()
+            TXTAMOUNT.Clear()
+            If ClientName = "DILIP" Or ClientName = "DILIPNEW" Then TXTREMARKS.Text = Val(TXTREMARKS.Text.Trim) + 1 Else TXTREMARKS.Clear()
+            If ClientName <> "TINUMINU" And ClientName <> "RADHA" Then TXTPARTYCHNO.Clear()
+            TXTBALENO.Clear()
+            TXTLRNO.Clear()
+            TXTGRIDREMARKS.Clear()
+            TXTBARCODE.Clear()
+            TXTNO.Clear()
+            TXTADDLESS.Clear()
+            TXTNETTRATE.Clear()
+            If ClientName = "KDFAB" Or ClientName = "SANGHVI" Or ClientName = "MANIBHADRA" Or ClientName = "TINUMINU" Then
+                txtMtrs.Focus()
+            ElseIf ClientName = "DILIP" Or ClientName = "DILIPNEW" Then
+                txtpcs.Focus()
+            Else
+                TXTLOTNO.Focus()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub OpeningStock_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -429,6 +473,7 @@ Public Class OpeningStock
             USERDELETE = DTROW(0).Item(4)
 
             fillcmb()
+            CLEARTEXTBOX()
             CMBDYEINGJOB.SelectedIndex = 0
             If USERGODOWN <> "" Then cmbgodown.Text = USERGODOWN Else cmbgodown.Text = ""
             openingdate.Value = AccFrom.Date
@@ -635,7 +680,7 @@ Public Class OpeningStock
                 End If
 
                 Dim DT As DataTable = OBJSM.save()
-                MessageBox.Show("Details Added")
+                'MessageBox.Show("Details Added")
                 If DT.Rows.Count > 0 Then TXTNO.Text = DT.Rows(0).Item(0)
                 BARCODE()
             Else
@@ -702,6 +747,11 @@ Public Class OpeningStock
                     If ClientName = "MANS" Then
                         TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR SALVATROE" & Chr(13) & "2 FOR DONBION" & Chr(13) & "2 FOR OCM")
                         If TEMPHEADER <> "1" And TEMPHEADER <> "2" And TEMPHEADER <> "3" Then Exit Sub
+                    End If
+
+                    If ClientName = "SYC" Then
+                        TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 FOR SY" & Chr(13) & "2 FOR JV")
+                        If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
                     End If
 
                     If ClientName = "DAKSH" Or ClientName = "KUNAL" Or ClientName = "VALIANT" Or ClientName = "MILUXE" Then
@@ -1022,6 +1072,22 @@ Public Class OpeningStock
                 TXTREMARKS.TabStop = False
             End If
 
+            If ClientName = "SYC" Then
+                TXTLOTNO.TabStop = False
+                cmbquality.TabStop = False
+                cmbtoname.TabStop = False
+                TXTBILLNO.TabStop = False
+                TXTWT.TabStop = False
+                CMBPER.TabStop = False
+                CMBRACK.TabStop = False
+                CMBSHELF.TabStop = False
+                TXTRATE.TabStop = False
+                TXTAMOUNT.TabStop = False
+                TXTADDLESS.TabStop = False
+                TXTNETTRATE.TabStop = False
+                TXTPARTYCHNO.TabStop = False
+            End If
+
             If (ClientName = "DJIMPEX" Or ClientName = "CHINTAN") And cmbtype.Text.Trim = "INHOUSE" Then TXTYARDS.Visible = True
 
             If ClientName = "SONU" Then cmbunit.Text = "ROLL"
@@ -1167,6 +1233,8 @@ Public Class OpeningStock
                     Exit Sub
                 End If
             End If
+
+            If ClientName = "SYC" Then TXTLRNO_Validating(sender, e)
         Catch ex As Exception
             Throw ex
         End Try
