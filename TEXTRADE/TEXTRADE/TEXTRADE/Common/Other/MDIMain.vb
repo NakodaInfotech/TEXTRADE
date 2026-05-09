@@ -12582,5 +12582,13 @@ SKIPLINE:
         End Try
     End Sub
 
-
+    Private Sub COMPLAINTSOLVED_EDIT_Click(sender As Object, e As EventArgs) Handles COMPLAINTSOLVED_EDIT.Click
+        Try
+            Dim OBJGDN As New ComplaintSolvedDetails
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
