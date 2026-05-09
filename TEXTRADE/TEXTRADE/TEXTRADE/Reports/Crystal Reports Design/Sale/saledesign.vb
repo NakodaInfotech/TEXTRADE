@@ -420,7 +420,8 @@ SKIPINVOICE:
                     End If
                     OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
                     If INVOICECOPYNAME = "OFFICE COPY" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                Else
+
+                ElseIf ClientName <> "SANGHVI" Then
                     OBJ.DataDefinition.FormulaFields("INVOICECOPYNAME").Text = "'" & INVOICECOPYNAME & "'"
                     If BLANKPAPER = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     If SHOWSIGNONINVOICE = True Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"

@@ -3472,20 +3472,22 @@ LINE1:
                 TXTCUT.TabStop = False
             End If
 
-            If ClientName = "BIGAPPLE" And cmbtype.Text.Trim = "FANCY MATERIAL" Then TOOLUPLOADEXCEL.Visible = True
+
 
             If ClientName = "PARAS" Or ClientName = "VINTAGEINDIA" Then LBLCATEGORY.Visible = True
 
-            If ClientName = "LEEFABRICO" Then
+            If ClientName = "LEEFABRICO" Or ClientName = "SYC" Then
                 cmdselectPO.TabStop = False
                 TXTLOTNO.TabStop = False
-                txtpono.BackColor = Color.White
-                txtpono.TabStop = True
-                txtpono.ReadOnly = False
+                If ClientName = "LEEFABRICO" Then
+                    txtpono.BackColor = Color.White
+                    txtpono.TabStop = True
+                    txtpono.ReadOnly = False
+                    TXTCUT.TabStop = False
+                    TXTBALENO.TabStop = False
+                End If
                 CMBQUALITY.TabStop = False
-                TXTBALENO.TabStop = False
                 cmbqtyunit.TabStop = False
-                TXTCUT.TabStop = False
             End If
 
             If ClientName = "VALIANT" And cmbtype.Text = "Job Work" Then
@@ -3516,14 +3518,6 @@ LINE1:
                 TXTLOTNO.TabStop = False
                 CMBQUALITY.TabStop = False
                 cmbqtyunit.TabStop = False
-            End If
-
-            If ClientName = "MANISH" Then
-                cmdselectPO.TabStop = False
-                CMBBROKER.TabStop = False
-                CMBQUALITY.TabStop = False
-                TXTBALENO.TabStop = False
-                GBALENO.HeaderText = "P.Challan No"
             End If
 
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Or ClientName = "YAMUNESH" Then
@@ -3560,18 +3554,6 @@ LINE1:
                     PARTYBILLDATE.Visible = True
                     TXTPARTYBILLNO.Visible = True
                 End If
-            End If
-
-            If ClientName = "BRILLANTO" Then
-                CMBQUALITY.TabStop = False
-                CMBDESIGN.TabStop = False
-                cmbcolor.TabStop = False
-                txtqty.TabStop = False
-                cmbqtyunit.TabStop = False
-                TXTCUT.TabStop = False
-                CMBRACK.TabStop = False
-                CMBSHELF.TabStop = False
-                GBALENO.HeaderText = "Piece No"
             End If
 
             If ClientName <> "CC" And ClientName <> "C3" Then
