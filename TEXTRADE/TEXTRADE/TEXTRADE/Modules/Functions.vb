@@ -1,4 +1,4 @@
-
+﻿
 Imports System.Data.SqlClient
 Imports System.IO
 Imports System.Net
@@ -5661,19 +5661,66 @@ PRINT 1,1")
         Return WHATSAPPBASEURL
     End Function
 
-    Async Function SENDWHATSAPPATTACHMENT(WHATSAPPNO As String, PATH As String, FILENAME As String) As Threading.Tasks.Task(Of String)
-        Dim RESPONSE As String = ""
-        Dim waMediaMsgBody As SendMediaMsgJson = New SendMediaMsgJson()
-        Dim Attachment As String = Convert.ToBase64String(File.ReadAllBytes(PATH))
-        Dim AttachmentFileName As String = FILENAME
-        waMediaMsgBody.base64data = Attachment
-        waMediaMsgBody.mimeType = MimeMapping.GetMimeMapping(AttachmentFileName)
-        'waMediaMsgBody.caption = "APIMethod SendMediaMessage from CISPLWhatsAppAPI.dll"
-        waMediaMsgBody.filename = AttachmentFileName
-        Dim txnResp As TxnRespWithSendMessageDtls = Await APIMethods.SendMediaMessageAsync(WHATSAPPNO, waMediaMsgBody)
-        RESPONSE = JsonConvert.SerializeObject(txnResp, Formatting.Indented)
+    'Async Function SENDWHATSAPPATTACHMENT(WHATSAPPNO As String, PATH As String, FILENAME As String) As Threading.Tasks.Task(Of String)
+    '    Dim RESPONSE As String = ""
+    '    Dim waMediaMsgBody As SendMediaMsgJson = New SendMediaMsgJson()
+    '    Dim Attachment As String = Convert.ToBase64String(File.ReadAllBytes(PATH))
+    '    Dim AttachmentFileName As String = FILENAME
+    '    waMediaMsgBody.base64data = Attachment
+    '    waMediaMsgBody.mimeType = MimeMapping.GetMimeMapping(AttachmentFileName)
+    '    'waMediaMsgBody.caption = "APIMethod SendMediaMessage from CISPLWhatsAppAPI.dll"
+    '    waMediaMsgBody.filename = AttachmentFileName
+    '    Dim txnResp As TxnRespWithSendMessageDtls = Await APIMethods.SendMediaMessageAsync(WHATSAPPNO, waMediaMsgBody)
+    '    RESPONSE = JsonConvert.SerializeObject(txnResp, Formatting.Indented)
 
-        Return RESPONSE
+    '    Return RESPONSE
+    'End Function
+    Async Function SENDWHATSAPPATTACHMENT(WHATSAPPNO As String, PATH As String, FILENAME As String) As Threading.Tasks.Task(Of String)
+        Try
+            'If Not File.Exists(PATH) Then
+            '    Return "{""success"":false,""Error"":{""error"":""File not found: " & PATH & """}}"
+            'End If
+
+            If Not File.Exists(PATH) Then
+                MsgBox("File Not Found: " & PATH)  ' ← shows exact path
+                Return "{""success"":false,""Error"":{""error"":""File not found: " & PATH & """}}"
+            End If
+
+            ' Build JSON body manually
+            Dim base64Data As String = Convert.ToBase64String(File.ReadAllBytes(PATH))
+            Dim justFileName As String = System.IO.Path.GetFileName(PATH)
+            Dim mimeType As String = MimeMapping.GetMimeMapping(justFileName)
+
+            Dim bodyJson As String = Newtonsoft.Json.JsonConvert.SerializeObject(New With {
+            .base64data = base64Data,
+            .mimeType = mimeType,
+            .filename = justFileName,
+            .caption = ""
+        })
+
+            ' Get base URL (NO trailing slash)
+            Dim BASEURL As String = GETWHATSAPPBASEURL().Trim().TrimEnd("/"c)
+
+            ' Direct HTTP POST — bypasses buggy DLL completely
+            Dim url As String = BASEURL & "/" & WHATSAPPNO & "/sendMedia"  ' ← No trailing slash!
+
+            Using client As New System.Net.Http.HttpClient()
+                client.Timeout = TimeSpan.FromSeconds(60)
+                Dim content As New System.Net.Http.StringContent(
+                bodyJson,
+                System.Text.Encoding.UTF8,
+                "application/json"
+            )
+                Dim httpResp As System.Net.Http.HttpResponseMessage = Await client.PostAsync(url, content)
+                Dim result As String = Await httpResp.Content.ReadAsStringAsync()
+                Debug.WriteLine("SendMedia URL: " & url)
+                Debug.WriteLine("SendMedia Response: " & result)
+                Return result
+            End Using
+
+        Catch ex As Exception
+            Return "{""success"":false,""Error"":{""error"":""" & ex.Message & """}}"
+        End Try
     End Function
 
     Async Function SENDWHATSAPPMESSAGE(WHATSAPPNO As String, TEXTMESSAGE As String) As Threading.Tasks.Task(Of String)
