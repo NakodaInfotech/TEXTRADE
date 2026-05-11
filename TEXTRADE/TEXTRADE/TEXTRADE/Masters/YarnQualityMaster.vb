@@ -106,7 +106,7 @@ Public Class YarnQualityMaster
                 If (EDIT = False) Or (EDIT = True And LCase(tempname) <> LCase(txtname.Text.Trim)) Then
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.SEARCH("YARN_ID As ID", "", "YARNQUALITYMASTER", " And YARN_NAME = '" & txtname.Text.Trim & "' AND YARN_YEARID = " & YearId)
-                    If DT.Rows.Count > 0 Then
+                    If DT.Rows.Count > 0 And EDIT = False Then
                         MsgBox("Yarn Quality Name Already Exists", MsgBoxStyle.Critical)
                         e.Cancel = True
                         Exit Sub
