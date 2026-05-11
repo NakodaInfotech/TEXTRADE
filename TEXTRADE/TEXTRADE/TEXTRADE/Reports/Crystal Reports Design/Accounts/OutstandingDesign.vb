@@ -426,7 +426,7 @@ Public Class OutstandingDesign
 
             Transfer()
             Dim objmail As New SendMail
-            objmail.attachment = Application.StartupPath & "\Outstanding Report.PDF"
+            objmail.attachment = Application.StartupPath & "\" & PARTYNAME & "Outstanding Report.PDF"
 
             If PARTYNAME <> "" Then
                 Dim OBJCMN As New ClsCommon
