@@ -37,13 +37,14 @@ Partial Class SelectReturnChallan
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNOOFBALES = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.chkall = New System.Windows.Forms.CheckBox()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFROMTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +82,7 @@ Partial Class SelectReturnChallan
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GDESIGNNO, Me.GSHADE, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GGODOWN, Me.GNOOFBALES, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GDESIGNNO, Me.GSHADE, Me.GITEMNAME, Me.GPCS, Me.GMTRS, Me.GGODOWN, Me.GNOOFBALES, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GFROMTYPE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -216,6 +217,30 @@ Partial Class SelectReturnChallan
         Me.GNOOFBALES.VisibleIndex = 13
         Me.GNOOFBALES.Width = 120
         '
+        'GTRANSNAME
+        '
+        Me.GTRANSNAME.Caption = "Transname"
+        Me.GTRANSNAME.FieldName = "TRANSNAME"
+        Me.GTRANSNAME.Name = "GTRANSNAME"
+        Me.GTRANSNAME.Visible = True
+        Me.GTRANSNAME.VisibleIndex = 10
+        '
+        'GLRNO
+        '
+        Me.GLRNO.Caption = "LR No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 11
+        '
+        'GLRDATE
+        '
+        Me.GLRDATE.Caption = "LR Date"
+        Me.GLRDATE.FieldName = "LRDATE"
+        Me.GLRDATE.Name = "GLRDATE"
+        Me.GLRDATE.Visible = True
+        Me.GLRDATE.VisibleIndex = 12
+        '
         'APPROXDATE
         '
         Me.APPROXDATE.AutoHeight = False
@@ -263,29 +288,14 @@ Partial Class SelectReturnChallan
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GLRDATE
+        'GFROMTYPE
         '
-        Me.GLRDATE.Caption = "LR Date"
-        Me.GLRDATE.FieldName = "LRDATE"
-        Me.GLRDATE.Name = "GLRDATE"
-        Me.GLRDATE.Visible = True
-        Me.GLRDATE.VisibleIndex = 12
-        '
-        'GLRNO
-        '
-        Me.GLRNO.Caption = "LR No"
-        Me.GLRNO.FieldName = "LRNO"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 11
-        '
-        'GTRANSNAME
-        '
-        Me.GTRANSNAME.Caption = "Transname"
-        Me.GTRANSNAME.FieldName = "TRANSNAME"
-        Me.GTRANSNAME.Name = "GTRANSNAME"
-        Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 10
+        Me.GFROMTYPE.Caption = "Type"
+        Me.GFROMTYPE.FieldName = "FROMTYPE"
+        Me.GFROMTYPE.Name = "GFROMTYPE"
+        Me.GFROMTYPE.OptionsColumn.AllowEdit = False
+        Me.GFROMTYPE.Visible = True
+        Me.GFROMTYPE.VisibleIndex = 14
         '
         'SelectReturnChallan
         '
@@ -331,4 +341,5 @@ Partial Class SelectReturnChallan
     Friend WithEvents GTRANSNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLRDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GFROMTYPE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
