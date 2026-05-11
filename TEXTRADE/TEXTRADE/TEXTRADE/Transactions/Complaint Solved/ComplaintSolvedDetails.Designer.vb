@@ -28,19 +28,8 @@ Partial Class ComplaintSolvedDetails
         Me.GSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.grecdmtrs = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALBALPCS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALBALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSMPMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSHRINKAGE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSHRINKAGEPER = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGDYEINGJOB = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -50,6 +39,12 @@ Partial Class ComplaintSolvedDetails
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GCOMPLAINTDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCOMPLAINTBY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBILLINITIALS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBILLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREGNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GFROMTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,7 +79,7 @@ Partial Class ComplaintSolvedDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.gdate, Me.GNAME, Me.GLRNO, Me.GLOTNO, Me.GITEMNAME, Me.GTOTALPCS, Me.GTOTALMTRS, Me.grecdmtrs, Me.GTOTALBALPCS, Me.GTOTALBALMTRS, Me.GSMPMTRS, Me.GSHRINKAGE, Me.GSHRINKAGEPER, Me.GCHALLANNO, Me.GGDYEINGJOB})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.gdate, Me.GNAME, Me.GLOTNO, Me.GCOMPLAINT, Me.GCOMPLAINTDATE, Me.GCOMPLAINTBY, Me.GBILLINITIALS, Me.GBILLNO, Me.GREGNAME, Me.GFROMTYPE})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -117,20 +112,12 @@ Partial Class ComplaintSolvedDetails
         '
         'GNAME
         '
-        Me.GNAME.Caption = "Dyeing Name"
+        Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 2
         Me.GNAME.Width = 200
-        '
-        'GLRNO
-        '
-        Me.GLRNO.Caption = "LR No"
-        Me.GLRNO.FieldName = "LRNO"
-        Me.GLRNO.Name = "GLRNO"
-        Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 3
         '
         'GLOTNO
         '
@@ -138,121 +125,17 @@ Partial Class ComplaintSolvedDetails
         Me.GLOTNO.FieldName = "LOTNO"
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 4
+        Me.GLOTNO.VisibleIndex = 3
         Me.GLOTNO.Width = 80
         '
-        'GITEMNAME
+        'GCOMPLAINT
         '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 5
-        Me.GITEMNAME.Width = 200
-        '
-        'GTOTALPCS
-        '
-        Me.GTOTALPCS.Caption = "Pcs"
-        Me.GTOTALPCS.DisplayFormat.FormatString = "0"
-        Me.GTOTALPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALPCS.FieldName = "PCS"
-        Me.GTOTALPCS.Name = "GTOTALPCS"
-        Me.GTOTALPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALPCS.Visible = True
-        Me.GTOTALPCS.VisibleIndex = 6
-        Me.GTOTALPCS.Width = 60
-        '
-        'GTOTALMTRS
-        '
-        Me.GTOTALMTRS.Caption = "Mtrs"
-        Me.GTOTALMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALMTRS.FieldName = "MTRS"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 7
-        '
-        'grecdmtrs
-        '
-        Me.grecdmtrs.Caption = "Recd Mtrs"
-        Me.grecdmtrs.DisplayFormat.FormatString = "0.00"
-        Me.grecdmtrs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.grecdmtrs.FieldName = "RECDMTRS"
-        Me.grecdmtrs.Name = "grecdmtrs"
-        Me.grecdmtrs.Visible = True
-        Me.grecdmtrs.VisibleIndex = 8
-        '
-        'GTOTALBALPCS
-        '
-        Me.GTOTALBALPCS.Caption = "Bal Pcs"
-        Me.GTOTALBALPCS.DisplayFormat.FormatString = "0"
-        Me.GTOTALBALPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALBALPCS.FieldName = "BALPCS"
-        Me.GTOTALBALPCS.Name = "GTOTALBALPCS"
-        Me.GTOTALBALPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALBALPCS.Visible = True
-        Me.GTOTALBALPCS.VisibleIndex = 9
-        Me.GTOTALBALPCS.Width = 60
-        '
-        'GTOTALBALMTRS
-        '
-        Me.GTOTALBALMTRS.Caption = "Bal Mtrs."
-        Me.GTOTALBALMTRS.FieldName = "BALMTRS"
-        Me.GTOTALBALMTRS.Name = "GTOTALBALMTRS"
-        Me.GTOTALBALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALBALMTRS.Visible = True
-        Me.GTOTALBALMTRS.VisibleIndex = 10
-        '
-        'GSMPMTRS
-        '
-        Me.GSMPMTRS.Caption = "Smp Mtrs"
-        Me.GSMPMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GSMPMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GSMPMTRS.FieldName = "SMPMTRS"
-        Me.GSMPMTRS.Name = "GSMPMTRS"
-        Me.GSMPMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GSMPMTRS.Visible = True
-        Me.GSMPMTRS.VisibleIndex = 11
-        Me.GSMPMTRS.Width = 60
-        '
-        'GSHRINKAGE
-        '
-        Me.GSHRINKAGE.Caption = "Shrinkage"
-        Me.GSHRINKAGE.DisplayFormat.FormatString = "0"
-        Me.GSHRINKAGE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GSHRINKAGE.FieldName = "SHRINKAGE"
-        Me.GSHRINKAGE.Name = "GSHRINKAGE"
-        Me.GSHRINKAGE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GSHRINKAGE.Visible = True
-        Me.GSHRINKAGE.VisibleIndex = 12
-        '
-        'GSHRINKAGEPER
-        '
-        Me.GSHRINKAGEPER.Caption = "Shrinkage %"
-        Me.GSHRINKAGEPER.DisplayFormat.FormatString = "0.00"
-        Me.GSHRINKAGEPER.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GSHRINKAGEPER.FieldName = "SHRINKAGEPER"
-        Me.GSHRINKAGEPER.Name = "GSHRINKAGEPER"
-        Me.GSHRINKAGEPER.Visible = True
-        Me.GSHRINKAGEPER.VisibleIndex = 13
-        '
-        'GCHALLANNO
-        '
-        Me.GCHALLANNO.Caption = "Challan No"
-        Me.GCHALLANNO.FieldName = "CHALLANNO"
-        Me.GCHALLANNO.Name = "GCHALLANNO"
-        Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 14
-        Me.GCHALLANNO.Width = 100
-        '
-        'GGDYEINGJOB
-        '
-        Me.GGDYEINGJOB.Caption = "Dyeing/Job"
-        Me.GGDYEINGJOB.FieldName = "DYEINGJOB"
-        Me.GGDYEINGJOB.Name = "GGDYEINGJOB"
-        Me.GGDYEINGJOB.Visible = True
-        Me.GGDYEINGJOB.VisibleIndex = 15
+        Me.GCOMPLAINT.Caption = "Complaint"
+        Me.GCOMPLAINT.FieldName = "COMPLAINT"
+        Me.GCOMPLAINT.Name = "GCOMPLAINT"
+        Me.GCOMPLAINT.Visible = True
+        Me.GCOMPLAINT.VisibleIndex = 4
+        Me.GCOMPLAINT.Width = 200
         '
         'cmdexit
         '
@@ -335,6 +218,56 @@ Partial Class ComplaintSolvedDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GCOMPLAINTDATE
+        '
+        Me.GCOMPLAINTDATE.Caption = "Complaint Date"
+        Me.GCOMPLAINTDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
+        Me.GCOMPLAINTDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GCOMPLAINTDATE.FieldName = "COMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Name = "GCOMPLAINTDATE"
+        Me.GCOMPLAINTDATE.Visible = True
+        Me.GCOMPLAINTDATE.VisibleIndex = 5
+        '
+        'GCOMPLAINTBY
+        '
+        Me.GCOMPLAINTBY.Caption = "Complaint By"
+        Me.GCOMPLAINTBY.FieldName = "COMPLAINTBY"
+        Me.GCOMPLAINTBY.Name = "GCOMPLAINTBY"
+        Me.GCOMPLAINTBY.Visible = True
+        Me.GCOMPLAINTBY.VisibleIndex = 6
+        '
+        'GBILLINITIALS
+        '
+        Me.GBILLINITIALS.Caption = "Bill Initials"
+        Me.GBILLINITIALS.FieldName = "BILLINITIALS"
+        Me.GBILLINITIALS.Name = "GBILLINITIALS"
+        Me.GBILLINITIALS.Visible = True
+        Me.GBILLINITIALS.VisibleIndex = 7
+        '
+        'GBILLNO
+        '
+        Me.GBILLNO.Caption = "Bill No"
+        Me.GBILLNO.FieldName = "BILLNO"
+        Me.GBILLNO.Name = "GBILLNO"
+        Me.GBILLNO.Visible = True
+        Me.GBILLNO.VisibleIndex = 8
+        '
+        'GREGNAME
+        '
+        Me.GREGNAME.Caption = "Register"
+        Me.GREGNAME.FieldName = "REGNAME"
+        Me.GREGNAME.Name = "GREGNAME"
+        Me.GREGNAME.Visible = True
+        Me.GREGNAME.VisibleIndex = 9
+        '
+        'GFROMTYPE
+        '
+        Me.GFROMTYPE.Caption = "From Type"
+        Me.GFROMTYPE.FieldName = "FROMTYPE"
+        Me.GFROMTYPE.Name = "GFROMTYPE"
+        Me.GFROMTYPE.Visible = True
+        Me.GFROMTYPE.VisibleIndex = 10
+        '
         'ComplaintSolvedDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -362,19 +295,8 @@ Partial Class ComplaintSolvedDetails
     Private WithEvents GSRNO As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents gdate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLOTNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALPCS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents grecdmtrs As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALBALPCS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALBALMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSMPMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSHRINKAGE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GSHRINKAGEPER As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GGDYEINGJOB As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmdexit As Button
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
@@ -384,4 +306,10 @@ Partial Class ComplaintSolvedDetails
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripButton2 As ToolStripButton
     Friend WithEvents cmdok As Button
+    Friend WithEvents GCOMPLAINTDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCOMPLAINTBY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBILLINITIALS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBILLNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREGNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GFROMTYPE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
