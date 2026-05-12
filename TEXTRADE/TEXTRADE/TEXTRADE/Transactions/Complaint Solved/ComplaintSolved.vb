@@ -178,12 +178,12 @@ Public Class ComplaintSolved
         End If
 
         If CMBNAME.Text.Trim.Length = 0 Then
-            EP.SetError(CMBNAME, " Please Fill Dyeing Name ")
+            EP.SetError(CMBNAME, " Please Enter Name ")
             bln = False
         End If
 
         If GRIDSHRINKAGE.RowCount = 0 Then
-            EP.SetError(CMBNAME, " Please Select Lot")
+            EP.SetError(CMBNAME, " Please Select Complaint")
             bln = False
         End If
 
