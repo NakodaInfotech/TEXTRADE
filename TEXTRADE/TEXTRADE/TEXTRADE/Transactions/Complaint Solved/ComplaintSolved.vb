@@ -310,12 +310,12 @@ Public Class ComplaintSolved
         Try
             Dim DTROW() As DataRow
 
-            DTROW = USERRIGHTS.Select("FormName = 'COMPLAINT SOLVED'")
+            'DTROW = USERRIGHTS.Select("FormName = 'COMPLAINT SOLVED'")
 
-            USERADD = DTROW(0).Item(1)
-            USEREDIT = DTROW(0).Item(2)
-            USERVIEW = DTROW(0).Item(3)
-            USERDELETE = DTROW(0).Item(4)
+            'USERADD = DTROW(0).Item(1)
+            'USEREDIT = DTROW(0).Item(2)
+            'USERVIEW = DTROW(0).Item(3)
+            'USERDELETE = DTROW(0).Item(4)
             Cursor.Current = Cursors.WaitCursor
             FILLCMB()
             CLEAR()
@@ -541,9 +541,29 @@ LINE1:
             End If
 
 
+            'Dim OBJLOT As New SelectComplaint
+            'OBJLOT.JOBBERNAME = CMBNAME.Text.Trim
+            'OBJLOT.ShowDialog()
+
+            ' Collect BILLINITIALS already added in the grid
+            Dim existingBillInitials As New List(Of String)
+            For Each row As DataGridViewRow In GRIDSHRINKAGE.Rows
+                If row.Cells(GBILLINITIALS.Index).Value IsNot Nothing AndAlso
+       row.Cells(GBILLINITIALS.Index).Value.ToString.Trim <> "" Then
+                    existingBillInitials.Add("'" & row.Cells(GBILLINITIALS.Index).Value.ToString.Trim.Replace("'", "''") & "'")
+                End If
+            Next
+
             Dim OBJLOT As New SelectComplaint
             OBJLOT.JOBBERNAME = CMBNAME.Text.Trim
+
+            ' Exclude already selected BILLINITIALS
+            If existingBillInitials.Count > 0 Then
+                OBJLOT.WCLAUSE = " AND COMPLAINTREGISTERVIEW.BILLINITIALS NOT IN (" & String.Join(",", existingBillInitials) & ")"
+            End If
+
             OBJLOT.ShowDialog()
+
             Dim DTTABLE As DataTable = OBJLOT.DT
             If DTTABLE.Rows.Count > 0 Then
                 For Each DTROW As DataRow In DTTABLE.Rows
