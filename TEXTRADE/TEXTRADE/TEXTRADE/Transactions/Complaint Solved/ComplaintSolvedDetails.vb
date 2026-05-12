@@ -22,16 +22,16 @@ Public Class ComplaintSolvedDetails
     Private Sub PROFORMADetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             Dim DTROW() As DataRow
-            DTROW = USERRIGHTS.Select("FormName = 'COMPLAINT SOLVED'")
-            USERADD = DTROW(0).Item(1)
-            USEREDIT = DTROW(0).Item(2)
-            USERVIEW = DTROW(0).Item(3)
-            USERDELETE = DTROW(0).Item(4)
+            'DTROW = USERRIGHTS.Select("FormName = 'COMPLAINT SOLVED'")
+            'USERADD = DTROW(0).Item(1)
+            'USEREDIT = DTROW(0).Item(2)
+            'USERVIEW = DTROW(0).Item(3)
+            'USERDELETE = DTROW(0).Item(4)
 
-            If USEREDIT = False And USERVIEW = False Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
+            'If USEREDIT = False And USERVIEW = False Then
+            '    MsgBox("Insufficient Rights")
+            '    Exit Sub
+            'End If
             fillgrid()
 
         Catch ex As Exception
@@ -55,10 +55,10 @@ Public Class ComplaintSolvedDetails
 
     Sub showform(ByVal editval As Boolean, ByVal ENTRYNO As Integer)
         Try
-            If (editval = True And USEREDIT = False And USERVIEW = False) Or (editval = False And USERADD = False) Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
+            'If (editval = True And USEREDIT = False And USERVIEW = False) Or (editval = False And USERADD = False) Then
+            '    MsgBox("Insufficient Rights")
+            '    Exit Sub
+            'End If
 
             If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
                 Dim objgdn As New ComplaintSolved
@@ -74,10 +74,10 @@ Public Class ComplaintSolvedDetails
 
     Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
         Try
-            If USERADD = False Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
+            'If USERADD = False Then
+            '    MsgBox("Insufficient Rights")
+            '    Exit Sub
+            'End If
             showform(False, 0)
         Catch ex As Exception
             Throw ex
