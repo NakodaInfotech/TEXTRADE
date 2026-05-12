@@ -402,7 +402,7 @@ Public Class InterestCalc_BillWise
     Private Sub InterestCalc_BillWise_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             If ClientName = "NVAHAN" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then CHKOVERRIDE.CheckState = CheckState.Unchecked
-            If ClientName = "ANOX" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then TXTDAYS.Text = 365
+            'If ClientName = "ANOX" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then TXTDAYS.Text = 365
             If ClientName = "MASHOK" Or ClientName = "ABHEE" Then TXTSIDE.Text = 1
         Catch ex As Exception
             Throw ex
