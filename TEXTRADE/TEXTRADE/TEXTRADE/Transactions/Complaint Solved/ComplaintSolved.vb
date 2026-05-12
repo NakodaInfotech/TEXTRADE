@@ -134,20 +134,20 @@ Public Class ComplaintSolved
             Dim OBJCLSPROFORMA As New ClsComplaintSolved()
             OBJCLSPROFORMA.alParaval = alParaval
             If EDIT = False Then
-                If USERADD = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
+                'If USERADD = False Then
+                '    MsgBox("Insufficient Rights")
+                '    Exit Sub
+                'End If
 
                 Dim DTT As DataTable = OBJCLSPROFORMA.SAVE()
                 TXTNO.Text = DTT.Rows(0).Item(0)
                 MsgBox("Details Added")
 
             ElseIf EDIT = True Then
-                If USEREDIT = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
+                'If USEREDIT = False Then
+                '    MsgBox("Insufficient Rights")
+                '    Exit Sub
+                'End If
                 alParaval.Add(TEMPENTRYNO)
                 Dim IntResult As Integer = OBJCLSPROFORMA.UPDATE()
                 MsgBox("Details Updated")
@@ -251,10 +251,10 @@ Public Class ComplaintSolved
         Try
             If EDIT = True Then
 
-                If USERDELETE = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
+                'If USERDELETE = False Then
+                '    MsgBox("Insufficient Rights")
+                '    Exit Sub
+                'End If
                 If MsgBox("Wish to Delete Complaint Entry?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
                 'DONE BY GULKIT
@@ -320,10 +320,10 @@ Public Class ComplaintSolved
             FILLCMB()
             CLEAR()
             If EDIT = True Then
-                If USEREDIT = False And USERVIEW = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
+                'If USEREDIT = False And USERVIEW = False Then
+                '    MsgBox("Insufficient Rights")
+                '    Exit Sub
+                'End If
 
                 Dim OBJCMN As New ClsCommon
                 Dim OBJCLSPROFORMA As New ClsComplaintSolved()
@@ -490,10 +490,10 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
-            If USEREDIT = False And USERVIEW = False Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
+            'If USEREDIT = False And USERVIEW = False Then
+            '    MsgBox("Insufficient Rights")
+            '    Exit Sub
+            'End If
 
             Dim objpodtls As New ComplaintSolvedDetails
             objpodtls.MdiParent = MDIMain
