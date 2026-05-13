@@ -1562,7 +1562,7 @@ LINE1:
                     e.Cancel = True
                     Exit Sub
                 Else
-                    If EDIT = False And ClientName <> "SAKARIA" And ClientName <> "AVIS" Then NPDATE.Text = PARTYBILLDATE.Text
+                    If EDIT = False And ClientName <> "SAKARIA" And ClientName <> "AVIS" And ClientName <> "SWPL" Then NPDATE.Text = PARTYBILLDATE.Text
                 End If
             End If
         Catch ex As Exception
