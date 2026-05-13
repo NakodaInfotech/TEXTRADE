@@ -25,11 +25,12 @@ Partial Class ComplaintSolved
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ComplaintSolved))
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTLRNO = New System.Windows.Forms.TextBox()
@@ -342,14 +343,14 @@ Partial Class ComplaintSolved
         Me.GRIDSHRINKAGE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDSHRINKAGE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDSHRINKAGE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GCOMP, Me.GCOMPDATE, Me.GCOMPBY, Me.GBILLINITIALS, Me.GBILLNO, Me.GREGISTER, Me.GTYPE, Me.GFROMNO, Me.GFROMSRNO})
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSHRINKAGE.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSHRINKAGE.DefaultCellStyle = DataGridViewCellStyle6
         Me.GRIDSHRINKAGE.GridColor = System.Drawing.SystemColors.Control
         Me.GRIDSHRINKAGE.Location = New System.Drawing.Point(2, 23)
         Me.GRIDSHRINKAGE.MultiSelect = False
@@ -357,9 +358,9 @@ Partial Class ComplaintSolved
         Me.GRIDSHRINKAGE.RowHeadersVisible = False
         Me.GRIDSHRINKAGE.RowHeadersWidth = 30
         Me.GRIDSHRINKAGE.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDSHRINKAGE.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDSHRINKAGE.RowsDefaultCellStyle = DataGridViewCellStyle7
         Me.GRIDSHRINKAGE.RowTemplate.Height = 20
         Me.GRIDSHRINKAGE.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSHRINKAGE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -802,14 +803,16 @@ Partial Class ComplaintSolved
         '
         'GBILLINITIALS
         '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GBILLINITIALS.DefaultCellStyle = DataGridViewCellStyle3
         Me.GBILLINITIALS.HeaderText = "Bill Initials"
         Me.GBILLINITIALS.Name = "GBILLINITIALS"
         Me.GBILLINITIALS.Width = 120
         '
         'GBILLNO
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBILLNO.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBILLNO.DefaultCellStyle = DataGridViewCellStyle4
         Me.GBILLNO.HeaderText = "Bill No"
         Me.GBILLNO.Name = "GBILLNO"
         Me.GBILLNO.ReadOnly = True
@@ -825,8 +828,8 @@ Partial Class ComplaintSolved
         '
         'GTYPE
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GTYPE.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GTYPE.DefaultCellStyle = DataGridViewCellStyle5
         Me.GTYPE.HeaderText = "Type"
         Me.GTYPE.Name = "GTYPE"
         Me.GTYPE.ReadOnly = True

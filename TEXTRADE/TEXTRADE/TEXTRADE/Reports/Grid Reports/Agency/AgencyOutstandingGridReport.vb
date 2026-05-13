@@ -690,8 +690,8 @@ Public Class AgencyOutstandingGridReport
             Dim WHERECLAUSE As String = " "
 
 
-            If CMBBUYERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBBUYERNAME.Text.Trim & "'"
-            If CMBSELLERNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBSELLERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBBUYERNAME.Text <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBUYERNAME.Text.Trim & "'"
             If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
             If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
@@ -739,7 +739,7 @@ Public Class AgencyOutstandingGridReport
 
 
             'WE ARE PASSING YEARID FROM ABOVE CLAUSE SO NO NEED TO ENTER YEARID HERE
-            DT = OBJCMN.Execute_Any_String(" SELECT OUTSTANDINGPAY.*, CMPMASTER.CMP_NAME AS CMPNAME FROM OUTSTANDINGPAY INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Debtors' AND ROUND(BALANCE,2) <> 0 " & WHERECLAUSE & " ORDER BY AGENT, NAME, DATE, TYPE, BILL", "", "")
+            DT = OBJCMN.Execute_Any_String(" SELECT OUTSTANDINGPAY.*, CMPMASTER.CMP_NAME AS CMPNAME FROM OUTSTANDINGPAY INNER JOIN CMPMASTER ON CMPID = CMP_ID WHERE SECONDARY = 'Sundry Creditors' AND ROUND(BALANCE,2) <> 0 " & WHERECLAUSE & " ORDER BY NAME, AGENT, DATE, TYPE, BILL", "", "")
             If DT.Rows.Count > 0 Then
                 TEMPNAME = ""
                 TEMPBUYERNAME = ""
@@ -761,8 +761,8 @@ Public Class AgencyOutstandingGridReport
                 SRNO = 0
 
                 For Each ROW As DataRow In DT.Rows
-                    If TEMPNAME <> ROW("AGENT") Then
-                        TEMPNAME = ROW("AGENT")
+                    If TEMPNAME <> ROW("NAME") Then
+                        TEMPNAME = ROW("NAME")
                         If GRIDOUTSTANDING.RowCount > 0 Then ADDPARTYTOTALROW(GTOTAL, RECDTOTAL, BALANCE, PARTYINTTOTAL)
                         GTOTAL = 0
                         RECDTOTAL = 0
@@ -770,11 +770,11 @@ Public Class AgencyOutstandingGridReport
                         RUNNINGBAL = 0.0
                         SRNO = 0
                         PARTYINTTOTAL = 0.0
-                        ADDSELLERNAMENAMEROW(ROW("AGENT"))
+                        ADDSELLERNAMENAMEROW(ROW("NAME"))
                     End If
 
-                    If TEMPBUYERNAME <> ROW("NAME") Then
-                        TEMPBUYERNAME = ROW("NAME")
+                    If TEMPBUYERNAME <> ROW("AGENT") Then
+                        TEMPBUYERNAME = ROW("AGENT")
                         If GRIDOUTSTANDING.RowCount > 1 Then ADDPARTYTOTALROW(SGTOTAL, SRECDTOTAL, SBALANCE, SPARTYINTTOTAL)
                         SGTOTAL = 0
                         SRECDTOTAL = 0
@@ -791,7 +791,7 @@ Public Class AgencyOutstandingGridReport
                     SRNO += 1
                     RUNNINGBAL += Val(ROW("BALANCE"))
                     'GRIDOUTSTANDING.Rows.Add(ROW("NAME"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), ROW("ITEMNAME"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date), Format(Val(ROW("CHARGES")), "0.00"), ROW("CMPNAME"))
-                    GRIDOUTSTANDING.Rows.Add(ROW("NAME"), ROW("PRINTINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), ROW("ITEMNAME"), Val(ROW("TOTALPCS")), Format(Val(ROW("TOTALMTRS")), "0.00"), Format(Val(ROW("RATE")), "0.00"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), Format(Val(RUNNINGBAL), "0.00"), Val(SRNO), Val(ROW("CRDAYS")), Val(DAYS), Val(TOTALDAYS), Format(Val(ROW("CHARGES")), "0.00"), ROW("CMPNAME"), ROW("TYPE"), Val(ROW("BILL")), ROW("REGTYPE"), Val(BILLINTEREST), ROW("HOLDINTCALC"), ROW("COMPLAINT"), ROW("COMPLAINTBY"), ROW("COMPLAINTDATE"))
+                    GRIDOUTSTANDING.Rows.Add(ROW("AGENT"), ROW("PRINTINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), ROW("ITEMNAME"), Val(ROW("TOTALPCS")), Format(Val(ROW("TOTALMTRS")), "0.00"), Format(Val(ROW("RATE")), "0.00"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), Format(Val(RUNNINGBAL), "0.00"), Val(SRNO), Val(ROW("CRDAYS")), Val(DAYS), Val(TOTALDAYS), Format(Val(ROW("CHARGES")), "0.00"), ROW("CMPNAME"), ROW("TYPE"), Val(ROW("BILL")), ROW("REGTYPE"), Val(BILLINTEREST), ROW("HOLDINTCALC"), ROW("COMPLAINT"), ROW("COMPLAINTBY"), ROW("COMPLAINTDATE"))
                     GTOTAL += Val(ROW("GRANDTOTAL"))
                     RECDTOTAL += Val(ROW("RECDAMT"))
                     BALANCE += Val(ROW("BALANCE"))
@@ -824,8 +824,8 @@ Public Class AgencyOutstandingGridReport
             Dim WHERECLAUSE As String = " "
 
 
-            If CMBBUYERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBBUYERNAME.Text.Trim & "'"
-            If CMBSELLERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBSELLERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBBUYERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBUYERNAME.Text.Trim & "'"
             If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
             If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
@@ -855,12 +855,12 @@ Public Class AgencyOutstandingGridReport
             WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
 
 
-            DT = OBJCMN.Execute_Any_String(" SELECT AGENT,SUM(BALANCE) AS BALANCE FROM OUTSTANDINGPAY WHERE SECONDARY = 'Sundry Debtors' " & WHERECLAUSE & " GROUP BY AGENT HAVING ROUND(SUM(BALANCE),2) <> 0", "", "")
+            DT = OBJCMN.Execute_Any_String(" SELECT NAME,SUM(BALANCE) AS BALANCE FROM OUTSTANDINGPAY WHERE SECONDARY = 'Sundry Creditors' " & WHERECLAUSE & " GROUP BY NAME HAVING ROUND(SUM(BALANCE),2) <> 0", "", "")
             If DT.Rows.Count > 0 Then
                 BALANCE = 0
                 BALANCEGRANDTOTAL = 0
                 For Each ROW As DataRow In DT.Rows
-                    GRIDSUMM.Rows.Add(ROW("AGENT"), Format(Val(ROW("BALANCE")), "0.00"))
+                    GRIDSUMM.Rows.Add(ROW("NAME"), Format(Val(ROW("BALANCE")), "0.00"))
                     BALANCE += Val(ROW("BALANCE"))
                     BALANCEGRANDTOTAL += Val(ROW("BALANCE"))
                 Next
@@ -880,8 +880,8 @@ Public Class AgencyOutstandingGridReport
             Dim WHERECLAUSE As String = " "
 
 
-            If CMBBUYERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBBUYERNAME.Text.Trim & "'"
-            If CMBSELLERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBSELLERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBBUYERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBUYERNAME.Text.Trim & "'"
             If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
             If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
@@ -914,18 +914,18 @@ Public Class AgencyOutstandingGridReport
             WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
 
 
-            DT = OBJCMN.Execute_Any_String(" SELECT BILLINITIALS,DATE,NAME, AGENT,RECDAMT, MOBILENO, PHONENO FROM OUTSTANDINGPAY WHERE SECONDARY = 'Sundry Debtors' AND TYPE='RECEIPT' " & WHERECLAUSE & " ORDER BY AGENT, DATE, TYPE", "", "")
+            DT = OBJCMN.Execute_Any_String(" SELECT BILLINITIALS,DATE,NAME, AGENT,RECDAMT, MOBILENO, PHONENO FROM OUTSTANDINGPAY WHERE SECONDARY = 'Sundry Creditors' AND TYPE='PAYMENT' " & WHERECLAUSE & " ORDER BY NAME, DATE, TYPE", "", "")
             If DT.Rows.Count > 0 Then
                 TEMPNAME = ""
                 RECDTOTAL = 0
                 RECDGRANDTOTAL = 0
 
                 For Each ROW As DataRow In DT.Rows
-                    If TEMPNAME <> ROW("AGENT") Then
-                        TEMPNAME = ROW("AGENT")
+                    If TEMPNAME <> ROW("NAME") Then
+                        TEMPNAME = ROW("NAME")
                         If GRIDADV.RowCount > 0 Then ADDADVTOTALROW(RECDTOTAL)
                         RECDTOTAL = 0
-                        ADDSELLERNAMEADVNAMEROW(ROW("AGENT"))
+                        ADDSELLERNAMEADVNAMEROW(ROW("NAME"))
                     End If
                     GRIDADV.Rows.Add(ROW("NAME"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Val(ROW("RECDAMT")), "0.00"))
                     RECDTOTAL += Val(ROW("RECDAMT"))
@@ -948,8 +948,8 @@ Public Class AgencyOutstandingGridReport
             Dim WHERECLAUSE As String = " "
 
 
-            If CMBBUYERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBBUYERNAME.Text.Trim & "'"
-            If CMBSELLERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBSELLERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND NAME = '" & CMBSELLERNAME.Text.Trim & "'"
+            If CMBBUYERNAME.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND AGENT = '" & CMBBUYERNAME.Text.Trim & "'"
             If CMBGROUP.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPNAME = '" & CMBGROUP.Text.Trim & "'"
             If CMBCITY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND CITY = '" & CMBCITY.Text.Trim & "'"
             If CMBGROUPOFCOMPANY.Text.Trim <> "" Then WHERECLAUSE = WHERECLAUSE & " AND GROUPOFCOMPANIES = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
@@ -983,7 +983,7 @@ Public Class AgencyOutstandingGridReport
             WHERECLAUSE = WHERECLAUSE & " AND YEARID IN (" & CMPCLAUSE & ")"
 
 
-            DT = OBJCMN.Execute_Any_String(" SELECT * FROM OUTSTANDINGPAY WHERE SECONDARY = 'Sundry Debtors' AND RECDAMT > 0 AND BALANCE > 0 " & WHERECLAUSE & " ORDER BY AGENT, NAME, DATE, TYPE, BILL", "", "")
+            DT = OBJCMN.Execute_Any_String(" SELECT * FROM OUTSTANDINGPAY WHERE SECONDARY = 'Sundry Creditors' AND RECDAMT > 0 AND BALANCE > 0 " & WHERECLAUSE & " ORDER BY NAME, AGENT, DATE, TYPE, BILL", "", "")
             If DT.Rows.Count > 0 Then
                 TEMPNAME = ""
                 GTOTAL = 0
@@ -994,13 +994,13 @@ Public Class AgencyOutstandingGridReport
                 BALANCEGRANDTOTAL = 0
 
                 For Each ROW As DataRow In DT.Rows
-                    If TEMPNAME <> ROW("AGENT") Then
-                        TEMPNAME = ROW("AGENT")
+                    If TEMPNAME <> ROW("NAME") Then
+                        TEMPNAME = ROW("NAME")
                         If GRIDPART.RowCount > 0 Then ADDPARTPAIDTOTALROW(GTOTAL, RECDTOTAL, BALANCE)
                         GTOTAL = 0
                         RECDTOTAL = 0
                         BALANCE = 0
-                        ADDSELLERNAMEPARTNAMEROW(ROW("AGENT"))
+                        ADDSELLERNAMEPARTNAMEROW(ROW("NAME"))
                     End If
                     GRIDPART.Rows.Add(ROW("NAME"), ROW("BILLINITIALS"), Format(Convert.ToDateTime(ROW("DATE")).Date, "dd/MM/yy"), Format(Convert.ToDateTime(ROW("DUEDATE")).Date, "dd/MM/yy"), Format(Val(ROW("GRANDTOTAL")), "0.00"), ROW("LRNO"), ROW("ITEMNAME"), Format(Val(ROW("RECDAMT")), "0.00"), Format(Val(ROW("BALANCE")), "0.00"), DateDiff(DateInterval.Day, Convert.ToDateTime(ROW("DUEDATE")).Date, Mydate.Date))
                     GTOTAL += Val(ROW("GRANDTOTAL"))

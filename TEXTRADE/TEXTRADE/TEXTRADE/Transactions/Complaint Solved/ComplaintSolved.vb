@@ -134,20 +134,20 @@ Public Class ComplaintSolved
             Dim OBJCLSPROFORMA As New ClsComplaintSolved()
             OBJCLSPROFORMA.alParaval = alParaval
             If EDIT = False Then
-                If USERADD = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
+                'If USERADD = False Then
+                '    MsgBox("Insufficient Rights")
+                '    Exit Sub
+                'End If
 
                 Dim DTT As DataTable = OBJCLSPROFORMA.SAVE()
                 TXTNO.Text = DTT.Rows(0).Item(0)
                 MsgBox("Details Added")
 
             ElseIf EDIT = True Then
-                If USEREDIT = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
+                'If USEREDIT = False Then
+                '    MsgBox("Insufficient Rights")
+                '    Exit Sub
+                'End If
                 alParaval.Add(TEMPENTRYNO)
                 Dim IntResult As Integer = OBJCLSPROFORMA.UPDATE()
                 MsgBox("Details Updated")
@@ -251,10 +251,10 @@ Public Class ComplaintSolved
         Try
             If EDIT = True Then
 
-                If USERDELETE = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
+                'If USERDELETE = False Then
+                '    MsgBox("Insufficient Rights")
+                '    Exit Sub
+                'End If
                 If MsgBox("Wish to Delete Complaint Entry?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
                 'DONE BY GULKIT
@@ -310,20 +310,20 @@ Public Class ComplaintSolved
         Try
             Dim DTROW() As DataRow
 
-            DTROW = USERRIGHTS.Select("FormName = 'COMPLAINT SOLVED'")
+            'DTROW = USERRIGHTS.Select("FormName = 'COMPLAINT SOLVED'")
 
-            USERADD = DTROW(0).Item(1)
-            USEREDIT = DTROW(0).Item(2)
-            USERVIEW = DTROW(0).Item(3)
-            USERDELETE = DTROW(0).Item(4)
+            'USERADD = DTROW(0).Item(1)
+            'USEREDIT = DTROW(0).Item(2)
+            'USERVIEW = DTROW(0).Item(3)
+            'USERDELETE = DTROW(0).Item(4)
             Cursor.Current = Cursors.WaitCursor
             FILLCMB()
             CLEAR()
             If EDIT = True Then
-                If USEREDIT = False And USERVIEW = False Then
-                    MsgBox("Insufficient Rights")
-                    Exit Sub
-                End If
+                'If USEREDIT = False And USERVIEW = False Then
+                '    MsgBox("Insufficient Rights")
+                '    Exit Sub
+                'End If
 
                 Dim OBJCMN As New ClsCommon
                 Dim OBJCLSPROFORMA As New ClsComplaintSolved()
@@ -490,10 +490,10 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
-            If USEREDIT = False And USERVIEW = False Then
-                MsgBox("Insufficient Rights")
-                Exit Sub
-            End If
+            'If USEREDIT = False And USERVIEW = False Then
+            '    MsgBox("Insufficient Rights")
+            '    Exit Sub
+            'End If
 
             Dim objpodtls As New ComplaintSolvedDetails
             objpodtls.MdiParent = MDIMain
@@ -541,9 +541,29 @@ LINE1:
             End If
 
 
+            'Dim OBJLOT As New SelectComplaint
+            'OBJLOT.JOBBERNAME = CMBNAME.Text.Trim
+            'OBJLOT.ShowDialog()
+
+            ' Collect BILLINITIALS already added in the grid
+            Dim existingBillInitials As New List(Of String)
+            For Each row As DataGridViewRow In GRIDSHRINKAGE.Rows
+                If row.Cells(GBILLINITIALS.Index).Value IsNot Nothing AndAlso
+       row.Cells(GBILLINITIALS.Index).Value.ToString.Trim <> "" Then
+                    existingBillInitials.Add("'" & row.Cells(GBILLINITIALS.Index).Value.ToString.Trim.Replace("'", "''") & "'")
+                End If
+            Next
+
             Dim OBJLOT As New SelectComplaint
             OBJLOT.JOBBERNAME = CMBNAME.Text.Trim
+
+            ' Exclude already selected BILLINITIALS
+            If existingBillInitials.Count > 0 Then
+                OBJLOT.WCLAUSE = " AND COMPLAINTREGISTERVIEW.BILLINITIALS NOT IN (" & String.Join(",", existingBillInitials) & ")"
+            End If
+
             OBJLOT.ShowDialog()
+
             Dim DTTABLE As DataTable = OBJLOT.DT
             If DTTABLE.Rows.Count > 0 Then
                 For Each DTROW As DataRow In DTTABLE.Rows

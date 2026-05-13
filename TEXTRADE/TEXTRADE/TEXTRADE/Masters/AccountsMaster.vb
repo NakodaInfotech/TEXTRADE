@@ -2197,7 +2197,7 @@ line1:
             End If
 
 
-            If ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SUPRIYA" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MSANCHITKUMAR" Or ClientName = "MOHATUL" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "KARAN" Or ClientName = "PARAS" Or ClientName = "AVIS" Or ClientName = "MANSI" Or ClientName = "DEVEN" Or ClientName = "NAKODAINFOTECH" Or ClientName = "LEEFABRICO" Or ClientName = "REALCORPORATION" Or ClientName = "CC" Or ClientName = "SNCM" Then CHKCOMMON.CheckState = CheckState.Unchecked
+            If ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SUPRIYA" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "MSANCHITKUMAR" Or ClientName = "MOHATUL" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "KARAN" Or ClientName = "PARAS" Or ClientName = "AVIS" Or ClientName = "MANSI" Or ClientName = "DEVEN" Or ClientName = "NAKODAINFOTECH" Or ClientName = "LEEFABRICO" Or ClientName = "REALCORPORATION" Or ClientName = "CC" Or ClientName = "SNCM" Or ClientName = "ABHEE" Then CHKCOMMON.CheckState = CheckState.Unchecked
             If ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then LBLSALESMAN.Text = "Handler"
             If ClientName = "VINTAGEINDIA" Then CHKHOLD.CheckState = CheckState.Checked
         Catch ex As Exception
