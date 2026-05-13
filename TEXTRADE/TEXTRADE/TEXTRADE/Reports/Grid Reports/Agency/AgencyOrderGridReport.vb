@@ -335,9 +335,18 @@ Public Class AgencyOrderGridReport
     Private Sub GRIDSO_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDSO.CellDoubleClick
         Try
             If e.RowIndex >= 0 Then
-                Dim OBJSO As New AgencySaleOrder
+                Dim OBJSO As New Object
+                If GRIDSO.Rows(e.RowIndex).Cells(GBUYERNAME.Index).Value = "ABHEE FABRICS LLP [ BUYER ]" Then
+                    OBJSO = New PurchaseOrder
+                    OBJSO.TEMPONO = GRIDSO.Rows(e.RowIndex).Cells("GSONO").Value.ToString()
+                ElseIf GRIDSO.Rows(e.RowIndex).Cells(GSELLERNAME.Index).Value = "ABHEE FABRICS LLP [ SELLER ]" Then
+                    OBJSO = New SaleOrder
+                    OBJSO.TEMPSONO = GRIDSO.Rows(e.RowIndex).Cells("GSONO").Value.ToString()
+                Else
+                    OBJSO = New AgencySaleOrder
+                    OBJSO.TEMPSONO = GRIDSO.Rows(e.RowIndex).Cells("GSONO").Value.ToString()
+                End If
                 OBJSO.MdiParent = MDIMain
-                OBJSO.TEMPSONO = GRIDSO.Rows(e.RowIndex).Cells("GSONO").Value.ToString()
                 OBJSO.EDIT = True
                 OBJSO.Show()
             End If

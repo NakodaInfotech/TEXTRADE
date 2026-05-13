@@ -2541,12 +2541,7 @@ line1:
 
             If RBOUTSTANDINGDUE.Checked = True Then CHKDUE.Checked = True
             If CHKDUE.Checked = True Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {@OD} > 0 "
-            'If CHKDUE.Checked = True Then
-            '    OBJOUT.FORMULA &= " AND DateDiff('d', Date({OUTSTANDINGREC.DATE}), CurrentDate) - {OUTSTANDINGREC.CRDAYS}"
-            'End If
-
-
-
+            If CMBGROUPOFCOMPANY.Text.Trim <> "" Then OBJOUT.FORMULA = OBJOUT.FORMULA & " AND {OUTSTANDINGREC.GROUPOFCOMPANIES} = '" & CMBGROUPOFCOMPANY.Text.Trim & "'"
 
             Dim BUYERCLAUSE As String = ""
             Dim SELLERCLAUSE As String = ""
