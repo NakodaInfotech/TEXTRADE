@@ -2545,6 +2545,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningYarnJobOrderDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCommissionReceipt.Designer.vb">
+      <DependentUpon>AgencyCommissionReceipt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCommissionReceipt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Complaint Solved\ComplaintSolvedDetails.Designer.vb">
       <DependentUpon>ComplaintSolvedDetails.vb</DependentUpon>
     </Compile>
@@ -10743,6 +10749,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningYarnJobOrderDetails.resx">
       <DependentUpon>OpeningYarnJobOrderDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyCommissionReceipt.resx">
+      <DependentUpon>AgencyCommissionReceipt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Complaint Solved\ComplaintSolvedDetails.resx">
       <DependentUpon>ComplaintSolvedDetails.vb</DependentUpon>
