@@ -40,6 +40,7 @@ Partial Class SelectBills
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GSELLERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridrec, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,7 +58,7 @@ Partial Class SelectBills
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(738, 581)
+        Me.BlendPanel1.Size = New System.Drawing.Size(738, 761)
         Me.BlendPanel1.TabIndex = 1
         '
         'CHKSELECTALL
@@ -80,7 +81,7 @@ Partial Class SelectBills
         Me.griddetails.MainView = Me.gridrec
         Me.griddetails.Name = "griddetails"
         Me.griddetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.griddetails.Size = New System.Drawing.Size(696, 509)
+        Me.griddetails.Size = New System.Drawing.Size(696, 684)
         Me.griddetails.TabIndex = 210
         Me.griddetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridrec})
         '
@@ -88,7 +89,7 @@ Partial Class SelectBills
         '
         Me.gridrec.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridrec.Appearance.Row.Options.UseFont = True
-        Me.gridrec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.GBILLNO, Me.GDATE, Me.GREFNO, Me.GNAME, Me.gtotal, Me.GBALAMT, Me.GTYPE, Me.GDISPUTE})
+        Me.gridrec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.GBILLNO, Me.GDATE, Me.GREFNO, Me.GNAME, Me.gtotal, Me.GBALAMT, Me.GTYPE, Me.GDISPUTE, Me.GSELLERNAME})
         Me.gridrec.GridControl = Me.griddetails
         Me.gridrec.Name = "gridrec"
         Me.gridrec.OptionsCustomization.AllowColumnMoving = False
@@ -96,6 +97,7 @@ Partial Class SelectBills
         Me.gridrec.OptionsCustomization.AllowQuickHideColumns = False
         Me.gridrec.OptionsView.ColumnAutoWidth = False
         Me.gridrec.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.gridrec.OptionsView.ShowAutoFilterRow = True
         Me.gridrec.OptionsView.ShowGroupPanel = False
         '
         'GCHK
@@ -221,7 +223,7 @@ Partial Class SelectBills
         Me.cmdcancel.FlatAppearance.BorderSize = 0
         Me.cmdcancel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdcancel.ForeColor = System.Drawing.Color.Black
-        Me.cmdcancel.Location = New System.Drawing.Point(373, 546)
+        Me.cmdcancel.Location = New System.Drawing.Point(373, 721)
         Me.cmdcancel.Name = "cmdcancel"
         Me.cmdcancel.Size = New System.Drawing.Size(80, 28)
         Me.cmdcancel.TabIndex = 3
@@ -236,7 +238,7 @@ Partial Class SelectBills
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(287, 546)
+        Me.cmdok.Location = New System.Drawing.Point(287, 721)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 2
@@ -244,10 +246,17 @@ Partial Class SelectBills
         Me.cmdok.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GSELLERNAME
+        '
+        Me.GSELLERNAME.Caption = "Seller Name"
+        Me.GSELLERNAME.FieldName = "SELLERNAME"
+        Me.GSELLERNAME.Name = "GSELLERNAME"
+        Me.GSELLERNAME.Width = 200
+        '
         'SelectBills
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(738, 581)
+        Me.ClientSize = New System.Drawing.Size(738, 761)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -280,4 +289,5 @@ Partial Class SelectBills
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents CHKSELECTALL As CheckBox
     Friend WithEvents GDISPUTE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GSELLERNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

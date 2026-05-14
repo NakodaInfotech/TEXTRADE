@@ -62,7 +62,7 @@ Public Class MDIMain
             Me.Text = CmpName & " (" & AccFrom & " - " & AccTo & ")                     User - " & UserName
             GETCONN()
 
-            If ClientName = "YASHVI" Or ClientName = "NAKODAINFOTECH" Or ClientName = "AVIS" Or ClientName = "MILUXE" Then
+            If ClientName = "YASHVI" Or ClientName = "NAKODAINFOTECH" Or ClientName = "AVIS" Or ClientName = "MILUXE" Or ClientName = "ABHEE" Then
                 Timer1.Enabled = True
                 LBLCHECKIN.Visible = True
                 Timer1.Interval = 15
