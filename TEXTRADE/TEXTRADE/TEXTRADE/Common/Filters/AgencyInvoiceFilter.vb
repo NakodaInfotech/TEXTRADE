@@ -82,6 +82,8 @@ Public Class AgencyInvoiceFilter
             OBJGRN.WHERECLAUSE = " {AGENCYINVOICEMASTER.AINVOICE_yearid}=" & YearId
             If RDBDATEWISE.Checked = True Then
                 OBJGRN.FRMSTRING = "REGDATEWISE"
+            ElseIf RBSELLERCOMM.Checked = True Then
+                OBJGRN.FRMSTRING = "SELLERCOMM"
             End If
 
             If chkdate.Checked = True Then

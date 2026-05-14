@@ -126,6 +126,7 @@ Partial Class AgencyInvoiceFilter
         Me.GCHKMILL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RBSELLERCOMM = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GPFILTERS.SuspendLayout()
         Me.GPORDERNO.SuspendLayout()
@@ -804,9 +805,9 @@ Partial Class AgencyInvoiceFilter
         Me.GPPARTYNAME.Controls.Add(Me.GroupBox6)
         Me.GPPARTYNAME.Controls.Add(Me.gridbilldetails)
         Me.GPPARTYNAME.Controls.Add(Me.CHKSELECTALL)
-        Me.GPPARTYNAME.Location = New System.Drawing.Point(682, 187)
+        Me.GPPARTYNAME.Location = New System.Drawing.Point(682, 213)
         Me.GPPARTYNAME.Name = "GPPARTYNAME"
-        Me.GPPARTYNAME.Size = New System.Drawing.Size(540, 359)
+        Me.GPPARTYNAME.Size = New System.Drawing.Size(540, 334)
         Me.GPPARTYNAME.TabIndex = 9
         Me.GPPARTYNAME.TabStop = False
         Me.GPPARTYNAME.Text = "Party Name"
@@ -854,7 +855,7 @@ Partial Class AgencyInvoiceFilter
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.gridbilldetails.Size = New System.Drawing.Size(523, 307)
+        Me.gridbilldetails.Size = New System.Drawing.Size(523, 283)
         Me.gridbilldetails.TabIndex = 2
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -1042,6 +1043,7 @@ Partial Class AgencyInvoiceFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RBSELLERCOMM)
         Me.GroupBox3.Controls.Add(Me.RDBITEMGRIDREPORT)
         Me.GroupBox3.Controls.Add(Me.RDBITEMSMALL)
         Me.GroupBox3.Controls.Add(Me.RBDISPPER)
@@ -1056,7 +1058,7 @@ Partial Class AgencyInvoiceFilter
         Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(693, 14)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(296, 159)
+        Me.GroupBox3.Size = New System.Drawing.Size(296, 182)
         Me.GroupBox3.TabIndex = 8
         Me.GroupBox3.TabStop = False
         '
@@ -1387,6 +1389,17 @@ Partial Class AgencyInvoiceFilter
         Me.GMILLNAME.VisibleIndex = 1
         Me.GMILLNAME.Width = 200
         '
+        'RBSELLERCOMM
+        '
+        Me.RBSELLERCOMM.AutoSize = True
+        Me.RBSELLERCOMM.Location = New System.Drawing.Point(14, 155)
+        Me.RBSELLERCOMM.Name = "RBSELLERCOMM"
+        Me.RBSELLERCOMM.Size = New System.Drawing.Size(166, 18)
+        Me.RBSELLERCOMM.TabIndex = 11
+        Me.RBSELLERCOMM.Text = "Seller Commission Report"
+        Me.RBSELLERCOMM.UseVisualStyleBackColor = True
+        Me.RBSELLERCOMM.Visible = False
+        '
         'AgencyInvoiceFilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1549,4 +1562,5 @@ Partial Class AgencyInvoiceFilter
     Friend WithEvents GCHKMILL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Private WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RBSELLERCOMM As RadioButton
 End Class
