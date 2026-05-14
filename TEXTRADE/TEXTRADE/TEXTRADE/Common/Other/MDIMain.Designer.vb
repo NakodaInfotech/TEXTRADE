@@ -1023,6 +1023,7 @@ Partial Class MDIMain
         Me.UPDATEROUNDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.COMPLAINTSOLVED_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.COMPLAINTSOLVED_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.COMPLAINTSOLVED_EDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator90 = New System.Windows.Forms.ToolStripSeparator()
         Me.SendMailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendMailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1361,7 +1362,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.COMPLAINTSOLVED_EDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AgencyBrokerageSalesReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7699,8 +7700,14 @@ Partial Class MDIMain
         'COMPLAINTSOLVED_ADD
         '
         Me.COMPLAINTSOLVED_ADD.Name = "COMPLAINTSOLVED_ADD"
-        Me.COMPLAINTSOLVED_ADD.Size = New System.Drawing.Size(180, 22)
+        Me.COMPLAINTSOLVED_ADD.Size = New System.Drawing.Size(168, 22)
         Me.COMPLAINTSOLVED_ADD.Text = "Add New Entry"
+        '
+        'COMPLAINTSOLVED_EDIT
+        '
+        Me.COMPLAINTSOLVED_EDIT.Name = "COMPLAINTSOLVED_EDIT"
+        Me.COMPLAINTSOLVED_EDIT.Size = New System.Drawing.Size(168, 22)
+        Me.COMPLAINTSOLVED_EDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator90
         '
@@ -9136,7 +9143,7 @@ Partial Class MDIMain
         '
         Me.AgencySaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgencySaleOrderToolStripMenuItem, Me.SaleInvoiceToolStripMenuItem, Me.SaleReturnToolStripMenuItem, Me.ToolStripSeparator316})
         Me.AgencySaleToolStripMenuItem.Name = "AgencySaleToolStripMenuItem"
-        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencySaleToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencySaleToolStripMenuItem.Text = "&Entries"
         '
         'AgencySaleOrderToolStripMenuItem
@@ -9231,7 +9238,7 @@ Partial Class MDIMain
         '
         Me.AToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReceipToolStripMenuItem, Me.AgencyCreditNoteToolStripMenuItem, Me.ToolStripSeparator317, Me.AgencyManualMatchingToolStripMenuItem, Me.AGENCYOPENINGBILL_MASTER, Me.ToolStripSeparator320})
         Me.AToolStripMenuItem.Name = "AToolStripMenuItem"
-        Me.AToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AToolStripMenuItem.Text = "&Accounts"
         '
         'ReceipToolStripMenuItem
@@ -9315,13 +9322,13 @@ Partial Class MDIMain
         'ToolStripSeparator311
         '
         Me.ToolStripSeparator311.Name = "ToolStripSeparator311"
-        Me.ToolStripSeparator311.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator311.Size = New System.Drawing.Size(177, 6)
         '
         'AgencyOpeningBillsToolStripMenuItem
         '
-        Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDINGGRID_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322})
+        Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDINGGRID_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322, Me.AgencyBrokerageSalesReportToolStripMenuItem})
         Me.AgencyOpeningBillsToolStripMenuItem.Name = "AgencyOpeningBillsToolStripMenuItem"
-        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencyOpeningBillsToolStripMenuItem.Text = "Reports"
         '
         'AGENCYOUTSTANDINGGRID_MENU
@@ -9350,7 +9357,7 @@ Partial Class MDIMain
         'ToolStripSeparator309
         '
         Me.ToolStripSeparator309.Name = "ToolStripSeparator309"
-        Me.ToolStripSeparator309.Size = New System.Drawing.Size(119, 6)
+        Me.ToolStripSeparator309.Size = New System.Drawing.Size(177, 6)
         '
         'MAGICBOX_MENU
         '
@@ -9927,11 +9934,11 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'COMPLAINTSOLVED_EDIT
+        'AgencyBrokerageSalesReportToolStripMenuItem
         '
-        Me.COMPLAINTSOLVED_EDIT.Name = "COMPLAINTSOLVED_EDIT"
-        Me.COMPLAINTSOLVED_EDIT.Size = New System.Drawing.Size(180, 22)
-        Me.COMPLAINTSOLVED_EDIT.Text = "Edit Existing Entry"
+        Me.AgencyBrokerageSalesReportToolStripMenuItem.Name = "AgencyBrokerageSalesReportToolStripMenuItem"
+        Me.AgencyBrokerageSalesReportToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.AgencyBrokerageSalesReportToolStripMenuItem.Text = "Agency Brokerage Sales Report"
         '
         'MDIMain
         '
@@ -11298,4 +11305,5 @@ Partial Class MDIMain
     Friend WithEvents COMPLAINTSOLVED_MASTER As ToolStripMenuItem
     Friend WithEvents COMPLAINTSOLVED_ADD As ToolStripMenuItem
     Friend WithEvents COMPLAINTSOLVED_EDIT As ToolStripMenuItem
+    Friend WithEvents AgencyBrokerageSalesReportToolStripMenuItem As ToolStripMenuItem
 End Class

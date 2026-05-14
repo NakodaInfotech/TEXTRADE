@@ -810,6 +810,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyBrokerageReport.Designer.vb">
+      <DependentUpon>AgencyBrokerageReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyBrokerageReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.Designer.vb">
       <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>
     </Compile>
@@ -9673,6 +9679,9 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Yarn Job order\YarnJobOrderReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>YarnJobOrderReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyBrokerageReport.resx">
+      <DependentUpon>AgencyBrokerageReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.resx">
       <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>

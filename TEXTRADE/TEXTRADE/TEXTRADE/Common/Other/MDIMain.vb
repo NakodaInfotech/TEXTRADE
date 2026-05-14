@@ -12591,4 +12591,14 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub AgencyBrokerageSalesReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgencyBrokerageSalesReportToolStripMenuItem.Click
+        Try
+            Dim OBJGDN As New AgencyBrokerageReport
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
