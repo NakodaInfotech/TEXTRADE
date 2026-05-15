@@ -1280,6 +1280,7 @@ Partial Class MDIMain
         Me.AgencyInvoiceReportsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator322 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AgencyBrokerageSalesReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator309 = New System.Windows.Forms.ToolStripSeparator()
         Me.MAGICBOX_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.MAGICBOXORDER_MENU = New System.Windows.Forms.ToolStripMenuItem()
@@ -1362,7 +1363,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.AgencyBrokerageSalesReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -9326,7 +9326,7 @@ Partial Class MDIMain
         '
         'AgencyOpeningBillsToolStripMenuItem
         '
-        Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDINGGRID_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.ToolStripSeparator322, Me.AgencyBrokerageSalesReportToolStripMenuItem})
+        Me.AgencyOpeningBillsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AGENCYOUTSTANDINGGRID_MENU, Me.AgencyInvoiceReportsToolStripMenuItem, Me.AgencySaleReportToolStripMenuItem, Me.AgencyBrokerageSalesReportToolStripMenuItem, Me.ToolStripSeparator322})
         Me.AgencyOpeningBillsToolStripMenuItem.Name = "AgencyOpeningBillsToolStripMenuItem"
         Me.AgencyOpeningBillsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AgencyOpeningBillsToolStripMenuItem.Text = "Reports"
@@ -9353,6 +9353,12 @@ Partial Class MDIMain
         '
         Me.ToolStripSeparator322.Name = "ToolStripSeparator322"
         Me.ToolStripSeparator322.Size = New System.Drawing.Size(243, 6)
+        '
+        'AgencyBrokerageSalesReportToolStripMenuItem
+        '
+        Me.AgencyBrokerageSalesReportToolStripMenuItem.Name = "AgencyBrokerageSalesReportToolStripMenuItem"
+        Me.AgencyBrokerageSalesReportToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
+        Me.AgencyBrokerageSalesReportToolStripMenuItem.Text = "Agency Brokerage Sales Report"
         '
         'ToolStripSeparator309
         '
@@ -9933,12 +9939,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'AgencyBrokerageSalesReportToolStripMenuItem
-        '
-        Me.AgencyBrokerageSalesReportToolStripMenuItem.Name = "AgencyBrokerageSalesReportToolStripMenuItem"
-        Me.AgencyBrokerageSalesReportToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
-        Me.AgencyBrokerageSalesReportToolStripMenuItem.Text = "Agency Brokerage Sales Report"
         '
         'MDIMain
         '

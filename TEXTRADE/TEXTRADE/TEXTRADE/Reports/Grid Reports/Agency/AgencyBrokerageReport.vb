@@ -16,10 +16,6 @@ Public Class AgencyBrokerageReport
         InitializeComponent()
         FILLCMB()
     End Sub
-
-    ' ───────────────────────────────────────────────────────────────────────────
-    '  FORM LOAD
-    ' ───────────────────────────────────────────────────────────────────────────
     Private Sub AgencyBrokerageReport_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ' Default date range = today
@@ -30,10 +26,6 @@ Public Class AgencyBrokerageReport
             Throw ex
         End Try
     End Sub
-
-    ' ───────────────────────────────────────────────────────────────────────────
-    '  FILL COMBO BOXES
-    ' ───────────────────────────────────────────────────────────────────────────
     Sub FILLCMB()
         Try
             If CMBSELLER.Text.Trim = "" Then
@@ -46,10 +38,6 @@ Public Class AgencyBrokerageReport
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-
-    ' ───────────────────────────────────────────────────────────────────────────
-    '  MAIN GRID FILL  (grouped by Buyer → Seller)
-    ' ───────────────────────────────────────────────────────────────────────────
     Sub FILLGRID()
         Try
             Dim CLAUSE As String = " AND 1=1 "
