@@ -290,7 +290,7 @@ Public Class GDNDESIGN
                     crTables = RPTGDN_CC.Database.Tables
                 ElseIf ClientName = "KCRAYON" Then
                     crTables = RPTGDN_KCRAYON.Database.Tables
-                ElseIf ClientName = "MAFATLAL" Then
+                ElseIf ClientName = "MAFATLAL" Or ClientName = "MASHOK" Then
                     crTables = RPTGDN_A5.Database.Tables
                 ElseIf ClientName = "SUPRIYA" Then
                     crTables = RPTGDN_SUPRIYA.Database.Tables
@@ -512,7 +512,7 @@ Public Class GDNDESIGN
                     crpo.ReportSource = RPTGDN_MANINATH
                 ElseIf ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
                     crpo.ReportSource = RPTGDN_CC
-                ElseIf ClientName = "MAFATLAL" Then
+                ElseIf ClientName = "MAFATLAL" Or ClientName = "MASHOK" Then
                     crpo.ReportSource = RPTGDN_A5
                     If HIDEPCSDETAILS = True Then RPTGDN_A5.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN_A5.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                 ElseIf ClientName = "SUPRIYA" Then
@@ -773,7 +773,7 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTGDN_CC.Export()
 
-                ElseIf ClientName = "MAFATLAL" Then
+                ElseIf ClientName = "MAFATLAL" Or ClientName = "MASHOK" Then
 
                     expo = RPTGDN_A5.ExportOptions
                     expo.ExportDestinationType = ExportDestinationType.DiskFile
