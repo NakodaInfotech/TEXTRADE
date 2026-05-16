@@ -3481,7 +3481,8 @@ LINE1:
                 GPIECETYPE.HeaderText = "Type"
                 GQUALITY.HeaderText = "Make"
                 GMTRS.HeaderText = "Kgs"
-                cmbcolor.TabStop = False
+                'cmbcolor.TabStop = False   ' commented by waseem ; jasmit sir
+                gcolor.HeaderText = "Finish"
                 TXTCUT.TabStop = False
             End If
 

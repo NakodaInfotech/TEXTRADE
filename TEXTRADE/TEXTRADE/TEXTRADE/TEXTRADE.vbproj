@@ -468,6 +468,12 @@
     <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_A5_MASHOK.vb">
+      <DependentUpon>GDNReport_A5_MASHOK.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_VINTAGE.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -9476,6 +9482,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.resx">
       <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_A5_MASHOK.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GDNReport_A5_MASHOK.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_VINTAGE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
