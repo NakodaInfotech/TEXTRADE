@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class GDNReport_A5
+Public Class GDNReport_A5_MASHOK
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class GDNReport_A5
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "GDNReport_A5.rpt"
+            Return "GDNReport_A5_MASHOK.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class GDNReport_A5
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "TEXTRADE.GDNReport_A5.rpt"
+            Return "TEXTRADE.GDNReport_A5_MASHOK.rpt"
         End Get
         Set
             'Do nothing
@@ -134,7 +134,7 @@ Public Class GDNReport_A5
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedGDNReport_A5
+Public Class CachedGDNReport_A5_MASHOK
     Inherits Component
     Implements ICachedReport
     
@@ -176,7 +176,7 @@ Public Class CachedGDNReport_A5
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As GDNReport_A5 = New GDNReport_A5()
+        Dim rpt As GDNReport_A5_MASHOK = New GDNReport_A5_MASHOK()
         rpt.Site = Me.Site
         Return rpt
     End Function

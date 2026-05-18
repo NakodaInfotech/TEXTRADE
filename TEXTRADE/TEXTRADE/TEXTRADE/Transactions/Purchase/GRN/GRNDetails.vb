@@ -367,6 +367,15 @@ Public Class GRNDetails
                 GCHALLANDATE.VisibleIndex = GLOTNO.VisibleIndex + 1
                 GCHALLANDATE.Caption = "Lot Date"
             End If
+
+            If ClientName = "MASHOK" Then
+                GBALENO.Caption = "Coil No"
+                GDESIGNNO.Caption = "Size"
+                GPIECETYPE.Caption = "Type"
+                GQUALITY.Caption = "Make"
+                GMTRS.Caption = "Kgs"
+            End If
+
             If ClientName = "SNCM" And cmbtype.Text.Trim = "Job Work" Then Me.Text = "Grey Iss To Process Details"
             If ClientName <> "SNCM" Then
                 GREFLOTNO.Visible = False

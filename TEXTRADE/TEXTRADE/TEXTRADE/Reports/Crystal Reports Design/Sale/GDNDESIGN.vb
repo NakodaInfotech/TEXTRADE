@@ -50,6 +50,7 @@ Public Class GDNDESIGN
     Dim RPTGDN_SAFFRON As New GDNReport_SAFFRON
     Dim RPTGDN_MANINATH As New GDNReport_MANINATH
     Dim RPTGDN_A5 As New GDNReport_A5
+    Dim RPTGDN_A5_MASHOK As New GDNReport_A5_MASHOK
     Dim RPTGDN_SHREENAKODA As New GDNReport_SHREENAKODA
     Dim RPTGDN_SHEETAL As New GDNReport_SHEETAL
     Dim RPTGDN_SBA As New GDNReport_SBA
@@ -292,6 +293,8 @@ Public Class GDNDESIGN
                     crTables = RPTGDN_KCRAYON.Database.Tables
                 ElseIf ClientName = "MAFATLAL" Then
                     crTables = RPTGDN_A5.Database.Tables
+                ElseIf ClientName = "MASHOK" Then
+                    crTables = RPTGDN_A5_MASHOK.Database.Tables
                 ElseIf ClientName = "SUPRIYA" Then
                     crTables = RPTGDN_SUPRIYA.Database.Tables
                 ElseIf ClientName = "SUPEEMA" Then
@@ -515,6 +518,9 @@ Public Class GDNDESIGN
                 ElseIf ClientName = "MAFATLAL" Then
                     crpo.ReportSource = RPTGDN_A5
                     If HIDEPCSDETAILS = True Then RPTGDN_A5.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN_A5.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
+                ElseIf ClientName = "MASHOK" Then
+                    crpo.ReportSource = RPTGDN_A5_MASHOK
+                    If HIDEPCSDETAILS = True Then RPTGDN_A5_MASHOK.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN_A5_MASHOK.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                 ElseIf ClientName = "SUPRIYA" Then
                     crpo.ReportSource = RPTGDN_SUPRIYA
                 ElseIf ClientName = "SUPEEMA" Then
@@ -780,6 +786,14 @@ Public Class GDNDESIGN
                     expo.ExportFormatType = ExportFormatType.PortableDocFormat
                     expo.DestinationOptions = oDfDopt
                     RPTGDN_A5.Export()
+
+                ElseIf ClientName = "MASHOK" Then
+
+                    expo = RPTGDN_A5_MASHOK.ExportOptions
+                    expo.ExportDestinationType = ExportDestinationType.DiskFile
+                    expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                    expo.DestinationOptions = oDfDopt
+                    RPTGDN_A5_MASHOK.Export()
 
                 ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
 

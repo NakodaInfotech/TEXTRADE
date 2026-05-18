@@ -3477,10 +3477,12 @@ LINE1:
 
             If ClientName = "MASHOK" Then
                 GBALENO.HeaderText = "Coil No"
-                GDESIGN.HeaderText = "Coil Width"
-                GPIECETYPE.HeaderText = "Coil Type"
-                CMBQUALITY.TabStop = False
-                cmbcolor.TabStop = False
+                GDESIGN.HeaderText = "Size"
+                GPIECETYPE.HeaderText = "Type"
+                GQUALITY.HeaderText = "Make"
+                GMTRS.HeaderText = "Kgs"
+                'cmbcolor.TabStop = False   ' commented by waseem ; jasmit sir
+                gcolor.HeaderText = "Finish"
                 TXTCUT.TabStop = False
             End If
 

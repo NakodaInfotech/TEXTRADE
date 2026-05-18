@@ -2398,6 +2398,12 @@ NEXTLINE:
 
     Private Sub GDN_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
+            If ClientName <> "SVS" Then
+                GQUALITY.Visible = False
+                GITEMNAME.Visible = True
+                GCUT.Visible = True
+            End If
+
             If ClientName = "AXIS" Then GDESIGN.HeaderText = "Design/Size"
             If ClientName = "AKASHDEEP" Then TXTSTOCK.Visible = True
             If ClientName = "KARAN" Then
@@ -2407,8 +2413,12 @@ NEXTLINE:
 
             If ClientName = "MASHOK" Then
                 GBALENO.HeaderText = "Coil No"
-                GDESIGN.HeaderText = "Coil Width"
-                GPIECETYPE.HeaderText = "Coil Type"
+                GDESIGN.HeaderText = "Size"
+                GPIECETYPE.HeaderText = "Type"
+                GQUALITY.HeaderText = "Make"
+                Gmtrs.HeaderText = "Kgs"
+                GQUALITY.Visible = True
+                cmdselectOrder.Visible = False
             End If
 
 
@@ -2427,11 +2437,7 @@ NEXTLINE:
                 CMBKPL.Visible = True
             End If
 
-            If ClientName <> "SVS" Then
-                GQUALITY.Visible = False
-                GITEMNAME.Visible = True
-                GCUT.Visible = True
-            End If
+
 
             If ClientName = "AVIS" Then
                 LBLCITY.Text = "Delivery To"
