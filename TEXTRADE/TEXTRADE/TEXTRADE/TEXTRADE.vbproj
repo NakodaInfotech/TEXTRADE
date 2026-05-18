@@ -514,6 +514,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProformInvoiceReport_LAXMI.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Purchase Order\POReport_LAXMI.vb">
       <AutoGen>True</AutoGen>
