@@ -1467,6 +1467,8 @@ Public Class GDNDESIGN
                     TEMPATTACHMENT = PARTYNAME & "GREYJOBIN"
                 ElseIf FRMSTRING = "JOBOUT" Or FRMSTRING = "GREYJOBOUT" Or FRMSTRING = "JOBCUTTING" Or FRMSTRING = "EMBPRODUCTION" Then
                     TEMPATTACHMENT = PARTYNAME & "JO"
+                ElseIf FRMSTRING = "GREYGDN" Then
+                    TEMPATTACHMENT = PARTYNAME & "GREYCHALLAN"
                 ElseIf FRMSTRING = "GDN" Or FRMSTRING = "GDNGARMENT" Then
                     TEMPATTACHMENT = PARTYNAME & "GDN"
                 ElseIf FRMSTRING = "TRANSGDN" Then

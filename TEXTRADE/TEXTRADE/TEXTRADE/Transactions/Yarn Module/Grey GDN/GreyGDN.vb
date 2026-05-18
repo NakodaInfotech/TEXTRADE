@@ -2870,8 +2870,8 @@ LINE1:
             OBJWHATSAPP.PARTYNAME = cmbname.Text.Trim
             OBJWHATSAPP.AGENTNAME = CMBAGENT.Text.Trim
             If cmbname.Text.Trim <> CMBDISPATCHTO.Text.Trim Then OBJWHATSAPP.OTHERNAME1 = CMBDISPATCHTO.Text.Trim
-            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & cmbname.Text.Trim & "GDN_" & Val(GDNNO) & ".pdf")
-            OBJWHATSAPP.FILENAME.Add(cmbname.Text.Trim & "GDN_" & Val(GDNNO) & ".pdf")
+            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\" & cmbname.Text.Trim & "GREYCHALLAN_" & Val(GDNNO) & ".pdf")
+            OBJWHATSAPP.FILENAME.Add(cmbname.Text.Trim & "GREYCHALLAN_" & Val(GDNNO) & ".pdf")
             OBJWHATSAPP.ShowDialog()
 
         Catch ex As Exception
