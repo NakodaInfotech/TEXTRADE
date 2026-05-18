@@ -302,6 +302,8 @@ Partial Class OpeningStockReport
         Me.GPCS.FieldName = "PCS"
         Me.GPCS.Name = "GPCS"
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GPCS.Visible = True
+        Me.GPCS.VisibleIndex = 23
         Me.GPCS.Width = 50
         '
         'GUNIT
