@@ -2323,6 +2323,46 @@ PRINT 1,1")
                 'oWrite.WriteLine("PRINT 1,1")
                 'oWrite.Dispose()
 
+                'oWrite.WriteLine("SIZE 72.5 mm, 50 mm")
+                'oWrite.WriteLine("DIRECTION 0,0")
+                'oWrite.WriteLine("REFERENCE 0,0")
+                'oWrite.WriteLine("OFFSET 0 mm")
+                'oWrite.WriteLine("SET PEEL OFF")
+                'oWrite.WriteLine("SET CUTTER OFF")
+                'oWrite.WriteLine("SET PARTIAL_CUTTER OFF")
+                'oWrite.WriteLine("SET TEAR ON")
+                'oWrite.WriteLine("CLS")
+                'oWrite.WriteLine("CODEPAGE 1252")
+                'oWrite.WriteLine("TEXT 555,377,""ROMAN.TTF"",180,20,20,""" & ITEMNAME & """")
+                'oWrite.WriteLine("TEXT 555,299,""ROMAN.TTF"",180,14,14,""D.NO""")
+                'oWrite.WriteLine("TEXT 417,299,""ROMAN.TTF"",180,14,14,"":""")
+                'oWrite.WriteLine("TEXT 388,299,""ROMAN.TTF"",180,14,14,""" & DESIGNNO & """")
+                'oWrite.WriteLine("TEXT 555,238,""ROMAN.TTF"",180,14,14,""SHADE""")
+                'oWrite.WriteLine("TEXT 417,238,""ROMAN.TTF"",180,14,14,"":""")
+                'oWrite.WriteLine("TEXT 388,238,""ROMAN.TTF"",180,14,14,""" & SHADE & """")
+
+                ''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                'Dim TEMPWIDTH As String
+                'Dim OBJCMN As New ClsCommon
+                'Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                'If DT.Rows.Count > 0 Then
+                '    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                'End If
+
+                'oWrite.WriteLine("TEXT 555,172,""ROMAN.TTF"",180,14,14,""WIDTH""")
+                'oWrite.WriteLine("TEXT 417,172,""ROMAN.TTF"",180,14,14,"":""")
+                'oWrite.WriteLine("TEXT 388,172,""ROMAN.TTF"",180,14,14,""" & TEMPWIDTH & """")
+                'oWrite.WriteLine("TEXT 298,172,""ROMAN.TTF"",180,14,14,""MTRS""")
+                'oWrite.WriteLine("TEXT 179,172,""ROMAN.TTF"",180,14,14,"":""")
+                'oWrite.WriteLine("TEXT 156,177,""ROMAN.TTF"",180,18,18,""" & Format(Val(MTRS), "0.00") & """")
+                'oWrite.WriteLine("BARCODE 556,122,""128M"",73,0,180,3,6,""" & BARCODE & """") 'BARCODE
+                'oWrite.WriteLine("TEXT 373,44,""ROMAN.TTF"",180,10,11,""" & BARCODE & """")
+                'oWrite.WriteLine("TEXT 298,238,""ROMAN.TTF"",180,14,14,""LOTNO""")
+                'oWrite.WriteLine("TEXT 138,238,""ROMAN.TTF"",180,14,14,""" & LOTNO & """")
+                'oWrite.WriteLine("TEXT 167,238,""ROMAN.TTF"",180,14,14,"":""")
+
+                'oWrite.WriteLine("PRINT 1,1")
+                'oWrite.Dispose()
                 oWrite.WriteLine("SIZE 72.5 mm, 50 mm")
                 oWrite.WriteLine("DIRECTION 0,0")
                 oWrite.WriteLine("REFERENCE 0,0")
@@ -2333,13 +2373,13 @@ PRINT 1,1")
                 oWrite.WriteLine("SET TEAR ON")
                 oWrite.WriteLine("CLS")
                 oWrite.WriteLine("CODEPAGE 1252")
-                oWrite.WriteLine("TEXT 555,377,""ROMAN.TTF"",180,20,20,""" & ITEMNAME & """")
-                oWrite.WriteLine("TEXT 555,299,""ROMAN.TTF"",180,14,14,""D.NO""")
-                oWrite.WriteLine("TEXT 417,299,""ROMAN.TTF"",180,14,14,"":""")
-                oWrite.WriteLine("TEXT 388,299,""ROMAN.TTF"",180,14,14,""" & DESIGNNO & """")
-                oWrite.WriteLine("TEXT 555,238,""ROMAN.TTF"",180,14,14,""SHADE""")
-                oWrite.WriteLine("TEXT 417,238,""ROMAN.TTF"",180,14,14,"":""")
-                oWrite.WriteLine("TEXT 388,238,""ROMAN.TTF"",180,14,14,""" & SHADE & """")
+                oWrite.WriteLine("TEXT 555,383,""ROMAN.TTF"",180,16,16,""" & ITEMNAME & """")
+                oWrite.WriteLine("TEXT 555,322,""ROMAN.TTF"",180,12,12,""D.NO""")
+                oWrite.WriteLine("TEXT 417,320,""ROMAN.TTF"",180,12,12,"":""")
+                oWrite.WriteLine("TEXT 388,317,""ROMAN.TTF"",180,12,12,""" & DESIGNNO & """")
+                oWrite.WriteLine("TEXT 555,271,""ROMAN.TTF"",180,12,12,""SHADE""")
+                oWrite.WriteLine("TEXT 417,268,""ROMAN.TTF"",180,12,12,"":""")
+                oWrite.WriteLine("TEXT 387,268,""ROMAN.TTF"",180,12,12,""" & SHADE & """")
 
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                 Dim TEMPWIDTH As String
@@ -2349,20 +2389,21 @@ PRINT 1,1")
                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
                 End If
 
-                oWrite.WriteLine("TEXT 555,172,""ROMAN.TTF"",180,14,14,""WIDTH""")
-                oWrite.WriteLine("TEXT 417,172,""ROMAN.TTF"",180,14,14,"":""")
-                oWrite.WriteLine("TEXT 388,172,""ROMAN.TTF"",180,14,14,""" & TEMPWIDTH & """")
-                oWrite.WriteLine("TEXT 298,172,""ROMAN.TTF"",180,14,14,""MTRS""")
-                oWrite.WriteLine("TEXT 179,172,""ROMAN.TTF"",180,14,14,"":""")
-                oWrite.WriteLine("TEXT 156,177,""ROMAN.TTF"",180,18,18,""" & Format(Val(MTRS), "0.00") & """")
-                oWrite.WriteLine("BARCODE 556,122,""128M"",73,0,180,3,6,""" & BARCODE & """") 'BARCODE
-                oWrite.WriteLine("TEXT 373,44,""ROMAN.TTF"",180,10,11,""" & BARCODE & """")
-                oWrite.WriteLine("TEXT 298,238,""ROMAN.TTF"",180,14,14,""LOTNO""")
-                oWrite.WriteLine("TEXT 138,238,""ROMAN.TTF"",180,14,14,""" & LOTNO & """")
-                oWrite.WriteLine("TEXT 167,238,""ROMAN.TTF"",180,14,14,"":""")
+                oWrite.WriteLine("TEXT 555,170,""ROMAN.TTF"",180,12,12,""WIDTH""")
+                oWrite.WriteLine("TEXT 417,170,""ROMAN.TTF"",180,12,12,"":""")
+                oWrite.WriteLine("TEXT 388,169,""ROMAN.TTF"",180,12,12,""" & TEMPWIDTH & """")
+                oWrite.WriteLine("TEXT 298,169,""ROMAN.TTF"",180,12,12,""MTRS""")
+                oWrite.WriteLine("TEXT 179,170,""ROMAN.TTF"",180,12,12,"":""")
+                oWrite.WriteLine("TEXT 156,175,""ROMAN.TTF"",180,16,16,""" & Format(Val(MTRS), "0.00") & """")
+                oWrite.WriteLine("BARCODE 556,119,""128M"",73,0,180,3,6,""" & BARCODE & """") 'BARCODE
+                oWrite.WriteLine("TEXT 367,39,""ROMAN.TTF"",180,9,10,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 555,221,""ROMAN.TTF"",180,12,12,""LOTNO""")
+                oWrite.WriteLine("TEXT 387,219,""ROMAN.TTF"",180,12,12,""" & LOTNO & """")
+                oWrite.WriteLine("TEXT 416,215,""ROMAN.TTF"",180,12,12,"":""")
 
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
+
 
 
             ElseIf ClientName = "MIRANO" Then
@@ -3773,7 +3814,7 @@ TEXT 573,65,""ROMAN.TTF"",180,1,17,"":""
 TEXT 548,65,""0"",180,17,17,""" & TEMPWIDTH & """
 TEXT 573,222,""ROMAN.TTF"",180,1,17,"":""
 TEXT 780,217,""ROMAN.TTF"",180,1,14,""MTRS""
-TEXT 548,230,""ROMAN.TTF"",180,1,24,""" & FORMAT(VAL(MTRS), "0.00") & """
+TEXT 548,230,""ROMAN.TTF"",180,1,24,""" & Format(Val(MTRS), "0.00") & """
 TEXT 780,373,""ROMAN.TTF"",180,1,14,""ITEM NAME""
 TEXT 571,373,""ROMAN.TTF"",180,1,14,"":""
 PRINT 1,1")

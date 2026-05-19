@@ -1872,7 +1872,9 @@ LINE1:
                     TXTGRIDREMARKS.Text = DT.Rows(0).Item("BALENO")
                     TXTGRIDREMARKS.Focus()
                 End If
-
+                If ClientName = "VINTAGEINDIA" Then
+                    TXTGRIDREMARKS.Text = DT.Rows(0).Item("BALENO")
+                End If
                 If ClientName <> "AVIS" Or (ClientName = "AVIS" And UserName <> "Admin") Then CMBBARCODE.Enabled = False
 
                 CMBCONTRACTOR.Text = DT.Rows(0).Item("CONTRACTOR")
