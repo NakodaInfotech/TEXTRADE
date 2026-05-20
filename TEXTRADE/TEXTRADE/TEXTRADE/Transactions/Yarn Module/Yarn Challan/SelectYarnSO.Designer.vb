@@ -43,6 +43,7 @@ Partial Class SelectYarnSO
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,7 +80,7 @@ Partial Class SelectYarnSO
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGRIDSRNO, Me.GYARNQUAALITY, Me.GDESIGNNO, Me.GPARTYSHADE, Me.GCOLOR, Me.GBAGS, Me.GWT, Me.GTYPE, Me.GRATE, Me.GDUEDATE, Me.GGROUPNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGRIDSRNO, Me.GYARNQUAALITY, Me.GDESIGNNO, Me.GPARTYSHADE, Me.GCOLOR, Me.GBAGS, Me.GWT, Me.GTYPE, Me.GRATE, Me.GDUEDATE, Me.GGROUPNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -87,7 +88,6 @@ Partial Class SelectYarnSO
         Me.gridbill.OptionsCustomization.AllowGroup = False
         Me.gridbill.OptionsCustomization.AllowQuickHideColumns = False
         Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 35
-        Me.gridbill.OptionsSelection.MultiSelect = True
         Me.gridbill.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.gridbill.OptionsView.ColumnAutoWidth = False
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
@@ -102,7 +102,7 @@ Partial Class SelectYarnSO
         Me.GSRNO.OptionsColumn.AllowEdit = False
         Me.GSRNO.OptionsColumn.ReadOnly = True
         Me.GSRNO.Visible = True
-        Me.GSRNO.VisibleIndex = 1
+        Me.GSRNO.VisibleIndex = 0
         '
         'GDATE
         '
@@ -113,7 +113,7 @@ Partial Class SelectYarnSO
         Me.GDATE.Name = "GDATE"
         Me.GDATE.OptionsColumn.AllowEdit = False
         Me.GDATE.Visible = True
-        Me.GDATE.VisibleIndex = 2
+        Me.GDATE.VisibleIndex = 1
         '
         'GNAME
         '
@@ -123,7 +123,7 @@ Partial Class SelectYarnSO
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.OptionsColumn.ReadOnly = True
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 3
+        Me.GNAME.VisibleIndex = 2
         Me.GNAME.Width = 200
         '
         'GGRIDSRNO
@@ -142,7 +142,7 @@ Partial Class SelectYarnSO
         Me.GYARNQUAALITY.OptionsColumn.AllowEdit = False
         Me.GYARNQUAALITY.OptionsColumn.ReadOnly = True
         Me.GYARNQUAALITY.Visible = True
-        Me.GYARNQUAALITY.VisibleIndex = 4
+        Me.GYARNQUAALITY.VisibleIndex = 3
         Me.GYARNQUAALITY.Width = 190
         '
         'GDESIGNNO
@@ -153,7 +153,7 @@ Partial Class SelectYarnSO
         Me.GDESIGNNO.OptionsColumn.AllowEdit = False
         Me.GDESIGNNO.OptionsColumn.ReadOnly = True
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 5
+        Me.GDESIGNNO.VisibleIndex = 4
         Me.GDESIGNNO.Width = 100
         '
         'GPARTYSHADE
@@ -162,7 +162,7 @@ Partial Class SelectYarnSO
         Me.GPARTYSHADE.FieldName = "PSHADE"
         Me.GPARTYSHADE.Name = "GPARTYSHADE"
         Me.GPARTYSHADE.Visible = True
-        Me.GPARTYSHADE.VisibleIndex = 6
+        Me.GPARTYSHADE.VisibleIndex = 5
         Me.GPARTYSHADE.Width = 100
         '
         'GCOLOR
@@ -173,7 +173,7 @@ Partial Class SelectYarnSO
         Me.GCOLOR.OptionsColumn.AllowEdit = False
         Me.GCOLOR.OptionsColumn.ReadOnly = True
         Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 7
+        Me.GCOLOR.VisibleIndex = 6
         Me.GCOLOR.Width = 100
         '
         'GBAGS
@@ -187,7 +187,7 @@ Partial Class SelectYarnSO
         Me.GBAGS.OptionsColumn.ReadOnly = True
         Me.GBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBAGS.Visible = True
-        Me.GBAGS.VisibleIndex = 8
+        Me.GBAGS.VisibleIndex = 7
         Me.GBAGS.Width = 60
         '
         'GWT
@@ -201,7 +201,7 @@ Partial Class SelectYarnSO
         Me.GWT.OptionsColumn.ReadOnly = True
         Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 9
+        Me.GWT.VisibleIndex = 8
         '
         'GTYPE
         '
@@ -211,7 +211,7 @@ Partial Class SelectYarnSO
         Me.GTYPE.OptionsColumn.AllowEdit = False
         Me.GTYPE.OptionsColumn.ReadOnly = True
         Me.GTYPE.Visible = True
-        Me.GTYPE.VisibleIndex = 10
+        Me.GTYPE.VisibleIndex = 9
         '
         'GRATE
         '
@@ -221,7 +221,7 @@ Partial Class SelectYarnSO
         Me.GRATE.FieldName = "RATE"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 11
+        Me.GRATE.VisibleIndex = 10
         '
         'GDUEDATE
         '
@@ -278,6 +278,14 @@ Partial Class SelectYarnSO
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GCHK
+        '
+        Me.GCHK.FieldName = "CHK"
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.Visible = True
+        Me.GCHK.VisibleIndex = 0
+        Me.GCHK.Width = 30
+        '
         'SelectYarnSO
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -320,4 +328,5 @@ Partial Class SelectYarnSO
     Friend WithEvents APPROXDATE As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents cmdexit As Button
     Friend WithEvents cmdok As Button
+    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
 End Class
