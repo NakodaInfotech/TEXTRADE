@@ -3454,7 +3454,11 @@ NEXTLINE:
 
     Private Sub CMBNAME_Enter(sender As Object, e As EventArgs) Handles CMBNAME.Enter
         Try
-            If CMBNAME.Text.Trim = "" Then fillname(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' ")
+            If ClientName = "VINTAGEINDIA" Then
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') and ACC_TYPE = 'ACCOUNTS'")
+            Else
+                If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, False, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS' ")
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -3462,7 +3466,12 @@ NEXTLINE:
 
     Private Sub CMBNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBNAME.Validating
         Try
-            If CMBNAME.Text.Trim <> "" Then namevalidate(CMBNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS'", "SUNDRY DEBTORS", "ACCOUNTS")
+            If ClientName = "VINTAGEINDIA" Then
+
+                If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, txtadd, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS")
+            Else
+                If CMBNAME.Text.Trim <> "" Then NAMEVALIDATE(CMBNAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS'", "SUNDRY DEBTORS", "ACCOUNTS")
+            End If
         Catch ex As Exception
             Throw ex
         End Try
