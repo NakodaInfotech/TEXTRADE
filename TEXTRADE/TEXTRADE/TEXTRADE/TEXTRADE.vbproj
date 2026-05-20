@@ -8879,9 +8879,7 @@
     <Compile Include="Transactions\Sale\Sale Invoice\InvoiceDetails.Designer.vb">
       <DependentUpon>InvoiceDetails.vb</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\Sale\Sale Invoice\InvoiceDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Transactions\Sale\Sale Invoice\InvoiceDetails.vb" />
     <Compile Include="Transactions\Sale\Sale Invoice\InvoiceMaster.Designer.vb">
       <DependentUpon>InvoiceMaster.vb</DependentUpon>
     </Compile>
