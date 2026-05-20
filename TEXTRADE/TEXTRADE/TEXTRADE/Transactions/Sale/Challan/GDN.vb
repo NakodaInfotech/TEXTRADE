@@ -1834,10 +1834,9 @@ LINE1:
                 If MsgBox("Wish to Print Label?", MsgBoxStyle.YesNo) = vbYes Then PRINTBARCODE()
             End If
 
-
             If MsgBox("Wish to Print Challan?", MsgBoxStyle.YesNo) = vbYes Then
-
                 Dim OBJGDN As New GDNDESIGN
+                If ClientName = "VINTAGEINDIA" AndAlso MsgBox("Print Challan for Job Work?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.JOBWORKLABEL = True
                 OBJGDN.MdiParent = MDIMain
                 OBJGDN.FRMSTRING = "GDN"
                 OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(GDNNO) & " and {GDN.GDN_yearid}=" & YearId
