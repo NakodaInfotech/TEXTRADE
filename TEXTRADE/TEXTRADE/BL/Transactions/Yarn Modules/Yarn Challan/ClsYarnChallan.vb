@@ -62,6 +62,8 @@ Public Class ClsYarnChallan
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@NOOFBALES", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -175,7 +177,8 @@ Public Class ClsYarnChallan
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@NOOFBALES", alParaval(I)))
+                I = I + 1
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
