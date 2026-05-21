@@ -2564,6 +2564,12 @@ NEXTLINE:
                     TXTCONSIGNEE.TabStop = False
                 End If
 
+                If ClientName = "SOFTAS" Then
+                    GPARTYPONO.HeaderText = "Party Item"
+                    OPARTYPONO.HeaderText = "Party Item"
+                End If
+
+
                 CMBDESIGN.TabStop = False
                 CMBCOLOR.TabStop = False
                 TXTBALENO.TabStop = False
