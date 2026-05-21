@@ -382,12 +382,12 @@ Public Class YarnPurchaseOrderDetails
                 Exit Sub
             End If
             'End If
-            'If INVOICEMAIL Then
-            '    Dim OBJMAIL As New SendMail
-            '    OBJMAIL.ALATTACHMENT = ALATTACHMENT
-            '    OBJMAIL.subject = "Invoice"
-            '    OBJMAIL.ShowDialog()
-            'End If
+            If INVOICEMAIL Then
+                Dim OBJMAIL As New SendMail
+                OBJMAIL.ALATTACHMENT = ALATTACHMENT
+                OBJMAIL.subject = "Invoice"
+                OBJMAIL.ShowDialog()
+            End If
             'If CHKMERGEDPDF.Checked AndAlso WHATSAPP Then
             '    If WHATSAPP = True Then
             '        If ALATTACHMENT.Count = 0 Then Exit Sub

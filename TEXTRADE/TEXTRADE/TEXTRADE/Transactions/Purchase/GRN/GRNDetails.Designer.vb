@@ -73,6 +73,7 @@ Partial Class GRNDetails
         Me.GREFLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCREATEDBY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHECKDONE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDELIVERYTO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -86,7 +87,7 @@ Partial Class GRNDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.GDELIVERYTO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,6 +97,7 @@ Partial Class GRNDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.Label22)
         Me.BlendPanel1.Controls.Add(Me.Label4)
@@ -601,6 +603,16 @@ Partial Class GRNDetails
         Me.GCHECKDONE.VisibleIndex = 32
         Me.GCHECKDONE.Width = 80
         '
+        'GDELIVERYTO
+        '
+        Me.GDELIVERYTO.Caption = "Delivery To"
+        Me.GDELIVERYTO.FieldName = "DELIVERYTO"
+        Me.GDELIVERYTO.Name = "GDELIVERYTO"
+        Me.GDELIVERYTO.OptionsColumn.AllowEdit = False
+        Me.GDELIVERYTO.Visible = True
+        Me.GDELIVERYTO.VisibleIndex = 33
+        Me.GDELIVERYTO.Width = 200
+        '
         'imageList1
         '
         Me.imageList1.ImageStream = CType(resources.GetObject("imageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -699,15 +711,19 @@ Partial Class GRNDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GDELIVERYTO
+        'CMDSAVELAYOUT
         '
-        Me.GDELIVERYTO.Caption = "Delivery To"
-        Me.GDELIVERYTO.FieldName = "DELIVERYTO"
-        Me.GDELIVERYTO.Name = "GDELIVERYTO"
-        Me.GDELIVERYTO.OptionsColumn.AllowEdit = False
-        Me.GDELIVERYTO.Visible = True
-        Me.GDELIVERYTO.VisibleIndex = 33
-        Me.GDELIVERYTO.Width = 200
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(398, 526)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 810
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'GRNDetails
         '
@@ -795,4 +811,5 @@ Partial Class GRNDetails
     Friend WithEvents Label22 As Label
     Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDELIVERYTO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class
