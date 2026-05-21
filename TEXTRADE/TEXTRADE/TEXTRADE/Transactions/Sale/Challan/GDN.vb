@@ -2417,6 +2417,7 @@ NEXTLINE:
                 GPIECETYPE.HeaderText = "Type"
                 GQUALITY.HeaderText = "Make"
                 Gmtrs.HeaderText = "Kgs"
+                GSHADE.HeaderText = "Finish"
                 GQUALITY.Visible = True
                 cmdselectOrder.Visible = False
             End If
