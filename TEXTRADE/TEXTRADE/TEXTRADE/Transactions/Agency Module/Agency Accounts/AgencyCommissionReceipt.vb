@@ -443,7 +443,7 @@ Public Class AgencyCommissionReceipt
                     Exit Sub
                 End If
 
-                Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster()
+                Dim OBJCLRECEIPT As New ClsAgencyCommissionReceipt()
                 DT = OBJCLRECEIPT.selectbill_edit(TEMPARECEIPTNO, TEMPREGNAME, CmpId, Locationid, YearId)
 
                 If DT.Rows.Count > 0 Then
@@ -518,7 +518,7 @@ Public Class AgencyCommissionReceipt
                         TXTCOMPLAINTDATE.Text = dr("COMPLAINTDATE")
                     Next
 
-                    Dim DT1 As DataTable = OBJCMN.search(" AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCGRIDSRNO AS DESCGRIDSRNO, LEDGERS.Acc_cmpname AS DESCLEDGERNAME, AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCGRIDREMARKS AS DESCNARR, AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCAMT AS DESCAMT, AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_PAYGRIDSRNO AS PAYGRIDSRNO, ARECEIPT_PAYBILLINITIALS AS PAYBILLINITIALS ", "", "  AGENCYRECEIPTMASTER_GRIDDESC INNER JOIN LEDGERS ON AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCLEDGERID = LEDGERS.Acc_id AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_CMPID = LEDGERS.Acc_cmpid AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_LOCATIONID = LEDGERS.Acc_locationid AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_YEARID = LEDGERS.Acc_yearid INNER JOIN REGISTERMASTER ON AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_REGISTERID = REGISTERMASTER.register_id AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_CMPID = REGISTERMASTER.register_cmpid AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_LOCATIONID = REGISTERMASTER.register_locationid AND AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_YEARID = REGISTERMASTER.register_yearid", " AND (AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_no = " & TEMPARECEIPTNO & ") AND (REGISTERMASTER.register_name = '" & cmbregister.Text.Trim & "') AND (AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_cmpid = " & CmpId & ") AND (AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_locationid = " & 0 & ") AND (AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_YEARid = " & YearId & ")")
+                    Dim DT1 As DataTable = OBJCMN.search(" AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_DESCGRIDSRNO AS DESCGRIDSRNO, LEDGERS.Acc_cmpname AS DESCLEDGERNAME, AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_DESCGRIDREMARKS AS DESCNARR, AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_DESCAMT AS DESCAMT, AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_PAYGRIDSRNO AS PAYGRIDSRNO, ACOMM_PAYBILLINITIALS AS PAYBILLINITIALS ", "", "  AGENCYCOMMRECEIPT_GRIDDESC INNER JOIN LEDGERS ON AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_DESCLEDGERID = LEDGERS.Acc_id AND AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_CMPID = LEDGERS.Acc_cmpid AND AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_LOCATIONID = LEDGERS.Acc_locationid AND AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_YEARID = LEDGERS.Acc_yearid INNER JOIN REGISTERMASTER ON AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_REGISTERID = REGISTERMASTER.register_id AND AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_CMPID = REGISTERMASTER.register_cmpid AND AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_LOCATIONID = REGISTERMASTER.register_locationid AND AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_YEARID = REGISTERMASTER.register_yearid", " AND (AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_no = " & TEMPARECEIPTNO & ") AND (REGISTERMASTER.register_name = '" & cmbregister.Text.Trim & "') AND (AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_cmpid = " & CmpId & ") AND (AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_locationid = " & 0 & ") AND (AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_YEARid = " & YearId & ")")
                     For Each DR1 As DataRow In DT1.Rows
                         GRIDDESC.Rows.Add(DR1("DESCGRIDSRNO").ToString, DR1("DESCLEDGERNAME").ToString, DR1("DESCNARR").ToString, Format(DR1("DESCAMT"), "0.00"), DR1("PAYGRIDSRNO"), DR1("PAYBILLINITIALS").ToString)
                         gridpayment.Rows(DR1("PAYGRIDSRNO") - 1).DefaultCellStyle.BackColor = Drawing.Color.Yellow
@@ -788,7 +788,7 @@ Public Class AgencyCommissionReceipt
             alparaval.Add(TXTCOMPLAINTBY.Text.Trim)
             alparaval.Add(TXTCOMPLAINTDATE.Text.Trim)
             If CHKINTCALC.Checked = True Then alparaval.Add(1) Else alparaval.Add(0)
-            Dim OBJCLRECEIPT As New ClsAgencyReceiptMaster
+            Dim OBJCLRECEIPT As New ClsAgencyCommissionReceipt
             OBJCLRECEIPT.alParaval = alparaval
 
             If EDIT = False Then
@@ -971,7 +971,7 @@ Public Class AgencyCommissionReceipt
                     If cmbpaytype.Text.Trim = "Against Bill" Then
                         Dim MAXALLOWEDVALUE As Double = 0
                         Dim OBJCMN As New ClsCommon
-                        Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(SUM(T.RECAMT),0) AS RECAMT, ISNULL(SUM(T.DESCAMT),0)  AS DESCAMT ", "", " (SELECT SUM(AGENCYRECEIPTMASTER_DESC.Areceipt_amt)  AS RECAMT, 0 AS DESCAMT, ARECEIPT_BILLINITIALS AS BILLINITIALS, Areceipt_NO as RECNO, REGISTER_NAME AS REGNAME,  Areceipt_cmpid AS CMPID, Areceipt_locationid AS O, Areceipt_yearid AS YEARID FROM AGENCYRECEIPTMASTER_DESC INNER JOIN REGISTERMASTER ON register_id = Areceipt_registerid AND register_cmpid = Areceipt_cmpid AND register_locationid = Areceipt_locationid AND Areceipt_yearid = Areceipt_yearid  WHERE Areceipt_paytype = 'Against Bill' GROUP BY ARECEIPT_BILLINITIALS, Areceipt_no, register_name , ARECEIPT_CMPID , ARECEIPT_LOCATIONID,ARECEIPT_YEARID  UNION ALL SELECT 0 AS RECAMT, SUM(AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCAMT ), ARECEIPT_PAYBILLINITIALS AS BILLINITIALS, ARECEIPT_NO as RECNO, REGISTER_NAME AS REGNAME, Areceipt_cmpid AS CMPID, Areceipt_locationid AS O, Areceipt_yearid AS YEARID FROM AGENCYRECEIPTMASTER_GRIDDESC INNER JOIN REGISTERMASTER ON register_id = Areceipt_registerid GROUP BY ARECEIPT_PAYBILLINITIALS , ARECEIPT_NO, register_name ,ARECEIPT_CMPID , ARECEIPT_LOCATIONID,ARECEIPT_YEARID  ) AS T ", " AND T.REGNAME = '" & cmbregister.Text.Trim & "' AND T.RECNO =  " & txtaccno.Text.Trim & " AND T.BILLINITIALS ='" & cmbbillno.Text.Trim & "' AND T.CMPID = " & CmpId & " AND T.O = " & 0 & " AND T.YEARID = " & YearId)
+                        Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(SUM(T.RECAMT),0) AS RECAMT, ISNULL(SUM(T.DESCAMT),0)  AS DESCAMT ", "", " (SELECT SUM(AGENCYCOMMRECEIPT_DESC.ACOMM_amt)  AS RECAMT, 0 AS DESCAMT, ACOMM_BILLINITIALS AS BILLINITIALS, ACOMM_NO as RECNO, REGISTER_NAME AS REGNAME,  ACOMM_cmpid AS CMPID, ACOMM_locationid AS O, ACOMM_yearid AS YEARID FROM AGENCYCOMMRECEIPT_DESC INNER JOIN REGISTERMASTER ON register_id = ACOMM_registerid AND register_cmpid = ACOMM_cmpid AND register_locationid = ACOMM_locationid AND ACOMM_yearid = ACOMM_yearid  WHERE ACOMM_paytype = 'Against Bill' GROUP BY ACOMM_BILLINITIALS, ACOMM_no, register_name , ACOMM_CMPID , ACOMM_LOCATIONID,ACOMM_YEARID  UNION ALL SELECT 0 AS RECAMT, SUM(AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_DESCAMT ), ACOMM_PAYBILLINITIALS AS BILLINITIALS, ACOMM_NO as RECNO, REGISTER_NAME AS REGNAME, ACOMM_cmpid AS CMPID, ACOMM_locationid AS O, ACOMM_yearid AS YEARID FROM AGENCYCOMMRECEIPT_GRIDDESC INNER JOIN REGISTERMASTER ON register_id = ACOMM_registerid GROUP BY ACOMM_PAYBILLINITIALS , ACOMM_NO, register_name ,ACOMM_CMPID , ACOMM_LOCATIONID,ACOMM_YEARID  ) AS T ", " AND T.REGNAME = '" & cmbregister.Text.Trim & "' AND T.RECNO =  " & txtaccno.Text.Trim & " AND T.BILLINITIALS ='" & cmbbillno.Text.Trim & "' AND T.CMPID = " & CmpId & " AND T.O = " & 0 & " AND T.YEARID = " & YearId)
                         If DT.Rows.Count > 0 Then
                             MAXALLOWEDVALUE = Val(lblbilltotal.Text.Trim) + Val(DT.Rows(0).Item("RECAMT")) + Val(DT.Rows(0).Item("DESCAMT"))
                         End If
@@ -1025,7 +1025,7 @@ Public Class AgencyCommissionReceipt
             Else
                 Dim MAXALLOWEDVALUE As Double = 0
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(SUM(T.RECAMT),0) AS RECAMT, ISNULL(SUM(T.DESCAMT),0)  AS DESCAMT ", "", " (SELECT SUM(AGENCYRECEIPTMASTER_DESC.receipt_amt)  AS RECAMT, 0 AS DESCAMT, ARECEIPT_BILLINITIALS AS BILLINITIALS, receipt_NO as RECNO, register_name AS REGNAME, receipt_cmpid AS CMPID, receipt_locationid AS O, receipt_yearid AS YEARID FROM AGENCYRECEIPTMASTER_DESC INNER JOIN REGISTERMASTER ON register_id = receipt_registerid AND register_cmpid = receipt_cmpid AND register_locationid = receipt_locationid AND receipt_yearid = receipt_yearid  WHERE receipt_paytype = 'Against Bill' GROUP BY ARECEIPT_BILLINITIALS, receipt_no, register_name , ARECEIPT_CMPID , ARECEIPT_LOCATIONID,ARECEIPT_YEARID  UNION ALL SELECT 0 AS RECAMT, SUM(AGENCYRECEIPTMASTER_GRIDDESC.ARECEIPT_DESCAMT ), ARECEIPT_PAYBILLINITIALS AS BILLINITIALS, ARECEIPT_NO as RECNO, REGISTER_NAME AS REGNAME, receipt_cmpid AS CMPID, receipt_locationid AS O, receipt_yearid AS YEARID FROM AGENCYRECEIPTMASTER_GRIDDESC INNER JOIN REGISTERMASTER ON register_id = receipt_registerid AND register_cmpid = receipt_cmpid AND register_locationid = receipt_locationid AND receipt_yearid = receipt_yearid  GROUP BY ARECEIPT_PAYBILLINITIALS , ARECEIPT_NO, register_name ,ARECEIPT_CMPID , ARECEIPT_LOCATIONID,ARECEIPT_YEARID  ) AS T ", " AND T.REGNAME = '" & cmbregister.Text.Trim & "' AND T.RECNO =  " & txtaccno.Text.Trim & " AND T.BILLINITIALS ='" & LBLPAYBILLINITIALS.Text.Trim & "' AND T.CMPID = " & CmpId & " AND T.O = " & 0 & " AND T.YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(SUM(T.RECAMT),0) AS RECAMT, ISNULL(SUM(T.DESCAMT),0)  AS DESCAMT ", "", " (SELECT SUM(AGENCYCOMMRECEIPT_DESC.ACOMM_amt)  AS RECAMT, 0 AS DESCAMT, ACOMM_BILLINITIALS AS BILLINITIALS, ACOMM_NO as RECNO, register_name AS REGNAME, ACOMM_cmpid AS CMPID, ACOMM_locationid AS O, ACOMM_yearid AS YEARID FROM AGENCYCOMMRECEIPT_DESC INNER JOIN REGISTERMASTER ON register_id = ACOMM_registerid AND register_cmpid = ACOMM_cmpid AND register_locationid = ACOMM_locationid AND ACOMM_yearid = ACOMM_yearid  WHERE ACOMM_paytype = 'Against Bill' GROUP BY ACOMM_BILLINITIALS, ACOMM_no, register_name , ACOMM_CMPID , ACOMM_LOCATIONID,ACOMM_YEARID  UNION ALL SELECT 0 AS RECAMT, SUM(AGENCYCOMMRECEIPT_GRIDDESC.ACOMM_DESCAMT ), ACOMM_PAYBILLINITIALS AS BILLINITIALS, ACOMM_NO as RECNO, REGISTER_NAME AS REGNAME, ACOMM_cmpid AS CMPID, ACOMM_locationid AS O, ACOMM_yearid AS YEARID FROM AGENCYCOMMRECEIPT_GRIDDESC INNER JOIN REGISTERMASTER ON register_id = ACOMM_registerid AND register_cmpid = ACOMM_cmpid AND register_locationid = ACOMM_locationid AND ACOMM_yearid = ACOMM_yearid  GROUP BY ACOMM_PAYBILLINITIALS , ACOMM_NO, register_name ,ACOMM_CMPID , ACOMM_LOCATIONID,ACOMM_YEARID  ) AS T ", " AND T.REGNAME = '" & cmbregister.Text.Trim & "' AND T.RECNO =  " & txtaccno.Text.Trim & " AND T.BILLINITIALS ='" & LBLPAYBILLINITIALS.Text.Trim & "' AND T.CMPID = " & CmpId & " AND T.O = " & 0 & " AND T.YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     MAXALLOWEDVALUE = Val(DT.Rows(0).Item("RECAMT")) + Val(DT.Rows(0).Item("DESCAMT")) + BALANCEAMT
                 End If
@@ -1290,7 +1290,7 @@ Public Class AgencyCommissionReceipt
 
         If ACCDATE.Text = "__/__/____" Then ACCDATE.Text = Now.Date
 
-        Dim objpayment As New ClsAgencyReceiptMaster
+        Dim objpayment As New ClsAgencyCommissionReceipt
         Dim DT As New DataTable
         DT = objpayment.GETBILLS(CmpId, cmbname.Text.Trim, YearId, cmbseller.Text.Trim, Convert.ToDateTime(ACCDATE.Text).Date)
         If DT.Rows.Count > 0 Then
@@ -1586,110 +1586,110 @@ LINE1:
                 End If
 
 
-                'CHECKING IN OPENINGBILL
-                DT = OBJCMN.SEARCH("ABILL_INITIALS AS BILLINITIALS, ABILL_DATE AS BILLDATE, ABILL_BALANCE AS BALAMT, ABILL_AMT AS BILLAMT, 'AGENCYOPENING' AS BILLTYPE, ABILL_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME", "", " AGENCYOPENINGBILL INNER JOIN LEDGERS ON ABILL_LEDGERID = LEDGERS.Acc_id AND ABILL_CMPID = LEDGERS.Acc_cmpid AND ABILL_LOCATIONID = LEDGERS.Acc_locationid AND ABILL_YEARID = LEDGERS.Acc_yearid  ", " AND ( ABILL_INITIALS = '" & txtbillno.Text.Trim & "') AND ABILL_BALANCE > 0  AND (ABILL_cmpid = " & CmpId & ") AND (ABILL_locationid = " & 0 & ") AND (ABILL_yearid = " & YearId & ")")
-                If DT.Rows.Count > 0 Then
+                ''CHECKING IN OPENINGBILL
+                'DT = OBJCMN.SEARCH("ABILL_INITIALS AS BILLINITIALS, ABILL_DATE AS BILLDATE, ABILL_BALANCE AS BALAMT, ABILL_AMT AS BILLAMT, 'AGENCYOPENING' AS BILLTYPE, ABILL_NO AS BILLNO, LEDGERS.ACC_CMPNAME AS NAME", "", " AGENCYOPENINGBILL INNER JOIN LEDGERS ON ABILL_LEDGERID = LEDGERS.Acc_id AND ABILL_CMPID = LEDGERS.Acc_cmpid AND ABILL_LOCATIONID = LEDGERS.Acc_locationid AND ABILL_YEARID = LEDGERS.Acc_yearid  ", " AND ( ABILL_INITIALS = '" & txtbillno.Text.Trim & "') AND ABILL_BALANCE > 0  AND (ABILL_cmpid = " & CmpId & ") AND (ABILL_locationid = " & 0 & ") AND (ABILL_yearid = " & YearId & ")")
+                'If DT.Rows.Count > 0 Then
 
-                    If cmbname.Text.Trim = "" Then
-                        cmbname.Text = DT.Rows(0).Item("NAME")
-                    ElseIf cmbname.Text.Trim <> DT.Rows(0).Item("NAME") Then
-                        MsgBox("Bill does not belong to the same Customer")
-                        txtbillno.Clear()
-                        txtbillno.Focus()
-                        Exit Sub
-                    End If
+                '    If cmbname.Text.Trim = "" Then
+                '        cmbname.Text = DT.Rows(0).Item("NAME")
+                '    ElseIf cmbname.Text.Trim <> DT.Rows(0).Item("NAME") Then
+                '        MsgBox("Bill does not belong to the same Customer")
+                '        txtbillno.Clear()
+                '        txtbillno.Focus()
+                '        Exit Sub
+                '    End If
 
-                    'IF NO RECORDS ARE PRESENT IN GRID THEN SET DATASOURCE PROPERTY
-                    If gridbill.RowCount = 0 Then
-                        SETGRIDINVOICE(DT)
-                    Else
-                        Dim GRIDINVDT As DataTable = gridbill.DataSource
-                        GRIDINVDT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
-                        For Each DTROW As DataRow In DT.Rows
-                            GRIDINVDT.Rows.Add(DTROW("BILLINITIALS"), DTROW("BILLDATE"), DTROW("BALAMT"), DTROW("BILLAMT"), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
-                        Next
-                    End If
-                End If
-
-
+                '    'IF NO RECORDS ARE PRESENT IN GRID THEN SET DATASOURCE PROPERTY
+                '    If gridbill.RowCount = 0 Then
+                '        SETGRIDINVOICE(DT)
+                '    Else
+                '        Dim GRIDINVDT As DataTable = gridbill.DataSource
+                '        GRIDINVDT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
+                '        For Each DTROW As DataRow In DT.Rows
+                '            GRIDINVDT.Rows.Add(DTROW("BILLINITIALS"), DTROW("BILLDATE"), DTROW("BALAMT"), DTROW("BILLAMT"), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
+                '        Next
+                '    End If
+                'End If
 
 
-                'CHECKING IN JOURNAL
-                DT = OBJCMN.SEARCH("JOURNALMASTER.journal_initials, JOURNALMASTER.journal_date, SUM(JOURNALMASTER.journal_debit) - (JOURNALMASTER.JOURNAL_AMT + JOURNALMASTER.journal_tds) AS BALAMT, SUM(JOURNALMASTER.journal_debit) AS BILLAMT, 'JOURNAL' AS BILLTYPE, JOURNALMASTER.journal_no AS BILLNO, REGISTERMASTER.register_name AS REGTYPE, LEDGERS.ACC_CMPNAME AS NAME", "", " REGISTERMASTER INNER JOIN JOURNALMASTER ON REGISTERMASTER.register_id = JOURNALMASTER.journal_registerid AND REGISTERMASTER.register_cmpid = JOURNALMASTER.journal_cmpid AND REGISTERMASTER.register_locationid = JOURNALMASTER.journal_locationid AND REGISTERMASTER.register_yearid = JOURNALMASTER.journal_yearid INNER JOIN LEDGERS ON JOURNALMASTER.journal_yearid = LEDGERS.Acc_yearid AND JOURNALMASTER.journal_locationid = LEDGERS.Acc_locationid AND JOURNALMASTER.journal_cmpid = LEDGERS.Acc_cmpid AND JOURNALMASTER.journal_ledgerid = LEDGERS.Acc_id ", " AND ( JOURNALMASTER.JOURNAL_INITIALS = '" & txtbillno.Text.Trim & "') AND ((JOURNALMASTER.journal_amt + JOURNALMASTER.journal_tds) < JOURNALMASTER.journal_debit)  AND (JOURNALMASTER.journal_cmpid = " & CmpId & ") AND (JOURNALMASTER.journal_locationid = " & 0 & ") AND (JOURNALMASTER.journal_yearid = " & YearId & ") GROUP BY JOURNALMASTER.journal_initials, JOURNALMASTER.journal_date, JOURNALMASTER.journal_amt, JOURNALMASTER.journal_tds,  JOURNALMASTER.journal_no, REGISTERMASTER.register_name, LEDGERS.ACC_CMPNAME ")
-                If DT.Rows.Count > 0 Then
-
-                    If cmbname.Text.Trim = "" Then
-                        cmbname.Text = DT.Rows(0).Item("NAME")
-                    ElseIf cmbname.Text.Trim <> DT.Rows(0).Item("NAME") Then
-                        MsgBox("Bill does not belong to the same Customer")
-                        txtbillno.Clear()
-                        txtbillno.Focus()
-                        Exit Sub
-                    End If
-
-                    'IF NO RECORDS ARE PRESENT IN GRID THEN SET DATASOURCE PROPERTY
-                    If gridbill.RowCount = 0 Then
-                        SETGRIDINVOICE(DT)
-                    Else
-                        Dim GRIDINVDT As DataTable = gridbill.DataSource
-                        GRIDINVDT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
-                        For Each DTROW As DataRow In DT.Rows
-                            GRIDINVDT.Rows.Add(DTROW("BILLINITIALS"), DTROW("BILLDATE"), DTROW("BALAMT"), DTROW("BILLAMT"), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
-                        Next
-                    End If
-                End If
 
 
-                'CHECKING IN NONPURCHASE
-                DT = OBJCMN.SEARCH("NONPURCHASE.NP_INITIALS AS BILLINITIALS, NONPURCHASE.NP_DATE AS BILLDATE, NONPURCHASE.NP_BALANCE AS BALAMT, NONPURCHASE.NP_TOTALAMT AS BILLAMT, 'EXPENSE' AS BILLTYPE, NONPURCHASE.NP_NO AS BILLNO,  REGISTERMASTER.register_name AS REGTYPE, LEDGERS.ACC_CMPNAME AS NAME", "", " NONPURCHASE INNER JOIN REGISTERMASTER ON NONPURCHASE.NP_REGISTERID = REGISTERMASTER.register_id AND NONPURCHASE.NP_CMPID = REGISTERMASTER.register_cmpid AND NONPURCHASE.NP_LOCATIONID = REGISTERMASTER.register_locationid AND NONPURCHASE.NP_YEARID = REGISTERMASTER.register_yearid INNER JOIN LEDGERS ON NONPURCHASE.NP_LEDGERID = LEDGERS.Acc_id AND NONPURCHASE.NP_CMPID = LEDGERS.Acc_cmpid AND NONPURCHASE.NP_LOCATIONID = LEDGERS.Acc_locationid AND NONPURCHASE.NP_YEARID = LEDGERS.Acc_yearid ", " AND ( NONPURCHASE.NP_INITIALS = '" & txtbillno.Text.Trim & "') AND NONPURCHASE.NP_BALANCE > 0  AND (NONPURCHASE.NP_cmpid = " & CmpId & ") AND (NONPURCHASE.NP_locationid = " & 0 & ") AND (NONPURCHASE.NP_yearid = " & YearId & ")")
-                If DT.Rows.Count > 0 Then
+                ''CHECKING IN JOURNAL
+                'DT = OBJCMN.SEARCH("JOURNALMASTER.journal_initials, JOURNALMASTER.journal_date, SUM(JOURNALMASTER.journal_debit) - (JOURNALMASTER.JOURNAL_AMT + JOURNALMASTER.journal_tds) AS BALAMT, SUM(JOURNALMASTER.journal_debit) AS BILLAMT, 'JOURNAL' AS BILLTYPE, JOURNALMASTER.journal_no AS BILLNO, REGISTERMASTER.register_name AS REGTYPE, LEDGERS.ACC_CMPNAME AS NAME", "", " REGISTERMASTER INNER JOIN JOURNALMASTER ON REGISTERMASTER.register_id = JOURNALMASTER.journal_registerid AND REGISTERMASTER.register_cmpid = JOURNALMASTER.journal_cmpid AND REGISTERMASTER.register_locationid = JOURNALMASTER.journal_locationid AND REGISTERMASTER.register_yearid = JOURNALMASTER.journal_yearid INNER JOIN LEDGERS ON JOURNALMASTER.journal_yearid = LEDGERS.Acc_yearid AND JOURNALMASTER.journal_locationid = LEDGERS.Acc_locationid AND JOURNALMASTER.journal_cmpid = LEDGERS.Acc_cmpid AND JOURNALMASTER.journal_ledgerid = LEDGERS.Acc_id ", " AND ( JOURNALMASTER.JOURNAL_INITIALS = '" & txtbillno.Text.Trim & "') AND ((JOURNALMASTER.journal_amt + JOURNALMASTER.journal_tds) < JOURNALMASTER.journal_debit)  AND (JOURNALMASTER.journal_cmpid = " & CmpId & ") AND (JOURNALMASTER.journal_locationid = " & 0 & ") AND (JOURNALMASTER.journal_yearid = " & YearId & ") GROUP BY JOURNALMASTER.journal_initials, JOURNALMASTER.journal_date, JOURNALMASTER.journal_amt, JOURNALMASTER.journal_tds,  JOURNALMASTER.journal_no, REGISTERMASTER.register_name, LEDGERS.ACC_CMPNAME ")
+                'If DT.Rows.Count > 0 Then
 
-                    If cmbname.Text.Trim = "" Then
-                        cmbname.Text = DT.Rows(0).Item("NAME")
-                    ElseIf cmbname.Text.Trim <> DT.Rows(0).Item("NAME") Then
-                        MsgBox("Bill does not belong to the same Customer")
-                        txtbillno.Clear()
-                        txtbillno.Focus()
-                        Exit Sub
-                    End If
+                '    If cmbname.Text.Trim = "" Then
+                '        cmbname.Text = DT.Rows(0).Item("NAME")
+                '    ElseIf cmbname.Text.Trim <> DT.Rows(0).Item("NAME") Then
+                '        MsgBox("Bill does not belong to the same Customer")
+                '        txtbillno.Clear()
+                '        txtbillno.Focus()
+                '        Exit Sub
+                '    End If
 
-                    'IF NO RECORDS ARE PRESENT IN GRID THEN SET DATASOURCE PROPERTY
-                    If gridbill.RowCount = 0 Then
-                        SETGRIDINVOICE(DT)
-                    Else
-                        Dim GRIDINVDT As DataTable = gridbill.DataSource
-                        GRIDINVDT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
-                        For Each DTROW As DataRow In DT.Rows
-                            GRIDINVDT.Rows.Add(DTROW("BILLINITIALS"), DTROW("BILLDATE"), DTROW("BALAMT"), DTROW("BILLAMT"), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
-                        Next
-                    End If
-                End If
+                '    'IF NO RECORDS ARE PRESENT IN GRID THEN SET DATASOURCE PROPERTY
+                '    If gridbill.RowCount = 0 Then
+                '        SETGRIDINVOICE(DT)
+                '    Else
+                '        Dim GRIDINVDT As DataTable = gridbill.DataSource
+                '        GRIDINVDT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
+                '        For Each DTROW As DataRow In DT.Rows
+                '            GRIDINVDT.Rows.Add(DTROW("BILLINITIALS"), DTROW("BILLDATE"), DTROW("BALAMT"), DTROW("BILLAMT"), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
+                '        Next
+                '    End If
+                'End If
 
 
-                'CHECKING IN PAYMENT
-                DT = OBJCMN.SEARCH(" CAST(PAYMENTMASTER_DESC.PAYMENT_GRIDREMARKS AS VARCHAR(100)) AS BILLINITIALS, PAYMENTMASTER.PAYMENT_DATE AS BILLDATE, PAYMENTMASTER_DESC.PAYMENT_BALANCE AS BALAMT, PAYMENTMASTER_DESC.PAYMENT_AMT AS BILLAMT, 'PAYMENT' AS BILLTYPE, PAYMENTMASTER.PAYMENT_NO AS BILLNO,  REGISTERMASTER.register_name AS REGTYPE, LEDGERS.ACC_CMPNAME AS NAME", "", " PAYMENTMASTER INNER JOIN PAYMENTMASTER_DESC ON PAYMENTMASTER.PAYMENT_NO =PAYMENTMASTER_DESC.PAYMENT_NO AND PAYMENTMASTER.PAYMENT_REGISTERID = PAYMENTMASTER_DESC.PAYMENT_REGISTERID AND PAYMENTMASTER.PAYMENT_YEARID = PAYMENTMASTER_DESC.PAYMENT_YEARID INNER JOIN REGISTERMASTER ON PAYMENTMASTER.PAYMENT_REGISTERID = REGISTERMASTER.register_id AND PAYMENTMASTER.PAYMENT_CMPID = REGISTERMASTER.register_cmpid AND PAYMENTMASTER.PAYMENT_LOCATIONID = REGISTERMASTER.register_locationid AND PAYMENTMASTER.PAYMENT_YEARID = REGISTERMASTER.register_yearid INNER JOIN LEDGERS ON PAYMENTMASTER.PAYMENT_LEDGERID = LEDGERS.Acc_id AND PAYMENTMASTER.PAYMENT_CMPID = LEDGERS.Acc_cmpid AND PAYMENTMASTER.PAYMENT_LOCATIONID = LEDGERS.Acc_locationid AND PAYMENTMASTER.PAYMENT_YEARID = LEDGERS.Acc_yearid ", " AND ( CAST(PAYMENTMASTER_DESC.PAYMENT_GRIDREMARKS AS VARCHAR(100)) = '" & txtbillno.Text.Trim & "') AND PAYMENTMASTER_DESC.PAYMENT_PAYTYPE = 'New Ref' AND PAYMENTMASTER_DESC.PAYMENT_BALANCE > 0  AND (PAYMENTMASTER.PAYMENT_cmpid = " & CmpId & ") AND (PAYMENTMASTER.PAYMENT_locationid = " & 0 & ") AND (PAYMENTMASTER.PAYMENT_yearid = " & YearId & ")")
-                If DT.Rows.Count > 0 Then
+                ''CHECKING IN NONPURCHASE
+                'DT = OBJCMN.SEARCH("NONPURCHASE.NP_INITIALS AS BILLINITIALS, NONPURCHASE.NP_DATE AS BILLDATE, NONPURCHASE.NP_BALANCE AS BALAMT, NONPURCHASE.NP_TOTALAMT AS BILLAMT, 'EXPENSE' AS BILLTYPE, NONPURCHASE.NP_NO AS BILLNO,  REGISTERMASTER.register_name AS REGTYPE, LEDGERS.ACC_CMPNAME AS NAME", "", " NONPURCHASE INNER JOIN REGISTERMASTER ON NONPURCHASE.NP_REGISTERID = REGISTERMASTER.register_id AND NONPURCHASE.NP_CMPID = REGISTERMASTER.register_cmpid AND NONPURCHASE.NP_LOCATIONID = REGISTERMASTER.register_locationid AND NONPURCHASE.NP_YEARID = REGISTERMASTER.register_yearid INNER JOIN LEDGERS ON NONPURCHASE.NP_LEDGERID = LEDGERS.Acc_id AND NONPURCHASE.NP_CMPID = LEDGERS.Acc_cmpid AND NONPURCHASE.NP_LOCATIONID = LEDGERS.Acc_locationid AND NONPURCHASE.NP_YEARID = LEDGERS.Acc_yearid ", " AND ( NONPURCHASE.NP_INITIALS = '" & txtbillno.Text.Trim & "') AND NONPURCHASE.NP_BALANCE > 0  AND (NONPURCHASE.NP_cmpid = " & CmpId & ") AND (NONPURCHASE.NP_locationid = " & 0 & ") AND (NONPURCHASE.NP_yearid = " & YearId & ")")
+                'If DT.Rows.Count > 0 Then
 
-                    If cmbname.Text.Trim = "" Then
-                        cmbname.Text = DT.Rows(0).Item("NAME")
-                    ElseIf cmbname.Text.Trim <> DT.Rows(0).Item("NAME") Then
-                        MsgBox("Bill does not belong to the same Customer")
-                        txtbillno.Clear()
-                        txtbillno.Focus()
-                        Exit Sub
-                    End If
+                '    If cmbname.Text.Trim = "" Then
+                '        cmbname.Text = DT.Rows(0).Item("NAME")
+                '    ElseIf cmbname.Text.Trim <> DT.Rows(0).Item("NAME") Then
+                '        MsgBox("Bill does not belong to the same Customer")
+                '        txtbillno.Clear()
+                '        txtbillno.Focus()
+                '        Exit Sub
+                '    End If
 
-                    'IF NO RECORDS ARE PRESENT IN GRID THEN SET DATASOURCE PROPERTY
-                    If gridbill.RowCount = 0 Then
-                        SETGRIDINVOICE(DT)
-                    Else
-                        Dim GRIDINVDT As DataTable = gridbill.DataSource
-                        GRIDINVDT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
-                        For Each DTROW As DataRow In DT.Rows
-                            GRIDINVDT.Rows.Add(DTROW("BILLINITIALS"), DTROW("BILLDATE"), DTROW("BALAMT"), DTROW("BILLAMT"), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
-                        Next
-                    End If
-                End If
+                '    'IF NO RECORDS ARE PRESENT IN GRID THEN SET DATASOURCE PROPERTY
+                '    If gridbill.RowCount = 0 Then
+                '        SETGRIDINVOICE(DT)
+                '    Else
+                '        Dim GRIDINVDT As DataTable = gridbill.DataSource
+                '        GRIDINVDT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
+                '        For Each DTROW As DataRow In DT.Rows
+                '            GRIDINVDT.Rows.Add(DTROW("BILLINITIALS"), DTROW("BILLDATE"), DTROW("BALAMT"), DTROW("BILLAMT"), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
+                '        Next
+                '    End If
+                'End If
+
+
+                ''CHECKING IN PAYMENT
+                'DT = OBJCMN.SEARCH(" CAST(PAYMENTMASTER_DESC.PAYMENT_GRIDREMARKS AS VARCHAR(100)) AS BILLINITIALS, PAYMENTMASTER.PAYMENT_DATE AS BILLDATE, PAYMENTMASTER_DESC.PAYMENT_BALANCE AS BALAMT, PAYMENTMASTER_DESC.PAYMENT_AMT AS BILLAMT, 'PAYMENT' AS BILLTYPE, PAYMENTMASTER.PAYMENT_NO AS BILLNO,  REGISTERMASTER.register_name AS REGTYPE, LEDGERS.ACC_CMPNAME AS NAME", "", " PAYMENTMASTER INNER JOIN PAYMENTMASTER_DESC ON PAYMENTMASTER.PAYMENT_NO =PAYMENTMASTER_DESC.PAYMENT_NO AND PAYMENTMASTER.PAYMENT_REGISTERID = PAYMENTMASTER_DESC.PAYMENT_REGISTERID AND PAYMENTMASTER.PAYMENT_YEARID = PAYMENTMASTER_DESC.PAYMENT_YEARID INNER JOIN REGISTERMASTER ON PAYMENTMASTER.PAYMENT_REGISTERID = REGISTERMASTER.register_id AND PAYMENTMASTER.PAYMENT_CMPID = REGISTERMASTER.register_cmpid AND PAYMENTMASTER.PAYMENT_LOCATIONID = REGISTERMASTER.register_locationid AND PAYMENTMASTER.PAYMENT_YEARID = REGISTERMASTER.register_yearid INNER JOIN LEDGERS ON PAYMENTMASTER.PAYMENT_LEDGERID = LEDGERS.Acc_id AND PAYMENTMASTER.PAYMENT_CMPID = LEDGERS.Acc_cmpid AND PAYMENTMASTER.PAYMENT_LOCATIONID = LEDGERS.Acc_locationid AND PAYMENTMASTER.PAYMENT_YEARID = LEDGERS.Acc_yearid ", " AND ( CAST(PAYMENTMASTER_DESC.PAYMENT_GRIDREMARKS AS VARCHAR(100)) = '" & txtbillno.Text.Trim & "') AND PAYMENTMASTER_DESC.PAYMENT_PAYTYPE = 'New Ref' AND PAYMENTMASTER_DESC.PAYMENT_BALANCE > 0  AND (PAYMENTMASTER.PAYMENT_cmpid = " & CmpId & ") AND (PAYMENTMASTER.PAYMENT_locationid = " & 0 & ") AND (PAYMENTMASTER.PAYMENT_yearid = " & YearId & ")")
+                'If DT.Rows.Count > 0 Then
+
+                '    If cmbname.Text.Trim = "" Then
+                '        cmbname.Text = DT.Rows(0).Item("NAME")
+                '    ElseIf cmbname.Text.Trim <> DT.Rows(0).Item("NAME") Then
+                '        MsgBox("Bill does not belong to the same Customer")
+                '        txtbillno.Clear()
+                '        txtbillno.Focus()
+                '        Exit Sub
+                '    End If
+
+                '    'IF NO RECORDS ARE PRESENT IN GRID THEN SET DATASOURCE PROPERTY
+                '    If gridbill.RowCount = 0 Then
+                '        SETGRIDINVOICE(DT)
+                '    Else
+                '        Dim GRIDINVDT As DataTable = gridbill.DataSource
+                '        GRIDINVDT.DefaultView.Sort = "BILLTYPE, BILLNO ASC"
+                '        For Each DTROW As DataRow In DT.Rows
+                '            GRIDINVDT.Rows.Add(DTROW("BILLINITIALS"), DTROW("BILLDATE"), DTROW("BALAMT"), DTROW("BILLAMT"), DTROW("BILLTYPE"), DTROW("BILLNO"), DTROW("REGTYPE"))
+                '        Next
+                '    End If
+                'End If
 
 
                 For Each ROW As DataGridViewRow In gridbill.Rows
@@ -1788,10 +1788,10 @@ LINE1:
 
     Private Sub cmbregister_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbregister.Enter
         Try
-            If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'RECEIPT'")
+            If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'COMMISSIONRECEIPT'")
             Dim clscommon As New ClsCommon
             Dim dt As DataTable
-            dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'RECEIPT' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & 0 & " and register_YEARid = " & YearId)
+            dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'COMMISSIONRECEIPT' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & 0 & " and register_YEARid = " & YearId)
             If dt.Rows.Count > 0 Then
                 cmbregister.Text = dt.Rows(0).Item(0).ToString
             End If
@@ -1808,7 +1808,7 @@ LINE1:
                 If TEMPAUTOENTRY = False Then CLEAR()
                 cmbregister.Text = UCase(cmbregister.Text)
                 Dim clscommon As New ClsCommon
-                Dim dt As DataTable = clscommon.SEARCH(" register_abbr, register_initials, register_id, ISNULL(ACC_CMPNAME,'') AS NAME ", "", " RegisterMaster LEFT OUTER JOIN LEDGERS ON REGISTER_LEDGERID = ACC_ID ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'RECEIPT' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & 0 & " and register_YEARid = " & YearId)
+                Dim dt As DataTable = clscommon.SEARCH(" register_abbr, register_initials, register_id, ISNULL(ACC_CMPNAME,'') AS NAME ", "", " RegisterMaster LEFT OUTER JOIN LEDGERS ON REGISTER_LEDGERID = ACC_ID ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'COMMISSIONRECEIPT' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & 0 & " and register_YEARid = " & YearId)
                 If dt.Rows.Count > 0 Then
                     recregabbr = dt.Rows(0).Item(0).ToString
                     recreginitial = dt.Rows(0).Item(1).ToString
@@ -1836,10 +1836,10 @@ LINE1:
                     Exit Sub
                 End If
 
-                Dim tempmsg As Integer = MsgBox("Delete Receipt Entry Permanently?", MsgBoxStyle.YesNo, "TEXTRADE")
+                Dim tempmsg As Integer = MsgBox("Delete Agency Commission Receipt Entry Permanently?", MsgBoxStyle.YesNo, "TEXTRADE")
                 If tempmsg = vbYes Then
 
-                    Dim OBJREC As New ClsAgencyReceiptMaster
+                    Dim OBJREC As New ClsAgencyCommissionReceipt
                     Dim ALPARAVAL As New ArrayList
 
                     ALPARAVAL.Add(TEMPARECEIPTNO)
@@ -1883,7 +1883,7 @@ LINE1:
                 If txtchqno.Text.Trim <> "" And txtchqno.Text.Trim <> "RTGS" And txtchqno.Text.Trim <> "NEFT" And txtchqno.Text.Trim <> "IMPS" And txtchqno.Text.Trim <> "ONLINE" Then
                     'checking whether CHQNO IS ALREADY PAID WITH THE SAME BANK OR NOT....
                     Dim OBJCMN As New ClsCommon
-                    Dim DT As DataTable = OBJCMN.SEARCH(" ARECEIPT_INITIALS", "", " AGENCYRECEIPTMASTER ", " AND ARECEIPT_BANKNAME = '" & CMBPARTYBANK.Text.Trim & "' AND ARECEIPT_CHQNO = '" & txtchqno.Text.Trim & "' AND ARECEIPT_YEARID = " & YearId)
+                    Dim DT As DataTable = OBJCMN.SEARCH(" ACOMM_INITIALS", "", " AGENCYCOMMRECEIPT ", " AND ACOMM_BANKNAME = '" & CMBPARTYBANK.Text.Trim & "' AND ACOMM_CHQNO = '" & txtchqno.Text.Trim & "' AND ACOMM_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         If (EDIT = False) Or (EDIT = True And CHQNO <> txtchqno.Text.Trim) Then
                             MsgBox("Chq. No. Already Present with this Bank in Receipt No." & DT.Rows(0).Item(0), MsgBoxStyle.Critical, "TEXTRADE")
@@ -2128,7 +2128,7 @@ LINE1:
         Try
             'GET INVOICENOS FROM PURCHASEMASTER
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("MAX(ARECEIPT_NO) AS BILLNO", "", " AGENCYRECEIPTMASTER ", " AND ARECEIPT_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH("MAX(ACOMM_NO) AS BILLNO", "", " AGENCYCOMMRECEIPT ", " AND ACOMM_YEARID = " & YearId)
             For I As Integer = 1 To Val(DT.Rows(0).Item("BILLNO"))
                 gridpayment.RowCount = 0
                 TEMPARECEIPTNO = Val(I)
@@ -2150,7 +2150,7 @@ NEXTLINE:
             If (Val(txtaccno.Text.Trim) <> 0 And cmbregister.Text.Trim <> "" And EDIT = False) Or (EDIT = True And TEMPARECEIPTNO <> Val(txtaccno.Text.Trim)) Then
                 Dim OBJCMN As New ClsCommon
                 'Dim dttable As DataTable = OBJCMN.search(" ISNULL(PAYMENTMASTER.PAYMENT_no,0)  AS PAYMENTNO", "", " REGISTERMASTER INNER JOIN PAYMENTMASTER ON REGISTERMASTER.register_id = PAYMENTMASTER.PAYMENT_registerid AND REGISTERMASTER.register_cmpid = PAYMENTMASTER.PAYMENT_cmpid AND REGISTERMASTER.register_locationid = PAYMENTMASTER.PAYMENT_locationid AND REGISTERMASTER.register_yearid = PAYMENTMASTER.PAYMENT_yearid ", "  AND PAYMENTMASTER.PAYMENT_no=" & txtaccno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND PAYMENTMASTER.PAYMENT_cmpid = " & CmpId & " AND PAYMENTMASTER.PAYMENT_locationid = " & 0 & " AND PAYMENTMASTER.PAYMENT_yearid = " & YearId)
-                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(AGENCYRECEIPTMASTER.ARECEIPT_no,0) AS PAYMENTNO, REGISTERMASTER.register_name AS REGNAME", "", " REGISTERMASTER INNER JOIN AGENCYRECEIPTMASTER ON REGISTERMASTER.register_id = AGENCYRECEIPTMASTER.ARECEIPT_registerid AND REGISTERMASTER.register_cmpid = AGENCYRECEIPTMASTER.ARECEIPT_cmpid AND REGISTERMASTER.register_locationid = AGENCYRECEIPTMASTER.ARECEIPT_locationid AND REGISTERMASTER.register_yearid = AGENCYRECEIPTMASTER.ARECEIPT_yearid ", "  AND AGENCYRECEIPTMASTER.ARECEIPT_no=" & txtaccno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND AGENCYRECEIPTMASTER.ARECEIPT_cmpid = " & CmpId & " AND AGENCYRECEIPTMASTER.ARECEIPT_locationid = " & 0 & " AND AGENCYRECEIPTMASTER.ARECEIPT_yearid = " & YearId)
+                Dim dttable As DataTable = OBJCMN.SEARCH(" ISNULL(AGENCYCOMMRECEIPT.ACOMM_no,0) AS PAYMENTNO, REGISTERMASTER.register_name AS REGNAME", "", " REGISTERMASTER INNER JOIN AGENCYCOMMRECEIPT ON REGISTERMASTER.register_id = AGENCYCOMMRECEIPT.ACOMM_registerid AND REGISTERMASTER.register_cmpid = AGENCYCOMMRECEIPT.ACOMM_cmpid AND REGISTERMASTER.register_locationid = AGENCYCOMMRECEIPT.ACOMM_locationid AND REGISTERMASTER.register_yearid = AGENCYCOMMRECEIPT.ACOMM_yearid ", "  AND AGENCYCOMMRECEIPT.ACOMM_no=" & txtaccno.Text.Trim & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND AGENCYCOMMRECEIPT.ACOMM_cmpid = " & CmpId & " AND AGENCYCOMMRECEIPT.ACOMM_locationid = " & 0 & " AND AGENCYCOMMRECEIPT.ACOMM_yearid = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     MsgBox("Receipt No Already Exist")
                     e.Cancel = True
@@ -2214,7 +2214,7 @@ NEXTLINE:
             Dim DT As New DataTable
             Dim OBJCMN As New ClsCommon
             If EDIT = True Then SENDWHATSAPP(TEMPARECEIPTNO)
-            DT = OBJCMN.Execute_Any_String("UPDATE AGENCYRECEIPTMASTER SET ARECEIPT_SENDWHATSAPP = 1 WHERE ARECEIPT_NO = " & TEMPARECEIPTNO & " AND ARECEIPT_YEARID = " & YearId, "", "")
+            DT = OBJCMN.Execute_Any_String("UPDATE AGENCYCOMMRECEIPT SET ACOMM_SENDWHATSAPP = 1 WHERE ACOMM_NO = " & TEMPARECEIPTNO & " AND ACOMM_YEARID = " & YearId, "", "")
             LBLWHATSAPP.Visible = True
         Catch ex As Exception
             Throw ex
@@ -2235,7 +2235,7 @@ NEXTLINE:
             Dim OBJREC As New AgencyReceiptDesign
             OBJREC.MdiParent = MDIMain
             OBJREC.DIRECTPRINT = True
-            OBJREC.FRMSTRING = "RECEIPT"
+            OBJREC.FRMSTRING = "COMMISSIONRECEIPT"
             OBJREC.DIRECTMAIL = False
             OBJREC.DIRECTWHATSAPP = True
             OBJREC.REGNAME = cmbregister.Text.Trim
@@ -2248,8 +2248,8 @@ NEXTLINE:
             Dim OBJWHATSAPP As New SendWhatsapp
             OBJWHATSAPP.PARTYNAME = cmbname.Text.Trim
             OBJWHATSAPP.AGENTNAME = GETAGENTNAME(cmbname.Text.Trim)
-            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\AGENCYRECEIPT_" & Val(RECNO) & ".pdf")
-            OBJWHATSAPP.FILENAME.Add("AGENCYRECEIPT_" & Val(RECNO) & ".pdf")
+            OBJWHATSAPP.PATH.Add(Application.StartupPath & "\AGENCYCOMMRECEIPT_" & Val(RECNO) & ".pdf")
+            OBJWHATSAPP.FILENAME.Add("AGENCYCOMMRECEIPT_" & Val(RECNO) & ".pdf")
             OBJWHATSAPP.ShowDialog()
 
         Catch ex As Exception

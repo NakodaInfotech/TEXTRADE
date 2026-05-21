@@ -26,7 +26,7 @@ Public Class ClsAgencyCommissionReceipt
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@ARECEIPTNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@ACOMMRECEIPTNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@registername", alParaval(I)))
                 I += 1
@@ -152,7 +152,7 @@ Public Class ClsAgencyCommissionReceipt
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@ARECEIPTNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@ACOMMRECEIPTNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@registername", alParaval(I)))
                 I += 1

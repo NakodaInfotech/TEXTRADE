@@ -133,6 +133,8 @@ Public Class GDNDESIGN
     Public DIRECTWHATSAPP As Boolean = False
     Public PRINTSETTING As Object = Nothing
     Public NOOFCOPIES As Integer = 1
+    Public JOBWORKLABEL As Boolean = False
+
 
     Private Sub GDNDESIGN_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Windows.Forms.Keys.Escape Then
@@ -572,19 +574,19 @@ Public Class GDNDESIGN
                 ElseIf ClientName = "BARKHA" Then
                     crpo.ReportSource = RPTGDN_A5
                 ElseIf ClientName = "VINTAGEINDIA" Then
-                    If PRINTINYARDS = True Then
-                        RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTINYARDS").Text = 1
-                        RPTGDN_VINTAGE.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 1
-                    Else
-                        RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
-                        RPTGDN_VINTAGE.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
-                    End If
-                    If PARTYCHANGEADD <> "" Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("SHIPPINGADD").Text = "'" & PARTYCHANGEADD & "'"
-                    If WHITELABEL = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTGDN_VINTAGE.DataDefinition.FormulaFields("WHITELABEL").Text = 0
-                    If HIDEPCSDETAILS = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
-                    If PRINTRATE = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTRATE").Text = 1 Else RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTRATE").Text = 0
-                    If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "SIMPLEX" Or ClientName = "CHINTAN" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "KENCOT" Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-
+                    'If PRINTINYARDS = True Then
+                    '    RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTINYARDS").Text = 1
+                    '    RPTGDN_VINTAGE.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 1
+                    'Else
+                    '    RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
+                    '    RPTGDN_VINTAGE.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
+                    'End If
+                    'If PARTYCHANGEADD <> "" Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("SHIPPINGADD").Text = "'" & PARTYCHANGEADD & "'"
+                    'If WHITELABEL = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTGDN_VINTAGE.DataDefinition.FormulaFields("WHITELABEL").Text = 0
+                    'If HIDEPCSDETAILS = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
+                    'If PRINTRATE = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTRATE").Text = 1 Else RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTRATE").Text = 0
+                    'If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "SIMPLEX" Or ClientName = "CHINTAN" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "KENCOT" Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    If JOBWORKLABEL = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1
                     RPTGDN_VINTAGE.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     crpo.ReportSource = RPTGDN_VINTAGE
                 Else
@@ -1409,17 +1411,17 @@ Public Class GDNDESIGN
                     OBJ = New GDNReport_A5
                 ElseIf ClientName = "VINTAGEINDIA" Then
                     OBJ = New GDNReport_VINTAGE
-                    If PRINTINYARDS = True Then
-                        OBJ.DataDefinition.FormulaFields("PRINTINYARDS").Text = 1
-                        OBJ.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 1
-                    Else
-                        OBJ.DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
-                        OBJ.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
-                    End If
-                    If PARTYCHANGEADD <> "" Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("SHIPPINGADD").Text = "'" & PARTYCHANGEADD & "'"
-                    If WHITELABEL = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 0
-                    If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
-                    If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "CHINTAN" Or ClientName = "KENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    'If PRINTINYARDS = True Then
+                    '    OBJ.DataDefinition.FormulaFields("PRINTINYARDS").Text = 1
+                    '    OBJ.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 1
+                    'Else
+                    '    OBJ.DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
+                    '    OBJ.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
+                    'End If
+                    'If PARTYCHANGEADD <> "" Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("SHIPPINGADD").Text = "'" & PARTYCHANGEADD & "'"
+                    If JOBWORKLABEL = True Then OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 0
+                    'If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
+                    'If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "CHINTAN" Or ClientName = "KENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                     OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
 
                 Else

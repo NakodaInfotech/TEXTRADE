@@ -1490,4 +1490,28 @@ LINE1:
     Private Sub CMBDISPATCHTO_Validating(sender As Object, e As CancelEventArgs)
         If CMBDISPATCHTO.Text.Trim <> "" Then NAMEVALIDATE(CMBDISPATCHTO, CMBCODE, e, Me, txtadd, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS')", "Sundry CREDITORS", "ACCOUNTS")
     End Sub
+
+    Private Sub TXTBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTBARCODE.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+                If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
+
+                If cmbGodown.Text.Trim = "" Then
+                    MsgBox("Select Godown First", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
+                Dim OBJSTOCK As New SelectStockGDNGrid
+                OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & cmbGodown.Text.Trim & "'"
+                OBJSTOCK.ShowDialog()
+                Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                For Each DTROW As DataRow In DTBARCODE.Rows
+                    TXTBARCODE.Text = DTROW("BARCODE")
+                    TXTBARCODE_Validated(sender, e)
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

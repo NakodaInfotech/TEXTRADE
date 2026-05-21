@@ -747,7 +747,7 @@ Public Class RecFromPacking
                     'IF barcode is used the BARCODE printING WILL BE BLOCKED
                     If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
                     Dim BALENO As String = ""
-                    If ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "ANKUSH" Then BALENO = ROW.Cells(gdesc.Index).Value
+                    If ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "ANKUSH" Or ClientName = "MNARESH" Then BALENO = ROW.Cells(gdesc.Index).Value
                     If ClientName = "SOFTAS" And CHKPRINTSERIES.Checked = True Then BALENO = ROW.Cells(GSERIES.Index).Value
 
                     'FOR AVIS GET LOTNO FROM ISSUE TO PACK FOR EACH ENTRY NO
@@ -1872,7 +1872,9 @@ LINE1:
                     TXTGRIDREMARKS.Text = DT.Rows(0).Item("BALENO")
                     TXTGRIDREMARKS.Focus()
                 End If
-
+                If ClientName = "VINTAGEINDIA" Then
+                    TXTGRIDREMARKS.Text = DT.Rows(0).Item("BALENO")
+                End If
                 If ClientName <> "AVIS" Or (ClientName = "AVIS" And UserName <> "Admin") Then CMBBARCODE.Enabled = False
 
                 CMBCONTRACTOR.Text = DT.Rows(0).Item("CONTRACTOR")
