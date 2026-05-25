@@ -10317,7 +10317,14 @@ line1:
         Dim bln As Boolean = True
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "GREYBARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
+            Dim DT As DataTable
+            If ClientName = "SWPL" Then
+
+                DT = OBJCMN.SEARCH("BALENO", "", "GREYBARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
+            Else
+                DT = OBJCMN.SEARCH("BALENO", "", "GREYBARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
+            End If
+
             If DT.Rows.Count > 0 Then bln = False
         Catch ex As Exception
             Throw ex
