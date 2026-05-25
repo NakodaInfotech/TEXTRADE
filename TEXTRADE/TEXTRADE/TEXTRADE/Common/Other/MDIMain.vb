@@ -2,7 +2,6 @@
 Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
-Imports DevExpress.XtraEditors
 
 Public Class MDIMain
 
@@ -5261,6 +5260,9 @@ SKIPLINE:
             If ClientName = "YASHVI" Then STOCKADJUSTMENT_MASTER.Text = "Item Correction"
             If ClientName = "MANIBHADRA" Or ClientName = "GELATO" Or ClientName = "MASHOK" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "KREEVE" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then GRNGREY_TOOL.Text = "Finish Inward"
 
+            If ClientName = "SAKARIA" Then CHQENTRIES_MASTER.Visible = True
+
+
             If ClientName <> "INDRANI" Then SOREPORT_MASTER.Visible = False
 
             If ClientName = "CC" Or ClientName = "C3" Or ClientName = "SHREEDEV" Then
@@ -5639,26 +5641,6 @@ SKIPLINE:
             Dim OBJREC As New RecOutstanding
             OBJREC.MdiParent = Me
             OBJREC.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub DAILYGREYSTOCKADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            Dim OBJGSTOCK As New DailyGreyStock
-            OBJGSTOCK.MdiParent = Me
-            OBJGSTOCK.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub DAILYGREYSTOCKEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            Dim OBJGSTOCK As New DailyGreyStockDetails
-            OBJGSTOCK.MdiParent = Me
-            OBJGSTOCK.Show()
         Catch ex As Exception
             Throw ex
         End Try
