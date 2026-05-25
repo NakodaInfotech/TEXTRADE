@@ -225,7 +225,7 @@ SKIPINVOICE:
             Else
                 Dim expo As New ExportOptions
                 Dim oDfDopt As New DiskFileDestinationOptions
-                oDfDopt.DiskFileName = Application.StartupPath & "\POREPORT_" & PONO & ".pdf"
+                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & " POREPORT_" & PONO & ".pdf"
                 If File.Exists(oDfDopt.DiskFileName) Then File.Delete(oDfDopt.DiskFileName)
                 expo = OBJ.ExportOptions
                 OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = 1
