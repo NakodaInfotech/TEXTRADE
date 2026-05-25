@@ -3418,7 +3418,10 @@ NEXTLINE:
             GRIDJOBIN.FirstDisplayedScrollingRowIndex = GRIDJOBIN.RowCount - 1
 
             txtsrno.Text = GRIDJOBIN.RowCount + 1
-            If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
+            If ClientName = "SOFTAS" Then
+                CMBQUALITY.Text = ""
+                TXTCUT.Clear()
+            End If
 
             If ClientName = "MAHAJAN" Then
                 TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1

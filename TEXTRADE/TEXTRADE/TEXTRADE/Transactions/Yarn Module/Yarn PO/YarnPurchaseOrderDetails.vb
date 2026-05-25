@@ -38,6 +38,34 @@ Public Class YarnPurchaseOrderDetails
                 Exit Sub
             End If
 
+            DTMAIL.Columns.Add("INVNO")
+            DTMAIL.Columns.Add("REGID")
+            DTMAIL.Columns.Add("REGNAME")
+            DTMAIL.Columns.Add("PRINTINITIALS")
+            DTMAIL.Columns.Add("PODATE")
+            DTMAIL.Columns.Add("NAME")
+            DTMAIL.Columns.Add("PARTYEMAILID")
+            DTMAIL.Columns.Add("AGENTNAME")
+            DTMAIL.Columns.Add("AGENTEMAILID")
+            DTMAIL.Columns.Add("GRANDTOTAL")
+            DTMAIL.Columns.Add("SUBJECT")
+            DTMAIL.Columns.Add("ATTACHMENT")
+            DTMAIL.Columns.Add("FILENAME")
+
+            DTWHATSAPP.Columns.Add("INVNO")
+            DTWHATSAPP.Columns.Add("REGID")
+            DTWHATSAPP.Columns.Add("REGNAME")
+            DTWHATSAPP.Columns.Add("PRINTINITIALS")
+            DTWHATSAPP.Columns.Add("PODATE")
+            DTWHATSAPP.Columns.Add("NAME")
+            DTWHATSAPP.Columns.Add("PARTYWHATSAPP")
+            DTWHATSAPP.Columns.Add("AGENTNAME")
+            DTWHATSAPP.Columns.Add("AGENTWHATSAPP")
+            DTWHATSAPP.Columns.Add("GRANDTOTAL")
+            DTWHATSAPP.Columns.Add("SUBJECT")
+            DTWHATSAPP.Columns.Add("ATTACHMENT")
+            DTWHATSAPP.Columns.Add("FILENAME")
+
             fillgrid()
         Catch ex As Exception
             Throw ex
@@ -46,8 +74,16 @@ Public Class YarnPurchaseOrderDetails
 
     Sub fillgrid()
         Try
-            Dim OBJPO As New ClsYarnPurchaseOrder
-            Dim dt As DataTable = OBJPO.SELECTPO(0, CmpId, 0, YearId)
+            'Dim OBJPO As New ClsYarnPurchaseOrder
+            'Dim dt As DataTable = OBJPO.SELECTPO(0, CmpId, 0, YearId)
+            'gridbilldetails.DataSource = dt
+            'If dt.Rows.Count > 0 Then
+            '    gridbill.FocusedRowHandle = gridbill.RowCount - 1
+            '    gridbill.TopRowIndex = gridbill.RowCount - 15
+            'End If
+
+            Dim objclsCMST As New ClsCommonMaster
+            Dim dt As DataTable = objclsCMST.search(" CAST(0 AS BIT) AS CHK, CAST(0 AS BIT) AS CHK,ISNULL(YARNPURCHASEORDER.YPO_NO, 0) AS PONO, YARNPURCHASEORDER.YPO_DATE AS PODATE, YARNPURCHASEORDER.YPO_DUEDATE AS DUEDATE, LEDGERS.Acc_cmpname AS NAME, ISNULL(YARNPURCHASEORDER.YPO_CRDAYS, 0) AS CRDAYS, ISNULL(YARNPURCHASEORDER.YPO_DELDAYS, 0) AS DELDAYS, ISNULL(YARNPURCHASEORDER.YPO_REFNO, '') AS REFNO, ISNULL(YARNPURCHASEORDER.YPO_DISCOUNT, 0) AS DISCOUNT, ISNULL(YARNPURCHASEORDER.YPO_REMARKS, '') AS REMARKS, ISNULL(YARNPURCHASEORDER.YPO_ORDERTYPE, '') AS ORDERTYPE, ISNULL(YARNPURCHASEORDER.YPO_LBLTOTALAMT, 0) AS LBLTOTALPCS, ISNULL(YARNPURCHASEORDER.YPO_INWORDS, '') AS INWORDS, ISNULL(BROKERLEDGERS.Acc_cmpname, '') AS BROKER, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(YARNPURCHASEORDER_DESC.YPO_GRIDSRNO, 0) AS GRIDSRNO, ISNULL(YARNPURCHASEORDER_DESC.YPO_DESC, '') AS [DESC], ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(MILLMASTER.MILL_NAME, '') AS MILLNAME, ISNULL(COLORMASTER.COLOR_name, '') AS SHADE, ISNULL(YARNPURCHASEORDER_DESC.YPO_PCOLOR, '')AS PSHADE, ISNULL(YARNPURCHASEORDER_DESC.YPO_BAGS, 0) AS BAGS, ISNULL(YARNPURCHASEORDER_DESC.YPO_WT, 0) AS WT, ISNULL(YARNPURCHASEORDER_DESC.YPO_CONES, 0) CONES, YARNQUALITYMASTER.YARN_NAME AS YARNQUALITY, ISNULL(LEDGERS.Acc_mobile, '') AS MOBILENO, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(YARNPURCHASEORDER_DESC.YPO_RATE, 0) AS RATE, ISNULL(YARNPURCHASEORDER_DESC.YPO_AMT, 0) AS AMT, ISNULL(YARNPURCHASEORDER_DESC.YPO_RECDBAGS, 0) AS RECDBAGS, ISNULL(YARNPURCHASEORDER_DESC.YPO_RECDWT, 0) AS RECDWT, ISNULL(YARNPURCHASEORDER_DESC.YPO_DONE, 0) AS DONE, ISNULL(YARNPURCHASEORDER_DESC.YPO_CLOSED, 0) AS CLOSED ,ISNULL(YARNPURCHASEORDER_DESC.YPO_BAGS -YARNPURCHASEORDER_DESC.YPO_RECDBAGS, 0) as BALBAG , ISNULL(YARNPURCHASEORDER_DESC.YPO_WT - YARNPURCHASEORDER_DESC.YPO_RECDWT, 0) AS BALWT,ISNULL(LEDGERS.Acc_email, '') AS PARTYMAIL, ISNULL(LEDGERS.ACC_WHATSAPPNO, '') AS PARTYWHATSAPP ", "", " YARNPURCHASEORDER INNER JOIN YARNPURCHASEORDER_DESC ON YARNPURCHASEORDER.YPO_NO = YARNPURCHASEORDER_DESC.YPO_NO AND YARNPURCHASEORDER.YPO_YEARID = YARNPURCHASEORDER_DESC.YPO_YEARID LEFT OUTER JOIN DESIGNMASTER ON YARNPURCHASEORDER_DESC.YPO_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON YARNPURCHASEORDER_DESC.YPO_SHADEID = COLORMASTER.COLOR_id LEFT OUTER JOIN MILLMASTER ON YARNPURCHASEORDER_DESC.YPO_MILLID = MILLMASTER.MILL_ID LEFT OUTER JOIN YARNQUALITYMASTER ON YARNPURCHASEORDER_DESC.YPO_YARNQUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN LEDGERS AS BROKERLEDGERS ON YARNPURCHASEORDER.YPO_BROKERID = BROKERLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON YARNPURCHASEORDER.YPO_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS ON YARNPURCHASEORDER.YPO_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN UNITMASTER ON YARNPURCHASEORDER_DESC.YPO_UNITID = UNITMASTER.unit_id ", " AND YARNPURCHASEORDER.YPO_YEARID = " & YearId & " ORDER BY YARNPURCHASEORDER_DESC.YPO_GRIDSRNO")
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -140,7 +176,7 @@ Public Class YarnPurchaseOrderDetails
             gridbill.ExportToXls(PATH, opti)
             EXCELCMPHEADER(PATH, "Purchase Order Details", gridbill.VisibleColumns.Count + gridbill.GroupCount)
         Catch ex As Exception
-            MsgBox("Yarn PO Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+            MsgBox("Yarn PO Details Excel File Is Open, Please Close the File first Then Try To Export", MsgBoxStyle.Critical)
         End Try
     End Sub
 
@@ -155,11 +191,11 @@ Public Class YarnPurchaseOrderDetails
                     MsgBox("Enter Proper Yarn PO Nos", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
-                If MsgBox("Wish to Print Yarn PO from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish To Print Yarn PO from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
                     SERVERPROPDIRECT()
                 End If
             Else
-                If MsgBox("Wish to Print Selected Yarn PO ?", MsgBoxStyle.YesNo) = vbYes Then
+                If MsgBox("Wish To Print Selected Yarn PO ?", MsgBoxStyle.YesNo) = vbYes Then
                     cmdok.Focus()
                     SERVERPROPSELECTED()
                 End If
@@ -189,11 +225,11 @@ Public Class YarnPurchaseOrderDetails
                 'If (ClientName = "SOFTAS" Or ClientName = "MANS") And TOOLCMBINVCOPY.Text = "OFFICE COPY" Then OBJINVOICE.INVOICECOPYNAME = "AGENT COPY"
                 'If (ClientName = "RMANILAL" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "TARUN" Or ClientName = "SHANTI" Or ClientName = "KUNAL" Or ClientName = "VALIANT") And TOOLCMBINVCOPY.Text = "DUPLICATE COPY" Then OBJINVOICE.INVOICECOPYNAME = "AGENT COPY"
                 'If ClientName = "ALENCOT" And TOOLCMBINVCOPY.Text = "DUPLICATE COPY" Then OBJINVOICE.INVOICECOPYNAME = "REVISED COPY"
-                'If ClientName = "GELATO" And TOOLCMBINVCOPY.Text = "TRANSPORT COPY" Then OBJINVOICE.INVOICECOPYNAME = "DUPLICATE FOR TRANSPORT"
+                'If ClientName = "GELATO" And TOOLCMBINVCOPY.Text = "TRANSPORT COPY" Then OBJINVOICE.INVOICECOPYNAME = "DUPLICATE For TRANSPORT"
 
                 'If TOOLCMBINVCOPY.Text = "TRANSPORT COPY" Then OBJINVOICE.INVOICETRANS = True
                 'If TOOLCMBINVCOPY.Text = "RETAIL COPY (A5)" Then OBJINVOICE.INVOICERETAIL = True
-                'If TOOLCMBINVCOPY.Text = "YARN DO" Then OBJINVOICE.FRMSTRING = "YARNDO"
+                'If TOOLCMBINVCOPY.Text = "YARN Do" Then OBJINVOICE.FRMSTRING = "YARNDO"
 
 
                 'Dim OBJCMN As New ClsCommon
@@ -313,7 +349,7 @@ Public Class YarnPurchaseOrderDetails
                     'If ClientName = "ALENCOT" And TOOLCMBINVCOPY.Text = "DUPLICATE COPY" Then OBJINVOICE.INVOICECOPYNAME = "REVISED COPY"
                     'If ClientName = "GELATO" And TOOLCMBINVCOPY.Text = "TRANSPORT COPY" Then OBJINVOICE.INVOICECOPYNAME = "DUPLICATE FOR TRANSPORT"
 
-                    'OBJINVOICE.PARTYNAME = ROW("NAME")
+                    OBJINVOICE.PARTYNAME = ROW("NAME")
                     'OBJINVOICE.AGENTNAME = ROW("AGENTNAME")
                     'Dim OBJCMN As New ClsCommon
                     'Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(STATE_REMARK,'') AS STATECODE, ISNULL(REGISTERMASTER.REGISTER_ID,0) AS REGID", "", " INVOICEMASTER INNER JOIN LEDGERS ON INVOICE_LEDGERID = LEDGERS.ACC_ID LEFT OUTER JOIN STATEMASTER ON LEDGERS.ACC_STATEID = STATE_ID INNER JOIN REGISTERMASTER ON REGISTER_ID = INVOICEMASTER.INVOICE_REGISTERID ", " AND INVOICEMASTER.INVOICE_NO = " & Val(ROW("SRNO")) & " AND REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND INVOICEMASTER.INVOICE_YEARID = " & YearId)
@@ -332,7 +368,7 @@ Public Class YarnPurchaseOrderDetails
                     Dim invoicePath As String = ALATTACHMENT(ALATTACHMENT.Count - 1).ToString
 
                     'ADDINT IN DTEMAIL
-                    'DTMAIL.Rows.Add(ROW("SRNO"), DT.Rows(0).Item("REGID"), cmbregister.Text.Trim, ROW("PRINTINITIALS"), ROW("DATE"), ROW("NAME"), ROW("PARTYMAIL"), ROW("AGENTNAME"), ROW("AGENTMAIL"), Val(ROW("GRANDTOTAL")), UCase(CmpName) & " - Invoice No. " & ROW("PRINTINITIALS") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf")
+                    DTMAIL.Rows.Add(ROW("PONO"), ROW("PONO"), "", "", ROW("PODATE"), ROW("NAME"), ROW("PARTYMAIL"), "", "", 0, UCase(CmpName) & " - POREPORT. " & ROW("PONO") & " Dated " & ROW("PODATE"), Application.StartupPath & "\" & ROW("NAME") & "POREPORT_" & Val(ROW("PONO")) & ".pdf", ROW("NAME") & "POREPORT_" & Val(ROW("PONO")) & ".pdf")
 
                     'ADDING IN DTWHATSAPP
                     'If ClientName = "MAHAVIRPOLYCOT" Then ROW("AGENTWHATSAPP") = ""
@@ -382,12 +418,12 @@ Public Class YarnPurchaseOrderDetails
                 Exit Sub
             End If
             'End If
-            'If INVOICEMAIL Then
-            '    Dim OBJMAIL As New SendMail
-            '    OBJMAIL.ALATTACHMENT = ALATTACHMENT
-            '    OBJMAIL.subject = "Invoice"
-            '    OBJMAIL.ShowDialog()
-            'End If
+            If INVOICEMAIL Then
+                Dim OBJMAIL As New SendMail
+                OBJMAIL.ALATTACHMENT = ALATTACHMENT
+                OBJMAIL.subject = "Invoice"
+                OBJMAIL.ShowDialog()
+            End If
             'If CHKMERGEDPDF.Checked AndAlso WHATSAPP Then
             '    If WHATSAPP = True Then
             '        If ALATTACHMENT.Count = 0 Then Exit Sub

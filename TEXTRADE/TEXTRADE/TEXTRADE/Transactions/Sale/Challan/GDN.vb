@@ -2416,6 +2416,7 @@ NEXTLINE:
                 GPIECETYPE.HeaderText = "Type"
                 GQUALITY.HeaderText = "Make"
                 Gmtrs.HeaderText = "Kgs"
+                GSHADE.HeaderText = "Finish"
                 GQUALITY.Visible = True
                 cmdselectOrder.Visible = False
             End If
@@ -2562,6 +2563,12 @@ NEXTLINE:
                     txttransref.TabStop = False
                     TXTCONSIGNEE.TabStop = False
                 End If
+
+                If ClientName = "SOFTAS" Then
+                    GPARTYPONO.HeaderText = "Party Item"
+                    OPARTYPONO.HeaderText = "Party Item"
+                End If
+
 
                 CMBDESIGN.TabStop = False
                 CMBCOLOR.TabStop = False

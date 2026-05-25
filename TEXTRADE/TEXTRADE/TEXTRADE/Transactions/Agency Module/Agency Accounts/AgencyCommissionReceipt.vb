@@ -185,7 +185,7 @@ Public Class AgencyCommissionReceipt
 
     Sub getmaxno_AGENCYRECEIPTMASTER()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(ACOMM_NO),0) + 1 ", "AGENCYCOMMRECEIPT INNER JOIN REGISTERMASTER ON REGISTER_ID = ACOMM_REGISTERID AND REGISTER_CMPID = ACOMM_CMPID AND REGISTER_LOCATIONID = ACOMM_LOCATIONID AND REGISTER_YEARID = ACOMM_YEARID ", " AND REGISTERMASTER.REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND REGISTER_TYPE = 'COMMISIONRECEIPT' AND ACOMM_cmpid=" & CmpId & " AND ACOMM_LOCATIONid=" & 0 & " AND ACOMM_YEARid=" & YearId)
+        DTTABLE = getmax(" isnull(max(ACOMM_NO),0) + 1 ", "AGENCYCOMMRECEIPT INNER JOIN REGISTERMASTER ON REGISTER_ID = ACOMM_REGISTERID AND REGISTER_CMPID = ACOMM_CMPID AND REGISTER_LOCATIONID = ACOMM_LOCATIONID AND REGISTER_YEARID = ACOMM_YEARID ", " AND REGISTERMASTER.REGISTER_NAME = '" & cmbregister.Text.Trim & "' AND REGISTER_TYPE = 'RECEIPT' AND ACOMM_cmpid=" & CmpId & " AND ACOMM_LOCATIONid=" & 0 & " AND ACOMM_YEARid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then
             txtaccno.Text = DTTABLE.Rows(0).Item(0)
         End If
@@ -421,7 +421,7 @@ Public Class AgencyCommissionReceipt
             'getmaxno_receiptmaster()
             fillledger(cmbname, EDIT, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
             fillledger(cmbseller, EDIT, " and acc_cmpid = " & CmpId & " and acc_YEARid = " & YearId)
-            fillregister(cmbregister, " and register_type = 'COMMISIONRECEIPT'")
+            fillregister(cmbregister, " and register_type = 'RECEIPT'")
 
 
             'GET DEFAULT BANK IF BANK A/C AND OVERSEAS IS TRUE THEN FETCH THAT BANK
@@ -1788,10 +1788,10 @@ LINE1:
 
     Private Sub cmbregister_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbregister.Enter
         Try
-            If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'COMMISSIONRECEIPT'")
+            If cmbregister.Text.Trim = "" Then fillregister(cmbregister, " and register_type = 'RECEIPT'")
             Dim clscommon As New ClsCommon
             Dim dt As DataTable
-            dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'COMMISSIONRECEIPT' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & 0 & " and register_YEARid = " & YearId)
+            dt = clscommon.SEARCH(" register_name,register_id", "", " RegisterMaster ", " and register_default = 'True' and register_type = 'RECEIPT' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & 0 & " and register_YEARid = " & YearId)
             If dt.Rows.Count > 0 Then
                 cmbregister.Text = dt.Rows(0).Item(0).ToString
             End If
@@ -1808,7 +1808,7 @@ LINE1:
                 If TEMPAUTOENTRY = False Then CLEAR()
                 cmbregister.Text = UCase(cmbregister.Text)
                 Dim clscommon As New ClsCommon
-                Dim dt As DataTable = clscommon.SEARCH(" register_abbr, register_initials, register_id, ISNULL(ACC_CMPNAME,'') AS NAME ", "", " RegisterMaster LEFT OUTER JOIN LEDGERS ON REGISTER_LEDGERID = ACC_ID ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'COMMISSIONRECEIPT' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & 0 & " and register_YEARid = " & YearId)
+                Dim dt As DataTable = clscommon.SEARCH(" register_abbr, register_initials, register_id, ISNULL(ACC_CMPNAME,'') AS NAME ", "", " RegisterMaster LEFT OUTER JOIN LEDGERS ON REGISTER_LEDGERID = ACC_ID ", " and register_name ='" & cmbregister.Text.Trim & "' and register_type = 'RECEIPT' and register_cmpid = " & CmpId & " and register_LOCATIONid = " & 0 & " and register_YEARid = " & YearId)
                 If dt.Rows.Count > 0 Then
                     recregabbr = dt.Rows(0).Item(0).ToString
                     recreginitial = dt.Rows(0).Item(1).ToString
