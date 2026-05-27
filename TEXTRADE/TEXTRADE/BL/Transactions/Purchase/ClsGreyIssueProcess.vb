@@ -85,6 +85,8 @@ Public Class ClsGreyIssueProcess
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMT", alParaval(I)))
@@ -110,6 +112,12 @@ Public Class ClsGreyIssueProcess
                 .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@REFNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
                 I = I + 1
 
             End With
@@ -190,6 +198,8 @@ Public Class ClsGreyIssueProcess
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@RATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AMT", alParaval(I)))
@@ -215,6 +225,12 @@ Public Class ClsGreyIssueProcess
                 .Add(New SqlClient.SqlParameter("@REFLOTNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ORDERNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@REFNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
                 I = I + 1
 
 

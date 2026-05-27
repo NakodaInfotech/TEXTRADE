@@ -88,12 +88,14 @@ Public Class SelectGreyTransport
             DT.Columns.Add("AGENT")
             DT.Columns.Add("CRDAYS")
             DT.Columns.Add("BARCODE")
+            DT.Columns.Add("WT")
+
 
 
 
             For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
                 Dim dtrow As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
-                DT.Rows.Add(dtrow("GREYRECNO"), dtrow("NAME"), dtrow("ITEMNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), Val(dtrow("PCS")), Val(dtrow("BALMTRS")), Val(dtrow("RATE")), dtrow("TRANSNAME"), dtrow("LRNO"), Convert.ToDateTime(dtrow("LRDATE")).Date, dtrow("TYPE"), Val(dtrow("GRIDSRNO")), dtrow("BALENO"), dtrow("UNIT"), dtrow("REMARKS"), dtrow("AGENT"), dtrow("CRDAYS"), dtrow("BARCODE"))
+                DT.Rows.Add(dtrow("GREYRECNO"), dtrow("NAME"), dtrow("ITEMNAME"), dtrow("DESIGNNO"), dtrow("COLOR"), Val(dtrow("PCS")), Val(dtrow("BALMTRS")), Val(dtrow("RATE")), dtrow("TRANSNAME"), dtrow("LRNO"), Convert.ToDateTime(dtrow("LRDATE")).Date, dtrow("TYPE"), Val(dtrow("GRIDSRNO")), dtrow("BALENO"), dtrow("UNIT"), dtrow("REMARKS"), dtrow("AGENT"), dtrow("CRDAYS"), dtrow("BARCODE"), Val(dtrow("WT")))
             Next
             Me.Close()
         Catch ex As Exception

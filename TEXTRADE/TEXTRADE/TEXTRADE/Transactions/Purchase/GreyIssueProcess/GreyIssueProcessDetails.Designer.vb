@@ -63,6 +63,7 @@ Partial Class GreyIssueProcessDetails
         Me.GAGENT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCRDAYS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREFLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.TOOLADDNEW = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
@@ -72,7 +73,9 @@ Partial Class GreyIssueProcessDetails
         Me.TOOLWHATSAPP = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREFNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GORDERNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -219,7 +222,7 @@ Partial Class GreyIssueProcessDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GLRNO, Me.GLRDATE, Me.GITEMNAME, Me.GQUALITY, Me.GBALENO, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GQTYUNIT, Me.GMTRS, Me.GOUTMTRS, Me.GBALMTRS, Me.GRATE, Me.GAMT, Me.GPURNAME, Me.GTRANSPORT, Me.GREMARKS, Me.GAGENT, Me.GCRDAYS, Me.GREFLOTNO, Me.GBARCODE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GLRNO, Me.GLRDATE, Me.GITEMNAME, Me.GQUALITY, Me.GBALENO, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GQTYUNIT, Me.GMTRS, Me.GWT, Me.GOUTMTRS, Me.GBALMTRS, Me.GRATE, Me.GAMT, Me.GPURNAME, Me.GTRANSPORT, Me.GREMARKS, Me.GAGENT, Me.GCRDAYS, Me.GREFLOTNO, Me.GORDERNO, Me.GREFNO, Me.GBARCODE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -370,7 +373,7 @@ Partial Class GreyIssueProcessDetails
         Me.GOUTMTRS.Name = "GOUTMTRS"
         Me.GOUTMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GOUTMTRS.Visible = True
-        Me.GOUTMTRS.VisibleIndex = 9
+        Me.GOUTMTRS.VisibleIndex = 10
         '
         'GBALMTRS
         '
@@ -381,7 +384,7 @@ Partial Class GreyIssueProcessDetails
         Me.GBALMTRS.Name = "GBALMTRS"
         Me.GBALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALMTRS.Visible = True
-        Me.GBALMTRS.VisibleIndex = 10
+        Me.GBALMTRS.VisibleIndex = 11
         '
         'GRATE
         '
@@ -389,7 +392,7 @@ Partial Class GreyIssueProcessDetails
         Me.GRATE.FieldName = "RATE"
         Me.GRATE.Name = "GRATE"
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 11
+        Me.GRATE.VisibleIndex = 12
         '
         'GAMT
         '
@@ -398,7 +401,7 @@ Partial Class GreyIssueProcessDetails
         Me.GAMT.Name = "GAMT"
         Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GAMT.Visible = True
-        Me.GAMT.VisibleIndex = 12
+        Me.GAMT.VisibleIndex = 13
         '
         'GPURNAME
         '
@@ -406,7 +409,7 @@ Partial Class GreyIssueProcessDetails
         Me.GPURNAME.FieldName = "PURNAME"
         Me.GPURNAME.Name = "GPURNAME"
         Me.GPURNAME.Visible = True
-        Me.GPURNAME.VisibleIndex = 13
+        Me.GPURNAME.VisibleIndex = 14
         Me.GPURNAME.Width = 200
         '
         'GTRANSPORT
@@ -415,7 +418,7 @@ Partial Class GreyIssueProcessDetails
         Me.GTRANSPORT.FieldName = "TRANSNAME"
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 14
+        Me.GTRANSPORT.VisibleIndex = 15
         Me.GTRANSPORT.Width = 200
         '
         'GREMARKS
@@ -424,7 +427,7 @@ Partial Class GreyIssueProcessDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 15
+        Me.GREMARKS.VisibleIndex = 16
         Me.GREMARKS.Width = 150
         '
         'GAGENT
@@ -433,7 +436,7 @@ Partial Class GreyIssueProcessDetails
         Me.GAGENT.FieldName = "AGENT"
         Me.GAGENT.Name = "GAGENT"
         Me.GAGENT.Visible = True
-        Me.GAGENT.VisibleIndex = 17
+        Me.GAGENT.VisibleIndex = 18
         '
         'GCRDAYS
         '
@@ -441,7 +444,7 @@ Partial Class GreyIssueProcessDetails
         Me.GCRDAYS.FieldName = "CRDAYS"
         Me.GCRDAYS.Name = "GCRDAYS"
         Me.GCRDAYS.Visible = True
-        Me.GCRDAYS.VisibleIndex = 16
+        Me.GCRDAYS.VisibleIndex = 17
         '
         'GREFLOTNO
         '
@@ -449,7 +452,16 @@ Partial Class GreyIssueProcessDetails
         Me.GREFLOTNO.FieldName = "REFLOTNO"
         Me.GREFLOTNO.Name = "GREFLOTNO"
         Me.GREFLOTNO.Visible = True
-        Me.GREFLOTNO.VisibleIndex = 18
+        Me.GREFLOTNO.VisibleIndex = 19
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 20
+        Me.GBARCODE.Width = 120
         '
         'ToolStrip1
         '
@@ -523,14 +535,34 @@ Partial Class GreyIssueProcessDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
-        'GBARCODE
+        'GREFNO
         '
-        Me.GBARCODE.Caption = "Barcode"
-        Me.GBARCODE.FieldName = "BARCODE"
-        Me.GBARCODE.Name = "GBARCODE"
-        Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 19
-        Me.GBARCODE.Width = 120
+        Me.GREFNO.Caption = "Ref No"
+        Me.GREFNO.FieldName = "REFNO"
+        Me.GREFNO.Name = "GREFNO"
+        Me.GREFNO.OptionsColumn.AllowEdit = False
+        Me.GREFNO.Visible = True
+        Me.GREFNO.VisibleIndex = 21
+        '
+        'GORDERNO
+        '
+        Me.GORDERNO.Caption = "Order No"
+        Me.GORDERNO.FieldName = "ORDERNO"
+        Me.GORDERNO.Name = "GORDERNO"
+        Me.GORDERNO.OptionsColumn.AllowEdit = False
+        Me.GORDERNO.Visible = True
+        Me.GORDERNO.VisibleIndex = 22
+        Me.GORDERNO.Width = 80
+        '
+        'GWT
+        '
+        Me.GWT.Caption = "WT"
+        Me.GWT.FieldName = "WT"
+        Me.GWT.Name = "GWT"
+        Me.GWT.OptionsColumn.AllowEdit = False
+        Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GWT.Visible = True
+        Me.GWT.VisibleIndex = 9
         '
         'GreyIssueProcessDetails
         '
@@ -601,4 +633,7 @@ Partial Class GreyIssueProcessDetails
     Friend WithEvents GAGENT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREFLOTNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GORDERNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class
