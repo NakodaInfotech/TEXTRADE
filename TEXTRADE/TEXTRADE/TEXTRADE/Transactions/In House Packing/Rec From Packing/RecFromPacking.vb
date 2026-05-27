@@ -2132,7 +2132,7 @@ LINE1:
                 CMBPER.TabStop = False
             End If
 
-            If ClientName = "REALCORPORATION" Or ClientName = "MMC" Then gdesc.HeaderText = "Bale No"
+            If ClientName = "REALCORPORATION" Or ClientName = "MMC" Or ClientName = "VINTAGE" Then gdesc.HeaderText = "Bale No"
 
             If ClientName = "RAJKRIPA" Then
                 CHKPRINTSERIES.Visible = True

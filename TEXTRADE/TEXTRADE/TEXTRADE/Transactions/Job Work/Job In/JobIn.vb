@@ -5193,7 +5193,7 @@ NEXTLINE:
 
     Private Sub CMBPCSNO_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBPCSNO.KeyDown
         Try
-            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC" Or ClientName = "SWPL") And e.KeyCode = Keys.F1 And CMBJONO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
+            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "VINTAGE") And e.KeyCode = Keys.F1 And CMBJONO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
                 Dim OBJSELECTPCS As New SelectPcsNoForMatRec
                 OBJSELECTPCS.DYEINGNAME = cmbname.Text.Trim
                 OBJSELECTPCS.LOTNO = CMBJONO.Text.Trim

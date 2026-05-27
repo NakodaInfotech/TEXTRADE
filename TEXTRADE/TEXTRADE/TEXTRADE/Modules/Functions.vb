@@ -10319,8 +10319,7 @@ line1:
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable
             If ClientName = "SWPL" Then
-
-                DT = OBJCMN.SEARCH("BALENO", "", "GREYBARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
+                DT = OBJCMN.SEARCH("*", "", " (SELECT BALENO FROM GREYBARCODESTOCK WHERE BALENO = '" & BALENO.Trim() & "' UNION ALL SELECT BALENO FROM OUTGREYBARCODESTOCK WHERE BALENO = '" & BALENO.Trim() & "'  ) AS T ", " ORDER BY T.BALENO")
             Else
                 DT = OBJCMN.SEARCH("BALENO", "", "GREYBARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
             End If
