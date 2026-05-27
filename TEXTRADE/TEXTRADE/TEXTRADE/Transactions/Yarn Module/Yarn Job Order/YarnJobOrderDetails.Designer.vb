@@ -108,7 +108,7 @@ Partial Class YarnJobOrderDetails
         'GSRNO
         '
         Me.GSRNO.Caption = "Sr. No."
-        Me.GSRNO.FieldName = "JOBNO"
+        Me.GSRNO.FieldName = "YJOB_NO"
         Me.GSRNO.Name = "GSRNO"
         Me.GSRNO.OptionsColumn.AllowEdit = False
         Me.GSRNO.Visible = True
