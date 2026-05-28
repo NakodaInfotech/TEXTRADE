@@ -8127,6 +8127,7 @@ DONE IN SHITAL
 DONE IN CHINTAN
 DONE IN MAFATLAL
 DONE IN MOOLTEX
+DONE IN SUPEEMA
 **************************************************************************************
 YARNRECD
 
@@ -8396,3 +8397,21 @@ DONE IN VINAYAK
 DONE IN AVIS
 DONE IN MMC
 DONE IN INDRAPUJA
+***********************************************************
+GREYISSUEPROCESS
+GREYISS_ORDERNO ------ varchar(50) 
+GREYISS_REFNO  ------ varchar(50) 
+GREYISS_TOTALWT  ------ float
+
+UPDATE GREYISSUEPROCESS SET GREYISS_ORDERNO = '',GREYISS_REFNO  = '',GREYISS_TOTALWT  =0
+
+GREYISSUEPROCESS_desc
+
+GREYISS_WT ------ float  MTRS KE NICHE IN BETWEEN
+
+UPDATE GREYISSUEPROCESS_desc SET GREYISS_WT = 0
+
+
+
+
+
