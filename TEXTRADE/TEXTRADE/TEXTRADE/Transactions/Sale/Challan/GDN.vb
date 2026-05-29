@@ -2564,6 +2564,12 @@ NEXTLINE:
                     TXTCONSIGNEE.TabStop = False
                 End If
 
+                If ClientName = "SOFTAS" Then
+                    GPARTYPONO.HeaderText = "Party Item"
+                    OPARTYPONO.HeaderText = "Party Item"
+                End If
+
+
                 CMBDESIGN.TabStop = False
                 CMBCOLOR.TabStop = False
                 TXTBALENO.TabStop = False
@@ -2806,7 +2812,7 @@ NEXTLINE:
                     Dim CCRATE As Double = 0
                     Dim CUT As Double = 0
 
-                    If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Or ClientName = "MASHOK" Or ClientName = "SWPL" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
+                    If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Or ClientName = "MASHOK" Or ClientName = "SWPL" Or ClientName = "APPLE" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
 
                     Dim OBJCMN As New ClsCommon
                     If ClientName = "CC" Or ClientName = "C3" Then

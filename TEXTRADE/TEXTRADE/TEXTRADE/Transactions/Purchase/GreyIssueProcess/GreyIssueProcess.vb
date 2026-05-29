@@ -73,6 +73,12 @@ Public Class GreyIssueProcess
         LBLTOTALBALES.Text = 0
         LBLTOTALQTY.Text = 0
         LBLTOTALAMT.Text = 0
+        LBLTOTALWT.Text = 0
+
+
+        TXTORDERNO.Clear()
+        TXTREFNO.Clear()
+
 
     End Sub
 
@@ -81,6 +87,8 @@ Public Class GreyIssueProcess
             LBLTOTALMTRS.Text = 0.0
             LBLTOTALQTY.Text = 0.0
             LBLTOTALAMT.Text = 0.0
+            LBLTOTALWT.Text = 0.0
+
 
             For Each ROW As DataGridViewRow In GRIDISSUE.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
@@ -88,6 +96,8 @@ Public Class GreyIssueProcess
                     LBLTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text) + Val(ROW.Cells(GMTRS.Index).EditedFormattedValue), "0.00")
                     If ROW.Cells(GRATE.Index).EditedFormattedValue > 0 Then ROW.Cells(GAMT.Index).Value = Format(Val(ROW.Cells(GMTRS.Index).EditedFormattedValue) * Val(ROW.Cells(GRATE.Index).EditedFormattedValue), "0.00")
                     LBLTOTALAMT.Text = Format(Val(LBLTOTALAMT.Text) + Val(ROW.Cells(GAMT.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
+
                 End If
             Next
             BALECOUNT()
@@ -291,6 +301,7 @@ Public Class GreyIssueProcess
             Dim QTY As String = ""
             Dim qtyunit As String = ""
             Dim MTRS As String = ""
+            Dim WT As String = ""
             Dim RATE As String = ""
             Dim AMOUNT As String = ""
             Dim OUTPCS As String = ""
@@ -312,6 +323,7 @@ Public Class GreyIssueProcess
                         QTY = Val(row.Cells(gQty.Index).Value)
                         qtyunit = row.Cells(gqtyunit.Index).Value.ToString
                         MTRS = Val(row.Cells(GMTRS.Index).Value)
+                        WT = Val(row.Cells(GWT.Index).Value)
                         RATE = Val(row.Cells(GRATE.Index).Value)
                         AMOUNT = Val(row.Cells(GAMT.Index).Value)
                         OUTPCS = Val(row.Cells(GOUTPCS.Index).Value)
@@ -331,6 +343,7 @@ Public Class GreyIssueProcess
                         QTY = QTY & "|" & Val(row.Cells(gQty.Index).Value)
                         qtyunit = qtyunit & "|" & row.Cells(gqtyunit.Index).Value
                         MTRS = MTRS & "|" & Val(row.Cells(GMTRS.Index).Value)
+                        WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
                         RATE = RATE & "|" & Val(row.Cells(GRATE.Index).Value)
                         AMOUNT = AMOUNT & "|" & Val(row.Cells(GAMT.Index).Value)
                         OUTPCS = OUTPCS & "|" & Val(row.Cells(GOUTPCS.Index).Value)
@@ -353,6 +366,7 @@ Public Class GreyIssueProcess
             alParaval.Add(QTY)
             alParaval.Add(qtyunit)
             alParaval.Add(MTRS)
+            alParaval.Add(WT)
             alParaval.Add(RATE)
             alParaval.Add(AMOUNT)
             alParaval.Add(OUTPCS)
@@ -367,6 +381,12 @@ Public Class GreyIssueProcess
             alParaval.Add(TXTREFLOTNO.Text.Trim)
 
             alParaval.Add(CMBGODOWN.Text.Trim)
+
+            alParaval.Add(TXTORDERNO.Text.Trim)
+            alParaval.Add(TXTREFNO.Text.Trim)
+            alParaval.Add(LBLTOTALWT.Text.Trim)
+
+
 
             Dim OBJGREYISS As New ClsGreyIssueProcess()
             OBJGREYISS.alParaval = alParaval
@@ -482,9 +502,12 @@ Public Class GreyIssueProcess
                         TXTCRDAYS.Text = dr("CRDAYS").ToString
                         TXTREFLOTNO.Text = dr("REFLOTNO")
                         CMBGODOWN.Text = dr("GODOWN")
+                        TXTORDERNO.Text = dr("ORDERNO")
+                        TXTREFNO.Text = dr("REFNO")
+
 
                         'Item Grid
-                        GRIDISSUE.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("RATE"), "0.00"), Format(dr("AMOUNT"), "0.00"), Val(dr("OUTPCS")), Val(dr("OUTMTRS")), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"), dr("BARCODE"))
+                        GRIDISSUE.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("BALENO").ToString, dr("DESIGNNO").ToString, dr("COLOR"), Format(dr("qty"), "0.00"), dr("QTYUNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("RATE"), "0.00"), Format(dr("AMOUNT"), "0.00"), Val(dr("OUTPCS")), Val(dr("OUTMTRS")), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"), dr("BARCODE"))
 
                         If Val(dr("OUTMTRS")) > 0 Then
                             GRIDISSUE.Rows(GRIDISSUE.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
@@ -615,7 +638,7 @@ Public Class GreyIssueProcess
                     Next
 
 
-                    GRIDISSUE.Rows.Add(0, DTROW("ITEMNAME"), "", DTROW("BALENO"), DTROW("DESIGNNO"), DTROW("COLOR"), Val(DTROW("PCS")), DTROW("UNIT"), Val(DTROW("MTRS")), Val(DTROW("RATE")), 0, 0, 0, DTROW("GREYRECNO"), DTROW("GRIDSRNO"), DTROW("TYPE"), DTROW("BARCODE"))
+                    GRIDISSUE.Rows.Add(0, DTROW("ITEMNAME"), "", DTROW("BALENO"), DTROW("DESIGNNO"), DTROW("COLOR"), Val(DTROW("PCS")), DTROW("UNIT"), Val(DTROW("MTRS")), Val(DTROW("WT")), Val(DTROW("RATE")), 0, 0, 0, DTROW("GREYRECNO"), DTROW("GRIDSRNO"), DTROW("TYPE"), DTROW("BARCODE"))
 
 NEXTLINE:
                 Next

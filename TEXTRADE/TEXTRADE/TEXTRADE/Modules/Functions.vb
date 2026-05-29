@@ -4293,7 +4293,7 @@ PRINT 1,1")
 
                 oWrite.WriteLine("1911A1400740009WIDTH")
                 'IF PRINTSERIES IS CHECKED THEN WE NEED TO PRINT PARTY ITEMNAME, WHICH IS FETCHED IN BALENO COLUMN
-                If TEMPHEADER = "PRINTSERIES" Then oWrite.WriteLine("1911C2401530009" & BALENO) Else oWrite.WriteLine("1911C2401530009" & ITEMNAME)
+                If TEMPHEADER = "PRINTSERIES" And BALENO <> "" Then oWrite.WriteLine("1911C2401530009" & BALENO) Else oWrite.WriteLine("1911C2401530009" & ITEMNAME)
 
                 'If GRIDDESC <> "" Then oWrite.WriteLine("1911C2401530009" & GRIDDESC) Else oWrite.WriteLine("1911C2401530009" & ITEMNAME)
 
@@ -10317,7 +10317,13 @@ line1:
         Dim bln As Boolean = True
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("BALENO", "", "GREYBARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
+            Dim DT As DataTable
+            If ClientName = "SWPL" Then
+                DT = OBJCMN.SEARCH("*", "", " (SELECT BALENO FROM GREYBARCODESTOCK WHERE BALENO = '" & BALENO.Trim() & "' UNION ALL SELECT BALENO FROM OUTGREYBARCODESTOCK WHERE BALENO = '" & BALENO.Trim() & "'  ) AS T ", " ORDER BY T.BALENO")
+            Else
+                DT = OBJCMN.SEARCH("BALENO", "", "GREYBARCODESTOCK", " AND BALENO = '" & BALENO.Trim() & "' And YEARID = " & YearId)
+            End If
+
             If DT.Rows.Count > 0 Then bln = False
         Catch ex As Exception
             Throw ex

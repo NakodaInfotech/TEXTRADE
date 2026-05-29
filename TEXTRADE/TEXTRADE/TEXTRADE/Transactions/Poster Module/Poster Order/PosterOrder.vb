@@ -248,7 +248,7 @@ Public Class PosterOrder
                 MessageBox.Show("Details Updated")
             End If
 
-            'If MsgBox("Wish to Print Order?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then PRINTREPORT()
+            PRINTREPORT()
 
 
             EDIT = False

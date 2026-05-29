@@ -1694,7 +1694,7 @@ LINE1:
             TXTCHNO.Visible = True
         End If
 
-        If ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "VALIANT" Or ClientName = "MILUXE" Then
+        If ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "VALIANT" Or ClientName = "MILUXE" Or ClientName = "VINTAGEINDIA" Then
             LBLNAME.Visible = True
             CMBNAME.Visible = True
         End If

@@ -23,6 +23,12 @@ Public Class ReprintGrey
 
 
             For Each ROW As DataGridViewRow In GRIDREPRINT.Rows
+
+
+                If ClientName = "SWPL" Then
+                    If ROW.Cells(GSHADE.Index).Value = "" Then TEMPHEADER = "GREYWITHOUTCOLOR" Else TEMPHEADER = "GREY"
+                End If
+
                 For I As Integer = 1 To Val(txtcopies.Text.Trim)
                     BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, ROW.Cells(GUNIT.Index).Value, "", ROW.Cells(GBALENO.Index).Value, "", Val(ROW.Cells(GMTRS.Index).Value), Val((ROW.Cells(GQTY.Index).Value)), 0, ROW.Cells(GRACK.Index).Value, TEMPHEADER, "", 0, "", "", ROW.Cells(GSHELF.Index).Value, ROW.Cells(GGREYDATE.Index).Value)
                 Next

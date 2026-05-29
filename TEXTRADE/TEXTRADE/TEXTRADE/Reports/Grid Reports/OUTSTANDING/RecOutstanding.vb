@@ -2397,9 +2397,15 @@ line1:
 
             Else
                 If MsgBox(" It Will Take Time .... Wish to Print in Excel?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-                    ' Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
-                    ExportDataGridViewToExcel(ClientName, CmpId, YearId)
-                    ' Exit Sub
+                    If ClientName = "AVIS" Then
+                        TEMPOUTSTANDING()
+                        Dim OBJRPT As New clsReportDesigner("Outstanding Report", System.AppDomain.CurrentDomain.BaseDirectory & "Outstanding Report.xlsx", 2)
+                        OBJRPT.OUTSTANDIGEXCEL(ClientName, CmpId, YearId)
+                        Exit Sub
+                    Else
+                        ExportDataGridViewToExcel(ClientName, CmpId, YearId)
+                    End If
+                    ' 
                 End If
             End If
 

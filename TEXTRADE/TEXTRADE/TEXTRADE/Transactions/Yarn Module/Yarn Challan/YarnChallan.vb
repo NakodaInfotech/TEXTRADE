@@ -44,6 +44,8 @@ Public Class YarnChallan
         txtqty.Clear()
         TXTWT.Clear()
         TXTCONES.Clear()
+        TXTBALENOFROM.Clear()
+
         GRIDYARN.RowCount = 0
         GRIDORDER.RowCount = 0
 
@@ -110,6 +112,8 @@ Public Class YarnChallan
         Try
             Dim bln As Boolean = True
 
+
+
             If CMBNAME.Text.Trim.Length = 0 Then
                 EP.SetError(CMBNAME, " Please Fill Company Name ")
                 bln = False
@@ -130,6 +134,11 @@ Public Class YarnChallan
                 bln = False
             End If
 
+            If Val(TXTBALENOFROM.Text.Trim) = 0 Then TXTBALENOFROM.Text = 1
+            If Val(TXTBALENOFROM.Text.Trim) = 0 Then
+                EP.SetError(TXTBALENOFROM, " Enter No of Bales")
+                bln = False
+            End If
 
             'FOR ORDER CHECKING, FIRST REMOVE GDNQTY
             Dim TEMPORDERROWNO As Integer = -1
@@ -234,6 +243,7 @@ CHECKNEXTLINE:
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
+            alParaval.Add(TXTBALENOFROM.Text.Trim)
 
 
             Dim gridsrno As String = ""
@@ -472,6 +482,7 @@ CHECKNEXTLINE:
                         CMBTRANSPORT.Text = dr("TRANSNAME").ToString
                         TXTREFNO.Text = dr("REFNO").ToString
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
+                        TXTBALENOFROM.Text = Val(dr("NOOFBALES"))
 
                         GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNQUALITY"), dr("MILLNAME"), dr("DESIGNNO"), dr("COLOR"), dr("LOTNO"), Format(dr("qty"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("BARCODE"), Val(dr("FROMNO")), Val(dr("FROMSRNO")), dr("FROMTYPE"))
 
@@ -1236,5 +1247,13 @@ LINE1:
             TXTBARCODE.Visible = True
             LBLBARCODE.Visible = True
         End If
+    End Sub
+
+    Private Sub TXTBALENOFROM_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTBALENOFROM.KeyPress
+        Try
+            numkeypress(e, sender, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

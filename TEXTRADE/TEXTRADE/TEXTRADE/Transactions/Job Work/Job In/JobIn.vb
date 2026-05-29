@@ -3418,7 +3418,10 @@ NEXTLINE:
             GRIDJOBIN.FirstDisplayedScrollingRowIndex = GRIDJOBIN.RowCount - 1
 
             txtsrno.Text = GRIDJOBIN.RowCount + 1
-            If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
+            If ClientName = "SOFTAS" Then
+                CMBQUALITY.Text = ""
+                TXTCUT.Clear()
+            End If
 
             If ClientName = "MAHAJAN" Then
                 TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
@@ -5190,7 +5193,7 @@ NEXTLINE:
 
     Private Sub CMBPCSNO_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBPCSNO.KeyDown
         Try
-            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC" Or ClientName = "SWPL") And e.KeyCode = Keys.F1 And CMBJONO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
+            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "VINTAGEINDIA") And e.KeyCode = Keys.F1 And CMBJONO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
                 Dim OBJSELECTPCS As New SelectPcsNoForMatRec
                 OBJSELECTPCS.DYEINGNAME = cmbname.Text.Trim
                 OBJSELECTPCS.LOTNO = CMBJONO.Text.Trim
