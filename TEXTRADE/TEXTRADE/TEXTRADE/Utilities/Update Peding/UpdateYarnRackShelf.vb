@@ -704,10 +704,10 @@ NEXTLINE:
             If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
                 If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
 
-                Dim OBJSTOCK As New SelectStockGDNGrid
+                Dim OBJSTOCK As New SelectYarnStock
                 ' OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
                 OBJSTOCK.ShowDialog()
-                Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                Dim DTBARCODE As DataTable = OBJSTOCK.DT
                 For Each DTROW As DataRow In DTBARCODE.Rows
                     TXTBARCODE.Text = DTROW("BARCODE")
                     TXTBARCODE_Validated(sender, e)
