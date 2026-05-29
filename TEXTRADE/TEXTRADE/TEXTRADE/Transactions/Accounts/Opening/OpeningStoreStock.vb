@@ -57,6 +57,8 @@ Public Class OpeningStoreStock
 
     Sub FILLCMB()
         FILLSTOREITEMNAME(CMBITEMNAME)
+        If CMBGODOWN.Text.Trim = "" Then fillGODOWN(CMBGODOWN, edit)
+
     End Sub
 
     Sub FILLGRID()

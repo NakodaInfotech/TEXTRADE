@@ -119,6 +119,7 @@ Partial Class OutstandingFilter
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.GCD = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BlendPanel2.SuspendLayout()
         CType(Me.GBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -591,7 +592,7 @@ Partial Class OutstandingFilter
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GPARTYWHATSAPP, Me.GAGENT, Me.GAGENTWHATSAPP, Me.GUNDER, Me.GCITY, Me.GAREA, Me.GSTATE, Me.GSALESPERSON, Me.GGOC, Me.GAGENTEMAIL, Me.GPARTYEMAIL})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GNAME, Me.GPARTYWHATSAPP, Me.GAGENT, Me.GAGENTWHATSAPP, Me.GUNDER, Me.GCITY, Me.GAREA, Me.GSTATE, Me.GSALESPERSON, Me.GGOC, Me.GAGENTEMAIL, Me.GPARTYEMAIL, Me.GCD})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -1239,6 +1240,15 @@ Partial Class OutstandingFilter
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'GCD
+        '
+        Me.GCD.Caption = "CD"
+        Me.GCD.FieldName = "CD"
+        Me.GCD.Name = "GCD"
+        Me.GCD.OptionsColumn.AllowEdit = False
+        Me.GCD.Visible = True
+        Me.GCD.VisibleIndex = 9
+        '
         'OutstandingFilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1370,4 +1380,5 @@ Partial Class OutstandingFilter
     Friend WithEvents GAGENTEMAIL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYEMAIL As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKCOMPLAINT As CheckBox
+    Friend WithEvents GCD As DevExpress.XtraGrid.Columns.GridColumn
 End Class
