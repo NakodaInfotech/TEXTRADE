@@ -1834,10 +1834,9 @@ LINE1:
                 If MsgBox("Wish to Print Label?", MsgBoxStyle.YesNo) = vbYes Then PRINTBARCODE()
             End If
 
-
             If MsgBox("Wish to Print Challan?", MsgBoxStyle.YesNo) = vbYes Then
-
                 Dim OBJGDN As New GDNDESIGN
+                If ClientName = "VINTAGEINDIA" AndAlso MsgBox("Print Challan for Job Work?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.JOBWORKLABEL = True
                 OBJGDN.MdiParent = MDIMain
                 OBJGDN.FRMSTRING = "GDN"
                 OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(GDNNO) & " and {GDN.GDN_yearid}=" & YearId
@@ -2398,6 +2397,12 @@ NEXTLINE:
 
     Private Sub GDN_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
         Try
+            If ClientName <> "SVS" Then
+                GQUALITY.Visible = False
+                GITEMNAME.Visible = True
+                GCUT.Visible = True
+            End If
+
             If ClientName = "AXIS" Then GDESIGN.HeaderText = "Design/Size"
             If ClientName = "AKASHDEEP" Then TXTSTOCK.Visible = True
             If ClientName = "KARAN" Then
@@ -2407,8 +2412,13 @@ NEXTLINE:
 
             If ClientName = "MASHOK" Then
                 GBALENO.HeaderText = "Coil No"
-                GDESIGN.HeaderText = "Coil Width"
-                GPIECETYPE.HeaderText = "Coil Type"
+                GDESIGN.HeaderText = "Size"
+                GPIECETYPE.HeaderText = "Type"
+                GQUALITY.HeaderText = "Make"
+                Gmtrs.HeaderText = "Kgs"
+                GSHADE.HeaderText = "Finish"
+                GQUALITY.Visible = True
+                cmdselectOrder.Visible = False
             End If
 
 
@@ -2427,11 +2437,7 @@ NEXTLINE:
                 CMBKPL.Visible = True
             End If
 
-            If ClientName <> "SVS" Then
-                GQUALITY.Visible = False
-                GITEMNAME.Visible = True
-                GCUT.Visible = True
-            End If
+
 
             If ClientName = "AVIS" Then
                 LBLCITY.Text = "Delivery To"
@@ -2557,6 +2563,12 @@ NEXTLINE:
                     txttransref.TabStop = False
                     TXTCONSIGNEE.TabStop = False
                 End If
+
+                If ClientName = "SOFTAS" Then
+                    GPARTYPONO.HeaderText = "Party Item"
+                    OPARTYPONO.HeaderText = "Party Item"
+                End If
+
 
                 CMBDESIGN.TabStop = False
                 CMBCOLOR.TabStop = False
@@ -2800,7 +2812,7 @@ NEXTLINE:
                     Dim CCRATE As Double = 0
                     Dim CUT As Double = 0
 
-                    If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Or ClientName = "MASHOK" Or ClientName = "SWPL" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
+                    If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Or ClientName = "MASHOK" Or ClientName = "SWPL" Or ClientName = "APPLE" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
 
                     Dim OBJCMN As New ClsCommon
                     If ClientName = "CC" Or ClientName = "C3" Then

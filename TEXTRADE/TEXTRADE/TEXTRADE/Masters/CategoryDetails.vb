@@ -61,8 +61,6 @@ Public Class CategoryDetails
                 Me.Text = "Cost Center Details"
             ElseIf FRMSTRING = "WEAVE" Then
                 Me.Text = "Weave Details"
-            ElseIf FRMSTRING = "LOOM" Then
-                Me.Text = "Loom Details"
             End If
             fillgrid()
         Catch ex As Exception
@@ -108,8 +106,6 @@ Public Class CategoryDetails
             dttable = objClsCommon.search(" COSTCENTER_name AS NAME, COSTCENTER_id AS ID", "", "COSTCENTERmaster", " and COSTCENTER_Yearid = " & YearId & " ORDER BY COSTCENTER_NAME")
         ElseIf frmstring = "WEAVE" Then
             dttable = objClsCommon.search(" WEAVE_name AS NAME, WEAVE_id AS ID", "", "WEAVEMASTER", " and WEAVE_yearid = " & YearId & " ORDER BY WEAVE_name")
-        ElseIf frmstring = "LOOM" Then
-            dttable = objClsCommon.search(" LOOM_name AS NAME, LOOM_id AS ID", "", "LOOMMASTER", " and LOOM_yearid = " & YearId & " ORDER BY LOOM_name")
         End If
 
         gridname.DataSource = dttable

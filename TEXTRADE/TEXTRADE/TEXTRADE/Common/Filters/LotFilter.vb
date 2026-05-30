@@ -11,7 +11,11 @@ Public Class LotFilter
 
     Private Sub CMBJOBBER_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMBJOBBER.Enter
         Try
-            If CMBJOBBER.Text.Trim = "" Then fillname(CMBJOBBER, edit, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
+            If ClientName = "VINTAGEINDIA" Then
+                If CMBJOBBER.Text.Trim = "" Then FILLNAME(CMBJOBBER, edit, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') and ACC_TYPE = 'ACCOUNTS'")
+            Else
+                If CMBJOBBER.Text.Trim = "" Then FILLNAME(CMBJOBBER, edit, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -19,7 +23,12 @@ Public Class LotFilter
 
     Private Sub CMBJOBBER_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBJOBBER.Validating
         Try
-            If CMBJOBBER.Text.Trim <> "" Then namevalidate(CMBJOBBER, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry Creditors", "ACCOUNTS")
+            If ClientName = "VINTAGEINDIA" Then
+                If CMBJOBBER.Text.Trim <> "" Then NAMEVALIDATE(CMBJOBBER, CMBCODE, e, Me, txtadd, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS")
+            Else
+                If CMBJOBBER.Text.Trim <> "" Then NAMEVALIDATE(CMBJOBBER, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry Creditors", "ACCOUNTS")
+
+            End If
         Catch ex As Exception
             Throw ex
         End Try

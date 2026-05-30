@@ -3,7 +3,7 @@ Imports BL
 
 Public Class SelectStockGDNGrid
 
-    Public FRMSTRING As String = ""
+    Public FRMSTRING As String
     Public WHERECLAUSE As String = ""
     Public DTBARCODE As New DataTable
 
@@ -89,6 +89,16 @@ Public Class SelectStockGDNGrid
             gridbill.FocusedColumn = gridbill.Columns("BALENO")
             gridbill.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle
             gridbill.ShowEditor()
+
+
+            If ClientName = "MASHOK" Then
+                GBALENO.Caption = "Coil No"
+                GDESIGNNO.Caption = "Size"
+                GTOTALMTRS.Caption = "Kgs"
+                GPIECETYPE.Caption = "Type"
+                GQUALITY.Caption = "Make"
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try

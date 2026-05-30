@@ -1,4 +1,4 @@
-﻿
+﻿Imports System.IO
 Imports BL
 Imports System.Windows.Forms
 Imports DevExpress.XtraGrid.Views.Grid
@@ -325,6 +325,49 @@ Public Class GRNDetails
         End Try
     End Sub
 
+    Private Sub CMDSAVELAYOUT_Click(sender As Object, e As EventArgs) Handles CMDSAVELAYOUT.Click
+        Try
+            Dim layoutFileName As String = $"{Me.Name}"
+            Dim layoutPath As String = System.IO.Path.Combine(Application.StartupPath, layoutFileName)
+            gridbill.SaveLayoutToXml(layoutPath)
+            'MessageBox.Show("Layout saved as: " & layoutFileName)
+
+
+
+
+            ' Prompt user for filename
+            Dim userFileName As String = InputBox("Enter a name for the layout file (without extension):", "Save Layout", Me.Name)
+
+            ' Exit if the user cancels or enters nothing
+            If String.IsNullOrWhiteSpace(userFileName) Then
+                MessageBox.Show("Save cancelled.")
+                Exit Sub
+            End If
+
+            ' Add .xml extension and construct path
+            Dim FileName As String = $"{userFileName}.xml"
+
+            ' Save layout to file
+            gridbill.SaveLayoutToXml(layoutPath)
+            MessageBox.Show("Layout saved as: " & FileName)
+
+            ' Read file content
+            Dim xmlContent As String = File.ReadAllText(layoutPath)
+
+
+
+            Dim OBJSELECTSG As New SelectCustomLayout
+            OBJSELECTSG.FORMNAMES = layoutFileName
+            OBJSELECTSG.FILENAME = FileName
+            OBJSELECTSG.FILES = xmlContent
+            OBJSELECTSG.ShowDialog()
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
             'IF WE HAVE SELECTED FROM AND TO THEN WORK WITH THE CURRENT CODE ELSE GO FOR SELECTED ENTRIES CODE
@@ -367,6 +410,15 @@ Public Class GRNDetails
                 GCHALLANDATE.VisibleIndex = GLOTNO.VisibleIndex + 1
                 GCHALLANDATE.Caption = "Lot Date"
             End If
+
+            If ClientName = "MASHOK" Then
+                GBALENO.Caption = "Coil No"
+                GDESIGNNO.Caption = "Size"
+                GPIECETYPE.Caption = "Type"
+                GQUALITY.Caption = "Make"
+                GMTRS.Caption = "Kgs"
+            End If
+
             If ClientName = "SNCM" And cmbtype.Text.Trim = "Job Work" Then Me.Text = "Grey Iss To Process Details"
             If ClientName <> "SNCM" Then
                 GREFLOTNO.Visible = False

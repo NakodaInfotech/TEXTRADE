@@ -382,7 +382,7 @@ Public Class YarnIssue
                         PSHADE = row.Cells(GPSHADE.Index).Value.ToString
                         LOTNO = row.Cells(GLOTNO.Index).Value.ToString
                         qty = row.Cells(GQTY.Index).Value.ToString
-                        WT = row.Cells(GWT.Index).Value
+                        WT = Val(row.Cells(GWT.Index).Value)
                         CONES = row.Cells(GCONES.Index).Value.ToString
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         If row.Cells(GLRDATE.Index).Value <> "" Then LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = Format(Now.Date, "MM/dd/yyyy")
@@ -403,7 +403,7 @@ Public Class YarnIssue
                         PSHADE = PSHADE & "|" & row.Cells(GPSHADE.Index).Value.ToString
                         LOTNO = LOTNO & "|" & row.Cells(GLOTNO.Index).Value.ToString
                         qty = qty & "|" & row.Cells(GQTY.Index).Value
-                        WT = WT & "|" & row.Cells(GWT.Index).Value
+                        WT = WT & "|" & Val(row.Cells(GWT.Index).Value)
                         CONES = CONES & "|" & row.Cells(GCONES.Index).Value
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         If row.Cells(GLRDATE.Index).Value <> "" Then LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy") Else LRDATE = LRDATE & "|" & Format(Now.Date, "MM/dd/yyyy")

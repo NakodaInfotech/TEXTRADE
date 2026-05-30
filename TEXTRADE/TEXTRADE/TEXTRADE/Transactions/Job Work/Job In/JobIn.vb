@@ -171,7 +171,7 @@ Public Class JobIn
 
             For Each ROW As DataGridViewRow In GRIDJOBIN.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
-                    If ROW.Cells(gcut.Index).EditedFormattedValue > 0 Then ROW.Cells(GMTRS.Index).Value = ROW.Cells(gQty.Index).EditedFormattedValue * ROW.Cells(gcut.Index).EditedFormattedValue
+                    If ROW.Cells(gcut.Index).EditedFormattedValue > 0 And ClientName <> "VALIANT" Then ROW.Cells(GMTRS.Index).Value = ROW.Cells(gQty.Index).EditedFormattedValue * ROW.Cells(gcut.Index).EditedFormattedValue
                     LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
                     LBLTOTALQTY.Text = Format(Val(LBLTOTALQTY.Text) + Val(ROW.Cells(gQty.Index).EditedFormattedValue), "0")
                     LBLTOTALJOMTRS.Text = Format(Val(LBLTOTALJOMTRS.Text) + Val(ROW.Cells(GJOMTRS.Index).EditedFormattedValue), "0.00")
@@ -3418,7 +3418,10 @@ NEXTLINE:
             GRIDJOBIN.FirstDisplayedScrollingRowIndex = GRIDJOBIN.RowCount - 1
 
             txtsrno.Text = GRIDJOBIN.RowCount + 1
-            If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
+            If ClientName = "SOFTAS" Then
+                CMBQUALITY.Text = ""
+                TXTCUT.Clear()
+            End If
 
             If ClientName = "MAHAJAN" Then
                 TXTBALENO.Text = Val(TXTBALENO.Text.Trim) + 1
@@ -5190,7 +5193,7 @@ NEXTLINE:
 
     Private Sub CMBPCSNO_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBPCSNO.KeyDown
         Try
-            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC" Or ClientName = "SWPL") And e.KeyCode = Keys.F1 And CMBJONO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
+            If (ClientName = "VALIANT" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "KARAN" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "VINTAGEINDIA") And e.KeyCode = Keys.F1 And CMBJONO.Text.Trim <> "" And cmbname.Text.Trim <> "" Then
                 Dim OBJSELECTPCS As New SelectPcsNoForMatRec
                 OBJSELECTPCS.DYEINGNAME = cmbname.Text.Trim
                 OBJSELECTPCS.LOTNO = CMBJONO.Text.Trim

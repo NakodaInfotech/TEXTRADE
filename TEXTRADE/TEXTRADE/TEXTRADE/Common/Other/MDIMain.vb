@@ -2,7 +2,6 @@
 Imports BL
 Imports WAProAPI
 Imports System.IO.Compression
-Imports DevExpress.XtraEditors
 
 Public Class MDIMain
 
@@ -2884,7 +2883,7 @@ Public Class MDIMain
         Try
             Dim OBJGRN As New GRN
             OBJGRN.MdiParent = Me
-            If ClientName = "CC" Or ClientName = "C3" Or ClientName = "KREEVE" Or ClientName = "PURPLE" Or ClientName = "INDRANI" Or ClientName = "GELATO" Or ClientName = "NVAHAN" Or ClientName = "SAKARIA" Or ClientName = "MANIBHADRA" Or ClientName = "TCOT" Or ClientName = "MOMAI" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then OBJGRN.FRMSTRING = "GRN FANCY" Else OBJGRN.FRMSTRING = "GRNJOB"
+            If ClientName = "CC" Or ClientName = "C3" Or ClientName = "KREEVE" Or ClientName = "PURPLE" Or ClientName = "MASHOK" Or ClientName = "GELATO" Or ClientName = "NVAHAN" Or ClientName = "SAKARIA" Or ClientName = "MANIBHADRA" Or ClientName = "TCOT" Or ClientName = "MOMAI" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then OBJGRN.FRMSTRING = "GRN FANCY" Else OBJGRN.FRMSTRING = "GRNJOB"
             OBJGRN.Show()
         Catch ex As Exception
             Throw ex
@@ -5259,7 +5258,10 @@ SKIPLINE:
             If ClientName = "KOTHARI" Then SAMPLENOTE_MASTER.Visible = True
             If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then PRICELIST_MASTER.ShortcutKeys = Keys.Alt Or Keys.Control Or Keys.L
             If ClientName = "YASHVI" Then STOCKADJUSTMENT_MASTER.Text = "Item Correction"
-            If ClientName = "MANIBHADRA" Or ClientName = "GELATO" Or ClientName = "INDRANI" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "KREEVE" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then GRNGREY_TOOL.Text = "Finish Inward"
+            If ClientName = "MANIBHADRA" Or ClientName = "GELATO" Or ClientName = "MASHOK" Or ClientName = "MNIKHIL" Or ClientName = "HRITI" Or ClientName = "KREEVE" Or ClientName = "MVIKASKUMAR" Or ClientName = "KRFABRICS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "BALAJI" Or ClientName = "CHINTAN" Or ClientName = "SSC" Or ClientName = "SST" Or ClientName = "MBB" Or ClientName = "VINIT" Or ClientName = "MANISH" Or ClientName = "TINUMINU" Or ClientName = "RADHA" Or ClientName = "VINTAGEINDIA" Or ClientName = "BIGAPPLE" Or HIDEGREY = True Then GRNGREY_TOOL.Text = "Finish Inward"
+
+            If ClientName = "SAKARIA" Then CHQENTRIES_MASTER.Visible = True
+
 
             If ClientName <> "INDRANI" Then SOREPORT_MASTER.Visible = False
 
@@ -5639,26 +5641,6 @@ SKIPLINE:
             Dim OBJREC As New RecOutstanding
             OBJREC.MdiParent = Me
             OBJREC.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub DAILYGREYSTOCKADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            Dim OBJGSTOCK As New DailyGreyStock
-            OBJGSTOCK.MdiParent = Me
-            OBJGSTOCK.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub DAILYGREYSTOCKEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Try
-            Dim OBJGSTOCK As New DailyGreyStockDetails
-            OBJGSTOCK.MdiParent = Me
-            OBJGSTOCK.Show()
         Catch ex As Exception
             Throw ex
         End Try
@@ -8391,17 +8373,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AUTODISCOUNT_MASTER_Click(sender As Object, e As EventArgs) Handles AUTODISCOUNT_MASTER.Click
-        Try
-            If InputBox("Enter Master Password") <> "Infosys@123" Then Exit Sub
-            Dim OBJDISC As New AutoDiscount
-            OBJDISC.MdiParent = Me
-            OBJDISC.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub IncentiveDetails_Click(sender As Object, e As EventArgs) Handles IncentiveDetails.Click
         Try
             Dim objincentive As New EmbIncentiveDetails
@@ -10423,16 +10394,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub UpdatePendingLRStockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdatePendingLRStockToolStripMenuItem.Click
-        Try
-            Dim OBJLR As New UpdatePendingLrStock
-            OBJLR.MdiParent = Me
-            OBJLR.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub AutoEWayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GENERATEEWAY_MASTER.Click
         Try
             Dim OBJHOLD As New AutoEway
@@ -10966,17 +10927,6 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
-
-    Private Sub ToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem7.Click
-        Try
-            Dim OBJYARNJO As New UpdateYarnRackShelf
-            OBJYARNJO.MdiParent = Me
-            OBJYARNJO.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TASKCHECKADD_Click(sender As Object, e As EventArgs) Handles TASKCHECKADD.Click
         Try
             Dim OBJYARNJO As New TaskCheckListMaster
@@ -12587,6 +12537,68 @@ SKIPLINE:
             Dim OBJGDN As New ComplaintSolvedDetails
             OBJGDN.MdiParent = Me
             OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AgencyBrokerageSalesReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgencyBrokerageSalesReportToolStripMenuItem.Click
+        Try
+            Dim OBJGDN As New AgencyBrokerageReport
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AGENCYCOMMRECEIPT_ADD_Click(sender As Object, e As EventArgs) Handles AGENCYCOMMRECEIPT_ADD.Click
+        Try
+            Dim OBJGDN As New AgencyCommissionReceipt
+            OBJGDN.MdiParent = Me
+            OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem8_Click_3(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem8.Click
+        Try
+            Dim OBJSHELF As New UpdateRackShelf
+            OBJSHELF.FRMSTRING = "GREY"
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem9_Click_2(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem9.Click
+        Try
+            Dim OBJSHELF As New UpdateRackShelfDetails
+            OBJSHELF.FRMSTRING = "GREY"
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem10_Click_1(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem10.Click
+        Try
+            Dim OBJSHELF As New UpdateYarnRackShelf
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem10_Click_1(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem10.Click
+        Try
+            Dim OBJSHELF As New UpdateYarnRackShelfDetails
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
         Catch ex As Exception
             Throw ex
         End Try

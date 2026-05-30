@@ -468,6 +468,12 @@
     <Compile Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\GDN\GDNReport_A5_MASHOK.vb">
+      <DependentUpon>GDNReport_A5_MASHOK.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\GDN\GDNReport_VINTAGE.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -503,6 +509,12 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Proforma\ProformInvoiceReport_LAXMI.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProformInvoiceReport_LAXMI.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Crystal Reports\Purchase Order\POReport_LAXMI.vb">
       <AutoGen>True</AutoGen>
@@ -809,6 +821,12 @@
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyBrokerageReport.Designer.vb">
+      <DependentUpon>AgencyBrokerageReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Grid Reports\Agency\AgencyBrokerageReport.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.Designer.vb">
       <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>
@@ -2539,6 +2557,12 @@
     <Compile Include="Transactions\Accounts\Opening\OpeningYarnJobOrderDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCommissionReceipt.Designer.vb">
+      <DependentUpon>AgencyCommissionReceipt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Agency Module\Agency Accounts\AgencyCommissionReceipt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Complaint Solved\ComplaintSolvedDetails.Designer.vb">
       <DependentUpon>ComplaintSolvedDetails.vb</DependentUpon>
     </Compile>
@@ -3509,12 +3533,6 @@
       <DependentUpon>MergeParameterDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Merge Details\MergeParameterDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Utilities\Others\AutoDiscount.Designer.vb">
-      <DependentUpon>AutoDiscount.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Utilities\Others\AutoDiscount.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\Change Barcode\ChangeBarcodeDetails.Designer.vb">
@@ -8498,18 +8516,6 @@
     <Compile Include="Transactions\Accounts\Trial Balance\TB.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\Daily Grey Stock\DailyGreyStock.Designer.vb">
-      <DependentUpon>DailyGreyStock.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Daily Grey Stock\DailyGreyStock.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\Daily Grey Stock\DailyGreyStockDetails.Designer.vb">
-      <DependentUpon>DailyGreyStockDetails.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\Daily Grey Stock\DailyGreyStockDetails.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Transactions\In House Packing\Issue To Packing\IssueToPacking.Designer.vb">
       <DependentUpon>IssueToPacking.vb</DependentUpon>
     </Compile>
@@ -9254,12 +9260,6 @@
     <Compile Include="Utilities\Update Peding\UpdatePendingEntryDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utilities\Update Peding\UpdatePendingLrStock.Designer.vb">
-      <DependentUpon>UpdatePendingLrStock.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Utilities\Update Peding\UpdatePendingLrStock.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Utilities\Update Peding\UpdateQualityWt.Designer.vb">
       <DependentUpon>UpdateQualityWt.vb</DependentUpon>
     </Compile>
@@ -9276,6 +9276,12 @@
       <DependentUpon>UpdateYarnRackShelf.vb</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Update Peding\UpdateYarnRackShelf.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Update Peding\UpdateYarnRackShelfDetails.Designer.vb">
+      <DependentUpon>UpdateYarnRackShelfDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Update Peding\UpdateYarnRackShelfDetails.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Utilities\Update Peding\UploadGodName.Designer.vb">
@@ -9460,6 +9466,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports Design\Yarn\BeamIssueWeaverDesign\BeamIssueWeaverDesign.resx">
       <DependentUpon>BeamIssueWeaverDesign.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_A5_MASHOK.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GDNReport_A5_MASHOK.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\GDN\GDNReport_VINTAGE.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>GDNReport_VINTAGE.vb</LastGenOutput>
@@ -9483,6 +9493,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Material Rec\OpeningReport_SNCM.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OpeningReport_SNCM.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Proforma\ProformInvoiceReport_LAXMI.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ProformInvoiceReport_LAXMI.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Purchase Order\POReport_LAXMI.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -9673,6 +9687,9 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Yarn Job order\YarnJobOrderReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>YarnJobOrderReport.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyBrokerageReport.resx">
+      <DependentUpon>AgencyBrokerageReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Grid Reports\Agency\AgencyInvoiceReport.resx">
       <DependentUpon>AgencyInvoiceReport.vb</DependentUpon>
@@ -10735,6 +10752,9 @@
     <EmbeddedResource Include="Transactions\Accounts\Opening\OpeningYarnJobOrderDetails.resx">
       <DependentUpon>OpeningYarnJobOrderDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Agency Module\Agency Accounts\AgencyCommissionReceipt.resx">
+      <DependentUpon>AgencyCommissionReceipt.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Complaint Solved\ComplaintSolvedDetails.resx">
       <DependentUpon>ComplaintSolvedDetails.vb</DependentUpon>
     </EmbeddedResource>
@@ -11217,9 +11237,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Merge Details\MergeParameterDetails.resx">
       <DependentUpon>MergeParameterDetails.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\Others\AutoDiscount.resx">
-      <DependentUpon>AutoDiscount.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Change Barcode\ChangeBarcodeDetails.resx">
       <DependentUpon>ChangeBarcodeDetails.vb</DependentUpon>
@@ -14183,12 +14200,6 @@
     <EmbeddedResource Include="Transactions\Accounts\Trial Balance\TB.resx">
       <DependentUpon>TB.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Daily Grey Stock\DailyGreyStock.resx">
-      <DependentUpon>DailyGreyStock.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\Daily Grey Stock\DailyGreyStockDetails.resx">
-      <DependentUpon>DailyGreyStockDetails.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\In House Packing\Issue To Packing\IssueToPacking.resx">
       <DependentUpon>IssueToPacking.vb</DependentUpon>
     </EmbeddedResource>
@@ -14563,9 +14574,6 @@
     <EmbeddedResource Include="Utilities\Update Peding\UpdatePendingEntryDetails.resx">
       <DependentUpon>UpdatePendingEntryDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\Update Peding\UpdatePendingLrStock.resx">
-      <DependentUpon>UpdatePendingLrStock.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UpdateQualityWt.resx">
       <DependentUpon>UpdateQualityWt.vb</DependentUpon>
     </EmbeddedResource>
@@ -14574,6 +14582,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UpdateYarnRackShelf.resx">
       <DependentUpon>UpdateYarnRackShelf.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\Update Peding\UpdateYarnRackShelfDetails.resx">
+      <DependentUpon>UpdateYarnRackShelfDetails.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\Update Peding\UploadGodName.resx">
       <DependentUpon>UploadGodName.vb</DependentUpon>

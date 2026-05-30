@@ -151,6 +151,9 @@ LINE1:
             lblbaleno.Visible = True
 
         End If
+        If ClientName = "SWPL" Then
+            CMDSELECTSTOCK.Visible = False
+        End If
     End Sub
 
     Private Sub txtbarcode_Validated(sender As Object, e As EventArgs) Handles txtbarcode.Validated
@@ -316,6 +319,23 @@ LINE1:
                 OBJ.DISPOSE()
             Next
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub txtbarcode_KeyDown(sender As Object, e As KeyEventArgs) Handles txtbarcode.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+
+                Dim OBJSTOCK As New SelectStockGDNGrid
+                OBJSTOCK.ShowDialog()
+                Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                For Each DTROW As DataRow In DTBARCODE.Rows
+                    txtbarcode.Text = DTROW("BARCODE")
+                    txtbarcode_Validated(sender, e)
+                Next
+            End If
         Catch ex As Exception
             Throw ex
         End Try

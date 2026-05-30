@@ -225,6 +225,18 @@ Public Class RecFromPacking
             'End If
 
 
+
+            'THIS VALIDATION IS FOR LONGATION
+            If Val(TXTRUNNINGBAL.Text.Trim) < 0 And Val(TXTISSUEMTRS.Text.Trim) > 0 And HIDEALLISSUE = True And (ClientName = "SOFTAS" Or ClientName = "ANKUSH") Then
+                If Format(Val(TXTRUNNINGBAL.Text.Trim) * -1 / Val(TXTISSUEMTRS.Text.Trim) * 100, "0.00") > 10 Then
+                    If MsgBox("Longation is Greater then 10%, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                        EP.SetError(TXTRUNNINGBAL, " Longation Cannot be Geater than 10%")
+                        bln = False
+                    End If
+                End If
+            End If
+
+
             If ALLOWMANUALRECNO = True Then
                 If Val(TXTRECNO.Text.Trim) <> 0 And EDIT = False Then
                     Dim OBJCMNn As New ClsCommon
@@ -747,7 +759,7 @@ Public Class RecFromPacking
                     'IF barcode is used the BARCODE printING WILL BE BLOCKED
                     If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
                     Dim BALENO As String = ""
-                    If ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "ANKUSH" Then BALENO = ROW.Cells(gdesc.Index).Value
+                    If ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "ANKUSH" Or ClientName = "MNARESH" Then BALENO = ROW.Cells(gdesc.Index).Value
                     If ClientName = "SOFTAS" And CHKPRINTSERIES.Checked = True Then BALENO = ROW.Cells(GSERIES.Index).Value
 
                     'FOR AVIS GET LOTNO FROM ISSUE TO PACK FOR EACH ENTRY NO
@@ -1872,7 +1884,9 @@ LINE1:
                     TXTGRIDREMARKS.Text = DT.Rows(0).Item("BALENO")
                     TXTGRIDREMARKS.Focus()
                 End If
-
+                If ClientName = "VINTAGEINDIA" Then
+                    TXTGRIDREMARKS.Text = DT.Rows(0).Item("BALENO")
+                End If
                 If ClientName <> "AVIS" Or (ClientName = "AVIS" And UserName <> "Admin") Then CMBBARCODE.Enabled = False
 
                 CMBCONTRACTOR.Text = DT.Rows(0).Item("CONTRACTOR")
@@ -2130,7 +2144,7 @@ LINE1:
                 CMBPER.TabStop = False
             End If
 
-            If ClientName = "REALCORPORATION" Or ClientName = "MMC" Then gdesc.HeaderText = "Bale No"
+            If ClientName = "REALCORPORATION" Or ClientName = "MMC" Or ClientName = "VINTAGEINDIA" Then gdesc.HeaderText = "Bale No"
 
             If ClientName = "RAJKRIPA" Then
                 CHKPRINTSERIES.Visible = True

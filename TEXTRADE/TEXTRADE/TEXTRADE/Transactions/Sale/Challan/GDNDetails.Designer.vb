@@ -24,6 +24,7 @@ Partial Class GDNDetails
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GDNDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKTHIRDPARTY = New System.Windows.Forms.CheckBox()
         Me.CHKHIDEPCS = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -81,7 +82,10 @@ Partial Class GDNDetails
         Me.cmdok = New System.Windows.Forms.Button()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.CHKTHIRDPARTY = New System.Windows.Forms.CheckBox()
+        Me.GOUTMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GOUTPCS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,6 +96,8 @@ Partial Class GDNDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label17)
+        Me.BlendPanel1.Controls.Add(Me.Label18)
         Me.BlendPanel1.Controls.Add(Me.CHKTHIRDPARTY)
         Me.BlendPanel1.Controls.Add(Me.CHKHIDEPCS)
         Me.BlendPanel1.Controls.Add(Me.Label1)
@@ -115,6 +121,18 @@ Partial Class GDNDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CHKTHIRDPARTY
+        '
+        Me.CHKTHIRDPARTY.AutoSize = True
+        Me.CHKTHIRDPARTY.BackColor = System.Drawing.SystemColors.Control
+        Me.CHKTHIRDPARTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKTHIRDPARTY.Location = New System.Drawing.Point(765, 3)
+        Me.CHKTHIRDPARTY.Name = "CHKTHIRDPARTY"
+        Me.CHKTHIRDPARTY.Size = New System.Drawing.Size(87, 19)
+        Me.CHKTHIRDPARTY.TabIndex = 928
+        Me.CHKTHIRDPARTY.Text = "Third Party"
+        Me.CHKTHIRDPARTY.UseVisualStyleBackColor = False
         '
         'CHKHIDEPCS
         '
@@ -249,7 +267,7 @@ Partial Class GDNDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GTYPECHALLANNO, Me.gsrno, Me.GCHALLANNO, Me.gdate, Me.GNAME, Me.GPACKING, Me.GSONO, Me.GMULTISONO, Me.gSODATE, Me.gtotalpcs, Me.GTOTALMTRS, Me.GTOTALBALES, Me.GBALENOFROM, Me.GJOBBERNAME, Me.GCONSIGNEE, Me.Gagent, Me.GPARTYPONO, Me.GHOLD, Me.GTRANSPORT, Me.GCITYNAME, Me.GPARTYWHATSAPP, Me.GPARTYEMAIL, Me.GAGENTWHATSAPP, Me.GAGENTEMAIL, Me.GUSERNAME, Me.GCONTRACTOR})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GTYPECHALLANNO, Me.gsrno, Me.GCHALLANNO, Me.gdate, Me.GNAME, Me.GPACKING, Me.GSONO, Me.GMULTISONO, Me.gSODATE, Me.gtotalpcs, Me.GTOTALMTRS, Me.GTOTALBALES, Me.GBALENOFROM, Me.GJOBBERNAME, Me.GCONSIGNEE, Me.Gagent, Me.GPARTYPONO, Me.GHOLD, Me.GTRANSPORT, Me.GCITYNAME, Me.GPARTYWHATSAPP, Me.GPARTYEMAIL, Me.GAGENTWHATSAPP, Me.GAGENTEMAIL, Me.GUSERNAME, Me.GCONTRACTOR, Me.GOUTMTRS, Me.GOUTPCS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -664,17 +682,43 @@ Partial Class GDNDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'CHKTHIRDPARTY
+        'GOUTMTRS
         '
-        Me.CHKTHIRDPARTY.AutoSize = True
-        Me.CHKTHIRDPARTY.BackColor = System.Drawing.SystemColors.Control
-        Me.CHKTHIRDPARTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKTHIRDPARTY.Location = New System.Drawing.Point(765, 3)
-        Me.CHKTHIRDPARTY.Name = "CHKTHIRDPARTY"
-        Me.CHKTHIRDPARTY.Size = New System.Drawing.Size(87, 19)
-        Me.CHKTHIRDPARTY.TabIndex = 928
-        Me.CHKTHIRDPARTY.Text = "Third Party"
-        Me.CHKTHIRDPARTY.UseVisualStyleBackColor = False
+        Me.GOUTMTRS.Caption = "Out Mtrs"
+        Me.GOUTMTRS.FieldName = "OUTMTRS"
+        Me.GOUTMTRS.Name = "GOUTMTRS"
+        Me.GOUTMTRS.OptionsColumn.AllowEdit = False
+        '
+        'GOUTPCS
+        '
+        Me.GOUTPCS.Caption = "Out Pcs"
+        Me.GOUTPCS.FieldName = "OUTPCS"
+        Me.GOUTPCS.Name = "GOUTPCS"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.BackColor = System.Drawing.Color.Transparent
+        Me.Label17.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.Red
+        Me.Label17.Location = New System.Drawing.Point(757, 41)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(107, 14)
+        Me.Label17.TabIndex = 671
+        Me.Label17.Text = "Sale Invoice Made"
+        Me.Label17.Visible = False
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.BackColor = System.Drawing.Color.Salmon
+        Me.Label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Label18.Location = New System.Drawing.Point(738, 41)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(15, 15)
+        Me.Label18.TabIndex = 670
+        Me.Label18.Text = "   "
+        Me.Label18.Visible = False
         '
         'GDNDetails
         '
@@ -756,4 +800,8 @@ Partial Class GDNDetails
     Friend WithEvents GUSERNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCONTRACTOR As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CHKTHIRDPARTY As CheckBox
+    Friend WithEvents GOUTMTRS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GOUTPCS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label18 As Label
 End Class

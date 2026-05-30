@@ -1483,10 +1483,39 @@ NEXTLINE:
 
                         GRIDGREY.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("DESIGNNO").ToString, dr("COLOR").ToString, dr("LOOMNO"), dr("ROLLNO"), Format(dr("qty"), "0.00"), dr("UNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("WT"), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"))
 
-                        If Convert.ToBoolean(dr("GRIDDONE")) = True Or Val(dr("OUTMTRS")) > 0 Then
-                            GRIDGREY.Rows(GRIDGREY.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
-                            lbllocked.Visible = True
-                            PBlock.Visible = True
+
+                        If ClientName = "SWPL" Then
+                            ' Reset before loading
+                            lbllocked.Visible = False
+                            PBlock.Visible = False
+
+                            If Convert.ToBoolean(dr("GRIDDONE")) = True Or Val(dr("OUTMTRS")) > 0 Then
+                                GRIDGREY.Rows(GRIDGREY.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                            End If
+
+                            ' ---------- After your loop ends ----------
+                            Dim DONE As Boolean = True
+
+                            For Each row As DataGridViewRow In GRIDGREY.Rows
+                                If Convert.ToBoolean(row.Cells("GDONE").Value) = False Then
+                                    DONE = False
+                                    Exit For
+                                End If
+                            Next
+
+                            If DONE AndAlso GRIDGREY.RowCount > 0 Then
+                                lbllocked.Visible = True
+                                PBlock.Visible = True
+                            End If
+
+
+                        Else
+
+                            If Convert.ToBoolean(dr("GRIDDONE")) = True Or Val(dr("OUTMTRS")) > 0 Then
+                                GRIDGREY.Rows(GRIDGREY.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                                lbllocked.Visible = True
+                                PBlock.Visible = True
+                            End If
                         End If
 
 

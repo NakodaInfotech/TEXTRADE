@@ -38,6 +38,7 @@ Partial Class YarnPurchaseOrderDetails
         Me.Label22 = New System.Windows.Forms.Label()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -259,23 +260,32 @@ Partial Class YarnPurchaseOrderDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GORDERNO, Me.GMILLNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.PSHADE, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRATE, Me.GAMT, Me.GRECDBAGS, Me.GRECDWT, Me.GBALBAG, Me.GBALWT, Me.GORDERTYPE, Me.GDONE, Me.GCLOSED, Me.GGRIDREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GNAME, Me.GORDERNO, Me.GMILLNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.PSHADE, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRATE, Me.GAMT, Me.GRECDBAGS, Me.GRECDWT, Me.GBALBAG, Me.GBALWT, Me.GORDERTYPE, Me.GDONE, Me.GCLOSED, Me.GGRIDREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AutoExpandAllGroups = True
-        Me.gridbill.OptionsBehavior.Editable = False
+        Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 30
         Me.gridbill.OptionsView.ColumnAutoWidth = False
         Me.gridbill.OptionsView.ShowAutoFilterRow = True
         Me.gridbill.OptionsView.ShowFooter = True
         Me.gridbill.OptionsView.ShowGroupPanel = False
+        '
+        'GCHK
+        '
+        Me.GCHK.FieldName = "CHK"
+        Me.GCHK.Name = "GCHK"
+        Me.GCHK.Visible = True
+        Me.GCHK.VisibleIndex = 0
+        Me.GCHK.Width = 30
         '
         'gsrno
         '
         Me.gsrno.Caption = "Sr. No"
         Me.gsrno.FieldName = "PONO"
         Me.gsrno.Name = "gsrno"
+        Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
-        Me.gsrno.VisibleIndex = 0
+        Me.gsrno.VisibleIndex = 1
         Me.gsrno.Width = 50
         '
         'gdate
@@ -285,8 +295,9 @@ Partial Class YarnPurchaseOrderDetails
         Me.gdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.gdate.FieldName = "PODATE"
         Me.gdate.Name = "gdate"
+        Me.gdate.OptionsColumn.AllowEdit = False
         Me.gdate.Visible = True
-        Me.gdate.VisibleIndex = 1
+        Me.gdate.VisibleIndex = 2
         Me.gdate.Width = 70
         '
         'GNAME
@@ -295,8 +306,9 @@ Partial Class YarnPurchaseOrderDetails
         Me.GNAME.FieldName = "NAME"
         Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 200
         '
         'GORDERNO
@@ -304,16 +316,18 @@ Partial Class YarnPurchaseOrderDetails
         Me.GORDERNO.Caption = "Order No"
         Me.GORDERNO.FieldName = "REFNO"
         Me.GORDERNO.Name = "GORDERNO"
+        Me.GORDERNO.OptionsColumn.AllowEdit = False
         Me.GORDERNO.Visible = True
-        Me.GORDERNO.VisibleIndex = 3
+        Me.GORDERNO.VisibleIndex = 4
         '
         'GMILLNAME
         '
         Me.GMILLNAME.Caption = "Mill Name"
         Me.GMILLNAME.FieldName = "MILLNAME"
         Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.OptionsColumn.AllowEdit = False
         Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 4
+        Me.GMILLNAME.VisibleIndex = 5
         Me.GMILLNAME.Width = 120
         '
         'GQUALITY
@@ -321,8 +335,9 @@ Partial Class YarnPurchaseOrderDetails
         Me.GQUALITY.Caption = "Yarn Quality"
         Me.GQUALITY.FieldName = "YARNQUALITY"
         Me.GQUALITY.Name = "GQUALITY"
+        Me.GQUALITY.OptionsColumn.AllowEdit = False
         Me.GQUALITY.Visible = True
-        Me.GQUALITY.VisibleIndex = 5
+        Me.GQUALITY.VisibleIndex = 6
         Me.GQUALITY.Width = 150
         '
         'GDESIGNNO
@@ -330,8 +345,9 @@ Partial Class YarnPurchaseOrderDetails
         Me.GDESIGNNO.Caption = "Design No"
         Me.GDESIGNNO.FieldName = "DESIGN"
         Me.GDESIGNNO.Name = "GDESIGNNO"
+        Me.GDESIGNNO.OptionsColumn.AllowEdit = False
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 6
+        Me.GDESIGNNO.VisibleIndex = 7
         Me.GDESIGNNO.Width = 100
         '
         'GCOLOR
@@ -339,16 +355,18 @@ Partial Class YarnPurchaseOrderDetails
         Me.GCOLOR.Caption = "Shade"
         Me.GCOLOR.FieldName = "SHADE"
         Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.OptionsColumn.AllowEdit = False
         Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 7
+        Me.GCOLOR.VisibleIndex = 8
         '
         'PSHADE
         '
         Me.PSHADE.Caption = "P. Shade"
         Me.PSHADE.FieldName = "PSHADE"
         Me.PSHADE.Name = "PSHADE"
+        Me.PSHADE.OptionsColumn.AllowEdit = False
         Me.PSHADE.Visible = True
-        Me.PSHADE.VisibleIndex = 8
+        Me.PSHADE.VisibleIndex = 9
         '
         'GBAGS
         '
@@ -357,9 +375,10 @@ Partial Class YarnPurchaseOrderDetails
         Me.GBAGS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GBAGS.FieldName = "BAGS"
         Me.GBAGS.Name = "GBAGS"
+        Me.GBAGS.OptionsColumn.AllowEdit = False
         Me.GBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBAGS.Visible = True
-        Me.GBAGS.VisibleIndex = 9
+        Me.GBAGS.VisibleIndex = 10
         Me.GBAGS.Width = 60
         '
         'GWT
@@ -369,9 +388,10 @@ Partial Class YarnPurchaseOrderDetails
         Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GWT.FieldName = "WT"
         Me.GWT.Name = "GWT"
+        Me.GWT.OptionsColumn.AllowEdit = False
         Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GWT.Visible = True
-        Me.GWT.VisibleIndex = 10
+        Me.GWT.VisibleIndex = 11
         '
         'GCONES
         '
@@ -380,8 +400,9 @@ Partial Class YarnPurchaseOrderDetails
         Me.GCONES.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GCONES.FieldName = "CONES"
         Me.GCONES.Name = "GCONES"
+        Me.GCONES.OptionsColumn.AllowEdit = False
         Me.GCONES.Visible = True
-        Me.GCONES.VisibleIndex = 11
+        Me.GCONES.VisibleIndex = 12
         '
         'GRATE
         '
@@ -390,8 +411,9 @@ Partial Class YarnPurchaseOrderDetails
         Me.GRATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GRATE.FieldName = "RATE"
         Me.GRATE.Name = "GRATE"
+        Me.GRATE.OptionsColumn.AllowEdit = False
         Me.GRATE.Visible = True
-        Me.GRATE.VisibleIndex = 12
+        Me.GRATE.VisibleIndex = 13
         '
         'GAMT
         '
@@ -400,9 +422,10 @@ Partial Class YarnPurchaseOrderDetails
         Me.GAMT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GAMT.FieldName = "AMT"
         Me.GAMT.Name = "GAMT"
+        Me.GAMT.OptionsColumn.AllowEdit = False
         Me.GAMT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AMT", "{0:0.00}")})
         Me.GAMT.Visible = True
-        Me.GAMT.VisibleIndex = 13
+        Me.GAMT.VisibleIndex = 14
         Me.GAMT.Width = 100
         '
         'GRECDBAGS
@@ -410,9 +433,10 @@ Partial Class YarnPurchaseOrderDetails
         Me.GRECDBAGS.Caption = "Recd Bags"
         Me.GRECDBAGS.FieldName = "RECDBAGS"
         Me.GRECDBAGS.Name = "GRECDBAGS"
+        Me.GRECDBAGS.OptionsColumn.AllowEdit = False
         Me.GRECDBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRECDBAGS.Visible = True
-        Me.GRECDBAGS.VisibleIndex = 14
+        Me.GRECDBAGS.VisibleIndex = 15
         Me.GRECDBAGS.Width = 60
         '
         'GRECDWT
@@ -420,9 +444,10 @@ Partial Class YarnPurchaseOrderDetails
         Me.GRECDWT.Caption = "Recd Wt"
         Me.GRECDWT.FieldName = "RECDWT"
         Me.GRECDWT.Name = "GRECDWT"
+        Me.GRECDWT.OptionsColumn.AllowEdit = False
         Me.GRECDWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GRECDWT.Visible = True
-        Me.GRECDWT.VisibleIndex = 15
+        Me.GRECDWT.VisibleIndex = 16
         '
         'GBALBAG
         '
@@ -432,7 +457,7 @@ Partial Class YarnPurchaseOrderDetails
         Me.GBALBAG.OptionsColumn.AllowEdit = False
         Me.GBALBAG.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALBAG.Visible = True
-        Me.GBALBAG.VisibleIndex = 16
+        Me.GBALBAG.VisibleIndex = 17
         Me.GBALBAG.Width = 80
         '
         'GBALWT
@@ -443,7 +468,7 @@ Partial Class YarnPurchaseOrderDetails
         Me.GBALWT.OptionsColumn.AllowEdit = False
         Me.GBALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GBALWT.Visible = True
-        Me.GBALWT.VisibleIndex = 17
+        Me.GBALWT.VisibleIndex = 18
         Me.GBALWT.Width = 80
         '
         'GORDERTYPE
@@ -451,30 +476,34 @@ Partial Class YarnPurchaseOrderDetails
         Me.GORDERTYPE.Caption = "Order Type"
         Me.GORDERTYPE.FieldName = "ORDERTYPE"
         Me.GORDERTYPE.Name = "GORDERTYPE"
+        Me.GORDERTYPE.OptionsColumn.AllowEdit = False
         Me.GORDERTYPE.Visible = True
-        Me.GORDERTYPE.VisibleIndex = 18
+        Me.GORDERTYPE.VisibleIndex = 19
         '
         'GDONE
         '
         Me.GDONE.Caption = "Done"
         Me.GDONE.FieldName = "DONE"
         Me.GDONE.Name = "GDONE"
+        Me.GDONE.OptionsColumn.AllowEdit = False
         Me.GDONE.Visible = True
-        Me.GDONE.VisibleIndex = 19
+        Me.GDONE.VisibleIndex = 20
         '
         'GCLOSED
         '
         Me.GCLOSED.Caption = "Closed"
         Me.GCLOSED.FieldName = "CLOSED"
         Me.GCLOSED.Name = "GCLOSED"
+        Me.GCLOSED.OptionsColumn.AllowEdit = False
         Me.GCLOSED.Visible = True
-        Me.GCLOSED.VisibleIndex = 20
+        Me.GCLOSED.VisibleIndex = 21
         '
         'GGRIDREMARKS
         '
         Me.GGRIDREMARKS.Caption = "Desc"
         Me.GGRIDREMARKS.FieldName = "DESC"
         Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
+        Me.GGRIDREMARKS.OptionsColumn.AllowEdit = False
         '
         'ToolStrip1
         '
@@ -637,4 +666,5 @@ Partial Class YarnPurchaseOrderDetails
     Friend WithEvents TXTCOPIES As TextBox
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
+    Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
 End Class

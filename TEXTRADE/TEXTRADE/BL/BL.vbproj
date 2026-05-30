@@ -244,6 +244,7 @@
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningStockRolls.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningStockRollsWarper.vb" />
     <Compile Include="Transactions\Accounts\Opening\ClsOpeningYarnJobOrder.vb" />
+    <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Accounts\ClsAgencyCommissionReceipt.vb" />
     <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Accounts\ClsAgencyManualMatching.vb" />
     <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Accounts\ClsAgencyReceiptMaster.vb" />
     <Compile Include="Transactions\Agency Modules\Agency Transactions\Agency Opening\ClsOpeningAgencySaleOrder.vb" />
@@ -480,6 +481,7 @@
     <Compile Include="Utilities\ClsStockTaking.vb" />
     <Compile Include="Utilities\ClsConfigurator.vb" />
     <Compile Include="Utilities\ClsTermsAndConditions.vb" />
+    <Compile Include="Utilities\ClsUpdateGreyRackShelf.vb" />
     <Compile Include="Utilities\ClsUpdatePendingEntry.vb" />
     <Compile Include="Utilities\ClsUpdateRackShelf.vb" />
     <Compile Include="Utilities\ClsUpdateYarnRackShelf.vb" />

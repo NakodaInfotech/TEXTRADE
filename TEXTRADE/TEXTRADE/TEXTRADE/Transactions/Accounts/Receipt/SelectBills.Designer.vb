@@ -37,10 +37,10 @@ Partial Class SelectBills
         Me.GBALAMT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDISPUTE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSELLERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cmdcancel = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GSELLERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.griddetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridrec, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,7 +58,7 @@ Partial Class SelectBills
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(738, 761)
+        Me.BlendPanel1.Size = New System.Drawing.Size(738, 621)
         Me.BlendPanel1.TabIndex = 1
         '
         'CHKSELECTALL
@@ -81,7 +81,7 @@ Partial Class SelectBills
         Me.griddetails.MainView = Me.gridrec
         Me.griddetails.Name = "griddetails"
         Me.griddetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.griddetails.Size = New System.Drawing.Size(696, 684)
+        Me.griddetails.Size = New System.Drawing.Size(696, 540)
         Me.griddetails.TabIndex = 210
         Me.griddetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridrec})
         '
@@ -204,6 +204,13 @@ Partial Class SelectBills
         Me.GDISPUTE.FieldName = "DISPUTE"
         Me.GDISPUTE.Name = "GDISPUTE"
         '
+        'GSELLERNAME
+        '
+        Me.GSELLERNAME.Caption = "Seller Name"
+        Me.GSELLERNAME.FieldName = "SELLERNAME"
+        Me.GSELLERNAME.Name = "GSELLERNAME"
+        Me.GSELLERNAME.Width = 200
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -223,7 +230,7 @@ Partial Class SelectBills
         Me.cmdcancel.FlatAppearance.BorderSize = 0
         Me.cmdcancel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdcancel.ForeColor = System.Drawing.Color.Black
-        Me.cmdcancel.Location = New System.Drawing.Point(373, 721)
+        Me.cmdcancel.Location = New System.Drawing.Point(373, 577)
         Me.cmdcancel.Name = "cmdcancel"
         Me.cmdcancel.Size = New System.Drawing.Size(80, 28)
         Me.cmdcancel.TabIndex = 3
@@ -238,7 +245,7 @@ Partial Class SelectBills
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(287, 721)
+        Me.cmdok.Location = New System.Drawing.Point(287, 577)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 2
@@ -246,17 +253,10 @@ Partial Class SelectBills
         Me.cmdok.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GSELLERNAME
-        '
-        Me.GSELLERNAME.Caption = "Seller Name"
-        Me.GSELLERNAME.FieldName = "SELLERNAME"
-        Me.GSELLERNAME.Name = "GSELLERNAME"
-        Me.GSELLERNAME.Width = 200
-        '
         'SelectBills
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(738, 761)
+        Me.ClientSize = New System.Drawing.Size(738, 621)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True

@@ -346,9 +346,9 @@ SKIPINVOICE:
 
                 'CODE DONE BY GULKIT
                 If INVOICETRANS = True Then
+                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     If TRANSPORTCOPYA4 Then
                         If ClientName = "VSTRADERS" Or ClientName = "SIMPLEX" Or ClientName = "CHINTAN" Or ClientName = "VINAYAK" Or ClientName = "SUCCESS" Or ClientName = "SIDDHPOLYCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                        OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                         OBJ.DataDefinition.FormulaFields("ALLOWEINVOICE").Text = ALLOWEINVOICE
                     End If
                     CRPO.Zoom(100)
