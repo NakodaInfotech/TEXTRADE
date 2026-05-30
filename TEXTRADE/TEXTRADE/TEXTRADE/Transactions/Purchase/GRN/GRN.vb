@@ -1134,7 +1134,7 @@ CHECKNEXTLINE:
                 txtgrnno.Text = Val(DTTABLE.Rows(0).Item(0))
                 MsgBox("Details Added")
 
-                If FRMSTRING = "GRNJOB" And (ClientName = "SOFTAS" Or ClientName = "BRILLANTO" Or ClientName = "SBA" Or ClientName = "MANSI") And TXTLOTNO.Text.Trim <> "" Then
+                If FRMSTRING = "GRNJOB" And (ClientName = "SOFTAS" Or ClientName = "BRILLANTO" Or ClientName = "SBA" Or ClientName = "MANSI" Or ClientName = "MYCOT") And TXTLOTNO.Text.Trim <> "" Then
                     If MsgBox("Wish to Create GRN Checking", MsgBoxStyle.YesNo) = MsgBoxResult.No Then GoTo SKIPLINE
 
                     Dim OBJCHECKNIG As New GRNChecking
@@ -3617,8 +3617,8 @@ LINE1:
                 GAMOUNT.Visible = True
             End If
 
-            If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "VINTAGEINDIA" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Then
-                If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Then
+            If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "VINTAGEINDIA" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Then
+                If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Then
                     LBLCMPNAME.Visible = True
                     CMBCMPNAME.Visible = True
                 End If
@@ -4029,7 +4029,7 @@ LINE1:
 
     Private Sub TXTCHNO_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTCHNO.Validated
         Try
-            If (ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SHEETAL" Or ClientName = "SNCM") And CMBCMPNAME.Text.Trim <> "" And Val(TXTCHNO.Text.Trim) > 0 And EDIT = False And FRMSTRING = "GRN FANCY" Then
+            If (ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SHEETAL" Or ClientName = "SNCM" Or ClientName = "MYCOT") And CMBCMPNAME.Text.Trim <> "" And Val(TXTCHNO.Text.Trim) > 0 And EDIT = False And FRMSTRING = "GRN FANCY" Then
                 'GET YEARID FROM SELECTED CMP 
                 Dim TEMPYEARID As Integer = 0
                 Dim TEMPCMPID As Integer = 0
@@ -4587,125 +4587,119 @@ LINE1:
                 DTTABLE = objclsGDN.SELECTGDN(Val(TXTCHNO.Text.Trim), TEMPCMPID, 0, TEMPYEARID)
                 If DTTABLE.Rows.Count > 0 Then
 
-                        If MsgBox("Fetch data from Entry No " & TXTCHNO.Text.Trim & "?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
+                    If MsgBox("Fetch data from Entry No " & TXTCHNO.Text.Trim & "?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
 
-                        For Each dr As DataRow In DTTABLE.Rows
+                    For Each dr As DataRow In DTTABLE.Rows
 
-                            'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
-                            If dr("ITEMNAME") <> "" Then
-                                DT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & dr("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
-                                If DT.Rows.Count = 0 Then
-                                    'ADD NEW ITEMNAME 
-                                    ALPARAVAL.Clear()
-
-
-                                    ALPARAVAL.Add("Finished Goods")
-                                    ALPARAVAL.Add("")   'CATEGORY
-                                    ALPARAVAL.Add(UCase(dr("ITEMNAME")))        'DISPLAYNAME
-                                    ALPARAVAL.Add(UCase(dr("ITEMNAME"))) 'ITEMNAME
-
-                                    ALPARAVAL.Add("")   'DEPARTMENT
-                                    ALPARAVAL.Add(UCase(dr("ITEMNAME")))        'CODE
-                                    ALPARAVAL.Add(dr("UNIT"))
-                                    ALPARAVAL.Add("")   'FOLD
-                                    ALPARAVAL.Add(0)    'RATE
-                                    ALPARAVAL.Add(0)    'VALUATIONRATE   
-                                    ALPARAVAL.Add(0)    'TRANSRATE
-                                    ALPARAVAL.Add(0)    'CHCKINGRATE
-                                    ALPARAVAL.Add(0)    'PACKINGRATE
-                                    ALPARAVAL.Add(0)    'DESIGNRATE
-                                    ALPARAVAL.Add(0)    'REORDER
-                                    ALPARAVAL.Add(0)    'UPPER
-                                    ALPARAVAL.Add(0)    'LOWER
-
-                                    Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_ID, 0) AS HSNCODEID", "", " HSNMASTER", " AND HSN_CODE = '" & dr("HSNCODE") & "' AND HSN_YEARID = " & YearId)
-                                    If DTHSN.Rows.Count > 0 Then ALPARAVAL.Add(dr("HSNCODE")) Else ALPARAVAL.Add("") 'HSNCODEID
-
-                                    ALPARAVAL.Add(0)    'BLOCKED
-                                    ALPARAVAL.Add(0)    'HIDEINDESIGN
-
-                                    ALPARAVAL.Add("")    'WIDTH
-                                    ALPARAVAL.Add("")    'GREYWIDTH
-                                    ALPARAVAL.Add(0)    'SHRINKFROM
-                                    ALPARAVAL.Add(0)    'SHRINKTO
-                                    ALPARAVAL.Add("")   'SELVEDGE
-
-                                    ALPARAVAL.Add("")   'RATETYPE
-                                    ALPARAVAL.Add("")   'RATE
-
-                                    ALPARAVAL.Add("")   'YARNQUALITY
-                                    ALPARAVAL.Add("")   'PER
+                        'CHECKING WHETHER ITEM IS PRESENT IN CURRENT YEAR OR NOT, IF NOT PRESENT THEN ADD NEW ITEM
+                        If dr("ITEMNAME") <> "" Then
+                            DT = OBJCMN.SEARCH("ITEM_ID AS ITEMID", "", " ITEMMASTER ", " AND ITEM_NAME = '" & dr("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                            If DT.Rows.Count = 0 Then
+                                'ADD NEW ITEMNAME 
+                                ALPARAVAL.Clear()
 
 
-                                    ALPARAVAL.Add("")   'GRIDSRNO
-                                    ALPARAVAL.Add("")   'PROCESS
+                                ALPARAVAL.Add("Finished Goods")
+                                ALPARAVAL.Add("")   'CATEGORY
+                                ALPARAVAL.Add(UCase(dr("ITEMNAME")))        'DISPLAYNAME
+                                ALPARAVAL.Add(UCase(dr("ITEMNAME"))) 'ITEMNAME
 
-                                    ALPARAVAL.Add("")   'REMARKS
-                                    ALPARAVAL.Add("MERCHANT")
+                                ALPARAVAL.Add("")   'DEPARTMENT
+                                ALPARAVAL.Add(UCase(dr("ITEMNAME")))        'CODE
+                                ALPARAVAL.Add(dr("UNIT"))
+                                ALPARAVAL.Add("")   'FOLD
+                                ALPARAVAL.Add(0)    'RATE
+                                ALPARAVAL.Add(0)    'VALUATIONRATE   
+                                ALPARAVAL.Add(0)    'TRANSRATE
+                                ALPARAVAL.Add(0)    'CHCKINGRATE
+                                ALPARAVAL.Add(0)    'PACKINGRATE
+                                ALPARAVAL.Add(0)    'DESIGNRATE
+                                ALPARAVAL.Add(0)    'REORDER
+                                ALPARAVAL.Add(0)    'UPPER
+                                ALPARAVAL.Add(0)    'LOWER
 
-                                    ALPARAVAL.Add(DBNull.Value) 'IMGPATH
-                                    ALPARAVAL.Add("")   'WARP
-                                    ALPARAVAL.Add("")   'WEFT
+                                Dim DTHSN As DataTable = OBJCMN.SEARCH("ISNULL(HSN_ID, 0) AS HSNCODEID", "", " HSNMASTER", " AND HSN_CODE = '" & dr("HSNCODE") & "' AND HSN_YEARID = " & YearId)
+                                If DTHSN.Rows.Count > 0 Then ALPARAVAL.Add(dr("HSNCODE")) Else ALPARAVAL.Add("") 'HSNCODEID
 
-                                    ALPARAVAL.Add(CmpId)
-                                    ALPARAVAL.Add(Locationid)
-                                    ALPARAVAL.Add(Userid)
-                                    ALPARAVAL.Add(YearId)
-                                    ALPARAVAL.Add(0)
+                                ALPARAVAL.Add(0)    'BLOCKED
+                                ALPARAVAL.Add(0)    'HIDEINDESIGN
 
-                                    ALPARAVAL.Add("")   'WARPSRNO
-                                    ALPARAVAL.Add("")   'WARPQUALITY
-                                    ALPARAVAL.Add("")   'WARPSHADE
-                                    ALPARAVAL.Add("")   'WARPENDS
-                                    ALPARAVAL.Add("")   'WARPWT
-                                    ALPARAVAL.Add("")   'WARPRATE
-                                    ALPARAVAL.Add("")   'WARPAMOUNT
+                                ALPARAVAL.Add("")    'WIDTH
+                                ALPARAVAL.Add("")    'GREYWIDTH
+                                ALPARAVAL.Add(0)    'SHRINKFROM
+                                ALPARAVAL.Add(0)    'SHRINKTO
+                                ALPARAVAL.Add("")   'SELVEDGE
+
+                                ALPARAVAL.Add("")   'RATETYPE
+                                ALPARAVAL.Add("")   'RATE
+
+                                ALPARAVAL.Add("")   'YARNQUALITY
+                                ALPARAVAL.Add("")   'PER
 
 
-                                    ALPARAVAL.Add("")   'WEFTSRNO
-                                    ALPARAVAL.Add("")   'WEFTQUALITY
-                                    ALPARAVAL.Add("")   'WEFTSHADE
-                                    ALPARAVAL.Add("")   'WEFTPICK
-                                    ALPARAVAL.Add("")   'WEFTWT
-                                    ALPARAVAL.Add("")   'WEFTRATE
-                                    ALPARAVAL.Add("")   'WEFTAMOUNT
+                                ALPARAVAL.Add("")   'GRIDSRNO
+                                ALPARAVAL.Add("")   'PROCESS
 
-                                    ALPARAVAL.Add(0)    'WARPTL
-                                    ALPARAVAL.Add(0)    'WEFTTL
-                                    ALPARAVAL.Add(0)    'REED
-                                    ALPARAVAL.Add(0)    'REEDSPACE
-                                    ALPARAVAL.Add(0)    'PICKS
-                                    ALPARAVAL.Add(0)    'TOTALWT
-                                    ALPARAVAL.Add(0)    'TOTALWARPWT
-                                    ALPARAVAL.Add(0)    'TOTALWEFTWT
-                                    ALPARAVAL.Add("")   'WEAVE
-                                    ALPARAVAL.Add("")   'GREYCATEGORY
+                                ALPARAVAL.Add("")   'REMARKS
+                                ALPARAVAL.Add("MERCHANT")
+
+                                ALPARAVAL.Add(DBNull.Value) 'IMGPATH
+                                ALPARAVAL.Add("")   'WARP
+                                ALPARAVAL.Add("")   'WEFT
+
+                                ALPARAVAL.Add(CmpId)
+                                ALPARAVAL.Add(Locationid)
+                                ALPARAVAL.Add(Userid)
+                                ALPARAVAL.Add(YearId)
+                                ALPARAVAL.Add(0)
+
+                                ALPARAVAL.Add("")   'WARPSRNO
+                                ALPARAVAL.Add("")   'WARPQUALITY
+                                ALPARAVAL.Add("")   'WARPSHADE
+                                ALPARAVAL.Add("")   'WARPENDS
+                                ALPARAVAL.Add("")   'WARPWT
+                                ALPARAVAL.Add("")   'WARPRATE
+                                ALPARAVAL.Add("")   'WARPAMOUNT
 
 
 
-                                    ALPARAVAL.Add(0)    'ACTUALWT
-                                    ALPARAVAL.Add(0)    'ACTUALAMT
-                                    ALPARAVAL.Add(0)    'DHARAPER
-                                    ALPARAVAL.Add(0)    'DHARAAMT
-                                    ALPARAVAL.Add(0)    'WASTAGEPER
-                                    ALPARAVAL.Add(0)    'WASTAGEAMT
-                                    ALPARAVAL.Add(0)    'WEAVINGCHGS
-                                    ALPARAVAL.Add(0)    'WEAVINGAMT
-                                    ALPARAVAL.Add(0)    'GSTPER
-                                    ALPARAVAL.Add(0)    'GSTAMT
-                                    ALPARAVAL.Add(0)    'AMOUNT
-                                    ALPARAVAL.Add(0)    'TOTALGSTPER
-                                    ALPARAVAL.Add(0)    'TOTALAMT
-                                    ALPARAVAL.Add(0)    'WARPTOTALAMT
-                                    ALPARAVAL.Add(0)    'WEFTTOTALAMT
 
-                                    ALPARAVAL.Add("")   'COLORNO
-                                    ALPARAVAL.Add("")   'COLORSRNO
-                                    ALPARAVAL.Add(0)    'VALUELOSSPER
-                                    ALPARAVAL.Add("")    'COSTCENTERNAME
-                                    ALPARAVAL.Add(0)    'ITEM GSM
-                                    ALPARAVAL.Add(0)    'ITEM PERCENT
+                                ALPARAVAL.Add(0)    'WARPTL
+                                ALPARAVAL.Add(0)    'WEFTTL
+                                ALPARAVAL.Add(0)    'REED
+                                ALPARAVAL.Add(0)    'REEDSPACE
+                                ALPARAVAL.Add(0)    'PICKS
+                                ALPARAVAL.Add(0)    'TOTALWT
+                                ALPARAVAL.Add(0)    'TOTALWARPWT
+                                ALPARAVAL.Add(0)    'TOTALWEFTWT
+                                ALPARAVAL.Add("")   'WEAVE
+                                ALPARAVAL.Add("")   'GREY CATEGORY
+
+                                ALPARAVAL.Add(0)    'ACTUALWT
+                                ALPARAVAL.Add(0)    'ACTUALAMT
+                                ALPARAVAL.Add(0)    'DHARAPER
+                                ALPARAVAL.Add(0)    'DHARAAMT
+                                ALPARAVAL.Add(0)    'WASTAGEPER
+                                ALPARAVAL.Add(0)    'WASTAGEAMT
+                                ALPARAVAL.Add(0)    'WEAVINGCHGS
+                                ALPARAVAL.Add(0)    'WEAVINGAMT
+                                ALPARAVAL.Add(0)    'GSTPER
+                                ALPARAVAL.Add(0)    'GSTAMT
+                                ALPARAVAL.Add(0)    'AMOUNT
+                                ALPARAVAL.Add(0)    'TOTALGSTPER
+                                ALPARAVAL.Add(0)    'TOTALAMT
+                                ALPARAVAL.Add(0)    'WARPTOTALAMT
+                                ALPARAVAL.Add(0)    'WEFTTOTALAMT
+
+                                ALPARAVAL.Add("")   'COLORNO
+                                ALPARAVAL.Add("")   'COLORSRNO
+                                ALPARAVAL.Add(0)    'VALUELOSSPER
+                                ALPARAVAL.Add("")   'COSTCENTERNAME
+                                ALPARAVAL.Add(0)    'ITEM GSM
+                                ALPARAVAL.Add(0)    'ITEM PERCENT
                                 ALPARAVAL.Add(0)    'GARMENT
+                                ALPARAVAL.Add(0)    'TOTALBEAMENDS
+                                ALPARAVAL.Add(0)    'TOTALWEFTENDS
 
                                 ALPARAVAL.Add(0)    'SHADESRNO
                                 ALPARAVAL.Add(0)    'SHADECOLORID
@@ -4716,124 +4710,138 @@ LINE1:
                                 ALPARAVAL.Add(0)    'SHADEITEMCOLORID
                                 ALPARAVAL.Add(0)    'SHADEMTRS
                                 ALPARAVAL.Add(0)    'SHADEsrno
+
+                                ALPARAVAL.Add("")   'WEFTSRNO
+                                ALPARAVAL.Add("")   'WEFTQUALITY
+                                ALPARAVAL.Add("")   'WEFTSHADE
+                                ALPARAVAL.Add("")   'WEFTPICK
+                                ALPARAVAL.Add("")   'WEFTWT
+                                ALPARAVAL.Add("")   'WEFTRATE
+                                ALPARAVAL.Add("")   'WEFTAMOUNT
+                                ALPARAVAL.Add(0)    'WEFTSHADESRNO
+
+
+
                                 Dim objclsItemMaster As New clsItemmaster
-                                    objclsItemMaster.alParaval = ALPARAVAL
-                                    Dim IntResult As Integer = objclsItemMaster.SAVE()
+                                objclsItemMaster.alParaval = ALPARAVAL
+                                Dim IntResult As Integer = objclsItemMaster.SAVE()
 
-                                End If
                             End If
+                        End If
 
 
-                            If dr("DESIGN") <> "" Then
-                                DTTABLE = OBJCMN.SEARCH("DESIGN_ID AS DESIGNID", "", "DESIGNMASTER", " AND DESIGN_NO = '" & dr("DESIGN") & "' AND DESIGN_YEARID = " & YearId)
-                                If DTTABLE.Rows.Count = 0 Then
-                                    'ADD NEW DESIGN
-                                    Dim OBJDESIGN As New ClsDesignMaster
-                                    OBJDESIGN.alParaval.Add(UCase(dr("DESIGN")))
-                                    OBJDESIGN.alParaval.Add("") 'MILLNAME
-                                    OBJDESIGN.alParaval.Add("") 'CADNO
-                                    OBJDESIGN.alParaval.Add(0)  'PURRATE
-                                    OBJDESIGN.alParaval.Add(0)  'SALERATE
-                                    OBJDESIGN.alParaval.Add(0)  'WRATE
-                                    OBJDESIGN.alParaval.Add("") 'REMARKS
+                        If dr("DESIGN") <> "" Then
+                            DTTABLE = OBJCMN.SEARCH("DESIGN_ID AS DESIGNID", "", "DESIGNMASTER", " AND DESIGN_NO = '" & dr("DESIGN") & "' AND DESIGN_YEARID = " & YearId)
+                            If DTTABLE.Rows.Count = 0 Then
+                                'ADD NEW DESIGN
+                                Dim OBJDESIGN As New ClsDesignMaster
+                                OBJDESIGN.alParaval.Add(UCase(dr("DESIGN")))
+                                OBJDESIGN.alParaval.Add("") 'MILLNAME
+                                OBJDESIGN.alParaval.Add("") 'CADNO
+                                OBJDESIGN.alParaval.Add(0)  'PURRATE
+                                OBJDESIGN.alParaval.Add(0)  'SALERATE
+                                OBJDESIGN.alParaval.Add(0)  'WRATE
+                                OBJDESIGN.alParaval.Add("") 'REMARKS
 
-                                    OBJDESIGN.alParaval.Add(0)  'FABRIC
-                                    OBJDESIGN.alParaval.Add(0)  'DYEING
-                                    OBJDESIGN.alParaval.Add(0)  'JOBWORK
-                                    OBJDESIGN.alParaval.Add(0)  'FINISHING
-                                    OBJDESIGN.alParaval.Add(0)  'EXTRA
-                                    OBJDESIGN.alParaval.Add(0)  'TOTAL
+                                OBJDESIGN.alParaval.Add(0)  'FABRIC
+                                OBJDESIGN.alParaval.Add(0)  'DYEING
+                                OBJDESIGN.alParaval.Add(0)  'JOBWORK
+                                OBJDESIGN.alParaval.Add(0)  'FINISHING
+                                OBJDESIGN.alParaval.Add(0)  'EXTRA
+                                OBJDESIGN.alParaval.Add(0)  'TOTAL
 
-                                    'GET ITEMNAME FROM TEMPYEARID   
-                                    Dim DTTEMP As DataTable = OBJCMN.SEARCH("ISNULL(ITEMMASTER.ITEM_NAME,'') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEMMASTER.ITEM_ID", " AND DESIGN_NO = '" & dr("DESIGN") & "' AND DESIGN_YEARID = " & TEMPYEARID)
-                                    If DTTEMP.Rows.Count > 0 Then OBJDESIGN.alParaval.Add(DTTEMP.Rows(0).Item("ITEMNAME")) Else OBJDESIGN.alParaval.Add("")  'ITEM
+                                'GET ITEMNAME FROM TEMPYEARID   
+                                Dim DTTEMP As DataTable = OBJCMN.SEARCH("ISNULL(ITEMMASTER.ITEM_NAME,'') AS ITEMNAME", "", " DESIGNMASTER LEFT OUTER JOIN ITEMMASTER ON DESIGN_ITEMID = ITEMMASTER.ITEM_ID", " AND DESIGN_NO = '" & dr("DESIGN") & "' AND DESIGN_YEARID = " & TEMPYEARID)
+                                If DTTEMP.Rows.Count > 0 Then OBJDESIGN.alParaval.Add(DTTEMP.Rows(0).Item("ITEMNAME")) Else OBJDESIGN.alParaval.Add("")  'ITEM
 
-                                    OBJDESIGN.alParaval.Add(0)  'BLOCKED
+                                OBJDESIGN.alParaval.Add(0)  'BLOCKED
 
-                                    OBJDESIGN.alParaval.Add(CmpId)
-                                    OBJDESIGN.alParaval.Add(Locationid)
-                                    OBJDESIGN.alParaval.Add(Userid)
-                                    OBJDESIGN.alParaval.Add(YearId)
-                                    OBJDESIGN.alParaval.Add(0)
+                                OBJDESIGN.alParaval.Add(CmpId)
+                                OBJDESIGN.alParaval.Add(Locationid)
+                                OBJDESIGN.alParaval.Add(Userid)
+                                OBJDESIGN.alParaval.Add(YearId)
+                                OBJDESIGN.alParaval.Add(0)
 
-                                    OBJDESIGN.alParaval.Add(DBNull.Value)
+                                OBJDESIGN.alParaval.Add(DBNull.Value)
 
-                                    OBJDESIGN.alParaval.Add("")   'LINE1
-                                    OBJDESIGN.alParaval.Add("")   'LINE2
-                                    OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
-                                    OBJDESIGN.alParaval.Add("")    'DESIGNER
+                                OBJDESIGN.alParaval.Add("") 'GRIDSRNO
+                                OBJDESIGN.alParaval.Add("") 'BASE
+                                OBJDESIGN.alParaval.Add("") 'PRINT
+                                OBJDESIGN.alParaval.Add("") 'COLOR
+                                OBJDESIGN.alParaval.Add(0) 'COLORBLOCKED
+                                OBJDESIGN.alParaval.Add("") 'SHADETYPE
 
-                                    OBJDESIGN.alParaval.Add("") 'GRIDSRNO
-                                    OBJDESIGN.alParaval.Add("") 'BASE
-                                    OBJDESIGN.alParaval.Add("") 'PRINT
-                                    OBJDESIGN.alParaval.Add("") 'COLOR
-                                    OBJDESIGN.alParaval.Add(0) 'COLORBLOCKED
+                                OBJDESIGN.alParaval.Add("")   'LINE1
+                                OBJDESIGN.alParaval.Add("")   'LINE2
+                                OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
+                                OBJDESIGN.alParaval.Add("")    'DESIGNER
 
-                                    Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
-                                End If
+
+                                Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
                             End If
+                        End If
 
 
 
-                            'COLOR SAVE
-                            If dr("COLOR") <> "" Then
-                                DTTABLE = OBJCMN.SEARCH("COLOR_ID AS COLORID", "", "COLORMASTER", " AND COLOR_NAME = '" & dr("COLOR") & "' AND COLOR_YEARID = " & YearId)
-                                If DTTABLE.Rows.Count = 0 Then
-                                    'ADD NEW DESIGN
-                                    Dim OBJCOLOR As New ClsColorMaster
-                                    OBJCOLOR.alParaval.Add(UCase(dr("COLOR")))
-                                    OBJCOLOR.alParaval.Add("")
-                                    OBJCOLOR.alParaval.Add(CmpId)
-                                    OBJCOLOR.alParaval.Add(Locationid)
-                                    OBJCOLOR.alParaval.Add(Userid)
-                                    OBJCOLOR.alParaval.Add(YearId)
-                                    OBJCOLOR.alParaval.Add(0)
+                        'COLOR SAVE
+                        If dr("COLOR") <> "" Then
+                            DTTABLE = OBJCMN.SEARCH("COLOR_ID AS COLORID", "", "COLORMASTER", " AND COLOR_NAME = '" & dr("COLOR") & "' AND COLOR_YEARID = " & YearId)
+                            If DTTABLE.Rows.Count = 0 Then
+                                'ADD NEW DESIGN
+                                Dim OBJCOLOR As New ClsColorMaster
+                                OBJCOLOR.alParaval.Add(UCase(dr("COLOR")))
+                                OBJCOLOR.alParaval.Add("")
+                                OBJCOLOR.alParaval.Add(CmpId)
+                                OBJCOLOR.alParaval.Add(Locationid)
+                                OBJCOLOR.alParaval.Add(Userid)
+                                OBJCOLOR.alParaval.Add(YearId)
+                                OBJCOLOR.alParaval.Add(0)
 
-                                    Dim INTRESCAT As Integer = OBJCOLOR.save()
-                                End If
+                                Dim INTRESCAT As Integer = OBJCOLOR.save()
                             End If
+                        End If
 
 
 
-                            'QUALITY SAVE
-                            If dr("QUALITY") <> "" Then
-                                DTTABLE = OBJCMN.SEARCH("QUALITY_ID AS QUALITYID", "", "QUALITYMASTER", " AND QUALITY_NAME = '" & dr("QUALITY") & "' AND QUALITY_YEARID = " & YearId)
-                                If DTTABLE.Rows.Count = 0 Then
-                                    'ADD NEW QUALITY
-                                    Dim OBJQUALITY As New ClsQualityMaster
-                                    OBJQUALITY.alParaval.Add(UCase(dr("QUALITY")))
-                                    OBJQUALITY.alParaval.Add("")  'PROCECSS
-                                    OBJQUALITY.alParaval.Add("")  'UNIT
-                                    OBJQUALITY.alParaval.Add("")  'ITEMNAME
-                                    OBJQUALITY.alParaval.Add(0) 'REED
-                                    OBJQUALITY.alParaval.Add(0)  'PIK
-                                    OBJQUALITY.alParaval.Add("")  'COUNT
-                                    OBJQUALITY.alParaval.Add(0)  'WIDTH
-                                    OBJQUALITY.alParaval.Add("") 'REMAKS
+                        'QUALITY SAVE
+                        If dr("QUALITY") <> "" Then
+                            DTTABLE = OBJCMN.SEARCH("QUALITY_ID AS QUALITYID", "", "QUALITYMASTER", " AND QUALITY_NAME = '" & dr("QUALITY") & "' AND QUALITY_YEARID = " & YearId)
+                            If DTTABLE.Rows.Count = 0 Then
+                                'ADD NEW QUALITY
+                                Dim OBJQUALITY As New ClsQualityMaster
+                                OBJQUALITY.alParaval.Add(UCase(dr("QUALITY")))
+                                OBJQUALITY.alParaval.Add("")  'PROCECSS
+                                OBJQUALITY.alParaval.Add("")  'UNIT
+                                OBJQUALITY.alParaval.Add("")  'ITEMNAME
+                                OBJQUALITY.alParaval.Add(0) 'REED
+                                OBJQUALITY.alParaval.Add(0)  'PIK
+                                OBJQUALITY.alParaval.Add("")  'COUNT
+                                OBJQUALITY.alParaval.Add(0)  'WIDTH
+                                OBJQUALITY.alParaval.Add("") 'REMAKS
 
-                                    OBJQUALITY.alParaval.Add("") 'WARP
-                                    OBJQUALITY.alParaval.Add("") 'WEFT
-                                    OBJQUALITY.alParaval.Add("") 'SELVEDGE
+                                OBJQUALITY.alParaval.Add("") 'WARP
+                                OBJQUALITY.alParaval.Add("") 'WEFT
+                                OBJQUALITY.alParaval.Add("") 'SELVEDGE
 
 
-                                    OBJQUALITY.alParaval.Add(CmpId)
-                                    OBJQUALITY.alParaval.Add(Locationid)
-                                    OBJQUALITY.alParaval.Add(Userid)
-                                    OBJQUALITY.alParaval.Add(YearId)
-                                    OBJQUALITY.alParaval.Add(0)
-                                    OBJQUALITY.alParaval.Add("") 'PHOTO
-                                    Dim INTRESCAT As Integer = OBJQUALITY.save()
-                                End If
+                                OBJQUALITY.alParaval.Add(CmpId)
+                                OBJQUALITY.alParaval.Add(Locationid)
+                                OBJQUALITY.alParaval.Add(Userid)
+                                OBJQUALITY.alParaval.Add(YearId)
+                                OBJQUALITY.alParaval.Add(0)
+                                OBJQUALITY.alParaval.Add("") 'PHOTO
+                                Dim INTRESCAT As Integer = OBJQUALITY.save()
                             End If
+                        End If
 
-                            cmbtrans.Text = dr("TRANSNAME").ToString
-                            gridgrn.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("BALENO"), dr("DESIGN"), dr("PRINTDESC"), dr("COLOR"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), "", "", 0, 0, 0, 0, "Mtrs", 0, dr("BARCODE"), 0, "", 0, 0, 0, 0, 0, 0, "")
-                        Next
-                        TOTAL()
-                        gridgrn.FirstDisplayedScrollingRowIndex = gridgrn.RowCount - 1
-                    End If
-
+                        cmbtrans.Text = dr("TRANSNAME").ToString
+                        gridgrn.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("BALENO"), dr("DESIGN"), dr("PRINTDESC"), dr("COLOR"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), "", "", 0, 0, 0, 0, "Mtrs", 0, dr("BARCODE"), 0, "", 0, 0, 0, 0, 0, 0, "")
+                    Next
+                    TOTAL()
+                    gridgrn.FirstDisplayedScrollingRowIndex = gridgrn.RowCount - 1
                 End If
+
+            End If
 
 
 

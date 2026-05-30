@@ -1160,7 +1160,7 @@ NEXTLINE:
 
         'do not VALIDATE GSTIN JUST GIVE INTIMATION WISH TO PROCEED
         'DONE BY GULKIT
-        If TXTGSTIN.Text.Trim <> "" Then
+        If TXTGSTIN.Text.Trim <> "" And TXTGSTIN.Text.Trim <> "URP" Then
             If (EDIT = False) Or (EDIT = True And TEMPGSTIN <> TXTGSTIN.Text.Trim) Then
                 DT = OBJCMN.SEARCH("ACC_GSTIN AS GSTIN", "", "LEDGERS", " and LEDGERS.acc_GSTIN = '" & TXTGSTIN.Text.Trim & "' and ACC_yearid = " & YearId)
                 If DT.Rows.Count > 0 Then
@@ -1267,7 +1267,7 @@ NEXTLINE:
 
 
         'CHECKING 1ST TWO ALPHABETS WITH STATE
-        If cmbstate.Text.Trim <> "" And TXTGSTIN.Text.Trim <> "" AndAlso TXTGSTIN.Text.Substring(0, 2) <> "88" Then
+        If cmbstate.Text.Trim <> "" And TXTGSTIN.Text.Trim <> "" And TXTGSTIN.Text.Trim <> "URP" AndAlso TXTGSTIN.Text.Substring(0, 2) <> "88" Then
             'Dim OBJCMN As New ClsCommon
             DT = OBJCMN.SEARCH(" cast(state_remark as varchar(5)) AS STATECODE ", "", " STATEMASTER", " AND state_name = '" & cmbstate.Text.Trim & "'  and STATE_YEARID = " & YearId)
             If DT.Rows(0).Item("STATECODE") <> TXTGSTIN.Text.Substring(0, 2) Then
@@ -1277,7 +1277,7 @@ NEXTLINE:
         End If
 
 
-        If TXTGSTIN.Text.Trim.Length > 0 Then
+        If TXTGSTIN.Text.Trim.Length > 0 And TXTGSTIN.Text.Trim <> "URP" Then
             'If txtpanno.Text.Trim = "" Then
             '    Ep.SetError(txtpanno, "Enter Pan No")
             '    bln = False
@@ -2251,7 +2251,7 @@ line1:
 
     Private Sub CMDVERIFY_Click(sender As Object, e As EventArgs) Handles CMDVERIFY.Click
         Try
-            If TXTGSTIN.Text.Trim <> "" Then VERIFYGSTIN()
+            If TXTGSTIN.Text.Trim <> "" And TXTGSTIN.Text.Trim <> "URP" Then VERIFYGSTIN()
         Catch ex As Exception
             Throw ex
         End Try

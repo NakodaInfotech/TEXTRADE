@@ -125,7 +125,6 @@ Public Class clsItemmaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPQUALITY", alParaval(I)))
                 I += 1
-
                 .Add(New SqlClient.SqlParameter("@WARPENDS", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@WARPWT", alParaval(I)))

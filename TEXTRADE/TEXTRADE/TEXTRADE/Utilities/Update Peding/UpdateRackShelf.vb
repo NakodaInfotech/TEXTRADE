@@ -4,7 +4,7 @@ Imports BL
 Imports System.IO
 
 Public Class UpdateRackShelf
-
+    Public FRMSTRING As String
     Public TEMPENTRYNO As Integer          'used for editing
     Public EDIT As Boolean          'used for editing
 
@@ -138,158 +138,310 @@ Public Class UpdateRackShelf
 
     Private Sub CMDSAVE_Click(sender As Object, e As EventArgs) Handles CMDSAVE.Click
         Try
-            If CMBRACK.Text.Trim = "" And CMBSHELF.Text.Trim = "" Then Exit Sub
+            If FRMSTRING = "GREY" Then
+                If CMBRACK.Text.Trim = "" And CMBSHELF.Text.Trim = "" Then Exit Sub
 
-            Cursor.Current = Cursors.WaitCursor
-            EP.Clear()
-            If Not ERRORVALID() Then
-                Exit Sub
+                Cursor.Current = Cursors.WaitCursor
+                EP.Clear()
+                If Not ERRORVALID() Then
+                    Exit Sub
+                End If
+
+                For I As Integer = 0 To gridbill.RowCount - 1
+                    Dim ROW As DataRow = gridbill.GetDataRow(I)
+                    If ROW Is Nothing Then Exit Sub
+                    Dim OBJCMN As New ClsCommon
+                    Dim DT As New DataTable
+
+                    Dim RACKID As Integer = 0
+                    Dim SHELFID As Integer = 0
+
+                    If CMBRACK.Text.Trim <> "" Then
+                        DT = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & CMBRACK.Text.Trim & "' AND RACK_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 Then RACKID = DT.Rows(0).Item("RACKID")
+                    End If
+
+                    If CMBSHELF.Text.Trim <> "" Then
+                        DT = OBJCMN.SEARCH("SHELF_ID AS SHELFID", "", "SHELFMASTER", " AND SHELF_NAME = '" & CMBSHELF.Text.Trim & "' AND SHELF_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 Then SHELFID = DT.Rows(0).Item("SHELFID")
+                    End If
+
+                    If ROW("TYPE") = "OPENINGGREY" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER_GREY SET SMGREY_RACKID = " & RACKID & " , SMGREY_SHELFID = " & SHELFID & " WHERE SMGREY_BARCODE = '" & ROW("BARCODE") & "' AND SMGREY_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "KNITTING" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE GREYRECDKNITTING_DESC SET GREY_RACKID = " & RACKID & " , GREY_SHELFID = " & SHELFID & " WHERE GREY_BARCODE = '" & ROW("BARCODE") & "' AND  GREY_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "GREYTRANSPORT" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE GREYRECTRANSPORT_DESC SET GREYREC_RACKID = " & RACKID & " , GREYREC_SHELFID = " & SHELFID & " WHERE GREYREC_BARCODE = '" & ROW("BARCODE") & "' AND  GREYREC_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "OPENINGGREYTRANS" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER_GREYTRANSPORT SET SMGREYTRANS_RACKID = " & RACKID & " , SMGREYTRANS_SHELFID = " & SHELFID & " WHERE SMGREYTRANS_BARCODE = '" & ROW("BARCODE") & "' AND SMGREYTRANS_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "GREYJOBIN" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE GREYJOBIN_DESC SET GJI_RACKID = " & RACKID & " , GJI_SHELFID = " & SHELFID & " WHERE GJI_BARCODE = '" & ROW("BARCODE") & "' AND GJI_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "GREYSALERETCHALLAN" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE GREYSALERETURNCHALLAN_DESC SET GSRCH_RACKID = " & RACKID & " , GSRCH_SHELFID = " & SHELFID & " WHERE GSRCH_BARCODE = '" & ROW("BARCODE") & "' AND GSRCH_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "GREYSTOCKADJUSTMENT" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE GREYSTOCKADJUSTMENT_INDESC SET GREYSA_RACKID = " & RACKID & ", GREYSA_SHELFID = " & SHELFID & " WHERE GREYSA_BARCODE = '" & ROW("BARCODE") & "' AND GREYSA_YEARID = " & YearId, "", "")
+                    End If
+
+                Next
+
+
+
+                Dim alParaval As New ArrayList
+                alParaval.Add(Format(DTUPDATEDATE.Value.Date, "MM/dd/yyyy"))
+                alParaval.Add(CMBRACK.Text.Trim)
+                alParaval.Add(CMBSHELF.Text.Trim)
+                alParaval.Add(Val(GPCS.SummaryText))
+                alParaval.Add(Val(GMTRS.SummaryText))
+                alParaval.Add(txtremarks.Text.Trim)
+
+                alParaval.Add(CmpId)
+                alParaval.Add(Userid)
+                alParaval.Add(YearId)
+
+                Dim GRIDSRNO As String = ""
+                Dim ITEMNAME As String = ""
+                Dim QUALITY As String = ""
+                Dim DESIGN As String = ""
+                Dim COLOR As String = ""
+                Dim GODOWN As String = ""
+                Dim PCS As String = ""
+                Dim UNIT As String = ""
+                Dim MTRS As String = ""
+                Dim PIECETYPE As String = ""
+                Dim LOTNO As String = ""
+                Dim BALENO As String = ""
+                Dim CHALLANNO As String = ""
+                Dim BARCODE As String = ""
+                Dim TYPE As String = ""
+
+                For I As Integer = 0 To gridbill.RowCount - 1
+                    Dim ROW As DataRow = gridbill.GetDataRow(I)
+                    If GRIDSRNO = "" Then
+                        GRIDSRNO = Val(ROW("SRNO"))
+                        ITEMNAME = ROW("ITEMNAME")
+                        QUALITY = ROW("QUALITY")
+                        DESIGN = ROW("DESIGNNO")
+                        COLOR = ROW("COLOR")
+                        GODOWN = ROW("GODOWN")
+                        PCS = Val(ROW("PCS"))
+                        UNIT = ROW("UNIT")
+                        MTRS = Val(ROW("MTRS"))
+                        PIECETYPE = ROW("PIECETYPE")
+                        LOTNO = ROW("LOTNO")
+                        BALENO = ROW("BALENO")
+                        If IsDBNull(ROW("CHALLANNO")) <> True Then CHALLANNO = ROW("CHALLANNO") Else CHALLANNO = ""
+                        BARCODE = ROW("BARCODE")
+                        TYPE = ROW("TYPE")
+
+                    Else
+                        GRIDSRNO = GRIDSRNO & "|" & Val(ROW("SRNO"))
+                        ITEMNAME = ITEMNAME & "|" & ROW("ITEMNAME")
+                        QUALITY = QUALITY & "|" & ROW("QUALITY")
+                        DESIGN = DESIGN & "|" & ROW("DESIGNNO")
+                        COLOR = COLOR & "|" & ROW("COLOR")
+                        GODOWN = GODOWN & "|" & ROW("GODOWN")
+                        PCS = PCS & "|" & Val(ROW("PCS"))
+                        UNIT = UNIT & "|" & ROW("UNIT")
+                        MTRS = MTRS & "|" & Val(ROW("MTRS"))
+                        PIECETYPE = PIECETYPE & "|" & ROW("PIECETYPE")
+                        LOTNO = LOTNO & "|" & ROW("LOTNO")
+                        BALENO = BALENO & "|" & ROW("BALENO")
+                        If IsDBNull(ROW("CHALLANNO")) <> True Then CHALLANNO = CHALLANNO & "|" & ROW("CHALLANNO") Else CHALLANNO = CHALLANNO & "|" & ""
+                        BARCODE = BARCODE & "|" & ROW("BARCODE")
+                        TYPE = TYPE & "|" & ROW("TYPE")
+
+                    End If
+                Next
+
+                alParaval.Add(GRIDSRNO)
+                alParaval.Add(ITEMNAME)
+                alParaval.Add(QUALITY)
+                alParaval.Add(DESIGN)
+                alParaval.Add(COLOR)
+                alParaval.Add(GODOWN)
+                alParaval.Add(PCS)
+                alParaval.Add(UNIT)
+                alParaval.Add(MTRS)
+                alParaval.Add(PIECETYPE)
+                alParaval.Add(LOTNO)
+                alParaval.Add(BALENO)
+                alParaval.Add(CHALLANNO)
+                alParaval.Add(BARCODE)
+                alParaval.Add(TYPE)
+
+                Dim OBJRACK As New ClsUpdateGreyRackShelf()
+                OBJRACK.alParaval = alParaval
+                If EDIT = False Then
+                    Dim DTTABLE As DataTable = OBJRACK.SAVE()
+                    TXTENTRYNO.Text = DTTABLE.Rows(0).Item(0)
+                    TEMPENTRYNO = DTTABLE.Rows(0).Item(0)
+                    MsgBox("Details Added")
+
+                ElseIf EDIT = True Then
+                    alParaval.Add(TEMPENTRYNO)
+                    Dim IntResult As Integer = OBJRACK.UPDATE()
+                    MsgBox("Details Updated")
+                    EDIT = False
+                End If
+
+                CLEAR()
+                DTUPDATEDATE.Focus()
+
+            Else
+
+
+                If CMBRACK.Text.Trim = "" And CMBSHELF.Text.Trim = "" Then Exit Sub
+
+                Cursor.Current = Cursors.WaitCursor
+                EP.Clear()
+                If Not ERRORVALID() Then
+                    Exit Sub
+                End If
+
+                For I As Integer = 0 To gridbill.RowCount - 1
+                    Dim ROW As DataRow = gridbill.GetDataRow(I)
+                    If ROW Is Nothing Then Exit Sub
+                    Dim OBJCMN As New ClsCommon
+                    Dim DT As New DataTable
+
+                    Dim RACKID As Integer = 0
+                    Dim SHELFID As Integer = 0
+
+                    If CMBRACK.Text.Trim <> "" Then
+                        DT = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & CMBRACK.Text.Trim & "' AND RACK_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 Then RACKID = DT.Rows(0).Item("RACKID")
+                    End If
+
+                    If CMBSHELF.Text.Trim <> "" Then
+                        DT = OBJCMN.SEARCH("SHELF_ID AS SHELFID", "", "SHELFMASTER", " AND SHELF_NAME = '" & CMBSHELF.Text.Trim & "' AND SHELF_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 Then SHELFID = DT.Rows(0).Item("SHELFID")
+                    End If
+
+                    If ROW("TYPE") = "OPENING" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER SET SM_RACKID = " & RACKID & " , SM_SHELFID = " & SHELFID & " WHERE SM_BARCODE = '" & ROW("BARCODE") & "' AND SM_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "GRN" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE GRN_DESC SET GRN_RACKID = " & RACKID & " , GRN_SHELFID = " & SHELFID & " WHERE GRN_BARCODE = '" & ROW("BARCODE") & "' AND GRN_GRIDTYPE = 'FANCY MATERIAL' AND GRN_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "MATREC" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE MATERIALRECEIPT_DESC SET MATREC_RACKID = " & RACKID & " , MATREC_SHELFID = " & SHELFID & " WHERE MATREC_BARCODE = '" & ROW("BARCODE") & "' AND MATREC_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "INHOUSECHECK" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE INHOUSECHECKING_DESC SET CHECK_RACKID = " & RACKID & " , CHECK_SHELFID = " & SHELFID & " WHERE CHECK_BARCODE = '" & ROW("BARCODE") & "' AND CHECK_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "JOBIN" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE JOBIN_DESC SET JI_RACKID = " & RACKID & " , JI_SHELFID = " & SHELFID & " WHERE JI_BARCODE = '" & ROW("BARCODE") & "' AND JI_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "PACKING" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE RECPACKING_DESC SET REC_RACKID = " & RACKID & " , REC_SHELFID = " & SHELFID & " WHERE REC_BARCODE = '" & ROW("BARCODE") & "' AND REC_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "SALERET" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE SALERETURN_DESC SET SALRET_RACKID = " & RACKID & " , SALRET_SHELFID = " & SHELFID & " WHERE SALRET_BARCODE = '" & ROW("BARCODE") & "' AND SALRET_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "SALERETCHALLAN" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE SALERETURNCHALLAN_DESC SET SRCH_RACKID = " & RACKID & " , SRCH_SHELFID = " & SHELFID & " WHERE SRCH_BARCODE = '" & ROW("BARCODE") & "' AND SRCH_YEARID = " & YearId, "", "")
+                    ElseIf ROW("TYPE") = "STOCKADJUSTMENT" Then
+                        DT = OBJCMN.Execute_Any_String(" UPDATE STOCKADJUSTMENT_INDESC SET SA_RACKID = " & RACKID & ", SA_SHELFID = " & SHELFID & " WHERE SA_BARCODE = '" & ROW("BARCODE") & "' AND SA_YEARID = " & YearId, "", "")
+                    End If
+
+                Next
+
+
+
+                Dim alParaval As New ArrayList
+                alParaval.Add(Format(DTUPDATEDATE.Value.Date, "MM/dd/yyyy"))
+                alParaval.Add(CMBRACK.Text.Trim)
+                alParaval.Add(CMBSHELF.Text.Trim)
+                alParaval.Add(Val(GPCS.SummaryText))
+                alParaval.Add(Val(GMTRS.SummaryText))
+                alParaval.Add(txtremarks.Text.Trim)
+
+                alParaval.Add(CmpId)
+                alParaval.Add(Userid)
+                alParaval.Add(YearId)
+
+                Dim GRIDSRNO As String = ""
+                Dim ITEMNAME As String = ""
+                Dim QUALITY As String = ""
+                Dim DESIGN As String = ""
+                Dim COLOR As String = ""
+                Dim GODOWN As String = ""
+                Dim PCS As String = ""
+                Dim UNIT As String = ""
+                Dim MTRS As String = ""
+                Dim PIECETYPE As String = ""
+                Dim LOTNO As String = ""
+                Dim BALENO As String = ""
+                Dim CHALLANNO As String = ""
+                Dim BARCODE As String = ""
+                Dim TYPE As String = ""
+
+                For I As Integer = 0 To gridbill.RowCount - 1
+                    Dim ROW As DataRow = gridbill.GetDataRow(I)
+                    If GRIDSRNO = "" Then
+                        GRIDSRNO = Val(ROW("SRNO"))
+                        ITEMNAME = ROW("ITEMNAME")
+                        QUALITY = ROW("QUALITY")
+                        DESIGN = ROW("DESIGNNO")
+                        COLOR = ROW("COLOR")
+                        GODOWN = ROW("GODOWN")
+                        PCS = Val(ROW("PCS"))
+                        UNIT = ROW("UNIT")
+                        MTRS = Val(ROW("MTRS"))
+                        PIECETYPE = ROW("PIECETYPE")
+                        LOTNO = ROW("LOTNO")
+                        BALENO = ROW("BALENO")
+                        If IsDBNull(ROW("CHALLANNO")) <> True Then CHALLANNO = ROW("CHALLANNO") Else CHALLANNO = ""
+                        BARCODE = ROW("BARCODE")
+                        TYPE = ROW("TYPE")
+
+                    Else
+                        GRIDSRNO = GRIDSRNO & "|" & Val(ROW("SRNO"))
+                        ITEMNAME = ITEMNAME & "|" & ROW("ITEMNAME")
+                        QUALITY = QUALITY & "|" & ROW("QUALITY")
+                        DESIGN = DESIGN & "|" & ROW("DESIGNNO")
+                        COLOR = COLOR & "|" & ROW("COLOR")
+                        GODOWN = GODOWN & "|" & ROW("GODOWN")
+                        PCS = PCS & "|" & Val(ROW("PCS"))
+                        UNIT = UNIT & "|" & ROW("UNIT")
+                        MTRS = MTRS & "|" & Val(ROW("MTRS"))
+                        PIECETYPE = PIECETYPE & "|" & ROW("PIECETYPE")
+                        LOTNO = LOTNO & "|" & ROW("LOTNO")
+                        BALENO = BALENO & "|" & ROW("BALENO")
+                        If IsDBNull(ROW("CHALLANNO")) <> True Then CHALLANNO = CHALLANNO & "|" & ROW("CHALLANNO") Else CHALLANNO = CHALLANNO & "|" & ""
+                        BARCODE = BARCODE & "|" & ROW("BARCODE")
+                        TYPE = TYPE & "|" & ROW("TYPE")
+
+                    End If
+                Next
+
+                alParaval.Add(GRIDSRNO)
+                alParaval.Add(ITEMNAME)
+                alParaval.Add(QUALITY)
+                alParaval.Add(DESIGN)
+                alParaval.Add(COLOR)
+                alParaval.Add(GODOWN)
+                alParaval.Add(PCS)
+                alParaval.Add(UNIT)
+                alParaval.Add(MTRS)
+                alParaval.Add(PIECETYPE)
+                alParaval.Add(LOTNO)
+                alParaval.Add(BALENO)
+                alParaval.Add(CHALLANNO)
+                alParaval.Add(BARCODE)
+                alParaval.Add(TYPE)
+
+                Dim OBJRACK As New ClsUpdateRackShelf()
+                OBJRACK.alParaval = alParaval
+                If EDIT = False Then
+                    Dim DTTABLE As DataTable = OBJRACK.SAVE()
+                    TXTENTRYNO.Text = DTTABLE.Rows(0).Item(0)
+                    TEMPENTRYNO = DTTABLE.Rows(0).Item(0)
+                    MsgBox("Details Added")
+
+                ElseIf EDIT = True Then
+                    alParaval.Add(TEMPENTRYNO)
+                    Dim IntResult As Integer = OBJRACK.UPDATE()
+                    MsgBox("Details Updated")
+                    EDIT = False
+                End If
+
+                CLEAR()
+                DTUPDATEDATE.Focus()
             End If
-
-            For I As Integer = 0 To gridbill.RowCount - 1
-                Dim ROW As DataRow = gridbill.GetDataRow(I)
-                If ROW Is Nothing Then Exit Sub
-                Dim OBJCMN As New ClsCommon
-                Dim DT As New DataTable
-
-                Dim RACKID As Integer = 0
-                Dim SHELFID As Integer = 0
-
-                If CMBRACK.Text.Trim <> "" Then
-                    DT = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & CMBRACK.Text.Trim & "' AND RACK_YEARID = " & YearId)
-                    If DT.Rows.Count > 0 Then RACKID = DT.Rows(0).Item("RACKID")
-                End If
-
-                If CMBSHELF.Text.Trim <> "" Then
-                    DT = OBJCMN.SEARCH("SHELF_ID AS SHELFID", "", "SHELFMASTER", " AND SHELF_NAME = '" & CMBSHELF.Text.Trim & "' AND SHELF_YEARID = " & YearId)
-                    If DT.Rows.Count > 0 Then SHELFID = DT.Rows(0).Item("SHELFID")
-                End If
-
-                If ROW("TYPE") = "OPENING" Then
-                    DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER SET SM_RACKID = " & RACKID & " , SM_SHELFID = " & SHELFID & " WHERE SM_BARCODE = '" & ROW("BARCODE") & "' AND SM_YEARID = " & YearId, "", "")
-                ElseIf ROW("TYPE") = "GRN" Then
-                    DT = OBJCMN.Execute_Any_String(" UPDATE GRN_DESC SET GRN_RACKID = " & RACKID & " , GRN_SHELFID = " & SHELFID & " WHERE GRN_BARCODE = '" & ROW("BARCODE") & "' AND GRN_GRIDTYPE = 'FANCY MATERIAL' AND GRN_YEARID = " & YearId, "", "")
-                ElseIf ROW("TYPE") = "MATREC" Then
-                    DT = OBJCMN.Execute_Any_String(" UPDATE MATERIALRECEIPT_DESC SET MATREC_RACKID = " & RACKID & " , MATREC_SHELFID = " & SHELFID & " WHERE MATREC_BARCODE = '" & ROW("BARCODE") & "' AND MATREC_YEARID = " & YearId, "", "")
-                ElseIf ROW("TYPE") = "INHOUSECHECK" Then
-                    DT = OBJCMN.Execute_Any_String(" UPDATE INHOUSECHECKING_DESC SET CHECK_RACKID = " & RACKID & " , CHECK_SHELFID = " & SHELFID & " WHERE CHECK_BARCODE = '" & ROW("BARCODE") & "' AND CHECK_YEARID = " & YearId, "", "")
-                ElseIf ROW("TYPE") = "JOBIN" Then
-                    DT = OBJCMN.Execute_Any_String(" UPDATE JOBIN_DESC SET JI_RACKID = " & RACKID & " , JI_SHELFID = " & SHELFID & " WHERE JI_BARCODE = '" & ROW("BARCODE") & "' AND JI_YEARID = " & YearId, "", "")
-                ElseIf ROW("TYPE") = "PACKING" Then
-                    DT = OBJCMN.Execute_Any_String(" UPDATE RECPACKING_DESC SET REC_RACKID = " & RACKID & " , REC_SHELFID = " & SHELFID & " WHERE REC_BARCODE = '" & ROW("BARCODE") & "' AND REC_YEARID = " & YearId, "", "")
-                ElseIf ROW("TYPE") = "SALERET" Then
-                    DT = OBJCMN.Execute_Any_String(" UPDATE SALERETURN_DESC SET SALRET_RACKID = " & RACKID & " , SALRET_SHELFID = " & SHELFID & " WHERE SALRET_BARCODE = '" & ROW("BARCODE") & "' AND SALRET_YEARID = " & YearId, "", "")
-                ElseIf ROW("TYPE") = "SALERETCHALLAN" Then
-                    DT = OBJCMN.Execute_Any_String(" UPDATE SALERETURNCHALLAN_DESC SET SRCH_RACKID = " & RACKID & " , SRCH_SHELFID = " & SHELFID & " WHERE SRCH_BARCODE = '" & ROW("BARCODE") & "' AND SRCH_YEARID = " & YearId, "", "")
-                ElseIf ROW("TYPE") = "STOCKADJUSTMENT" Then
-                    DT = OBJCMN.Execute_Any_String(" UPDATE STOCKADJUSTMENT_INDESC SET SA_RACKID = " & RACKID & ", SA_SHELFID = " & SHELFID & " WHERE SA_BARCODE = '" & ROW("BARCODE") & "' AND SA_YEARID = " & YearId, "", "")
-                End If
-
-            Next
-
-
-
-            Dim alParaval As New ArrayList
-            alParaval.Add(Format(DTUPDATEDATE.Value.Date, "MM/dd/yyyy"))
-            alParaval.Add(CMBRACK.Text.Trim)
-            alParaval.Add(CMBSHELF.Text.Trim)
-            alParaval.Add(Val(GPCS.SummaryText))
-            alParaval.Add(Val(GMTRS.SummaryText))
-            alParaval.Add(txtremarks.Text.Trim)
-
-            alParaval.Add(CmpId)
-            alParaval.Add(Userid)
-            alParaval.Add(YearId)
-
-            Dim GRIDSRNO As String = ""
-            Dim ITEMNAME As String = ""
-            Dim QUALITY As String = ""
-            Dim DESIGN As String = ""
-            Dim COLOR As String = ""
-            Dim GODOWN As String = ""
-            Dim PCS As String = ""
-            Dim UNIT As String = ""
-            Dim MTRS As String = ""
-            Dim PIECETYPE As String = ""
-            Dim LOTNO As String = ""
-            Dim BALENO As String = ""
-            Dim CHALLANNO As String = ""
-            Dim BARCODE As String = ""
-            Dim TYPE As String = ""
-
-            For I As Integer = 0 To gridbill.RowCount - 1
-                Dim ROW As DataRow = gridbill.GetDataRow(I)
-                If GRIDSRNO = "" Then
-                    GRIDSRNO = Val(ROW("SRNO"))
-                    ITEMNAME = ROW("ITEMNAME")
-                    QUALITY = ROW("QUALITY")
-                    DESIGN = ROW("DESIGNNO")
-                    COLOR = ROW("COLOR")
-                    GODOWN = ROW("GODOWN")
-                    PCS = Val(ROW("PCS"))
-                    UNIT = ROW("UNIT")
-                    MTRS = Val(ROW("MTRS"))
-                    PIECETYPE = ROW("PIECETYPE")
-                    LOTNO = ROW("LOTNO")
-                    BALENO = ROW("BALENO")
-                    If IsDBNull(ROW("CHALLANNO")) <> True Then CHALLANNO = ROW("CHALLANNO") Else CHALLANNO = ""
-                    BARCODE = ROW("BARCODE")
-                    TYPE = ROW("TYPE")
-
-                Else
-                    GRIDSRNO = GRIDSRNO & "|" & Val(ROW("SRNO"))
-                    ITEMNAME = ITEMNAME & "|" & ROW("ITEMNAME")
-                    QUALITY = QUALITY & "|" & ROW("QUALITY")
-                    DESIGN = DESIGN & "|" & ROW("DESIGNNO")
-                    COLOR = COLOR & "|" & ROW("COLOR")
-                    GODOWN = GODOWN & "|" & ROW("GODOWN")
-                    PCS = PCS & "|" & Val(ROW("PCS"))
-                    UNIT = UNIT & "|" & ROW("UNIT")
-                    MTRS = MTRS & "|" & Val(ROW("MTRS"))
-                    PIECETYPE = PIECETYPE & "|" & ROW("PIECETYPE")
-                    LOTNO = LOTNO & "|" & ROW("LOTNO")
-                    BALENO = BALENO & "|" & ROW("BALENO")
-                    If IsDBNull(ROW("CHALLANNO")) <> True Then CHALLANNO = CHALLANNO & "|" & ROW("CHALLANNO") Else CHALLANNO = CHALLANNO & "|" & ""
-                    BARCODE = BARCODE & "|" & ROW("BARCODE")
-                    TYPE = TYPE & "|" & ROW("TYPE")
-
-                End If
-            Next
-
-            alParaval.Add(GRIDSRNO)
-            alParaval.Add(ITEMNAME)
-            alParaval.Add(QUALITY)
-            alParaval.Add(DESIGN)
-            alParaval.Add(COLOR)
-            alParaval.Add(GODOWN)
-            alParaval.Add(PCS)
-            alParaval.Add(UNIT)
-            alParaval.Add(MTRS)
-            alParaval.Add(PIECETYPE)
-            alParaval.Add(LOTNO)
-            alParaval.Add(BALENO)
-            alParaval.Add(CHALLANNO)
-            alParaval.Add(BARCODE)
-            alParaval.Add(TYPE)
-
-            Dim OBJRACK As New ClsUpdateRackShelf()
-            OBJRACK.alParaval = alParaval
-            If EDIT = False Then
-                Dim DTTABLE As DataTable = OBJRACK.SAVE()
-                TXTENTRYNO.Text = DTTABLE.Rows(0).Item(0)
-                TEMPENTRYNO = DTTABLE.Rows(0).Item(0)
-                MsgBox("Details Added")
-
-            ElseIf EDIT = True Then
-                alParaval.Add(TEMPENTRYNO)
-                Dim IntResult As Integer = OBJRACK.UPDATE()
-                MsgBox("Details Updated")
-                EDIT = False
-            End If
-
-            CLEAR()
-            DTUPDATEDATE.Focus()
-
         Catch ex As Exception
             Throw ex
         End Try
@@ -312,7 +464,13 @@ Public Class UpdateRackShelf
             'WE HAVE PASSED YEARID=0, DONT CHANGE THIS CODE
             'THIS IS DONE AS WE NEED DATASOURCE TO BE LINKED WITH GRID
             Dim objclsCMST As New ClsCommon
-            Dim dt As DataTable = objclsCMST.Execute_Any_String(" SELECT *, 0 as SRNO FROM BARCODESTOCK WHERE BARCODESTOCK.YEARID = 0 ", "", "")
+            Dim dt As DataTable
+
+            If FRMSTRING = "GREY" Then
+                dt = objclsCMST.Execute_Any_String(" SELECT *, 0 as SRNO FROM GREYBARCODESTOCK WHERE GREYBARCODESTOCK.YEARID = 0 ", "", "")
+            Else
+                dt = objclsCMST.Execute_Any_String(" SELECT *, 0 as SRNO FROM BARCODESTOCK WHERE BARCODESTOCK.YEARID = 0 ", "", "")
+            End If
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -435,7 +593,12 @@ LINE1:
         Try
             If TXTBARCODE.Text.Trim.Length > 0 Then
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 * ", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND YEARID = " & YearId)
+                Dim DT As DataTable
+                If FRMSTRING = "GREY" Then
+                    DT = OBJCMN.SEARCH(" TOP 1 * ", "", "GREYBARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND YEARID = " & YearId)
+                Else
+                    DT = OBJCMN.SEARCH(" TOP 1 * ", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND YEARID = " & YearId)
+                End If
                 If DT.Rows.Count > 0 Then
 
                     'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT, if YES THEN GIVE A MESSAGE THAT BARCODE EXISTS

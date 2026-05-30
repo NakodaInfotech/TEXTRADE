@@ -1001,8 +1001,6 @@ Partial Class MDIMain
         Me.UpdateBillToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator251 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AUTODISCOUNT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator153 = New System.Windows.Forms.ToolStripSeparator()
         Me.UPDATEPROGRAMDETAILS = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateCardIssueDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateCardRecdDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1019,7 +1017,6 @@ Partial Class MDIMain
         Me.ToolStripSeparator292 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator291 = New System.Windows.Forms.ToolStripSeparator()
         Me.PROGRAMTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
-        Me.UpdatePendingLRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPDATEROUNDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.COMPLAINTSOLVED_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.COMPLAINTSOLVED_ADD = New System.Windows.Forms.ToolStripMenuItem()
@@ -1032,6 +1029,10 @@ Partial Class MDIMain
         Me.SENDWHATSAPP_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator196 = New System.Windows.Forms.ToolStripSeparator()
         Me.REPRINTBARCODE_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReprintBarcodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.REPRINTGREYBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.REPRINTYARNBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator357 = New System.Windows.Forms.ToolStripSeparator()
         Me.CHANGEBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.EXPORTLABEL_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator84 = New System.Windows.Forms.ToolStripSeparator()
@@ -1363,10 +1364,7 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.ReprintBarcodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.REPRINTGREYBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.REPRINTYARNBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator357 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator358 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -7331,7 +7329,7 @@ Partial Class MDIMain
         '
         'UpdateEntriesToolStripMenuItem
         '
-        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.ToolStripMenuItem6, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP, Me.UpdatePendingLRStockToolStripMenuItem, Me.UPDATEROUNDER_MASTER, Me.COMPLAINTSOLVED_MASTER})
+        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.ToolStripMenuItem6, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP, Me.UPDATEROUNDER_MASTER, Me.COMPLAINTSOLVED_MASTER, Me.ToolStripSeparator358})
         Me.UpdateEntriesToolStripMenuItem.Name = "UpdateEntriesToolStripMenuItem"
         Me.UpdateEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.UpdateEntriesToolStripMenuItem.Text = "Update Entries"
@@ -7571,23 +7569,12 @@ Partial Class MDIMain
         Me.LRStockToolStripMenuItem.Enabled = False
         Me.LRStockToolStripMenuItem.Name = "LRStockToolStripMenuItem"
         Me.LRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.LRStockToolStripMenuItem.Text = "Upload LR Stock"
+        Me.LRStockToolStripMenuItem.Text = "Update LR Stock"
         '
         'ToolStripSeparator251
         '
         Me.ToolStripSeparator251.Name = "ToolStripSeparator251"
         Me.ToolStripSeparator251.Size = New System.Drawing.Size(250, 6)
-        '
-        'AUTODISCOUNT_MASTER
-        '
-        Me.AUTODISCOUNT_MASTER.Name = "AUTODISCOUNT_MASTER"
-        Me.AUTODISCOUNT_MASTER.Size = New System.Drawing.Size(253, 22)
-        Me.AUTODISCOUNT_MASTER.Text = "Auto Discount"
-        '
-        'ToolStripSeparator153
-        '
-        Me.ToolStripSeparator153.Name = "ToolStripSeparator153"
-        Me.ToolStripSeparator153.Size = New System.Drawing.Size(250, 6)
         '
         'UPDATEPROGRAMDETAILS
         '
@@ -7683,12 +7670,6 @@ Partial Class MDIMain
         Me.PROGRAMTOOLSTRIP.Name = "PROGRAMTOOLSTRIP"
         Me.PROGRAMTOOLSTRIP.Size = New System.Drawing.Size(250, 6)
         '
-        'UpdatePendingLRStockToolStripMenuItem
-        '
-        Me.UpdatePendingLRStockToolStripMenuItem.Name = "UpdatePendingLRStockToolStripMenuItem"
-        Me.UpdatePendingLRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UpdatePendingLRStockToolStripMenuItem.Text = "Update Pending LR Stock"
-        '
         'UPDATEROUNDER_MASTER
         '
         Me.UPDATEROUNDER_MASTER.Name = "UPDATEROUNDER_MASTER"
@@ -7761,6 +7742,29 @@ Partial Class MDIMain
         Me.REPRINTBARCODE_MENU.Name = "REPRINTBARCODE_MENU"
         Me.REPRINTBARCODE_MENU.Size = New System.Drawing.Size(190, 22)
         Me.REPRINTBARCODE_MENU.Text = "Reprint Barcodes"
+        '
+        'ReprintBarcodeToolStripMenuItem
+        '
+        Me.ReprintBarcodeToolStripMenuItem.Name = "ReprintBarcodeToolStripMenuItem"
+        Me.ReprintBarcodeToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
+        Me.ReprintBarcodeToolStripMenuItem.Text = "Reprint Barcode"
+        '
+        'REPRINTGREYBARCODE_MASTER
+        '
+        Me.REPRINTGREYBARCODE_MASTER.Name = "REPRINTGREYBARCODE_MASTER"
+        Me.REPRINTGREYBARCODE_MASTER.Size = New System.Drawing.Size(188, 22)
+        Me.REPRINTGREYBARCODE_MASTER.Text = "Reprint Grey Barcode"
+        '
+        'REPRINTYARNBARCODE_MASTER
+        '
+        Me.REPRINTYARNBARCODE_MASTER.Name = "REPRINTYARNBARCODE_MASTER"
+        Me.REPRINTYARNBARCODE_MASTER.Size = New System.Drawing.Size(188, 22)
+        Me.REPRINTYARNBARCODE_MASTER.Text = "Reprint Yarn Barcode"
+        '
+        'ToolStripSeparator357
+        '
+        Me.ToolStripSeparator357.Name = "ToolStripSeparator357"
+        Me.ToolStripSeparator357.Size = New System.Drawing.Size(185, 6)
         '
         'CHANGEBARCODE_MASTER
         '
@@ -9947,28 +9951,10 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'ReprintBarcodeToolStripMenuItem
+        'ToolStripSeparator358
         '
-        Me.ReprintBarcodeToolStripMenuItem.Name = "ReprintBarcodeToolStripMenuItem"
-        Me.ReprintBarcodeToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
-        Me.ReprintBarcodeToolStripMenuItem.Text = "Reprint Barcode"
-        '
-        'REPRINTGREYBARCODE_MASTER
-        '
-        Me.REPRINTGREYBARCODE_MASTER.Name = "REPRINTGREYBARCODE_MASTER"
-        Me.REPRINTGREYBARCODE_MASTER.Size = New System.Drawing.Size(188, 22)
-        Me.REPRINTGREYBARCODE_MASTER.Text = "Reprint Grey Barcode"
-        '
-        'REPRINTYARNBARCODE_MASTER
-        '
-        Me.REPRINTYARNBARCODE_MASTER.Name = "REPRINTYARNBARCODE_MASTER"
-        Me.REPRINTYARNBARCODE_MASTER.Size = New System.Drawing.Size(188, 22)
-        Me.REPRINTYARNBARCODE_MASTER.Text = "Reprint Yarn Barcode"
-        '
-        'ToolStripSeparator357
-        '
-        Me.ToolStripSeparator357.Name = "ToolStripSeparator357"
-        Me.ToolStripSeparator357.Size = New System.Drawing.Size(185, 6)
+        Me.ToolStripSeparator358.Name = "ToolStripSeparator358"
+        Me.ToolStripSeparator358.Size = New System.Drawing.Size(250, 6)
         '
         'MDIMain
         '
@@ -10536,7 +10522,6 @@ Partial Class MDIMain
     Friend WithEvents UploadLotNoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UpdateLRNoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UpdateStockOnHandDetailsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator153 As ToolStripSeparator
     Friend WithEvents InterestCalculatorBillWiseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator187 As ToolStripSeparator
     Friend WithEvents UPDATEBROKERMENU As ToolStripMenuItem
@@ -10874,7 +10859,6 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator250 As ToolStripSeparator
     Friend WithEvents SAMPLESTOCK_REPORT As ToolStripMenuItem
     Friend WithEvents SENDWHATSAPP_MASTER As ToolStripMenuItem
-    Friend WithEvents AUTODISCOUNT_MASTER As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator251 As ToolStripSeparator
     Friend WithEvents IncentiveDetails As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator252 As ToolStripSeparator
@@ -11177,7 +11161,6 @@ Partial Class MDIMain
     Friend WithEvents HOLDFORINTCALCMENU As ToolStripMenuItem
     Friend WithEvents AGENCYOUTSTANDINGGRID_MENU As ToolStripMenuItem
     Friend WithEvents LRSTOCKVALUE_MENU As ToolStripMenuItem
-    Friend WithEvents UpdatePendingLRStockToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GENERATEEWAY_MASTER As ToolStripMenuItem
     Friend WithEvents CutPackFilterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GENERATEEINV_MASTER As ToolStripMenuItem
@@ -11340,4 +11323,5 @@ Partial Class MDIMain
     Friend WithEvents REPRINTGREYBARCODE_MASTER As ToolStripMenuItem
     Friend WithEvents REPRINTYARNBARCODE_MASTER As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator357 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator358 As ToolStripSeparator
 End Class

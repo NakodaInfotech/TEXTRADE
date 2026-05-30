@@ -63,7 +63,7 @@ Public Class UpdateYarnRackShelf
                     DTUPDATEDATE.Value = Format(Convert.ToDateTime(dttable.Rows(0).Item("DATE")).Date, "dd/MM/yyyy")
                     CMBRACK.Text = Convert.ToString(dttable.Rows(0).Item("RACK").ToString)
                     CMBSHELF.Text = Convert.ToString(dttable.Rows(0).Item("SHELF").ToString)
-                    txtremarks.Text = Convert.ToString(dttable.Rows(0).Item("remarks").ToString)
+                    txtremarks.Text = Convert.ToString(dttable.Rows(0).Item("REMARKS").ToString)
                     gridbilldetails.DataSource = dttable
                     If dttable.Rows.Count > 0 Then
                         gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -136,51 +136,39 @@ Public Class UpdateYarnRackShelf
                 Exit Sub
             End If
 
-            'For I As Integer = 0 To gridbill.RowCount - 1
-            '    Dim ROW As DataRow = gridbill.GetDataRow(I)
-            '    If ROW Is Nothing Then Exit Sub
-            '    Dim OBJCMN As New ClsCommon
-            '    Dim DT As New DataTable
+            For I As Integer = 0 To gridbill.RowCount - 1
+                Dim ROW As DataRow = gridbill.GetDataRow(I)
+                If ROW Is Nothing Then Exit Sub
+                Dim OBJCMN As New ClsCommon
+                Dim DT As New DataTable
 
-            '    Dim RACKID As Integer = 0
-            '    Dim SHELFID As Integer = 0
+                Dim RACKID As Integer = 0
+                Dim SHELFID As Integer = 0
 
-            '    If CMBRACK.Text.Trim <> "" Then
-            '        DT = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & CMBRACK.Text.Trim & "' AND RACK_YEARID = " & YearId)
-            '        If DT.Rows.Count > 0 Then RACKID = DT.Rows(0).Item("RACKID")
-            '    End If
+                If CMBRACK.Text.Trim <> "" Then
+                    DT = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & CMBRACK.Text.Trim & "' AND RACK_YEARID = " & YearId)
+                    If DT.Rows.Count > 0 Then RACKID = DT.Rows(0).Item("RACKID")
+                End If
 
-            '    If CMBSHELF.Text.Trim <> "" Then
-            '        DT = OBJCMN.SEARCH("SHELF_ID AS SHELFID", "", "SHELFMASTER", " AND SHELF_NAME = '" & CMBSHELF.Text.Trim & "' AND SHELF_YEARID = " & YearId)
-            '        If DT.Rows.Count > 0 Then SHELFID = DT.Rows(0).Item("SHELFID")
-            '    End If
 
-            '    If ROW("TYPE") = "OPENING" Then
-            '        DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER SET SM_RACKID = " & RACKID & " , SM_SHELFID = " & SHELFID & " WHERE SM_BARCODE = '" & ROW("BARCODE") & "' AND SM_YEARID = " & YearId, "", "")
-            '    ElseIf ROW("TYPE") = "GRN" Then
-            '        DT = OBJCMN.Execute_Any_String(" UPDATE GRN_DESC SET GRN_RACKID = " & RACKID & " , GRN_SHELFID = " & SHELFID & " WHERE GRN_BARCODE = '" & ROW("BARCODE") & "' AND GRN_GRIDTYPE = 'FANCY MATERIAL' AND GRN_YEARID = " & YearId, "", "")
-            '    ElseIf ROW("TYPE") = "MATREC" Then
-            '        DT = OBJCMN.Execute_Any_String(" UPDATE MATERIALRECEIPT_DESC SET MATREC_RACKID = " & RACKID & " , MATREC_SHELFID = " & SHELFID & " WHERE MATREC_BARCODE = '" & ROW("BARCODE") & "' AND MATREC_YEARID = " & YearId, "", "")
-            '    ElseIf ROW("TYPE") = "INHOUSECHECK" Then
-            '        DT = OBJCMN.Execute_Any_String(" UPDATE INHOUSECHECKING_DESC SET CHECK_RACKID = " & RACKID & " , CHECK_SHELFID = " & SHELFID & " WHERE CHECK_BARCODE = '" & ROW("BARCODE") & "' AND CHECK_YEARID = " & YearId, "", "")
-            '    ElseIf ROW("TYPE") = "JOBIN" Then
-            '        DT = OBJCMN.Execute_Any_String(" UPDATE JOBIN_DESC SET JI_RACKID = " & RACKID & " , JI_SHELFID = " & SHELFID & " WHERE JI_BARCODE = '" & ROW("BARCODE") & "' AND JI_YEARID = " & YearId, "", "")
-            '    ElseIf ROW("TYPE") = "PACKING" Then
-            '        DT = OBJCMN.Execute_Any_String(" UPDATE RECPACKING_DESC SET REC_RACKID = " & RACKID & " , REC_SHELFID = " & SHELFID & " WHERE REC_BARCODE = '" & ROW("BARCODE") & "' AND REC_YEARID = " & YearId, "", "")
-            '    ElseIf ROW("TYPE") = "SALERET" Then
-            '        DT = OBJCMN.Execute_Any_String(" UPDATE SALERETURN_DESC SET SALRET_RACKID = " & RACKID & " , SALRET_SHELFID = " & SHELFID & " WHERE SALRET_BARCODE = '" & ROW("BARCODE") & "' AND SALRET_YEARID = " & YearId, "", "")
-            '    ElseIf ROW("TYPE") = "SALERETCHALLAN" Then
-            '        DT = OBJCMN.Execute_Any_String(" UPDATE SALERETURNCHALLAN_DESC SET SRCH_RACKID = " & RACKID & " , SRCH_SHELFID = " & SHELFID & " WHERE SRCH_BARCODE = '" & ROW("BARCODE") & "' AND SRCH_YEARID = " & YearId, "", "")
-            '    ElseIf ROW("TYPE") = "STOCKADJUSTMENT" Then
-            '        DT = OBJCMN.Execute_Any_String(" UPDATE STOCKADJUSTMENT_INDESC SET SA_RACKID = " & RACKID & ", SA_SHELFID = " & SHELFID & " WHERE SA_BARCODE = '" & ROW("BARCODE") & "' AND SA_YEARID = " & YearId, "", "")
-            '    End If
+                If ROW("FROMTYPE") = "OPENINGYARN" Then
+                    DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER_YARN SET SM_RACKID = " & RACKID & " WHERE SM_BARCODE = '" & ROW("BARCODE") & "' AND SM_YEARID = " & YearId, "", "")
+                ElseIf ROW("FROMTYPE") = "YARNRECD" Then
+                    DT = OBJCMN.Execute_Any_String(" UPDATE YARNRECD_DESC SET YARN_RACKID = " & RACKID & "  WHERE YARN_BARCODE = '" & ROW("BARCODE") & "' AND  YARN_YEARID = " & YearId, "", "")
+                ElseIf ROW("FROMTYPE") = "YARNRECDJOBBER" Then
+                    DT = OBJCMN.Execute_Any_String(" UPDATE YARNRECDJOBBER_DESC SET YARN_RACKID = " & RACKID & "  WHERE YARN_BARCODE = '" & ROW("BARCODE") & "' AND  YARN_YEARID = " & YearId, "", "")
+                ElseIf ROW("FROMTYPE") = "YARNRETURN" Then
+                    DT = OBJCMN.Execute_Any_String(" UPDATE YARNKNITTINGRETURN_DESC SET YARNRET_RACKID = " & RACKID & "  WHERE YARNRET_BARCODE = '" & ROW("BARCODE") & "' AND  YARNRET_YEARID = " & YearId, "", "")
+                ElseIf ROW("FROMTYPE") = "YARNSTOCKADJUSTMENT" Then
+                    DT = OBJCMN.Execute_Any_String(" UPDATE YARNSTOCKADJUSTMENT_INDESC SET YSA_RACKID = " & RACKID & " WHERE YSA_BARCODE = '" & ROW("BARCODE") & "' AND YSA_YEARID = " & YearId, "", "")
+                End If
 
-            'Next
+            Next
 
 
 
             Dim alParaval As New ArrayList
-            alParaval.Add(Format(DTUPDATEDATE.Value.Date, "MM/dd/yyyy"))
+                alParaval.Add(Format(DTUPDATEDATE.Value.Date, "MM/dd/yyyy"))
             alParaval.Add(CMBRACK.Text.Trim)
             alParaval.Add(CMBSHELF.Text.Trim)
             alParaval.Add(Val(GWT.SummaryText))
@@ -704,10 +692,10 @@ NEXTLINE:
             If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
                 If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
 
-                Dim OBJSTOCK As New SelectStockGDNGrid
+                Dim OBJSTOCK As New SelectYarnStock
                 ' OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
                 OBJSTOCK.ShowDialog()
-                Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
+                Dim DTBARCODE As DataTable = OBJSTOCK.DT
                 For Each DTROW As DataRow In DTBARCODE.Rows
                     TXTBARCODE.Text = DTROW("BARCODE")
                     TXTBARCODE_Validated(sender, e)

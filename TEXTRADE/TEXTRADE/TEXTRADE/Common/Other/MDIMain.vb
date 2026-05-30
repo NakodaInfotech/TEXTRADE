@@ -8373,17 +8373,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AUTODISCOUNT_MASTER_Click(sender As Object, e As EventArgs) Handles AUTODISCOUNT_MASTER.Click
-        Try
-            If InputBox("Enter Master Password") <> "Infosys@123" Then Exit Sub
-            Dim OBJDISC As New AutoDiscount
-            OBJDISC.MdiParent = Me
-            OBJDISC.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub IncentiveDetails_Click(sender As Object, e As EventArgs) Handles IncentiveDetails.Click
         Try
             Dim objincentive As New EmbIncentiveDetails
@@ -10398,16 +10387,6 @@ SKIPLINE:
     Private Sub LRSTOCKVALUE_MENU_Click(sender As Object, e As EventArgs) Handles LRSTOCKVALUE_MENU.Click
         Try
             Dim OBJLR As New LRStockValuation
-            OBJLR.MdiParent = Me
-            OBJLR.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub UpdatePendingLRStockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdatePendingLRStockToolStripMenuItem.Click
-        Try
-            Dim OBJLR As New UpdatePendingLrStock
             OBJLR.MdiParent = Me
             OBJLR.Show()
         Catch ex As Exception
