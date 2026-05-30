@@ -29,19 +29,16 @@ Partial Class UpdateYarnRackShelfDetails
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSHELF = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPIECETYPE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GQUALITY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPCS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GJOBBERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -49,6 +46,7 @@ Partial Class UpdateYarnRackShelfDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +83,7 @@ Partial Class UpdateYarnRackShelfDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GUPDATENO, Me.gdate, Me.GRACK, Me.GSHELF, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GUNIT, Me.GPCS, Me.GMTRS, Me.GBARCODE, Me.GGODOWN, Me.GLOTNO, Me.GBALENO, Me.GCHALLANNO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GUPDATENO, Me.gdate, Me.GRACK, Me.GSHELF, Me.GQUALITY, Me.GDESIGNNO, Me.GCOLOR, Me.GPCS, Me.GMTRS, Me.GWT, Me.GBARCODE, Me.GGODOWN, Me.GLRNO, Me.GMILLNAME, Me.GJOBBERNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -127,29 +125,13 @@ Partial Class UpdateYarnRackShelfDetails
         Me.GSHELF.Visible = True
         Me.GSHELF.VisibleIndex = 3
         '
-        'GPIECETYPE
-        '
-        Me.GPIECETYPE.Caption = "Piece Type"
-        Me.GPIECETYPE.FieldName = "PIECETYPE"
-        Me.GPIECETYPE.Name = "GPIECETYPE"
-        Me.GPIECETYPE.Visible = True
-        Me.GPIECETYPE.VisibleIndex = 4
-        Me.GPIECETYPE.Width = 100
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.Caption = "Item Name"
-        Me.GITEMNAME.FieldName = "ITEMNAME"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 5
-        Me.GITEMNAME.Width = 250
-        '
         'GQUALITY
         '
-        Me.GQUALITY.Caption = "Quality"
-        Me.GQUALITY.FieldName = "QUALITY"
+        Me.GQUALITY.Caption = "YarnQuality"
+        Me.GQUALITY.FieldName = "YARNQUALITY"
         Me.GQUALITY.Name = "GQUALITY"
+        Me.GQUALITY.Visible = True
+        Me.GQUALITY.VisibleIndex = 12
         Me.GQUALITY.Width = 150
         '
         'GDESIGNNO
@@ -158,7 +140,7 @@ Partial Class UpdateYarnRackShelfDetails
         Me.GDESIGNNO.FieldName = "DESIGNNO"
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 6
+        Me.GDESIGNNO.VisibleIndex = 4
         Me.GDESIGNNO.Width = 200
         '
         'GCOLOR
@@ -167,39 +149,30 @@ Partial Class UpdateYarnRackShelfDetails
         Me.GCOLOR.FieldName = "COLOR"
         Me.GCOLOR.Name = "GCOLOR"
         Me.GCOLOR.Visible = True
-        Me.GCOLOR.VisibleIndex = 7
+        Me.GCOLOR.VisibleIndex = 5
         Me.GCOLOR.Width = 100
-        '
-        'GUNIT
-        '
-        Me.GUNIT.Caption = "Unit"
-        Me.GUNIT.FieldName = "UNIT"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.Visible = True
-        Me.GUNIT.VisibleIndex = 8
-        Me.GUNIT.Width = 100
         '
         'GPCS
         '
-        Me.GPCS.Caption = "Pcs"
+        Me.GPCS.Caption = "Bags"
         Me.GPCS.DisplayFormat.FormatString = "0"
         Me.GPCS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GPCS.FieldName = "PCS"
+        Me.GPCS.FieldName = "BAGS"
         Me.GPCS.Name = "GPCS"
         Me.GPCS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GPCS.Visible = True
-        Me.GPCS.VisibleIndex = 9
+        Me.GPCS.VisibleIndex = 6
         '
         'GMTRS
         '
-        Me.GMTRS.Caption = "Mtrs"
+        Me.GMTRS.Caption = "Cones"
         Me.GMTRS.DisplayFormat.FormatString = "0.00"
         Me.GMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GMTRS.FieldName = "MTRS"
+        Me.GMTRS.FieldName = "CONES"
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 10
+        Me.GMTRS.VisibleIndex = 7
         '
         'GBARCODE
         '
@@ -207,7 +180,7 @@ Partial Class UpdateYarnRackShelfDetails
         Me.GBARCODE.FieldName = "BARCODE"
         Me.GBARCODE.Name = "GBARCODE"
         Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 11
+        Me.GBARCODE.VisibleIndex = 8
         Me.GBARCODE.Width = 100
         '
         'GGODOWN
@@ -216,29 +189,29 @@ Partial Class UpdateYarnRackShelfDetails
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
         '
-        'GLOTNO
+        'GLRNO
         '
-        Me.GLOTNO.Caption = "Lot No"
-        Me.GLOTNO.FieldName = "LOTNO"
-        Me.GLOTNO.Name = "GLOTNO"
-        Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 12
+        Me.GLRNO.Caption = "LR No"
+        Me.GLRNO.FieldName = "LRNO"
+        Me.GLRNO.Name = "GLRNO"
+        Me.GLRNO.Visible = True
+        Me.GLRNO.VisibleIndex = 9
         '
-        'GBALENO
+        'GMILLNAME
         '
-        Me.GBALENO.Caption = "Bale No"
-        Me.GBALENO.FieldName = "BALENO"
-        Me.GBALENO.Name = "GBALENO"
-        Me.GBALENO.Visible = True
-        Me.GBALENO.VisibleIndex = 13
+        Me.GMILLNAME.Caption = "Millname"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.Visible = True
+        Me.GMILLNAME.VisibleIndex = 10
         '
-        'GCHALLANNO
+        'GJOBBERNAME
         '
-        Me.GCHALLANNO.Caption = "Challan No"
-        Me.GCHALLANNO.FieldName = "CHALLANNO"
-        Me.GCHALLANNO.Name = "GCHALLANNO"
-        Me.GCHALLANNO.Visible = True
-        Me.GCHALLANNO.VisibleIndex = 14
+        Me.GJOBBERNAME.Caption = "Jobber Name"
+        Me.GJOBBERNAME.FieldName = "JOBBERNAME"
+        Me.GJOBBERNAME.Name = "GJOBBERNAME"
+        Me.GJOBBERNAME.Visible = True
+        Me.GJOBBERNAME.VisibleIndex = 11
         '
         'cmdexit
         '
@@ -304,6 +277,14 @@ Partial Class UpdateYarnRackShelfDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GWT
+        '
+        Me.GWT.Caption = "WT"
+        Me.GWT.FieldName = "WT"
+        Me.GWT.Name = "GWT"
+        Me.GWT.Visible = True
+        Me.GWT.VisibleIndex = 13
+        '
         'UpdateYarnRackShelfDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -333,19 +314,16 @@ Partial Class UpdateYarnRackShelfDetails
     Private WithEvents gdate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GRACK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GSHELF As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQUALITY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GUNIT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPCS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLOTNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GBALENO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GJOBBERNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmdexit As Button
     Friend WithEvents ToolStrip1 As ToolStrip
     Friend WithEvents ToolStripButton1 As ToolStripButton
@@ -353,4 +331,5 @@ Partial Class UpdateYarnRackShelfDetails
     Friend WithEvents PrintToolStripButton As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents cmdok As Button
+    Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
 End Class
