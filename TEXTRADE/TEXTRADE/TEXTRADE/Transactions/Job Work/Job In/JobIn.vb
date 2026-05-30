@@ -171,7 +171,7 @@ Public Class JobIn
 
             For Each ROW As DataGridViewRow In GRIDJOBIN.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
-                    If ROW.Cells(gcut.Index).EditedFormattedValue > 0 Then ROW.Cells(GMTRS.Index).Value = ROW.Cells(gQty.Index).EditedFormattedValue * ROW.Cells(gcut.Index).EditedFormattedValue
+                    If ROW.Cells(gcut.Index).EditedFormattedValue > 0 And ClientName <> "VALIANT" Then ROW.Cells(GMTRS.Index).Value = ROW.Cells(gQty.Index).EditedFormattedValue * ROW.Cells(gcut.Index).EditedFormattedValue
                     LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
                     LBLTOTALQTY.Text = Format(Val(LBLTOTALQTY.Text) + Val(ROW.Cells(gQty.Index).EditedFormattedValue), "0")
                     LBLTOTALJOMTRS.Text = Format(Val(LBLTOTALJOMTRS.Text) + Val(ROW.Cells(GJOMTRS.Index).EditedFormattedValue), "0.00")

@@ -4700,26 +4700,25 @@ Partial Class MDIMain
         Me.SAMPLENOTE_MASTER.Name = "SAMPLENOTE_MASTER"
         Me.SAMPLENOTE_MASTER.Size = New System.Drawing.Size(239, 22)
         Me.SAMPLENOTE_MASTER.Text = "Sample Note"
-        Me.SAMPLENOTE_MASTER.Visible = False
         '
         'SAMPLENOTEADD
         '
         Me.SAMPLENOTEADD.Enabled = False
         Me.SAMPLENOTEADD.Name = "SAMPLENOTEADD"
-        Me.SAMPLENOTEADD.Size = New System.Drawing.Size(168, 22)
+        Me.SAMPLENOTEADD.Size = New System.Drawing.Size(180, 22)
         Me.SAMPLENOTEADD.Text = "&Add New Entry"
         '
         'SAMPLENOTEEDIT
         '
         Me.SAMPLENOTEEDIT.Enabled = False
         Me.SAMPLENOTEEDIT.Name = "SAMPLENOTEEDIT"
-        Me.SAMPLENOTEEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.SAMPLENOTEEDIT.Size = New System.Drawing.Size(180, 22)
         Me.SAMPLENOTEEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator49
         '
         Me.ToolStripSeparator49.Name = "ToolStripSeparator49"
-        Me.ToolStripSeparator49.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator49.Size = New System.Drawing.Size(177, 6)
         '
         'SAMPLEPRICELIST_MASTER
         '
