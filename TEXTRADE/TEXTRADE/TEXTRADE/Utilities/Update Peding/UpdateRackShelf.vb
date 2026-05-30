@@ -52,23 +52,42 @@ Public Class UpdateRackShelf
             FILLGRID()
 
             If EDIT = True Then
-
-                Dim OBJRACK As New ClsUpdateRackShelf()
-                Dim dttable As DataTable = OBJRACK.SELECTUPDATERACKSHELF(TEMPENTRYNO, YearId)
-                If dttable.Rows.Count > 0 Then
-                    TXTENTRYNO.Text = TEMPENTRYNO
-                    DTUPDATEDATE.Value = Format(Convert.ToDateTime(dttable.Rows(0).Item("DATE")).Date, "dd/MM/yyyy")
-                    CMBRACK.Text = Convert.ToString(dttable.Rows(0).Item("RACK").ToString)
-                    CMBSHELF.Text = Convert.ToString(dttable.Rows(0).Item("SHELF").ToString)
-                    txtremarks.Text = Convert.ToString(dttable.Rows(0).Item("remarks").ToString)
-                    gridbilldetails.DataSource = dttable
+                If FRMSTRING = "GREY" Then
+                    Dim OBJRACK As New ClsUpdateGreyRackShelf()
+                    Dim dttable As DataTable = OBJRACK.SELECTUPDATERACKSHELF(TEMPENTRYNO, YearId)
                     If dttable.Rows.Count > 0 Then
-                        gridbill.FocusedRowHandle = gridbill.RowCount - 1
-                        gridbill.TopRowIndex = gridbill.RowCount - 15
+                        TXTENTRYNO.Text = TEMPENTRYNO
+                        DTUPDATEDATE.Value = Format(Convert.ToDateTime(dttable.Rows(0).Item("DATE")).Date, "dd/MM/yyyy")
+                        CMBRACK.Text = Convert.ToString(dttable.Rows(0).Item("RACK").ToString)
+                        CMBSHELF.Text = Convert.ToString(dttable.Rows(0).Item("SHELF").ToString)
+                        txtremarks.Text = Convert.ToString(dttable.Rows(0).Item("remarks").ToString)
+                        gridbilldetails.DataSource = dttable
+                        If dttable.Rows.Count > 0 Then
+                            gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                            gridbill.TopRowIndex = gridbill.RowCount - 15
+                        End If
+                    Else
+                        EDIT = False
+                        CLEAR()
                     End If
                 Else
-                    EDIT = False
-                    CLEAR()
+                    Dim OBJRACK As New ClsUpdateRackShelf()
+                    Dim dttable As DataTable = OBJRACK.SELECTUPDATERACKSHELF(TEMPENTRYNO, YearId)
+                    If dttable.Rows.Count > 0 Then
+                        TXTENTRYNO.Text = TEMPENTRYNO
+                        DTUPDATEDATE.Value = Format(Convert.ToDateTime(dttable.Rows(0).Item("DATE")).Date, "dd/MM/yyyy")
+                        CMBRACK.Text = Convert.ToString(dttable.Rows(0).Item("RACK").ToString)
+                        CMBSHELF.Text = Convert.ToString(dttable.Rows(0).Item("SHELF").ToString)
+                        txtremarks.Text = Convert.ToString(dttable.Rows(0).Item("remarks").ToString)
+                        gridbilldetails.DataSource = dttable
+                        If dttable.Rows.Count > 0 Then
+                            gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                            gridbill.TopRowIndex = gridbill.RowCount - 15
+                        End If
+                    Else
+                        EDIT = False
+                        CLEAR()
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -132,7 +151,11 @@ Public Class UpdateRackShelf
 
     Sub GETMAXNO()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(UPDATE_no),0) + 1 ", " UPDATERACKSHELF ", " AND UPDATE_yearid=" & YearId)
+        If FRMSTRING = "GREY" Then
+            DTTABLE = getmax(" isnull(max(UPDATE_no),0) + 1 ", " UPDATEGREYRACKSHELF ", " AND UPDATE_yearid=" & YearId)
+        Else
+            DTTABLE = getmax(" isnull(max(UPDATE_no),0) + 1 ", " UPDATERACKSHELF ", " AND UPDATE_yearid=" & YearId)
+        End If
         If DTTABLE.Rows.Count > 0 Then TXTENTRYNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -679,9 +702,16 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
-            Dim OBJRACK As New UpdateRackShelfDetails
-            OBJRACK.MdiParent = MDIMain
-            OBJRACK.Show()
+            If FRMSTRING = "GREY" Then
+                Dim OBJRACK As New UpdateRackShelfDetails
+                OBJRACK.FRMSTRING = "GREY"
+                OBJRACK.MdiParent = MDIMain
+                OBJRACK.Show()
+            Else
+                Dim OBJRACK As New UpdateRackShelfDetails
+                OBJRACK.MdiParent = MDIMain
+                OBJRACK.Show()
+            End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try

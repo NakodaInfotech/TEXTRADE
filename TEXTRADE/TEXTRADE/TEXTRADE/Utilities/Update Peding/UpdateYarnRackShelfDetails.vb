@@ -1,0 +1,3 @@
+﻿Public Class UpdateYarnRackShelfDetails
+
+End Class
