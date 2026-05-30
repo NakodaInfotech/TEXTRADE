@@ -69,6 +69,7 @@ Partial Class UpdateYarnRackShelf
         Me.GCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.CMBRACK = New System.Windows.Forms.ComboBox()
         Me.CMDSAVE = New System.Windows.Forms.Button()
@@ -397,6 +398,7 @@ Partial Class UpdateYarnRackShelf
         Me.Label2.Size = New System.Drawing.Size(35, 14)
         Me.Label2.TabIndex = 763
         Me.Label2.Text = "Shelf"
+        Me.Label2.Visible = False
         '
         'Label1
         '
@@ -421,6 +423,7 @@ Partial Class UpdateYarnRackShelf
         Me.CMBSHELF.Name = "CMBSHELF"
         Me.CMBSHELF.Size = New System.Drawing.Size(187, 23)
         Me.CMBSHELF.TabIndex = 1
+        Me.CMBSHELF.Visible = False
         '
         'gridbilldetails
         '
@@ -440,7 +443,7 @@ Partial Class UpdateYarnRackShelf
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GYARNQUALITYNAME, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GGODOWN, Me.GLRNO, Me.GBILLNO, Me.GJOBBERNAME, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRACK, Me.GBARCODE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GYARNQUALITYNAME, Me.GMILLNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GGODOWN, Me.GLRNO, Me.GBILLNO, Me.GJOBBERNAME, Me.GBAGS, Me.GWT, Me.GCONES, Me.GRACK, Me.GBARCODE, Me.GTYPE})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -461,7 +464,7 @@ Partial Class UpdateYarnRackShelf
         'GSRNO
         '
         Me.GSRNO.Caption = "Sr"
-        Me.GSRNO.FieldName = "SRNO"
+        Me.GSRNO.FieldName = "UPDATENO"
         Me.GSRNO.Name = "GSRNO"
         Me.GSRNO.Visible = True
         Me.GSRNO.VisibleIndex = 0
@@ -532,7 +535,7 @@ Partial Class UpdateYarnRackShelf
         Me.GBILLNO.FieldName = "BILLNO"
         Me.GBILLNO.Name = "GBILLNO"
         Me.GBILLNO.Visible = True
-        Me.GBILLNO.VisibleIndex = 9
+        Me.GBILLNO.VisibleIndex = 13
         '
         'GJOBBERNAME
         '
@@ -541,7 +544,7 @@ Partial Class UpdateYarnRackShelf
         Me.GJOBBERNAME.Name = "GJOBBERNAME"
         Me.GJOBBERNAME.OptionsColumn.AllowEdit = False
         Me.GJOBBERNAME.Visible = True
-        Me.GJOBBERNAME.VisibleIndex = 10
+        Me.GJOBBERNAME.VisibleIndex = 9
         '
         'GBAGS
         '
@@ -577,7 +580,7 @@ Partial Class UpdateYarnRackShelf
         Me.GCONES.FieldName = "CONES"
         Me.GCONES.Name = "GCONES"
         Me.GCONES.Visible = True
-        Me.GCONES.VisibleIndex = 12
+        Me.GCONES.VisibleIndex = 11
         '
         'GRACK
         '
@@ -585,7 +588,7 @@ Partial Class UpdateYarnRackShelf
         Me.GRACK.FieldName = "RACK"
         Me.GRACK.Name = "GRACK"
         Me.GRACK.Visible = True
-        Me.GRACK.VisibleIndex = 13
+        Me.GRACK.VisibleIndex = 12
         '
         'GBARCODE
         '
@@ -595,8 +598,14 @@ Partial Class UpdateYarnRackShelf
         Me.GBARCODE.OptionsColumn.AllowEdit = False
         Me.GBARCODE.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count)})
         Me.GBARCODE.Visible = True
-        Me.GBARCODE.VisibleIndex = 11
+        Me.GBARCODE.VisibleIndex = 10
         Me.GBARCODE.Width = 130
+        '
+        'GTYPE
+        '
+        Me.GTYPE.Caption = "TYPE"
+        Me.GTYPE.FieldName = "FROMTYPE"
+        Me.GTYPE.Name = "GTYPE"
         '
         'CHKDONE
         '
@@ -748,4 +757,5 @@ Partial Class UpdateYarnRackShelf
     Friend WithEvents cmdexit As Button
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents GCONES As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTYPE As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -1,7 +1,6 @@
-﻿
-Imports BL
+﻿Imports BL
 
-Public Class UpdateRackShelfDetails
+Public Class UpdateYarnRackShelfDetails
     Public FRMSTRING As String
 
 
@@ -27,23 +26,14 @@ Public Class UpdateRackShelfDetails
 
     Sub fillgrid()
         Try
-            If FRMSTRING = "GREY" Then
-                Dim OBJRACK As New ClsUpdateGreyRackShelf
-                Dim dt As DataTable = OBJRACK.SELECTUPDATERACKSHELF(0, YearId)
-                gridbilldetails.DataSource = dt
+
+            Dim OBJRACK As New ClsUpdateYarnRackShelf
+            Dim dt As DataTable = OBJRACK.SELECTUPDATEYARNRACKSHELF(0, YearId)
+            gridbilldetails.DataSource = dt
                 If dt.Rows.Count > 0 Then
                     gridbill.FocusedRowHandle = gridbill.RowCount - 1
                     gridbill.TopRowIndex = gridbill.RowCount - 15
                 End If
-            Else
-                Dim OBJRACK As New ClsUpdateRackShelf
-                Dim dt As DataTable = OBJRACK.SELECTUPDATERACKSHELF(0, YearId)
-                gridbilldetails.DataSource = dt
-                If dt.Rows.Count > 0 Then
-                    gridbill.FocusedRowHandle = gridbill.RowCount - 1
-                    gridbill.TopRowIndex = gridbill.RowCount - 15
-                End If
-            End If
 
         Catch ex As Exception
             Throw ex
@@ -52,23 +42,13 @@ Public Class UpdateRackShelfDetails
 
     Sub showform(ByVal editval As Boolean, ByVal RACKNO As Integer)
         Try
-            If FRMSTRING = "GREY" Then
-                If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                    Dim OBJRACK As New UpdateRackShelf
-                    OBJRACK.FRMSTRING = "GREY"
-                    OBJRACK.MdiParent = MDIMain
-                    OBJRACK.EDIT = editval
-                    OBJRACK.TEMPENTRYNO = RACKNO
-                    OBJRACK.Show()
-                End If
-            Else
-                If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                    Dim OBJRACK As New UpdateRackShelf
-                    OBJRACK.MdiParent = MDIMain
-                    OBJRACK.EDIT = editval
-                    OBJRACK.TEMPENTRYNO = RACKNO
-                    OBJRACK.Show()
-                End If
+
+            If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
+                Dim OBJRACK As New UpdateYarnRackShelf
+                OBJRACK.MdiParent = MDIMain
+                OBJRACK.EDIT = editval
+                OBJRACK.TEMPENTRYNO = RACKNO
+                OBJRACK.Show()
             End If
         Catch ex As Exception
             Throw ex

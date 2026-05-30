@@ -3,7 +3,7 @@ Imports BL
 
 Public Class SelectStockGDNGrid
 
-    Public FRMSTRING As String = ""
+    Public FRMSTRING As String
     Public WHERECLAUSE As String = ""
     Public DTBARCODE As New DataTable
 

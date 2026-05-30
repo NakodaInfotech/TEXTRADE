@@ -10927,17 +10927,6 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
-
-    Private Sub ToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem7.Click
-        Try
-            Dim OBJYARNJO As New UpdateYarnRackShelf
-            OBJYARNJO.MdiParent = Me
-            OBJYARNJO.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TASKCHECKADD_Click(sender As Object, e As EventArgs) Handles TASKCHECKADD.Click
         Try
             Dim OBJYARNJO As New TaskCheckListMaster
@@ -12568,6 +12557,48 @@ SKIPLINE:
             Dim OBJGDN As New AgencyCommissionReceipt
             OBJGDN.MdiParent = Me
             OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem8_Click_3(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem8.Click
+        Try
+            Dim OBJSHELF As New UpdateRackShelf
+            OBJSHELF.FRMSTRING = "GREY"
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem9_Click_2(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem9.Click
+        Try
+            Dim OBJSHELF As New UpdateRackShelfDetails
+            OBJSHELF.FRMSTRING = "GREY"
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem10_Click_1(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem10.Click
+        Try
+            Dim OBJSHELF As New UpdateYarnRackShelf
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem10_Click_1(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem10.Click
+        Try
+            Dim OBJSHELF As New UpdateYarnRackShelfDetails
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
         Catch ex As Exception
             Throw ex
         End Try
