@@ -481,6 +481,7 @@
     <Compile Include="Utilities\ClsStockTaking.vb" />
     <Compile Include="Utilities\ClsConfigurator.vb" />
     <Compile Include="Utilities\ClsTermsAndConditions.vb" />
+    <Compile Include="Utilities\ClsUpdateGreyRackShelf.vb" />
     <Compile Include="Utilities\ClsUpdatePendingEntry.vb" />
     <Compile Include="Utilities\ClsUpdateRackShelf.vb" />
     <Compile Include="Utilities\ClsUpdateYarnRackShelf.vb" />
