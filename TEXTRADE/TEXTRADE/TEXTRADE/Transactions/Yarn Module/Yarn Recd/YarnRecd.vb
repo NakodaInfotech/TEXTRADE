@@ -87,6 +87,7 @@ Public Class YarnRecd
         DTLRDATE.Value = Now.Date
         GRIDYARN.RowCount = 0
         GRIDORDER.RowCount = 0
+        GRIDTESTRPT.RowCount = 0
 
         cmdselectPO.Enabled = True
         GRIDDOUBLECLICK = False
@@ -503,6 +504,46 @@ CHECKNEXTLINE:
             alParaval.Add(ORDERRECDWT)
             alParaval.Add(ORDERRATE)
 
+            Dim TGRIDSRNO As String = ""
+            Dim TLOTNO As String = ""
+            Dim TCOUNT As String = ""
+            Dim TAVGCOUNT As String = ""
+            Dim TCSP As String = ""
+            Dim TIMPS As String = ""
+            Dim TRKM As String = ""
+
+            For Each row As Windows.Forms.DataGridViewRow In GRIDTESTRPT.Rows
+                If row.Cells(0).Value <> Nothing Then
+
+                    If TGRIDSRNO = "" Then
+                        TGRIDSRNO = Val(row.Cells(TRGRIDSRNO.Index).Value)
+                        TLOTNO = row.Cells(TPARTYLOTNO.Index).Value.ToString
+                        TCOUNT = row.Cells(GCOUNT.Index).Value.ToString
+                        TAVGCOUNT = row.Cells(GAVGCOUNT.Index).Value.ToString
+                        TCSP = row.Cells(GCSP.Index).Value.ToString
+                        TIMPS = row.Cells(GIMPS.Index).Value.ToString
+                        TRKM = row.Cells(GRKM.Index).Value.ToString
+
+                    Else
+                        TGRIDSRNO = TGRIDSRNO & "|" & Val(row.Cells(TRGRIDSRNO.Index).Value)
+                        TLOTNO = TLOTNO & "|" & row.Cells(TPARTYLOTNO.Index).Value.ToString
+                        TCOUNT = TCOUNT & "|" & row.Cells(GCOUNT.Index).Value.ToString
+                        TAVGCOUNT = TAVGCOUNT & "|" & row.Cells(GAVGCOUNT.Index).Value.ToString
+                        TCSP = TCSP & "|" & row.Cells(GCSP.Index).Value.ToString
+                        TIMPS = TIMPS & "|" & row.Cells(GIMPS.Index).Value.ToString
+                        TRKM = TRKM & "|" & row.Cells(GRKM.Index).Value.ToString
+
+                    End If
+                End If
+            Next
+
+            alParaval.Add(TGRIDSRNO)
+            alParaval.Add(TLOTNO)
+            alParaval.Add(TCOUNT)
+            alParaval.Add(TAVGCOUNT)
+            alParaval.Add(TCSP)
+            alParaval.Add(TIMPS)
+            alParaval.Add(TRKM)
 
             Dim objclsGRN As New ClsYarnRecd()
             objclsGRN.alParaval = alParaval
@@ -872,6 +913,15 @@ NEXTLINE:
                 End If
                 getsrno(GRIDORDER)
 
+                dttable = OBJCMN.SEARCH(" YARNRECD_TESTRPT.YARN_TRGRIDSRNO AS GRIDSRNO,  ISNULL(YARNRECD_TESTRPT.YARN_TRLOTNO,'') AS LOTNO, ISNULL(YARNRECD_TESTRPT.YARN_TRCOUNT,'') AS COUNT, ISNULL(YARNRECD_TESTRPT.YARN_TRAVGCOUNT,'') AS AVGCOUNT , ISNULL(YARNRECD_TESTRPT.YARN_TRCSP,'') AS CSP, ISNULL(YARNRECD_TESTRPT.YARN_TRIMPS,'') AS IMPS, ISNULL(YARNRECD_TESTRPT.YARN_TRRKM,'') AS RKM", "", " YARNRECD_TESTRPT  ", " AND YARNRECD_TESTRPT.YARN_NO = " & TEMPYARNNO & " AND YARNRECD_TESTRPT.YARN_YEARID = " & YearId)
+                If dttable.Rows.Count > 0 Then
+                    For Each DTR As DataRow In dttable.Rows
+                        GRIDTESTRPT.Rows.Add(Val(DTR("GRIDSRNO")), DTR("LOTNO"), DTR("COUNT"), DTR("AVGCOUNT"), DTR("CSP"), DTR("IMPS"), DTR("RKM"))
+                    Next
+                End If
+                getsrno(GRIDTESTRPT)
+
+
                 If txtpono.Text.Trim.Trim.Length = 0 Then
                     cmdselectPO.Enabled = False
                     cmbname.Enabled = True
@@ -1068,7 +1118,7 @@ NEXTLINE:
 
             cmdselectPO.Enabled = True
             total()
-
+            FillTestReportGrid()
         Catch ex As Exception
             Throw ex
         End Try
@@ -1185,7 +1235,7 @@ NEXTLINE:
             TXTWT.Focus()
         End If
 
-
+        FillTestReportGrid()
 
     End Sub
 
@@ -2279,6 +2329,61 @@ SKIPLINE:
                 GRIDORDER.Rows.RemoveAt(GRIDORDER.CurrentRow.Index)
                 getsrno(GRIDORDER)
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub FillTestReportGrid()
+        Try
+            ' GRIDTESTRPT clear karo pehle
+            GRIDTESTRPT.RowCount = 0
+
+            ' GRIDYARN se LOTNO-wise group karo
+            Dim dtTemp As New DataTable
+            dtTemp.Columns.Add("PARTYLOTNO")
+            dtTemp.Columns.Add("MILLNAME")
+            dtTemp.Columns.Add("TOTALQTY", GetType(Double))
+            dtTemp.Columns.Add("TOTALWT", GetType(Double))
+            dtTemp.Columns.Add("TOTALCONES", GetType(Double))
+
+            For Each row As DataGridViewRow In GRIDYARN.Rows
+                If row.Cells(gsrno.Index).Value IsNot Nothing Then
+                    Dim lotno As String = row.Cells(GJOBBERLOTNO.Index).Value.ToString.Trim
+                    Dim mill As String = row.Cells(GMILLNAME.Index).Value.ToString.Trim
+                    Dim qty As Double = Val(row.Cells(GQTY.Index).Value)
+                    Dim wt As Double = Val(row.Cells(GWT.Index).Value)
+                    Dim cones As Double = Val(row.Cells(GCONES.Index).Value)
+
+                    ' Check karo same LOTNO already hai ya nahi dtTemp mein
+                    Dim existRows() As DataRow = dtTemp.Select("PARTYLOTNO = '" & lotno & "'")
+
+                    If existRows.Length > 0 Then
+                        ' Existing row mein add karo
+                        existRows(0)("TOTALQTY") = Val(existRows(0)("TOTALQTY")) + qty
+                        existRows(0)("TOTALWT") = Val(existRows(0)("TOTALWT")) + wt
+                        existRows(0)("TOTALCONES") = Val(existRows(0)("TOTALCONES")) + cones
+                    Else
+                        ' New row add karo
+                        dtTemp.Rows.Add(lotno, mill, qty, wt, cones)
+                    End If
+                End If
+            Next
+
+            ' GRIDTESTRPT mein daalo
+            Dim srno As Integer = 1
+            For Each dr As DataRow In dtTemp.Rows
+                GRIDTESTRPT.Rows.Add(
+                    srno,                               ' Sr.
+                    dr("PARTYLOTNO").ToString,                ' Lot No
+                    0, ' 
+                    0,                                   ' Avg Count
+                    0,                                   ' CSP
+                    0,                                   ' IMPS
+                    0                                    ' RKM
+                )
+                srno += 1
+            Next
+
         Catch ex As Exception
             Throw ex
         End Try

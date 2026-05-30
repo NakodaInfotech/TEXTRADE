@@ -165,6 +165,21 @@ Public Class ClsYarnRecd
                 .Add(New SqlClient.SqlParameter("@ORDERRATE", alParaval(I)))
                 I = I + 1
 
+                .Add(New SqlClient.SqlParameter("@TRGRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRLOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRCOUNT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRAVGCOUNT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRCSP", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRIMPS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRRKM", alParaval(I)))
+                I = I + 1
+
 
             End With
 
@@ -319,6 +334,21 @@ Public Class ClsYarnRecd
                 .Add(New SqlClient.SqlParameter("@ORDERRECDWT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ORDERRATE", alParaval(I)))
+                I = I + 1
+
+                .Add(New SqlClient.SqlParameter("@TRGRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRLOTNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRCOUNT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRAVGCOUNT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRCSP", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRIMPS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRRKM", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@YARNNO", alParaval(I)))
