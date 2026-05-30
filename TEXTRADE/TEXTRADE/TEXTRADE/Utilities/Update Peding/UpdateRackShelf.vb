@@ -7,7 +7,6 @@ Public Class UpdateRackShelf
     Public FRMSTRING As String
     Public TEMPENTRYNO As Integer          'used for editing
     Public EDIT As Boolean          'used for editing
-
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Try
             Me.Close()
@@ -934,6 +933,7 @@ NEXTLINE:
                 If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
 
                 Dim OBJSTOCK As New SelectStockGDNGrid
+                If FRMSTRING = "GREY" Then OBJSTOCK.FRMSTRING = "GREY"
                 ' OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
                 OBJSTOCK.ShowDialog()
                 Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE
@@ -941,6 +941,16 @@ NEXTLINE:
                     TXTBARCODE.Text = DTROW("BARCODE")
                     TXTBARCODE_Validated(sender, e)
                 Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub UpdateRackShelf_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If FRMSTRING = "GREY" Then
+                CMDSELECTSTOCK.Visible = False
             End If
         Catch ex As Exception
             Throw ex
