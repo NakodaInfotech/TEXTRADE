@@ -10219,7 +10219,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewWeaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WEAVEADD.Click
+    Private Sub WEAVEADD_CLICK(sender As Object, e As EventArgs) Handles WEAVEADD.Click
         Try
             Dim objCategory As New CategoryMaster
             objCategory.frmString = "WEAVE"
@@ -10231,35 +10231,11 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub EditExistingWeaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WEAVEEDIT.Click
+    Private Sub WEAVEEDIT_CLICK(sender As Object, e As EventArgs) Handles WEAVEEDIT.Click
         Try
             Dim objCategoryDetails As New CategoryDetails
             objCategoryDetails.MdiParent = Me
             objCategoryDetails.FRMSTRING = "WEAVE"
-            objCategoryDetails.Show()
-            objCategoryDetails.BringToFront()
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
-
-    Private Sub AddNewLoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LOOMADD.Click
-        Try
-            Dim objCategory As New CategoryMaster
-            objCategory.frmString = "LOOM"
-            objCategory.MdiParent = Me
-            objCategory.Show()
-            objCategory.BringToFront()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub EditExistingLoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LOOMEDIT.Click
-        Try
-            Dim objCategoryDetails As New CategoryDetails
-            objCategoryDetails.MdiParent = Me
-            objCategoryDetails.FRMSTRING = "LOOM"
             objCategoryDetails.Show()
             objCategoryDetails.BringToFront()
         Catch ex As Exception
@@ -10424,8 +10400,7 @@ SKIPLINE:
         End Try
     End Sub
 
-
-    Private Sub AddNewEntryToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem7.Click
+    Private Sub BEAMADD_CLICK(sender As Object, e As EventArgs) Handles BEAMADD.Click
         Try
             Dim OBJUPLOAD As New BeamMaster
             OBJUPLOAD.MdiParent = Me
@@ -10455,7 +10430,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub EditExistingEntryToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem7.Click
+    Private Sub BEAMEDIT_CLICK(sender As Object, e As EventArgs) Handles BEAMEDIT.Click
         Try
             Dim OBJRRFW As New BeamDetails
             OBJRRFW.MdiParent = Me
@@ -10465,7 +10440,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AddNewEntryToolStripMenuItem9_Click(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem9.Click
+    Private Sub LOOMADD_CLICK(sender As Object, e As EventArgs) Handles LOOMADD.Click
         Try
             Dim OBJRRFW As New LoomMaster
             OBJRRFW.MdiParent = Me
@@ -10485,7 +10460,7 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub EditExistingEntryToolStripMenuItem8_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem8.Click
+    Private Sub LOOMEDIT_CLICK(sender As Object, e As EventArgs) Handles LOOMEDIT.Click
         Try
             Dim OBJRRFW As New LoomMasterDetails
             OBJRRFW.MdiParent = Me
@@ -12603,4 +12578,6 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+
 End Class
