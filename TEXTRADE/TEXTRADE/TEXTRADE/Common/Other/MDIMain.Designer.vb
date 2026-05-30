@@ -1032,6 +1032,10 @@ Partial Class MDIMain
         Me.SENDWHATSAPP_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator196 = New System.Windows.Forms.ToolStripSeparator()
         Me.REPRINTBARCODE_MENU = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReprintBarcodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.REPRINTGREYBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.REPRINTYARNBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator357 = New System.Windows.Forms.ToolStripSeparator()
         Me.CHANGEBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.EXPORTLABEL_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator84 = New System.Windows.Forms.ToolStripSeparator()
@@ -1363,10 +1367,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.ReprintBarcodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.REPRINTGREYBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.REPRINTYARNBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator357 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -4699,26 +4699,25 @@ Partial Class MDIMain
         Me.SAMPLENOTE_MASTER.Name = "SAMPLENOTE_MASTER"
         Me.SAMPLENOTE_MASTER.Size = New System.Drawing.Size(239, 22)
         Me.SAMPLENOTE_MASTER.Text = "Sample Note"
-        Me.SAMPLENOTE_MASTER.Visible = False
         '
         'SAMPLENOTEADD
         '
         Me.SAMPLENOTEADD.Enabled = False
         Me.SAMPLENOTEADD.Name = "SAMPLENOTEADD"
-        Me.SAMPLENOTEADD.Size = New System.Drawing.Size(168, 22)
+        Me.SAMPLENOTEADD.Size = New System.Drawing.Size(180, 22)
         Me.SAMPLENOTEADD.Text = "&Add New Entry"
         '
         'SAMPLENOTEEDIT
         '
         Me.SAMPLENOTEEDIT.Enabled = False
         Me.SAMPLENOTEEDIT.Name = "SAMPLENOTEEDIT"
-        Me.SAMPLENOTEEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.SAMPLENOTEEDIT.Size = New System.Drawing.Size(180, 22)
         Me.SAMPLENOTEEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator49
         '
         Me.ToolStripSeparator49.Name = "ToolStripSeparator49"
-        Me.ToolStripSeparator49.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator49.Size = New System.Drawing.Size(177, 6)
         '
         'SAMPLEPRICELIST_MASTER
         '
@@ -7762,6 +7761,29 @@ Partial Class MDIMain
         Me.REPRINTBARCODE_MENU.Size = New System.Drawing.Size(190, 22)
         Me.REPRINTBARCODE_MENU.Text = "Reprint Barcodes"
         '
+        'ReprintBarcodeToolStripMenuItem
+        '
+        Me.ReprintBarcodeToolStripMenuItem.Name = "ReprintBarcodeToolStripMenuItem"
+        Me.ReprintBarcodeToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
+        Me.ReprintBarcodeToolStripMenuItem.Text = "Reprint Barcode"
+        '
+        'REPRINTGREYBARCODE_MASTER
+        '
+        Me.REPRINTGREYBARCODE_MASTER.Name = "REPRINTGREYBARCODE_MASTER"
+        Me.REPRINTGREYBARCODE_MASTER.Size = New System.Drawing.Size(188, 22)
+        Me.REPRINTGREYBARCODE_MASTER.Text = "Reprint Grey Barcode"
+        '
+        'REPRINTYARNBARCODE_MASTER
+        '
+        Me.REPRINTYARNBARCODE_MASTER.Name = "REPRINTYARNBARCODE_MASTER"
+        Me.REPRINTYARNBARCODE_MASTER.Size = New System.Drawing.Size(188, 22)
+        Me.REPRINTYARNBARCODE_MASTER.Text = "Reprint Yarn Barcode"
+        '
+        'ToolStripSeparator357
+        '
+        Me.ToolStripSeparator357.Name = "ToolStripSeparator357"
+        Me.ToolStripSeparator357.Size = New System.Drawing.Size(185, 6)
+        '
         'CHANGEBARCODE_MASTER
         '
         Me.CHANGEBARCODE_MASTER.Enabled = False
@@ -9946,29 +9968,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'ReprintBarcodeToolStripMenuItem
-        '
-        Me.ReprintBarcodeToolStripMenuItem.Name = "ReprintBarcodeToolStripMenuItem"
-        Me.ReprintBarcodeToolStripMenuItem.Size = New System.Drawing.Size(188, 22)
-        Me.ReprintBarcodeToolStripMenuItem.Text = "Reprint Barcode"
-        '
-        'REPRINTGREYBARCODE_MASTER
-        '
-        Me.REPRINTGREYBARCODE_MASTER.Name = "REPRINTGREYBARCODE_MASTER"
-        Me.REPRINTGREYBARCODE_MASTER.Size = New System.Drawing.Size(188, 22)
-        Me.REPRINTGREYBARCODE_MASTER.Text = "Reprint Grey Barcode"
-        '
-        'REPRINTYARNBARCODE_MASTER
-        '
-        Me.REPRINTYARNBARCODE_MASTER.Name = "REPRINTYARNBARCODE_MASTER"
-        Me.REPRINTYARNBARCODE_MASTER.Size = New System.Drawing.Size(188, 22)
-        Me.REPRINTYARNBARCODE_MASTER.Text = "Reprint Yarn Barcode"
-        '
-        'ToolStripSeparator357
-        '
-        Me.ToolStripSeparator357.Name = "ToolStripSeparator357"
-        Me.ToolStripSeparator357.Size = New System.Drawing.Size(185, 6)
         '
         'MDIMain
         '
