@@ -138,7 +138,7 @@ Public Class PartyItemWiseStamping
 
     Private Sub TXTSTAMPING_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTSTAMPING.Validated
         Try
-            If CMBITEM.Text.Trim <> "" And TXTSTAMPING.Text.Trim.Length > 0 Then
+            If CMBITEM.Text.Trim <> "" And (TXTSTAMPING.Text.Trim.Length > 0 Or TXTPARTYITEMNAME.Text.Trim.Length > 0) Then
                 If ClientName = "RAJKRIPA" And Val(TXTRATE.Text.Trim) = 0 Then Exit Sub
                 If ClientName <> "RAJKRIPA" And CMBNAME.Text.Trim = "" Then Exit Sub
                 If Not errorvalid() Then
@@ -235,6 +235,7 @@ Public Class PartyItemWiseStamping
 
             Dim INT As Integer = OBJCONFIG.SAVE()
             FILLGRID()
+            GRIDDOUBLECLICK = False
 
         Catch ex As Exception
             Throw ex
@@ -262,7 +263,7 @@ Public Class PartyItemWiseStamping
             Dim OBJSM As New ClsPartyItemWiseChart
             Dim ALPARAVAL As New ArrayList
             ALPARAVAL.Add(gridbill.GetFocusedRowCellValue("ID"))
-            ALPARAVAL.Add(Userid)
+            ALPARAVAL.Add(YearId)
 
 
             OBJSM.alParaval = ALPARAVAL

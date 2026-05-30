@@ -63,7 +63,7 @@ Public Class ClsPartyItemWiseChart
             Dim alParameter As New ArrayList
             With alParameter
                 .Add(New SqlClient.SqlParameter("@ID", alParaval(0)))
-                .Add(New SqlClient.SqlParameter("@USERID", alParaval(1)))
+                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(1)))
             End With
             Dim INTRES As Integer = objDBOperation.executeNonQuery(strcommand, alParameter)
 
