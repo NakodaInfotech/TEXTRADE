@@ -1070,6 +1070,10 @@ LINE1:
                 LBLBARCODE.Visible = True
                 TXTBARCODE.Visible = True
             End If
+
+            If ClientName = "SWPL" Then
+                CMDSELECTGREY.Visible = False
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1104,7 +1108,7 @@ LINE1:
                         If LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(TXTBARCODE.Text.Trim) Then GoTo LINE1
                     Next
 
-                    GRIDISSUE.Rows.Add(GRIDISSUE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("BALENO"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), Val(DT.Rows(0).Item("PCS")), DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), 0, 0, 0, 0, DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), DT.Rows(0).Item("BARCODE"))
+                    GRIDISSUE.Rows.Add(GRIDISSUE.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("BALENO"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), Val(DT.Rows(0).Item("PCS")), DT.Rows(0).Item("UNIT"), Format(Val(DT.Rows(0).Item("MTRS")), "0.00"), Format(Val(DT.Rows(0).Item("WT")), "0.00"), 0, 0, 0, 0, DT.Rows(0).Item("FROMNO"), DT.Rows(0).Item("FROMSRNO"), DT.Rows(0).Item("TYPE"), DT.Rows(0).Item("BARCODE"))
                     TOTAL()
                     GRIDISSUE.FirstDisplayedScrollingRowIndex = GRIDISSUE.RowCount - 1
 

@@ -485,20 +485,20 @@ Public Class DesignCardMaster
                     If DRAWSrNo = "" Then
                         DRAWSrNo = Val(row.Cells(DSRNO.Index).Value)
                         DRAWEnds = row.Cells(DENDS.Index).Value.ToString()
-                        DRAWREPEATMARK = row.Cells(DREPEATMARK.Index).Value
+                        DRAWREPEATMARK = Val(row.Cells(DREPEATMARK.Index).Value)
                         DRAWREPEATS = Val(row.Cells(DREPEAT.Index).Value)
-                        DRAWREPEATMARK1 = row.Cells(DREPEATMARK1.Index).Value
+                        DRAWREPEATMARK1 = Val(row.Cells(DREPEATMARK1.Index).Value)
                         DRAWREPEATS1 = Val(row.Cells(DREPEATS1.Index).Value)
-                        DRAWREPEATMARK2 = row.Cells(DREPEATMARK2.Index).Value
+                        DRAWREPEATMARK2 = Val(row.Cells(DREPEATMARK2.Index).Value)
                         DRAWREPEATS2 = Val(row.Cells(DREPEATS2.Index).Value)
                     Else
                         DRAWSrNo = DRAWSrNo & "|" & Val(row.Cells(DSRNO.Index).Value)
                         DRAWEnds = DRAWEnds & "|" & row.Cells(DENDS.Index).Value.ToString()
-                        DRAWREPEATMARK = DRAWREPEATMARK & "|" & row.Cells(DREPEATMARK.Index).Value
+                        DRAWREPEATMARK = DRAWREPEATMARK & "|" & Val(row.Cells(DREPEATMARK.Index).Value)
                         DRAWREPEATS = DRAWREPEATS & "|" & Val(row.Cells(DREPEAT.Index).Value)
-                        DRAWREPEATMARK1 = DRAWREPEATMARK1 & "|" & row.Cells(DREPEATMARK1.Index).Value
+                        DRAWREPEATMARK1 = DRAWREPEATMARK1 & "|" & Val(row.Cells(DREPEATMARK1.Index).Value)
                         DRAWREPEATS1 = DRAWREPEATS1 & "|" & Val(row.Cells(DREPEATS1.Index).Value)
-                        DRAWREPEATMARK2 = DRAWREPEATMARK2 & "|" & row.Cells(DREPEATMARK2.Index).Value
+                        DRAWREPEATMARK2 = DRAWREPEATMARK2 & "|" & Val(row.Cells(DREPEATMARK2.Index).Value)
                         DRAWREPEATS2 = DRAWREPEATS2 & "|" & Val(row.Cells(DREPEATS2.Index).Value)
                     End If
                 End If

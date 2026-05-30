@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports BL
 Imports DevExpress.CodeParser
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraReports.UI
 Imports iTextSharp
 Public Class YarnLoanMaster
@@ -691,5 +692,74 @@ LINE1:
 
     Private Sub GRIDYARN_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDYARN.CellDoubleClick
         EDITROW()
+    End Sub
+
+    Private Sub txtbarcode_Validated(sender As Object, e As EventArgs) Handles txtbarcode.Validated
+        Try
+            fillgrid()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub txtbarcode_KeyDown(sender As Object, e As KeyEventArgs) Handles txtbarcode.KeyDown
+
+    End Sub
+
+    Private Sub TXTMASTERBARCODE_Validated(sender As Object, e As EventArgs) Handles TXTMASTERBARCODE.Validated
+        Try
+            If txtbarcode.Text.Trim.Length > 0 Then
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" TOP 1 * ", "", "YARNBARCODESTOCK",
+                " AND BARCODE = '" & txtbarcode.Text.Trim & "' AND DONE = 0 AND YEARID = " & YearId)
+
+                If DT.Rows.Count > 0 Then
+                    ' CHECK: Barcode already in GRIDYARN (DataGridView)?
+                    For I As Integer = 0 To GRIDYARN.RowCount - 1
+                        If GRIDYARN.Rows(I).Cells(GBARCODE.Index).Value IsNot Nothing Then
+                            If LCase(GRIDYARN.Rows(I).Cells(GBARCODE.Index).Value.ToString) =
+                           LCase(txtbarcode.Text.Trim) Then
+                                MsgBox("Barcode already exists in grid!", MsgBoxStyle.Information)
+                                GoTo LINE1
+                            End If
+                        End If
+                    Next
+
+                    ' ADD ROW to GRIDYARN (same format as Load event)
+                    Dim dr As DataRow = DT.Rows(0)
+                    GRIDYARN.Rows.Add(GRIDYARN.RowCount, dr("YARNNAME").ToString, dr("MILLNAME").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO").ToString, Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
+                    GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
+LINE1:
+                    txtbarcode.Clear()
+                    txtbarcode.Focus()
+                    getsrno(GRIDYARN)
+                Else
+                    MsgBox("Barcode not found or already used!", MsgBoxStyle.Exclamation)
+                    txtbarcode.Clear()
+                    txtbarcode.Focus()
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTMASTERBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTMASTERBARCODE.KeyDown
+        Try
+            If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
+                If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
+
+                Dim OBJSTOCK As New SelectYarnStock
+                ' OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
+                OBJSTOCK.ShowDialog()
+                Dim DTBARCODE As DataTable = OBJSTOCK.DT
+                For Each DTROW As DataRow In DTBARCODE.Rows
+                    txtbarcode.Text = DTROW("BARCODE")
+                    txtbarcode_Validated(sender, e)
+                Next
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class

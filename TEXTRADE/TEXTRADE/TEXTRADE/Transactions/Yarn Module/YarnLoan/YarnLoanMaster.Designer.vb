@@ -33,6 +33,8 @@ Partial Class YarnLoanMaster
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnLoanMaster))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TXTMASTERBARCODE = New System.Windows.Forms.TextBox()
         Me.txtbarcode = New System.Windows.Forms.TextBox()
         Me.TXTTRANSADD = New System.Windows.Forms.TextBox()
         Me.cmbtrans = New System.Windows.Forms.ComboBox()
@@ -115,6 +117,8 @@ Partial Class YarnLoanMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label11)
+        Me.BlendPanel1.Controls.Add(Me.TXTMASTERBARCODE)
         Me.BlendPanel1.Controls.Add(Me.txtbarcode)
         Me.BlendPanel1.Controls.Add(Me.TXTTRANSADD)
         Me.BlendPanel1.Controls.Add(Me.cmbtrans)
@@ -146,6 +150,27 @@ Partial Class YarnLoanMaster
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1055, 581)
         Me.BlendPanel1.TabIndex = 7
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.Black
+        Me.Label11.Location = New System.Drawing.Point(549, 124)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(51, 14)
+        Me.Label11.TabIndex = 761
+        Me.Label11.Text = "Barcode"
+        '
+        'TXTMASTERBARCODE
+        '
+        Me.TXTMASTERBARCODE.BackColor = System.Drawing.Color.White
+        Me.TXTMASTERBARCODE.ForeColor = System.Drawing.Color.DimGray
+        Me.TXTMASTERBARCODE.Location = New System.Drawing.Point(601, 120)
+        Me.TXTMASTERBARCODE.Name = "TXTMASTERBARCODE"
+        Me.TXTMASTERBARCODE.Size = New System.Drawing.Size(166, 23)
+        Me.TXTMASTERBARCODE.TabIndex = 760
         '
         'txtbarcode
         '
@@ -1020,4 +1045,6 @@ Partial Class YarnLoanMaster
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents cmbrack As ComboBox
     Friend WithEvents txtbarcode As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents TXTMASTERBARCODE As TextBox
 End Class

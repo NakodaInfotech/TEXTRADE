@@ -966,10 +966,6 @@ Partial Class MDIMain
         Me.UpdateQualityWtToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateLRNoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPDATEBROKERMENU = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator348 = New System.Windows.Forms.ToolStripSeparator()
         Me.UpdateStockOnHandDetailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewEntryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditExistingEntryToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1001,8 +997,6 @@ Partial Class MDIMain
         Me.UpdateBillToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator251 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AUTODISCOUNT_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator153 = New System.Windows.Forms.ToolStripSeparator()
         Me.UPDATEPROGRAMDETAILS = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateCardIssueDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateCardRecdDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1019,11 +1013,11 @@ Partial Class MDIMain
         Me.ToolStripSeparator292 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator291 = New System.Windows.Forms.ToolStripSeparator()
         Me.PROGRAMTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
-        Me.UpdatePendingLRStockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UPDATEROUNDER_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.COMPLAINTSOLVED_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.COMPLAINTSOLVED_ADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.COMPLAINTSOLVED_EDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator358 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator90 = New System.Windows.Forms.ToolStripSeparator()
         Me.SendMailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SendMailToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -1245,6 +1239,13 @@ Partial Class MDIMain
         Me.YARNLOANEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator26 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNRECDTOOLSTRIP = New System.Windows.Forms.ToolStripSeparator()
+        Me.UpdateEntriesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateGreyRackShelfToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewEntryToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem9 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateYarnRackShelfToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewEntryToolStripMenuItem10 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem10 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AGENCYMODULE_MENU = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgencySaleOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -7330,7 +7331,7 @@ Partial Class MDIMain
         '
         'UpdateEntriesToolStripMenuItem
         '
-        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.ToolStripMenuItem6, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.AUTODISCOUNT_MASTER, Me.ToolStripSeparator153, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP, Me.UpdatePendingLRStockToolStripMenuItem, Me.UPDATEROUNDER_MASTER, Me.COMPLAINTSOLVED_MASTER})
+        Me.UpdateEntriesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UploadLotNoToolStripMenuItem, Me.UpdateQualityWtToolStripMenuItem, Me.UpdateLRNoToolStripMenuItem, Me.UPDATEBROKERMENU, Me.UpdateStockOnHandDetailsToolStripMenuItem, Me.UpdateReminderDaysToolStripMenuItem, Me.UpdateDefaultStockUnitToolStripMenuItem, Me.LOCKPENDINGLOTFORPROGRAM, Me.LOCKPENDINGJO_MENU, Me.SHRINKAGE_MASTER, Me.UnHoldChallansToolStripMenuItem, Me.REPLACELOTNO_MASTER, Me.UPDATEPENDINGENTRIES_MENU, Me.UpdateItemRateToolStripMenuItem, Me.RENUMBERING_MASTER, Me.AUTODESIGNCREATION_MASTER, Me.GODOWNCHANGE_MASTER, Me.UpdateBillToolStripMenuItem, Me.LRStockToolStripMenuItem, Me.ToolStripSeparator251, Me.UPDATEPROGRAMDETAILS, Me.PROGRAMTOOLSTRIP, Me.UPDATEROUNDER_MASTER, Me.COMPLAINTSOLVED_MASTER, Me.ToolStripSeparator358})
         Me.UpdateEntriesToolStripMenuItem.Name = "UpdateEntriesToolStripMenuItem"
         Me.UpdateEntriesToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
         Me.UpdateEntriesToolStripMenuItem.Text = "Update Entries"
@@ -7359,30 +7360,6 @@ Partial Class MDIMain
         Me.UPDATEBROKERMENU.Size = New System.Drawing.Size(253, 22)
         Me.UPDATEBROKERMENU.Text = "Update Broker"
         '
-        'ToolStripMenuItem6
-        '
-        Me.ToolStripMenuItem6.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem7, Me.ToolStripMenuItem8, Me.ToolStripSeparator348})
-        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(253, 22)
-        Me.ToolStripMenuItem6.Text = "Update Yarn Rack && Shelf"
-        '
-        'ToolStripMenuItem7
-        '
-        Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
-        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(168, 22)
-        Me.ToolStripMenuItem7.Text = "&Add New Entry"
-        '
-        'ToolStripMenuItem8
-        '
-        Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
-        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(168, 22)
-        Me.ToolStripMenuItem8.Text = "&Edit Existing Entry"
-        '
-        'ToolStripSeparator348
-        '
-        Me.ToolStripSeparator348.Name = "ToolStripSeparator348"
-        Me.ToolStripSeparator348.Size = New System.Drawing.Size(165, 6)
-        '
         'UpdateStockOnHandDetailsToolStripMenuItem
         '
         Me.UpdateStockOnHandDetailsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem1, Me.EditExistingEntryToolStripMenuItem1, Me.ToolStripSeparator242})
@@ -7393,19 +7370,19 @@ Partial Class MDIMain
         'AddNewEntryToolStripMenuItem1
         '
         Me.AddNewEntryToolStripMenuItem1.Name = "AddNewEntryToolStripMenuItem1"
-        Me.AddNewEntryToolStripMenuItem1.Size = New System.Drawing.Size(168, 22)
+        Me.AddNewEntryToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.AddNewEntryToolStripMenuItem1.Text = "&Add New Entry"
         '
         'EditExistingEntryToolStripMenuItem1
         '
         Me.EditExistingEntryToolStripMenuItem1.Name = "EditExistingEntryToolStripMenuItem1"
-        Me.EditExistingEntryToolStripMenuItem1.Size = New System.Drawing.Size(168, 22)
+        Me.EditExistingEntryToolStripMenuItem1.Size = New System.Drawing.Size(180, 22)
         Me.EditExistingEntryToolStripMenuItem1.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator242
         '
         Me.ToolStripSeparator242.Name = "ToolStripSeparator242"
-        Me.ToolStripSeparator242.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator242.Size = New System.Drawing.Size(177, 6)
         '
         'UpdateReminderDaysToolStripMenuItem
         '
@@ -7570,23 +7547,12 @@ Partial Class MDIMain
         Me.LRStockToolStripMenuItem.Enabled = False
         Me.LRStockToolStripMenuItem.Name = "LRStockToolStripMenuItem"
         Me.LRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.LRStockToolStripMenuItem.Text = "Upload LR Stock"
+        Me.LRStockToolStripMenuItem.Text = "Update LR Stock"
         '
         'ToolStripSeparator251
         '
         Me.ToolStripSeparator251.Name = "ToolStripSeparator251"
         Me.ToolStripSeparator251.Size = New System.Drawing.Size(250, 6)
-        '
-        'AUTODISCOUNT_MASTER
-        '
-        Me.AUTODISCOUNT_MASTER.Name = "AUTODISCOUNT_MASTER"
-        Me.AUTODISCOUNT_MASTER.Size = New System.Drawing.Size(253, 22)
-        Me.AUTODISCOUNT_MASTER.Text = "Auto Discount"
-        '
-        'ToolStripSeparator153
-        '
-        Me.ToolStripSeparator153.Name = "ToolStripSeparator153"
-        Me.ToolStripSeparator153.Size = New System.Drawing.Size(250, 6)
         '
         'UPDATEPROGRAMDETAILS
         '
@@ -7682,12 +7648,6 @@ Partial Class MDIMain
         Me.PROGRAMTOOLSTRIP.Name = "PROGRAMTOOLSTRIP"
         Me.PROGRAMTOOLSTRIP.Size = New System.Drawing.Size(250, 6)
         '
-        'UpdatePendingLRStockToolStripMenuItem
-        '
-        Me.UpdatePendingLRStockToolStripMenuItem.Name = "UpdatePendingLRStockToolStripMenuItem"
-        Me.UpdatePendingLRStockToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
-        Me.UpdatePendingLRStockToolStripMenuItem.Text = "Update Pending LR Stock"
-        '
         'UPDATEROUNDER_MASTER
         '
         Me.UPDATEROUNDER_MASTER.Name = "UPDATEROUNDER_MASTER"
@@ -7712,6 +7672,11 @@ Partial Class MDIMain
         Me.COMPLAINTSOLVED_EDIT.Name = "COMPLAINTSOLVED_EDIT"
         Me.COMPLAINTSOLVED_EDIT.Size = New System.Drawing.Size(168, 22)
         Me.COMPLAINTSOLVED_EDIT.Text = "Edit Existing Entry"
+        '
+        'ToolStripSeparator358
+        '
+        Me.ToolStripSeparator358.Name = "ToolStripSeparator358"
+        Me.ToolStripSeparator358.Size = New System.Drawing.Size(250, 6)
         '
         'ToolStripSeparator90
         '
@@ -8075,7 +8040,7 @@ Partial Class MDIMain
         '
         'YARNMODULE_MENU
         '
-        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BEAMENTRY_MASTER, Me.ToolStripSeparator339, Me.YARNLOOMEFFICIENCY_MASTER, Me.GreyReceived_MENU, Me.GreyJobWorkToolStripMenuItem, Me.GREYGDN_MASTER, Me.GREYSALERETURNCHALLAN_MASTER, Me.GREYSTOCKADJUSTMENT_MASTER, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.TOOLSTRIPYARNDYEINGPROGRAM, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNSTOCKADJUSTMENT_MASTER, Me.YARNLOAN_MASTER, Me.YARNRECDTOOLSTRIP})
+        Me.YARNMODULE_MENU.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YARNPO_MASTER, Me.YARNRECD, Me.YARNISSUE, Me.ToolStripSeparator341, Me.YARNJOBORDER_MASTER, Me.WARPING_MASTER, Me.BEAMENTRY_MASTER, Me.ToolStripSeparator339, Me.YARNLOOMEFFICIENCY_MASTER, Me.GreyReceived_MENU, Me.GreyJobWorkToolStripMenuItem, Me.GREYGDN_MASTER, Me.GREYSALERETURNCHALLAN_MASTER, Me.GREYSTOCKADJUSTMENT_MASTER, Me.ToolStripSeparator343, Me.YARNDYEINGPROGRAM_MASTER, Me.TOOLSTRIPYARNDYEINGPROGRAM, Me.YARNSO_MASTER, Me.YARNCHALLAN_MASTER, Me.GREYRECDTOOLSTRIP, Me.YARNINTERGODOWN_MASTER, Me.YARNRETURN_MASTER, Me.YARNWASTAGE, Me.YARNSTOCKADJUSTMENT_MASTER, Me.YARNLOAN_MASTER, Me.YARNRECDTOOLSTRIP, Me.UpdateEntriesToolStripMenuItem1})
         Me.YARNMODULE_MENU.Name = "YARNMODULE_MENU"
         Me.YARNMODULE_MENU.Size = New System.Drawing.Size(125, 20)
         Me.YARNMODULE_MENU.Text = "Yarn && Grey Module"
@@ -9146,6 +9111,51 @@ Partial Class MDIMain
         '
         Me.YARNRECDTOOLSTRIP.Name = "YARNRECDTOOLSTRIP"
         Me.YARNRECDTOOLSTRIP.Size = New System.Drawing.Size(218, 6)
+        '
+        'UpdateEntriesToolStripMenuItem1
+        '
+        Me.UpdateEntriesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateGreyRackShelfToolStripMenuItem, Me.UpdateYarnRackShelfToolStripMenuItem})
+        Me.UpdateEntriesToolStripMenuItem1.Name = "UpdateEntriesToolStripMenuItem1"
+        Me.UpdateEntriesToolStripMenuItem1.Size = New System.Drawing.Size(221, 22)
+        Me.UpdateEntriesToolStripMenuItem1.Text = "Update Entries"
+        '
+        'UpdateGreyRackShelfToolStripMenuItem
+        '
+        Me.UpdateGreyRackShelfToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem8, Me.EditExistingEntryToolStripMenuItem9})
+        Me.UpdateGreyRackShelfToolStripMenuItem.Name = "UpdateGreyRackShelfToolStripMenuItem"
+        Me.UpdateGreyRackShelfToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.UpdateGreyRackShelfToolStripMenuItem.Text = "Update Grey Rack Shelf"
+        '
+        'AddNewEntryToolStripMenuItem8
+        '
+        Me.AddNewEntryToolStripMenuItem8.Name = "AddNewEntryToolStripMenuItem8"
+        Me.AddNewEntryToolStripMenuItem8.Size = New System.Drawing.Size(180, 22)
+        Me.AddNewEntryToolStripMenuItem8.Text = "Add New Entry"
+        '
+        'EditExistingEntryToolStripMenuItem9
+        '
+        Me.EditExistingEntryToolStripMenuItem9.Name = "EditExistingEntryToolStripMenuItem9"
+        Me.EditExistingEntryToolStripMenuItem9.Size = New System.Drawing.Size(180, 22)
+        Me.EditExistingEntryToolStripMenuItem9.Text = "Edit Existing Entry "
+        '
+        'UpdateYarnRackShelfToolStripMenuItem
+        '
+        Me.UpdateYarnRackShelfToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewEntryToolStripMenuItem10, Me.EditExistingEntryToolStripMenuItem10})
+        Me.UpdateYarnRackShelfToolStripMenuItem.Name = "UpdateYarnRackShelfToolStripMenuItem"
+        Me.UpdateYarnRackShelfToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.UpdateYarnRackShelfToolStripMenuItem.Text = "Update Yarn Rack Shelf "
+        '
+        'AddNewEntryToolStripMenuItem10
+        '
+        Me.AddNewEntryToolStripMenuItem10.Name = "AddNewEntryToolStripMenuItem10"
+        Me.AddNewEntryToolStripMenuItem10.Size = New System.Drawing.Size(180, 22)
+        Me.AddNewEntryToolStripMenuItem10.Text = "Add New Entry"
+        '
+        'EditExistingEntryToolStripMenuItem10
+        '
+        Me.EditExistingEntryToolStripMenuItem10.Name = "EditExistingEntryToolStripMenuItem10"
+        Me.EditExistingEntryToolStripMenuItem10.Size = New System.Drawing.Size(180, 22)
+        Me.EditExistingEntryToolStripMenuItem10.Text = "Edit Existing Entry"
         '
         'AGENCYMODULE_MENU
         '
@@ -10535,7 +10545,6 @@ Partial Class MDIMain
     Friend WithEvents UploadLotNoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UpdateLRNoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UpdateStockOnHandDetailsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator153 As ToolStripSeparator
     Friend WithEvents InterestCalculatorBillWiseToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator187 As ToolStripSeparator
     Friend WithEvents UPDATEBROKERMENU As ToolStripMenuItem
@@ -10873,7 +10882,6 @@ Partial Class MDIMain
     Friend WithEvents ToolStripSeparator250 As ToolStripSeparator
     Friend WithEvents SAMPLESTOCK_REPORT As ToolStripMenuItem
     Friend WithEvents SENDWHATSAPP_MASTER As ToolStripMenuItem
-    Friend WithEvents AUTODISCOUNT_MASTER As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator251 As ToolStripSeparator
     Friend WithEvents IncentiveDetails As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator252 As ToolStripSeparator
@@ -11176,7 +11184,6 @@ Partial Class MDIMain
     Friend WithEvents HOLDFORINTCALCMENU As ToolStripMenuItem
     Friend WithEvents AGENCYOUTSTANDINGGRID_MENU As ToolStripMenuItem
     Friend WithEvents LRSTOCKVALUE_MENU As ToolStripMenuItem
-    Friend WithEvents UpdatePendingLRStockToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GENERATEEWAY_MASTER As ToolStripMenuItem
     Friend WithEvents CutPackFilterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GENERATEEINV_MASTER As ToolStripMenuItem
@@ -11283,10 +11290,6 @@ Partial Class MDIMain
     Friend WithEvents YARNLOOMEFFICIENCY_MASTER As ToolStripMenuItem
     Friend WithEvents YARNLOOMEFFICIENCY_ADD As ToolStripMenuItem
     Friend WithEvents YARNLOOMEFFICIENCY_EDIT As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem6 As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem7 As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem8 As ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator348 As ToolStripSeparator
     Friend WithEvents TASKCHECKLIST_MASTER As ToolStripMenuItem
     Friend WithEvents TASKCHECKADD As ToolStripMenuItem
     Friend WithEvents TASKCHECKEDIT As ToolStripMenuItem
@@ -11339,4 +11342,12 @@ Partial Class MDIMain
     Friend WithEvents REPRINTGREYBARCODE_MASTER As ToolStripMenuItem
     Friend WithEvents REPRINTYARNBARCODE_MASTER As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator357 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator358 As ToolStripSeparator
+    Friend WithEvents UpdateEntriesToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents UpdateGreyRackShelfToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddNewEntryToolStripMenuItem8 As ToolStripMenuItem
+    Friend WithEvents EditExistingEntryToolStripMenuItem9 As ToolStripMenuItem
+    Friend WithEvents UpdateYarnRackShelfToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddNewEntryToolStripMenuItem10 As ToolStripMenuItem
+    Friend WithEvents EditExistingEntryToolStripMenuItem10 As ToolStripMenuItem
 End Class

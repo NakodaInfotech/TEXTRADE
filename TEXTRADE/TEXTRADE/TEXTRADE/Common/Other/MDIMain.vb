@@ -8373,17 +8373,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub AUTODISCOUNT_MASTER_Click(sender As Object, e As EventArgs) Handles AUTODISCOUNT_MASTER.Click
-        Try
-            If InputBox("Enter Master Password") <> "Infosys@123" Then Exit Sub
-            Dim OBJDISC As New AutoDiscount
-            OBJDISC.MdiParent = Me
-            OBJDISC.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub IncentiveDetails_Click(sender As Object, e As EventArgs) Handles IncentiveDetails.Click
         Try
             Dim objincentive As New EmbIncentiveDetails
@@ -10405,16 +10394,6 @@ SKIPLINE:
         End Try
     End Sub
 
-    Private Sub UpdatePendingLRStockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdatePendingLRStockToolStripMenuItem.Click
-        Try
-            Dim OBJLR As New UpdatePendingLrStock
-            OBJLR.MdiParent = Me
-            OBJLR.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub AutoEWayToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GENERATEEWAY_MASTER.Click
         Try
             Dim OBJHOLD As New AutoEway
@@ -10948,17 +10927,6 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
-
-    Private Sub ToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem7.Click
-        Try
-            Dim OBJYARNJO As New UpdateYarnRackShelf
-            OBJYARNJO.MdiParent = Me
-            OBJYARNJO.Show()
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
     Private Sub TASKCHECKADD_Click(sender As Object, e As EventArgs) Handles TASKCHECKADD.Click
         Try
             Dim OBJYARNJO As New TaskCheckListMaster
@@ -12589,6 +12557,48 @@ SKIPLINE:
             Dim OBJGDN As New AgencyCommissionReceipt
             OBJGDN.MdiParent = Me
             OBJGDN.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem8_Click_3(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem8.Click
+        Try
+            Dim OBJSHELF As New UpdateRackShelf
+            OBJSHELF.FRMSTRING = "GREY"
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem9_Click_2(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem9.Click
+        Try
+            Dim OBJSHELF As New UpdateRackShelfDetails
+            OBJSHELF.FRMSTRING = "GREY"
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub AddNewEntryToolStripMenuItem10_Click_1(sender As Object, e As EventArgs) Handles AddNewEntryToolStripMenuItem10.Click
+        Try
+            Dim OBJSHELF As New UpdateYarnRackShelf
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem10_Click_1(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem10.Click
+        Try
+            Dim OBJSHELF As New UpdateYarnRackShelfDetails
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
         Catch ex As Exception
             Throw ex
         End Try
