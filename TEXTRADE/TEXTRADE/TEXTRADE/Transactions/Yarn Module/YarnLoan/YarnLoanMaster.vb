@@ -363,6 +363,11 @@ Public Class YarnLoanMaster
         GRIDYARN.RowCount = 0
         LBLTOTALCONES.Text = 0
         LBLTOTALWT.Text = 0
+        cmbLoan.Enabled = True
+
+        Label11.Visible = False
+        TXTMASTERBARCODE.Visible = False
+
     End Sub
 
     Private Sub cmbrack_Enter(sender As Object, e As EventArgs) Handles cmbrack.Enter
@@ -431,6 +436,13 @@ Public Class YarnLoanMaster
 
                 chkchange.CheckState = CheckState.Checked
                 total()
+                cmbLoan.Enabled = False
+
+                If cmbLoan.Text = "Loan Return to Party" Or cmbLoan.Text = "Party taking Loan" Then
+                    Label11.Visible = True
+                    TXTMASTERBARCODE.Visible = True
+                End If
+
             End If
 
             'If gridDoubleClick = False Then
@@ -727,7 +739,7 @@ LINE1:
 
                     ' ADD ROW to GRIDYARN (same format as Load event)
                     Dim dr As DataRow = DT.Rows(0)
-                    GRIDYARN.Rows.Add(GRIDYARN.RowCount, dr("YARNNAME").ToString, dr("MILLNAME").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO").ToString, Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
+                    GRIDYARN.Rows.Add(GRIDYARN.RowCount, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO").ToString, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), dr("DONE").ToString, 0, 0, dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
                     GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
 LINE1:
                     txtbarcode.Clear()
@@ -744,6 +756,22 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub OpenToolStripButton_Click(sender As Object, e As EventArgs) Handles OpenToolStripButton.Click
+        Try
+
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+
+            Dim OBJEMB As New YarnLoanMasterDetails
+            OBJEMB.MdiParent = MDIMain
+            OBJEMB.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub TXTMASTERBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTMASTERBARCODE.KeyDown
         Try
             If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
@@ -755,11 +783,55 @@ LINE1:
                 Dim DTBARCODE As DataTable = OBJSTOCK.DT
                 For Each DTROW As DataRow In DTBARCODE.Rows
                     txtbarcode.Text = DTROW("BARCODE")
-                    txtbarcode_Validated(sender, e)
+                    TXTMASTERBARCODE_Validated(sender, e)
                 Next
             End If
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub cmbLoan_Validated(sender As Object, e As EventArgs) Handles cmbLoan.Validated
+        Try
+            cmbLoan.Enabled = False
+            If cmbLoan.Text = "Loan Return to Party" Or cmbLoan.Text = "Party taking Loan" Then
+                Label11.Visible = True
+                TXTMASTERBARCODE.Visible = True
+            End If
+
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
+
+    Private Sub YarnLoanMaster_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
+            If errorvalid() = True Then
+                Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
+                If tempmsg = vbYes Then cmdok_Click(sender, e)
+            End If
+            Me.Close()
+        ElseIf e.Alt = True And (e.KeyCode = Windows.Forms.Keys.D1) Then
+            TabControl1.Focus()
+            TabControl1.SelectedIndex = (0)
+        ElseIf e.Alt = True And (e.KeyCode = Windows.Forms.Keys.D2) Then
+            TabControl1.SelectedIndex = (1)
+        ElseIf e.KeyCode = Keys.Oemcomma Then
+            e.SuppressKeyPress = True
+        ElseIf e.KeyCode = Keys.Enter Then
+            SendKeys.Send("{Tab}")
+        ElseIf e.KeyCode = Windows.Forms.Keys.F2 Then       'for billno foucs
+            tstxtbillno.Focus()
+            tstxtbillno.SelectAll()
+        ElseIf e.Alt = True And e.KeyCode = Keys.Left Then
+            toolprevious_Click(sender, e)
+        ElseIf e.Alt = True And e.KeyCode = Keys.Right Then
+            toolnext_Click(sender, e)
+        ElseIf e.KeyCode = Keys.F5 Then     'grid focus
+            YarnRecd.Focus()
+        ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
+            Call OpenToolStripButton_CLICK(sender, e)
+        End If
     End Sub
 End Class
