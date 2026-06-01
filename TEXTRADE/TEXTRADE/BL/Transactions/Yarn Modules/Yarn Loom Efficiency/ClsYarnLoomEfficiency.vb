@@ -53,8 +53,10 @@ Public Class ClsYarnLoomEfficiency
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
-
-
+                .Add(New SqlClient.SqlParameter("@SET", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@SHIFT", alParaval(I)))
+                I = I + 1
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
@@ -133,7 +135,10 @@ Public Class ClsYarnLoomEfficiency
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@SET", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@SHIFT", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters

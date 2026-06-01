@@ -43,17 +43,20 @@ Public Class SelectYarnGodownTransfer
     End Sub
     Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
         Try
-            Dim COUNT As Integer = 0
-            For i As Integer = 0 To gridbill.RowCount - 1
-                Dim dtrow As DataRow = gridbill.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    COUNT = COUNT + 1
-                End If
-            Next
+            'Dim COUNT As Integer = 0
+            'For i As Integer = 0 To gridbill.RowCount - 1
+            '    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+            '    If Convert.ToBoolean(dtrow("CHK")) = True Then
+            '        COUNT = COUNT + 1
+            '    End If
+            'Next
             'If COUNT > 1 Then
             '    MsgBox("You Can Select Only One Entry")
             '    Exit Sub
             'End If
+
+
+            gridbill.ClearColumnsFilter()
 
 
             DT.Columns.Add("YARNQUALITY")
