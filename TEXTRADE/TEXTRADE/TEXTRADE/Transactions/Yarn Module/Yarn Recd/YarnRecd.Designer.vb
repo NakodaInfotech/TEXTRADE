@@ -173,13 +173,6 @@ Partial Class YarnRecd
         Me.cmbcolor = New System.Windows.Forms.ComboBox()
         Me.TestRpt = New System.Windows.Forms.TabPage()
         Me.GRIDTESTRPT = New System.Windows.Forms.DataGridView()
-        Me.TRGRIDSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TPARTYLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GAVGCOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GCSP = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GIMPS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GRKM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbupload = New System.Windows.Forms.TabPage()
         Me.CMDVIEW = New System.Windows.Forms.Button()
         Me.TXTNEWIMGPATH = New System.Windows.Forms.TextBox()
@@ -212,6 +205,13 @@ Partial Class YarnRecd
         Me.ORATE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.TRGRIDSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TPARTYLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GAVGCOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GCSP = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GIMPS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRKM = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TRGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1755,49 +1755,6 @@ Partial Class YarnRecd
         Me.GRIDTESTRPT.TabIndex = 13
         Me.GRIDTESTRPT.TabStop = False
         '
-        'TRGRIDSRNO
-        '
-        Me.TRGRIDSRNO.HeaderText = "Sr."
-        Me.TRGRIDSRNO.Name = "TRGRIDSRNO"
-        Me.TRGRIDSRNO.ReadOnly = True
-        Me.TRGRIDSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.TRGRIDSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.TRGRIDSRNO.Width = 30
-        '
-        'TPARTYLOTNO
-        '
-        Me.TPARTYLOTNO.HeaderText = "Lot No"
-        Me.TPARTYLOTNO.Name = "TPARTYLOTNO"
-        Me.TPARTYLOTNO.ReadOnly = True
-        Me.TPARTYLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.TPARTYLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.TPARTYLOTNO.Width = 70
-        '
-        'GCOUNT
-        '
-        Me.GCOUNT.HeaderText = "Count"
-        Me.GCOUNT.Name = "GCOUNT"
-        '
-        'GAVGCOUNT
-        '
-        Me.GAVGCOUNT.HeaderText = "Avg Count"
-        Me.GAVGCOUNT.Name = "GAVGCOUNT"
-        '
-        'GCSP
-        '
-        Me.GCSP.HeaderText = "CSP"
-        Me.GCSP.Name = "GCSP"
-        '
-        'GIMPS
-        '
-        Me.GIMPS.HeaderText = "IMPS"
-        Me.GIMPS.Name = "GIMPS"
-        '
-        'GRKM
-        '
-        Me.GRKM.HeaderText = "RKM"
-        Me.GRKM.Name = "GRKM"
-        '
         'tbupload
         '
         Me.tbupload.BackColor = System.Drawing.Color.Linen
@@ -2193,6 +2150,50 @@ Partial Class YarnRecd
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'TRGRIDSRNO
+        '
+        Me.TRGRIDSRNO.HeaderText = "Sr."
+        Me.TRGRIDSRNO.Name = "TRGRIDSRNO"
+        Me.TRGRIDSRNO.ReadOnly = True
+        Me.TRGRIDSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.TRGRIDSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.TRGRIDSRNO.Width = 30
+        '
+        'TPARTYLOTNO
+        '
+        Me.TPARTYLOTNO.HeaderText = "Lot No"
+        Me.TPARTYLOTNO.Name = "TPARTYLOTNO"
+        Me.TPARTYLOTNO.ReadOnly = True
+        Me.TPARTYLOTNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.TPARTYLOTNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.TPARTYLOTNO.Width = 70
+        '
+        'GCOUNT
+        '
+        Me.GCOUNT.HeaderText = "Count"
+        Me.GCOUNT.Name = "GCOUNT"
+        Me.GCOUNT.ReadOnly = True
+        '
+        'GAVGCOUNT
+        '
+        Me.GAVGCOUNT.HeaderText = "Avg Count"
+        Me.GAVGCOUNT.Name = "GAVGCOUNT"
+        '
+        'GCSP
+        '
+        Me.GCSP.HeaderText = "CSP"
+        Me.GCSP.Name = "GCSP"
+        '
+        'GIMPS
+        '
+        Me.GIMPS.HeaderText = "IMPS"
+        Me.GIMPS.Name = "GIMPS"
+        '
+        'GRKM
+        '
+        Me.GRKM.HeaderText = "RKM"
+        Me.GRKM.Name = "GRKM"
         '
         'TRGRIDREMARKS
         '

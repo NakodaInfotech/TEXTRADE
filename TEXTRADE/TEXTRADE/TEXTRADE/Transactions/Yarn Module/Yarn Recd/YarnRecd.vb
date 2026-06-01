@@ -2406,4 +2406,39 @@ SKIPLINE:
             Throw ex
         End Try
     End Sub
+
+    Private Sub GRIDTESTRPT_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDTESTRPT.CellValidating
+        Try
+            ' Only validate AvgCount column (index 3 = GAVGCOUNT)
+            If e.ColumnIndex <> GAVGCOUNT.Index Then Exit Sub
+            If String.IsNullOrEmpty(e.FormattedValue.ToString) Then Exit Sub
+
+            Dim avgCount As Double
+            If Not Double.TryParse(e.FormattedValue.ToString, avgCount) Then
+                MessageBox.Show("Enter Valid Avg Count", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                e.Cancel = True
+                Exit Sub
+            End If
+
+            ' Get COUNT value from same row
+            Dim countVal As Double = Val(GRIDTESTRPT.Rows(e.RowIndex).Cells(GCOUNT.Index).Value)
+
+            If countVal = 0 Then Exit Sub  ' No count entered yet, skip
+
+            ' 1% tolerance: AvgCount must be >= Count - 1% of Count
+            Dim minAllowed As Double = countVal - (countVal * 0.01)
+
+            If avgCount < minAllowed Then
+                MessageBox.Show(
+                    "Avg Count must be at least 99% of Count." & vbCrLf &
+                    "Count: " & countVal & vbCrLf &
+                    "Min Allowed Avg Count: " & Format(minAllowed, "0.00"),
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                e.Cancel = True
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
