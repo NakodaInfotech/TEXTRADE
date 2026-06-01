@@ -212,6 +212,7 @@ Partial Class YarnRecd
         Me.GCSP = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GIMPS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRKM = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TRGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -1728,7 +1729,7 @@ Partial Class YarnRecd
         DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDTESTRPT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle12
         Me.GRIDTESTRPT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDTESTRPT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TRGRIDSRNO, Me.TPARTYLOTNO, Me.GCOUNT, Me.GAVGCOUNT, Me.GCSP, Me.GIMPS, Me.GRKM})
+        Me.GRIDTESTRPT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.TRGRIDSRNO, Me.TPARTYLOTNO, Me.GCOUNT, Me.GAVGCOUNT, Me.GCSP, Me.GIMPS, Me.GRKM, Me.TRGRIDREMARKS})
         DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -2172,6 +2173,7 @@ Partial Class YarnRecd
         '
         Me.GCOUNT.HeaderText = "Count"
         Me.GCOUNT.Name = "GCOUNT"
+        Me.GCOUNT.ReadOnly = True
         '
         'GAVGCOUNT
         '
@@ -2192,6 +2194,11 @@ Partial Class YarnRecd
         '
         Me.GRKM.HeaderText = "RKM"
         Me.GRKM.Name = "GRKM"
+        '
+        'TRGRIDREMARKS
+        '
+        Me.TRGRIDREMARKS.HeaderText = "Grid Remarks"
+        Me.TRGRIDREMARKS.Name = "TRGRIDREMARKS"
         '
         'YarnRecd
         '
@@ -2393,4 +2400,5 @@ Partial Class YarnRecd
     Friend WithEvents GCSP As DataGridViewTextBoxColumn
     Friend WithEvents GIMPS As DataGridViewTextBoxColumn
     Friend WithEvents GRKM As DataGridViewTextBoxColumn
+    Friend WithEvents TRGRIDREMARKS As DataGridViewTextBoxColumn
 End Class

@@ -179,6 +179,8 @@ Public Class ClsYarnRecd
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TRRKM", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRGRIDREMARKS", alParaval(I)))
+                I = I + 1
 
 
             End With
@@ -349,6 +351,8 @@ Public Class ClsYarnRecd
                 .Add(New SqlClient.SqlParameter("@TRIMPS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TRRKM", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TRGRIDREMARKS", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@YARNNO", alParaval(I)))

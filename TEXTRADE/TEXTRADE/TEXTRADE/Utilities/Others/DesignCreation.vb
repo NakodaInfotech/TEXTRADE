@@ -61,7 +61,7 @@ Public Class DesignCreation
                         alParaval.Add(Val(0))
                         alParaval.Add(Val(0))
                         alParaval.Add(Val(0))
-                        alParaval.Add("")
+                        alParaval.Add(UCase(CMBITEM.Text.Trim))
                         alParaval.Add(0)
 
                         alParaval.Add(CmpId)
@@ -205,4 +205,19 @@ Public Class DesignCreation
         End Try
     End Sub
 
+    Private Sub CMBITEM_Enter(sender As Object, e As EventArgs) Handles CMBITEM.Enter
+        Try
+            If CMBITEM.Text.Trim = "" Then fillitemname(CMBITEM, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'  AND ISNULL(ITEMMASTER.ITEM_HIDEINDESIGN,0) = 0")
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBITEM_Validating(sender As Object, e As CancelEventArgs) Handles CMBITEM.Validating
+        Try
+            If CMBITEM.Text.Trim <> "" Then itemvalidate(CMBITEM, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT' ", "MERCHANT")
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
 End Class

@@ -50,9 +50,45 @@ Public Class YarnLoomEfficiency
 
     Private Sub cmbitemname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBITEMNAME.Validating, CMBYARNQ.Validating
         Try
-            If CMBITEMNAME.Text.Trim <> "" Then itemvalidate(CMBITEMNAME, e, Me, "", "")
+            If CMBITEMNAME.Text.Trim <> "" Then
+                Cursor.Current = Cursors.WaitCursor
+                If CMBITEMNAME.Text.Trim <> "" Then
+                    uppercase(CMBITEMNAME)
+                    Dim OBJCMN As New ClsCommonMaster
+                    Dim dt As DataTable
+                    dt = OBJCMN.search("BEAM_NAME", "", "BEAMMASTER", " and BEAM_NAME = '" & CMBITEMNAME.Text.Trim & "'")
+                    If dt.Rows.Count = 0 Then
+                        Dim a As String = CMBITEMNAME.Text.Trim
+                        Dim tempmsg As Integer = MsgBox("Beam Name not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
+                        If tempmsg = vbYes Then
+                            CMBITEMNAME.Text = a
+                            Dim OBJBEAM As New BeamMaster
+                            OBJBEAM.TEMPBEAMNAME = CMBITEMNAME.Text.Trim()
+                            OBJBEAM.ShowDialog()
+                            dt = OBJCMN.search("BEAM_name", "", "BEAMMaster", " and BEAM_name = '" & CMBITEMNAME.Text.Trim & "' ")
+                            If dt.Rows.Count > 0 Then
+                                Dim dt1 As New DataTable
+                                dt1 = CMBITEMNAME.DataSource
+                                If CMBITEMNAME.DataSource <> Nothing Then
+line1:
+                                    If dt1.Rows.Count > 0 Then
+                                        dt1.Rows.Add(CMBITEMNAME.Text.Trim)
+                                        CMBITEMNAME.Text = a
+                                    End If
+                                End If
+                            End If
+                            e.Cancel = True
+                        Else
+                            e.Cancel = True
+                        End If
+                    End If
+                End If
+            End If
         Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+            GoTo line1
+            Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
         End Try
     End Sub
 
@@ -84,7 +120,7 @@ Public Class YarnLoomEfficiency
         txtgridremarks.Clear()
         gridloan.RowCount = 0
         LBLTOTALRECMTRS.Text = 0.0
-
+        CMBSET.Text = ""
 
         gridDoubleClick = False
         'txtadd.Clear()
@@ -245,6 +281,8 @@ Public Class YarnLoomEfficiency
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
+            alParaval.Add(CMBSET.Text.Trim)
+            alParaval.Add(CMBSHIFT.Text.Trim)
 
             Dim gridsrno As String = ""
             Dim LOOMNO As String = ""
@@ -493,7 +531,9 @@ Public Class YarnLoomEfficiency
                         'cmbname_Validated(Nothing, Nothing)  ' ← ADD THIS LINE
                         cmbrounder.Text = Convert.ToString(dr("ROUNDER").ToString)
                         txtremarks.Text = Convert.ToString(dr("remarks"))
-                        gridloan.Rows.Add(dr("gridsrno").ToString, dr("LOOMNO").ToString, dr("BEAMNAME").ToString, Val(dr("BEAMNO")), Format(Val(dr("RPM")), "0.00"), Format(Val(dr("PICKS")), "0.00"), Format(Val(dr("RECMTRS")), "0.00"), Format(Val(dr("WEFT")), "0.00"), Format(Val(dr("WARP")), "0.00"), Format(Val(dr("EFFPER")), "0.00"), Format(Val(dr("AVGPICK")), "0.00"), dr("GRIDREMARKS").ToString)
+                        CMBSET.Text = Convert.ToString(dr("SET").ToString)
+                        CMBSHIFT.Text = Convert.ToString(dr("SHIFT").ToString)
+                        gridloan.Rows.Add(dr("gridsrno").ToString, dr("LOOMNO").ToString, dr("ITEMNAME").ToString, Val(dr("BEAMNO")), Format(Val(dr("RPM")), "0.00"), Format(Val(dr("PICKS")), "0.00"), Format(Val(dr("RECMTRS")), "0.00"), Format(Val(dr("WEFT")), "0.00"), Format(Val(dr("WARP")), "0.00"), Format(Val(dr("EFFPER")), "0.00"), Format(Val(dr("AVGPICK")), "0.00"), dr("GRIDREMARKS").ToString)
 
                     Next
                     gridloan.FirstDisplayedScrollingRowIndex = gridloan.RowCount - 1
@@ -822,6 +862,34 @@ Public Class YarnLoomEfficiency
             End If
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBSET_Enter(sender As Object, e As EventArgs) Handles CMBSET.Enter
+        Try
+            If CMBSET.Text.Trim = "" Then fillSET(CMBSET)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+    Sub fillSET(ByRef cmbunit As ComboBox)
+        Try
+            Cursor.Current = Cursors.WaitCursor
+            Dim objclscommon As New ClsCommonMaster
+            Dim dt As DataTable = objclscommon.search(" DISTINCT LOOM_GROUPINGSET ", "", " LOOMMASTER_DESC INNER JOIN LOOMMASTER ON LOOMMASTER_DESC.LOOM_ID = LOOMMASTER.LOOM_ID LEFT OUTER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id ", " and LOOM_CMPID=" & CmpId & "   AND LEDGERS.Acc_cmpname  = '" & cmbname.Text.Trim & "' AND LOOM_YEARID=" & YearId)
+            If dt.Rows.Count > 0 Then
+                dt.DefaultView.Sort = "LOOM_GROUPINGSET"
+                cmbunit.DisplayMember = "LOOM_GROUPINGSET"
+            End If
+            cmbunit.DataSource = dt
+            cmbunit.SelectedIndex = -1
+            cmbunit.SelectAll()
+            cmbunit.Text = ""
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        Finally
+            Cursor.Current = Cursors.Default
         End Try
     End Sub
 End Class
