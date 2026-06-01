@@ -225,6 +225,18 @@ Public Class RecFromPacking
             'End If
 
 
+
+            'THIS VALIDATION IS FOR LONGATION
+            If Val(TXTRUNNINGBAL.Text.Trim) < 0 And Val(TXTISSUEMTRS.Text.Trim) > 0 And HIDEALLISSUE = True And (ClientName = "SOFTAS" Or ClientName = "ANKUSH") Then
+                If Format(Val(TXTRUNNINGBAL.Text.Trim) * -1 / Val(TXTISSUEMTRS.Text.Trim) * 100, "0.00") > 10 Then
+                    If MsgBox("Longation is Greater then 10%, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                        EP.SetError(TXTRUNNINGBAL, " Longation Cannot be Geater than 10%")
+                        bln = False
+                    End If
+                End If
+            End If
+
+
             If ALLOWMANUALRECNO = True Then
                 If Val(TXTRECNO.Text.Trim) <> 0 And EDIT = False Then
                     Dim OBJCMNn As New ClsCommon
