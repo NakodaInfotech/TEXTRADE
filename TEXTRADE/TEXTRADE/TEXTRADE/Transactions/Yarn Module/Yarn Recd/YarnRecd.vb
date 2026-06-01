@@ -511,6 +511,7 @@ CHECKNEXTLINE:
             Dim TCSP As String = ""
             Dim TIMPS As String = ""
             Dim TRKM As String = ""
+            Dim TRGRIDREMARK As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDTESTRPT.Rows
                 If row.Cells(0).Value <> Nothing Then
@@ -523,6 +524,7 @@ CHECKNEXTLINE:
                         TCSP = row.Cells(GCSP.Index).Value.ToString
                         TIMPS = row.Cells(GIMPS.Index).Value.ToString
                         TRKM = row.Cells(GRKM.Index).Value.ToString
+                        TRGRIDREMARK = row.Cells(TRGRIDREMARKS.Index).Value.ToString
 
                     Else
                         TGRIDSRNO = TGRIDSRNO & "|" & Val(row.Cells(TRGRIDSRNO.Index).Value)
@@ -532,6 +534,7 @@ CHECKNEXTLINE:
                         TCSP = TCSP & "|" & row.Cells(GCSP.Index).Value.ToString
                         TIMPS = TIMPS & "|" & row.Cells(GIMPS.Index).Value.ToString
                         TRKM = TRKM & "|" & row.Cells(GRKM.Index).Value.ToString
+                        TRGRIDREMARK = TRGRIDREMARK & "|" & row.Cells(TRGRIDREMARKS.Index).Value.ToString
 
                     End If
                 End If
@@ -544,6 +547,7 @@ CHECKNEXTLINE:
             alParaval.Add(TCSP)
             alParaval.Add(TIMPS)
             alParaval.Add(TRKM)
+            alParaval.Add(TRGRIDREMARK)
 
             Dim objclsGRN As New ClsYarnRecd()
             objclsGRN.alParaval = alParaval
@@ -913,10 +917,10 @@ NEXTLINE:
                 End If
                 getsrno(GRIDORDER)
 
-                dttable = OBJCMN.SEARCH(" YARNRECD_TESTRPT.YARN_TRGRIDSRNO AS GRIDSRNO,  ISNULL(YARNRECD_TESTRPT.YARN_TRLOTNO,'') AS LOTNO, ISNULL(YARNRECD_TESTRPT.YARN_TRCOUNT,'') AS COUNT, ISNULL(YARNRECD_TESTRPT.YARN_TRAVGCOUNT,'') AS AVGCOUNT , ISNULL(YARNRECD_TESTRPT.YARN_TRCSP,'') AS CSP, ISNULL(YARNRECD_TESTRPT.YARN_TRIMPS,'') AS IMPS, ISNULL(YARNRECD_TESTRPT.YARN_TRRKM,'') AS RKM", "", " YARNRECD_TESTRPT  ", " AND YARNRECD_TESTRPT.YARN_NO = " & TEMPYARNNO & " AND YARNRECD_TESTRPT.YARN_YEARID = " & YearId)
+                dttable = OBJCMN.SEARCH(" YARNRECD_TESTRPT.YARN_TRGRIDSRNO AS GRIDSRNO,  ISNULL(YARNRECD_TESTRPT.YARN_TRLOTNO,'') AS LOTNO, ISNULL(YARNRECD_TESTRPT.YARN_TRCOUNT,'') AS COUNT, ISNULL(YARNRECD_TESTRPT.YARN_TRAVGCOUNT,'') AS AVGCOUNT , ISNULL(YARNRECD_TESTRPT.YARN_TRCSP,'') AS CSP, ISNULL(YARNRECD_TESTRPT.YARN_TRIMPS,'') AS IMPS, ISNULL(YARNRECD_TESTRPT.YARN_TRRKM,'') AS RKM, ISNULL(YARNRECD_TESTRPT.YARN_TRGRIDREMARKS,'') AS TRGRIDREMARKS ", "", " YARNRECD_TESTRPT  ", " AND YARNRECD_TESTRPT.YARN_NO = " & TEMPYARNNO & " AND YARNRECD_TESTRPT.YARN_YEARID = " & YearId)
                 If dttable.Rows.Count > 0 Then
                     For Each DTR As DataRow In dttable.Rows
-                        GRIDTESTRPT.Rows.Add(Val(DTR("GRIDSRNO")), DTR("LOTNO"), DTR("COUNT"), DTR("AVGCOUNT"), DTR("CSP"), DTR("IMPS"), DTR("RKM"))
+                        GRIDTESTRPT.Rows.Add(Val(DTR("GRIDSRNO")), DTR("LOTNO"), DTR("COUNT"), DTR("AVGCOUNT"), DTR("CSP"), DTR("IMPS"), DTR("RKM"), DTR("TRGRIDREMARKS"))
                     Next
                 End If
                 getsrno(GRIDTESTRPT)
@@ -2335,54 +2339,103 @@ SKIPLINE:
     End Sub
     Sub FillTestReportGrid()
         Try
-            ' GRIDTESTRPT clear karo pehle
             GRIDTESTRPT.RowCount = 0
 
-            ' GRIDYARN se LOTNO-wise group karo
             Dim dtTemp As New DataTable
             dtTemp.Columns.Add("PARTYLOTNO")
             dtTemp.Columns.Add("MILLNAME")
+            dtTemp.Columns.Add("YARNQUALITY")
+            dtTemp.Columns.Add("COUNT")           ' <-- new
             dtTemp.Columns.Add("TOTALQTY", GetType(Double))
             dtTemp.Columns.Add("TOTALWT", GetType(Double))
             dtTemp.Columns.Add("TOTALCONES", GetType(Double))
+
+            ' Cache: YarnQuality -> COUNT (avoid repeated DB hits)
+            Dim countCache As New Dictionary(Of String, String)
 
             For Each row As DataGridViewRow In GRIDYARN.Rows
                 If row.Cells(gsrno.Index).Value IsNot Nothing Then
                     Dim lotno As String = row.Cells(GJOBBERLOTNO.Index).Value.ToString.Trim
                     Dim mill As String = row.Cells(GMILLNAME.Index).Value.ToString.Trim
+                    Dim yarnQuality As String = row.Cells(GYARNQUALITY.Index).Value.ToString.Trim
                     Dim qty As Double = Val(row.Cells(GQTY.Index).Value)
                     Dim wt As Double = Val(row.Cells(GWT.Index).Value)
                     Dim cones As Double = Val(row.Cells(GCONES.Index).Value)
 
-                    ' Check karo same LOTNO already hai ya nahi dtTemp mein
-                    Dim existRows() As DataRow = dtTemp.Select("PARTYLOTNO = '" & lotno & "'")
+                    ' Fetch COUNT from YARNQUALITYMASTER (with cache)
+                    Dim yarnCount As String = ""
+                    If countCache.ContainsKey(yarnQuality) Then
+                        yarnCount = countCache(yarnQuality)
+                    ElseIf yarnQuality <> "" Then
+                        Dim OBJCMN As New ClsCommon
+                        Dim dtCount As DataTable = OBJCMN.SEARCH(
+                        "ISNULL(YARN_DENIER,'') AS YARN_COUNT", "",
+                        "YARNQUALITYMASTER",
+                        " AND YARN_NAME = '" & yarnQuality & "' AND YARN_YEARID = " & YearId)
+                        If dtCount.Rows.Count > 0 Then yarnCount = dtCount.Rows(0).Item("YARN_COUNT").ToString
+                        countCache(yarnQuality) = yarnCount
+                    End If
+
+                    Dim existRows() As DataRow = dtTemp.Select("PARTYLOTNO = '" & lotno.Replace("'", "''") & "'")
 
                     If existRows.Length > 0 Then
-                        ' Existing row mein add karo
                         existRows(0)("TOTALQTY") = Val(existRows(0)("TOTALQTY")) + qty
                         existRows(0)("TOTALWT") = Val(existRows(0)("TOTALWT")) + wt
                         existRows(0)("TOTALCONES") = Val(existRows(0)("TOTALCONES")) + cones
                     Else
-                        ' New row add karo
-                        dtTemp.Rows.Add(lotno, mill, qty, wt, cones)
+                        dtTemp.Rows.Add(lotno, mill, yarnQuality, yarnCount, qty, wt, cones)
                     End If
                 End If
             Next
 
-            ' GRIDTESTRPT mein daalo
             Dim srno As Integer = 1
             For Each dr As DataRow In dtTemp.Rows
                 GRIDTESTRPT.Rows.Add(
-                    srno,                               ' Sr.
-                    dr("PARTYLOTNO").ToString,                ' Lot No
-                    0, ' 
-                    0,                                   ' Avg Count
-                    0,                                   ' CSP
-                    0,                                   ' IMPS
-                    0                                    ' RKM
-                )
+                srno,
+                dr("PARTYLOTNO").ToString,
+                dr("COUNT").ToString,    ' COUNT column populated here
+                0,
+                0,
+                0,
+                0
+            )
                 srno += 1
             Next
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub GRIDTESTRPT_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDTESTRPT.CellValidating
+        Try
+            ' Only validate AvgCount column (index 3 = GAVGCOUNT)
+            If e.ColumnIndex <> GAVGCOUNT.Index Then Exit Sub
+            If String.IsNullOrEmpty(e.FormattedValue.ToString) Then Exit Sub
+
+            Dim avgCount As Double
+            If Not Double.TryParse(e.FormattedValue.ToString, avgCount) Then
+                MessageBox.Show("Enter Valid Avg Count", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                e.Cancel = True
+                Exit Sub
+            End If
+
+            ' Get COUNT value from same row
+            Dim countVal As Double = Val(GRIDTESTRPT.Rows(e.RowIndex).Cells(GCOUNT.Index).Value)
+
+            If countVal = 0 Then Exit Sub  ' No count entered yet, skip
+
+            ' 1% tolerance: AvgCount must be >= Count - 1% of Count
+            Dim minAllowed As Double = countVal - (countVal * 0.01)
+
+            If avgCount < minAllowed Then
+                MessageBox.Show(
+                    "Avg Count must be at least 99% of Count." & vbCrLf &
+                    "Count: " & countVal & vbCrLf &
+                    "Min Allowed Avg Count: " & Format(minAllowed, "0.00"),
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                e.Cancel = True
+            End If
 
         Catch ex As Exception
             Throw ex
