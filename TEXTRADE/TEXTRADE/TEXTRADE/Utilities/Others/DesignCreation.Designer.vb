@@ -37,6 +37,8 @@ Partial Class DesignCreation
         Me.CMBDESIGNERNAME = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.CMBITEM = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.Ep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -44,6 +46,8 @@ Partial Class DesignCreation
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label5)
+        Me.BlendPanel1.Controls.Add(Me.CMBITEM)
         Me.BlendPanel1.Controls.Add(Me.TXTDESIGNNO)
         Me.BlendPanel1.Controls.Add(Me.CMDCLEAR)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
@@ -59,7 +63,7 @@ Partial Class DesignCreation
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(392, 164)
+        Me.BlendPanel1.Size = New System.Drawing.Size(690, 164)
         Me.BlendPanel1.TabIndex = 0
         '
         'TXTDESIGNNO
@@ -207,11 +211,35 @@ Partial Class DesignCreation
         Me.Ep.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.Ep.ContainerControl = Me
         '
+        'CMBITEM
+        '
+        Me.CMBITEM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBITEM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBITEM.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBITEM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBITEM.FormattingEnabled = True
+        Me.CMBITEM.Location = New System.Drawing.Point(441, 12)
+        Me.CMBITEM.MaxDropDownItems = 14
+        Me.CMBITEM.Name = "CMBITEM"
+        Me.CMBITEM.Size = New System.Drawing.Size(241, 23)
+        Me.CMBITEM.TabIndex = 21
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(370, 15)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(65, 15)
+        Me.Label5.TabIndex = 22
+        Me.Label5.Text = "Item Name"
+        '
         'DesignCreation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(392, 164)
+        Me.ClientSize = New System.Drawing.Size(690, 164)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Name = "DesignCreation"
         Me.Text = "Design Creation"
@@ -236,4 +264,6 @@ Partial Class DesignCreation
     Friend WithEvents cmdexit As Button
     Friend WithEvents Ep As ErrorProvider
     Friend WithEvents TXTDESIGNNO As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents CMBITEM As ComboBox
 End Class
