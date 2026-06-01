@@ -1265,6 +1265,9 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub tooldelete_Click_1(sender As Object, e As EventArgs) Handles tooldelete.Click
+        Call CMDDELETE_Click(sender, e)
+    End Sub
 
     Sub GetLastBeamNo()
         Dim NextBeamNo As Integer

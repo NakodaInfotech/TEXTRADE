@@ -11,8 +11,9 @@ Public Class YarnLoanMaster
     Dim tempRow As Integer
 
     Public edit As Boolean
-    Public TEMPloanNO As String
+    Public TEMPLOANNO As String
     Public tempMsg As Integer
+
     Private Sub cmdok_Click(sender As Object, e As EventArgs) Handles cmdok.Click
         Dim IntResult As Integer
         Try
@@ -25,6 +26,7 @@ Public Class YarnLoanMaster
 
             Dim alParaval As New ArrayList
 
+            alParaval.Add(txtloanno.Text.Trim)
             alParaval.Add(loandate.Value)
             alParaval.Add(cmbname.Text.Trim)
             alParaval.Add(cmbLoan.Text.Trim)
@@ -47,6 +49,8 @@ Public Class YarnLoanMaster
             Dim LRNO As String = ""
             Dim LRDATE As String = ""
             Dim DONE As String = ""
+            Dim OUTBAGS As String = ""
+            Dim OUTWT As String = ""
             Dim PONO As String = ""
             Dim POGRIDSRNO As String = ""
             Dim RACK As String = ""
@@ -65,6 +69,8 @@ Public Class YarnLoanMaster
                         LRNO = row.Cells(GLRNO.Index).Value.ToString
                         LRDATE = Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         If row.Cells(GDONE.Index).Value = True Then DONE = 1 Else DONE = 0
+                        OUTBAGS = Val(row.Cells(GOUTBAGS.Index).Value)
+                        OUTWT = Val(row.Cells(GOUTWT.Index).Value)
                         PONO = Val(row.Cells(GPONO.Index).Value)
                         POGRIDSRNO = Val(row.Cells(GGRIDSRNO.Index).Value)
                         RACK = row.Cells(GRACK.Index).Value.ToString
@@ -81,6 +87,8 @@ Public Class YarnLoanMaster
                         LRNO = LRNO & "|" & row.Cells(GLRNO.Index).Value
                         LRDATE = LRDATE & "|" & Format(Convert.ToDateTime(row.Cells(GLRDATE.Index).Value).Date, "MM/dd/yyyy")
                         If row.Cells(GDONE.Index).Value = True Then DONE = DONE & "|" & "1" Else DONE = DONE & "|" & "0"
+                        OUTBAGS = OUTBAGS & "|" & Val(row.Cells(GOUTBAGS.Index).Value)
+                        OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
                         PONO = PONO & "|" & Val(row.Cells(GPONO.Index).Value)
                         POGRIDSRNO = POGRIDSRNO & "|" & Val(row.Cells(GGRIDSRNO.Index).Value)
                         RACK = RACK & "|" & row.Cells(GRACK.Index).Value.ToString
@@ -102,44 +110,40 @@ Public Class YarnLoanMaster
             alParaval.Add(LRNO)
             alParaval.Add(LRDATE)
             alParaval.Add(DONE)
+            alParaval.Add(OUTBAGS)
+            alParaval.Add(OUTWT)
             alParaval.Add(PONO)
             alParaval.Add(POGRIDSRNO)
             alParaval.Add(RACK)
             alParaval.Add(BARCODE)
 
 
-            Dim objclsloan As New ClsYarnLoan
+            Dim objclsloan As New ClsYarnLoan()
             objclsloan.alParaval = alParaval
+
             If edit = False Then
                 If USERADD = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                Dim DTTABLE As DataTable = objclsloan.save()
-                txtloanno.Text = Val(DTTABLE.Rows(0).Item(0))
+                Dim DT As DataTable = objclsloan.SAVE()
                 MessageBox.Show("Details Added")
+                txtloanno.Text = Val(DT.Rows(0).Item(0))
+
             Else
-                alParaval.Add(TEMPloanNO)
                 If USEREDIT = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
-                alParaval.Add(TEMPloanNO)
-
-                ' Change this part
-                Dim DTTABLE As DataTable = objclsloan.Update()
-
-                ' If you need an integer result from the DataTable:
-                If DTTABLE.Rows.Count > 0 Then
-                    IntResult = Val(DTTABLE.Rows(0).Item(0))  ' Or whatever column contains your result
-                End If
-
-                MsgBox("Details Updated")
+                alParaval.Add(TEMPLOANNO)
+                IntResult = objclsloan.Update()
+                MessageBox.Show("Details Updated")
+                edit = False
             End If
 
-            edit = False
-            Dim TEMPMSG As Integer
-            TEMPMSG = MsgBox("WISH TO PRINT", MsgBoxStyle.YesNo)
+            'edit = False
+            'Dim TEMPMSG As Integer
+            'TEMPMSG = MsgBox("WISH TO PRINT", MsgBoxStyle.YesNo)
 
             If TEMPMSG = vbYes Then
                 'Dim OBJGN As New LoanDesign
@@ -264,6 +268,8 @@ Public Class YarnLoanMaster
 
             fillYARNQUALITY(CMBYARNQUALITY, edit)
             FILLMILL(CMBMILL, edit)
+            FILLRACK(cmbrack)
+
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -363,10 +369,24 @@ Public Class YarnLoanMaster
         GRIDYARN.RowCount = 0
         LBLTOTALCONES.Text = 0
         LBLTOTALWT.Text = 0
+        lbltotalbags.Text = 0
+
         cmbLoan.Enabled = True
 
         Label11.Visible = False
         TXTMASTERBARCODE.Visible = False
+
+
+        txtsrno.Visible = True
+        CMBYARNQUALITY.Visible = True
+        CMBMILL.Visible = True
+        TXTJOBBERLOTNO.Visible = True
+        txtqty.Visible = True
+        TXTWT.Visible = True
+        TXTCONES.Visible = True
+        TXTGRIDLRNO.Visible = True
+        DTLRDATE.Visible = True
+        cmbrack.Visible = True
 
     End Sub
 
@@ -380,7 +400,7 @@ Public Class YarnLoanMaster
 
     Private Sub cmbrack_Validating(sender As Object, e As CancelEventArgs) Handles cmbrack.Validating
         Try
-            If cmbrack.Text = "" Then RACKVALIDATE(cmbrack, e, Me)
+            If cmbrack.Text.Trim <> "" Then RACKVALIDATE(cmbrack, e, Me)
         Catch ex As Exception
             Throw ex
         End Try
@@ -429,7 +449,7 @@ Public Class YarnLoanMaster
                         txtremarks.Text = Convert.ToString(dr("REMARKS"))
                         cmbtrans.Text = Convert.ToString(dr("TRANSPORT"))
                         cmbGodown.Text = Convert.ToString(dr("GODOWN"))
-                        GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNNAME"), dr("MILLNAME"), dr("LOTNO"), Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
+                        GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNNAME"), dr("MILLNAME"), dr("LOTNO"), Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, Val(dr("OUTBAGS")), Val(dr("OUTWT")), dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
                     Next
                     GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
                 End If
@@ -441,6 +461,17 @@ Public Class YarnLoanMaster
                 If cmbLoan.Text = "Loan Return to Party" Or cmbLoan.Text = "Party taking Loan" Then
                     Label11.Visible = True
                     TXTMASTERBARCODE.Visible = True
+
+                    txtsrno.Visible = False
+                    CMBYARNQUALITY.Visible = False
+                    CMBMILL.Visible = False
+                    TXTJOBBERLOTNO.Visible = False
+                    txtqty.Visible = False
+                    TXTWT.Visible = False
+                    TXTCONES.Visible = False
+                    TXTGRIDLRNO.Visible = False
+                    DTLRDATE.Visible = False
+                    cmbrack.Visible = False
                 End If
 
             End If
@@ -580,7 +611,46 @@ LINE1:
     Sub fillgrid()
         GRIDYARN.Enabled = True
         If gridDoubleClick = False Then
+
+            If gridDoubleClick = False Then
+                If edit = True Then
+                    'GET LAST BARCODE SRNO
+                    Dim LSRNO As Integer = 0
+                    Dim RSRNO As Integer = 0
+                    Dim SNO As Integer = 0
+                    LSRNO = InStr(GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                    RSRNO = InStr(LSRNO + 1, GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(GBARCODE.Index).Value, "/")
+                    SNO = GRIDYARN.Rows(GRIDYARN.RowCount - 1).Cells(GBARCODE.Index).Value.ToString.Substring(LSRNO, (RSRNO - LSRNO) - 1)
+
+                    If cmbLoan.Text = "Loan taken from Party" Then
+                        txtbarcode.Text = "LTP-" & Val(txtloanno.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+
+                    ElseIf cmbLoan.Text = "Party Returning Loan" Then
+                        txtbarcode.Text = "PRL-" & Val(txtloanno.Text.Trim) & "/" & SNO + 1 & "/" & YearId
+
+                    Else
+                        txtbarcode.Text = ""
+                    End If
+
+                Else
+
+
+                    If cmbLoan.Text = "Loan taken from Party" Then
+                        txtbarcode.Text = "LTP-" & Val(txtloanno.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
+
+                    ElseIf cmbLoan.Text = "Party Returning Loan" Then
+                        txtbarcode.Text = "PRL-" & Val(txtloanno.Text.Trim) & "/" & GRIDYARN.RowCount + 1 & "/" & YearId
+
+                    Else
+                        txtbarcode.Text = ""
+                    End If
+
+                End If
+            End If
+
             GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, TXTJOBBERLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, cmbrack.Text.Trim, txtbarcode.Text.Trim)
+
+
             getsrno(GRIDYARN)
         ElseIf gridDoubleClick = True Then
             GRIDYARN.Item(gsrno.Index, tempRow).Value = Val(txtsrno.Text.Trim)
@@ -741,6 +811,7 @@ LINE1:
                     Dim dr As DataRow = DT.Rows(0)
                     GRIDYARN.Rows.Add(GRIDYARN.RowCount, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO").ToString, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), dr("DONE").ToString, 0, 0, dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
                     GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
+                    total()
 LINE1:
                     txtbarcode.Clear()
                     txtbarcode.Focus()
@@ -797,6 +868,18 @@ LINE1:
             If cmbLoan.Text = "Loan Return to Party" Or cmbLoan.Text = "Party taking Loan" Then
                 Label11.Visible = True
                 TXTMASTERBARCODE.Visible = True
+
+                txtsrno.Visible = False
+                CMBYARNQUALITY.Visible = False
+                CMBMILL.Visible = False
+                TXTJOBBERLOTNO.Visible = False
+                txtqty.Visible = False
+                TXTWT.Visible = False
+                TXTCONES.Visible = False
+                TXTGRIDLRNO.Visible = False
+                DTLRDATE.Visible = False
+                cmbrack.Visible = False
+
             End If
 
         Catch ex As Exception
