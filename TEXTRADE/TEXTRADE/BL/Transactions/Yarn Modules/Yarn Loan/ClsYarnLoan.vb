@@ -81,6 +81,8 @@ Public Class ClsYarnLoan
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@POGRIDSRNO", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@BARCODE", alParaval(I)))
@@ -159,6 +161,8 @@ Public Class ClsYarnLoan
                 .Add(New SqlClient.SqlParameter("@GRIDPONO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@POGRIDSRNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1

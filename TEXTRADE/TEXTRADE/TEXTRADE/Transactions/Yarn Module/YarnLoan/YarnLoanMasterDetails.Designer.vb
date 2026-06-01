@@ -30,22 +30,26 @@ Partial Class YarnLoanMasterDetails
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
+        Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLAN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GCHALLANDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALQTY = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALWT = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTRANSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOANTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTRASNPORT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBAGS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCONES = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLRDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TOOLEXCEL = New System.Windows.Forms.ToolStripButton()
         Me.BlendPanel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,6 +143,15 @@ Partial Class YarnLoanMasterDetails
         Me.TOOLREFRESH.Size = New System.Drawing.Size(23, 22)
         Me.TOOLREFRESH.Text = "&Refresh"
         '
+        'TOOLEXCEL
+        '
+        Me.TOOLEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.TOOLEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLEXCEL.Name = "TOOLEXCEL"
+        Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLEXCEL.Text = "Print"
+        '
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -154,7 +167,7 @@ Partial Class YarnLoanMasterDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GCHALLAN, Me.GCHALLANDATE, Me.GTOTALQTY, Me.GTOTALMTRS, Me.GTOTALWT, Me.GTRANSNAME, Me.GLRNO, Me.GLRDATE, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GGODOWN, Me.GNAME, Me.GLOANTYPE, Me.GTRASNPORT, Me.GITEMNAME, Me.GMILLNAME, Me.GLOTNO, Me.GBAGS, Me.GWT, Me.GCONES, Me.GLRNO, Me.GLRDATE, Me.GRACK, Me.GBARCODE, Me.GREMARKS})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -168,11 +181,12 @@ Partial Class YarnLoanMasterDetails
         'gsrno
         '
         Me.gsrno.Caption = "Sr. No"
-        Me.gsrno.FieldName = "SRNO"
+        Me.gsrno.FieldName = "YARNNO"
         Me.gsrno.Name = "gsrno"
+        Me.gsrno.OptionsColumn.AllowEdit = False
         Me.gsrno.Visible = True
         Me.gsrno.VisibleIndex = 0
-        Me.gsrno.Width = 55
+        Me.gsrno.Width = 40
         '
         'gdate
         '
@@ -191,96 +205,134 @@ Partial Class YarnLoanMasterDetails
         Me.GGODOWN.Name = "GGODOWN"
         Me.GGODOWN.Visible = True
         Me.GGODOWN.VisibleIndex = 2
-        Me.GGODOWN.Width = 140
+        Me.GGODOWN.Width = 120
         '
         'GNAME
         '
-        Me.GNAME.Caption = "Jobber Name"
-        Me.GNAME.FieldName = "NAME"
+        Me.GNAME.Caption = "Name"
+        Me.GNAME.FieldName = "PARTYNAME"
         Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 3
         Me.GNAME.Width = 180
         '
-        'GCHALLAN
+        'GLOANTYPE
         '
-        Me.GCHALLAN.Caption = "Challan No"
-        Me.GCHALLAN.FieldName = "CHALLANNO"
-        Me.GCHALLAN.Name = "GCHALLAN"
-        Me.GCHALLAN.Visible = True
-        Me.GCHALLAN.VisibleIndex = 4
-        Me.GCHALLAN.Width = 70
+        Me.GLOANTYPE.Caption = "Loan Type"
+        Me.GLOANTYPE.FieldName = "TYPE"
+        Me.GLOANTYPE.Name = "GLOANTYPE"
+        Me.GLOANTYPE.OptionsColumn.AllowEdit = False
+        Me.GLOANTYPE.Visible = True
+        Me.GLOANTYPE.VisibleIndex = 4
+        Me.GLOANTYPE.Width = 150
         '
-        'GCHALLANDATE
+        'GTRASNPORT
         '
-        Me.GCHALLANDATE.Caption = "Challan Date"
-        Me.GCHALLANDATE.FieldName = "CHALLANDATE"
-        Me.GCHALLANDATE.Name = "GCHALLANDATE"
-        Me.GCHALLANDATE.Visible = True
-        Me.GCHALLANDATE.VisibleIndex = 5
+        Me.GTRASNPORT.Caption = "Transport"
+        Me.GTRASNPORT.FieldName = "TRANSPORT"
+        Me.GTRASNPORT.Name = "GTRASNPORT"
+        Me.GTRASNPORT.Visible = True
+        Me.GTRASNPORT.VisibleIndex = 5
+        Me.GTRASNPORT.Width = 150
         '
-        'GTOTALQTY
+        'GITEMNAME
         '
-        Me.GTOTALQTY.Caption = "Total Qty"
-        Me.GTOTALQTY.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALQTY.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALQTY.FieldName = "TOTALQTY"
-        Me.GTOTALQTY.Name = "GTOTALQTY"
-        Me.GTOTALQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALQTY.Visible = True
-        Me.GTOTALQTY.VisibleIndex = 6
-        Me.GTOTALQTY.Width = 60
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "YARNNAME"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 6
+        Me.GITEMNAME.Width = 130
         '
-        'GTOTALMTRS
+        'GMILLNAME
         '
-        Me.GTOTALMTRS.Caption = "Total Mtrs."
-        Me.GTOTALMTRS.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 7
+        Me.GMILLNAME.Caption = "Mill Name"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.Visible = True
+        Me.GMILLNAME.VisibleIndex = 7
+        Me.GMILLNAME.Width = 150
         '
-        'GTOTALWT
+        'GLOTNO
         '
-        Me.GTOTALWT.Caption = "Total Wt."
-        Me.GTOTALWT.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALWT.FieldName = "TOTALWT"
-        Me.GTOTALWT.Name = "GTOTALWT"
-        Me.GTOTALWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALWT.Visible = True
-        Me.GTOTALWT.VisibleIndex = 8
-        Me.GTOTALWT.Width = 60
+        Me.GLOTNO.Caption = "Lot No"
+        Me.GLOTNO.FieldName = "LOTNO"
+        Me.GLOTNO.Name = "GLOTNO"
+        Me.GLOTNO.OptionsColumn.AllowEdit = False
+        Me.GLOTNO.Visible = True
+        Me.GLOTNO.VisibleIndex = 8
+        Me.GLOTNO.Width = 100
         '
-        'GTRANSNAME
+        'GBAGS
         '
-        Me.GTRANSNAME.Caption = "Transport Name"
-        Me.GTRANSNAME.FieldName = "TRANSNAME"
-        Me.GTRANSNAME.Name = "GTRANSNAME"
-        Me.GTRANSNAME.Visible = True
-        Me.GTRANSNAME.VisibleIndex = 9
-        Me.GTRANSNAME.Width = 150
+        Me.GBAGS.Caption = "Bags"
+        Me.GBAGS.DisplayFormat.FormatString = "0.00"
+        Me.GBAGS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GBAGS.FieldName = "BAGS"
+        Me.GBAGS.Name = "GBAGS"
+        Me.GBAGS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GBAGS.Visible = True
+        Me.GBAGS.VisibleIndex = 9
+        Me.GBAGS.Width = 80
+        '
+        'GWT
+        '
+        Me.GWT.Caption = "Wt"
+        Me.GWT.DisplayFormat.FormatString = "0.00"
+        Me.GWT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GWT.FieldName = "WT"
+        Me.GWT.Name = "GWT"
+        Me.GWT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GWT.Visible = True
+        Me.GWT.VisibleIndex = 10
+        Me.GWT.Width = 80
+        '
+        'GCONES
+        '
+        Me.GCONES.Caption = "Cones"
+        Me.GCONES.DisplayFormat.FormatString = "0.00"
+        Me.GCONES.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GCONES.FieldName = "CONES"
+        Me.GCONES.Name = "GCONES"
+        Me.GCONES.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GCONES.Visible = True
+        Me.GCONES.VisibleIndex = 11
+        Me.GCONES.Width = 60
         '
         'GLRNO
         '
-        Me.GLRNO.Caption = "L.R. No."
+        Me.GLRNO.Caption = "LR NO"
         Me.GLRNO.FieldName = "LRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 10
+        Me.GLRNO.VisibleIndex = 12
+        Me.GLRNO.Width = 80
         '
         'GLRDATE
         '
-        Me.GLRDATE.Caption = "L.R. Date"
-        Me.GLRDATE.DisplayFormat.FormatString = "dd/MM/yyyy"
-        Me.GLRDATE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GLRDATE.Caption = "LR Date"
         Me.GLRDATE.FieldName = "LRDATE"
         Me.GLRDATE.Name = "GLRDATE"
         Me.GLRDATE.Visible = True
-        Me.GLRDATE.VisibleIndex = 11
+        Me.GLRDATE.VisibleIndex = 13
+        '
+        'GRACK
+        '
+        Me.GRACK.Caption = "Rack"
+        Me.GRACK.FieldName = "RACK"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.Visible = True
+        Me.GRACK.VisibleIndex = 14
+        Me.GRACK.Width = 80
+        '
+        'GBARCODE
+        '
+        Me.GBARCODE.Caption = "Barcode"
+        Me.GBARCODE.FieldName = "BARCODE"
+        Me.GBARCODE.Name = "GBARCODE"
+        Me.GBARCODE.Visible = True
+        Me.GBARCODE.VisibleIndex = 15
         '
         'GREMARKS
         '
@@ -288,17 +340,8 @@ Partial Class YarnLoanMasterDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 12
+        Me.GREMARKS.VisibleIndex = 16
         Me.GREMARKS.Width = 180
-        '
-        'TOOLEXCEL
-        '
-        Me.TOOLEXCEL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.TOOLEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        Me.TOOLEXCEL.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TOOLEXCEL.Name = "TOOLEXCEL"
-        Me.TOOLEXCEL.Size = New System.Drawing.Size(23, 22)
-        Me.TOOLEXCEL.Text = "Print"
         '
         'YarnLoanMasterDetails
         '
@@ -333,14 +376,18 @@ Partial Class YarnLoanMasterDetails
     Private WithEvents gdate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLAN As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GCHALLANDATE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALQTY As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTOTALWT As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GTRANSNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLOANTYPE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GTRASNPORT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCONES As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBAGS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GLRNO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GLRDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TOOLEXCEL As ToolStripButton
+    Friend WithEvents GLOTNO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GLRDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GRACK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
