@@ -57,6 +57,9 @@ Public Class SelectYarnStock
 
     Private Sub CMDOK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDOK.Click
         Try
+            gridbill.ClearColumnsFilter()
+
+
             DT.Columns.Add("YARNQUALITY")
             DT.Columns.Add("MILLNAME")
             DT.Columns.Add("DESIGNNO")
