@@ -54,6 +54,7 @@ Partial Class SamplePriceList
         Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GAMOUNT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GNARRATION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWIDTH = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CMBITEMNAME = New System.Windows.Forms.ComboBox()
         Me.TXTSRNO = New System.Windows.Forms.TextBox()
         Me.SPLDATE = New System.Windows.Forms.MaskedTextBox()
@@ -85,6 +86,7 @@ Partial Class SamplePriceList
         Me.CMDSELECTSMP = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TBDETAILS = New System.Windows.Forms.TabPage()
+        Me.TXTWIDTH = New System.Windows.Forms.TextBox()
         Me.CMBSAMPLETYPE = New System.Windows.Forms.ComboBox()
         Me.TOTALNOOFBOOKLET = New System.Windows.Forms.Label()
         Me.TXTNOOFBOOKLET = New System.Windows.Forms.TextBox()
@@ -141,7 +143,7 @@ Partial Class SamplePriceList
         Me.CMBCOLOR.MaxLength = 100
         Me.CMBCOLOR.Name = "CMBCOLOR"
         Me.CMBCOLOR.Size = New System.Drawing.Size(100, 23)
-        Me.CMBCOLOR.TabIndex = 4
+        Me.CMBCOLOR.TabIndex = 5
         '
         'CMBDESIGN
         '
@@ -155,7 +157,7 @@ Partial Class SamplePriceList
         Me.CMBDESIGN.MaxLength = 100
         Me.CMBDESIGN.Name = "CMBDESIGN"
         Me.CMBDESIGN.Size = New System.Drawing.Size(150, 23)
-        Me.CMBDESIGN.TabIndex = 3
+        Me.CMBDESIGN.TabIndex = 4
         '
         'TXTNARRATION
         '
@@ -163,7 +165,7 @@ Partial Class SamplePriceList
         Me.TXTNARRATION.MaxLength = 200
         Me.TXTNARRATION.Name = "TXTNARRATION"
         Me.TXTNARRATION.Size = New System.Drawing.Size(200, 23)
-        Me.TXTNARRATION.TabIndex = 9
+        Me.TXTNARRATION.TabIndex = 10
         '
         'TXTRATE
         '
@@ -172,7 +174,7 @@ Partial Class SamplePriceList
         Me.TXTRATE.MaxLength = 100
         Me.TXTRATE.Name = "TXTRATE"
         Me.TXTRATE.Size = New System.Drawing.Size(80, 23)
-        Me.TXTRATE.TabIndex = 6
+        Me.TXTRATE.TabIndex = 7
         Me.TXTRATE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GRIDSPL
@@ -194,7 +196,7 @@ Partial Class SamplePriceList
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDSPL.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDSPL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSPL.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GSAMPLETYPE, Me.gitemname, Me.GQUALITY, Me.GDESIGN, Me.GCOLOR, Me.GNOOFBOOKLET, Me.GRATE, Me.GMTRS, Me.GAMOUNT, Me.GNARRATION})
+        Me.GRIDSPL.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GSAMPLETYPE, Me.gitemname, Me.GQUALITY, Me.GDESIGN, Me.GCOLOR, Me.GNOOFBOOKLET, Me.GRATE, Me.GMTRS, Me.GAMOUNT, Me.GNARRATION, Me.GWIDTH})
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -216,7 +218,7 @@ Partial Class SamplePriceList
         Me.GRIDSPL.RowTemplate.Height = 20
         Me.GRIDSPL.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDSPL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDSPL.Size = New System.Drawing.Size(1347, 294)
+        Me.GRIDSPL.Size = New System.Drawing.Size(1410, 294)
         Me.GRIDSPL.TabIndex = 16
         Me.GRIDSPL.TabStop = False
         '
@@ -327,6 +329,15 @@ Partial Class SamplePriceList
         Me.GNARRATION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GNARRATION.Width = 200
         '
+        'GWIDTH
+        '
+        Me.GWIDTH.HeaderText = "Width"
+        Me.GWIDTH.Name = "GWIDTH"
+        Me.GWIDTH.ReadOnly = True
+        Me.GWIDTH.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWIDTH.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GWIDTH.Width = 80
+        '
         'CMBITEMNAME
         '
         Me.CMBITEMNAME.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -339,7 +350,7 @@ Partial Class SamplePriceList
         Me.CMBITEMNAME.MaxLength = 100
         Me.CMBITEMNAME.Name = "CMBITEMNAME"
         Me.CMBITEMNAME.Size = New System.Drawing.Size(200, 23)
-        Me.CMBITEMNAME.TabIndex = 1
+        Me.CMBITEMNAME.TabIndex = 2
         '
         'TXTSRNO
         '
@@ -402,7 +413,7 @@ Partial Class SamplePriceList
         Me.txtbillno.Location = New System.Drawing.Point(265, 1)
         Me.txtbillno.Name = "txtbillno"
         Me.txtbillno.Size = New System.Drawing.Size(61, 22)
-        Me.txtbillno.TabIndex = 14
+        Me.txtbillno.TabIndex = 17
         Me.txtbillno.TabStop = False
         Me.txtbillno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -413,7 +424,7 @@ Partial Class SamplePriceList
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1244, 25)
-        Me.ToolStrip1.TabIndex = 32
+        Me.ToolStrip1.TabIndex = 14
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'OpenToolStripButton
@@ -496,7 +507,7 @@ Partial Class SamplePriceList
         Me.TXTADD.MaxLength = 100
         Me.TXTADD.Name = "TXTADD"
         Me.TXTADD.Size = New System.Drawing.Size(75, 23)
-        Me.TXTADD.TabIndex = 739
+        Me.TXTADD.TabIndex = 21
         Me.TXTADD.Visible = False
         '
         'CMBCODE
@@ -507,7 +518,7 @@ Partial Class SamplePriceList
         Me.CMBCODE.MaxLength = 100
         Me.CMBCODE.Name = "CMBCODE"
         Me.CMBCODE.Size = New System.Drawing.Size(75, 23)
-        Me.CMBCODE.TabIndex = 738
+        Me.CMBCODE.TabIndex = 20
         Me.CMBCODE.Visible = False
         '
         'GroupBox5
@@ -614,7 +625,7 @@ Partial Class SamplePriceList
         Me.Label3.Location = New System.Drawing.Point(441, 5)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(67, 15)
-        Me.Label3.TabIndex = 752
+        Me.Label3.TabIndex = 18
         Me.Label3.Text = "Copy PL No"
         '
         'TXTCOPY
@@ -624,7 +635,7 @@ Partial Class SamplePriceList
         Me.TXTCOPY.Location = New System.Drawing.Point(515, 1)
         Me.TXTCOPY.Name = "TXTCOPY"
         Me.TXTCOPY.Size = New System.Drawing.Size(61, 22)
-        Me.TXTCOPY.TabIndex = 751
+        Me.TXTCOPY.TabIndex = 19
         Me.TXTCOPY.TabStop = False
         Me.TXTCOPY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -646,7 +657,7 @@ Partial Class SamplePriceList
         Me.LBLREFNO.Location = New System.Drawing.Point(785, 45)
         Me.LBLREFNO.Name = "LBLREFNO"
         Me.LBLREFNO.Size = New System.Drawing.Size(51, 14)
-        Me.LBLREFNO.TabIndex = 750
+        Me.LBLREFNO.TabIndex = 24
         Me.LBLREFNO.Text = "Ref No."
         Me.LBLREFNO.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -678,6 +689,7 @@ Partial Class SamplePriceList
         '
         Me.TBDETAILS.AutoScroll = True
         Me.TBDETAILS.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBDETAILS.Controls.Add(Me.TXTWIDTH)
         Me.TBDETAILS.Controls.Add(Me.CMBSAMPLETYPE)
         Me.TBDETAILS.Controls.Add(Me.TXTSRNO)
         Me.TBDETAILS.Controls.Add(Me.CMBITEMNAME)
@@ -701,6 +713,16 @@ Partial Class SamplePriceList
         Me.TBDETAILS.TabIndex = 0
         Me.TBDETAILS.Text = "1. Item Details"
         '
+        'TXTWIDTH
+        '
+        Me.TXTWIDTH.BackColor = System.Drawing.Color.White
+        Me.TXTWIDTH.Location = New System.Drawing.Point(1318, 4)
+        Me.TXTWIDTH.MaxLength = 100
+        Me.TXTWIDTH.Name = "TXTWIDTH"
+        Me.TXTWIDTH.Size = New System.Drawing.Size(80, 23)
+        Me.TXTWIDTH.TabIndex = 11
+        Me.TXTWIDTH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'CMBSAMPLETYPE
         '
         Me.CMBSAMPLETYPE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -714,7 +736,7 @@ Partial Class SamplePriceList
         Me.CMBSAMPLETYPE.MaxLength = 100
         Me.CMBSAMPLETYPE.Name = "CMBSAMPLETYPE"
         Me.CMBSAMPLETYPE.Size = New System.Drawing.Size(150, 23)
-        Me.CMBSAMPLETYPE.TabIndex = 0
+        Me.CMBSAMPLETYPE.TabIndex = 1
         '
         'TOTALNOOFBOOKLET
         '
@@ -722,7 +744,7 @@ Partial Class SamplePriceList
         Me.TOTALNOOFBOOKLET.Location = New System.Drawing.Point(795, 325)
         Me.TOTALNOOFBOOKLET.Name = "TOTALNOOFBOOKLET"
         Me.TOTALNOOFBOOKLET.Size = New System.Drawing.Size(80, 15)
-        Me.TOTALNOOFBOOKLET.TabIndex = 744
+        Me.TOTALNOOFBOOKLET.TabIndex = 13
         Me.TOTALNOOFBOOKLET.Text = "0"
         Me.TOTALNOOFBOOKLET.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -733,7 +755,7 @@ Partial Class SamplePriceList
         Me.TXTNOOFBOOKLET.MaxLength = 100
         Me.TXTNOOFBOOKLET.Name = "TXTNOOFBOOKLET"
         Me.TXTNOOFBOOKLET.Size = New System.Drawing.Size(80, 23)
-        Me.TXTNOOFBOOKLET.TabIndex = 5
+        Me.TXTNOOFBOOKLET.TabIndex = 6
         Me.TXTNOOFBOOKLET.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CMBQUALITY
@@ -748,7 +770,7 @@ Partial Class SamplePriceList
         Me.CMBQUALITY.MaxLength = 100
         Me.CMBQUALITY.Name = "CMBQUALITY"
         Me.CMBQUALITY.Size = New System.Drawing.Size(160, 23)
-        Me.CMBQUALITY.TabIndex = 2
+        Me.CMBQUALITY.TabIndex = 3
         '
         'TXTMTRS
         '
@@ -757,7 +779,7 @@ Partial Class SamplePriceList
         Me.TXTMTRS.MaxLength = 100
         Me.TXTMTRS.Name = "TXTMTRS"
         Me.TXTMTRS.Size = New System.Drawing.Size(80, 23)
-        Me.TXTMTRS.TabIndex = 7
+        Me.TXTMTRS.TabIndex = 8
         Me.TXTMTRS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label2
@@ -767,7 +789,7 @@ Partial Class SamplePriceList
         Me.Label2.Location = New System.Drawing.Point(718, 325)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(34, 15)
-        Me.Label2.TabIndex = 742
+        Me.Label2.TabIndex = 12
         Me.Label2.Text = "Total"
         '
         'TXTAMOUNT
@@ -778,7 +800,7 @@ Partial Class SamplePriceList
         Me.TXTAMOUNT.Name = "TXTAMOUNT"
         Me.TXTAMOUNT.ReadOnly = True
         Me.TXTAMOUNT.Size = New System.Drawing.Size(80, 23)
-        Me.TXTAMOUNT.TabIndex = 8
+        Me.TXTAMOUNT.TabIndex = 9
         Me.TXTAMOUNT.TabStop = False
         Me.TXTAMOUNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -788,7 +810,7 @@ Partial Class SamplePriceList
         Me.LBLTOTALMTRS.Location = New System.Drawing.Point(875, 325)
         Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
         Me.LBLTOTALMTRS.Size = New System.Drawing.Size(80, 15)
-        Me.LBLTOTALMTRS.TabIndex = 741
+        Me.LBLTOTALMTRS.TabIndex = 14
         Me.LBLTOTALMTRS.Text = "0.00"
         Me.LBLTOTALMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -798,7 +820,7 @@ Partial Class SamplePriceList
         Me.LBLTOTALAMT.Location = New System.Drawing.Point(1035, 325)
         Me.LBLTOTALAMT.Name = "LBLTOTALAMT"
         Me.LBLTOTALAMT.Size = New System.Drawing.Size(80, 15)
-        Me.LBLTOTALAMT.TabIndex = 740
+        Me.LBLTOTALAMT.TabIndex = 15
         Me.LBLTOTALAMT.Text = "0.00"
         Me.LBLTOTALAMT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -947,7 +969,7 @@ Partial Class SamplePriceList
         Me.LBLGODOWN.Location = New System.Drawing.Point(479, 73)
         Me.LBLGODOWN.Name = "LBLGODOWN"
         Me.LBLGODOWN.Size = New System.Drawing.Size(52, 15)
-        Me.LBLGODOWN.TabIndex = 748
+        Me.LBLGODOWN.TabIndex = 23
         Me.LBLGODOWN.Text = "Godown"
         '
         'CMBGODOWN
@@ -971,7 +993,7 @@ Partial Class SamplePriceList
         Me.Label1.Location = New System.Drawing.Point(491, 44)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(37, 15)
-        Me.Label1.TabIndex = 746
+        Me.Label1.TabIndex = 22
         Me.Label1.Text = "Agent"
         '
         'CMBAGENT
@@ -1001,7 +1023,7 @@ Partial Class SamplePriceList
         Me.lblbarcode.Location = New System.Drawing.Point(782, 75)
         Me.lblbarcode.Name = "lblbarcode"
         Me.lblbarcode.Size = New System.Drawing.Size(52, 15)
-        Me.lblbarcode.TabIndex = 1
+        Me.lblbarcode.TabIndex = 25
         Me.lblbarcode.Text = "Barcode"
         '
         'CMBPARTYNAME
@@ -1031,7 +1053,7 @@ Partial Class SamplePriceList
         Me.TXTSPLNO.Name = "TXTSPLNO"
         Me.TXTSPLNO.ReadOnly = True
         Me.TXTSPLNO.Size = New System.Drawing.Size(88, 23)
-        Me.TXTSPLNO.TabIndex = 0
+        Me.TXTSPLNO.TabIndex = 28
         '
         'LBLMODEOFSHIPMENT
         '
@@ -1040,7 +1062,7 @@ Partial Class SamplePriceList
         Me.LBLMODEOFSHIPMENT.Location = New System.Drawing.Point(22, 73)
         Me.LBLMODEOFSHIPMENT.Name = "LBLMODEOFSHIPMENT"
         Me.LBLMODEOFSHIPMENT.Size = New System.Drawing.Size(108, 15)
-        Me.LBLMODEOFSHIPMENT.TabIndex = 6
+        Me.LBLMODEOFSHIPMENT.TabIndex = 16
         Me.LBLMODEOFSHIPMENT.Text = "Mode Of Shipment"
         '
         'LBLDATE
@@ -1050,7 +1072,7 @@ Partial Class SamplePriceList
         Me.LBLDATE.Location = New System.Drawing.Point(1057, 73)
         Me.LBLDATE.Name = "LBLDATE"
         Me.LBLDATE.Size = New System.Drawing.Size(32, 15)
-        Me.LBLDATE.TabIndex = 5
+        Me.LBLDATE.TabIndex = 27
         Me.LBLDATE.Text = "Date"
         '
         'LBLSRNO
@@ -1060,7 +1082,7 @@ Partial Class SamplePriceList
         Me.LBLSRNO.Location = New System.Drawing.Point(1053, 44)
         Me.LBLSRNO.Name = "LBLSRNO"
         Me.LBLSRNO.Size = New System.Drawing.Size(36, 15)
-        Me.LBLSRNO.TabIndex = 4
+        Me.LBLSRNO.TabIndex = 26
         Me.LBLSRNO.Text = "Sr No"
         '
         'lblpartyname
@@ -1070,7 +1092,7 @@ Partial Class SamplePriceList
         Me.lblpartyname.Location = New System.Drawing.Point(19, 44)
         Me.lblpartyname.Name = "lblpartyname"
         Me.lblpartyname.Size = New System.Drawing.Size(111, 15)
-        Me.lblpartyname.TabIndex = 0
+        Me.lblpartyname.TabIndex = 15
         Me.lblpartyname.Text = "Party / Agent Name"
         '
         'SamplePriceList
@@ -1180,4 +1202,6 @@ Partial Class SamplePriceList
     Friend WithEvents GMTRS As DataGridViewTextBoxColumn
     Friend WithEvents GAMOUNT As DataGridViewTextBoxColumn
     Friend WithEvents GNARRATION As DataGridViewTextBoxColumn
+    Friend WithEvents GWIDTH As DataGridViewTextBoxColumn
+    Friend WithEvents TXTWIDTH As TextBox
 End Class
