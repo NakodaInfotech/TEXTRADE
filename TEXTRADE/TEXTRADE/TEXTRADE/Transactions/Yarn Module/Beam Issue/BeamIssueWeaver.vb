@@ -206,7 +206,7 @@ Public Class BeamIssueWeaver
 
 
                     'SCHEDULE(GRID)
-                    DT = OBJCMN.SEARCH(" BEAMMASTER.BEAM_NAME AS BEAMNAME, BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_LOOMNO AS LOOMNO ", "", " BEAMISSUETOWEAVER_SCHEDULE INNER JOIN BEAMMASTER ON BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_BEAMID = BEAMMASTER.BEAM_ID  ", " AND BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_NO = " & TEMPBEAMISSUENO & " AND BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_YEARID = " & YearId & " ORDER BY BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_GRIDSRNO")
+                    DT = OBJCMN.SEARCH(" BEAMMASTER.BEAM_NAME AS BEAMNAME, ISNULL(BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_LOOMNO, 0) AS LOOMNO ", "", " BEAMISSUETOWEAVER_SCHEDULE INNER JOIN BEAMMASTER ON BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_BEAMID = BEAMMASTER.BEAM_ID  ", " AND BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_NO = " & TEMPBEAMISSUENO & " AND BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_YEARID = " & YearId & " ORDER BY BEAMISSUETOWEAVER_SCHEDULE.BEAMISSUE_GRIDSRNO")
                     If DT.Rows.Count > 0 Then
                         For Each DTR As DataRow In DT.Rows
                             GRIDSCHEDULE.Rows.Add(0, DTR("BEAMNAME"), Val(DTR("LOOMNO")))
@@ -909,7 +909,7 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
-            Dim OBJBEAM As New BeamIssueDetails
+            Dim OBJBEAM As New BeamIssueWeaverDetails
             OBJBEAM.MdiParent = MDIMain
             OBJBEAM.Show()
         Catch EX As Exception
@@ -935,7 +935,7 @@ LINE1:
 
     Private Sub CMBBEAMNAME_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBBEAMNAME.Enter
         Try
-            If CMBBEAMNAME.Text.Trim <> "" Then fillBEAM(CMBBEAMNAME, EDIT)
+            If CMBBEAMNAME.Text.Trim = "" Then fillBEAM(CMBBEAMNAME, EDIT)
         Catch ex As Exception
             Throw ex
         End Try

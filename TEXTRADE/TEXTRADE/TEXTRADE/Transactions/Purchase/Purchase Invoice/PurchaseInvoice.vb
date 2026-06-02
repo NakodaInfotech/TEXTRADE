@@ -2859,6 +2859,34 @@ LINE1:
                                     ALPARAVAL.Add("")   'COLORSRNO
                                     ALPARAVAL.Add(0)    'VALUELOSSPER
                                     ALPARAVAL.Add("")   'COSTCENTERNAME
+                                    ALPARAVAL.Add(0)    'GSM
+                                    ALPARAVAL.Add(0)    'PERCENT
+                                    ALPARAVAL.Add(0)    'GARMENT
+                                    ALPARAVAL.Add(0)    'TOTALBEAMENDS
+                                    ALPARAVAL.Add(0)    'TOTALWEFTENDS
+
+                                    ALPARAVAL.Add(0)    'COLORSRNO
+                                    ALPARAVAL.Add(0)    'COLORID
+
+                                    ALPARAVAL.Add(0)    'ITEMSRNO
+                                    ALPARAVAL.Add(0)    'ITEM
+                                    ALPARAVAL.Add(0)    'ITEMDESIGN
+                                    ALPARAVAL.Add(0)    'ITEMSHADE
+                                    ALPARAVAL.Add(0)    'ITEMMTRS
+                                    ALPARAVAL.Add(0)    'ITEMGRIDSRNO
+
+                                    ALPARAVAL.Add(0)    'WEFTSRNO
+                                    ALPARAVAL.Add(0)    'WEFTQUALITY
+                                    ALPARAVAL.Add(0)    'WEFTSHADE
+                                    ALPARAVAL.Add(0)    'WEFTPICK
+                                    ALPARAVAL.Add(0)    'WEFTWT
+                                    ALPARAVAL.Add(0)    'WEFTRATE
+                                    ALPARAVAL.Add(0)    'WEFTAMOUNT
+                                    ALPARAVAL.Add(0)    'WEFTSHADESRNO
+
+
+
+
 
 
                                     Dim objclsItemMaster As New clsItemmaster

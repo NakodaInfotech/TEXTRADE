@@ -71,12 +71,15 @@ Public Class ClsSamplePriceList
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDNOOFBOOKLATE", ALPARAVAL(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@WIDTH", ALPARAVAL(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALNOOFBOOKLET", ALPARAVAL(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AGENT", ALPARAVAL(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", ALPARAVAL(I)))
                 I = I + 1
+
 
                 .Add(New SqlClient.SqlParameter("@ORDERGRIDSRNO", ALPARAVAL(I)))
                 I = I + 1
@@ -162,12 +165,15 @@ Public Class ClsSamplePriceList
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDNOOFBOOKLATE", ALPARAVAL(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@WIDTH", ALPARAVAL(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALNOOFBOOKLET", ALPARAVAL(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@AGENT", ALPARAVAL(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", ALPARAVAL(I)))
                 I = I + 1
+
 
                 .Add(New SqlClient.SqlParameter("@ORDERGRIDSRNO", ALPARAVAL(I)))
                 I = I + 1

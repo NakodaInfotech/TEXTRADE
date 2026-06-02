@@ -46,6 +46,7 @@ Public Class SamplePriceList
             Dim AMOUNT As String = ""
             Dim NARRATION As String = ""
             Dim NOOFBOOKLET As String = ""
+            Dim WIDTH As String = ""
 
 
 
@@ -64,6 +65,8 @@ Public Class SamplePriceList
                         AMOUNT = Val(ROW.Cells(GAMOUNT.Index).Value)
                         NARRATION = ROW.Cells(GNARRATION.Index).Value
                         NOOFBOOKLET = Val(ROW.Cells(GNOOFBOOKLET.Index).Value)
+                        WIDTH = Val(ROW.Cells(GWIDTH.Index).Value)
+
                     Else
                         GRIDSRNO = GRIDSRNO & "|" & Val(ROW.Cells(gsrno.Index).Value)
                         GRIDSAMPLETYPE = GRIDSAMPLETYPE & "|" & ROW.Cells(GSAMPLETYPE.Index).Value
@@ -76,6 +79,8 @@ Public Class SamplePriceList
                         AMOUNT = AMOUNT & "|" & Val(ROW.Cells(GAMOUNT.Index).Value)
                         NARRATION = NARRATION & "|" & ROW.Cells(GNARRATION.Index).Value
                         NOOFBOOKLET = NOOFBOOKLET & "|" & Val(ROW.Cells(GNOOFBOOKLET.Index).Value)
+                        WIDTH = WIDTH & "|" & Val(ROW.Cells(GWIDTH.Index).Value)
+
 
                     End If
                 End If
@@ -92,10 +97,15 @@ Public Class SamplePriceList
             OBJSPL.ALPARAVAL.Add(AMOUNT)
             OBJSPL.ALPARAVAL.Add(NARRATION)
             OBJSPL.ALPARAVAL.Add(NOOFBOOKLET)
+            OBJSPL.ALPARAVAL.Add(WIDTH)
+
             OBJSPL.ALPARAVAL.Add(Val(TOTALNOOFBOOKLET.Text.Trim))
 
             OBJSPL.ALPARAVAL.Add(CMBAGENT.Text.Trim)
             OBJSPL.ALPARAVAL.Add(CMBGODOWN.Text.Trim)
+            OBJSPL.ALPARAVAL.Add(Val(LBLTOTALMTRS.Text.Trim))
+            OBJSPL.ALPARAVAL.Add(Val(LBLTOTALAMT.Text.Trim))
+
 
 
             Dim ORDERGRIDSRNO As String = ""
@@ -256,7 +266,7 @@ CHECKNEXTLINE:
     Sub fillgrid()
 
         If GRIDDOUBLECLICK = False Then
-            GRIDSPL.Rows.Add(Val(TXTSRNO.Text.Trim), CMBSAMPLETYPE.Text.Trim, CMBITEMNAME.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, CMBCOLOR.Text.Trim, Val(TXTNOOFBOOKLET.Text.Trim), Val(TXTRATE.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTAMOUNT.Text.Trim), TXTNARRATION.Text.Trim)
+            GRIDSPL.Rows.Add(Val(TXTSRNO.Text.Trim), CMBSAMPLETYPE.Text.Trim, CMBITEMNAME.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, CMBCOLOR.Text.Trim, Val(TXTNOOFBOOKLET.Text.Trim), Val(TXTRATE.Text.Trim), Val(TXTMTRS.Text.Trim), Val(TXTAMOUNT.Text.Trim), TXTNARRATION.Text.Trim, Val(TXTWIDTH.Text.Trim))
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDSPL.Item(gsrno.Index, TEMPROW).Value = Val(TXTSRNO.Text.Trim)
             GRIDSPL.Item(GSAMPLETYPE.Index, TEMPROW).Value = CMBSAMPLETYPE.Text.Trim
@@ -269,6 +279,8 @@ CHECKNEXTLINE:
             GRIDSPL.Item(GMTRS.Index, TEMPROW).Value = Val(TXTMTRS.Text.Trim)
             GRIDSPL.Item(GAMOUNT.Index, TEMPROW).Value = Val(TXTAMOUNT.Text.Trim)
             GRIDSPL.Item(GNARRATION.Index, TEMPROW).Value = TXTNARRATION.Text.Trim
+            GRIDSPL.Item(GWIDTH.Index, TEMPROW).Value = Val(TXTWIDTH.Text.Trim)
+
             GRIDDOUBLECLICK = False
         End If
 
@@ -288,6 +300,7 @@ CHECKNEXTLINE:
         TXTMTRS.Clear()
         TXTAMOUNT.Clear()
         TXTNARRATION.Clear()
+        TXTWIDTH.Clear()
 
         CMBSAMPLETYPE.Focus()
         TOTAL()
@@ -297,9 +310,14 @@ CHECKNEXTLINE:
     Sub TOTAL()
         Try
             TOTALNOOFBOOKLET.Text = 0
+            LBLTOTALMTRS.Text = "0.0"
+            LBLTOTALAMT.Text = "0.0"
 
             For Each ROW As DataGridViewRow In GRIDSPL.Rows
                 TOTALNOOFBOOKLET.Text = Format(Val(TOTALNOOFBOOKLET.Text.Trim) + Val(ROW.Cells(GNOOFBOOKLET.Index).Value), "0")
+                If Val(ROW.Cells(GMTRS.Index).Value) <> 0 Then LBLTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text) + Val(ROW.Cells(GMTRS.Index).EditedFormattedValue), "0.00")
+                If Val(ROW.Cells(GAMOUNT.Index).Value) <> 0 Then LBLTOTALAMT.Text = Format(Val(LBLTOTALAMT.Text) + Val(ROW.Cells(GAMOUNT.Index).EditedFormattedValue), "0.00")
+
             Next
         Catch ex As Exception
             Throw ex
@@ -324,7 +342,7 @@ CHECKNEXTLINE:
             TXTAMOUNT.Clear()
             TXTNARRATION.Clear()
             GRIDSPL.RowCount = 0
-
+            TXTWIDTH.Clear()
             LBLTOTALMTRS.Text = 0.0
             LBLTOTALAMT.Text = 0.0
             txtbillno.Clear()
@@ -380,7 +398,7 @@ CHECKNEXTLINE:
                         txtrefno.Text = Convert.ToString(dr("REFNO"))
                         TOTALNOOFBOOKLET.Text = dr("TOTALNOOFBOOKLET")
 
-                        GRIDSPL.Rows.Add(Val(dr("GRIDSRNO")), dr("SAMPLETYPE"), dr("ITEMNAME"), dr("QUALITYNAME"), dr("DESIGN").ToString, dr("COLOR").ToString, Val(dr("NOOFBOOKLET")), Val(dr("RATE")), Val(dr("MTRS")), Val(dr("AMOUNT")), dr("NARRATION").ToString)
+                        GRIDSPL.Rows.Add(Val(dr("GRIDSRNO")), dr("SAMPLETYPE"), dr("ITEMNAME"), dr("QUALITYNAME"), dr("DESIGN").ToString, dr("COLOR").ToString, Val(dr("NOOFBOOKLET")), Val(dr("RATE")), Val(dr("MTRS")), Val(dr("AMOUNT")), dr("NARRATION").ToString, Val(dr("WIDTH")))
                         CMBGODOWN.Text = dr("GODOWN")
                     Next
 
@@ -530,6 +548,8 @@ CHECKNEXTLINE:
                 TXTMTRS.Text = Val(GRIDSPL.Item(GMTRS.Index, GRIDSPL.CurrentRow.Index).Value)
                 TXTAMOUNT.Text = Val(GRIDSPL.Item(GAMOUNT.Index, GRIDSPL.CurrentRow.Index).Value)
                 TXTNARRATION.Text = GRIDSPL.Item(GNARRATION.Index, GRIDSPL.CurrentRow.Index).Value.ToString
+                TXTWIDTH.Text = Val(GRIDSPL.Item(GWIDTH.Index, GRIDSPL.CurrentRow.Index).Value)
+
                 CMBITEMNAME.Focus()
             End If
         Catch ex As Exception
@@ -755,7 +775,7 @@ LINE1:
         Try
             If CMBPARTYNAME.Text.Trim <> "" Then
                 Dim WHERECLAUSE As String = ""
-                If ClientName <> "KOTHARI" Then WHERECLAUSE = " and LEDGERS.ACC_TYPE = 'AGENT'"
+                If ClientName <> "KOTHARI" And ClientName <> "VINTAGEINDIA" Then WHERECLAUSE = " and LEDGERS.ACC_TYPE = 'AGENT'"
                 NAMEVALIDATE(CMBPARTYNAME, CMBCODE, e, Me, TXTADD, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' OR (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' " & WHERECLAUSE & ")) ", "SUNDRY DEBTORS", "ACCOUNTS")
             End If
         Catch ex As Exception
@@ -915,7 +935,7 @@ LINE1:
         Try
             If CMBPARTYNAME.Text.Trim = "" Then
                 Dim WHERECLAUSE As String = ""
-                If ClientName <> "KOTHARI" Then WHERECLAUSE = " and LEDGERS.ACC_TYPE = 'AGENT'"
+                If ClientName <> "KOTHARI" And ClientName <> "VINTAGEINDIA" Then WHERECLAUSE = " and LEDGERS.ACC_TYPE = 'AGENT'"
                 FILLNAME(CMBPARTYNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' OR (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' " & WHERECLAUSE & "))")
             End If
         Catch ex As Exception
@@ -1008,18 +1028,18 @@ NEXTLINE:
 
     Private Sub TXTNARRATION_Validated(sender As Object, e As EventArgs) Handles TXTNARRATION.Validated
         Try
-            If GRIDSPL.RowCount > 50 And ClientName = "SNCM" Then
-                MsgBox("Max 50 rows allowed in Grid", MsgBoxStyle.Critical)
-                Exit Sub
-            End If
+            'If GRIDSPL.RowCount > 50 And ClientName = "SNCM" Then
+            '    MsgBox("Max 50 rows allowed in Grid", MsgBoxStyle.Critical)
+            '    Exit Sub
+            'End If
 
 
-            If CMBSAMPLETYPE.Text.Trim <> "" And CMBITEMNAME.Text.Trim <> "" Then
-                fillgrid()
-            Else
-                MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
-                Exit Sub
-            End If
+            'If CMBSAMPLETYPE.Text.Trim <> "" And CMBITEMNAME.Text.Trim <> "" Then
+            '    fillgrid()
+            'Else
+            '    MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
+            '    Exit Sub
+            'End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1098,6 +1118,9 @@ NEXTLINE:
                 TXTMTRS.TabStop = False
                 TXTAMOUNT.TabStop = False
             End If
+            If ClientName = "VINTAGEINDIA" Then
+                GNARRATION.HeaderText = "Lot No"
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1123,7 +1146,7 @@ NEXTLINE:
                     txtrefno.Text = Convert.ToString(dr("REFNO"))
                     TOTALNOOFBOOKLET.Text = dr("TOTALNOOFBOOKLET")
 
-                    GRIDSPL.Rows.Add(Val(dr("GRIDSRNO")), dr("SAMPLETYPE"), dr("ITEMNAME"), dr("QUALITYNAME"), dr("DESIGN").ToString, dr("COLOR").ToString, Val(dr("NOOFBOOKLET")), Val(dr("RATE")), Val(dr("MTRS")), Val(dr("AMOUNT")), dr("NARRATION").ToString)
+                    GRIDSPL.Rows.Add(Val(dr("GRIDSRNO")), dr("SAMPLETYPE"), dr("ITEMNAME"), dr("QUALITYNAME"), dr("DESIGN").ToString, dr("COLOR").ToString, Val(dr("NOOFBOOKLET")), Val(dr("RATE")), Val(dr("MTRS")), Val(dr("AMOUNT")), dr("NARRATION").ToString, Val(dr("WIDTH")))
                     CMBGODOWN.Text = dr("GODOWN")
                 Next
 
@@ -1148,5 +1171,20 @@ NEXTLINE:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TXTWIDTH_Validated(sender As Object, e As EventArgs) Handles TXTWIDTH.Validated
+        If GRIDSPL.RowCount > 50 And ClientName = "SNCM" Then
+            MsgBox("Max 50 rows allowed in Grid", MsgBoxStyle.Critical)
+            Exit Sub
+        End If
+
+
+        If CMBSAMPLETYPE.Text.Trim <> "" And CMBITEMNAME.Text.Trim <> "" Then
+            fillgrid()
+        Else
+            MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
+            Exit Sub
+        End If
     End Sub
 End Class

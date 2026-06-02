@@ -14,7 +14,7 @@ Public Class BeamIssueWeaverDetails
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
-            Dim OBJBEAMISSUE As New BeamIssue
+            Dim OBJBEAMISSUE As New BeamIssueWeaver
             OBJBEAMISSUE.EDIT = EDITVAL
             OBJBEAMISSUE.MdiParent = MDIMain
             OBJBEAMISSUE.TEMPBEAMISSUENO = BEAMISSUENO
