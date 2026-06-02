@@ -3217,6 +3217,30 @@
     <Compile Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Job Work\BeamJobIn.Designer.vb">
+      <DependentUpon>BeamJobIn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Job Work\BeamJobIn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Job Work\BeamJobInDetails.Designer.vb">
+      <DependentUpon>BeamJobInDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Job Work\BeamJobInDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Job Work\BeamJobOut.Designer.vb">
+      <DependentUpon>BeamJobOut.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Job Work\BeamJobOut.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Job Work\BeamJobOutDetails.Designer.vb">
+      <DependentUpon>BeamJobOutDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\Yarn Module\Beam Job Work\BeamJobOutDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarper.Designer.vb">
       <DependentUpon>BeamRecdWarper.vb</DependentUpon>
     </Compile>
