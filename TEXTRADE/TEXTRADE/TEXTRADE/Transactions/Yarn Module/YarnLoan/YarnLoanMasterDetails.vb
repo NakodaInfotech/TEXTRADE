@@ -4,8 +4,8 @@ Imports System.Windows.Forms
 Public Class YarnLoanMasterDetails
 
     Public EDIT As Boolean
-        Dim TEMPGREYNO As Integer
-        Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
+    Dim TEMPLOANNO As Integer
+    Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
 
         Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
             Try
@@ -40,29 +40,31 @@ Public Class YarnLoanMasterDetails
                 Exit Sub
             End If
 
-            fillgrid(" and dbo.GREYRECDJOBBER.GREY_yearid=" & YearId & " order by dbo.GREYRECDJOBBER.GREY_no ")
+            fillgrid()
+
 
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
-    Sub fillgrid(ByVal TEMPCONDITION)
-            Try
-                Dim objclsCMST As New ClsCommonMaster
-                Dim dt As DataTable
-                dt = objclsCMST.search("ISNULL(GREYRECDJOBBER.GREY_no, 0) AS SRNO, ISNULL(GREYRECDJOBBER.GREY_date, GETDATE()) AS DATE, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(GREYRECDJOBBER.GREY_challanno, '') AS CHALLANNO, ISNULL(GREYRECDJOBBER.GREY_challandt, GETDATE()) AS CHALLANDATE, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(GREYRECDJOBBER.GREY_LRNO, '') AS LRNO, ISNULL(GREYRECDJOBBER.GREY_LRDATE, GETDATE()) AS LRDATE, ISNULL(GREYRECDJOBBER.GREY_TOTALQTY, 0) AS TOTALQTY, ISNULL(GREYRECDJOBBER.GREY_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(GREYRECDJOBBER.GREY_TOTALNETTWT, 0) AS TOTALWT, ISNULL(GREYRECDJOBBER.GREY_remarks, '') AS REMARKS", "", "  GODOWNMASTER INNER JOIN GREYRECDJOBBER ON GODOWNMASTER.GODOWN_id = GREYRECDJOBBER.GREY_GODOWNID INNER JOIN LEDGERS ON GREYRECDJOBBER.GREY_LEDGERID = LEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON GREYRECDJOBBER.GREY_transledgerid = TRANSLEDGERS.Acc_id ", TEMPCONDITION)
-                gridbilldetails.DataSource = dt
-                If dt.Rows.Count > 0 Then
-                    gridbill.FocusedRowHandle = gridbill.RowCount - 1
-                    gridbill.TopRowIndex = gridbill.RowCount - 15
-                End If
-            Catch ex As Exception
-                Throw ex
-            End Try
-        End Sub
+    Sub fillgrid()
+        Try
+            Dim objclsCMST As New ClsCommonMaster
+            Dim dt As DataTable
+            dt = objclsCMST.search("  YARNLOAN.YARNLOAN_no AS YARNNO, YARNLOAN.YARNLOAN_date AS DATE, YARNLOAN.YARNLOAN_TYPE AS TYPE, ISNULL(YARNLOAN.YARNLOAN_remarks, '') AS REMARKS, LEDGERS.Acc_cmpname AS PARTYNAME, GODOWNMASTER.GODOWN_name AS GODOWN, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, YARNLOAN_DESC.YARNLOAN_GRIDSRNO AS GRIDSRNO, YARNQUALITYMASTER.YARN_NAME AS YARNNAME, ISNULL(MILLMASTER.MILL_NAME, '') AS MILLNAME, ISNULL(YARNLOAN_DESC.YARNLOAN_LOTNO, '') AS LOTNO, ISNULL(YARNLOAN_DESC.YARNLOAN_BAGS, '') AS BAGS, ISNULL(YARNLOAN_DESC.YARNLOAN_WT, 0) AS WT, ISNULL(YARNLOAN_DESC.YARNLOAN_CONES, 0) AS CONES, ISNULL(YARNLOAN_DESC.YARNLOAN_LRNO, '') AS LRNO, YARNLOAN_DESC.YARNLOAN_LRDATE AS LRDATE, ISNULL(YARNLOAN_DESC.YARNLOAN_DONE, 0) AS DONE, ISNULL(YARNLOAN_DESC.YARNLOAN_FROMNO, 0) AS FROMNO, ISNULL(YARNLOAN_DESC.YARNLOAN_FROMSRNO, 0) AS FROMSRNO, ISNULL(YARNLOAN_DESC.YARNLOAN_BARCODE, 0) AS BARCODE, ISNULL(RACKMASTER.RACK_NAME, '') AS RACK, ISNULL(YARNLOAN_DESC.YARNLOAN_OUTBAGS, 0) AS OUTBAGS, ISNULL(YARNLOAN_DESC.YARNLOAN_OUTWT, 0) AS OUTWT ", "", " LEDGERS AS TRANSLEDGERS RIGHT OUTER JOIN GODOWNMASTER INNER JOIN YARNLOAN INNER JOIN YARNLOAN_DESC ON YARNLOAN.YARNLOAN_no = YARNLOAN_DESC.YARNLOAN_NO AND YARNLOAN.YARNLOAN_yearid = YARNLOAN_DESC.YARNLOAN_YEARID INNER JOIN YARNQUALITYMASTER ON YARNLOAN_DESC.YARNLOAN_YARNQUALITYID = YARNQUALITYMASTER.YARN_ID AND YARNLOAN_DESC.YARNLOAN_YEARID = YARNQUALITYMASTER.YARN_YEARID INNER JOIN LEDGERS ON YARNLOAN.YARNLOAN_yearid = LEDGERS.Acc_yearid AND YARNLOAN.YARNLOAN_NAMEid = LEDGERS.Acc_id ON GODOWNMASTER.GODOWN_yearid = YARNLOAN.YARNLOAN_yearid AND  GODOWNMASTER.GODOWN_id = YARNLOAN.YARNLOAN_GODOWNID LEFT OUTER JOIN RACKMASTER ON YARNLOAN_DESC.YARNLOAN_RACKID = RACKMASTER.RACK_ID AND YARNLOAN_DESC.YARNLOAN_YEARID = RACKMASTER.RACK_YEARID LEFT OUTER JOIN MILLMASTER ON YARNLOAN_DESC.YARNLOAN_MILLID = MILLMASTER.MILL_ID AND YARNLOAN_DESC.YARNLOAN_YEARID = MILLMASTER.MILL_YEARID ON  TRANSLEDGERS.Acc_yearid = YARNLOAN.YARNLOAN_yearid AND TRANSLEDGERS.Acc_id = YARNLOAN.YARNLOAN_TRANSID   ", " AND YARNLOAN.YARNLOAN_yearid = '" & YearId & "' ORDER BY YARNLOAN.YARNLOAN_no")
+            gridbilldetails.DataSource = dt
 
-        Sub showform(ByVal editval As Boolean, ByVal SRNO As Integer)
+            If dt.Rows.Count > 0 Then
+                gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                gridbill.TopRowIndex = gridbill.RowCount - 15
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Sub showform(ByVal editval As Boolean, ByVal SRNO As Integer)
             Try
                 If (editval = True And USEREDIT = False And USERVIEW = False) Or (editval = False And USERADD = False) Then
                     MsgBox("Insufficient Rights")
@@ -70,11 +72,11 @@ Public Class YarnLoanMasterDetails
                 End If
 
                 If (editval = False) Or (editval = True And gridbill.RowCount > 0) Then
-                    Dim objGRN As New GreyRecdFromJobber
-                    objGRN.MdiParent = MDIMain
+                Dim objGRN As New YarnLoanMaster
+                objGRN.MdiParent = MDIMain
                     objGRN.EDIT = editval
-                    objGRN.TEMPGREYNO = SRNO
-                    objGRN.Show()
+                objGRN.TEMPLOANNO = SRNO
+                objGRN.Show()
                 End If
             Catch ex As Exception
                 Throw ex
@@ -95,24 +97,24 @@ Public Class YarnLoanMasterDetails
 
         Private Sub gridpayment_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
             Try
-                showform(True, gridbill.GetFocusedRowCellValue("SRNO"))
-            Catch ex As Exception
+            showform(True, gridbill.GetFocusedRowCellValue("YARNNO"))
+        Catch ex As Exception
                 Throw ex
             End Try
         End Sub
 
         Private Sub TOOLREFRESH_Click(sender As Object, e As EventArgs) Handles TOOLREFRESH.Click
             Try
-                fillgrid(" and dbo.GREYRECDJOBBER.GREY_yearid=" & YearId & " order by dbo.GREYRECDJOBBER.GREY_no ")
-            Catch ex As Exception
+            fillgrid()
+        Catch ex As Exception
                 Throw ex
             End Try
         End Sub
 
         Private Sub cmdok_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdok.Click
             Try
-                showform(True, gridbill.GetFocusedRowCellValue("SRNO"))
-            Catch ex As Exception
+            showform(True, gridbill.GetFocusedRowCellValue("YARNNO"))
+        Catch ex As Exception
                 Throw ex
             End Try
         End Sub
@@ -132,8 +134,8 @@ Public Class YarnLoanMasterDetails
     End Sub
 
     Private Sub CMDREFRESH_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDREFRESH.Click
-            fillgrid(" and dbo.GREYRECDJOBBER.GREY_yearid=" & YearId & " order by dbo.GREYRECDJOBBER.GREY_no ")
-        End Sub
+        fillgrid()
+    End Sub
     End Class
 
 

@@ -53,6 +53,8 @@ Public Class YarnLoanMaster
             Dim OUTWT As String = ""
             Dim PONO As String = ""
             Dim POGRIDSRNO As String = ""
+            Dim FROMTYPE As String = ""
+
             Dim RACK As String = ""
             Dim BARCODE As String = ""
 
@@ -73,6 +75,7 @@ Public Class YarnLoanMaster
                         OUTWT = Val(row.Cells(GOUTWT.Index).Value)
                         PONO = Val(row.Cells(GPONO.Index).Value)
                         POGRIDSRNO = Val(row.Cells(GGRIDSRNO.Index).Value)
+                        FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
                         RACK = row.Cells(GRACK.Index).Value.ToString
                         BARCODE = row.Cells(GBARCODE.Index).Value.ToString
 
@@ -91,10 +94,9 @@ Public Class YarnLoanMaster
                         OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
                         PONO = PONO & "|" & Val(row.Cells(GPONO.Index).Value)
                         POGRIDSRNO = POGRIDSRNO & "|" & Val(row.Cells(GGRIDSRNO.Index).Value)
+                        FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
                         RACK = RACK & "|" & row.Cells(GRACK.Index).Value.ToString
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value.ToString
-
-
 
                     End If
                 End If
@@ -114,6 +116,7 @@ Public Class YarnLoanMaster
             alParaval.Add(OUTWT)
             alParaval.Add(PONO)
             alParaval.Add(POGRIDSRNO)
+            alParaval.Add(FROMTYPE)
             alParaval.Add(RACK)
             alParaval.Add(BARCODE)
 
@@ -388,6 +391,11 @@ Public Class YarnLoanMaster
         DTLRDATE.Visible = True
         cmbrack.Visible = True
 
+
+        lbllocked.Visible = False
+        PBlock.Visible = False
+
+
     End Sub
 
     Private Sub cmbrack_Enter(sender As Object, e As EventArgs) Handles cmbrack.Enter
@@ -449,7 +457,14 @@ Public Class YarnLoanMaster
                         txtremarks.Text = Convert.ToString(dr("REMARKS"))
                         cmbtrans.Text = Convert.ToString(dr("TRANSPORT"))
                         cmbGodown.Text = Convert.ToString(dr("GODOWN"))
-                        GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNNAME"), dr("MILLNAME"), dr("LOTNO"), Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, Val(dr("OUTBAGS")), Val(dr("OUTWT")), dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
+                        GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNNAME"), dr("MILLNAME"), dr("LOTNO"), Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, Val(dr("OUTBAGS")), Val(dr("OUTWT")), dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("FROMTYPE").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
+
+                        If Val(dr("OUTWT")) > 0 Then
+                            GRIDYARN.Rows(GRIDYARN.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                        End If
+
                     Next
                     GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
                 End If
@@ -512,6 +527,13 @@ Public Class YarnLoanMaster
                     MsgBox("Insufficient Rights")
                     Exit Sub
                 End If
+
+
+                If lbllocked.Visible = True Or lbllocked.Visible = True Then
+                    MsgBox("Yarn Loan Locked", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
                 If MsgBox("Delete Entry?", MsgBoxStyle.YesNo) = vbYes Then
                     Dim alParaval As New ArrayList
                     alParaval.Add(txtloanno.Text.Trim)
@@ -648,7 +670,7 @@ LINE1:
                 End If
             End If
 
-            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, TXTJOBBERLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, cmbrack.Text.Trim, txtbarcode.Text.Trim)
+            GRIDYARN.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, CMBMILL.Text.Trim, TXTJOBBERLOTNO.Text.Trim, Format(Val(txtqty.Text.Trim), "0"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTCONES.Text.Trim), "0"), TXTGRIDLRNO.Text.Trim, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0, "", cmbrack.Text.Trim, txtbarcode.Text.Trim)
 
 
             getsrno(GRIDYARN)
@@ -724,6 +746,13 @@ LINE1:
     Private Sub GRIDYARN_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDYARN.KeyDown
         Try
             If e.KeyCode = Keys.Delete And GRIDYARN.RowCount > 0 Then
+
+
+                If Convert.ToBoolean(GRIDYARN.Rows(GRIDYARN.CurrentRow.Index).Cells(GDONE.Index).Value) = True Or GRIDYARN.Rows(GRIDYARN.CurrentRow.Index).Cells(GOUTWT.Index).Value > 0 Then
+                    MsgBox("Item Locked", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
                 'dont allow user if any of the grid line is in edit mode.....
                 'cmbitemname.Text.Trim <> Val(txtqty.Text) <> 0 And Val(txtamount.Text.Trim) <> 0 And cmbqtyunit.Text.Trim <> 
                 If gridDoubleClick = True Then
@@ -750,6 +779,12 @@ LINE1:
     Sub EDITROW()
         Try
             If GRIDYARN.CurrentRow.Index >= 0 And GRIDYARN.Item(gsrno.Index, GRIDYARN.CurrentRow.Index).Value <> Nothing Then
+
+                If Convert.ToBoolean(GRIDYARN.Rows(GRIDYARN.CurrentRow.Index).Cells(GDONE.Index).Value) = True Or GRIDYARN.Rows(GRIDYARN.CurrentRow.Index).Cells(GOUTWT.Index).Value > 0 Then
+                    MsgBox("Item Locked", MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
                 gridDoubleClick = True
                 txtsrno.Text = GRIDYARN.Item(gsrno.Index, GRIDYARN.CurrentRow.Index).Value.ToString
                 CMBYARNQUALITY.Text = GRIDYARN.Item(GYARNQUALITY.Index, GRIDYARN.CurrentRow.Index).Value.ToString
@@ -809,7 +844,7 @@ LINE1:
 
                     ' ADD ROW to GRIDYARN (same format as Load event)
                     Dim dr As DataRow = DT.Rows(0)
-                    GRIDYARN.Rows.Add(GRIDYARN.RowCount, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO").ToString, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), dr("DONE").ToString, 0, 0, dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
+                    GRIDYARN.Rows.Add(GRIDYARN.RowCount, dr("YARNQUALITY").ToString, dr("MILLNAME").ToString, dr("LOTNO").ToString, Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO").ToString, Format(DTLRDATE.Value.Date, "dd/MM/yyyy"), dr("DONE").ToString, 0, 0, dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("FROMTYPE").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
                     GRIDYARN.FirstDisplayedScrollingRowIndex = GRIDYARN.RowCount - 1
                     total()
 LINE1:
@@ -916,5 +951,23 @@ LINE1:
         ElseIf e.Alt = True And e.KeyCode = Windows.Forms.Keys.F1 Then
             Call OpenToolStripButton_CLICK(sender, e)
         End If
+    End Sub
+
+    Private Sub tstxtbillno_Validating(sender As Object, e As CancelEventArgs) Handles tstxtbillno.Validating
+        Try
+            If Val(tstxtbillno.Text.Trim) > 0 Then
+                GRIDYARN.RowCount = 0
+                TEMPLOANNO = Val(tstxtbillno.Text)
+                If TEMPLOANNO > 0 Then
+                    edit = True
+                    YarnLoanMaster_Load(sender, e)
+                Else
+                    clear()
+                    edit = False
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 End Class
