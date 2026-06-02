@@ -983,7 +983,7 @@ Public Class DesignCardMaster
             Cursor.Current = Cursors.WaitCursor
             FILLCMB()
             CLEAR()
-            FILLPEGPLAN()
+            pegplan()
 
             If EDIT = True Then SHOWDATA()
 
