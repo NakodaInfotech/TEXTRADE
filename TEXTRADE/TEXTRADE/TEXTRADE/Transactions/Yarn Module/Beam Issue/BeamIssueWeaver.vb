@@ -909,7 +909,7 @@ LINE1:
 
     Private Sub OpenToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenToolStripButton.Click
         Try
-            Dim OBJBEAM As New BeamIssueDetails
+            Dim OBJBEAM As New BeamIssueWeaverDetails
             OBJBEAM.MdiParent = MDIMain
             OBJBEAM.Show()
         Catch EX As Exception
