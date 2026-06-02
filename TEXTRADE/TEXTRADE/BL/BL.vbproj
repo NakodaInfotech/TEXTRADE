@@ -422,6 +422,7 @@
     <Compile Include="Transactions\Stores\ClsStoresReorderLevel.vb" />
     <Compile Include="Transactions\Stores\ClsStoreStockAdjustment.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Issue\ClsBeamIssueWeaver.vb" />
+    <Compile Include="Transactions\Yarn Modules\Beam Job Work\ClsBeamJobIn.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Received\ClsBeamReceived.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Upload And Unload\ClsBeamUnload.vb" />
     <Compile Include="Transactions\Yarn Modules\Beam Upload And Unload\ClsBeamUpload.vb" />
