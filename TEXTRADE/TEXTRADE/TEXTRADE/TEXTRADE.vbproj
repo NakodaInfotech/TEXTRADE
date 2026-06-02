@@ -11103,6 +11103,12 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Issue\BeamIssueWeaver.resx">
       <DependentUpon>BeamIssueWeaver.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Job Work\BeamJobIn.resx">
+      <DependentUpon>BeamJobIn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Job Work\BeamJobOut.resx">
+      <DependentUpon>BeamJobOut.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Received Warper\BeamRecdWarper.resx">
       <DependentUpon>BeamRecdWarper.vb</DependentUpon>
     </EmbeddedResource>

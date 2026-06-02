@@ -22,9 +22,19 @@ Partial Class BeamJobIn
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Text = "BeamJobIn"
+        Me.SuspendLayout()
+        '
+        'BeamJobIn
+        '
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.ClientSize = New System.Drawing.Size(1238, 581)
+        Me.Font = New System.Drawing.Font("Calibri", 9.75!)
+        Me.KeyPreview = True
+        Me.Name = "BeamJobIn"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.Text = "Beam Job In"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.ResumeLayout(False)
+
     End Sub
 End Class
