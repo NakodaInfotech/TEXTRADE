@@ -223,7 +223,7 @@ Partial Class BeamRecdWarper
         Me.TXTBEAMNAME.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TXTBEAMNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXTBEAMNAME.Location = New System.Drawing.Point(425, 60)
-        Me.TXTBEAMNAME.MaxLength = 10
+        Me.TXTBEAMNAME.MaxLength = 2000
         Me.TXTBEAMNAME.Name = "TXTBEAMNAME"
         Me.TXTBEAMNAME.Size = New System.Drawing.Size(251, 23)
         Me.TXTBEAMNAME.TabIndex = 4
