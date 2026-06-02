@@ -80,6 +80,7 @@ Public Class ClsSamplePriceList
                 .Add(New SqlClient.SqlParameter("@GODOWN", ALPARAVAL(I)))
                 I = I + 1
 
+
                 .Add(New SqlClient.SqlParameter("@ORDERGRIDSRNO", ALPARAVAL(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@ORDERITEMNAME", ALPARAVAL(I)))
@@ -172,6 +173,7 @@ Public Class ClsSamplePriceList
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GODOWN", ALPARAVAL(I)))
                 I = I + 1
+
 
                 .Add(New SqlClient.SqlParameter("@ORDERGRIDSRNO", ALPARAVAL(I)))
                 I = I + 1

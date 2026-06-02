@@ -103,6 +103,9 @@ Public Class SamplePriceList
 
             OBJSPL.ALPARAVAL.Add(CMBAGENT.Text.Trim)
             OBJSPL.ALPARAVAL.Add(CMBGODOWN.Text.Trim)
+            OBJSPL.ALPARAVAL.Add(Val(LBLTOTALMTRS.Text.Trim))
+            OBJSPL.ALPARAVAL.Add(Val(LBLTOTALAMT.Text.Trim))
+
 
 
             Dim ORDERGRIDSRNO As String = ""
@@ -307,9 +310,14 @@ CHECKNEXTLINE:
     Sub TOTAL()
         Try
             TOTALNOOFBOOKLET.Text = 0
+            LBLTOTALMTRS.Text = "0.0"
+            LBLTOTALAMT.Text = "0.0"
 
             For Each ROW As DataGridViewRow In GRIDSPL.Rows
                 TOTALNOOFBOOKLET.Text = Format(Val(TOTALNOOFBOOKLET.Text.Trim) + Val(ROW.Cells(GNOOFBOOKLET.Index).Value), "0")
+                If Val(ROW.Cells(GMTRS.Index).Value) <> 0 Then LBLTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text) + Val(ROW.Cells(GMTRS.Index).EditedFormattedValue), "0.00")
+                If Val(ROW.Cells(GAMOUNT.Index).Value) <> 0 Then LBLTOTALAMT.Text = Format(Val(LBLTOTALAMT.Text) + Val(ROW.Cells(GAMOUNT.Index).EditedFormattedValue), "0.00")
+
             Next
         Catch ex As Exception
             Throw ex
@@ -767,7 +775,7 @@ LINE1:
         Try
             If CMBPARTYNAME.Text.Trim <> "" Then
                 Dim WHERECLAUSE As String = ""
-                If ClientName <> "KOTHARI" Then WHERECLAUSE = " and LEDGERS.ACC_TYPE = 'AGENT'"
+                If ClientName <> "KOTHARI" And ClientName <> "VINTAGEINDIA" Then WHERECLAUSE = " and LEDGERS.ACC_TYPE = 'AGENT'"
                 NAMEVALIDATE(CMBPARTYNAME, CMBCODE, e, Me, TXTADD, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' OR (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' " & WHERECLAUSE & ")) ", "SUNDRY DEBTORS", "ACCOUNTS")
             End If
         Catch ex As Exception
@@ -927,7 +935,7 @@ LINE1:
         Try
             If CMBPARTYNAME.Text.Trim = "" Then
                 Dim WHERECLAUSE As String = ""
-                If ClientName <> "KOTHARI" Then WHERECLAUSE = " and LEDGERS.ACC_TYPE = 'AGENT'"
+                If ClientName <> "KOTHARI" And ClientName <> "VINTAGEINDIA" Then WHERECLAUSE = " and LEDGERS.ACC_TYPE = 'AGENT'"
                 FILLNAME(CMBPARTYNAME, EDIT, " and (GROUPMASTER.GROUP_SECONDARY = 'Sundry Debtors' OR (GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' " & WHERECLAUSE & "))")
             End If
         Catch ex As Exception
