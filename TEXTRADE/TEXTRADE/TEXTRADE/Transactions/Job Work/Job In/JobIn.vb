@@ -4275,10 +4275,17 @@ LINE1:
             gqtyunit.ReadOnly = False
         End If
 
-        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "MMC" Or ClientName = "SWPL" Or ClientName = "VINTAGEINDIA" Then
+        If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "VALIANT" Or ClientName = "SWPL" Or ClientName = "VINTAGEINDIA" Then
             TXTPCSNO.Visible = True
             TXTBALENO.Enabled = False
             txtqty.ReadOnly = True
+        End If
+
+
+
+        If ClientName = "MMC" Then
+            TXTPCSNO.Visible = True
+            TXTBALENO.Enabled = False
         End If
 
 
