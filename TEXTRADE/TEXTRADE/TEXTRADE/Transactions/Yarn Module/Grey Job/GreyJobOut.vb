@@ -2895,7 +2895,7 @@ LINE1:
 
                 'GET DATA FROM BARCODE
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 *", "", "BARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH("TOP 1 *", "", "GREYBARCODESTOCK", " AND BARCODE = '" & TXTBARCODE.Text.Trim & "' AND DONE = 0 AND CMPID = " & CmpId & " AND LOCATIONID  = " & Locationid & " AND YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
 
                     'VALIDATE GODOWN
@@ -3022,14 +3022,13 @@ LINE1:
     Private Sub TXTBARCODE_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTBARCODE.KeyDown
         Try
             If e.KeyCode = Keys.F1 And ALLOWBARCODEPRINT = True And ALLOWPACKINGSLIP = False Then
-                If (ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM") And UserName <> "Admin" Then Exit Sub
-
                 If CMBGODOWN.Text.Trim = "" Then
                     MsgBox("Select Godown First", MsgBoxStyle.Critical)
                     Exit Sub
                 End If
 
                 Dim OBJSTOCK As New SelectStockGDNGrid
+                OBJSTOCK.FRMSTRING = "GREY"
                 OBJSTOCK.WHERECLAUSE = OBJSTOCK.WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
                 OBJSTOCK.ShowDialog()
                 Dim DTBARCODE As DataTable = OBJSTOCK.DTBARCODE

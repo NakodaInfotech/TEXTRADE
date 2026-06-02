@@ -26,7 +26,7 @@ Public Class DesignCardMaster
         Try
             Ep.Clear()
 
-            If Not errorvalid() Then
+            If Not ERRORVALID() Then
                 Exit Sub
             End If
             Dim IntResult As Integer
@@ -94,7 +94,7 @@ Public Class DesignCardMaster
             'OTHERS
             alParaval.Add(Val(TXTMTRS.Text.Trim))          ' Piece Mtrs
             alParaval.Add(Val(TXTNOOFPCS.Text.Trim))            ' No of Pcs
-            alParaval.Add(CMBLOOM.Text.Trim)                    ' Loom (ComboBox)
+            alParaval.Add(TXTLOOM.Text.Trim)                    ' Loom (ComboBox)
             alParaval.Add(Val(TXTBEAMMTRS.Text.Trim))           ' Beam Mtrs
             alParaval.Add(TXTCOVERFACTOR.Text.Trim)        ' Cover Factor
             alParaval.Add(Val(TXTEFFICIENCY.Text.Trim))         ' Efficiency
@@ -595,6 +595,7 @@ Public Class DesignCardMaster
             alParaval.Add(TXTEXTRAENDS.Text.Trim)
             alParaval.Add(TXTTOTALEXTRAENDS.Text.Trim)
             alParaval.Add(CHKBLOCKED.CheckState)
+            alParaval.Add(Val(TXTGGSM.Text.Trim))
 
             Dim objDESIGN As New ClsDesignCardMaster
             objDESIGN.alParaval = alParaval
@@ -606,9 +607,7 @@ Public Class DesignCardMaster
                 End If
                 SAVEBEAMDESIGN(False)
                 IntResult = objDESIGN.SAVE()
-                'txtcardno.Text = IntResult.ToString()
                 MsgBox("Details Added")
-                'tempdesignno = txtcardno.Text.Trim
                 PRINTREPORT(txtcardno.Text.Trim)
             Else
                 If USEREDIT = False Then
@@ -631,6 +630,7 @@ Public Class DesignCardMaster
             Throw ex
         End Try
     End Sub
+
     Sub getmax_SO_no()
         Dim DTTABLE As New DataTable
         DTTABLE = getmax(" isnull(max(DESIGN_CARDno),0) + 1 ", "DESIGNCARD", " AND DESIGN_cmpid=" & CmpId & " and DESIGN_locationid=" & Locationid & " and DESIGN_yearid=" & YearId)
@@ -684,6 +684,7 @@ Public Class DesignCardMaster
         DT_WEFTDETAILS.Columns.Add("FDMAINSRNO")
 
         txtfinishmethod.Clear()
+        tstxtbillno.Clear()
         CMBQUALITIES.Text = ""
         CMBQUALITYTYPE.Text = ""
         DTDATE.Text = Now.Date
@@ -741,9 +742,17 @@ Public Class DesignCardMaster
         'OTHERS
         TXTMTRS.Clear()          ' Piece Mtrs
         TXTNOOFPCS.Clear()            ' No of Pcs
-        CMBLOOM.Text = ""                    ' Loom (ComboBox)
+        ' Loom (ComboBox)
         TXTBEAMMTRS.Clear()           ' Beam Mtrs
-        If ClientName = "SWPL" Then TXTCOVERFACTOR.Text = 1.2 Else TXTCOVERFACTOR.Clear()        ' Cover Factor
+
+        If ClientName = "SWPL" Then
+            TXTCOVERFACTOR.Text = 1.2
+            TXTLOOM.Text = "RAPIER"
+        Else
+            TXTCOVERFACTOR.Clear()        ' Cover Factor
+            TXTLOOM.Clear()
+        End If
+
         TXTEFFICIENCY.Clear()         ' Efficiency
         TXTLOOMPROD.Clear()           ' Loom Prod
         TXTRPM.Clear()                ' RPM
@@ -859,27 +868,24 @@ Public Class DesignCardMaster
 
     End Sub
 
-    Private Function errorvalid() As Boolean
+    Private Function ERRORVALID() As Boolean
 
         Dim bln As Boolean = True
         If CMBSHADE.Text.Trim.Length = 0 Then
             Ep.SetError(CMBSHADE, "Fill Shade ")
             bln = False
         End If
+
+        If CMBGREY.Text.Trim.Length = 0 Then
+            Ep.SetError(CMBGREY, "Fill Sizing / Warping")
+            bln = False
+        End If
+
         If DTDATE.Text = "__/__/____" Then
             Ep.SetError(DTDATE, " Please Enter Proper Date")
             bln = False
-        Else
-            If Not datecheck(DTDATE.Text) Then
-                Ep.SetError(DTDATE, "Date not in Accounting Year")
-                bln = False
-            End If
-
-            If Convert.ToDateTime(DTDATE.Text).Date < SALEBLOCKDATE.Date Then
-                Ep.SetError(DTDATE, "Date is Blocked, Please make entries after " & Format(SALEBLOCKDATE.Date, "dd/MM/yyyy"))
-                bln = False
-            End If
         End If
+
         If TXTREED.Text.Trim.Length = 0 Then
             Ep.SetError(TXTREED, "Fill Reed ")
             bln = False
@@ -945,6 +951,7 @@ Public Class DesignCardMaster
 
         Return bln
     End Function
+
     Public Function CheckGridsForBlankOrNull(grid As DataGridView, endColumn As String, symColumn As String) As Boolean
         ' Loop through each row in the grid
         For Each row As DataGridViewRow In grid.Rows
@@ -1056,7 +1063,7 @@ Public Class DesignCardMaster
                     ' Other details
                     TXTMTRS.Text = Val(dr("MTRS"))
                     TXTNOOFPCS.Text = Val(dr("NOOFPCS"))
-                    CMBLOOM.Text = Convert.ToString(dr("LOOM").ToString)
+                    TXTLOOM.Text = Convert.ToString(dr("LOOM").ToString)
                     TXTBEAMMTRS.Text = dr("BEAMMTRS").ToString
                     TXTCOVERFACTOR.Text = dr("COVERFACTOR").ToString
                     TXTEFFICIENCY.Text = dr("EFFICIENCY").ToString
@@ -1128,6 +1135,7 @@ Public Class DesignCardMaster
                     TXTEXTRAENDS.Text = dr("EXTRAENDS")
                     CMBSHADE.Text = dr("SHADE")
                     CHKBLOCKED.Checked = Convert.ToBoolean(dttable.Rows(0).Item("BLOCKED"))
+                    TXTGGSM.Text = Val(dr("GGSM"))
                 Next
                 'cmbtype.Enabled = False
 
@@ -1393,13 +1401,6 @@ Public Class DesignCardMaster
 
     Sub FILLCMB()
         Dim OBJCMN As New ClsCommon
-        'Dim DT As DataTable = OBJCMN.SEARCH("DESIGN_NO", "", " DESIGNMASTER ", " and DESIGN_cmpid = " & CmpId & " and DESIGN_locationid = " & Locationid & " and DESIGN_yearid = " & YearId)
-        'If DT.Rows.Count > 0 Then
-        '    DT.DefaultView.Sort = "DESIGN_NO"
-        '    CMBDESIGNNO.DataSource = DT
-        '    CMBDESIGNNO.DisplayMember = "DESIGN_NO"
-        '    CMBDESIGNNO.Text = tempdesignno
-        'End If
         FILLDESIGN(CMBDESIGNNO, CMBITEMNAME.Text.Trim)
         FILLCOLOR(CMBWARPSHADE, "", "")
         FILLCOLOR(cmbgridshade, "", "")
@@ -1413,7 +1414,6 @@ Public Class DesignCardMaster
         fillYARNQUALITY(CMBSELYARNQUALITY, EDIT)
         fillYARNQUALITY(CMBWEFTYARNQUALITY, EDIT)
         fillYARNQUALITY(CMBWARPQUALITY, EDIT)
-        FILLLOOM(CMBLOOM, CMBNAME.Text.Trim, EDIT)
         FILLWEAVE(CMBWEAVE, EDIT)
         If CMBAGENTNAME.Text.Trim = "" Then FILLNAME(CMBAGENTNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' AND LEDGERS.ACC_TYPE='AGENT'")
         If CMBDELAT.Text.Trim = "" Then FILLNAME(CMBDELAT, EDIT, " AND (GROUP_SECONDARY = 'SUNDRY DEBTORS' OR GROUP_SECONDARY = 'SUNDRY CREDITORS') AND ACC_TYPE = 'ACCOUNTS'")
@@ -2079,22 +2079,6 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub CMBLOOM_Enter(sender As Object, e As EventArgs) Handles CMBLOOM.Enter
-        Try
-            If CMBLOOM.Text.Trim = "" Then FILLLOOM(CMBLOOM, CMBNAME.Text.Trim, EDIT)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Private Sub CMBLOOM_Validating(sender As Object, e As CancelEventArgs) Handles CMBLOOM.Validating
-        Try
-            If CMBLOOM.Text.Trim <> "" Then LOOMVALIDATE(CMBLOOM, CMBNAME.Text.Trim, e, Me)
-        Catch ex As Exception
-            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
-        End Try
-    End Sub
-
     Private Sub TXTreed_Validated(sender As Object, e As EventArgs) Handles TXTREED.Validated
         Try
             CALC()
@@ -2123,6 +2107,7 @@ LINE1:
         TXTTOTALEXTRAENDS.Text = 0.00
         TXTTOTALMAINENDS.Text = 0.00
         txtxvalue.Text = 0.00
+        TXTFPPI.Clear()
 
         '*******************************************************************************
         ' Main Reed Space - default selvedge to 0 if empty
@@ -2183,7 +2168,7 @@ LINE1:
             Next
 
             'WARP WT IN GRID
-            If TXTWARPTL.Text <> "" Then
+            If Val(TXTWARPTL.Text.Trim) > 0 Then
                 For Each row As DataGridViewRow In GRIDWARP.Rows
                     If row.Cells(WENDS.Index).Value IsNot DBNull.Value And row.Cells(WDENIER.Index).Value IsNot DBNull.Value Then
                         'THIS CALC IS WITH RESPECT TO DENIER
@@ -2200,7 +2185,7 @@ LINE1:
             End If
 
             'WEFT WT IN GRID
-            If TXTWEFTTL.Text <> "" And TXTREEDSPACE.Text <> "" And TXTPICKS.Text <> "" Then
+            If Val(TXTWEFTTL.Text.Trim) > 0 And Val(TXTREEDSPACE.Text.Trim) > 0 And Val(TXTPICKS.Text.Trim) > 0 Then
                 For Each row As DataGridViewRow In GRIDWEFT.Rows
                     If row.Cells(FDENIER.Index).Value IsNot DBNull.Value Then
                         If ClientName = "SWPL" Then
@@ -2235,6 +2220,7 @@ LINE1:
         End If
         TXTFWT.Text = "0.000"
         TXTFINISHWT.Text = "0.000"
+        TXTGGSM.Text = "0"
         TXTGSM.Text = "0"
         TXTGLM.Text = "0.000"
 
@@ -2257,7 +2243,14 @@ LINE1:
             Dim result As Double = pcs * pcsl
             TXTBEAMMTRS.Text = Format(Val(result), "0.00")
         End If
-        If Val(TXTFWT.Text) > 0 And Val(TXTFWIDTH.Text) > 0 Then TXTGSM.Text = Format(((Val(TXTFWT.Text) * 39.37) / (Val(TXTFWIDTH.Text) * 10)) * 100, "0")
+
+        'GREY WIDTH
+        If Val(TXTFWT.Text) > 0 And Val(TXTGWIDTH.Text) > 0 Then TXTGGSM.Text = Format((Val(TXTFWT.Text) * 39.37) / Val(TXTGWIDTH.Text) * 1000, "0")
+
+        If Val(TXTFWT.Text) > 0 And Val(TXTFWIDTH.Text) > 0 Then
+            TXTGSM.Text = (Val(TXTFWT.Text) * 39.37) / Val(TXTFWIDTH.Text) * 1000
+            If CMBGREY.Text.Trim = "SIZING" Then TXTGSM.Text = Format(Val(TXTGSM.Text.Trim) - (Val(TXTGSM.Text) * 0.07), "0") Else TXTGSM.Text = Format(Val(TXTGSM.Text.Trim) - (Val(TXTGSM.Text) * 0.05), "0")
+        End If
         TXTGLM.Text = TXTFINISHWT.Text
 
         '************* EPI ******************
@@ -2270,11 +2263,15 @@ LINE1:
                 TXTFEPI.Text = Format(Val(y / Val(TXTFWIDTH.Text.Trim)), "0.00")
             End If
         End If
-        '************* PPI ******************
-        If Val(TXTSHRINKAGEPER.Text) > 0 Then
-            Dim X As Decimal = Val(TXTPICKS.Text.Trim) * (Val(TXTSHRINKAGEPER.Text.Trim) / 100)
-            TXTFPPI.Text = Format(Val(X + Val(TXTPICKS.Text.Trim)), "0")
-        End If
+
+        ''************* PPI ******************
+        'If Val(TXTSHRINKAGEPER.Text) > 0 Then
+        '    Dim X As Decimal = Val(TXTPICKS.Text.Trim) * (Val(TXTSHRINKAGEPER.Text.Trim) / 100)
+        '    TXTFPPI.Text = Format(Val(X + Val(TXTPICKS.Text.Trim)), "0")
+        'End If
+        TXTFPPI.Text = Val(TXTPICKS.Text.Trim) * 0.02
+        TXTFPPI.Text = Format(Val(TXTPICKS.Text.Trim) + Val(TXTFPPI.Text.Trim), "0")
+
 
     End Sub
 
@@ -3594,7 +3591,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTTHREADPERDENT.KeyPress, TXTPICKS.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTSHRINKAGEPER.KeyPress, TXTFWIDTH.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
+    Private Sub TXTREED_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREED.KeyPress, TXTTHREADPERDENT.KeyPress, TXTPICKS.KeyPress, TXTWARPTL.KeyPress, TXTWEFTTL.KeyPress, TXTLEFTSELENDS.KeyPress, TXTSHRINKAGEPER.KeyPress, TXTWPP.KeyPress, TXTNOOFPCS.KeyPress, TXTPCSL.KeyPress
         Try
             numkeypress(e, sender, Me)
         Catch ex As Exception
@@ -3602,7 +3599,7 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub TXTLEFTSEL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREEDSPACE.KeyPress, TXTLEFTSEL.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTNOOFPCS.KeyPress, TXTCOVERFACTOR.KeyPress
+    Private Sub TXTLEFTSEL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTREEDSPACE.KeyPress, TXTLEFTSEL.KeyPress, TXTWARPWASTAGE.KeyPress, TXTWASTAGEPER.KeyPress, TXTNOOFPCS.KeyPress, TXTGWIDTH.KeyPress, TXTFWIDTH.KeyPress, TXTCOVERFACTOR.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
@@ -3973,6 +3970,7 @@ line1:
             End If
         End If
     End Sub
+
     Sub EDITGRIDWEFTDESCROW()
         Try
             If GRIDWEFTDESC.CurrentRow IsNot Nothing Then
@@ -4030,7 +4028,7 @@ line1:
         End Try
     End Sub
 
-    Private Sub TXTLEFTSEL_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSEL.Validated, TXTSHRINKAGEPER.Validated, TXTFWIDTH.Validated, TXTNOOFPCS.Validated, TXTREEDSPACE.Validated
+    Private Sub TXTLEFTSEL_Validated(sender As Object, e As EventArgs) Handles TXTLEFTSEL.Validated, TXTSHRINKAGEPER.Validated, TXTFWIDTH.Validated, TXTNOOFPCS.Validated, TXTREEDSPACE.Validated, TXTGWIDTH.Validated
         Try
             If TXTLEFTSEL.Text.Trim <> "" Then TXTRIGHTSEL.Text = TXTLEFTSEL.Text
             CALC()
@@ -4462,6 +4460,7 @@ line1:
             Throw ex
         End Try
     End Sub
+
     Sub SAVEBEAMDESIGN(EDIT As Boolean)
         Try
             Dim IntResult As Integer
