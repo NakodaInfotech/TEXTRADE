@@ -2390,15 +2390,7 @@ SKIPLINE:
 
             Dim srno As Integer = 1
             For Each dr As DataRow In dtTemp.Rows
-                GRIDTESTRPT.Rows.Add(
-                srno,
-                dr("PARTYLOTNO").ToString,
-                dr("COUNT").ToString,    ' COUNT column populated here
-                0,
-                0,
-                0,
-                0
-            )
+                GRIDTESTRPT.Rows.Add(srno, dr("PARTYLOTNO").ToString, dr("COUNT").ToString, 0, 0, 0, 0, "")
                 srno += 1
             Next
 
