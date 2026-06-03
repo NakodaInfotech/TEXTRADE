@@ -816,4 +816,8 @@ LINE1:
             Throw ex
         End Try
     End Sub
+
+    Private Sub CMBJONO_Validated(sender As Object, e As EventArgs) Handles CMBJONO.Validated
+
+    End Sub
 End Class
