@@ -45,8 +45,8 @@ Partial Class BeamJobOut
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.LBLTOTALJOBMTRS = New System.Windows.Forms.Label()
-        Me.LBLTOTALBEAMMTRS = New System.Windows.Forms.Label()
+        Me.LBLTOTALMTRS = New System.Windows.Forms.Label()
+        Me.LBLTOTALWT = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GRIDBEAM = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -85,6 +85,8 @@ Partial Class BeamJobOut
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.LBLPROCESS = New System.Windows.Forms.Label()
+        Me.CMBPROCESS = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -98,6 +100,8 @@ Partial Class BeamJobOut
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.LBLPROCESS)
+        Me.BlendPanel1.Controls.Add(Me.CMBPROCESS)
         Me.BlendPanel1.Controls.Add(Me.LBLEINVGENERATED)
         Me.BlendPanel1.Controls.Add(Me.CMDSELECTYARNISSUE)
         Me.BlendPanel1.Controls.Add(Me.LBLTAPLINE)
@@ -150,7 +154,7 @@ Partial Class BeamJobOut
         Me.CMDSELECTYARNISSUE.Name = "CMDSELECTYARNISSUE"
         Me.CMDSELECTYARNISSUE.Size = New System.Drawing.Size(123, 28)
         Me.CMDSELECTYARNISSUE.TabIndex = 3
-        Me.CMDSELECTYARNISSUE.Text = "&Select Job Order"
+        Me.CMDSELECTYARNISSUE.Text = "&Select Beam Stock"
         Me.CMDSELECTYARNISSUE.UseVisualStyleBackColor = False
         '
         'LBLTAPLINE
@@ -288,8 +292,8 @@ Partial Class BeamJobOut
         '
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TabPage1.Controls.Add(Me.LBLTOTALJOBMTRS)
-        Me.TabPage1.Controls.Add(Me.LBLTOTALBEAMMTRS)
+        Me.TabPage1.Controls.Add(Me.LBLTOTALMTRS)
+        Me.TabPage1.Controls.Add(Me.LBLTOTALWT)
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.GRIDBEAM)
         Me.TabPage1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -300,29 +304,29 @@ Partial Class BeamJobOut
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "1. Item Details"
         '
-        'LBLTOTALJOBMTRS
+        'LBLTOTALMTRS
         '
-        Me.LBLTOTALJOBMTRS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTOTALJOBMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTOTALJOBMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALJOBMTRS.Location = New System.Drawing.Point(963, 234)
-        Me.LBLTOTALJOBMTRS.Name = "LBLTOTALJOBMTRS"
-        Me.LBLTOTALJOBMTRS.Size = New System.Drawing.Size(58, 15)
-        Me.LBLTOTALJOBMTRS.TabIndex = 647
-        Me.LBLTOTALJOBMTRS.Text = "0"
-        Me.LBLTOTALJOBMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALMTRS.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(963, 234)
+        Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
+        Me.LBLTOTALMTRS.Size = New System.Drawing.Size(58, 15)
+        Me.LBLTOTALMTRS.TabIndex = 647
+        Me.LBLTOTALMTRS.Text = "0"
+        Me.LBLTOTALMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'LBLTOTALBEAMMTRS
+        'LBLTOTALWT
         '
-        Me.LBLTOTALBEAMMTRS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTOTALBEAMMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTOTALBEAMMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALBEAMMTRS.Location = New System.Drawing.Point(1069, 234)
-        Me.LBLTOTALBEAMMTRS.Name = "LBLTOTALBEAMMTRS"
-        Me.LBLTOTALBEAMMTRS.Size = New System.Drawing.Size(58, 15)
-        Me.LBLTOTALBEAMMTRS.TabIndex = 646
-        Me.LBLTOTALBEAMMTRS.Text = "0"
-        Me.LBLTOTALBEAMMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(1069, 234)
+        Me.LBLTOTALWT.Name = "LBLTOTALWT"
+        Me.LBLTOTALWT.Size = New System.Drawing.Size(58, 15)
+        Me.LBLTOTALWT.TabIndex = 646
+        Me.LBLTOTALWT.Text = "0"
+        Me.LBLTOTALWT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label7
         '
@@ -730,6 +734,31 @@ Partial Class BeamJobOut
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'LBLPROCESS
+        '
+        Me.LBLPROCESS.AutoSize = True
+        Me.LBLPROCESS.BackColor = System.Drawing.Color.Transparent
+        Me.LBLPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLPROCESS.ForeColor = System.Drawing.Color.Black
+        Me.LBLPROCESS.Location = New System.Drawing.Point(14, 121)
+        Me.LBLPROCESS.Name = "LBLPROCESS"
+        Me.LBLPROCESS.Size = New System.Drawing.Size(84, 15)
+        Me.LBLPROCESS.TabIndex = 940
+        Me.LBLPROCESS.Text = "Process Name"
+        '
+        'CMBPROCESS
+        '
+        Me.CMBPROCESS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBPROCESS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBPROCESS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBPROCESS.FormattingEnabled = True
+        Me.CMBPROCESS.Location = New System.Drawing.Point(101, 117)
+        Me.CMBPROCESS.MaxDropDownItems = 14
+        Me.CMBPROCESS.Name = "CMBPROCESS"
+        Me.CMBPROCESS.Size = New System.Drawing.Size(217, 23)
+        Me.CMBPROCESS.TabIndex = 939
+        '
         'BeamJobOut
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -771,8 +800,8 @@ Partial Class BeamJobOut
     Friend WithEvents tstxtbillno As TextBox
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents LBLTOTALJOBMTRS As Label
-    Friend WithEvents LBLTOTALBEAMMTRS As Label
+    Friend WithEvents LBLTOTALMTRS As Label
+    Friend WithEvents LBLTOTALWT As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents GRIDBEAM As DataGridView
     Friend WithEvents DTBEAMJODATE As MaskedTextBox
@@ -812,4 +841,6 @@ Partial Class BeamJobOut
     Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
+    Friend WithEvents LBLPROCESS As Label
+    Friend WithEvents CMBPROCESS As ComboBox
 End Class
