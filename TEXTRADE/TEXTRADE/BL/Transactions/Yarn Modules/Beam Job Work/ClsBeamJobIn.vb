@@ -39,7 +39,7 @@ Public Class ClsBeamJobIn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@BEAMJONO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@JONO", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
@@ -123,7 +123,7 @@ Public Class ClsBeamJobIn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@BEAMJONO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@JONO", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
