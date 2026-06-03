@@ -42,7 +42,7 @@ Public Class YarnLoomEfficiency
 
     Private Sub cmbitemname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBITEMNAME.Enter, CMBYARNQ.Enter
         Try
-            If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, edit)
+            If CMBITEMNAME.Text.Trim = "" Then fillBEAM(CMBITEMNAME, edit)
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -789,6 +789,9 @@ line1:
     End Sub
     Private Sub CMBLOOM_Validated(sender As Object, e As EventArgs) Handles CMBLOOM.Validated
         Try
+            If gridDoubleClick = True Then
+                Exit Sub
+            End If
             If dtLoom IsNot Nothing Then
                 For Each dr As DataRow In dtLoom.Rows
                     If dr("LOOM_NO").ToString.Trim = CMBLOOM.Text.Trim Then
@@ -815,8 +818,11 @@ line1:
         numkeypress(e, TXTBEAMNO, Me)
     End Sub
 
+    'Private Sub TXTRECMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTRECMTRS.KeyPress, TXTRPM.KeyPress, TXTPICKS.KeyPress, TXTWEFT.KeyPress, TXTWARP.KeyPress, TXTEFFPER.KeyPress, TXTAVGPICK.KeyPress
+    '    numdotkeypress(e, TXTRECMTRS, Me)
+    'End Sub
     Private Sub TXTRECMTRS_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTRECMTRS.KeyPress, TXTRPM.KeyPress, TXTPICKS.KeyPress, TXTWEFT.KeyPress, TXTWARP.KeyPress, TXTEFFPER.KeyPress, TXTAVGPICK.KeyPress
-        numdotkeypress(e, TXTRECMTRS, Me)
+        numdotkeypress(e, CType(sender, TextBox), Me)
     End Sub
     Function CHECKLOOM() As Boolean
         Try
