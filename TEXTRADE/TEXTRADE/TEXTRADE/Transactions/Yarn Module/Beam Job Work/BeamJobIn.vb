@@ -2,6 +2,7 @@
 Imports System.ComponentModel
 Imports BL
 Imports DevExpress.Diagram.Core.Native
+Imports DevExpress.XtraGrid.Views.Base
 Public Class BeamJobIn
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim GRIDDOUBLECLICK, GRIDUPLOADDOUBLECLICK As Boolean
@@ -29,8 +30,8 @@ Public Class BeamJobIn
             Dim alParaval As New ArrayList
 
             alParaval.Add(Format(Convert.ToDateTime(DTBEAMJODATE.Text.Trim).Date, "MM/dd/yyyy"))
-            alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(CMBGODOWN.Text.Trim)
+            alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(TXTREMARKS.Text.Trim)
             alParaval.Add(Val(LBLTOTALJOBMTRS.Text.Trim))
             alParaval.Add(Val(LBLTOTALBEAMMTRS.Text.Trim))
@@ -316,9 +317,9 @@ LINE1:
         EP.Clear()
         lbllocked.Visible = False
         PBlock.Visible = False
-
+        CMBJONO.Text = ""
         TXTREMARKS.Clear()
-
+        CMBNAME.Enabled = True
 
         GRIDBEAM.RowCount = 0
 
@@ -574,7 +575,7 @@ LINE1:
                     CMBNAME.Text = dttable.Rows(0).Item("NAME").ToString
                     CMBGODOWN.Text = dttable.Rows(0).Item("GODOWN").ToString
                     TXTREMARKS.Text = dttable.Rows(0).Item("REMARKS").ToString
-
+                    CMBJONO.Text = dttable.Rows(0).Item("JONO")
 
 
 
@@ -582,7 +583,7 @@ LINE1:
 
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
-                        GRIDBEAM.Rows.Add(Val(ROW("SRNO")), Val(ROW("BEAMNO")), ROW("BEAMNAME"), ROW("MILLNAME"), Val(ROW("TOTALENDS")), Val(ROW("TOTALMTRS")), ROW("WT"), Val(ROW("GAMANO")), Val(ROW("SECTION")), Val(ROW("ROLLNO")), Val(ROW("BREAKAGE")), ROW("GRIDREMARKS"), ROW("FROMNO"), ROW("FROMSRNO"), ROW("FROMTYPE"))
+                        GRIDBEAM.Rows.Add(Val(ROW("GRIDSRNO")), Val(ROW("BEAMNO")), ROW("BEAMNAME"), ROW("MILLNAME"), Val(ROW("GRIDTOTALENDS")), Val(ROW("GRIDTOTALMTRS")), ROW("BEAMWT"), Val(ROW("GAMANO")), Val(ROW("SECTION")), Val(ROW("ROLLNO")), Val(ROW("BREAKAGE")), ROW("GRIDREMARKS"), ROW("FROMNO"), ROW("FROMSRNO"), ROW("FROMTYPE"), ROW("GRIDDONE"), Val(ROW("OUTWT")))
 
                         'If Convert.ToBoolean(ROW("GRIDDONE")) = True Then
                         '    lbllocked.Visible = True
@@ -802,7 +803,7 @@ LINE1:
                 '    DT = OBJCMN.SEARCH(" JONO ", "", " LOT_VIEW ", " AND JOBBERNAME ='" & CMBNAME.Text.Trim & "' AND BALPCS > 0 AND ISNULL(LOTCOMPLETED,0)=0 AND ISNULL(DYEINGJOB,'') = 'JOB' AND YEARID = " & YearId)
                 'Else
                 'DT = OBJCMN.SEARCH(" JONO ", "", " (SELECT BEAMJOBOUT.BJO_no AS JONO FROM BEAMJOBOUT INNER JOIN LEDGERS ON BEAMJOBOUT.BJO_ledgerid = LEDGERS.Acc_id WHERE LEDGERS.Acc_CMPNAME='" & CMBNAME.Text.Trim & "' AND ROUND((JOBOUT.JO_TOTALMTRS - JOBOUT.JO_RECDMTRS),2) > 0 AND JOBOUT.JO_CLOSE=0 AND ISNULL(JOBOUT.JO_LOTCOMPLETED,0)=0 AND JOBOUT.JO_YEARID = " & YearId & " UNION ALL SELECT DISTINCT SM_BILLNO AS JONO FROM STOCKMASTER INNER JOIN LEDGERS ON STOCKMASTER.SM_LEDGERIDTO= LEDGERS.Acc_id WHERE LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND ROUND((SM_MTRS - SM_OUTMTRS),2) > 0 AND SM_BILLNO <> 0 AND ISNULL(SM_LOTCOMPLETED,0)=0 AND SM_YEARID = " & YearId & " AND (ISNULL(SM_DYEINGJOB,'')= '' OR ISNULL(SM_DYEINGJOB,'') = 'JOB')) AS T", "")
-                DT = OBJCMN.SEARCH(" JONO ", "", " (SELECT BEAMJOBOUT.BJO_no AS JONO FROMBEAMJOBOUT INNER JOIN LEDGERS ON BEAMJOBOUT.BJO_ledgerid = LEDGERS.Acc_id INNER JOIN BEAMJOBOUT_DESC ON BEAMJOBOUT.BJO_NO = BEAMJOBOUT_DESC.BJO_NO AND BEAMJOBOUT.BJO_YEARID = BEAMJOBOUT_DESC.BJO_YEARID  WHERE LEDGERS.Acc_CMPNAME='" & CMBNAME.Text.Trim & "' AND ROUND((BEAMJOBOUT_DESC.BJO_BEAMWT - BEAMJOBOUT_DESC.BJO_OUTWT),2) > 0 AND BEAMJOBOUT.BJO_CLOSE=0  AND BEAMJOBOUT.BJO_YEARID = " & YearId & " ) AS T", "")
+                DT = OBJCMN.SEARCH(" JONO ", "", " (SELECT DISTINCT BEAMJOBOUT.BJO_no AS JONO FROM BEAMJOBOUT INNER JOIN LEDGERS ON BEAMJOBOUT.BJO_ledgerid = LEDGERS.Acc_id INNER JOIN BEAMJOBOUT_DESC ON BEAMJOBOUT.BJO_NO = BEAMJOBOUT_DESC.BJO_NO AND BEAMJOBOUT.BJO_YEARID = BEAMJOBOUT_DESC.BJO_YEARID  WHERE LEDGERS.Acc_CMPNAME='" & CMBNAME.Text.Trim & "' AND ROUND((BEAMJOBOUT_DESC.BJO_BEAMWT - BEAMJOBOUT_DESC.BJO_OUTWT),2) > 0   AND BEAMJOBOUT.BJO_YEARID = " & YearId & " ) AS T", "")
 
                 'End If
                 If DT.Rows.Count > 0 Then
@@ -818,6 +819,29 @@ LINE1:
     End Sub
 
     Private Sub CMBJONO_Validated(sender As Object, e As EventArgs) Handles CMBJONO.Validated
+        Try
+            If Val(CMBJONO.Text.Trim) = 0 Then Exit Sub
 
+            GRIDBEAM.RowCount = 0
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("BJO_GRIDSRNO AS GRIDSRNO, BJO_BEAMNO AS BEAMNO, BJO_BEAMNAME AS BEAMNAME, BJO_TOTALENDS AS GRIDTOTALENDS, BJO_TOTALMTRS AS GRIDTOTALMTRS, BJO_BEAMWT AS BEAMWT, BJO_GAMANO AS GAMANO, BJO_SECTION AS SECTION, BJO_BREAKAGE AS BREAKAGE, ISNULL(MILLMASTER.MILL_NAME, '') AS MILLNAME, BEAMJOBOUT_DESC.BJO_ROLLID AS ROLLNO,BEAMJOBOUT_DESC.BJO_REMARKS AS GRIDREMARKS , BEAMJOBOUT_DESC.BJO_NO AS FROMNO , BEAMJOBOUT_DESC.BJO_FROMSRNO AS FROMSRNO, 'BEAMJOBOUT' AS FROMTYPE", "", "BEAMJOBOUT_DESC LEFT OUTER JOIN MILLMASTER ON BEAMJOBOUT_DESC.BJO_MILLID = MILLMASTER.MILL_ID AND BEAMJOBOUT_DESC.BJO_YEARID = MILLMASTER.MILL_YEARID", " AND BJO_NO = " & Val(CMBJONO.Text.Trim) & " AND BJO_YEARID = " & YearId & " AND BJO_CMPID = " & CmpId)
+
+            If DT.Rows.Count > 0 Then
+                For Each DR As DataRow In DT.Rows
+                    GRIDBEAM.Rows.Add(0, Val(DR("BEAMNO")), DR("BEAMNAME"), DR("MILLNAME"), Val(DR("GRIDTOTALENDS")), Format(Val(DR("GRIDTOTALMTRS")), "0.00"), Format(Val(DR("BEAMWT")), "0.00"), Val(DR("GAMANO")), Val(DR("SECTION")), Val(DR("ROLLNO")), Format(Val(DR("BREAKAGE")), "0.00"), DR("GRIDREMARKS").ToString, Val(DR("FROMNO")), Val(DR("FROMSRNO")), DR("FROMTYPE"))
+                Next
+                TOTAL()
+                getsrno(GRIDBEAM)
+
+            Else
+                MsgBox("No Details Found For This Job No", MsgBoxStyle.Information)
+                CMBJONO.Text = ""
+                CMBJONO.Focus()
+            End If
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
     End Sub
 End Class

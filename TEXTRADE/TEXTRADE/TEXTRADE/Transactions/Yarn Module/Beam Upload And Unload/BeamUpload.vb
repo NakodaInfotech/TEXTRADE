@@ -400,7 +400,7 @@ LINE1:
             Dim dttable As DataTable
             Dim OBJCMN As New ClsCommon
 
-            dttable = OBJCMN.SEARCH(" b.BEAMNO AS BEAMNO , b.BEAMNAME AS BEAMNAME", "", " BEAMSTOCKATJOBBER b ", "And Not EXISTS(SELECT 1 FROM BEAMUPLOAD u WHERE u.BEAMUPLOAD_BEAMID = b.BEAMNO ) And DONE = 'FALSE'   AND YEARID = " & YearId & " ORDER BY DATE DESC ")
+            dttable = OBJCMN.SEARCH(" b.BEAMNO AS BEAMNO , b.BEAMNAME AS BEAMNAME", "", " BEAMSTOCKATJOBBER b ", "And Not EXISTS(SELECT 1 FROM BEAMUPLOAD u WHERE u.BEAMUPLOAD_BEAMNAME = b.BEAMNO ) And DONE = 'FALSE'   AND YEARID = " & YearId & " ORDER BY DATE DESC ")
             If dttable.Rows.Count > 0 Then
                 For Each row As DataRow In dttable.Rows
                     If Not IsDBNull(row("BEAMNO")) AndAlso row("BEAMNO").ToString().Trim <> "" Then
