@@ -103,8 +103,8 @@ Public Class SamplePriceList
 
             OBJSPL.ALPARAVAL.Add(CMBAGENT.Text.Trim)
             OBJSPL.ALPARAVAL.Add(CMBGODOWN.Text.Trim)
-            OBJSPL.ALPARAVAL.Add(Val(LBLTOTALMTRS.Text.Trim))
-            OBJSPL.ALPARAVAL.Add(Val(LBLTOTALAMT.Text.Trim))
+            'OBJSPL.ALPARAVAL.Add(Val(LBLTOTALMTRS.Text.Trim))
+            'OBJSPL.ALPARAVAL.Add(Val(LBLTOTALAMT.Text.Trim))
 
 
 
