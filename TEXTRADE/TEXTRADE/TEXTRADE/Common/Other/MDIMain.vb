@@ -12579,5 +12579,23 @@ SKIPLINE:
         End Try
     End Sub
 
+    Private Sub BEAMJOBIN_ADD_Click(sender As Object, e As EventArgs) Handles BEAMJOBIN_ADD.Click
+        Try
+            Dim OBJSHELF As New BeamJobIn
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
+    Private Sub BEAMJOBOUT_ADD_Click(sender As Object, e As EventArgs) Handles BEAMJOBOUT_ADD.Click
+        Try
+            Dim OBJSHELF As New BeamJobOut
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

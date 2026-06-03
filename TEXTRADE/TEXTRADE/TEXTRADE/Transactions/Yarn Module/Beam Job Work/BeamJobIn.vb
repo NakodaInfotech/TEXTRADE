@@ -34,7 +34,8 @@ Public Class BeamJobIn
             alParaval.Add(TXTREMARKS.Text.Trim)
             alParaval.Add(Val(LBLTOTALJOBMTRS.Text.Trim))
             alParaval.Add(Val(LBLTOTALBEAMMTRS.Text.Trim))
-            alParaval.Add(Val(LBLTAPLINE.Text.Trim))
+            'alParaval.Add(Val(LBLTAPLINE.Text.Trim))
+            alParaval.Add(CMBJONO.Text.Trim)
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
@@ -54,6 +55,8 @@ Public Class BeamJobIn
             Dim ROLLNO As String = ""
             Dim BREAKAGE As String = ""
             Dim GRIDREMARKS As String = ""
+            Dim GRIDDONE As String = ""
+            Dim OUTWT As String = ""
             Dim FROMNO As String = ""
             Dim FROMSRNO As String = ""
             Dim FROMTYPE As String = ""
@@ -78,6 +81,9 @@ Public Class BeamJobIn
                         FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
                         FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
 
+                        GRIDDONE = Val(row.Cells(GGRIDDONE.Index).Value)
+                        OUTWT = Val(row.Cells(GOUTWT.Index).Value)
+
 
                     Else
 
@@ -96,6 +102,9 @@ Public Class BeamJobIn
                         FROMNO = FROMNO & "|" & Val(row.Cells(GFROMNO.Index).Value)
                         FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
                         FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
+
+                        GRIDDONE = GRIDDONE & "|" & Val(row.Cells(GGRIDDONE.Index).Value)
+                        OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
 
 
                     End If
@@ -116,9 +125,12 @@ Public Class BeamJobIn
             alParaval.Add(GRIDREMARKS)
             alParaval.Add(FROMNO)
             alParaval.Add(FROMSRNO)
+            alParaval.Add(FROMTYPE)
+            alParaval.Add(GRIDDONE)
+            alParaval.Add(OUTWT)
 
 
-            Dim OBJBEAMREC As New ClsBeamReceivedWarper
+            Dim OBJBEAMREC As New ClsBeamJobIn
             OBJBEAMREC.alParaval = alParaval
 
             If EDIT = False Then
@@ -503,7 +515,7 @@ LINE1:
                     alParaval.Add(TEMPBEAMJONO)
                     alParaval.Add(YearId)
 
-                    Dim OBJDEL As New ClsBeamReceivedWarper
+                    Dim OBJDEL As New ClsBeamJobIn
                     OBJDEL.alParaval = alParaval
                     Dim IntResult As Integer = OBJDEL.Delete()
                     MsgBox("Entry Deleted")
@@ -548,7 +560,7 @@ LINE1:
                 End If
 
                 Dim dttable As New DataTable
-                Dim OBJBEAMREC As New ClsBeamReceivedWarper
+                Dim OBJBEAMREC As New ClsBeamJobIn
 
                 OBJBEAMREC.alParaval.Add(TEMPBEAMJONO)
                 OBJBEAMREC.alParaval.Add(YearId)
@@ -769,4 +781,39 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMBNAME_Validated(sender As Object, e As EventArgs) Handles CMBNAME.Validated
+        Try
+            If EDIT = False And CMBNAME.Text.Trim <> "" Then
+                CMBJONO.Items.Clear()
+                'FILL JOBOUT NO
+                'IF USER HAS NOT WRITTEN BILLNO THEN IT WONT BE SHOWN HERE
+                'IF USER HAS WRITTEN LOTNO THEN IT WONT BE SHOWN HERE
+                Dim OBJCMN As New ClsCommon
+
+                ''WE HAVE CHANGED THE CODE FOR OPENING BY GULKIT, COZ WHEN WE TRANSFER STOCK FROM LAST YEAR WE WILL NEED JOBOUT LOTNO IN THIS YEAR'S OPENING
+                ''AND IF WE KEEP LOTNO BLANK THEN IT WONT BE FETCHED IN JOBIN
+                ''Dim DT As DataTable = OBJCMN.search(" JONO ", "", " (SELECT JOBOUT.JO_no AS JONO FROM JOBOUT INNER JOIN LEDGERS ON JOBOUT.JO_ledgerid = LEDGERS.Acc_id WHERE LEDGERS.Acc_CMPNAME='" & cmbname.Text.Trim & "' AND ROUND((JOBOUT.JO_TOTALMTRS - JOBOUT.JO_RECDMTRS),2) > 0 AND JOBOUT.JO_CLOSE=0 AND JOBOUT.JO_YEARID = " & YearId & " UNION ALL SELECT DISTINCT SM_BILLNO AS JONO FROM STOCKMASTER INNER JOIN LEDGERS ON STOCKMASTER.SM_LEDGERIDTO= LEDGERS.Acc_id WHERE LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ROUND((SM_MTRS - SM_OUTMTRS),2) > 0 AND SM_BILLNO <> 0 AND (SM_LOTNO = '' or SM_LOTNO = 0) AND SM_YEARID = " & YearId & ") AS T", "")
+
+
+                ''THIS CODE IS FOR MTRS, IF CLIENT IS ON LOTSTATUS ON PCS THEN GIVES ISSUE
+                ''Dim DT As DataTable = OBJCMN.SEARCH(" JONO ", "", " (SELECT JOBOUT.JO_no AS JONO FROM JOBOUT INNER JOIN LEDGERS ON JOBOUT.JO_ledgerid = LEDGERS.Acc_id WHERE LEDGERS.Acc_CMPNAME='" & cmbname.Text.Trim & "' AND ROUND((JOBOUT.JO_TOTALMTRS - JOBOUT.JO_RECDMTRS),2) > 0 AND JOBOUT.JO_CLOSE=0 AND ISNULL(JOBOUT.JO_LOTCOMPLETED,0)=0 AND JOBOUT.JO_YEARID = " & YearId & " UNION ALL SELECT DISTINCT SM_BILLNO AS JONO FROM STOCKMASTER INNER JOIN LEDGERS ON STOCKMASTER.SM_LEDGERIDTO= LEDGERS.Acc_id WHERE LEDGERS.ACC_CMPNAME = '" & cmbname.Text.Trim & "' AND ROUND((SM_MTRS - SM_OUTMTRS),2) > 0 AND SM_BILLNO <> 0 AND ISNULL(SM_LOTCOMPLETED,0)=0 AND SM_YEARID = " & YearId & " AND (ISNULL(SM_DYEINGJOB,'')= '' OR ISNULL(SM_DYEINGJOB,'') = 'JOB')) AS T", "")
+                Dim DT As New DataTable
+                'If LOTSTATUSONMTRS = False Then
+                '    DT = OBJCMN.SEARCH(" JONO ", "", " LOT_VIEW ", " AND JOBBERNAME ='" & CMBNAME.Text.Trim & "' AND BALPCS > 0 AND ISNULL(LOTCOMPLETED,0)=0 AND ISNULL(DYEINGJOB,'') = 'JOB' AND YEARID = " & YearId)
+                'Else
+                'DT = OBJCMN.SEARCH(" JONO ", "", " (SELECT BEAMJOBOUT.BJO_no AS JONO FROM BEAMJOBOUT INNER JOIN LEDGERS ON BEAMJOBOUT.BJO_ledgerid = LEDGERS.Acc_id WHERE LEDGERS.Acc_CMPNAME='" & CMBNAME.Text.Trim & "' AND ROUND((JOBOUT.JO_TOTALMTRS - JOBOUT.JO_RECDMTRS),2) > 0 AND JOBOUT.JO_CLOSE=0 AND ISNULL(JOBOUT.JO_LOTCOMPLETED,0)=0 AND JOBOUT.JO_YEARID = " & YearId & " UNION ALL SELECT DISTINCT SM_BILLNO AS JONO FROM STOCKMASTER INNER JOIN LEDGERS ON STOCKMASTER.SM_LEDGERIDTO= LEDGERS.Acc_id WHERE LEDGERS.ACC_CMPNAME = '" & CMBNAME.Text.Trim & "' AND ROUND((SM_MTRS - SM_OUTMTRS),2) > 0 AND SM_BILLNO <> 0 AND ISNULL(SM_LOTCOMPLETED,0)=0 AND SM_YEARID = " & YearId & " AND (ISNULL(SM_DYEINGJOB,'')= '' OR ISNULL(SM_DYEINGJOB,'') = 'JOB')) AS T", "")
+                DT = OBJCMN.SEARCH(" JONO ", "", " (SELECT BEAMJOBOUT.BJO_no AS JONO FROMBEAMJOBOUT INNER JOIN LEDGERS ON BEAMJOBOUT.BJO_ledgerid = LEDGERS.Acc_id INNER JOIN BEAMJOBOUT_DESC ON BEAMJOBOUT.BJO_NO = BEAMJOBOUT_DESC.BJO_NO AND BEAMJOBOUT.BJO_YEARID = BEAMJOBOUT_DESC.BJO_YEARID  WHERE LEDGERS.Acc_CMPNAME='" & CMBNAME.Text.Trim & "' AND ROUND((BEAMJOBOUT_DESC.BJO_BEAMWT - BEAMJOBOUT_DESC.BJO_OUTWT),2) > 0 AND BEAMJOBOUT.BJO_CLOSE=0  AND BEAMJOBOUT.BJO_YEARID = " & YearId & " ) AS T", "")
+
+                'End If
+                If DT.Rows.Count > 0 Then
+                    For Each DTROW As DataRow In DT.Rows
+                        CMBJONO.Items.Add(DTROW("JONO"))
+                    Next
+                    CMBNAME.Enabled = False
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
