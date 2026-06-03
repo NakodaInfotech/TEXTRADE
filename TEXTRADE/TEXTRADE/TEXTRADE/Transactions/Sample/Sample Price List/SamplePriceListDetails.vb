@@ -134,7 +134,7 @@ Public Class SamplePriceListDetails
                 Exit Sub
             End If
 
-            fillgrid(" and dbo.SAMPLEPRICELIST.SPL_yearid=" & YearId & " order by dbo.SAMPLEPRICELIST.SPL_NO, SAMPLEPRICELIST_DESC.SMP_GRIDSRNO ")
+            fillgrid(" and dbo.SAMPLEPRICELIST.SPL_yearid=" & YearId & " order by dbo.SAMPLEPRICELIST.SPL_NO ")
         Catch ex As Exception
             Throw ex
         End Try
