@@ -1376,7 +1376,7 @@ Public Class DesignCardMaster
     Private Sub DesignCardMaster_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         Try
             If (e.Alt = True And e.KeyCode = Windows.Forms.Keys.X) Or (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
-                If errorvalid() = True Then
+                If ERRORVALID() = True Then
                     Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
                     If tempmsg = vbYes Then cmdok_Click(sender, e)
                 End If
@@ -1996,7 +1996,7 @@ LINE1:
     End Sub
 
     Private Sub CMDCLEAR_Click(sender As Object, e As EventArgs) Handles CMDCLEAR.Click
-        clear()
+        CLEAR()
         EDIT = False
     End Sub
 
@@ -2897,7 +2897,7 @@ LINE1:
                 DesignCardMaster_Load(sender, e)
                 Exit Sub
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
             If GRIDWARP.RowCount = 0 And tempdesignno > 1 Then
@@ -2923,7 +2923,7 @@ LINE1:
             'temptypename = cmbtype.Text.Trim
             getmaxno()
             Dim MAXNO As Integer = txtcardno.Text.Trim
-            clear()
+            CLEAR()
             If Val(txtcardno.Text) - 1 >= tempdesignno Then
                 EDIT = True
                 DesignCardMaster_Load(sender, e)
@@ -3029,7 +3029,7 @@ LINE1:
                     IntResult = Clsgrn.Delete()
 
                     MsgBox("Design Card Deleted")
-                    clear()
+                    CLEAR()
                     EDIT = False
                 End If
             Else
@@ -3115,7 +3115,7 @@ LINE1:
     Private Sub CMDCLOSESEL_Click_1(sender As Object, e As EventArgs) Handles CMDCLOSESEL.Click
         Try
             If GRIDSELVEDGE.RowCount >= 0 And CMBSELYARNQUALITY.Text <> "" And CMBSELGSYM.Text <> "" Then
-                fillselvedgegrid()
+                FILLSELVEDGEGRID()
                 CALC()
                 TOTAL()
             End If
@@ -3996,7 +3996,7 @@ line1:
     Private Sub CMDWARPCLOSE_Click(sender As Object, e As EventArgs) Handles CMDWARPCLOSE.Click
         Try
             If GRIDWARP.RowCount >= 0 And CMBWARPQUALITY.Text <> "" And CMBGRIDSYM.Text <> "" Then
-                fillwarpgrid()
+                FILLWARPGRID()
                 CALC()
                 TOTAL()
             End If
@@ -4299,41 +4299,37 @@ line1:
     End Sub
     Sub pegplan()
         Try
-            Dim planRow As Integer = -1   ' row index for GRIDPEGPLAN
+            If GRIDPEGPLAN.ColumnCount < 26 Then
+                FILLPEGPLAN()
+            End If
+
+            Dim planRow As Integer = -1
 
             For srcRow As Integer = 0 To GRIDPEG.Rows.Count - 1
-
                 Dim srcDgvRow As DataGridViewRow = GRIDPEG.Rows(srcRow)
                 If srcDgvRow.IsNewRow Then Continue For
 
-                ' ----- READ PPENDS SAFELY -----
                 Dim pickStr As String = String.Empty
                 Dim cellPP As DataGridViewCell = srcDgvRow.Cells("PPENDS")
-
                 If cellPP IsNot Nothing AndAlso
                cellPP.Value IsNot Nothing AndAlso
                Not IsDBNull(cellPP.Value) Then
-
                     pickStr = cellPP.Value.ToString().Trim()
                 End If
 
-                ' Agar PPENDS blank hai, to ye row ignore kar do
                 If String.IsNullOrWhiteSpace(pickStr) Then Continue For
 
-                ' Ye GRIDPEGPLAN ki next row hai (sirf non-blank PPENDS rows ke liye)
                 planRow += 1
                 If planRow < 0 OrElse planRow >= GRIDPEGPLAN.RowCount Then Exit For
 
-                ' ----- PEG LOGIC (same as before) -----
+                ' ----- PEG LOGIC -----
                 Dim closingBracketIndex As Integer = pickStr.IndexOfAny(New Char() {")"c, "}"c, "]"c})
                 If closingBracketIndex >= 0 Then
                     pickStr = pickStr.Substring(0, closingBracketIndex)
                 End If
-
                 pickStr = pickStr.Replace("(", "").Replace("{", "").Replace("[", "").Trim()
 
                 Dim picks() As String = pickStr.Split("."c)
-
                 For Each pickVal As String In picks
                     Dim pickNum As Integer
                     If Integer.TryParse(pickVal, pickNum) Then
@@ -4344,20 +4340,18 @@ line1:
                     End If
                 Next
 
-                ' ----- COPY SYM -> PPSYM (LAST COLUMN) -----
+                ' ----- COPY SYM -> PPSYM -----
                 Dim symText As String = String.Empty
-                ' yaha column ka naam jo tumne GRIDPEG me rakha hai, use karo: "SYM" / "PPSYM"
                 Dim symCell As DataGridViewCell = srcDgvRow.Cells(14)
-
                 If symCell IsNot Nothing AndAlso
                symCell.Value IsNot Nothing AndAlso
                Not IsDBNull(symCell.Value) Then
-
                     symText = symCell.Value.ToString().Trim()
                 End If
 
-                ' PPSYM (last column index 25)
-                GRIDPEGPLAN.Rows(planRow).Cells(25).Value = symText
+                If GRIDPEGPLAN.ColumnCount > 25 Then
+                    GRIDPEGPLAN.Rows(planRow).Cells(25).Value = symText
+                End If
 
             Next
 
