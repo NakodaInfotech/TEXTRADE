@@ -27,10 +27,12 @@ Partial Class BeamJobOut
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamJobOut))
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamJobOut))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLPROCESS = New System.Windows.Forms.Label()
+        Me.CMBPROCESS = New System.Windows.Forms.ComboBox()
         Me.LBLEINVGENERATED = New System.Windows.Forms.Label()
         Me.CMDSELECTYARNISSUE = New System.Windows.Forms.Button()
         Me.LBLTAPLINE = New System.Windows.Forms.Label()
@@ -49,21 +51,6 @@ Partial Class BeamJobOut
         Me.LBLTOTALWT = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GRIDBEAM = New System.Windows.Forms.DataGridView()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBEAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBEAMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTOTALENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GTOTALMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGAMANO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSECTION = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GROLLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GBREAKAGE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DTBEAMJODATE = New System.Windows.Forms.MaskedTextBox()
         Me.TXTBEAMJONO = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -85,8 +72,23 @@ Partial Class BeamJobOut
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LBLPROCESS = New System.Windows.Forms.Label()
-        Me.CMBPROCESS = New System.Windows.Forms.ComboBox()
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBEAMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBEAMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMILLNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTOTALENDS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GTOTALMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGAMANO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSECTION = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GROLLNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GBREAKAGE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGRIDREMARKS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGRIDDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -130,6 +132,31 @@ Partial Class BeamJobOut
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1238, 581)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'LBLPROCESS
+        '
+        Me.LBLPROCESS.AutoSize = True
+        Me.LBLPROCESS.BackColor = System.Drawing.Color.Transparent
+        Me.LBLPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLPROCESS.ForeColor = System.Drawing.Color.Black
+        Me.LBLPROCESS.Location = New System.Drawing.Point(14, 121)
+        Me.LBLPROCESS.Name = "LBLPROCESS"
+        Me.LBLPROCESS.Size = New System.Drawing.Size(84, 15)
+        Me.LBLPROCESS.TabIndex = 940
+        Me.LBLPROCESS.Text = "Process Name"
+        '
+        'CMBPROCESS
+        '
+        Me.CMBPROCESS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBPROCESS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBPROCESS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBPROCESS.FormattingEnabled = True
+        Me.CMBPROCESS.Location = New System.Drawing.Point(101, 117)
+        Me.CMBPROCESS.MaxDropDownItems = 14
+        Me.CMBPROCESS.Name = "CMBPROCESS"
+        Me.CMBPROCESS.Size = New System.Drawing.Size(217, 23)
+        Me.CMBPROCESS.TabIndex = 939
         '
         'LBLEINVGENERATED
         '
@@ -359,7 +386,7 @@ Partial Class BeamJobOut
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDBEAM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDBEAM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDBEAM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBEAMNO, Me.GBEAMNAME, Me.GMILLNAME, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GWT, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBREAKAGE, Me.GGRIDREMARKS, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
+        Me.GRIDBEAM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBEAMNO, Me.GBEAMNAME, Me.GMILLNAME, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GWT, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBREAKAGE, Me.GGRIDREMARKS, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GGRIDDONE, Me.GOUTWT})
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -385,138 +412,6 @@ Partial Class BeamJobOut
         Me.GRIDBEAM.Size = New System.Drawing.Size(1448, 230)
         Me.GRIDBEAM.TabIndex = 0
         Me.GRIDBEAM.TabStop = False
-        '
-        'GSRNO
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GSRNO.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 30
-        '
-        'GBEAMNO
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBEAMNO.DefaultCellStyle = DataGridViewCellStyle4
-        Me.GBEAMNO.HeaderText = "Beam No"
-        Me.GBEAMNO.Name = "GBEAMNO"
-        Me.GBEAMNO.ReadOnly = True
-        Me.GBEAMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBEAMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBEAMNO.Width = 75
-        '
-        'GBEAMNAME
-        '
-        Me.GBEAMNAME.HeaderText = "Beam Name"
-        Me.GBEAMNAME.Name = "GBEAMNAME"
-        Me.GBEAMNAME.ReadOnly = True
-        Me.GBEAMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBEAMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GBEAMNAME.Width = 200
-        '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.HeaderText = "Mill Name"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.ReadOnly = True
-        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GMILLNAME.Width = 200
-        '
-        'GTOTALENDS
-        '
-        Me.GTOTALENDS.HeaderText = "Total Ends"
-        Me.GTOTALENDS.Name = "GTOTALENDS"
-        Me.GTOTALENDS.ReadOnly = True
-        Me.GTOTALENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTALENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GTOTALMTRS
-        '
-        Me.GTOTALMTRS.HeaderText = "Total Mtrs"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.ReadOnly = True
-        Me.GTOTALMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GTOTALMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GWT
-        '
-        Me.GWT.HeaderText = "Weight"
-        Me.GWT.Name = "GWT"
-        Me.GWT.ReadOnly = True
-        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GGAMANO
-        '
-        Me.GGAMANO.HeaderText = "Gama No"
-        Me.GGAMANO.Name = "GGAMANO"
-        Me.GGAMANO.ReadOnly = True
-        Me.GGAMANO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GGAMANO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GSECTION
-        '
-        Me.GSECTION.HeaderText = "Section"
-        Me.GSECTION.Name = "GSECTION"
-        Me.GSECTION.ReadOnly = True
-        Me.GSECTION.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSECTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GROLLNO
-        '
-        Me.GROLLNO.HeaderText = "Roll No"
-        Me.GROLLNO.Name = "GROLLNO"
-        Me.GROLLNO.ReadOnly = True
-        Me.GROLLNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GROLLNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GBREAKAGE
-        '
-        Me.GBREAKAGE.HeaderText = "Breakage"
-        Me.GBREAKAGE.Name = "GBREAKAGE"
-        Me.GBREAKAGE.ReadOnly = True
-        Me.GBREAKAGE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GBREAKAGE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GGRIDREMARKS
-        '
-        Me.GGRIDREMARKS.HeaderText = "Remarks"
-        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
-        Me.GGRIDREMARKS.ReadOnly = True
-        Me.GGRIDREMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GGRIDREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GGRIDREMARKS.Width = 200
-        '
-        'GFROMNO
-        '
-        Me.GFROMNO.HeaderText = "From No"
-        Me.GFROMNO.Name = "GFROMNO"
-        Me.GFROMNO.ReadOnly = True
-        Me.GFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GFROMNO.Visible = False
-        '
-        'GFROMSRNO
-        '
-        Me.GFROMSRNO.HeaderText = "From Sr No"
-        Me.GFROMSRNO.Name = "GFROMSRNO"
-        Me.GFROMSRNO.ReadOnly = True
-        Me.GFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GFROMSRNO.Visible = False
-        '
-        'GFROMTYPE
-        '
-        Me.GFROMTYPE.HeaderText = "From Type"
-        Me.GFROMTYPE.Name = "GFROMTYPE"
-        Me.GFROMTYPE.ReadOnly = True
-        Me.GFROMTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GFROMTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GFROMTYPE.Visible = False
         '
         'DTBEAMJODATE
         '
@@ -734,30 +629,155 @@ Partial Class BeamJobOut
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'LBLPROCESS
+        'GSRNO
         '
-        Me.LBLPROCESS.AutoSize = True
-        Me.LBLPROCESS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLPROCESS.ForeColor = System.Drawing.Color.Black
-        Me.LBLPROCESS.Location = New System.Drawing.Point(14, 121)
-        Me.LBLPROCESS.Name = "LBLPROCESS"
-        Me.LBLPROCESS.Size = New System.Drawing.Size(84, 15)
-        Me.LBLPROCESS.TabIndex = 940
-        Me.LBLPROCESS.Text = "Process Name"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GSRNO.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 30
         '
-        'CMBPROCESS
+        'GBEAMNO
         '
-        Me.CMBPROCESS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBPROCESS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBPROCESS.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBPROCESS.FormattingEnabled = True
-        Me.CMBPROCESS.Location = New System.Drawing.Point(101, 117)
-        Me.CMBPROCESS.MaxDropDownItems = 14
-        Me.CMBPROCESS.Name = "CMBPROCESS"
-        Me.CMBPROCESS.Size = New System.Drawing.Size(217, 23)
-        Me.CMBPROCESS.TabIndex = 939
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBEAMNO.DefaultCellStyle = DataGridViewCellStyle4
+        Me.GBEAMNO.HeaderText = "Beam No"
+        Me.GBEAMNO.Name = "GBEAMNO"
+        Me.GBEAMNO.ReadOnly = True
+        Me.GBEAMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBEAMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBEAMNO.Width = 75
+        '
+        'GBEAMNAME
+        '
+        Me.GBEAMNAME.HeaderText = "Beam Name"
+        Me.GBEAMNAME.Name = "GBEAMNAME"
+        Me.GBEAMNAME.ReadOnly = True
+        Me.GBEAMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBEAMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GBEAMNAME.Width = 200
+        '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.HeaderText = "Mill Name"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.ReadOnly = True
+        Me.GMILLNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMILLNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GMILLNAME.Width = 200
+        '
+        'GTOTALENDS
+        '
+        Me.GTOTALENDS.HeaderText = "Total Ends"
+        Me.GTOTALENDS.Name = "GTOTALENDS"
+        Me.GTOTALENDS.ReadOnly = True
+        Me.GTOTALENDS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GTOTALENDS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GTOTALMTRS
+        '
+        Me.GTOTALMTRS.HeaderText = "Total Mtrs"
+        Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.ReadOnly = True
+        Me.GTOTALMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GTOTALMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GWT
+        '
+        Me.GWT.HeaderText = "Weight"
+        Me.GWT.Name = "GWT"
+        Me.GWT.ReadOnly = True
+        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GGAMANO
+        '
+        Me.GGAMANO.HeaderText = "Gama No"
+        Me.GGAMANO.Name = "GGAMANO"
+        Me.GGAMANO.ReadOnly = True
+        Me.GGAMANO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGAMANO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GSECTION
+        '
+        Me.GSECTION.HeaderText = "Section"
+        Me.GSECTION.Name = "GSECTION"
+        Me.GSECTION.ReadOnly = True
+        Me.GSECTION.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSECTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GROLLNO
+        '
+        Me.GROLLNO.HeaderText = "Roll No"
+        Me.GROLLNO.Name = "GROLLNO"
+        Me.GROLLNO.ReadOnly = True
+        Me.GROLLNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GROLLNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GBREAKAGE
+        '
+        Me.GBREAKAGE.HeaderText = "Breakage"
+        Me.GBREAKAGE.Name = "GBREAKAGE"
+        Me.GBREAKAGE.ReadOnly = True
+        Me.GBREAKAGE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GBREAKAGE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GGRIDREMARKS
+        '
+        Me.GGRIDREMARKS.HeaderText = "Remarks"
+        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
+        Me.GGRIDREMARKS.ReadOnly = True
+        Me.GGRIDREMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGRIDREMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGRIDREMARKS.Width = 200
+        '
+        'GFROMNO
+        '
+        Me.GFROMNO.HeaderText = "From No"
+        Me.GFROMNO.Name = "GFROMNO"
+        Me.GFROMNO.ReadOnly = True
+        Me.GFROMNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GFROMNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GFROMNO.Visible = False
+        '
+        'GFROMSRNO
+        '
+        Me.GFROMSRNO.HeaderText = "From Sr No"
+        Me.GFROMSRNO.Name = "GFROMSRNO"
+        Me.GFROMSRNO.ReadOnly = True
+        Me.GFROMSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GFROMSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GFROMSRNO.Visible = False
+        '
+        'GFROMTYPE
+        '
+        Me.GFROMTYPE.HeaderText = "From Type"
+        Me.GFROMTYPE.Name = "GFROMTYPE"
+        Me.GFROMTYPE.ReadOnly = True
+        Me.GFROMTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GFROMTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GFROMTYPE.Visible = False
+        '
+        'GGRIDDONE
+        '
+        Me.GGRIDDONE.HeaderText = "Done"
+        Me.GGRIDDONE.Name = "GGRIDDONE"
+        Me.GGRIDDONE.ReadOnly = True
+        Me.GGRIDDONE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGRIDDONE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGRIDDONE.Visible = False
+        '
+        'GOUTWT
+        '
+        Me.GOUTWT.HeaderText = "Out Wt"
+        Me.GOUTWT.Name = "GOUTWT"
+        Me.GOUTWT.ReadOnly = True
+        Me.GOUTWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GOUTWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GOUTWT.Visible = False
         '
         'BeamJobOut
         '
@@ -826,6 +846,8 @@ Partial Class BeamJobOut
     Friend WithEvents CMBGODOWN As ComboBox
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents LBLPROCESS As Label
+    Friend WithEvents CMBPROCESS As ComboBox
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GBEAMNO As DataGridViewTextBoxColumn
     Friend WithEvents GBEAMNAME As DataGridViewTextBoxColumn
@@ -841,6 +863,6 @@ Partial Class BeamJobOut
     Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
-    Friend WithEvents LBLPROCESS As Label
-    Friend WithEvents CMBPROCESS As ComboBox
+    Friend WithEvents GGRIDDONE As DataGridViewTextBoxColumn
+    Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
 End Class

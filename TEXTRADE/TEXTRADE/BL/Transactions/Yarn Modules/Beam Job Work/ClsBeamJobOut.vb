@@ -56,11 +56,11 @@ Public Class ClsBeamJobOut
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GRIDTOTALENDS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GRIDTOTALMTRS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMWT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GAMANO", alParaval(I)))
                 I = I + 1
@@ -78,9 +78,9 @@ Public Class ClsBeamJobOut
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
                 I = I + 1
 
 
@@ -135,11 +135,11 @@ Public Class ClsBeamJobOut
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GRIDTOTALENDS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GRIDTOTALMTRS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMWT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GAMANO", alParaval(I)))
                 I = I + 1
@@ -157,11 +157,10 @@ Public Class ClsBeamJobOut
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
                 I = I + 1
-
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
+                I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@BEAMJONO", alParaval(I)))
                 I = I + 1

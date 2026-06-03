@@ -38,7 +38,7 @@ Public Class BeamJobOut
             alParaval.Add(TXTREMARKS.Text.Trim)
             alParaval.Add(Val(LBLTOTALMTRS.Text.Trim))
             alParaval.Add(Val(LBLTOTALWT.Text.Trim))
-            alParaval.Add(Val(LBLTAPLINE.Text.Trim))
+            'alParaval.Add(Val(LBLTAPLINE.Text.Trim))
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
             alParaval.Add(YearId)
@@ -61,6 +61,9 @@ Public Class BeamJobOut
             Dim FROMNO As String = ""
             Dim FROMSRNO As String = ""
             Dim FROMTYPE As String = ""
+            Dim GRIDDONE As String = ""
+            Dim OUTWT As String = ""
+
 
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDBEAM.Rows
@@ -81,6 +84,9 @@ Public Class BeamJobOut
                         FROMNO = Val(row.Cells(GFROMNO.Index).Value)
                         FROMSRNO = Val(row.Cells(GFROMSRNO.Index).Value)
                         FROMTYPE = row.Cells(GFROMTYPE.Index).Value.ToString
+                        GRIDDONE = Val(row.Cells(GGRIDDONE.Index).Value)
+                        OUTWT = Val(row.Cells(GOUTWT.Index).Value)
+
 
 
                     Else
@@ -100,6 +106,8 @@ Public Class BeamJobOut
                         FROMNO = FROMNO & "|" & Val(row.Cells(GFROMNO.Index).Value)
                         FROMSRNO = FROMSRNO & "|" & Val(row.Cells(GFROMSRNO.Index).Value)
                         FROMTYPE = FROMTYPE & "|" & row.Cells(GFROMTYPE.Index).Value.ToString
+                        GRIDDONE = GRIDDONE & "|" & Val(row.Cells(GGRIDDONE.Index).Value)
+                        OUTWT = OUTWT & "|" & Val(row.Cells(GOUTWT.Index).Value)
 
 
                     End If
@@ -120,6 +128,10 @@ Public Class BeamJobOut
             alParaval.Add(GRIDREMARKS)
             alParaval.Add(FROMNO)
             alParaval.Add(FROMSRNO)
+            alParaval.Add(FROMTYPE)
+            alParaval.Add(GRIDDONE)
+            alParaval.Add(OUTWT)
+
 
 
             Dim OBJBEAMREC As New ClsBeamJobOut
@@ -414,12 +426,12 @@ LINE1:
             bln = False
         End If
 
-        For Each row As DataGridViewRow In GRIDBEAM.Rows
-            If Val(row.Cells(GTOTALMTRS.Index).Value) = 0 Then
-                EP.SetError(CMBGODOWN, "Beam Mtrs Cannot be 0 or Less")
-                bln = False
-            End If
-        Next
+        'For Each row As DataGridViewRow In GRIDBEAM.Rows
+        '    If Val(row.Cells(GTOTALMTRS.Index).Value) = 0 Then
+        '        EP.SetError(CMBGODOWN, "Beam Mtrs Cannot be 0 or Less")
+        '        bln = False
+        '    End If
+        'Next
 
         'For Each row As DataGridViewRow In GRIDBEAM.Rows
         '    If Val(row.Cells(GBEAMMTRS.Index).Value) > Val(row.Cells(GJOBMTRS.Index).Value) Then
@@ -582,7 +594,7 @@ LINE1:
 
                     'ITEM GRID
                     For Each ROW As DataRow In dttable.Rows
-                        GRIDBEAM.Rows.Add(Val(ROW("SRNO")), Val(ROW("BEAMNO")), ROW("BEAMNAME"), ROW("MILLNAME"), Val(ROW("TOTALENDS")), Val(ROW("TOTALMTRS")), ROW("WT"), Val(ROW("GAMANO")), Val(ROW("SECTION")), Val(ROW("ROLLNO")), Val(ROW("BREAKAGE")), ROW("GRIDREMARKS"), ROW("FROMNO"), ROW("FROMSRNO"), ROW("FROMTYPE"))
+                        GRIDBEAM.Rows.Add(Val(ROW("GRIDSRNO")), Val(ROW("BEAMNO")), ROW("BEAMNAME"), ROW("MILLNAME"), Val(ROW("TOTALENDS")), Val(ROW("GRIDTOTALMTRS")), ROW("BEAMWT"), Val(ROW("GAMANO")), Val(ROW("SECTION")), Val(ROW("ROLLNO")), Val(ROW("BREAKAGE")), ROW("GRIDREMARKS"), ROW("FROMNO"), ROW("FROMSRNO"), ROW("FROMTYPE"), Val(ROW("GRIDDONE")), Val(ROW("OUTWT")))
 
                         'If Convert.ToBoolean(ROW("GRIDDONE")) = True Then
                         '    lbllocked.Visible = True

@@ -14,7 +14,7 @@ Public Class SelectBeamStock
             Dim OBJCMN As New ClsCommon()
             WHERE = WHERE & " " & WHERECLAUSE
             If TEMPGODOWNNAME <> "" Then WHERE = WHERE & " AND BEAMSTOCK.GODOWN='" & TEMPGODOWNNAME & "' "
-            Dim DT As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK , BEAMSTOCK.NAME, BEAMSTOCK.MILLNAME,BEAMSTOCK.TYPE,BEAMSTOCK.BEAMNAME, BEAMSTOCK.BEAMNO, BEAMSTOCK.CUT, BEAMSTOCK.WT, BEAMSTOCK.WTCUT, BEAMSTOCK.RECNO AS FROMNO, BEAMSTOCK.RECSRNO AS FROMSRNO, BEAMSTOCK.ENDS, BEAMSTOCK.TAPLINE, BEAMSTOCK.TOTALMTRS", "", "BEAMSTOCK", WHERECLAUSE & " AND BEAMSTOCK.YEARID = " & YearId & " ORDER BY RECNO, RECSRNO")
+            Dim DT As DataTable = OBJCMN.SEARCH(" CAST (0 AS BIT) AS CHK , BEAMSTOCK.NAME, BEAMSTOCK.MILLNAME,BEAMSTOCK.TYPE,BEAMSTOCK.BEAMNAME, BEAMSTOCK.BEAMNO, BEAMSTOCK.CUT, BEAMSTOCK.WT, BEAMSTOCK.WTCUT, BEAMSTOCK.RECNO AS FROMNO, BEAMSTOCK.RECSRNO AS FROMSRNO, BEAMSTOCK.ENDS, BEAMSTOCK.TAPLINE, BEAMSTOCK.TOTALMTRS, BEAMSTOCK.TOTALENDS, BEAMSTOCK.GAMANO, BEAMSTOCK.SECTION, BEAMSTOCK.ROLLNO,BEAMSTOCK.BREAKAGE, BEAMSTOCK.REMARKS AS GRIDREMARKS,  BEAMSTOCK.TYPE AS FROMTYPE", "", "BEAMSTOCK", WHERECLAUSE & " AND BEAMSTOCK.YEARID = " & YearId & " ORDER BY RECNO, RECSRNO")
             gridbilldetails.DataSource = DT
 
             If DT.Rows.Count > 0 Then
@@ -58,12 +58,22 @@ Public Class SelectBeamStock
             DT.Columns.Add("TYPE")
             DT.Columns.Add("SIZERNAME")
             DT.Columns.Add("MTRS")
+            DT.Columns.Add("MILLNAME")
+            DT.Columns.Add("TOTALENDS")
+            DT.Columns.Add("TOTALMTRS")
+            DT.Columns.Add("GAMANO")
+            DT.Columns.Add("SECTION")
+            DT.Columns.Add("ROLLNO")
+            DT.Columns.Add("BREAKAGE")
+            DT.Columns.Add("GRIDREMARKS")
+            DT.Columns.Add("FROMTYPE")
+
 
 
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    DT.Rows.Add(dtrow("BEAMNAME"), dtrow("BEAMNO"), dtrow("ENDS"), dtrow("TAPLINE"), dtrow("CUT"), dtrow("WT"), dtrow("WTCUT"), dtrow("FROMNO"), dtrow("FROMSRNO"), dtrow("TYPE"), dtrow("NAME"), dtrow("TOTALMTRS"))
+                    DT.Rows.Add(dtrow("BEAMNAME"), dtrow("BEAMNO"), dtrow("ENDS"), dtrow("TAPLINE"), dtrow("CUT"), dtrow("WT"), dtrow("WTCUT"), dtrow("FROMNO"), dtrow("FROMSRNO"), dtrow("TYPE"), dtrow("NAME"), dtrow("TOTALMTRS"), dtrow("MILLNAME"), dtrow("TOTALENDS"), dtrow("TOTALMTRS"), dtrow("GAMANO"), dtrow("SECTION"), dtrow("ROLLNO"), dtrow("BREAKAGE"), dtrow("GRIDREMARKS"), dtrow("FROMTYPE"))
                 End If
             Next
             Me.Close()
