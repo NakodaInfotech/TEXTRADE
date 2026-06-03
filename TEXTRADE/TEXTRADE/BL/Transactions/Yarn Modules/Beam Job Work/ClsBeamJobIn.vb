@@ -32,40 +32,13 @@ Public Class ClsBeamJobIn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
-                I = I + 1
 
-                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BEAMNO", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@ENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
                 I = I + 1
 
-                .Add(New SqlClient.SqlParameter("@GAMANO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SECTION", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@ROLLNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BEAMWT", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@BREAKAGE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CHALLANNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@CHALLANDATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALJOBMTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALBEAMMTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@AVGTAPLINE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
-                I = I + 1
+
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@userid", alParaval(I)))
@@ -78,33 +51,33 @@ Public Class ClsBeamJobIn
 
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@JOBNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@JOBSRNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@ITEMNAME", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@REED", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@REEDSPACE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@PICS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMWT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@DESC", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GAMANO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@GRIDENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SECTION", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@REFNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@ROLLNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@JOBMTRS", alParaval(I)))
+
+                .Add(New SqlClient.SqlParameter("@BREAKAGE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@BEAMMTRS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
+
+                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTMTRS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
                 I = I + 1
 
 
