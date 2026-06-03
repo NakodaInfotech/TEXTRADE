@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class OutstandingReport_RunBal_Rec
+Public Class OutstandingReportAgent_RunBal_Rec
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class OutstandingReport_RunBal_Rec
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "OutstandingReport_RunBal_Rec.rpt"
+            Return "OutstandingReportAgent_RunBal_Rec.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class OutstandingReport_RunBal_Rec
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "TEXTRADE.OutstandingReport_RunBal_Rec.rpt"
+            Return "TEXTRADE.OutstandingReportAgent_RunBal_Rec.rpt"
         End Get
         Set
             'Do nothing
@@ -70,7 +70,7 @@ Public Class OutstandingReport_RunBal_Rec
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection5() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(2)
         End Get
@@ -78,7 +78,7 @@ Public Class OutstandingReport_RunBal_Rec
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection3() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(3)
         End Get
@@ -86,7 +86,7 @@ Public Class OutstandingReport_RunBal_Rec
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection5() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(4)
         End Get
@@ -182,7 +182,7 @@ Public Class OutstandingReport_RunBal_Rec
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection4() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(16)
         End Get
@@ -190,7 +190,7 @@ Public Class OutstandingReport_RunBal_Rec
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupFooterSection4() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(17)
         End Get
@@ -222,7 +222,7 @@ Public Class OutstandingReport_RunBal_Rec
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedOutstandingReport_RunBal_Rec
+Public Class CachedOutstandingReportAgent_RunBal_Rec
     Inherits Component
     Implements ICachedReport
     
@@ -264,7 +264,7 @@ Public Class CachedOutstandingReport_RunBal_Rec
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As OutstandingReport_RunBal_Rec = New OutstandingReport_RunBal_Rec()
+        Dim rpt As OutstandingReportAgent_RunBal_Rec = New OutstandingReportAgent_RunBal_Rec()
         rpt.Site = Me.Site
         Return rpt
     End Function
