@@ -990,6 +990,7 @@ Public Class DesignCardMaster
             Cursor.Current = Cursors.WaitCursor
             FILLCMB()
             CLEAR()
+            FILLPEGPLAN()
             pegplan()
 
             If EDIT = True Then SHOWDATA()
@@ -1238,8 +1239,8 @@ Public Class DesignCardMaster
                 'CMDDRAWCALC_Click(Nothing, Nothing, GRIDPEG)
                 'CMDDRAWCALC_Click(Nothing, Nothing, GRIDDRAWING)
 
-                'FILLPEGPLAN()
-                'pegplan()
+                FILLPEGPLAN()
+                pegplan()
                 'fillMATCHINGcmb()
 
 
