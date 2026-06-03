@@ -1752,7 +1752,7 @@ LINE1:
             GRIDBILL.Columns(i).ReadOnly = True
             i += 1
 
-            GRIDBILL.Columns(i).Width = 80
+            GRIDBILL.Columns(i).Width = 120
             GRIDBILL.Columns(i).Name = "REFNO"
             GRIDBILL.Columns(i).HeaderText = "Ref No"
             GRIDBILL.Columns(i).ReadOnly = True

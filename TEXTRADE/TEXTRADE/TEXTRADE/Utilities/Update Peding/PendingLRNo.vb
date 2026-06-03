@@ -508,6 +508,8 @@ NEXTLINE:
                 GFROMCITY.VisibleIndex = GMTRS.VisibleIndex + 1
                 GCITY.VisibleIndex = GFROMCITY.VisibleIndex + 1
             End If
+
+            If ClientName = "KENCOT" Then GBALENOFROM.VisibleIndex = GCHALLANNO.VisibleIndex + 1
         Catch ex As Exception
             Throw ex
         End Try
