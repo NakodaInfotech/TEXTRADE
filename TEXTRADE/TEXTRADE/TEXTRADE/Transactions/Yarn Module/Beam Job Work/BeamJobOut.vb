@@ -34,9 +34,10 @@ Public Class BeamJobOut
             alParaval.Add(Format(Convert.ToDateTime(DTBEAMJODATE.Text.Trim).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBNAME.Text.Trim)
             alParaval.Add(CMBGODOWN.Text.Trim)
+            alParaval.Add(CMBPROCESS.Text.Trim)
             alParaval.Add(TXTREMARKS.Text.Trim)
-            alParaval.Add(Val(LBLTOTALJOBMTRS.Text.Trim))
-            alParaval.Add(Val(LBLTOTALBEAMMTRS.Text.Trim))
+            alParaval.Add(Val(LBLTOTALMTRS.Text.Trim))
+            alParaval.Add(Val(LBLTOTALWT.Text.Trim))
             alParaval.Add(Val(LBLTAPLINE.Text.Trim))
             alParaval.Add(CmpId)
             alParaval.Add(Userid)
@@ -121,7 +122,7 @@ Public Class BeamJobOut
             alParaval.Add(FROMSRNO)
 
 
-            Dim OBJBEAMREC As New ClsBeamReceivedWarper
+            Dim OBJBEAMREC As New ClsBeamJobOut
             OBJBEAMREC.alParaval = alParaval
 
             If EDIT = False Then
@@ -183,7 +184,7 @@ Line2:
             If TEMPBEAMJONO > 0 Then
 
                 Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH(" BEAMREC_NO ", "", "  BEAMRECEIVEDWARPER", " AND BEAMREC_NO = '" & TEMPBEAMJONO & "' AND BEAMRECEIVEDWARPER.BEAMREC_YEARID = " & YearId)
+                Dim DT As DataTable = OBJCMN.SEARCH(" BJO_NO ", "", "  BEAMJOBOUT ", " AND BJO_NO = '" & TEMPBEAMJONO & "' AND BEAMJOBOUT.BJO_YEARID = " & YearId)
                 If DT.Rows.Count > 0 Then
                     EDIT = True
                     BeamJobOut_Load(sender, e)
@@ -299,7 +300,7 @@ LINE1:
         DTBEAMJODATE.Text = Mydate
         CMBGODOWN.Text = USERGODOWN
         CMBNAME.Text = ""
-
+        CMBPROCESS.Text = ""
         LBLTAPLINE.Text = 0.0
         TXTREMARKS.Clear()
         'TXTBEAMNO.Clear()
@@ -335,15 +336,15 @@ LINE1:
         'FILLROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
         'CMBROLLNO.Enabled = True
 
-        LBLTOTALJOBMTRS.Text = 0.0
+        LBLTOTALMTRS.Text = 0.0
         LBLTAPLINE.Text = 0.0
-        LBLTOTALBEAMMTRS.Text = 0.0
+        LBLTOTALWT.Text = 0.0
 
     End Sub
 
     Sub GETMAX_BEAMJO_NO()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax("ISNULL(MAX(BEAMREC_NO),0)+1", "BEAMRECEIVEDWARPER", "AND BEAMREC_YEARID=" & YearId)
+        DTTABLE = getmax("ISNULL(MAX(BJO_NO),0)+1", "BEAMJOBOUT", "AND BJO_YEARID=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTBEAMJONO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -381,6 +382,7 @@ LINE1:
     Sub FILLCMB()
         If CMBNAME.Text.Trim = "" Then FILLNAME(CMBNAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
         If CMBGODOWN.Text.Trim = "" Then fillGODOWN(CMBGODOWN, EDIT)
+        If CMBPROCESS.Text.Trim = "" Then FILLPROCESS(CMBPROCESS)
     End Sub
 
     Private Function errorvalid() As Boolean
@@ -404,6 +406,11 @@ LINE1:
 
         If CMBGODOWN.Text.Trim.Length = 0 Then
             EP.SetError(CMBGODOWN, " Please Fill Godown ")
+            bln = False
+        End If
+
+        If CMBPROCESS.Text.Trim.Length = 0 Then
+            EP.SetError(CMBPROCESS, " Select Process Name")
             bln = False
         End If
 
@@ -506,7 +513,7 @@ LINE1:
                     alParaval.Add(TEMPBEAMJONO)
                     alParaval.Add(YearId)
 
-                    Dim OBJDEL As New ClsBeamReceivedWarper
+                    Dim OBJDEL As New ClsBeamJobOut
                     OBJDEL.alParaval = alParaval
                     Dim IntResult As Integer = OBJDEL.Delete()
                     MsgBox("Entry Deleted")
@@ -551,11 +558,11 @@ LINE1:
                 End If
 
                 Dim dttable As New DataTable
-                Dim OBJBEAMREC As New ClsBeamReceivedWarper
+                Dim OBJBEAMREC As New ClsBeamJobOut
 
                 OBJBEAMREC.alParaval.Add(TEMPBEAMJONO)
                 OBJBEAMREC.alParaval.Add(YearId)
-                dttable = OBJBEAMREC.selectBEAM()
+                dttable = OBJBEAMREC.selectBEAMISSUE()
 
                 If dttable.Rows.Count > 0 Then
                     CMBNAME.Focus()
@@ -564,8 +571,10 @@ LINE1:
                     DTBEAMJODATE.Text = dttable.Rows(0).Item("DATE")
                     CMBNAME.Text = dttable.Rows(0).Item("NAME").ToString
                     CMBGODOWN.Text = dttable.Rows(0).Item("GODOWN").ToString
+                    CMBPROCESS.Text = dttable.Rows(0).Item("PROCESS").ToString
                     TXTREMARKS.Text = dttable.Rows(0).Item("REMARKS").ToString
-
+                    LBLTOTALMTRS.Text = Format(Val(dttable.Rows(0).Item("TOTALMTRS")), "0.00")
+                    LBLTOTALWT.Text = Format(Val(dttable.Rows(0).Item("TOTALWT")), "0.000")
 
 
 
@@ -617,48 +626,16 @@ LINE1:
                 Exit Sub
             End If
 
-            'If GRIDSCHEDULE.RowCount = 0 And ClientName = "SASHWINKUMAR" Then
-            '    MsgBox("First Schedule Beams", MsgBoxStyle.Critical)
-            '    Exit Sub
-            'End If
-
-
-            'IT IS NOT MANDATE TO SELECT GODOWN HERE,
-            'IF USER SELECTS GODOWN THEN WE WILL ADD THAT IN WHERE CLAUE OR ELSE SHOW ALL BEAMS WHICH ARE PRESENT WITH SIZER OR INHOUSE BOTH
-
-
-            'SHOW ONLY THOSE BEAMS IN STOCK WHICH WE HAVE SELECTED IN SCHEDULING
-            Dim WHERECLAUSE As String = ""
-            For Each ROW As DataGridViewRow In GRIDBEAM.Rows
-                If WHERECLAUSE = "" Then
-                    WHERECLAUSE = " AND BEAMNAME IN ('" & ROW.Cells(GBEAMNAME.Index).Value & "'"
-                Else
-                    WHERECLAUSE = WHERECLAUSE & ",'" & ROW.Cells(GBEAMNAME.Index).Value & "'"
-                End If
-            Next
-            If WHERECLAUSE <> "" Then WHERECLAUSE = WHERECLAUSE & ")"
-            'WHERECLAUSE = WHERECLAUSE & " AND DATE <= '" & Format(Convert.ToDateTime(DTISSUEDATE.Text).Date, "MM/dd/yyyy") & "'"
-
-
             Dim OBJSELECTSTOCK As New SelectBeamStock
             OBJSELECTSTOCK.TEMPGODOWNNAME = CMBGODOWN.Text.Trim
             Dim DTBEAMSTOCK As DataTable = OBJSELECTSTOCK.DT
-            OBJSELECTSTOCK.WHERECLAUSE = WHERECLAUSE & " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
-            'OBJSELECTSTOCK.ALLOWEDBEAMS = GRIDSCHEDULE.RowCount
+            OBJSELECTSTOCK.WHERECLAUSE = " AND GODOWN = '" & CMBGODOWN.Text.Trim & "'"
             OBJSELECTSTOCK.ShowDialog()
             If DTBEAMSTOCK.Rows.Count > 0 Then
 
-                'CHECK IF 1ST BEAM HAS 0 IN SRNO THEN CLEAR THE GRID
-                'NEED TO CHECK WHETHER ANY ROW IS PRESENT OR NOT ELSE IT GIVES ERROR
-                If GRIDBEAM.RowCount <> 0 Then
-                    If Val(GRIDBEAM.Rows(0).Cells(GSRNO.Index).Value) = 0 Then GRIDBEAM.RowCount = 0
-                End If
-
-
                 For Each ROW As DataRow In DTBEAMSTOCK.Rows
-                    Dim WTMTRS As Double = Val(ROW("WT"))
-                    If ClientName = "SWPL" Then WTMTRS = Val(ROW("MTRS"))
-                    GRIDBEAM.Rows.Add(0, ROW("BEAMNAME"), ROW("BEAMNO"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("CUT")), "0.00"), Format(Val(WTMTRS), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), "", Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"), 0, 0, ROW("SIZERNAME"), 0, "")
+                    'GRIDBEAM.Rows.Add(0, ROW("BEAMNAME"), ROW("BEAMNO"), Val(ROW("ENDS")), Val(ROW("TAPLINE")), Format(Val(ROW("CUT")), "0.00"), Format(Val("WTMTRS"), "0.000"), Format(Val(ROW("WTCUT")), "0.000"), "", Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("TYPE"), 0, 0, ROW("SIZERNAME"), 0, "")
+                    GRIDBEAM.Rows.Add(0, ROW("BEAMNO"), ROW("BEAMNAME"), ROW("MILLNAME"), Val(ROW("TOTALENDS")), Val(ROW("TOTALMTRS")), Val(ROW("WT")), Val(ROW("GAMANO")), Val(ROW("SECTION")), Val(ROW("ROLLNO")), Val(ROW("BREAKAGE")), ROW("GRIDREMARKS"), Val(ROW("FROMNO")), Val(ROW("FROMSRNO")), ROW("FROMTYPE"))
                 Next
                 TOTAL()
                 getsrno(GRIDBEAM)
@@ -767,6 +744,22 @@ LINE1:
                 OBJREMARKS.ShowDialog()
                 If OBJREMARKS.TEMPNAME <> "" Then TXTREMARKS.Text = OBJREMARKS.TEMPNAME
             End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPROCESS_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBPROCESS.Enter
+        Try
+            If CMBPROCESS.Text.Trim = "" Then FILLPROCESS(CMBPROCESS)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBPROCESS_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBPROCESS.Validating
+        Try
+            If CMBPROCESS.Text.Trim <> "" Then PROCESSVALIDATE(CMBPROCESS, e, Me)
         Catch ex As Exception
             Throw ex
         End Try

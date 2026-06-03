@@ -20,26 +20,22 @@ Public Class ClsBeamJobOut
         Dim DTTABLE As DataTable
         Try
             'save purchase order
-            Dim strCommand As String = "SP_TRANS_BEAMISSUETOWEAVER_SAVE"
+            Dim strCommand As String = "SP_TRANS_BEAMJOBOUT_SAVE"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@BEAMISSUEDATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TRANSPORT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@VEHICALNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@EWBNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PROCESS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALCUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
                 I = I + 1
@@ -51,50 +47,40 @@ Public Class ClsBeamJobOut
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
 
-
-                .Add(New SqlClient.SqlParameter("@SCHSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHBEAMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHLOOMNO", alParaval(I)))
-                I = I + 1
-
-
-
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@BEAMNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@ENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TAPLINE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@CUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@WTCUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GAMANO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@NARRATION", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SECTION", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ROLLNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BREAKAGE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTCUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SIZERNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@UPLOADDATE", alParaval(I)))
                 I = I + 1
 
 
@@ -113,30 +99,25 @@ Public Class ClsBeamJobOut
         Dim intResult As Integer
         Try
             'Update purchase order
-            Dim strCommand As String = "SP_TRANS_BEAMISSUETOWEAVER_UPDATE"
+            Dim strCommand As String = "SP_TRANS_BEAMJOBOUT_UPDATE"
             Dim alParameter As New ArrayList
             With alParameter
 
                 Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@BEAMISSUEDATE", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@DATE", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TRANSPORT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GODOWN", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@VEHICALNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@EWBNO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@PROCESS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TOTALCUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
                 I = I + 1
-
 
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
                 I = I + 1
@@ -145,52 +126,44 @@ Public Class ClsBeamJobOut
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
 
-
-                .Add(New SqlClient.SqlParameter("@SCHSRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHBEAMNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SCHLOOMNO", alParaval(I)))
-                I = I + 1
-
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@GRIDSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
-                I = I + 1
                 .Add(New SqlClient.SqlParameter("@BEAMNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@ENDS", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TAPLINE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@MILLNAME", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@CUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@TOTALENDS", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TOTALMTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@WTCUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@GAMANO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@NARRATION", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@SECTION", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@ROLLNO", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@BREAKAGE", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@GRIDREMARKS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMNO", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@FROMSRNO", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@TYPE", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@FROMTYPE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@OUTCUT", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@OUTWT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@GRIDDONE", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@SIZERNAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@LOOMNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@UPLOADDATE", alParaval(I)))
-                I = I + 1
 
 
-                .Add(New SqlClient.SqlParameter("@BEAMISSUENO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@BEAMJONO", alParaval(I)))
                 I = I + 1
             End With
 
@@ -206,10 +179,10 @@ Public Class ClsBeamJobOut
         Dim dtTable As DataTable
         Try
 
-            Dim strCommand As String = "SP_SELECTBEAMISSUETOWEAVER_FOR_EDIT"
+            Dim strCommand As String = "SP_SELECTBEAMJOBOUT_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@BEAMISSUENO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@BEAMJONO", alParaval(0)))
                 .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
             End With
             dtTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -223,42 +196,13 @@ Public Class ClsBeamJobOut
     Public Function Delete() As Integer
         Dim intResult As Integer
         Try
-            Dim strCommand As String = "SP_TRANS_YARNBEAMISSUETOWEAVER_DELETE"
+            Dim strCommand As String = "SP_TRANS_BEAMJOBOUT_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@BEAMISSUENO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@BEAMJONO", alParaval(0)))
                 .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Function
-
-
-    Public Function SAVEUPLOAD() As Integer
-        Dim INTRESULT As Integer
-        Try
-            Dim STRCOMMAND As String = "SP_TRANS_BEAMISSUETOWEAVER_SAVEUPLOAD"
-            Dim ALPARAMATER As New ArrayList
-            With ALPARAMATER
-                Dim I As Integer = 0
-                .Add(New SqlClient.SqlParameter("@BEAMISSUENO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@NAME", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@IMGPATH", alParaval(I)))
-                I = I + 1
-                .Add(New SqlClient.SqlParameter("@YEARID", alParaval(I)))
-                I = I + 1
-            End With
-
-            INTRESULT = objDBOperation.executeNonQuery(STRCOMMAND, ALPARAMATER)
-
         Catch ex As Exception
             Throw ex
         End Try
