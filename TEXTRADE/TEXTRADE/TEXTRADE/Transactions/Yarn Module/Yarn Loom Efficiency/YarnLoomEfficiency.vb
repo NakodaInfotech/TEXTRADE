@@ -616,8 +616,8 @@ line1:
             Dim objprdetails As New YarnLoomEfficiencyDetails
             objprdetails.MdiParent = MDIMain
             objprdetails.Show()
-            objprdetails.BringToFront()
-            Me.Close()
+            'objprdetails.BringToFront()
+            'Me.Close()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -896,6 +896,63 @@ line1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
             Cursor.Current = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub CMBSET_Validated(sender As Object, e As EventArgs) Handles CMBSET.Validated
+        Try
+            ' ── Guards ──────────────────────────────────────────────
+            If CMBSET.Text.Trim = "" Then Exit Sub
+            If cmbname.Text.Trim = "" Then Exit Sub
+
+            ' ── Query via ClsCommonMaster.search ────────────────────
+            Dim objCMST As New ClsCommonMaster
+            Dim dt As DataTable = objCMST.search(
+            " LOOMMASTER_DESC.LOOM_NO, LOOMMASTER_DESC.LOOM_GROUPINGSET, LEDGERS.Acc_cmpname, BEAMLOOMSTATUS.BEAM_NAME, BEAMLOOMSTATUS.BEAM_NO ",
+            "",
+            " LOOMMASTER_DESC 
+              INNER JOIN LOOMMASTER ON LOOMMASTER_DESC.LOOM_ID = LOOMMASTER.LOOM_ID 
+              LEFT OUTER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id 
+              LEFT OUTER JOIN BEAMLOOMSTATUS ON BEAMLOOMSTATUS.LOOM_NO = LOOMMASTER_DESC.LOOM_NO 
+                AND BEAMLOOMSTATUS.WEAVER_NAME = LEDGERS.Acc_cmpname ",
+            " AND LOOMMASTER_DESC.LOOM_GROUPINGSET = '" & CMBSET.Text.Trim & "'" &
+            " AND LEDGERS.Acc_cmpname = '" & cmbname.Text.Trim & "'" &
+            " AND LOOMMASTER.LOOM_YEARID = " & YearId &
+            " ORDER BY LOOMMASTER_DESC.LOOM_NO ")
+
+            If dt Is Nothing OrElse dt.Rows.Count = 0 Then
+                MsgBox("No Looms found for Set: " & CMBSET.Text.Trim)
+                Exit Sub
+            End If
+
+            gridloan.Rows.Clear()
+
+            ' ── Fill grid ───────────────────────────────────────────
+            Dim srno As Integer = 1
+            For Each dr As DataRow In dt.Rows
+                Dim loomNo As String = dr("LOOM_NO").ToString.Trim
+                Dim beamName As String = If(IsDBNull(dr("BEAM_NAME")), "", dr("BEAM_NAME").ToString.Trim)
+                Dim beamNo As String = If(IsDBNull(dr("BEAM_NO")), "0", dr("BEAM_NO").ToString.Trim)
+
+                gridloan.Rows.Add(srno, loomNo, beamName, Val(beamNo), "0.00", "0.00",
+                "0.00",     ' GRECMTRS
+                "0.00",     ' GWEFT
+                "0.00",     ' GWARP
+                "0.00",     ' GEFFPER
+                "0.00",     ' GAVGPICK
+                ""          ' GGRIDREMARKS
+            )
+                srno += 1
+            Next
+
+            ' ── Update totals and srno ───────────────────────────────
+            total()
+            getsrno(gridloan)
+            txtsrno.Text = gridloan.RowCount + 1
+            gridloan.FirstDisplayedScrollingRowIndex = 0
+
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 End Class
