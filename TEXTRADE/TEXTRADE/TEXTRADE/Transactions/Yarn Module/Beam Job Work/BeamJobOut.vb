@@ -618,7 +618,7 @@ LINE1:
                     '                gridupload.Rows.Add(DTR("GRIDSRNO"), DTR("REMARKS"), DTR("NAME"), Image.FromStream(New IO.MemoryStream(DirectCast(DTR("IMGPATH"), Byte()))))
                     '            Next
                     '        End If
-                    '        TOTAL()
+                    TOTAL()
                 End If
 
                 '    CMBROLLNO.Enabled = False
@@ -709,40 +709,40 @@ LINE1:
     End Sub
 
     Sub TOTAL()
-        'Try
-        '    Dim TEMPWARPWT As Double
-        '    Dim TEMPSELWT As Double
-        '    LBLTOTALJOBMTRS.Text = 0.0
-        '    TXTTOTALMTRS.Text = 0.0
-        '    LBLTAPLINE.Text = 0.0
-        '    LBLTOTALBEAMMTRS.Text = 0.0
+        Try
+            'Dim TEMPWARPWT As Double
+            'Dim TEMPSELWT As Double
 
-        '    'Dim TOTALTAPLINE As Double
-        '    For Each ROW As DataGridViewRow In GRIDBEAM.Rows
-        '        If ROW.Cells(GSRNO.Index).Value <> Nothing Then
+            LBLTOTALMTRS.Text = 0.0
+            LBLTAPLINE.Text = 0.0
+            LBLTOTALWT.Text = 0.0
 
-        '            LBLTOTALJOBMTRS.Text = Format(Val(LBLTOTALJOBMTRS.Text) + Val(ROW.Cells(GJOBMTRS.Index).EditedFormattedValue), "0.00")
-        '            LBLTOTALBEAMMTRS.Text = Format(Val(LBLTOTALBEAMMTRS.Text) + Val(ROW.Cells(GBEAMMTRS.Index).EditedFormattedValue), "0.00")
-        '        End If
-        '    Next
-        '    TXTTOTALMTRS.Text = Format(Val(LBLTOTALBEAMMTRS.Text), "0.00")
+            'Dim TOTALTAPLINE As Double
+            For Each ROW As DataGridViewRow In GRIDBEAM.Rows
+                If ROW.Cells(GSRNO.Index).Value <> Nothing Then
 
-        '    'If ClientName = "SWPL" Then
-        '    If Val(TXTBEAMWT.Text.Trim) = 0 Then
-        '        Dim OBJCMN As New ClsCommon
-        '        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(DESIGNCARD.DESIGN_TOTALWARPWT, 0) AS TOTALWARPWT, ISNULL(DESIGNCARD.DESIGN_TOTALSELVEDGEWT, 0) AS TOTALSELWT, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME ", "", " DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id ", " AND ITEMMASTER.item_name = '" & GRIDBEAM.Item(GITEMNAME.Index, GRIDBEAM.CurrentRow.Index).Value & "' AND DESIGNCARD.DESIGN_YEARID = " & YearId)
-        '        If DT.Rows.Count > 0 Then
-        '            TEMPWARPWT = DT.Rows(0).Item("TOTALWARPWT")
-        '            TEMPSELWT = DT.Rows(0).Item("TOTALSELWT")
-        '        End If
-        '        TXTBEAMWT.Text = Format(Val(TEMPWARPWT + TEMPSELWT) * Val(GRIDBEAM.Item(GBEAMMTRS.Index, GRIDBEAM.CurrentRow.Index).EditedFormattedValue), "0.00")
-        '    End If
-        '    'End If
+                    LBLTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text) + Val(ROW.Cells(GTOTALMTRS.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALWT.Text = Format(Val(LBLTOTALWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
+                End If
+            Next
+            'TXTTOTALMTRS.Text = Format(Val(LBLTOTALBEAMMTRS.Text), "0.00")
+
+            'If ClientName = "SWPL" Then
+            'If Val(TXTBEAMWT.Text.Trim) = 0 Then
+            '    Dim OBJCMN As New ClsCommon
+            '    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(DESIGNCARD.DESIGN_TOTALWARPWT, 0) AS TOTALWARPWT, ISNULL(DESIGNCARD.DESIGN_TOTALSELVEDGEWT, 0) AS TOTALSELWT, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME ", "", " DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id ", " AND ITEMMASTER.item_name = '" & GRIDBEAM.Item(GITEMNAME.Index, GRIDBEAM.CurrentRow.Index).Value & "' AND DESIGNCARD.DESIGN_YEARID = " & YearId)
+            '    If DT.Rows.Count > 0 Then
+            '        TEMPWARPWT = DT.Rows(0).Item("TOTALWARPWT")
+            '        TEMPSELWT = DT.Rows(0).Item("TOTALSELWT")
+            '    End If
+            '    TXTBEAMWT.Text = Format(Val(TEMPWARPWT + TEMPSELWT) * Val(GRIDBEAM.Item(GBEAMMTRS.Index, GRIDBEAM.CurrentRow.Index).EditedFormattedValue), "0.00")
+            'End If
+            'End If
 
 
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub TXTREMARKS_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTREMARKS.KeyDown

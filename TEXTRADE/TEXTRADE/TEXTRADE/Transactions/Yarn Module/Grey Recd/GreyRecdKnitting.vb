@@ -2373,6 +2373,7 @@ NEXTLINE:
 
             Dim OBJSELECTPO As New SelectJobOrder
             OBJSELECTPO.SIZERNAME = cmbname.Text.Trim
+            If ClientName = "SWPL" Then OBJSELECTPO.FRMSTRING = "GRERECD"
             OBJSELECTPO.ShowDialog()
             DTPO = OBJSELECTPO.DT
             If DTPO.Rows.Count > 0 Then
@@ -2440,6 +2441,19 @@ NEXTLINE:
         End Try
     End Sub
 
+    Private Sub TXTWT_Validated(sender As Object, e As EventArgs) Handles TXTWT.Validated
+        Try
+            If Val(TXTMTRS.Text.Trim) > 0 And Val(TXTWT.Text.Trim) > 0 Then
+                Dim WT As Decimal = Val(TXTWT.Text.Trim) / Val(TXTMTRS.Text.Trim)
+                If Val(WT.ToString("0.000")) > 0 Then
+                    TXTRECDAVGWT.Text = WT.ToString("0.000")
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Function CHECKROLL() As Boolean
         Try
             Dim bln As Boolean = True
@@ -2453,10 +2467,13 @@ NEXTLINE:
             Throw ex
         End Try
     End Function
-
-    Private Sub TXTLOOMNO_Validated(sender As Object, e As EventArgs) Handles TXTLOOMNO.Validated
+    Private Sub cmbitemname_Validated(sender As Object, e As EventArgs) Handles cmbitemname.Validated
         Try
-
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable = OBJCMN.SEARCH("ITEMMASTER.item_name,  ROUND(ISNULL(DESIGNCARD.DESIGN_FWT,0),3) AS AVGWT ", "", " DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id ", " AND ITEMMASTER.ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
+            If DT.Rows.Count > 0 Then
+                TXTAVGWT.Text = Format(Val(DT.Rows(0).Item("AVGWT")), "0.000")
+            End If
         Catch ex As Exception
             Throw ex
         End Try

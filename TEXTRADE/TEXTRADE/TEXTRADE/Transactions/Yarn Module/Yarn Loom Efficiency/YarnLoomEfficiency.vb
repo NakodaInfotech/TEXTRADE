@@ -42,7 +42,7 @@ Public Class YarnLoomEfficiency
 
     Private Sub cmbitemname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBITEMNAME.Enter, CMBYARNQ.Enter
         Try
-            If CMBITEMNAME.Text.Trim = "" Then fillBEAM(CMBITEMNAME, edit)
+            If CMBITEMNAME.Text.Trim = "" Then fillitemname(CMBITEMNAME, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'")
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
@@ -50,45 +50,9 @@ Public Class YarnLoomEfficiency
 
     Private Sub cmbitemname_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBITEMNAME.Validating, CMBYARNQ.Validating
         Try
-            If CMBITEMNAME.Text.Trim <> "" Then
-                Cursor.Current = Cursors.WaitCursor
-                If CMBITEMNAME.Text.Trim <> "" Then
-                    uppercase(CMBITEMNAME)
-                    Dim OBJCMN As New ClsCommonMaster
-                    Dim dt As DataTable
-                    dt = OBJCMN.search("BEAM_NAME", "", "BEAMMASTER", " and BEAM_NAME = '" & CMBITEMNAME.Text.Trim & "'")
-                    If dt.Rows.Count = 0 Then
-                        Dim a As String = CMBITEMNAME.Text.Trim
-                        Dim tempmsg As Integer = MsgBox("Beam Name not present, Add New?", MsgBoxStyle.YesNo, "TEXTRADE")
-                        If tempmsg = vbYes Then
-                            CMBITEMNAME.Text = a
-                            Dim OBJBEAM As New BeamMaster
-                            OBJBEAM.TEMPBEAMNAME = CMBITEMNAME.Text.Trim()
-                            OBJBEAM.ShowDialog()
-                            dt = OBJCMN.search("BEAM_name", "", "BEAMMaster", " and BEAM_name = '" & CMBITEMNAME.Text.Trim & "' ")
-                            If dt.Rows.Count > 0 Then
-                                Dim dt1 As New DataTable
-                                dt1 = CMBITEMNAME.DataSource
-                                If CMBITEMNAME.DataSource <> Nothing Then
-line1:
-                                    If dt1.Rows.Count > 0 Then
-                                        dt1.Rows.Add(CMBITEMNAME.Text.Trim)
-                                        CMBITEMNAME.Text = a
-                                    End If
-                                End If
-                            End If
-                            e.Cancel = True
-                        Else
-                            e.Cancel = True
-                        End If
-                    End If
-                End If
-            End If
+            If CMBITEMNAME.Text.Trim <> "" Then itemvalidate(CMBITEMNAME, e, Me, " AND ITEMMASTER.ITEM_FRMSTRING = 'MERCHANT'", "MERCHANT")
         Catch ex As Exception
-            GoTo line1
-            Throw ex
-        Finally
-            Cursor.Current = Cursors.Default
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 
@@ -915,7 +879,7 @@ line1:
               LEFT OUTER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id 
               LEFT OUTER JOIN BEAMLOOMSTATUS ON BEAMLOOMSTATUS.LOOM_NO = LOOMMASTER_DESC.LOOM_NO 
                 AND BEAMLOOMSTATUS.WEAVER_NAME = LEDGERS.Acc_cmpname ",
-            " AND LOOMMASTER_DESC.LOOM_GROUPINGSET = '" & CMBSET.Text.Trim & "'" &
+            " AND BEAMLOOMSTATUS.LOOM_STATUS='OCCUPIED' AND LOOMMASTER_DESC.LOOM_GROUPINGSET = '" & CMBSET.Text.Trim & "'" &
             " AND LEDGERS.Acc_cmpname = '" & cmbname.Text.Trim & "'" &
             " AND LOOMMASTER.LOOM_YEARID = " & YearId &
             " ORDER BY LOOMMASTER_DESC.LOOM_NO ")
@@ -953,6 +917,23 @@ line1:
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBITEMNAME_KeyDown(sender As Object, e As KeyEventArgs) Handles CMBITEMNAME.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJItem As New SelectItem
+                OBJItem.FRMSTRING = "MERCHANT"
+                OBJItem.STRSEARCH = " and ITEM_cmpid = " & CmpId & " and ITEM_LOCATIONid = " & Locationid & " and ITEM_YEARid = " & YearId
+                OBJItem.ShowDialog()
+                If OBJItem.TEMPNAME <> "" Then CMBITEMNAME.Text = OBJItem.TEMPNAME
+            End If
+        Catch ex As Exception
+            Throw ex
         End Try
     End Sub
 End Class
