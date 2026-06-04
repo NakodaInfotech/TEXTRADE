@@ -11126,6 +11126,9 @@
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Job Work\BeamJobIn.resx">
       <DependentUpon>BeamJobIn.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\Yarn Module\Beam Job Work\BeamJobInDetails.resx">
+      <DependentUpon>BeamJobInDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\Yarn Module\Beam Job Work\BeamJobOut.resx">
       <DependentUpon>BeamJobOut.vb</DependentUpon>
     </EmbeddedResource>
