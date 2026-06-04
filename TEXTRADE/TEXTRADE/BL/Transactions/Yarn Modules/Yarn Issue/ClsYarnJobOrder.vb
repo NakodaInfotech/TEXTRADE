@@ -44,6 +44,10 @@ Public Class ClsYarnJobOrder
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
 
+                .Add(New SqlClient.SqlParameter("@WEAVERNAME", alParaval(I)))
+                I = I + 1
+
+
 
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
                 I += 1
@@ -74,6 +78,10 @@ Public Class ClsYarnJobOrder
                 .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CLOSED", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYCLOSED", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYOUTMTRS", alParaval(I)))
                 I += 1
 
 
@@ -114,6 +122,8 @@ Public Class ClsYarnJobOrder
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@WEAVERNAME", alParaval(I)))
+                I = I + 1
 
 
                 .Add(New SqlClient.SqlParameter("@SRNO", alParaval(I)))
@@ -145,6 +155,10 @@ Public Class ClsYarnJobOrder
                 .Add(New SqlClient.SqlParameter("@DONE", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@CLOSED", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYCLOSED", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@GREYOUTMTRS", alParaval(I)))
                 I += 1
 
 
