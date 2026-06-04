@@ -23,22 +23,26 @@ Partial Class YarnLoomEfficiency
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(YarnLoomEfficiency))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.CMBSHIFT = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.CMBSET = New System.Windows.Forms.ComboBox()
         Me.EFFDATE = New System.Windows.Forms.MaskedTextBox()
         Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.cmbrounder = New System.Windows.Forms.ComboBox()
@@ -105,10 +109,6 @@ Partial Class YarnLoomEfficiency
         Me.CMBYARNQ = New System.Windows.Forms.ComboBox()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.CMBSET = New System.Windows.Forms.ComboBox()
-        Me.CMBSHIFT = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -153,6 +153,56 @@ Partial Class YarnLoomEfficiency
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 7
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(321, 96)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(31, 14)
+        Me.Label4.TabIndex = 25
+        Me.Label4.Text = "Shift"
+        '
+        'CMBSHIFT
+        '
+        Me.CMBSHIFT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSHIFT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSHIFT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMBSHIFT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSHIFT.FormattingEnabled = True
+        Me.CMBSHIFT.Items.AddRange(New Object() {"", "Day", "Night"})
+        Me.CMBSHIFT.Location = New System.Drawing.Point(358, 92)
+        Me.CMBSHIFT.Name = "CMBSHIFT"
+        Me.CMBSHIFT.Size = New System.Drawing.Size(75, 22)
+        Me.CMBSHIFT.TabIndex = 24
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(328, 67)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(24, 14)
+        Me.Label3.TabIndex = 23
+        Me.Label3.Text = "Set"
+        '
+        'CMBSET
+        '
+        Me.CMBSET.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBSET.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBSET.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBSET.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBSET.FormattingEnabled = True
+        Me.CMBSET.Location = New System.Drawing.Point(358, 64)
+        Me.CMBSET.MaxDropDownItems = 14
+        Me.CMBSET.Name = "CMBSET"
+        Me.CMBSET.Size = New System.Drawing.Size(75, 22)
+        Me.CMBSET.TabIndex = 22
         '
         'EFFDATE
         '
@@ -368,7 +418,7 @@ Partial Class YarnLoomEfficiency
         Me.TabControl1.Location = New System.Drawing.Point(14, 123)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1148, 296)
+        Me.TabControl1.Size = New System.Drawing.Size(1134, 296)
         Me.TabControl1.TabIndex = 4
         '
         'TabPage1
@@ -397,7 +447,7 @@ Partial Class YarnLoomEfficiency
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1140, 269)
+        Me.TabPage1.Size = New System.Drawing.Size(1126, 269)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Item Details"
         '
@@ -472,7 +522,9 @@ Partial Class YarnLoomEfficiency
         Me.TXTBEAMNO.Name = "TXTBEAMNO"
         Me.TXTBEAMNO.Size = New System.Drawing.Size(100, 23)
         Me.TXTBEAMNO.TabIndex = 3
+        Me.TXTBEAMNO.TabStop = False
         Me.TXTBEAMNO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTBEAMNO.Visible = False
         '
         'CMBLOOM
         '
@@ -503,12 +555,13 @@ Partial Class YarnLoomEfficiency
         '
         Me.pbcopy.BackColor = System.Drawing.Color.Transparent
         Me.pbcopy.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.pbcopy.Location = New System.Drawing.Point(1243, 1)
+        Me.pbcopy.Location = New System.Drawing.Point(1093, 1)
         Me.pbcopy.Name = "pbcopy"
         Me.pbcopy.Size = New System.Drawing.Size(24, 23)
         Me.pbcopy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pbcopy.TabIndex = 646
         Me.pbcopy.TabStop = False
+        Me.pbcopy.Visible = False
         '
         'gridloan
         '
@@ -516,28 +569,28 @@ Partial Class YarnLoomEfficiency
         Me.gridloan.AllowUserToDeleteRows = False
         Me.gridloan.AllowUserToResizeColumns = False
         Me.gridloan.AllowUserToResizeRows = False
-        DataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Black
-        Me.gridloan.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black
+        Me.gridloan.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.gridloan.BackgroundColor = System.Drawing.Color.White
         Me.gridloan.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.gridloan.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle16.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.gridloan.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.gridloan.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridloan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridloan.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.gsrno, Me.GLOOM, Me.GITEMNAME, Me.GBEAMNO, Me.GRPM, Me.GPICKS, Me.GRECMTRS, Me.GWEFT, Me.GWARP, Me.GEFFPER, Me.GAVGPICK, Me.GGRIDREMARKS, Me.GDONE})
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridloan.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridloan.DefaultCellStyle = DataGridViewCellStyle13
         Me.gridloan.GridColor = System.Drawing.SystemColors.Control
         Me.gridloan.Location = New System.Drawing.Point(2, 24)
         Me.gridloan.MultiSelect = False
@@ -545,14 +598,14 @@ Partial Class YarnLoomEfficiency
         Me.gridloan.RowHeadersVisible = False
         Me.gridloan.RowHeadersWidth = 30
         Me.gridloan.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.White
-        Me.gridloan.RowsDefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White
+        Me.gridloan.RowsDefaultCellStyle = DataGridViewCellStyle14
         Me.gridloan.RowTemplate.Height = 20
         Me.gridloan.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridloan.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.gridloan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gridloan.Size = New System.Drawing.Size(1303, 210)
+        Me.gridloan.Size = New System.Drawing.Size(1115, 210)
         Me.gridloan.TabIndex = 15
         Me.gridloan.TabStop = False
         '
@@ -576,8 +629,8 @@ Partial Class YarnLoomEfficiency
         '
         'GITEMNAME
         '
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.GITEMNAME.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.GITEMNAME.DefaultCellStyle = DataGridViewCellStyle3
         Me.GITEMNAME.HeaderText = "Item Name"
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.ReadOnly = True
@@ -587,8 +640,8 @@ Partial Class YarnLoomEfficiency
         '
         'GBEAMNO
         '
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GBEAMNO.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GBEAMNO.DefaultCellStyle = DataGridViewCellStyle4
         Me.GBEAMNO.HeaderText = "Beam No"
         Me.GBEAMNO.Name = "GBEAMNO"
         Me.GBEAMNO.ReadOnly = True
@@ -598,8 +651,8 @@ Partial Class YarnLoomEfficiency
         '
         'GRPM
         '
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRPM.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRPM.DefaultCellStyle = DataGridViewCellStyle5
         Me.GRPM.HeaderText = "Rpm"
         Me.GRPM.Name = "GRPM"
         Me.GRPM.ReadOnly = True
@@ -609,8 +662,8 @@ Partial Class YarnLoomEfficiency
         '
         'GPICKS
         '
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GPICKS.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GPICKS.DefaultCellStyle = DataGridViewCellStyle6
         Me.GPICKS.HeaderText = "Picks"
         Me.GPICKS.Name = "GPICKS"
         Me.GPICKS.ReadOnly = True
@@ -620,8 +673,8 @@ Partial Class YarnLoomEfficiency
         '
         'GRECMTRS
         '
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GRECMTRS.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GRECMTRS.DefaultCellStyle = DataGridViewCellStyle7
         Me.GRECMTRS.HeaderText = "Rec Mtrs"
         Me.GRECMTRS.Name = "GRECMTRS"
         Me.GRECMTRS.ReadOnly = True
@@ -631,8 +684,8 @@ Partial Class YarnLoomEfficiency
         '
         'GWEFT
         '
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GWEFT.DefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GWEFT.DefaultCellStyle = DataGridViewCellStyle8
         Me.GWEFT.HeaderText = "Weft"
         Me.GWEFT.Name = "GWEFT"
         Me.GWEFT.ReadOnly = True
@@ -642,8 +695,8 @@ Partial Class YarnLoomEfficiency
         '
         'GWARP
         '
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GWARP.DefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GWARP.DefaultCellStyle = DataGridViewCellStyle9
         Me.GWARP.HeaderText = "Warp"
         Me.GWARP.Name = "GWARP"
         Me.GWARP.ReadOnly = True
@@ -653,8 +706,8 @@ Partial Class YarnLoomEfficiency
         '
         'GEFFPER
         '
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GEFFPER.DefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GEFFPER.DefaultCellStyle = DataGridViewCellStyle10
         Me.GEFFPER.HeaderText = "Efficiency Per"
         Me.GEFFPER.Name = "GEFFPER"
         Me.GEFFPER.ReadOnly = True
@@ -664,8 +717,8 @@ Partial Class YarnLoomEfficiency
         '
         'GAVGPICK
         '
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GAVGPICK.DefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GAVGPICK.DefaultCellStyle = DataGridViewCellStyle11
         Me.GAVGPICK.HeaderText = "Avg Pick"
         Me.GAVGPICK.Name = "GAVGPICK"
         Me.GAVGPICK.ReadOnly = True
@@ -684,8 +737,8 @@ Partial Class YarnLoomEfficiency
         '
         'GDONE
         '
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GDONE.DefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GDONE.DefaultCellStyle = DataGridViewCellStyle12
         Me.GDONE.HeaderText = "DONE"
         Me.GDONE.Name = "GDONE"
         Me.GDONE.Visible = False
@@ -911,56 +964,6 @@ Partial Class YarnLoomEfficiency
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(328, 67)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(24, 14)
-        Me.Label3.TabIndex = 23
-        Me.Label3.Text = "Set"
-        '
-        'CMBSET
-        '
-        Me.CMBSET.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSET.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSET.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBSET.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBSET.FormattingEnabled = True
-        Me.CMBSET.Location = New System.Drawing.Point(358, 64)
-        Me.CMBSET.MaxDropDownItems = 14
-        Me.CMBSET.Name = "CMBSET"
-        Me.CMBSET.Size = New System.Drawing.Size(75, 22)
-        Me.CMBSET.TabIndex = 22
-        '
-        'CMBSHIFT
-        '
-        Me.CMBSHIFT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBSHIFT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBSHIFT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CMBSHIFT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBSHIFT.FormattingEnabled = True
-        Me.CMBSHIFT.Items.AddRange(New Object() {"", "Day", "Night"})
-        Me.CMBSHIFT.Location = New System.Drawing.Point(358, 92)
-        Me.CMBSHIFT.Name = "CMBSHIFT"
-        Me.CMBSHIFT.Size = New System.Drawing.Size(75, 22)
-        Me.CMBSHIFT.TabIndex = 24
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(321, 96)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(31, 14)
-        Me.Label4.TabIndex = 25
-        Me.Label4.Text = "Shift"
         '
         'YarnLoomEfficiency
         '
