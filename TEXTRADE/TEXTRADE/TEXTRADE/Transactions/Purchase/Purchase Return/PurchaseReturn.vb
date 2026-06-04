@@ -46,13 +46,13 @@ Public Class PurchaseReturn
             TXTPRNO.BackColor = Color.Linen
         End If
 
-        If ALLOWMANUALPRNO = True Then
-            TXTPRNO.ReadOnly = False
-            TXTPRNO.BackColor = Color.LemonChiffon
-        Else
-            TXTPRNO.ReadOnly = True
-            TXTPRNO.BackColor = Color.Linen
-        End If
+        'If ALLOWMANUALPRNO = True Then
+        '    TXTPRNO.ReadOnly = False
+        '    TXTPRNO.BackColor = Color.LemonChiffon
+        'Else
+        '    TXTPRNO.ReadOnly = True
+        '    TXTPRNO.BackColor = Color.Linen
+        'End If
 
         CMBNAME.Text = ""
         CMBNAME.Enabled = True
