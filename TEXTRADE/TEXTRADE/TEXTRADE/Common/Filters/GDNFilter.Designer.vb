@@ -66,8 +66,8 @@ Partial Class GDNFilter
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.CMBUNIT = New System.Windows.Forms.ComboBox()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TBPARTY = New System.Windows.Forms.TabPage()
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -79,14 +79,6 @@ Partial Class GDNFilter
         Me.GSTATENAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAREA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSALESMAN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.CMBDONE = New System.Windows.Forms.ComboBox()
-        Me.CHKSUMMARY = New System.Windows.Forms.CheckBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.CMBAGENT = New System.Windows.Forms.ComboBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.cmdexit = New System.Windows.Forms.Button()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TBPARTY = New System.Windows.Forms.TabPage()
         Me.TBITEMNAME = New System.Windows.Forms.TabPage()
         Me.CHKSELECTITEM = New System.Windows.Forms.CheckBox()
         Me.GRIDBILLDETAILSITEM = New DevExpress.XtraGrid.GridControl()
@@ -97,18 +89,46 @@ Partial Class GDNFilter
         Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TBDESIGN = New System.Windows.Forms.TabPage()
         Me.TBSHADE = New System.Windows.Forms.TabPage()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.CMBUNIT = New System.Windows.Forms.ComboBox()
+        Me.CMBDONE = New System.Windows.Forms.ComboBox()
+        Me.CHKSUMMARY = New System.Windows.Forms.CheckBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.CMBAGENT = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.cmdexit = New System.Windows.Forms.Button()
+        Me.CHKSELECTDESIGN = New System.Windows.Forms.CheckBox()
+        Me.gridbilldetailsdesign = New DevExpress.XtraGrid.GridControl()
+        Me.gridbilldesign = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHKDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHKSELECTCOLOR = New System.Windows.Forms.CheckBox()
+        Me.gridbilldetailscolor = New DevExpress.XtraGrid.GridControl()
+        Me.gridbillcolor = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHKCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.BlendPanel2.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.TBPARTY.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabControl1.SuspendLayout()
-        Me.TBPARTY.SuspendLayout()
         Me.TBITEMNAME.SuspendLayout()
         CType(Me.GRIDBILLDETAILSITEM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILLITEM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TBDESIGN.SuspendLayout()
+        Me.TBSHADE.SuspendLayout()
+        CType(Me.gridbilldetailsdesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridbilldesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridbilldetailscolor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridbillcolor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox3
@@ -640,30 +660,29 @@ Partial Class GDNFilter
         Me.BlendPanel2.Size = New System.Drawing.Size(1234, 617)
         Me.BlendPanel2.TabIndex = 0
         '
-        'Label19
+        'TabControl1
         '
-        Me.Label19.AutoSize = True
-        Me.Label19.BackColor = System.Drawing.Color.Transparent
-        Me.Label19.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.ForeColor = System.Drawing.Color.Black
-        Me.Label19.Location = New System.Drawing.Point(389, 134)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(30, 14)
-        Me.Label19.TabIndex = 663
-        Me.Label19.Text = "Unit"
+        Me.TabControl1.Controls.Add(Me.TBPARTY)
+        Me.TabControl1.Controls.Add(Me.TBITEMNAME)
+        Me.TabControl1.Controls.Add(Me.TBDESIGN)
+        Me.TabControl1.Controls.Add(Me.TBSHADE)
+        Me.TabControl1.Location = New System.Drawing.Point(671, 12)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(563, 593)
+        Me.TabControl1.TabIndex = 664
         '
-        'CMBUNIT
+        'TBPARTY
         '
-        Me.CMBUNIT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBUNIT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBUNIT.BackColor = System.Drawing.Color.White
-        Me.CMBUNIT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBUNIT.FormattingEnabled = True
-        Me.CMBUNIT.Location = New System.Drawing.Point(423, 131)
-        Me.CMBUNIT.MaxDropDownItems = 14
-        Me.CMBUNIT.Name = "CMBUNIT"
-        Me.CMBUNIT.Size = New System.Drawing.Size(242, 22)
-        Me.CMBUNIT.TabIndex = 662
+        Me.TBPARTY.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBPARTY.Controls.Add(Me.CHKSELECTALL)
+        Me.TBPARTY.Controls.Add(Me.gridbilldetails)
+        Me.TBPARTY.Location = New System.Drawing.Point(4, 23)
+        Me.TBPARTY.Name = "TBPARTY"
+        Me.TBPARTY.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBPARTY.Size = New System.Drawing.Size(555, 566)
+        Me.TBPARTY.TabIndex = 0
+        Me.TBPARTY.Text = "1. Party Name"
         '
         'CHKSELECTALL
         '
@@ -776,106 +795,6 @@ Partial Class GDNFilter
         Me.GSALESMAN.VisibleIndex = 6
         Me.GSALESMAN.Width = 200
         '
-        'CMBDONE
-        '
-        Me.CMBDONE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBDONE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBDONE.BackColor = System.Drawing.Color.White
-        Me.CMBDONE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBDONE.FormattingEnabled = True
-        Me.CMBDONE.Items.AddRange(New Object() {"", "Pending Challan", "Bill Done"})
-        Me.CMBDONE.Location = New System.Drawing.Point(172, 103)
-        Me.CMBDONE.MaxDropDownItems = 14
-        Me.CMBDONE.Name = "CMBDONE"
-        Me.CMBDONE.Size = New System.Drawing.Size(182, 22)
-        Me.CMBDONE.TabIndex = 7
-        '
-        'CHKSUMMARY
-        '
-        Me.CHKSUMMARY.AutoSize = True
-        Me.CHKSUMMARY.BackColor = System.Drawing.Color.Transparent
-        Me.CHKSUMMARY.Location = New System.Drawing.Point(85, 105)
-        Me.CHKSUMMARY.Name = "CHKSUMMARY"
-        Me.CHKSUMMARY.Size = New System.Drawing.Size(75, 18)
-        Me.CHKSUMMARY.TabIndex = 660
-        Me.CHKSUMMARY.Text = "Summary"
-        Me.CHKSUMMARY.UseVisualStyleBackColor = False
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(45, 51)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(38, 14)
-        Me.Label5.TabIndex = 659
-        Me.Label5.Text = "Agent"
-        '
-        'CMBAGENT
-        '
-        Me.CMBAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBAGENT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBAGENT.BackColor = System.Drawing.Color.White
-        Me.CMBAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBAGENT.FormattingEnabled = True
-        Me.CMBAGENT.Location = New System.Drawing.Point(85, 47)
-        Me.CMBAGENT.MaxDropDownItems = 14
-        Me.CMBAGENT.Name = "CMBAGENT"
-        Me.CMBAGENT.Size = New System.Drawing.Size(265, 22)
-        Me.CMBAGENT.TabIndex = 1
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(44, 23)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(39, 14)
-        Me.Label9.TabIndex = 419
-        Me.Label9.Text = "Name"
-        '
-        'cmdexit
-        '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(509, 451)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 11
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
-        '
-        'TabControl1
-        '
-        Me.TabControl1.Controls.Add(Me.TBPARTY)
-        Me.TabControl1.Controls.Add(Me.TBITEMNAME)
-        Me.TabControl1.Controls.Add(Me.TBDESIGN)
-        Me.TabControl1.Controls.Add(Me.TBSHADE)
-        Me.TabControl1.Location = New System.Drawing.Point(671, 12)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(563, 593)
-        Me.TabControl1.TabIndex = 664
-        '
-        'TBPARTY
-        '
-        Me.TBPARTY.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TBPARTY.Controls.Add(Me.CHKSELECTALL)
-        Me.TBPARTY.Controls.Add(Me.gridbilldetails)
-        Me.TBPARTY.Location = New System.Drawing.Point(4, 23)
-        Me.TBPARTY.Name = "TBPARTY"
-        Me.TBPARTY.Padding = New System.Windows.Forms.Padding(3)
-        Me.TBPARTY.Size = New System.Drawing.Size(555, 566)
-        Me.TBPARTY.TabIndex = 0
-        Me.TBPARTY.Text = "1. Party Name"
-        '
         'TBITEMNAME
         '
         Me.TBITEMNAME.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
@@ -964,6 +883,8 @@ Partial Class GDNFilter
         'TBDESIGN
         '
         Me.TBDESIGN.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBDESIGN.Controls.Add(Me.CHKSELECTDESIGN)
+        Me.TBDESIGN.Controls.Add(Me.gridbilldetailsdesign)
         Me.TBDESIGN.Location = New System.Drawing.Point(4, 23)
         Me.TBDESIGN.Name = "TBDESIGN"
         Me.TBDESIGN.Padding = New System.Windows.Forms.Padding(3)
@@ -974,12 +895,243 @@ Partial Class GDNFilter
         'TBSHADE
         '
         Me.TBSHADE.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBSHADE.Controls.Add(Me.CHKSELECTCOLOR)
+        Me.TBSHADE.Controls.Add(Me.gridbilldetailscolor)
         Me.TBSHADE.Location = New System.Drawing.Point(4, 23)
         Me.TBSHADE.Name = "TBSHADE"
         Me.TBSHADE.Padding = New System.Windows.Forms.Padding(3)
         Me.TBSHADE.Size = New System.Drawing.Size(555, 566)
         Me.TBSHADE.TabIndex = 3
         Me.TBSHADE.Text = "4. Shade"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.BackColor = System.Drawing.Color.Transparent
+        Me.Label19.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.Color.Black
+        Me.Label19.Location = New System.Drawing.Point(389, 134)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(30, 14)
+        Me.Label19.TabIndex = 663
+        Me.Label19.Text = "Unit"
+        '
+        'CMBUNIT
+        '
+        Me.CMBUNIT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBUNIT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBUNIT.BackColor = System.Drawing.Color.White
+        Me.CMBUNIT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBUNIT.FormattingEnabled = True
+        Me.CMBUNIT.Location = New System.Drawing.Point(423, 131)
+        Me.CMBUNIT.MaxDropDownItems = 14
+        Me.CMBUNIT.Name = "CMBUNIT"
+        Me.CMBUNIT.Size = New System.Drawing.Size(242, 22)
+        Me.CMBUNIT.TabIndex = 662
+        '
+        'CMBDONE
+        '
+        Me.CMBDONE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBDONE.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBDONE.BackColor = System.Drawing.Color.White
+        Me.CMBDONE.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBDONE.FormattingEnabled = True
+        Me.CMBDONE.Items.AddRange(New Object() {"", "Pending Challan", "Bill Done"})
+        Me.CMBDONE.Location = New System.Drawing.Point(172, 103)
+        Me.CMBDONE.MaxDropDownItems = 14
+        Me.CMBDONE.Name = "CMBDONE"
+        Me.CMBDONE.Size = New System.Drawing.Size(182, 22)
+        Me.CMBDONE.TabIndex = 7
+        '
+        'CHKSUMMARY
+        '
+        Me.CHKSUMMARY.AutoSize = True
+        Me.CHKSUMMARY.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSUMMARY.Location = New System.Drawing.Point(85, 105)
+        Me.CHKSUMMARY.Name = "CHKSUMMARY"
+        Me.CHKSUMMARY.Size = New System.Drawing.Size(75, 18)
+        Me.CHKSUMMARY.TabIndex = 660
+        Me.CHKSUMMARY.Text = "Summary"
+        Me.CHKSUMMARY.UseVisualStyleBackColor = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Black
+        Me.Label5.Location = New System.Drawing.Point(45, 51)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(38, 14)
+        Me.Label5.TabIndex = 659
+        Me.Label5.Text = "Agent"
+        '
+        'CMBAGENT
+        '
+        Me.CMBAGENT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBAGENT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBAGENT.BackColor = System.Drawing.Color.White
+        Me.CMBAGENT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBAGENT.FormattingEnabled = True
+        Me.CMBAGENT.Location = New System.Drawing.Point(85, 47)
+        Me.CMBAGENT.MaxDropDownItems = 14
+        Me.CMBAGENT.Name = "CMBAGENT"
+        Me.CMBAGENT.Size = New System.Drawing.Size(265, 22)
+        Me.CMBAGENT.TabIndex = 1
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.Black
+        Me.Label9.Location = New System.Drawing.Point(44, 23)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(39, 14)
+        Me.Label9.TabIndex = 419
+        Me.Label9.Text = "Name"
+        '
+        'cmdexit
+        '
+        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
+        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdexit.FlatAppearance.BorderSize = 0
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.ForeColor = System.Drawing.Color.Black
+        Me.cmdexit.Location = New System.Drawing.Point(509, 451)
+        Me.cmdexit.Name = "cmdexit"
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
+        Me.cmdexit.TabIndex = 11
+        Me.cmdexit.Text = "E&xit"
+        Me.cmdexit.UseVisualStyleBackColor = False
+        '
+        'CHKSELECTDESIGN
+        '
+        Me.CHKSELECTDESIGN.AutoSize = True
+        Me.CHKSELECTDESIGN.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELECTDESIGN.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSELECTDESIGN.ForeColor = System.Drawing.Color.Black
+        Me.CHKSELECTDESIGN.Location = New System.Drawing.Point(14, 6)
+        Me.CHKSELECTDESIGN.Name = "CHKSELECTDESIGN"
+        Me.CHKSELECTDESIGN.Size = New System.Drawing.Size(77, 18)
+        Me.CHKSELECTDESIGN.TabIndex = 2
+        Me.CHKSELECTDESIGN.Text = "Select All"
+        Me.CHKSELECTDESIGN.UseVisualStyleBackColor = False
+        '
+        'gridbilldetailsdesign
+        '
+        Me.gridbilldetailsdesign.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridbilldetailsdesign.Location = New System.Drawing.Point(5, 27)
+        Me.gridbilldetailsdesign.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.gridbilldetailsdesign.MainView = Me.gridbilldesign
+        Me.gridbilldetailsdesign.Name = "gridbilldetailsdesign"
+        Me.gridbilldetailsdesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
+        Me.gridbilldetailsdesign.Size = New System.Drawing.Size(545, 533)
+        Me.gridbilldetailsdesign.TabIndex = 3
+        Me.gridbilldetailsdesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbilldesign})
+        '
+        'gridbilldesign
+        '
+        Me.gridbilldesign.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridbilldesign.Appearance.Row.Options.UseFont = True
+        Me.gridbilldesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHKDESIGN, Me.GDESIGN})
+        Me.gridbilldesign.GridControl = Me.gridbilldetailsdesign
+        Me.gridbilldesign.Name = "gridbilldesign"
+        Me.gridbilldesign.OptionsBehavior.AllowIncrementalSearch = True
+        Me.gridbilldesign.OptionsView.ColumnAutoWidth = False
+        Me.gridbilldesign.OptionsView.ShowAutoFilterRow = True
+        Me.gridbilldesign.OptionsView.ShowGroupPanel = False
+        '
+        'GCHKDESIGN
+        '
+        Me.GCHKDESIGN.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GCHKDESIGN.FieldName = "CHK"
+        Me.GCHKDESIGN.Name = "GCHKDESIGN"
+        Me.GCHKDESIGN.OptionsColumn.ShowCaption = False
+        Me.GCHKDESIGN.Visible = True
+        Me.GCHKDESIGN.VisibleIndex = 0
+        Me.GCHKDESIGN.Width = 35
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'GDESIGN
+        '
+        Me.GDESIGN.Caption = "Design No"
+        Me.GDESIGN.FieldName = "DESIGNNO"
+        Me.GDESIGN.ImageOptions.ImageIndex = 0
+        Me.GDESIGN.Name = "GDESIGN"
+        Me.GDESIGN.OptionsColumn.AllowEdit = False
+        Me.GDESIGN.Visible = True
+        Me.GDESIGN.VisibleIndex = 1
+        Me.GDESIGN.Width = 120
+        '
+        'CHKSELECTCOLOR
+        '
+        Me.CHKSELECTCOLOR.AutoSize = True
+        Me.CHKSELECTCOLOR.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELECTCOLOR.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSELECTCOLOR.ForeColor = System.Drawing.Color.Black
+        Me.CHKSELECTCOLOR.Location = New System.Drawing.Point(14, 6)
+        Me.CHKSELECTCOLOR.Name = "CHKSELECTCOLOR"
+        Me.CHKSELECTCOLOR.Size = New System.Drawing.Size(77, 18)
+        Me.CHKSELECTCOLOR.TabIndex = 2
+        Me.CHKSELECTCOLOR.Text = "Select All"
+        Me.CHKSELECTCOLOR.UseVisualStyleBackColor = False
+        '
+        'gridbilldetailscolor
+        '
+        Me.gridbilldetailscolor.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridbilldetailscolor.Location = New System.Drawing.Point(5, 27)
+        Me.gridbilldetailscolor.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.gridbilldetailscolor.MainView = Me.gridbillcolor
+        Me.gridbilldetailscolor.Name = "gridbilldetailscolor"
+        Me.gridbilldetailscolor.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3})
+        Me.gridbilldetailscolor.Size = New System.Drawing.Size(545, 533)
+        Me.gridbilldetailscolor.TabIndex = 3
+        Me.gridbilldetailscolor.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbillcolor})
+        '
+        'gridbillcolor
+        '
+        Me.gridbillcolor.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridbillcolor.Appearance.Row.Options.UseFont = True
+        Me.gridbillcolor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHKCOLOR, Me.GCOLOR})
+        Me.gridbillcolor.GridControl = Me.gridbilldetailscolor
+        Me.gridbillcolor.Name = "gridbillcolor"
+        Me.gridbillcolor.OptionsBehavior.AllowIncrementalSearch = True
+        Me.gridbillcolor.OptionsView.ColumnAutoWidth = False
+        Me.gridbillcolor.OptionsView.ShowAutoFilterRow = True
+        Me.gridbillcolor.OptionsView.ShowGroupPanel = False
+        '
+        'GCHKCOLOR
+        '
+        Me.GCHKCOLOR.ColumnEdit = Me.RepositoryItemCheckEdit3
+        Me.GCHKCOLOR.FieldName = "CHK"
+        Me.GCHKCOLOR.Name = "GCHKCOLOR"
+        Me.GCHKCOLOR.OptionsColumn.ShowCaption = False
+        Me.GCHKCOLOR.Visible = True
+        Me.GCHKCOLOR.VisibleIndex = 0
+        Me.GCHKCOLOR.Width = 35
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        Me.RepositoryItemCheckEdit3.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'GCOLOR
+        '
+        Me.GCOLOR.Caption = "Shade"
+        Me.GCOLOR.FieldName = "COLOR"
+        Me.GCOLOR.ImageOptions.ImageIndex = 0
+        Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.OptionsColumn.AllowEdit = False
+        Me.GCOLOR.Visible = True
+        Me.GCOLOR.VisibleIndex = 1
+        Me.GCOLOR.Width = 120
         '
         'GDNFilter
         '
@@ -998,17 +1150,27 @@ Partial Class GDNFilter
         Me.GroupBox1.PerformLayout()
         Me.BlendPanel2.ResumeLayout(False)
         Me.BlendPanel2.PerformLayout()
-        CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TBPARTY.ResumeLayout(False)
         Me.TBPARTY.PerformLayout()
+        CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TBITEMNAME.ResumeLayout(False)
         Me.TBITEMNAME.PerformLayout()
         CType(Me.GRIDBILLDETAILSITEM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDBILLITEM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TBDESIGN.ResumeLayout(False)
+        Me.TBDESIGN.PerformLayout()
+        Me.TBSHADE.ResumeLayout(False)
+        Me.TBSHADE.PerformLayout()
+        CType(Me.gridbilldetailsdesign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridbilldesign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridbilldetailscolor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridbillcolor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1087,4 +1249,16 @@ Partial Class GDNFilter
     Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TBDESIGN As TabPage
     Friend WithEvents TBSHADE As TabPage
+    Friend WithEvents CHKSELECTDESIGN As CheckBox
+    Private WithEvents gridbilldetailsdesign As DevExpress.XtraGrid.GridControl
+    Private WithEvents gridbilldesign As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCHKDESIGN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Private WithEvents GDESIGN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKSELECTCOLOR As CheckBox
+    Private WithEvents gridbilldetailscolor As DevExpress.XtraGrid.GridControl
+    Private WithEvents gridbillcolor As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCHKCOLOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Private WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
 End Class
