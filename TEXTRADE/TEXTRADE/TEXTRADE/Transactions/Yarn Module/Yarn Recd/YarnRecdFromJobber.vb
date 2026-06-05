@@ -1397,7 +1397,7 @@ LINE1:
 
     Private Sub cmbname_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBTONAME.Enter
         Try
-            If CMBTONAME.Text.Trim = "" Then fillname(CMBTONAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
+            If CMBTONAME.Text.Trim = "" Then FILLNAME(CMBTONAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY ='SUNDRY DEBTORS') and ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1406,7 +1406,7 @@ LINE1:
     Private Sub cmbname_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTONAME.Validating
         Try
             'If cmbname.Text.Trim <> "" Then namevalidate(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry Creditors", "ACCOUNTS", cmbtrans.Text, CMBBROKER.Text)
-            If CMBTONAME.Text.Trim <> "" Then namevalidate(CMBTONAME, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry Creditors", "ACCOUNTS", cmbtrans.Text, "")
+            If CMBTONAME.Text.Trim <> "" Then NAMEVALIDATE(CMBTONAME, CMBCODE, e, Me, txtadd, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS", cmbtrans.Text, "")
 
         Catch ex As Exception
             Throw ex
@@ -1415,7 +1415,7 @@ LINE1:
 
     Private Sub CMBTONAME_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles CMBTONAME.Enter
         Try
-            If CMBTONAME.Text.Trim = "" Then fillname(CMBTONAME, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' and ACC_TYPE = 'ACCOUNTS'")
+            If CMBTONAME.Text.Trim = "" Then FILLNAME(CMBTONAME, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS') and ACC_TYPE = 'ACCOUNTS'")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1423,7 +1423,7 @@ LINE1:
 
     Private Sub CMBTONAME_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles CMBTONAME.Validating
         Try
-            If CMBTONAME.Text.Trim <> "" Then namevalidate(CMBTONAME, CMBTOCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "Sundry Creditors", "ACCOUNTS")
+            If CMBTONAME.Text.Trim <> "" Then NAMEVALIDATE(CMBTONAME, CMBTOCODE, e, Me, txtadd, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS')", "Sundry Creditors", "ACCOUNTS")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1683,7 +1683,11 @@ LINE1:
                 GQTY.HeaderText = "Box/Tube"
             End If
 
-            If ClientName = "SWPL" Then GLRNO.HeaderText = "Box No"
+            If ClientName = "SWPL" Then
+                GLRNO.HeaderText = "Box No"
+                TOOLUPLOADEXCEL.Visible = True
+
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -1906,6 +1910,324 @@ NEXTLINE:
         End Try
     End Sub
 
+    Private Sub TOOLUPLOADEXCEL_Click(sender As Object, e As EventArgs) Handles TOOLUPLOADEXCEL.Click
+        Try
+            If EDIT = True Then Exit Sub
+
+
+            OpenFileDialog1.Filter = "Excel (*.xls;*.xlsx;*.csv)|*.xls;*.xlsx;*.csv"
+            'OpenFileDialog1.ShowDialog()
+            OpenFileDialog1.AddExtension = True
+            If OpenFileDialog1.ShowDialog() <> DialogResult.OK Then Exit Sub
+
+            Dim cPart As Microsoft.Office.Interop.Excel.Range
+            Dim oExcel As Microsoft.Office.Interop.Excel.Application = CreateObject("Excel.Application")
+            Dim oBook As Microsoft.Office.Interop.Excel.Workbook = oExcel.Workbooks.Open(OpenFileDialog1.FileName, , False)
+
+
+
+            Dim oSheet As New Microsoft.Office.Interop.Excel.Worksheet
+            oSheet = oBook.Worksheets("Sheet1")
+
+
+            Dim DTSAVE As New System.Data.DataTable
+            'DTSAVE.Columns.Add("LOTNO")
+            DTSAVE.Columns.Add("ITEMNAME")
+            DTSAVE.Columns.Add("MILLNAME")
+            'DTSAVE.Columns.Add("DESIGNNO")
+            DTSAVE.Columns.Add("PARTYLOTNO")
+            DTSAVE.Columns.Add("PARTYCOLOR")
+            DTSAVE.Columns.Add("COLOR")
+            DTSAVE.Columns.Add("BAGS")
+            DTSAVE.Columns.Add("WT")
+            'DTSAVE.Columns.Add("RATE")
+
+            'DTSAVE.Columns.Add("CONES")   'MTRS
+            DTSAVE.Columns.Add("BOXNO")
+
+            'DTSAVE.Columns.Add("LRDATE")
+            'DTSAVE.Columns.Add("RACK")
+
+            Dim ARR As New ArrayList
+            Dim COLIND As Integer = 0
+            Dim DTROWSAVE As System.Data.DataRow = DTSAVE.NewRow()
+
+
+            Dim FROMROWNO As Integer = Val(InputBox("Enter Start Row No"))
+            Dim TOROWNO As Integer = Val(InputBox("Enter End Row No"))
+
+            For I As Integer = FROMROWNO To TOROWNO
+                'If IsDBNull(oSheet.Range("A" & I.ToString).Text) = False Then
+                '    DTROWSAVE("LOTNO") = oSheet.Range("A" & I.ToString).Text
+                'Else
+                '    DTROWSAVE("LOTNO") = ""
+                'End If
+
+                If IsDBNull(oSheet.Range("A" & I.ToString).Text) = False Then
+                    DTROWSAVE("ITEMNAME") = oSheet.Range("A" & I.ToString).Text
+                Else
+                    DTROWSAVE("ITEMNAME") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("B" & I.ToString).Text) = False Then
+                    DTROWSAVE("MILLNAME") = oSheet.Range("B" & I.ToString).Text
+                Else
+                    DTROWSAVE("MILLNAME") = ""
+                End If
+
+                'If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
+                '    DTROWSAVE("DESIGNNO") = oSheet.Range("C" & I.ToString).Text
+                'Else
+                '    DTROWSAVE("DESIGNNO") = ""
+                'End If
+                If IsDBNull(oSheet.Range("C" & I.ToString).Text) = False Then
+                    DTROWSAVE("PARTYCOLOR") = oSheet.Range("C" & I.ToString).Text
+                Else
+                    DTROWSAVE("PARTYCOLOR") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("D" & I.ToString).Text) = False Then
+                    DTROWSAVE("COLOR") = oSheet.Range("D" & I.ToString).Text
+                Else
+                    DTROWSAVE("COLOR") = ""
+                End If
+
+                If IsDBNull(oSheet.Range("E" & I.ToString).Text) = False Then
+                    DTROWSAVE("PARTYLOTNO") = oSheet.Range("E" & I.ToString).Text
+                Else
+                    DTROWSAVE("PARTYLOTNO") = ""
+                End If
+
+
+                If IsDBNull(oSheet.Range("F" & I.ToString).Text) = False Then
+                    DTROWSAVE("BOXNO") = oSheet.Range("F" & I.ToString).Text
+                Else
+                    DTROWSAVE("BOXNO") = ""
+                End If
+
+
+                If IsDBNull(oSheet.Range("G" & I.ToString).Text) = False Then
+                    DTROWSAVE("WT") = Val(oSheet.Range("G" & I.ToString).Text)
+                Else
+                    DTROWSAVE("WT") = 0
+                End If
+
+
+                'If IsDBNull(oSheet.Range("I" & I.ToString).Text) = False Then
+                '    DTROWSAVE("CONES") = Val(oSheet.Range("I" & I.ToString).Text)
+                'Else
+                '    DTROWSAVE("CONES") = 0
+                'End If
+
+
+
+                'If IsDBNull(oSheet.Range("K" & I.ToString).Text) = False Then
+                '    DTROWSAVE("LRDATE") = Convert.ToDateTime(oSheet.Range("K" & I.ToString).Value)
+                'Else
+                '    DTROWSAVE("LRDATE") = 0
+                'End If
+
+                'If IsDBNull(oSheet.Range("L" & I.ToString).Text) = False Then
+                '    DTROWSAVE("RACK") = oSheet.Range("L" & I.ToString).Text
+                'Else
+                '    DTROWSAVE("RACK") = ""
+                'End If
+
+                If Val(DTROWSAVE("WT")) = 0 Then GoTo SKIPLINE
+
+
+
+                Dim ALPARAVAL As New ArrayList
+                'CHECK WHETHER ITEMNAME IS PRESENT OR NOT IF NOT PRESENT THEN ADD NEW
+                Dim OBJCMN As New ClsCommon
+                Dim DTTABLE As New DataTable
+                If DTROWSAVE("ITEMNAME") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("YARN_ID AS YARNID", "", "YARNQUALITYMASTER ", "AND YARN_NAME = '" & DTROWSAVE("ITEMNAME") & "' AND YARN_YEARID = " & YearId)
+
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW ITEMNAME 
+                        ALPARAVAL.Clear()
+
+
+                        ALPARAVAL.Add(UCase(DTROWSAVE("ITEMNAME"))) 'ITEMNAME
+                        ALPARAVAL.Add("")   'CATEGORY
+
+                        ALPARAVAL.Add("")   'REMARKS
+                        ALPARAVAL.Add(0)    'BOXWT
+                        ALPARAVAL.Add("")   'HSNCODE
+                        ALPARAVAL.Add(0)    'DENIER
+                        ALPARAVAL.Add(0)    'RATE
+
+                        ALPARAVAL.Add("")   'YARNQUALITY
+                        ALPARAVAL.Add("")   'PER
+
+                        ALPARAVAL.Add("")    'STORESRNO
+                        ALPARAVAL.Add("")   'STOREITEMNAME
+                        ALPARAVAL.Add(0)    'STOREQTY
+
+                        ALPARAVAL.Add(CmpId)
+                        ALPARAVAL.Add(Userid)
+                        ALPARAVAL.Add(YearId)
+
+                        ALPARAVAL.Add("")   'COUNT
+                        ALPARAVAL.Add("")   'SHADENO
+                        ALPARAVAL.Add("")   'MILLNAME
+                        ALPARAVAL.Add("")   'GREYQUALITY
+
+
+
+
+
+
+                        Dim objclsItemMaster As New ClsYarnQualityMaster
+                        objclsItemMaster.alParaval = ALPARAVAL
+                        Dim IntResult As Integer = objclsItemMaster.SAVE()
+
+                    End If
+                End If
+
+
+
+                'MILL SAVE
+                If DTROWSAVE("MILLNAME") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("MILL_ID AS MILLID", "", "MILLMASTER", " AND MILL_NAME = '" & DTROWSAVE("MILLNAME") & "' AND MILL_YEARID = " & YearId)
+
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJDESIGN As New ClsMillMaster
+                        OBJDESIGN.alParaval.Add(UCase(DTROWSAVE("MILLNAME")))
+                        OBJDESIGN.alParaval.Add("") 'REMARKS
+
+                        OBJDESIGN.alParaval.Add(CmpId)
+                        OBJDESIGN.alParaval.Add(Userid)
+                        OBJDESIGN.alParaval.Add(YearId)
+
+                        OBJDESIGN.alParaval.Add("") 'CONTACT PERSON
+                        OBJDESIGN.alParaval.Add("") 'CONTACTNO
+
+
+
+                        Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
+                    End If
+                End If
+
+                ''DESIGN SAVE
+                'If DTROWSAVE("DESIGNNO") <> "" Then
+                '    DTTABLE = OBJCMN.SEARCH("DESIGN_ID AS DESIGNID", "", "DESIGNMASTER", " AND DESIGN_NO = '" & DTROWSAVE("DESIGNNO") & "' AND DESIGN_YEARID = " & YearId)
+                '    If DTTABLE.Rows.Count = 0 Then
+                '        'ADD NEW DESIGN
+                '        Dim OBJDESIGN As New ClsDesignMaster
+                '        OBJDESIGN.alParaval.Add(UCase(DTROWSAVE("DESIGNNO")))
+                '        OBJDESIGN.alParaval.Add("") 'MILLNAME
+                '        OBJDESIGN.alParaval.Add("") 'CADNO
+                '        OBJDESIGN.alParaval.Add(0)  'PURRATE
+                '        OBJDESIGN.alParaval.Add(0)  'SALERATE
+                '        OBJDESIGN.alParaval.Add(0)  'WRATE
+                '        OBJDESIGN.alParaval.Add("") 'REMARKS
+
+                '        OBJDESIGN.alParaval.Add(0)  'FABRIC
+                '        OBJDESIGN.alParaval.Add(0)  'DYEING
+                '        OBJDESIGN.alParaval.Add(0)  'JOBWORK
+                '        OBJDESIGN.alParaval.Add(0)  'FINISHING
+                '        OBJDESIGN.alParaval.Add(0)  'EXTRA
+                '        OBJDESIGN.alParaval.Add(0)  'TOTAL
+
+                '        OBJDESIGN.alParaval.Add("") 'ITEM
+                '        OBJDESIGN.alParaval.Add(0)  'BLOCKED
+
+                '        OBJDESIGN.alParaval.Add(CmpId)
+                '        OBJDESIGN.alParaval.Add(Locationid)
+                '        OBJDESIGN.alParaval.Add(Userid)
+                '        OBJDESIGN.alParaval.Add(YearId)
+                '        OBJDESIGN.alParaval.Add(0)
+
+                '        OBJDESIGN.alParaval.Add(DBNull.Value)
+
+                '        OBJDESIGN.alParaval.Add("")    'GRIDSRNO
+                '        OBJDESIGN.alParaval.Add("")    'BASE
+                '        OBJDESIGN.alParaval.Add("")    'PRINT
+                '        OBJDESIGN.alParaval.Add("")    'COLOR
+                '        OBJDESIGN.alParaval.Add(0)    'COLORBLOCKED
+                '        OBJDESIGN.alParaval.Add("")    'SHADETYPE
+
+                '        OBJDESIGN.alParaval.Add("")   'LINE1
+                '        OBJDESIGN.alParaval.Add("")   'LINE2
+                '        OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
+                '        OBJDESIGN.alParaval.Add("")    'DESIGNER
+
+
+
+
+                '        Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
+                '    End If
+                'End If
+
+
+                'COLOR SAVE
+                If DTROWSAVE("COLOR") <> "" Then
+                    DTTABLE = OBJCMN.SEARCH("COLOR_ID AS COLORID", "", "COLORMASTER", " AND COLOR_NAME = '" & DTROWSAVE("COLOR") & "' AND COLOR_YEARID = " & YearId)
+                    If DTTABLE.Rows.Count = 0 Then
+                        'ADD NEW DESIGN
+                        Dim OBJCOLOR As New ClsColorMaster
+                        OBJCOLOR.alParaval.Add(UCase(DTROWSAVE("COLOR")))
+                        OBJCOLOR.alParaval.Add("")
+                        OBJCOLOR.alParaval.Add(CmpId)
+                        OBJCOLOR.alParaval.Add(Locationid)
+                        OBJCOLOR.alParaval.Add(Userid)
+                        OBJCOLOR.alParaval.Add(YearId)
+                        OBJCOLOR.alParaval.Add(0)
+
+                        Dim INTRESCAT As Integer = OBJCOLOR.save()
+                    End If
+                End If
+
+
+
+                ''ADD NEW UNIT
+                ''PIECETYPE SAVE
+                'If DTROWSAVE("RACK") <> "" Then
+                '    DTTABLE = OBJCMN.SEARCH("RACK_ID AS RACKID", "", "RACKMASTER", " AND RACK_NAME = '" & DTROWSAVE("RACK") & "' AND RACK_YEARID = " & YearId)
+                '    If DTTABLE.Rows.Count = 0 Then
+                '        'ADD NEW UNIT
+                '        Dim OBJUNIT As New ClsRackMaster
+                '        OBJUNIT.alParaval.Add(UCase(DTROWSAVE("RACK"))) 'NAME
+                '        OBJUNIT.alParaval.Add("") 'REMARKS
+                '        OBJUNIT.alParaval.Add("")   'CATEGORY
+                '        OBJUNIT.alParaval.Add(CmpId)
+                '        'OBJUNIT.alParaval.Add(0)
+                '        OBJUNIT.alParaval.Add(Userid)
+                '        OBJUNIT.alParaval.Add(YearId)
+                '        'OBJUNIT.alParaval.Add(0)   'TRANSFER
+
+                '        Dim INTRESCAT As Integer = OBJUNIT.SAVE()
+                '    End If
+                'End If
+
+
+                'Dim LRDATE As String = ""
+                'If DTROWSAVE("LRDATE").ToString <> "" Then
+                '    LRDATE = Format(Convert.ToDateTime(DTROWSAVE("LRDATE")), "dd/MM/yyyy")
+                'End If
+
+                'TXTLOTNO.Text = DTROWSAVE("LOTNO")
+                GRIDYARN.Rows.Add(0, DTROWSAVE("ITEMNAME"), DTROWSAVE("MILLNAME"), "", DTROWSAVE("PARTYLOTNO"), DTROWSAVE("COLOR"), "", "", 1, 0, 0, Format(Val(DTROWSAVE("WT")), "0.000"), 0, DTROWSAVE("BOXNO"), "", 0, "Wt", 0, "", 0, 0, 0)
+
+                DTROWSAVE = DTSAVE.NewRow()
+
+SKIPLINE:
+            Next
+            oBook.Close()
+            GETSRNO(GRIDYARN)
+            TOTAL()
+
+
+            Exit Sub
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Private Sub CMBRACK_Enter(sender As Object, e As EventArgs) Handles CMBRACK.Enter
         Try

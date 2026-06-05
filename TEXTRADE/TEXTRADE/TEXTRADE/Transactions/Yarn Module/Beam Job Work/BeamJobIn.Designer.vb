@@ -47,8 +47,8 @@ Partial Class BeamJobIn
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.LBLTOTALJOBMTRS = New System.Windows.Forms.Label()
-        Me.LBLTOTALBEAMMTRS = New System.Windows.Forms.Label()
+        Me.LBLTOTALMTRS = New System.Windows.Forms.Label()
+        Me.LBLTOTALBEAMWT = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GRIDBEAM = New System.Windows.Forms.DataGridView()
         Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -319,8 +319,8 @@ Partial Class BeamJobIn
         '
         Me.TabPage1.AutoScroll = True
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.TabPage1.Controls.Add(Me.LBLTOTALJOBMTRS)
-        Me.TabPage1.Controls.Add(Me.LBLTOTALBEAMMTRS)
+        Me.TabPage1.Controls.Add(Me.LBLTOTALMTRS)
+        Me.TabPage1.Controls.Add(Me.LBLTOTALBEAMWT)
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.GRIDBEAM)
         Me.TabPage1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -331,29 +331,29 @@ Partial Class BeamJobIn
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "1. Item Details"
         '
-        'LBLTOTALJOBMTRS
+        'LBLTOTALMTRS
         '
-        Me.LBLTOTALJOBMTRS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTOTALJOBMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTOTALJOBMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALJOBMTRS.Location = New System.Drawing.Point(963, 234)
-        Me.LBLTOTALJOBMTRS.Name = "LBLTOTALJOBMTRS"
-        Me.LBLTOTALJOBMTRS.Size = New System.Drawing.Size(58, 15)
-        Me.LBLTOTALJOBMTRS.TabIndex = 647
-        Me.LBLTOTALJOBMTRS.Text = "0"
-        Me.LBLTOTALJOBMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALMTRS.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(963, 234)
+        Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
+        Me.LBLTOTALMTRS.Size = New System.Drawing.Size(58, 15)
+        Me.LBLTOTALMTRS.TabIndex = 647
+        Me.LBLTOTALMTRS.Text = "0"
+        Me.LBLTOTALMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'LBLTOTALBEAMMTRS
+        'LBLTOTALBEAMWT
         '
-        Me.LBLTOTALBEAMMTRS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLTOTALBEAMMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLTOTALBEAMMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALBEAMMTRS.Location = New System.Drawing.Point(1069, 234)
-        Me.LBLTOTALBEAMMTRS.Name = "LBLTOTALBEAMMTRS"
-        Me.LBLTOTALBEAMMTRS.Size = New System.Drawing.Size(58, 15)
-        Me.LBLTOTALBEAMMTRS.TabIndex = 646
-        Me.LBLTOTALBEAMMTRS.Text = "0"
-        Me.LBLTOTALBEAMMTRS.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LBLTOTALBEAMWT.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTALBEAMWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTALBEAMWT.ForeColor = System.Drawing.Color.Black
+        Me.LBLTOTALBEAMWT.Location = New System.Drawing.Point(1069, 234)
+        Me.LBLTOTALBEAMWT.Name = "LBLTOTALBEAMWT"
+        Me.LBLTOTALBEAMWT.Size = New System.Drawing.Size(58, 15)
+        Me.LBLTOTALBEAMWT.TabIndex = 646
+        Me.LBLTOTALBEAMWT.Text = "0"
+        Me.LBLTOTALBEAMWT.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label7
         '
@@ -812,8 +812,8 @@ Partial Class BeamJobIn
     Friend WithEvents tstxtbillno As TextBox
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents LBLTOTALJOBMTRS As Label
-    Friend WithEvents LBLTOTALBEAMMTRS As Label
+    Friend WithEvents LBLTOTALMTRS As Label
+    Friend WithEvents LBLTOTALBEAMWT As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents GRIDBEAM As DataGridView
     Friend WithEvents DTBEAMJODATE As MaskedTextBox
