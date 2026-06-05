@@ -39,7 +39,7 @@ Public Class ClsBeamJobIn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@BEAMJONO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@JONO", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
@@ -123,7 +123,7 @@ Public Class ClsBeamJobIn
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@REMARKS", alParaval(I)))
                 I = I + 1
-                .Add(New SqlClient.SqlParameter("@BEAMJONO", alParaval(I)))
+                .Add(New SqlClient.SqlParameter("@JONO", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@cmpid", alParaval(I)))
@@ -192,7 +192,7 @@ Public Class ClsBeamJobIn
             Dim strCommand As String = "SP_SELECTBEAMJOBIN_FOR_EDIT"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@BEAMRECNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@BEAMJINO", alParaval(0)))
                 .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
             End With
             dtTable = objDBOperation.execute(strCommand, alParameter).Tables(0)
@@ -209,7 +209,7 @@ Public Class ClsBeamJobIn
             Dim strCommand As String = "SP_TRANS_BEAMJOBIN_DELETE"
             Dim alParameter As New ArrayList
             With alParameter
-                .Add(New SqlClient.SqlParameter("@RECDNO", alParaval(0)))
+                .Add(New SqlClient.SqlParameter("@BEAMJINO", alParaval(0)))
                 .Add(New SqlClient.SqlParameter("@YearID", alParaval(1)))
             End With
             intResult = objDBOperation.executeNonQuery(strCommand, alParameter)

@@ -31,6 +31,8 @@ Partial Class BeamJobOut
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BeamJobOut))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.LBLPROCESS = New System.Windows.Forms.Label()
+        Me.CMBPROCESS = New System.Windows.Forms.ComboBox()
         Me.LBLEINVGENERATED = New System.Windows.Forms.Label()
         Me.CMDSELECTYARNISSUE = New System.Windows.Forms.Button()
         Me.LBLTAPLINE = New System.Windows.Forms.Label()
@@ -64,6 +66,8 @@ Partial Class BeamJobOut
         Me.GFROMNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GFROMTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GGRIDDONE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GOUTWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DTBEAMJODATE = New System.Windows.Forms.MaskedTextBox()
         Me.TXTBEAMJONO = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -85,8 +89,6 @@ Partial Class BeamJobOut
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LBLPROCESS = New System.Windows.Forms.Label()
-        Me.CMBPROCESS = New System.Windows.Forms.ComboBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -130,6 +132,31 @@ Partial Class BeamJobOut
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1238, 581)
         Me.BlendPanel1.TabIndex = 1
+        '
+        'LBLPROCESS
+        '
+        Me.LBLPROCESS.AutoSize = True
+        Me.LBLPROCESS.BackColor = System.Drawing.Color.Transparent
+        Me.LBLPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLPROCESS.ForeColor = System.Drawing.Color.Black
+        Me.LBLPROCESS.Location = New System.Drawing.Point(14, 121)
+        Me.LBLPROCESS.Name = "LBLPROCESS"
+        Me.LBLPROCESS.Size = New System.Drawing.Size(84, 15)
+        Me.LBLPROCESS.TabIndex = 940
+        Me.LBLPROCESS.Text = "Process Name"
+        '
+        'CMBPROCESS
+        '
+        Me.CMBPROCESS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBPROCESS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBPROCESS.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBPROCESS.FormattingEnabled = True
+        Me.CMBPROCESS.Location = New System.Drawing.Point(101, 117)
+        Me.CMBPROCESS.MaxDropDownItems = 14
+        Me.CMBPROCESS.Name = "CMBPROCESS"
+        Me.CMBPROCESS.Size = New System.Drawing.Size(217, 23)
+        Me.CMBPROCESS.TabIndex = 939
         '
         'LBLEINVGENERATED
         '
@@ -309,7 +336,7 @@ Partial Class BeamJobOut
         Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALMTRS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(963, 234)
+        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(633, 234)
         Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
         Me.LBLTOTALMTRS.Size = New System.Drawing.Size(58, 15)
         Me.LBLTOTALMTRS.TabIndex = 647
@@ -321,7 +348,7 @@ Partial Class BeamJobOut
         Me.LBLTOTALWT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALWT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALWT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALWT.Location = New System.Drawing.Point(1069, 234)
+        Me.LBLTOTALWT.Location = New System.Drawing.Point(739, 234)
         Me.LBLTOTALWT.Name = "LBLTOTALWT"
         Me.LBLTOTALWT.Size = New System.Drawing.Size(58, 15)
         Me.LBLTOTALWT.TabIndex = 646
@@ -334,7 +361,7 @@ Partial Class BeamJobOut
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(816, 234)
+        Me.Label7.Location = New System.Drawing.Point(486, 234)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(33, 15)
         Me.Label7.TabIndex = 645
@@ -359,7 +386,7 @@ Partial Class BeamJobOut
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDBEAM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDBEAM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDBEAM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBEAMNO, Me.GBEAMNAME, Me.GMILLNAME, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GWT, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBREAKAGE, Me.GGRIDREMARKS, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
+        Me.GRIDBEAM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBEAMNO, Me.GBEAMNAME, Me.GMILLNAME, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GWT, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBREAKAGE, Me.GGRIDREMARKS, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GGRIDDONE, Me.GOUTWT})
         DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -517,6 +544,24 @@ Partial Class BeamJobOut
         Me.GFROMTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GFROMTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GFROMTYPE.Visible = False
+        '
+        'GGRIDDONE
+        '
+        Me.GGRIDDONE.HeaderText = "Done"
+        Me.GGRIDDONE.Name = "GGRIDDONE"
+        Me.GGRIDDONE.ReadOnly = True
+        Me.GGRIDDONE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GGRIDDONE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GGRIDDONE.Visible = False
+        '
+        'GOUTWT
+        '
+        Me.GOUTWT.HeaderText = "Out Wt"
+        Me.GOUTWT.Name = "GOUTWT"
+        Me.GOUTWT.ReadOnly = True
+        Me.GOUTWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GOUTWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GOUTWT.Visible = False
         '
         'DTBEAMJODATE
         '
@@ -734,31 +779,6 @@ Partial Class BeamJobOut
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'LBLPROCESS
-        '
-        Me.LBLPROCESS.AutoSize = True
-        Me.LBLPROCESS.BackColor = System.Drawing.Color.Transparent
-        Me.LBLPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBLPROCESS.ForeColor = System.Drawing.Color.Black
-        Me.LBLPROCESS.Location = New System.Drawing.Point(14, 121)
-        Me.LBLPROCESS.Name = "LBLPROCESS"
-        Me.LBLPROCESS.Size = New System.Drawing.Size(84, 15)
-        Me.LBLPROCESS.TabIndex = 940
-        Me.LBLPROCESS.Text = "Process Name"
-        '
-        'CMBPROCESS
-        '
-        Me.CMBPROCESS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBPROCESS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBPROCESS.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBPROCESS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBPROCESS.FormattingEnabled = True
-        Me.CMBPROCESS.Location = New System.Drawing.Point(101, 117)
-        Me.CMBPROCESS.MaxDropDownItems = 14
-        Me.CMBPROCESS.Name = "CMBPROCESS"
-        Me.CMBPROCESS.Size = New System.Drawing.Size(217, 23)
-        Me.CMBPROCESS.TabIndex = 939
-        '
         'BeamJobOut
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -826,6 +846,8 @@ Partial Class BeamJobOut
     Friend WithEvents CMBGODOWN As ComboBox
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents LBLPROCESS As Label
+    Friend WithEvents CMBPROCESS As ComboBox
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GBEAMNO As DataGridViewTextBoxColumn
     Friend WithEvents GBEAMNAME As DataGridViewTextBoxColumn
@@ -841,6 +863,6 @@ Partial Class BeamJobOut
     Friend WithEvents GFROMNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
-    Friend WithEvents LBLPROCESS As Label
-    Friend WithEvents CMBPROCESS As ComboBox
+    Friend WithEvents GGRIDDONE As DataGridViewTextBoxColumn
+    Friend WithEvents GOUTWT As DataGridViewTextBoxColumn
 End Class

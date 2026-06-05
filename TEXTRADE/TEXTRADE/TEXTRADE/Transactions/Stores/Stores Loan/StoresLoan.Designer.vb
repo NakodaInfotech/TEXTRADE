@@ -85,6 +85,8 @@ Partial Class StoresLoan
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TXTTENTATIVEDAYS = New System.Windows.Forms.TextBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -99,7 +101,9 @@ Partial Class StoresLoan
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.CMBCODE)
+        Me.BlendPanel1.Controls.Add(Me.TXTTENTATIVEDAYS)
         Me.BlendPanel1.Controls.Add(Me.cmddelete)
         Me.BlendPanel1.Controls.Add(Me.cmdclear)
         Me.BlendPanel1.Controls.Add(Me.cmdok)
@@ -127,7 +131,7 @@ Partial Class StoresLoan
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
-        Me.BlendPanel1.Size = New System.Drawing.Size(673, 549)
+        Me.BlendPanel1.Size = New System.Drawing.Size(673, 604)
         Me.BlendPanel1.TabIndex = 6
         '
         'CMBCODE
@@ -152,7 +156,7 @@ Partial Class StoresLoan
         Me.cmddelete.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmddelete.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmddelete.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmddelete.Location = New System.Drawing.Point(441, 465)
+        Me.cmddelete.Location = New System.Drawing.Point(441, 494)
         Me.cmddelete.Name = "cmddelete"
         Me.cmddelete.Size = New System.Drawing.Size(78, 27)
         Me.cmddelete.TabIndex = 8
@@ -167,7 +171,7 @@ Partial Class StoresLoan
         Me.cmdclear.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdclear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdclear.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdclear.Location = New System.Drawing.Point(358, 465)
+        Me.cmdclear.Location = New System.Drawing.Point(358, 494)
         Me.cmdclear.Name = "cmdclear"
         Me.cmdclear.Size = New System.Drawing.Size(78, 27)
         Me.cmdclear.TabIndex = 7
@@ -182,7 +186,7 @@ Partial Class StoresLoan
         Me.cmdok.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdok.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdok.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdok.Location = New System.Drawing.Point(276, 465)
+        Me.cmdok.Location = New System.Drawing.Point(276, 494)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(78, 27)
         Me.cmdok.TabIndex = 6
@@ -197,7 +201,7 @@ Partial Class StoresLoan
         Me.cmdexit.Font = New System.Drawing.Font("Arial", 8.25!)
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.cmdexit.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cmdexit.Location = New System.Drawing.Point(523, 465)
+        Me.cmdexit.Location = New System.Drawing.Point(523, 494)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(78, 27)
         Me.cmdexit.TabIndex = 9
@@ -234,7 +238,7 @@ Partial Class StoresLoan
         Me.LBLTOTALAMT.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALAMT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALAMT.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALAMT.Location = New System.Drawing.Point(538, 422)
+        Me.LBLTOTALAMT.Location = New System.Drawing.Point(538, 451)
         Me.LBLTOTALAMT.Name = "LBLTOTALAMT"
         Me.LBLTOTALAMT.Size = New System.Drawing.Size(80, 15)
         Me.LBLTOTALAMT.TabIndex = 638
@@ -281,7 +285,7 @@ Partial Class StoresLoan
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(369, 426)
+        Me.Label10.Location = New System.Drawing.Point(369, 455)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(31, 14)
         Me.Label10.TabIndex = 635
@@ -292,7 +296,7 @@ Partial Class StoresLoan
         Me.lbltotalqty.BackColor = System.Drawing.Color.Transparent
         Me.lbltotalqty.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltotalqty.ForeColor = System.Drawing.Color.Black
-        Me.lbltotalqty.Location = New System.Drawing.Point(397, 426)
+        Me.lbltotalqty.Location = New System.Drawing.Point(397, 455)
         Me.lbltotalqty.Name = "lbltotalqty"
         Me.lbltotalqty.Size = New System.Drawing.Size(80, 15)
         Me.lbltotalqty.TabIndex = 634
@@ -341,7 +345,7 @@ Partial Class StoresLoan
         Me.Label15.BackColor = System.Drawing.Color.Transparent
         Me.Label15.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.Red
-        Me.Label15.Location = New System.Drawing.Point(280, 425)
+        Me.Label15.Location = New System.Drawing.Point(280, 454)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(44, 14)
         Me.Label15.TabIndex = 613
@@ -352,7 +356,7 @@ Partial Class StoresLoan
         Me.Label23.AutoSize = True
         Me.Label23.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.Label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label23.Location = New System.Drawing.Point(261, 424)
+        Me.Label23.Location = New System.Drawing.Point(261, 453)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(18, 17)
         Me.Label23.TabIndex = 612
@@ -362,7 +366,7 @@ Partial Class StoresLoan
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(14, 123)
+        Me.TabControl1.Location = New System.Drawing.Point(14, 152)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(636, 300)
@@ -594,7 +598,7 @@ Partial Class StoresLoan
         Me.GroupBox5.Controls.Add(Me.txtremarks)
         Me.GroupBox5.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox5.ForeColor = System.Drawing.Color.Black
-        Me.GroupBox5.Location = New System.Drawing.Point(21, 433)
+        Me.GroupBox5.Location = New System.Drawing.Point(21, 462)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(236, 93)
         Me.GroupBox5.TabIndex = 5
@@ -750,10 +754,34 @@ Partial Class StoresLoan
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(236, 125)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(85, 15)
+        Me.Label3.TabIndex = 928
+        Me.Label3.Text = "Tentative Days"
+        '
+        'TXTTENTATIVEDAYS
+        '
+        Me.TXTTENTATIVEDAYS.BackColor = System.Drawing.Color.White
+        Me.TXTTENTATIVEDAYS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TXTTENTATIVEDAYS.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTTENTATIVEDAYS.Location = New System.Drawing.Point(326, 121)
+        Me.TXTTENTATIVEDAYS.MaxLength = 50
+        Me.TXTTENTATIVEDAYS.Name = "TXTTENTATIVEDAYS"
+        Me.TXTTENTATIVEDAYS.Size = New System.Drawing.Size(86, 23)
+        Me.TXTTENTATIVEDAYS.TabIndex = 927
+        Me.TXTTENTATIVEDAYS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'StoresLoan
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(673, 549)
+        Me.ClientSize = New System.Drawing.Size(673, 604)
         Me.Controls.Add(Me.BlendPanel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -832,4 +860,6 @@ Partial Class StoresLoan
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents CMBCODE As ComboBox
     Friend WithEvents EP As ErrorProvider
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TXTTENTATIVEDAYS As TextBox
 End Class

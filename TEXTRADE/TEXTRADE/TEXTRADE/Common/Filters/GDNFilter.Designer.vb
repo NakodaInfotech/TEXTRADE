@@ -23,6 +23,7 @@ Partial Class GDNFilter
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RDBDISPATCHUNITSUMM = New System.Windows.Forms.RadioButton()
         Me.RDBDISPPARTYITEMCHALLAN = New System.Windows.Forms.RadioButton()
         Me.RDBUNITSUMM = New System.Windows.Forms.RadioButton()
         Me.RDBPARTYGRIDCHALLANDETAILS = New System.Windows.Forms.RadioButton()
@@ -65,9 +66,8 @@ Partial Class GDNFilter
         Me.CMBNAME = New System.Windows.Forms.ComboBox()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.BlendPanel2 = New VbPowerPack.BlendPanel()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.CMBUNIT = New System.Windows.Forms.ComboBox()
-        Me.GPPARTYNAME = New System.Windows.Forms.GroupBox()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TBPARTY = New System.Windows.Forms.TabPage()
         Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -79,20 +79,56 @@ Partial Class GDNFilter
         Me.GSTATENAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAREA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSALESMAN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TBITEMNAME = New System.Windows.Forms.TabPage()
+        Me.CHKSELECTITEM = New System.Windows.Forms.CheckBox()
+        Me.GRIDBILLDETAILSITEM = New DevExpress.XtraGrid.GridControl()
+        Me.GRIDBILLITEM = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHKITEM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCATEGORY = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TBDESIGN = New System.Windows.Forms.TabPage()
+        Me.TBSHADE = New System.Windows.Forms.TabPage()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.CMBUNIT = New System.Windows.Forms.ComboBox()
         Me.CMBDONE = New System.Windows.Forms.ComboBox()
         Me.CHKSUMMARY = New System.Windows.Forms.CheckBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.CMBAGENT = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.RDBDISPATCHUNITSUMM = New System.Windows.Forms.RadioButton()
+        Me.CHKSELECTDESIGN = New System.Windows.Forms.CheckBox()
+        Me.gridbilldetailsdesign = New DevExpress.XtraGrid.GridControl()
+        Me.gridbilldesign = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHKDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GDESIGN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CHKSELECTCOLOR = New System.Windows.Forms.CheckBox()
+        Me.gridbilldetailscolor = New DevExpress.XtraGrid.GridControl()
+        Me.gridbillcolor = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCHKCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GCOLOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.BlendPanel2.SuspendLayout()
-        Me.GPPARTYNAME.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.TBPARTY.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TBITEMNAME.SuspendLayout()
+        CType(Me.GRIDBILLDETAILSITEM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GRIDBILLITEM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TBDESIGN.SuspendLayout()
+        Me.TBSHADE.SuspendLayout()
+        CType(Me.gridbilldetailsdesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridbilldesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridbilldetailscolor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridbillcolor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox3
@@ -129,6 +165,16 @@ Partial Class GDNFilter
         Me.GroupBox3.TabIndex = 7
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Reports"
+        '
+        'RDBDISPATCHUNITSUMM
+        '
+        Me.RDBDISPATCHUNITSUMM.AutoSize = True
+        Me.RDBDISPATCHUNITSUMM.Location = New System.Drawing.Point(26, 217)
+        Me.RDBDISPATCHUNITSUMM.Name = "RDBDISPATCHUNITSUMM"
+        Me.RDBDISPATCHUNITSUMM.Size = New System.Drawing.Size(204, 18)
+        Me.RDBDISPATCHUNITSUMM.TabIndex = 23
+        Me.RDBDISPATCHUNITSUMM.Text = "Dispatch Party Unit Wise Challan"
+        Me.RDBDISPATCHUNITSUMM.UseVisualStyleBackColor = True
         '
         'RDBDISPPARTYITEMCHALLAN
         '
@@ -584,9 +630,9 @@ Partial Class GDNFilter
         'BlendPanel2
         '
         Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel2.Controls.Add(Me.TabControl1)
         Me.BlendPanel2.Controls.Add(Me.Label19)
         Me.BlendPanel2.Controls.Add(Me.CMBUNIT)
-        Me.BlendPanel2.Controls.Add(Me.GPPARTYNAME)
         Me.BlendPanel2.Controls.Add(Me.CMBDONE)
         Me.BlendPanel2.Controls.Add(Me.CHKSUMMARY)
         Me.BlendPanel2.Controls.Add(Me.Label5)
@@ -611,45 +657,32 @@ Partial Class GDNFilter
         Me.BlendPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
-        Me.BlendPanel2.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel2.Size = New System.Drawing.Size(1234, 617)
         Me.BlendPanel2.TabIndex = 0
         '
-        'Label19
+        'TabControl1
         '
-        Me.Label19.AutoSize = True
-        Me.Label19.BackColor = System.Drawing.Color.Transparent
-        Me.Label19.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.ForeColor = System.Drawing.Color.Black
-        Me.Label19.Location = New System.Drawing.Point(389, 134)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(30, 14)
-        Me.Label19.TabIndex = 663
-        Me.Label19.Text = "Unit"
+        Me.TabControl1.Controls.Add(Me.TBPARTY)
+        Me.TabControl1.Controls.Add(Me.TBITEMNAME)
+        Me.TabControl1.Controls.Add(Me.TBDESIGN)
+        Me.TabControl1.Controls.Add(Me.TBSHADE)
+        Me.TabControl1.Location = New System.Drawing.Point(671, 12)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(563, 593)
+        Me.TabControl1.TabIndex = 664
         '
-        'CMBUNIT
+        'TBPARTY
         '
-        Me.CMBUNIT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBUNIT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBUNIT.BackColor = System.Drawing.Color.White
-        Me.CMBUNIT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBUNIT.FormattingEnabled = True
-        Me.CMBUNIT.Location = New System.Drawing.Point(423, 131)
-        Me.CMBUNIT.MaxDropDownItems = 14
-        Me.CMBUNIT.Name = "CMBUNIT"
-        Me.CMBUNIT.Size = New System.Drawing.Size(242, 22)
-        Me.CMBUNIT.TabIndex = 662
-        '
-        'GPPARTYNAME
-        '
-        Me.GPPARTYNAME.BackColor = System.Drawing.Color.Transparent
-        Me.GPPARTYNAME.Controls.Add(Me.CHKSELECTALL)
-        Me.GPPARTYNAME.Controls.Add(Me.gridbilldetails)
-        Me.GPPARTYNAME.Location = New System.Drawing.Point(671, 19)
-        Me.GPPARTYNAME.Name = "GPPARTYNAME"
-        Me.GPPARTYNAME.Size = New System.Drawing.Size(535, 548)
-        Me.GPPARTYNAME.TabIndex = 661
-        Me.GPPARTYNAME.TabStop = False
-        Me.GPPARTYNAME.Text = "Party Name"
+        Me.TBPARTY.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBPARTY.Controls.Add(Me.CHKSELECTALL)
+        Me.TBPARTY.Controls.Add(Me.gridbilldetails)
+        Me.TBPARTY.Location = New System.Drawing.Point(4, 23)
+        Me.TBPARTY.Name = "TBPARTY"
+        Me.TBPARTY.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBPARTY.Size = New System.Drawing.Size(555, 566)
+        Me.TBPARTY.TabIndex = 0
+        Me.TBPARTY.Text = "1. Party Name"
         '
         'CHKSELECTALL
         '
@@ -657,7 +690,7 @@ Partial Class GDNFilter
         Me.CHKSELECTALL.BackColor = System.Drawing.Color.Transparent
         Me.CHKSELECTALL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CHKSELECTALL.ForeColor = System.Drawing.Color.Black
-        Me.CHKSELECTALL.Location = New System.Drawing.Point(18, 22)
+        Me.CHKSELECTALL.Location = New System.Drawing.Point(14, 6)
         Me.CHKSELECTALL.Name = "CHKSELECTALL"
         Me.CHKSELECTALL.Size = New System.Drawing.Size(77, 18)
         Me.CHKSELECTALL.TabIndex = 0
@@ -667,12 +700,12 @@ Partial Class GDNFilter
         'gridbilldetails
         '
         Me.gridbilldetails.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gridbilldetails.Location = New System.Drawing.Point(6, 43)
+        Me.gridbilldetails.Location = New System.Drawing.Point(5, 27)
         Me.gridbilldetails.LookAndFeel.UseDefaultLookAndFeel = False
         Me.gridbilldetails.MainView = Me.gridbill
         Me.gridbilldetails.Name = "gridbilldetails"
         Me.gridbilldetails.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.gridbilldetails.Size = New System.Drawing.Size(523, 499)
+        Me.gridbilldetails.Size = New System.Drawing.Size(545, 533)
         Me.gridbilldetails.TabIndex = 1
         Me.gridbilldetails.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbill})
         '
@@ -762,6 +795,140 @@ Partial Class GDNFilter
         Me.GSALESMAN.VisibleIndex = 6
         Me.GSALESMAN.Width = 200
         '
+        'TBITEMNAME
+        '
+        Me.TBITEMNAME.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBITEMNAME.Controls.Add(Me.CHKSELECTITEM)
+        Me.TBITEMNAME.Controls.Add(Me.GRIDBILLDETAILSITEM)
+        Me.TBITEMNAME.Location = New System.Drawing.Point(4, 23)
+        Me.TBITEMNAME.Name = "TBITEMNAME"
+        Me.TBITEMNAME.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBITEMNAME.Size = New System.Drawing.Size(555, 566)
+        Me.TBITEMNAME.TabIndex = 1
+        Me.TBITEMNAME.Text = "2. Item Name"
+        '
+        'CHKSELECTITEM
+        '
+        Me.CHKSELECTITEM.AutoSize = True
+        Me.CHKSELECTITEM.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELECTITEM.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSELECTITEM.ForeColor = System.Drawing.Color.Black
+        Me.CHKSELECTITEM.Location = New System.Drawing.Point(28, 7)
+        Me.CHKSELECTITEM.Name = "CHKSELECTITEM"
+        Me.CHKSELECTITEM.Size = New System.Drawing.Size(77, 18)
+        Me.CHKSELECTITEM.TabIndex = 2
+        Me.CHKSELECTITEM.Text = "Select All"
+        Me.CHKSELECTITEM.UseVisualStyleBackColor = False
+        '
+        'GRIDBILLDETAILSITEM
+        '
+        Me.GRIDBILLDETAILSITEM.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDBILLDETAILSITEM.Location = New System.Drawing.Point(16, 28)
+        Me.GRIDBILLDETAILSITEM.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.GRIDBILLDETAILSITEM.MainView = Me.GRIDBILLITEM
+        Me.GRIDBILLDETAILSITEM.Name = "GRIDBILLDETAILSITEM"
+        Me.GRIDBILLDETAILSITEM.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit4})
+        Me.GRIDBILLDETAILSITEM.Size = New System.Drawing.Size(524, 532)
+        Me.GRIDBILLDETAILSITEM.TabIndex = 3
+        Me.GRIDBILLDETAILSITEM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDBILLITEM})
+        '
+        'GRIDBILLITEM
+        '
+        Me.GRIDBILLITEM.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GRIDBILLITEM.Appearance.Row.Options.UseFont = True
+        Me.GRIDBILLITEM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHKITEM, Me.GITEMNAME, Me.GCATEGORY})
+        Me.GRIDBILLITEM.GridControl = Me.GRIDBILLDETAILSITEM
+        Me.GRIDBILLITEM.Name = "GRIDBILLITEM"
+        Me.GRIDBILLITEM.OptionsBehavior.AllowIncrementalSearch = True
+        Me.GRIDBILLITEM.OptionsView.ColumnAutoWidth = False
+        Me.GRIDBILLITEM.OptionsView.ShowAutoFilterRow = True
+        Me.GRIDBILLITEM.OptionsView.ShowGroupPanel = False
+        '
+        'GCHKITEM
+        '
+        Me.GCHKITEM.ColumnEdit = Me.RepositoryItemCheckEdit4
+        Me.GCHKITEM.FieldName = "CHK"
+        Me.GCHKITEM.Name = "GCHKITEM"
+        Me.GCHKITEM.OptionsColumn.ShowCaption = False
+        Me.GCHKITEM.Visible = True
+        Me.GCHKITEM.VisibleIndex = 0
+        Me.GCHKITEM.Width = 35
+        '
+        'RepositoryItemCheckEdit4
+        '
+        Me.RepositoryItemCheckEdit4.AutoHeight = False
+        Me.RepositoryItemCheckEdit4.Name = "RepositoryItemCheckEdit4"
+        Me.RepositoryItemCheckEdit4.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.Caption = "Item Name"
+        Me.GITEMNAME.FieldName = "ITEMNAME"
+        Me.GITEMNAME.ImageOptions.ImageIndex = 0
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.OptionsColumn.AllowEdit = False
+        Me.GITEMNAME.Visible = True
+        Me.GITEMNAME.VisibleIndex = 1
+        Me.GITEMNAME.Width = 300
+        '
+        'GCATEGORY
+        '
+        Me.GCATEGORY.Caption = "Category"
+        Me.GCATEGORY.FieldName = "CATEGORY"
+        Me.GCATEGORY.Name = "GCATEGORY"
+        Me.GCATEGORY.Visible = True
+        Me.GCATEGORY.VisibleIndex = 2
+        Me.GCATEGORY.Width = 120
+        '
+        'TBDESIGN
+        '
+        Me.TBDESIGN.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBDESIGN.Controls.Add(Me.CHKSELECTDESIGN)
+        Me.TBDESIGN.Controls.Add(Me.gridbilldetailsdesign)
+        Me.TBDESIGN.Location = New System.Drawing.Point(4, 23)
+        Me.TBDESIGN.Name = "TBDESIGN"
+        Me.TBDESIGN.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBDESIGN.Size = New System.Drawing.Size(555, 566)
+        Me.TBDESIGN.TabIndex = 2
+        Me.TBDESIGN.Text = "3. Design"
+        '
+        'TBSHADE
+        '
+        Me.TBSHADE.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TBSHADE.Controls.Add(Me.CHKSELECTCOLOR)
+        Me.TBSHADE.Controls.Add(Me.gridbilldetailscolor)
+        Me.TBSHADE.Location = New System.Drawing.Point(4, 23)
+        Me.TBSHADE.Name = "TBSHADE"
+        Me.TBSHADE.Padding = New System.Windows.Forms.Padding(3)
+        Me.TBSHADE.Size = New System.Drawing.Size(555, 566)
+        Me.TBSHADE.TabIndex = 3
+        Me.TBSHADE.Text = "4. Shade"
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.BackColor = System.Drawing.Color.Transparent
+        Me.Label19.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.ForeColor = System.Drawing.Color.Black
+        Me.Label19.Location = New System.Drawing.Point(389, 134)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(30, 14)
+        Me.Label19.TabIndex = 663
+        Me.Label19.Text = "Unit"
+        '
+        'CMBUNIT
+        '
+        Me.CMBUNIT.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBUNIT.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBUNIT.BackColor = System.Drawing.Color.White
+        Me.CMBUNIT.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBUNIT.FormattingEnabled = True
+        Me.CMBUNIT.Location = New System.Drawing.Point(423, 131)
+        Me.CMBUNIT.MaxDropDownItems = 14
+        Me.CMBUNIT.Name = "CMBUNIT"
+        Me.CMBUNIT.Size = New System.Drawing.Size(242, 22)
+        Me.CMBUNIT.TabIndex = 662
+        '
         'CMBDONE
         '
         Me.CMBDONE.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -838,20 +1005,138 @@ Partial Class GDNFilter
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'RDBDISPATCHUNITSUMM
+        'CHKSELECTDESIGN
         '
-        Me.RDBDISPATCHUNITSUMM.AutoSize = True
-        Me.RDBDISPATCHUNITSUMM.Location = New System.Drawing.Point(26, 217)
-        Me.RDBDISPATCHUNITSUMM.Name = "RDBDISPATCHUNITSUMM"
-        Me.RDBDISPATCHUNITSUMM.Size = New System.Drawing.Size(204, 18)
-        Me.RDBDISPATCHUNITSUMM.TabIndex = 23
-        Me.RDBDISPATCHUNITSUMM.Text = "Dispatch Party Unit Wise Challan"
-        Me.RDBDISPATCHUNITSUMM.UseVisualStyleBackColor = True
+        Me.CHKSELECTDESIGN.AutoSize = True
+        Me.CHKSELECTDESIGN.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELECTDESIGN.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSELECTDESIGN.ForeColor = System.Drawing.Color.Black
+        Me.CHKSELECTDESIGN.Location = New System.Drawing.Point(14, 6)
+        Me.CHKSELECTDESIGN.Name = "CHKSELECTDESIGN"
+        Me.CHKSELECTDESIGN.Size = New System.Drawing.Size(77, 18)
+        Me.CHKSELECTDESIGN.TabIndex = 2
+        Me.CHKSELECTDESIGN.Text = "Select All"
+        Me.CHKSELECTDESIGN.UseVisualStyleBackColor = False
+        '
+        'gridbilldetailsdesign
+        '
+        Me.gridbilldetailsdesign.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridbilldetailsdesign.Location = New System.Drawing.Point(5, 27)
+        Me.gridbilldetailsdesign.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.gridbilldetailsdesign.MainView = Me.gridbilldesign
+        Me.gridbilldetailsdesign.Name = "gridbilldetailsdesign"
+        Me.gridbilldetailsdesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
+        Me.gridbilldetailsdesign.Size = New System.Drawing.Size(545, 533)
+        Me.gridbilldetailsdesign.TabIndex = 3
+        Me.gridbilldetailsdesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbilldesign})
+        '
+        'gridbilldesign
+        '
+        Me.gridbilldesign.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridbilldesign.Appearance.Row.Options.UseFont = True
+        Me.gridbilldesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHKDESIGN, Me.GDESIGN})
+        Me.gridbilldesign.GridControl = Me.gridbilldetailsdesign
+        Me.gridbilldesign.Name = "gridbilldesign"
+        Me.gridbilldesign.OptionsBehavior.AllowIncrementalSearch = True
+        Me.gridbilldesign.OptionsView.ColumnAutoWidth = False
+        Me.gridbilldesign.OptionsView.ShowAutoFilterRow = True
+        Me.gridbilldesign.OptionsView.ShowGroupPanel = False
+        '
+        'GCHKDESIGN
+        '
+        Me.GCHKDESIGN.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GCHKDESIGN.FieldName = "CHK"
+        Me.GCHKDESIGN.Name = "GCHKDESIGN"
+        Me.GCHKDESIGN.OptionsColumn.ShowCaption = False
+        Me.GCHKDESIGN.Visible = True
+        Me.GCHKDESIGN.VisibleIndex = 0
+        Me.GCHKDESIGN.Width = 35
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'GDESIGN
+        '
+        Me.GDESIGN.Caption = "Design No"
+        Me.GDESIGN.FieldName = "DESIGNNO"
+        Me.GDESIGN.ImageOptions.ImageIndex = 0
+        Me.GDESIGN.Name = "GDESIGN"
+        Me.GDESIGN.OptionsColumn.AllowEdit = False
+        Me.GDESIGN.Visible = True
+        Me.GDESIGN.VisibleIndex = 1
+        Me.GDESIGN.Width = 120
+        '
+        'CHKSELECTCOLOR
+        '
+        Me.CHKSELECTCOLOR.AutoSize = True
+        Me.CHKSELECTCOLOR.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELECTCOLOR.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSELECTCOLOR.ForeColor = System.Drawing.Color.Black
+        Me.CHKSELECTCOLOR.Location = New System.Drawing.Point(14, 6)
+        Me.CHKSELECTCOLOR.Name = "CHKSELECTCOLOR"
+        Me.CHKSELECTCOLOR.Size = New System.Drawing.Size(77, 18)
+        Me.CHKSELECTCOLOR.TabIndex = 2
+        Me.CHKSELECTCOLOR.Text = "Select All"
+        Me.CHKSELECTCOLOR.UseVisualStyleBackColor = False
+        '
+        'gridbilldetailscolor
+        '
+        Me.gridbilldetailscolor.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridbilldetailscolor.Location = New System.Drawing.Point(5, 27)
+        Me.gridbilldetailscolor.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.gridbilldetailscolor.MainView = Me.gridbillcolor
+        Me.gridbilldetailscolor.Name = "gridbilldetailscolor"
+        Me.gridbilldetailscolor.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3})
+        Me.gridbilldetailscolor.Size = New System.Drawing.Size(545, 533)
+        Me.gridbilldetailscolor.TabIndex = 3
+        Me.gridbilldetailscolor.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.gridbillcolor})
+        '
+        'gridbillcolor
+        '
+        Me.gridbillcolor.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridbillcolor.Appearance.Row.Options.UseFont = True
+        Me.gridbillcolor.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHKCOLOR, Me.GCOLOR})
+        Me.gridbillcolor.GridControl = Me.gridbilldetailscolor
+        Me.gridbillcolor.Name = "gridbillcolor"
+        Me.gridbillcolor.OptionsBehavior.AllowIncrementalSearch = True
+        Me.gridbillcolor.OptionsView.ColumnAutoWidth = False
+        Me.gridbillcolor.OptionsView.ShowAutoFilterRow = True
+        Me.gridbillcolor.OptionsView.ShowGroupPanel = False
+        '
+        'GCHKCOLOR
+        '
+        Me.GCHKCOLOR.ColumnEdit = Me.RepositoryItemCheckEdit3
+        Me.GCHKCOLOR.FieldName = "CHK"
+        Me.GCHKCOLOR.Name = "GCHKCOLOR"
+        Me.GCHKCOLOR.OptionsColumn.ShowCaption = False
+        Me.GCHKCOLOR.Visible = True
+        Me.GCHKCOLOR.VisibleIndex = 0
+        Me.GCHKCOLOR.Width = 35
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        Me.RepositoryItemCheckEdit3.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked
+        '
+        'GCOLOR
+        '
+        Me.GCOLOR.Caption = "Shade"
+        Me.GCOLOR.FieldName = "COLOR"
+        Me.GCOLOR.ImageOptions.ImageIndex = 0
+        Me.GCOLOR.Name = "GCOLOR"
+        Me.GCOLOR.OptionsColumn.AllowEdit = False
+        Me.GCOLOR.Visible = True
+        Me.GCOLOR.VisibleIndex = 1
+        Me.GCOLOR.Width = 120
         '
         'GDNFilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 617)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -865,11 +1150,27 @@ Partial Class GDNFilter
         Me.GroupBox1.PerformLayout()
         Me.BlendPanel2.ResumeLayout(False)
         Me.BlendPanel2.PerformLayout()
-        Me.GPPARTYNAME.ResumeLayout(False)
-        Me.GPPARTYNAME.PerformLayout()
+        Me.TabControl1.ResumeLayout(False)
+        Me.TBPARTY.ResumeLayout(False)
+        Me.TBPARTY.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TBITEMNAME.ResumeLayout(False)
+        Me.TBITEMNAME.PerformLayout()
+        CType(Me.GRIDBILLDETAILSITEM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GRIDBILLITEM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TBDESIGN.ResumeLayout(False)
+        Me.TBDESIGN.PerformLayout()
+        Me.TBSHADE.ResumeLayout(False)
+        Me.TBSHADE.PerformLayout()
+        CType(Me.gridbilldetailsdesign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridbilldesign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridbilldetailscolor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridbillcolor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -914,7 +1215,6 @@ Partial Class GDNFilter
     Friend WithEvents RDBDISPPARTYDESIGNDTLS As RadioButton
     Friend WithEvents RDBDISPPARTYDESIGNSHADEDTLS As RadioButton
     Friend WithEvents RBPARTYITEMDESIGNSHADE As RadioButton
-    Friend WithEvents GPPARTYNAME As GroupBox
     Friend WithEvents CHKSELECTALL As CheckBox
     Private WithEvents gridbilldetails As DevExpress.XtraGrid.GridControl
     Private WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
@@ -937,4 +1237,28 @@ Partial Class GDNFilter
     Friend WithEvents RDBUNITSUMM As RadioButton
     Friend WithEvents RDBDISPPARTYITEMCHALLAN As RadioButton
     Friend WithEvents RDBDISPATCHUNITSUMM As RadioButton
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TBPARTY As TabPage
+    Friend WithEvents TBITEMNAME As TabPage
+    Friend WithEvents CHKSELECTITEM As CheckBox
+    Private WithEvents GRIDBILLDETAILSITEM As DevExpress.XtraGrid.GridControl
+    Private WithEvents GRIDBILLITEM As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCHKITEM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Private WithEvents GITEMNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCATEGORY As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TBDESIGN As TabPage
+    Friend WithEvents TBSHADE As TabPage
+    Friend WithEvents CHKSELECTDESIGN As CheckBox
+    Private WithEvents gridbilldetailsdesign As DevExpress.XtraGrid.GridControl
+    Private WithEvents gridbilldesign As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCHKDESIGN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Private WithEvents GDESIGN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CHKSELECTCOLOR As CheckBox
+    Private WithEvents gridbilldetailscolor As DevExpress.XtraGrid.GridControl
+    Private WithEvents gridbillcolor As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCHKCOLOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Private WithEvents GCOLOR As DevExpress.XtraGrid.Columns.GridColumn
 End Class

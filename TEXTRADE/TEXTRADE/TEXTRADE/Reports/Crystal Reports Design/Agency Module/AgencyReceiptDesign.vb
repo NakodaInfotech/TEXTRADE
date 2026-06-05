@@ -68,6 +68,7 @@ Public Class AgencyReceiptDesign
             strsearch = strsearch & "  {AGENCYRECEIPT_REPORT.RECEIPTNO} = " & recno & "  And {AGENCYRECEIPT_REPORT.REGNAME} = '" & REGNAME & "'  and {AGENCYRECEIPT_REPORT.CMPID} = " & CmpId & " and {AGENCYRECEIPT_REPORT.LOCATIONID} = " & Locationid & " and {AGENCYRECEIPT_REPORT.YEARID} = " & YearId
             crpo.SelectionFormula = strsearch
 
+            OBJ = RPT
 
             If ClientName = "ABHEE" Then
                 'ADD DATA IN TEMPAGENCYPAYMENTDETAILS
@@ -146,7 +147,7 @@ Public Class AgencyReceiptDesign
             '    expo.ExportFormatType = ExportFormatType.PortableDocFormat
             '    expo.DestinationOptions = oDfDopt
             '    RPTAGENCYREC.Export()
-            'End If
+            'End If 
             expo = OBJ.ExportOptions
             OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
             expo.ExportDestinationType = ExportDestinationType.DiskFile

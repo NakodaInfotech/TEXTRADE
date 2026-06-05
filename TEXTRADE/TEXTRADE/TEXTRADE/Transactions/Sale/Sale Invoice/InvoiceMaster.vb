@@ -7093,6 +7093,11 @@ NORATE:
             If ALLOWEINVOICE = False Then Exit Sub
             If cmbname.Text.Trim = "" Then Exit Sub
 
+
+
+
+
+
             If Val(LBLTOTALCGSTAMT.Text.Trim) = 0 And Val(TXTCGSTAMT1.Text.Trim) = 0 And Val(LBLTOTALSGSTAMT.Text.Trim) = 0 And Val(TXTSGSTAMT1.Text.Trim) = 0 And Val(LBLTOTALIGSTAMT.Text.Trim) = 0 And Val(TXTIGSTAMT1.Text.Trim) = 0 And CHKOVERSEAS.CheckState = CheckState.Unchecked Then Exit Sub
 
 
@@ -9179,6 +9184,17 @@ NEXTLINE:
             If ALLOWEWAYBILL = False Then Exit Sub
             If cmbname.Text.Trim = "" Then Exit Sub
 
+
+            Dim OBJCMN As New ClsCommon
+            Dim DT As DataTable
+            DT = OBJCMN.SEARCH(" ISNULL(ACC_GSTIN, '') AS GSTIN ", "", " LEDGERS ", " AND ACC_CMPNAME = '" & CMBPACKING.Text.Trim & "' AND ACC_YEARID = " & YearId)
+            If (DT.Rows(0).Item("GSTIN") = "") Then
+                MsgBox(" Either Insert GSTIN Of Ship To OR Enter URP In GSTIN Column ", MsgBoxStyle.Critical)
+                Exit Sub
+            End If
+
+
+
             If Val(LBLTOTALCGSTAMT.Text.Trim) = 0 And Val(TXTCGSTAMT1.Text.Trim) = 0 And Val(LBLTOTALSGSTAMT.Text.Trim) = 0 And Val(TXTSGSTAMT1.Text.Trim) = 0 And Val(LBLTOTALIGSTAMT.Text.Trim) = 0 And Val(TXTIGSTAMT1.Text.Trim) = 0 And CHKOVERSEAS.CheckState = CheckState.Unchecked Then Exit Sub
 
 
@@ -9239,9 +9255,8 @@ NEXTLINE:
             Dim DISPATCHFROMADD1 As String = ""
             Dim DISPATCHFROMADD2 As String = ""
 
-            Dim OBJCMN As New ClsCommon
             'CMP ADDRESS DETAILS
-            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(CMP_DISPATCHFROM, '') AS ADD1, ISNULL(CMP_ADD2,'') AS ADD2 ", "", " CMPMASTER ", " AND CMP_ID = " & CmpId)
+            DT = OBJCMN.SEARCH(" ISNULL(CMP_DISPATCHFROM, '') AS ADD1, ISNULL(CMP_ADD2,'') AS ADD2 ", "", " CMPMASTER ", " AND CMP_ID = " & CmpId)
             TEMPCMPADD1 = DT.Rows(0).Item("ADD1")
             TEMPCMPADD2 = "" 'DT.Rows(0).Item("ADD2")
             DISPATCHFROM = CmpName
