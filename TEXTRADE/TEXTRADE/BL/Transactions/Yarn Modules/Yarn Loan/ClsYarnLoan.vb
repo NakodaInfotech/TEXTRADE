@@ -51,6 +51,8 @@ Public Class ClsYarnLoan
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@TENTATIVEDAYS", alParaval(I)))
+                I = I + 1
 
                 'grid parameters
                 .Add(New SqlClient.SqlParameter("@gridsrno", alParaval(I)))
@@ -131,6 +133,8 @@ Public Class ClsYarnLoan
                 .Add(New SqlClient.SqlParameter("@yearid", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@transfer", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@TENTATIVEDAYS", alParaval(I)))
                 I = I + 1
 
                 'grid parameters

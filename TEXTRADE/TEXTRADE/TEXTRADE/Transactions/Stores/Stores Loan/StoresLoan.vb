@@ -80,6 +80,7 @@ Public Class StoresLoan
         cmbname.Text = ""
         gridloan.RowCount = 0
         lbltotalqty.Text = 0.0
+        TXTTENTATIVEDAYS.Clear()
 
 
         gridDoubleClick = False
@@ -205,6 +206,7 @@ Public Class StoresLoan
             alParaval.Add(lbltotalqty.Text.Trim)
             alParaval.Add(LBLTOTALAMT.Text.Trim)
             alParaval.Add(txtremarks.Text.Trim)
+
             alParaval.Add(CmpId)
             alParaval.Add(Locationid)
             alParaval.Add(Userid)
@@ -246,6 +248,9 @@ Public Class StoresLoan
             alParaval.Add(qty)
             alParaval.Add(qtyunit)
             alParaval.Add(AMT)
+
+
+            alParaval.Add(TXTTENTATIVEDAYS.Text.Trim)
 
 
             Dim objclsloan As New ClsStoresLoan
@@ -390,6 +395,8 @@ Public Class StoresLoan
                         cmbname.Text = Convert.ToString(dr("NAME"))
                         cmbLoan.Text = Convert.ToString(dr("Loan").ToString)
                         txtremarks.Text = Convert.ToString(dr("remarks"))
+                        TXTTENTATIVEDAYS.Text = dr("TENTATIVEDAYS")
+
                         gridloan.Rows.Add(dr("gridsrno").ToString, dr("ITEMNAME").ToString, dr("DESC").ToString, Val(dr("QTY")), dr("QTYUNIT").ToString, dr("amt").ToString)
 
                     Next

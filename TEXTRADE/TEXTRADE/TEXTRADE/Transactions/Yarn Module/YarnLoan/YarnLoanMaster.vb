@@ -38,6 +38,7 @@ Public Class YarnLoanMaster
             alParaval.Add(Userid)
             alParaval.Add(YearId)
             alParaval.Add(0)
+            alParaval.Add(TXTTENTATIVEDAYS.Text.Trim)
 
             Dim gridsrno As String = ""
             Dim YARNQUALITY As String = ""
@@ -373,6 +374,7 @@ Public Class YarnLoanMaster
         LBLTOTALCONES.Text = 0
         LBLTOTALWT.Text = 0
         lbltotalbags.Text = 0
+        TXTTENTATIVEDAYS.Clear()
 
         cmbLoan.Enabled = True
 
@@ -457,6 +459,8 @@ Public Class YarnLoanMaster
                         txtremarks.Text = Convert.ToString(dr("REMARKS"))
                         cmbtrans.Text = Convert.ToString(dr("TRANSPORT"))
                         cmbGodown.Text = Convert.ToString(dr("GODOWN"))
+                        TXTTENTATIVEDAYS.Text = dr("TENTATIVEDAYS")
+
                         GRIDYARN.Rows.Add(Val(dr("GRIDSRNO")), dr("YARNNAME"), dr("MILLNAME"), dr("LOTNO"), Format(dr("BAGS"), "0"), Format(dr("WT"), "0.00"), Format(dr("CONES"), "0.00"), dr("LRNO"), Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy"), dr("DONE").ToString, Val(dr("OUTBAGS")), Val(dr("OUTWT")), dr("FROMNO").ToString, dr("FROMSRNO").ToString, dr("FROMTYPE").ToString, dr("RACK").ToString, dr("BARCODE").ToString)
 
                         If Val(dr("OUTWT")) > 0 Then

@@ -42,6 +42,9 @@ Public Class ClsStoresLoan
                 .Add(New SqlClient.SqlParameter("@unit", alParaval(15)))
                 .Add(New SqlClient.SqlParameter("@Amt", alParaval(16)))
 
+                .Add(New SqlClient.SqlParameter("@TENTATIVEDAYS", alParaval(17)))
+
+
 
             End With
 
@@ -80,7 +83,10 @@ Public Class ClsStoresLoan
                 .Add(New SqlClient.SqlParameter("@qty", alParaval(14)))
                 .Add(New SqlClient.SqlParameter("@unit", alParaval(15)))
                 .Add(New SqlClient.SqlParameter("@Amt", alParaval(16)))
-                .Add(New SqlClient.SqlParameter("@LOANNO", alParaval(17)))
+
+                .Add(New SqlClient.SqlParameter("@TENTATIVEDAYS", alParaval(17)))
+
+                .Add(New SqlClient.SqlParameter("@LOANNO", alParaval(18)))
 
             End With
 
