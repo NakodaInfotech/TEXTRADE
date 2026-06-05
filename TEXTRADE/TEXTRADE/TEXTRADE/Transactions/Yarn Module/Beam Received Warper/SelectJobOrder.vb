@@ -5,6 +5,7 @@ Public Class SelectJobOrder
 
     Public SIZERNAME As String = ""
     Public DT As New DataTable
+    Public FRMSTRING As String = ""
 
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
@@ -60,9 +61,16 @@ Public Class SelectJobOrder
             Dim COUNT As Integer = 0
             For i As Integer = 0 To gridbill.RowCount - 1
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
-                If Convert.ToBoolean(dtrow("CHK")) = True Then
-                End If
+                If Convert.ToBoolean(dtrow("CHK")) = True Then COUNT += 1
             Next
+
+            If COUNT = 0 Then
+                MsgBox("Please select one entry")
+                Exit Sub
+            ElseIf COUNT > 1 And FRMSTRING = "GREYRECD" Then
+                MsgBox("Please select only one entry")
+                Exit Sub
+            End If
 
 
             DT.Columns.Add("NAME")
@@ -93,6 +101,7 @@ Public Class SelectJobOrder
                     DT.Rows.Add(dtrow("NAME"), dtrow("JOBNO"), dtrow("JOBSRNO"), dtrow("FROMTYPE"), Val(dtrow("REED")), Val(dtrow("REEDSPACE")), Val(dtrow("PICS")), dtrow("REFNO"), dtrow("ITEMNAME"), dtrow("ENDS"), Val(dtrow("JOBMTRS")), dtrow("DESCRIPTION"), dtrow("DESIGNNO"), dtrow("COLOR"), dtrow("PARTYNAME"), dtrow("PONO"), dtrow("OTHERITEMNAME"))
                 End If
             Next
+            FRMSTRING = ""
             Me.Close()
         Catch ex As Exception
             Throw ex
