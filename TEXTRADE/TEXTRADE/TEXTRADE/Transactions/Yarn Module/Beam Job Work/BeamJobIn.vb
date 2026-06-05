@@ -32,9 +32,10 @@ Public Class BeamJobIn
             alParaval.Add(Format(Convert.ToDateTime(DTBEAMJODATE.Text.Trim).Date, "MM/dd/yyyy"))
             alParaval.Add(CMBGODOWN.Text.Trim)
             alParaval.Add(CMBNAME.Text.Trim)
+            alParaval.Add(Val(LBLTOTALMTRS.Text.Trim))
+            alParaval.Add(Val(LBLTOTALBEAMWT.Text.Trim))
             alParaval.Add(TXTREMARKS.Text.Trim)
-            alParaval.Add(Val(LBLTOTALJOBMTRS.Text.Trim))
-            alParaval.Add(Val(LBLTOTALBEAMMTRS.Text.Trim))
+
             'alParaval.Add(Val(LBLTAPLINE.Text.Trim))
             alParaval.Add(CMBJONO.Text.Trim)
             alParaval.Add(CmpId)
@@ -345,9 +346,9 @@ LINE1:
         'FILLROLLITEM(CMBROLLNO, EDIT, "AND ROLLITEM = 1 ", "HAVING SUM(QTY - ISSQTY) >0")
         'CMBROLLNO.Enabled = True
 
-        LBLTOTALJOBMTRS.Text = 0.0
+        LBLTOTALMTRS.Text = 0.0
         LBLTAPLINE.Text = 0.0
-        LBLTOTALBEAMMTRS.Text = 0.0
+        LBLTOTALBEAMWT.Text = 0.0
 
     End Sub
 
@@ -417,9 +418,14 @@ LINE1:
             bln = False
         End If
 
+        If lbllocked.Visible = True And UserName <> "Admin" Then
+            EP.SetError(lbllocked, "Item Used, Item Locked")
+            bln = False
+        End If
+
         For Each row As DataGridViewRow In GRIDBEAM.Rows
-            If Val(row.Cells(GTOTALMTRS.Index).Value) = 0 Then
-                EP.SetError(CMBGODOWN, "Beam Mtrs Cannot be 0 or Less")
+            If Val(row.Cells(GWT.Index).Value) = 0 Then
+                EP.SetError(GRIDBEAM, "Beam Wt Cannot be 0 or Less")
                 bln = False
             End If
         Next
@@ -574,6 +580,8 @@ LINE1:
                     DTBEAMJODATE.Text = dttable.Rows(0).Item("DATE")
                     CMBNAME.Text = dttable.Rows(0).Item("NAME").ToString
                     CMBGODOWN.Text = dttable.Rows(0).Item("GODOWN").ToString
+                    LBLTOTALMTRS.Text = dttable.Rows(0).Item("TOTALMTRS")
+                    LBLTOTALBEAMWT.Text = dttable.Rows(0).Item("TOTALWT")
                     TXTREMARKS.Text = dttable.Rows(0).Item("REMARKS").ToString
                     CMBJONO.Text = dttable.Rows(0).Item("JONO")
 
@@ -585,17 +593,17 @@ LINE1:
                     For Each ROW As DataRow In dttable.Rows
                         GRIDBEAM.Rows.Add(Val(ROW("GRIDSRNO")), Val(ROW("BEAMNO")), ROW("BEAMNAME"), ROW("MILLNAME"), Val(ROW("GRIDTOTALENDS")), Val(ROW("GRIDTOTALMTRS")), ROW("BEAMWT"), Val(ROW("GAMANO")), Val(ROW("SECTION")), Val(ROW("ROLLNO")), Val(ROW("BREAKAGE")), ROW("GRIDREMARKS"), ROW("FROMNO"), ROW("FROMSRNO"), ROW("FROMTYPE"), ROW("GRIDDONE"), Val(ROW("OUTWT")))
 
-                        'If Convert.ToBoolean(ROW("GRIDDONE")) = True Then
-                        '    lbllocked.Visible = True
-                        '    PBlock.Visible = True
-                        '    GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
-                        'End If
+                        If Convert.ToBoolean(ROW("GRIDDONE")) = True Then
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                            GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                        End If
 
-                        'If Val(ROW("OUTMTRS")) > 0 Then
-                        '    lbllocked.Visible = True
-                        '    PBlock.Visible = True
-                        '    GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
-                        'End If
+                        If Val(ROW("OUTWT")) > 0 Then
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                            GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                        End If
                     Next
 
 
@@ -730,40 +738,38 @@ LINE1:
     End Sub
 
     Sub TOTAL()
-        'Try
-        '    Dim TEMPWARPWT As Double
-        '    Dim TEMPSELWT As Double
-        '    LBLTOTALJOBMTRS.Text = 0.0
-        '    TXTTOTALMTRS.Text = 0.0
-        '    LBLTAPLINE.Text = 0.0
-        '    LBLTOTALBEAMMTRS.Text = 0.0
+        Try
+            Dim TEMPWARPWT As Double
+            Dim TEMPSELWT As Double
+            LBLTOTALMTRS.Text = 0.0
+            LBLTOTALBEAMWT.Text = 0.0
 
-        '    'Dim TOTALTAPLINE As Double
-        '    For Each ROW As DataGridViewRow In GRIDBEAM.Rows
-        '        If ROW.Cells(GSRNO.Index).Value <> Nothing Then
+            'Dim TOTALTAPLINE As Double
+            For Each ROW As DataGridViewRow In GRIDBEAM.Rows
+                If ROW.Cells(GSRNO.Index).Value <> Nothing Then
 
-        '            LBLTOTALJOBMTRS.Text = Format(Val(LBLTOTALJOBMTRS.Text) + Val(ROW.Cells(GJOBMTRS.Index).EditedFormattedValue), "0.00")
-        '            LBLTOTALBEAMMTRS.Text = Format(Val(LBLTOTALBEAMMTRS.Text) + Val(ROW.Cells(GBEAMMTRS.Index).EditedFormattedValue), "0.00")
-        '        End If
-        '    Next
-        '    TXTTOTALMTRS.Text = Format(Val(LBLTOTALBEAMMTRS.Text), "0.00")
+                    LBLTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text) + Val(ROW.Cells(GTOTALMTRS.Index).EditedFormattedValue), "0.00")
+                    LBLTOTALBEAMWT.Text = Format(Val(LBLTOTALBEAMWT.Text) + Val(ROW.Cells(GWT.Index).EditedFormattedValue), "0.00")
+                End If
+            Next
+            'TXTTOTALMTRS.Text = Format(Val(LBLTOTALBEAMMTRS.Text), "0.00")
 
-        '    'If ClientName = "SWPL" Then
-        '    If Val(TXTBEAMWT.Text.Trim) = 0 Then
-        '        Dim OBJCMN As New ClsCommon
-        '        Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(DESIGNCARD.DESIGN_TOTALWARPWT, 0) AS TOTALWARPWT, ISNULL(DESIGNCARD.DESIGN_TOTALSELVEDGEWT, 0) AS TOTALSELWT, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME ", "", " DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id ", " AND ITEMMASTER.item_name = '" & GRIDBEAM.Item(GITEMNAME.Index, GRIDBEAM.CurrentRow.Index).Value & "' AND DESIGNCARD.DESIGN_YEARID = " & YearId)
-        '        If DT.Rows.Count > 0 Then
-        '            TEMPWARPWT = DT.Rows(0).Item("TOTALWARPWT")
-        '            TEMPSELWT = DT.Rows(0).Item("TOTALSELWT")
-        '        End If
-        '        TXTBEAMWT.Text = Format(Val(TEMPWARPWT + TEMPSELWT) * Val(GRIDBEAM.Item(GBEAMMTRS.Index, GRIDBEAM.CurrentRow.Index).EditedFormattedValue), "0.00")
-        '    End If
-        '    'End If
+            'If ClientName = "SWPL" Then
+            'If Val(TXTBEAMWT.Text.Trim) = 0 Then
+            '    Dim OBJCMN As New ClsCommon
+            '    Dim DT As DataTable = OBJCMN.SEARCH("ISNULL(DESIGNCARD.DESIGN_TOTALWARPWT, 0) AS TOTALWARPWT, ISNULL(DESIGNCARD.DESIGN_TOTALSELVEDGEWT, 0) AS TOTALSELWT, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME ", "", " DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id ", " AND ITEMMASTER.item_name = '" & GRIDBEAM.Item(GITEMNAME.Index, GRIDBEAM.CurrentRow.Index).Value & "' AND DESIGNCARD.DESIGN_YEARID = " & YearId)
+            '    If DT.Rows.Count > 0 Then
+            '        TEMPWARPWT = DT.Rows(0).Item("TOTALWARPWT")
+            '        TEMPSELWT = DT.Rows(0).Item("TOTALSELWT")
+            '    End If
+            '    TXTBEAMWT.Text = Format(Val(TEMPWARPWT + TEMPSELWT) * Val(GRIDBEAM.Item(GBEAMMTRS.Index, GRIDBEAM.CurrentRow.Index).EditedFormattedValue), "0.00")
+            'End If
+            'End If
 
 
-        'Catch ex As Exception
-        '    Throw ex
-        'End Try
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub TXTREMARKS_KeyDown(sender As Object, e As KeyEventArgs) Handles TXTREMARKS.KeyDown
@@ -831,8 +837,8 @@ LINE1:
                 For Each DR As DataRow In DT.Rows
                     GRIDBEAM.Rows.Add(0, Val(DR("BEAMNO")), DR("BEAMNAME"), DR("MILLNAME"), Val(DR("GRIDTOTALENDS")), Format(Val(DR("GRIDTOTALMTRS")), "0.00"), Format(Val(DR("BEAMWT")), "0.00"), Val(DR("GAMANO")), Val(DR("SECTION")), Val(DR("ROLLNO")), Format(Val(DR("BREAKAGE")), "0.00"), DR("GRIDREMARKS").ToString, Val(DR("JONO")), Val(DR("JOSRNO")), DR("FROMTYPE"))
                 Next
-                TOTAL()
                 getsrno(GRIDBEAM)
+                TOTAL()
 
             Else
                 MsgBox("No Details Found For This Job No", MsgBoxStyle.Information)
