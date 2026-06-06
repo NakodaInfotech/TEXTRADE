@@ -1154,6 +1154,12 @@ Partial Class MDIMain
         Me.BEAMUPLOADEDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewBeamUnloadEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BEAMUNLOADEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BeamJobOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BEAMJOBOUT_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BEAMJOBOUT_EDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BEAMJOBIN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BEAMJOBIN_ADD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator339 = New System.Windows.Forms.ToolStripSeparator()
         Me.YARNLOOMEFFICIENCY_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.YARNLOOMEFFICIENCY_ADD = New System.Windows.Forms.ToolStripMenuItem()
@@ -1367,12 +1373,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.BEAMJOBIN_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BEAMJOBIN_ADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingEntryToolStripMenuItem7 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BeamJobOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BEAMJOBOUT_ADD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BEAMJOBOUT_EDIT = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -8553,6 +8553,44 @@ Partial Class MDIMain
         Me.BEAMUNLOADEDIT.Size = New System.Drawing.Size(245, 22)
         Me.BEAMUNLOADEDIT.Text = "Edit Existing Beam Unload Entry"
         '
+        'BeamJobOutToolStripMenuItem
+        '
+        Me.BeamJobOutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMJOBOUT_ADD, Me.BEAMJOBOUT_EDIT})
+        Me.BeamJobOutToolStripMenuItem.Name = "BeamJobOutToolStripMenuItem"
+        Me.BeamJobOutToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.BeamJobOutToolStripMenuItem.Text = "Beam Job Out"
+        '
+        'BEAMJOBOUT_ADD
+        '
+        Me.BEAMJOBOUT_ADD.Name = "BEAMJOBOUT_ADD"
+        Me.BEAMJOBOUT_ADD.Size = New System.Drawing.Size(180, 22)
+        Me.BEAMJOBOUT_ADD.Text = "Add New Entry"
+        '
+        'BEAMJOBOUT_EDIT
+        '
+        Me.BEAMJOBOUT_EDIT.Name = "BEAMJOBOUT_EDIT"
+        Me.BEAMJOBOUT_EDIT.Size = New System.Drawing.Size(180, 22)
+        Me.BEAMJOBOUT_EDIT.Text = "Edit Existing Entry"
+        '
+        'BEAMJOBIN_MASTER
+        '
+        Me.BEAMJOBIN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMJOBIN_ADD, Me.EditExistingEntryToolStripMenuItem7})
+        Me.BEAMJOBIN_MASTER.Name = "BEAMJOBIN_MASTER"
+        Me.BEAMJOBIN_MASTER.Size = New System.Drawing.Size(207, 22)
+        Me.BEAMJOBIN_MASTER.Text = "Beam Job In"
+        '
+        'BEAMJOBIN_ADD
+        '
+        Me.BEAMJOBIN_ADD.Name = "BEAMJOBIN_ADD"
+        Me.BEAMJOBIN_ADD.Size = New System.Drawing.Size(180, 22)
+        Me.BEAMJOBIN_ADD.Text = "Add New Entry"
+        '
+        'EditExistingEntryToolStripMenuItem7
+        '
+        Me.EditExistingEntryToolStripMenuItem7.Name = "EditExistingEntryToolStripMenuItem7"
+        Me.EditExistingEntryToolStripMenuItem7.Size = New System.Drawing.Size(180, 22)
+        Me.EditExistingEntryToolStripMenuItem7.Text = "Edit Existing Entry"
+        '
         'ToolStripSeparator339
         '
         Me.ToolStripSeparator339.Name = "ToolStripSeparator339"
@@ -9974,44 +10012,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'BEAMJOBIN_MASTER
-        '
-        Me.BEAMJOBIN_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMJOBIN_ADD, Me.EditExistingEntryToolStripMenuItem7})
-        Me.BEAMJOBIN_MASTER.Name = "BEAMJOBIN_MASTER"
-        Me.BEAMJOBIN_MASTER.Size = New System.Drawing.Size(207, 22)
-        Me.BEAMJOBIN_MASTER.Text = "Beam Job In"
-        '
-        'BEAMJOBIN_ADD
-        '
-        Me.BEAMJOBIN_ADD.Name = "BEAMJOBIN_ADD"
-        Me.BEAMJOBIN_ADD.Size = New System.Drawing.Size(180, 22)
-        Me.BEAMJOBIN_ADD.Text = "Add New Entry"
-        '
-        'EditExistingEntryToolStripMenuItem7
-        '
-        Me.EditExistingEntryToolStripMenuItem7.Name = "EditExistingEntryToolStripMenuItem7"
-        Me.EditExistingEntryToolStripMenuItem7.Size = New System.Drawing.Size(180, 22)
-        Me.EditExistingEntryToolStripMenuItem7.Text = "Edit Existing Entry"
-        '
-        'BeamJobOutToolStripMenuItem
-        '
-        Me.BeamJobOutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BEAMJOBOUT_ADD, Me.BEAMJOBOUT_EDIT})
-        Me.BeamJobOutToolStripMenuItem.Name = "BeamJobOutToolStripMenuItem"
-        Me.BeamJobOutToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
-        Me.BeamJobOutToolStripMenuItem.Text = "Beam Job Out"
-        '
-        'BEAMJOBOUT_ADD
-        '
-        Me.BEAMJOBOUT_ADD.Name = "BEAMJOBOUT_ADD"
-        Me.BEAMJOBOUT_ADD.Size = New System.Drawing.Size(180, 22)
-        Me.BEAMJOBOUT_ADD.Text = "Add New Entry"
-        '
-        'BEAMJOBOUT_EDIT
-        '
-        Me.BEAMJOBOUT_EDIT.Name = "BEAMJOBOUT_EDIT"
-        Me.BEAMJOBOUT_EDIT.Size = New System.Drawing.Size(180, 22)
-        Me.BEAMJOBOUT_EDIT.Text = "Edit Existing Entry"
         '
         'MDIMain
         '
