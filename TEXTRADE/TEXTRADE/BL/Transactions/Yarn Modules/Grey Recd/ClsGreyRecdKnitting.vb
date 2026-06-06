@@ -86,6 +86,10 @@ Public Class ClsGreyRecdKnitting
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@AVGWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RECDAVGWT", alParaval(I)))
+                I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@SHELF", alParaval(I)))
@@ -253,6 +257,10 @@ Public Class ClsGreyRecdKnitting
                 .Add(New SqlClient.SqlParameter("@MTRS", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@AVGWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@RECDAVGWT", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
                 I = I + 1

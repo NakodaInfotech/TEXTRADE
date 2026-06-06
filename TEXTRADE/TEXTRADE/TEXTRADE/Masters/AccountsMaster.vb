@@ -363,7 +363,7 @@ Public Class AccountsMaster
                     TXTRD.Text = dttable.Rows(0).Item("RD")
                     TXTHINDINAME.Text = dttable.Rows(0).Item("HINDINAME")
                     cmbrounder.Text = dttable.Rows(0).Item("ROUNDER")
-
+                    TXTINCENTIVEPER.Text = dttable.Rows(0).Item("INCENTIVEPER")
                     If Convert.ToBoolean(dttable.Rows(0).Item("GSTINVERIFIED")) = True Then
                         CHKGSTINVERIFIED.CheckState = CheckState.Checked
                         PBSUCCESS.Visible = True
@@ -716,6 +716,7 @@ NEXTLINE:
 
             alParaval.Add(TXTHINDINAME.Text.Trim)
             alParaval.Add(cmbrounder.Text.Trim)
+            alParaval.Add(TXTINCENTIVEPER.Text.Trim)
 
             Dim objAccountsMaster As New ClsAccountsMaster
             objAccountsMaster.alParaval = alParaval
@@ -770,7 +771,7 @@ NEXTLINE:
         TXTTDSRATE.Enabled = False
         TXTHINDINAME.Clear()
         cmbrounder.Text = ""
-
+        TXTINCENTIVEPER.Clear()
         txtadd.Clear()
         txtadd1.Clear()
         txtadd2.Clear()

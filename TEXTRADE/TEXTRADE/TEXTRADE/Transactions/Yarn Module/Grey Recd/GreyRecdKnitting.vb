@@ -350,6 +350,8 @@ NEXTLINE:
             Dim QTYUNIT As String = ""
             Dim MTRS As String = ""
             Dim WT As String = ""
+            Dim AVGWT As String = ""
+            Dim RECDAVGWT As String = ""
             Dim RACK As String = ""
             Dim SHELF As String = ""
             Dim BARCODE As String = ""
@@ -372,6 +374,8 @@ NEXTLINE:
                         QTYUNIT = row.Cells(gqtyunit.Index).Value.ToString
                         MTRS = row.Cells(GMTRS.Index).Value
                         WT = row.Cells(GWT.Index).Value
+                        AVGWT = row.Cells(GAVGWT.Index).Value
+                        RECDAVGWT = row.Cells(GRECDAVGWT.Index).Value
                         RACK = row.Cells(GRACK.Index).Value.ToString
                         SHELF = row.Cells(GSHELF.Index).Value.ToString
                         BARCODE = row.Cells(GBARCODE.Index).Value
@@ -397,6 +401,8 @@ NEXTLINE:
                         QTYUNIT = QTYUNIT & "|" & row.Cells(gqtyunit.Index).Value
                         MTRS = MTRS & "|" & row.Cells(GMTRS.Index).Value
                         WT = WT & "|" & row.Cells(GWT.Index).Value
+                        AVGWT = AVGWT & "|" & row.Cells(GAVGWT.Index).Value
+                        RECDAVGWT = RECDAVGWT & "|" & row.Cells(GRECDAVGWT.Index).Value
                         RACK = RACK & "|" & row.Cells(GRACK.Index).Value.ToString
                         SHELF = SHELF & "|" & row.Cells(GSHELF.Index).Value.ToString
                         BARCODE = BARCODE & "|" & row.Cells(GBARCODE.Index).Value
@@ -423,6 +429,8 @@ NEXTLINE:
             alParaval.Add(QTYUNIT)
             alParaval.Add(MTRS)
             alParaval.Add(WT)
+            alParaval.Add(AVGWT)
+            alParaval.Add(RECDAVGWT)
             alParaval.Add(RACK)
             alParaval.Add(SHELF)
             alParaval.Add(BARCODE)
@@ -1294,8 +1302,8 @@ NEXTLINE:
         PBSoftCopy.Image = Nothing
         PBSoftCopy.ImageLocation = ""
         gridupload.RowCount = 0
-
-
+        TXTAVGWT.Clear()
+        TXTRECDAVGWT.Clear()
         lbltotalqty.Text = 0.0
         LBLTOTALWT.Text = 0.0
         LBLTOTALMTRS.Text = 0.0
@@ -1481,7 +1489,7 @@ NEXTLINE:
                         txtremarks.Text = Convert.ToString(dr("remarks").ToString)
 
 
-                        GRIDGREY.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("DESIGNNO").ToString, dr("COLOR").ToString, dr("LOOMNO"), dr("ROLLNO"), Format(dr("qty"), "0.00"), dr("UNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("WT"), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"))
+                        GRIDGREY.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("DESIGNNO").ToString, dr("COLOR").ToString, dr("LOOMNO"), dr("ROLLNO"), Format(dr("qty"), "0.00"), dr("UNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("AVGWT"), "0.00"), Format(dr("RECDAVGWT"), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"))
 
 
                         If ClientName = "SWPL" Then
@@ -1640,6 +1648,8 @@ NEXTLINE:
                 cmbqtyunit.Text = GRIDGREY.Item(gqtyunit.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 TXTMTRS.Text = GRIDGREY.Item(GMTRS.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 TXTWT.Text = GRIDGREY.Item(GWT.Index, GRIDGREY.CurrentRow.Index).Value.ToString
+                TXTAVGWT.Text = GRIDGREY.Item(GAVGWT.Index, GRIDGREY.CurrentRow.Index).Value.ToString
+                TXTRECDAVGWT.Text = GRIDGREY.Item(GRECDAVGWT.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 CMBRACK.Text = GRIDGREY.Item(GRACK.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 CMBSHELF.Text = GRIDGREY.Item(GSHELF.Index, GRIDGREY.CurrentRow.Index).Value.ToString
                 TEMPROW = GRIDGREY.CurrentRow.Index
@@ -1762,7 +1772,7 @@ NEXTLINE:
         If ClientName <> "VALIANT" Then numkeypress(e, TXTROLLNO, Me)
     End Sub
 
-    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress, TXTMTRS.KeyPress
+    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress, TXTMTRS.KeyPress, TXTAVGWT.KeyPress, TXTRECDAVGWT.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
@@ -1943,7 +1953,7 @@ LINE1:
             GRIDGREY.Enabled = True
 
             If GRIDDOUBLECLICK = False Then
-                GRIDGREY.Rows.Add(Val(txtsrno.Text.Trim), cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOOMNO.Text.Trim, TXTROLLNO.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
+                GRIDGREY.Rows.Add(Val(txtsrno.Text.Trim), cmbitemname.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim, TXTLOOMNO.Text.Trim, TXTROLLNO.Text.Trim, Format(Val(TXTQTY.Text.Trim), "0.00"), cmbqtyunit.Text.Trim, Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(TXTWT.Text.Trim), "0.00"), Format(Val(TXTAVGWT.Text.Trim), "0.00"), Format(Val(TXTRECDAVGWT.Text.Trim), "0.00"), CMBRACK.Text.Trim, CMBSHELF.Text.Trim, TXTBARCODE.Text.Trim, 0, 0, 0)
                 getsrno(GRIDGREY)
             ElseIf GRIDDOUBLECLICK = True Then
                 GRIDGREY.Item(gsrno.Index, TEMPROW).Value = Val(txtsrno.Text.Trim)
@@ -1959,6 +1969,8 @@ LINE1:
                 GRIDGREY.Item(gqtyunit.Index, TEMPROW).Value = cmbqtyunit.Text.Trim
                 GRIDGREY.Item(GMTRS.Index, TEMPROW).Value = Format(Val(TXTMTRS.Text.Trim), "0.00")
                 GRIDGREY.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.00")
+                GRIDGREY.Item(GAVGWT.Index, TEMPROW).Value = Format(Val(TXTAVGWT.Text.Trim), "0.00")
+                GRIDGREY.Item(GRECDAVGWT.Index, TEMPROW).Value = Format(Val(TXTRECDAVGWT.Text.Trim), "0.00")
                 GRIDGREY.Item(GRACK.Index, TEMPROW).Value = CMBRACK.Text.Trim
                 GRIDGREY.Item(GSHELF.Index, TEMPROW).Value = CMBSHELF.Text.Trim
                 GRIDDOUBLECLICK = False
@@ -1969,6 +1981,9 @@ LINE1:
             GRIDGREY.FirstDisplayedScrollingRowIndex = GRIDGREY.RowCount - 1
 
             TXTWT.Clear()
+            TXTAVGWT.Clear()
+            TXTRECDAVGWT.Clear()
+
             TXTMTRS.Clear()
             TXTLOOMNO.Clear()
             If ClientName <> "SWPL" And ClientName <> "MMC" Then TXTROLLNO.Clear()
