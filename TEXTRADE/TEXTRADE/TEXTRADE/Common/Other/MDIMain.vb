@@ -4762,6 +4762,7 @@ Public Class MDIMain
 
                 ALPARAVAL.Add("")   'HINDINAME
                 ALPARAVAL.Add("")   'ROUNDERID
+                ALPARAVAL.Add(0)   'INCENTIVEPER
 
 
                 OBJSM.alParaval = ALPARAVAL
@@ -12592,6 +12593,26 @@ SKIPLINE:
     Private Sub BEAMJOBOUT_ADD_Click(sender As Object, e As EventArgs) Handles BEAMJOBOUT_ADD.Click
         Try
             Dim OBJSHELF As New BeamJobOut
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub BEAMJOBOUT_EDIT_Click(sender As Object, e As EventArgs) Handles BEAMJOBOUT_EDIT.Click
+        Try
+            Dim OBJSHELF As New BeamJobOutDetails
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem7_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem7.Click
+        Try
+            Dim OBJSHELF As New BeamJobInDetails
             OBJSHELF.MdiParent = Me
             OBJSHELF.Show()
         Catch ex As Exception
