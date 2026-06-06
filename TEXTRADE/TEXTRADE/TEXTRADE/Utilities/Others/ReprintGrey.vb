@@ -18,19 +18,25 @@ Public Class ReprintGrey
 
 
             Dim TEMPHEADER As String = ""
+            Dim QTY As Double = 0.0
+
             Dim OBJCMN As New ClsCommon
             Dim DT As New DataTable
 
 
             For Each ROW As DataGridViewRow In GRIDREPRINT.Rows
 
+                QTY = Val(ROW.Cells(GQTY.Index).Value)
 
                 If ClientName = "SWPL" Then
                     If ROW.Cells(GSHADE.Index).Value = "" Then TEMPHEADER = "GREYWITHOUTCOLOR" Else TEMPHEADER = "GREY"
+                    QTY = Val(ROW.Cells(GWT.Index).Value)
+
                 End If
 
+
                 For I As Integer = 1 To Val(txtcopies.Text.Trim)
-                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, ROW.Cells(GUNIT.Index).Value, "", ROW.Cells(GBALENO.Index).Value, "", Val(ROW.Cells(GMTRS.Index).Value), Val((ROW.Cells(GQTY.Index).Value)), 0, ROW.Cells(GRACK.Index).Value, TEMPHEADER, "", 0, "", "", ROW.Cells(GSHELF.Index).Value, ROW.Cells(GGREYDATE.Index).Value)
+                    BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, "FRESH", ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GQUALITY.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, ROW.Cells(GUNIT.Index).Value, "", ROW.Cells(GBALENO.Index).Value, "", Val(ROW.Cells(GMTRS.Index).Value), Val(QTY), 0, ROW.Cells(GRACK.Index).Value, TEMPHEADER, "", 0, "", "", ROW.Cells(GSHELF.Index).Value, ROW.Cells(GGREYDATE.Index).Value)
                 Next
             Next
 LINE1:
@@ -107,7 +113,7 @@ LINE1:
                     If LCase(ROW.Cells(GBARCODE.Index).Value) = LCase(txtbarcode.Text.Trim) Then GoTo LINE1
                 Next
 
-                GRIDREPRINT.Rows.Add(0, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("GRIDREMARKS"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("UNIT"), DT.Rows(0).Item("LOTNO"), Format((Val(DT.Rows(0).Item("CUT"))), "0.00"), Format((Val(DT.Rows(0).Item("MTRS"))), "0.00"), Format((Val(DT.Rows(0).Item("PCS"))), "0.00"), DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("RACK"), DT.Rows(0).Item("SHELF"), Format(DT.Rows(0).Item("DATE"), "dd/MM/yyyy"), DT.Rows(0).Item("BALENO"), "", Val(DT.Rows(0).Item("FROMNO")), Val(DT.Rows(0).Item("FROMSRNO")), DT.Rows(0).Item("TYPE"))
+                GRIDREPRINT.Rows.Add(0, DT.Rows(0).Item("PIECETYPE"), DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("GRIDREMARKS"), DT.Rows(0).Item("DESIGNNO"), DT.Rows(0).Item("COLOR"), DT.Rows(0).Item("UNIT"), DT.Rows(0).Item("LOTNO"), Format((Val(DT.Rows(0).Item("CUT"))), "0.00"), Format((Val(DT.Rows(0).Item("MTRS"))), "0.00"), Format((Val(DT.Rows(0).Item("WT"))), "0.00"), Format((Val(DT.Rows(0).Item("PCS"))), "0.00"), DT.Rows(0).Item("BARCODE"), DT.Rows(0).Item("RACK"), DT.Rows(0).Item("SHELF"), Format(DT.Rows(0).Item("DATE"), "dd/MM/yyyy"), DT.Rows(0).Item("BALENO"), "", Val(DT.Rows(0).Item("FROMNO")), Val(DT.Rows(0).Item("FROMSRNO")), DT.Rows(0).Item("TYPE"))
                 GRIDREPRINT.FirstDisplayedScrollingRowIndex = GRIDREPRINT.RowCount - 1
                 getsrno(GRIDREPRINT)
             Else

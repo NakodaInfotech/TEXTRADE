@@ -51,6 +51,7 @@ Partial Class ReprintGrey
         Me.GLOTNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GCUT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBARCODE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GRACK = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -132,7 +133,7 @@ Partial Class ReprintGrey
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDREPRINT.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDREPRINT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDREPRINT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GPRINTDESC, Me.GDESIGN, Me.GSHADE, Me.GUNIT, Me.GLOTNO, Me.GCUT, Me.GMTRS, Me.GQTY, Me.GBARCODE, Me.GRACK, Me.GSHELF, Me.GGREYDATE, Me.GBALENO, Me.GSTAMPING, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
+        Me.GRIDREPRINT.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GPRINTDESC, Me.GDESIGN, Me.GSHADE, Me.GUNIT, Me.GLOTNO, Me.GCUT, Me.GMTRS, Me.GWT, Me.GQTY, Me.GBARCODE, Me.GRACK, Me.GSHELF, Me.GGREYDATE, Me.GBALENO, Me.GSTAMPING, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -154,7 +155,7 @@ Partial Class ReprintGrey
         Me.GRIDREPRINT.RowTemplate.Height = 20
         Me.GRIDREPRINT.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDREPRINT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDREPRINT.Size = New System.Drawing.Size(1199, 495)
+        Me.GRIDREPRINT.Size = New System.Drawing.Size(1304, 495)
         Me.GRIDREPRINT.TabIndex = 698
         Me.GRIDREPRINT.TabStop = False
         '
@@ -337,6 +338,15 @@ Partial Class ReprintGrey
         Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GMTRS.Width = 80
         '
+        'GWT
+        '
+        Me.GWT.HeaderText = "Wt"
+        Me.GWT.Name = "GWT"
+        Me.GWT.ReadOnly = True
+        Me.GWT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GWT.Width = 80
+        '
         'GQTY
         '
         Me.GQTY.HeaderText = "Qty"
@@ -463,6 +473,7 @@ Partial Class ReprintGrey
     Friend WithEvents GLOTNO As DataGridViewTextBoxColumn
     Friend WithEvents GCUT As DataGridViewTextBoxColumn
     Friend WithEvents GMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents GWT As DataGridViewTextBoxColumn
     Friend WithEvents GQTY As DataGridViewTextBoxColumn
     Friend WithEvents GBARCODE As DataGridViewTextBoxColumn
     Friend WithEvents GRACK As DataGridViewTextBoxColumn
