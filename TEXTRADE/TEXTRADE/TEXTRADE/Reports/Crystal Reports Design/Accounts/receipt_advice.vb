@@ -89,6 +89,7 @@ Public Class receipt_advice
                     crTables = OBJREC_NAKODAINFOTECH.Database.Tables
                 ElseIf ClientName = "ABHEE" Then
                     crTables = OBJREC_ABHEE.Database.Tables
+
                 Else
                     crTables = OBJREC.Database.Tables
                 End If
@@ -231,7 +232,9 @@ Public Class receipt_advice
             If ClientName = "NAKODAINFOTECH" Then
                 OBJ = New RecReport_NAKODAINFOTECH
             ElseIf ClientName = "ABHEE" Then
+                strsearch = "  {RECEIPT_REPORT.RECEIPTNO}= " & Val(recno) & " and {RECEIPT_REPORT.REGNAME}= '" & REGNAME & "' and {RECEIPT_REPORT.YEARID} = " & YearId
                 OBJ = New RecReport_ABHEE
+
             Else
                 OBJ = New RecReport
                 If ClientName = "CHINTAN" Or ClientName = "ABHEE" Or ClientName = "MILUXE" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"

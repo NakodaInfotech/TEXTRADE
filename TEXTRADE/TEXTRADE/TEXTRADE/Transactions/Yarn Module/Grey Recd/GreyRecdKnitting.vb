@@ -2491,35 +2491,5 @@ NEXTLINE:
         End Try
     End Sub
 
-    Private Sub GRIDGREY_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles GRIDGREY.CellValueChanged
 
-        Try
-            If ClientName = "SWPL" Then
-
-                Dim ColName As String = GRIDGREY.Columns(e.ColumnIndex).Name
-
-                Select Case ColName
-
-                    Case "ROLLNO"
-                        GRIDGREY.CurrentCell = GRIDGREY.Rows(e.RowIndex).Cells("LOOMNO")
-
-                    Case "LOOMNO"
-                        GRIDGREY.CurrentCell = GRIDGREY.Rows(e.RowIndex).Cells("ITEMNAME")
-
-                    Case "ITEMNAME"
-                        GRIDGREY.CurrentCell = GRIDGREY.Rows(e.RowIndex).Cells("MTRS")
-
-                    Case "MTRS"
-                        GRIDGREY.CurrentCell = GRIDGREY.Rows(e.RowIndex).Cells("WEIGHT")
-
-                End Select
-
-                GRIDGREY.BeginEdit(True)
-
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-    End Sub
 End Class
