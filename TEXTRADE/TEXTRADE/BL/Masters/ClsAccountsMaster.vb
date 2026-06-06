@@ -247,6 +247,8 @@ Public Class ClsAccountsMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ROUNDER", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@INCENTIVEPER", alParaval(I)))
+                I += 1
             End With
 
             intResult = objDBOperation.executeNonQuery(strcommand, alParameter)
@@ -489,7 +491,8 @@ Public Class ClsAccountsMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@ROUNDER", alParaval(I)))
                 I += 1
-
+                .Add(New SqlClient.SqlParameter("@INCENTIVEPER", alParaval(I)))
+                I += 1
 
                 .Add(New SqlClient.SqlParameter("@AccountId", alParaval(I)))
                 I += 1

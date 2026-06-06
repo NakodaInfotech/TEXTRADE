@@ -231,6 +231,8 @@ Partial Class AccountsMaster
         Me.GMOBILENO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GEMAIL = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.TXTINCENTIVEPER = New System.Windows.Forms.TextBox()
+        Me.Label73 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.GROUPTDS.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -925,6 +927,8 @@ Partial Class AccountsMaster
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.TabPage1.Controls.Add(Me.Label73)
+        Me.TabPage1.Controls.Add(Me.TXTINCENTIVEPER)
         Me.TabPage1.Controls.Add(Me.cmbrounder)
         Me.TabPage1.Controls.Add(Me.Label72)
         Me.TabPage1.Controls.Add(Me.CMBBILLTO)
@@ -2760,6 +2764,26 @@ Partial Class AccountsMaster
         Me.Ep.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.Ep.ContainerControl = Me
         '
+        'TXTINCENTIVEPER
+        '
+        Me.TXTINCENTIVEPER.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TXTINCENTIVEPER.Location = New System.Drawing.Point(715, 132)
+        Me.TXTINCENTIVEPER.Name = "TXTINCENTIVEPER"
+        Me.TXTINCENTIVEPER.Size = New System.Drawing.Size(44, 22)
+        Me.TXTINCENTIVEPER.TabIndex = 879
+        Me.TXTINCENTIVEPER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label73
+        '
+        Me.Label73.AutoSize = True
+        Me.Label73.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label73.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label73.Location = New System.Drawing.Point(646, 136)
+        Me.Label73.Name = "Label73"
+        Me.Label73.Size = New System.Drawing.Size(68, 14)
+        Me.Label73.TabIndex = 880
+        Me.Label73.Text = "Incentive %"
+        '
         'AccountsMaster
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2996,4 +3020,6 @@ Partial Class AccountsMaster
     Friend WithEvents Label70 As Label
     Friend WithEvents cmbrounder As ComboBox
     Friend WithEvents Label72 As Label
+    Friend WithEvents Label73 As Label
+    Friend WithEvents TXTINCENTIVEPER As TextBox
 End Class
