@@ -13,6 +13,7 @@ Public Class BeamRecdWarper
     Dim TEMPMSG As Integer
     Dim NextBeamNo As Integer
     Dim MAXNO As Integer = 0
+    'Public FRMSTRING As String
 
     Dim TEMPBEAMNO As Integer
 
@@ -1169,7 +1170,6 @@ LINE1:
                 CMBNAME.Focus()
                 Exit Sub
             End If
-
             Dim OBJYARNISSUE As New SelectJobOrder
             Dim DT As DataTable = OBJYARNISSUE.DT
             OBJYARNISSUE.SIZERNAME = CMBNAME.Text.Trim
@@ -1349,7 +1349,7 @@ LINE1:
                     CMBROLLNO.Text = ""
                     CMBROLLNO.Focus()
                 End If
-
+                TXTBEAMNO.Text = CMBROLLNO.Text.Trim
             End If
 
 
