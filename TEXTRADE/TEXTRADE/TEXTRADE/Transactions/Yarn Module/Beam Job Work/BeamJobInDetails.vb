@@ -4,55 +4,145 @@ Imports CrystalDecisions.CrystalReports.Engine
 Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class BeamJobInDetails
-    Friend WithEvents GRIDBEAM As DataGridView
+  Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean
     Private Sub cmdexit_Click(sender As Object, e As EventArgs) Handles cmdexit.Click
         Me.Close()
     End Sub
 
-    '
-    'Sub fillgrid()
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
 
-    '    Try
+    End Sub
 
-    '        Dim OBJCMN As New ClsCommon
+    Sub showform(ByVal EDITVAL As Boolean, ByVal BEAMISSUENO As Integer)
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            Dim OBJBEAMISSUENO As New BeamJobIn
+            OBJBEAMISSUENO.EDIT = EDITVAL
+            OBJBEAMISSUENO.MdiParent = MDIMain
+            OBJBEAMISSUENO.TEMPBEAMJONO = BEAMISSUENO
+            OBJBEAMISSUENO.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub BeamJobInDetails_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
+            Me.Close()
+        ElseIf e.KeyCode = Keys.Enter Then
+            SendKeys.Send("{Tab}")
+        ElseIf e.Alt = True And e.KeyCode = Keys.R Then
+            Call TOOLREFRESH_Click(sender, e)
+        ElseIf e.Alt = True And e.KeyCode = Keys.P Then
+            Call ToolStripButton2_Click(sender, e)
+        ElseIf e.KeyCode = Keys.OemQuotes Then
+            e.SuppressKeyPress = True
+        End If
+    End Sub
+    Private Sub BeamJobInDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
 
-    '        Dim DT As DataTable = OBJCMN.SEARCH("  BJI_NO AS BEAMJONO,BJI_DATE AS BEAMJODATE, LEDGERS.ACC_CMPNAME AS NAME,GODOWNMASTER.GODOWN_NAME AS GODOWN, BJI_JONO AS JONO, BJI_REMARKS AS REMARKS, BJI_TOTALJOBMTRS AS TOTALMTRS ", "", " BEAMJOBININNER JOIN LEDGERS ON BEAMJOBIN.BJI_LEDGERID = LEDGERS.ACC_ID INNER JOIN GODOWNMASTER ON BEAMJOBIN.BJI_GODOWNID = GODOWNMASTER.GODOWN_ID ", " AND BJI_YEARID = " & YearId & " ORDER BY BJI_NO DESC ")
-    '        GRIDDETAILS.RowCount = 0
+            Dim DTROW() As DataRow = USERRIGHTS.Select("FormName = 'MFG'")
+            USERADD = DTROW(0).Item(1)
+            USEREDIT = DTROW(0).Item(2)
+            USERVIEW = DTROW(0).Item(3)
+            USERDELETE = DTROW(0).Item(4)
 
-    '        For Each ROW As DataRow In DT.Rows
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            fillgrid()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Sub fillgrid()
+        Try
+            Dim OBJBEAMISSUE As New ClsJobIn
+            OBJBEAMISSUE.alParaval.Add(0)
+            OBJBEAMISSUE.alParaval.Add(YearId)
+            Dim dttable As DataTable = OBJBEAMISSUE.SELECTJobin(0, CmpId, Locationid, YearId)
+            gridbilldetails.DataSource = dttable
+            If dttable.Rows.Count > 0 Then
+                gridbill.FocusedRowHandle = gridbill.RowCount - 1
+                gridbill.TopRowIndex = gridbill.RowCount - 15
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub CMDEDIT_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDEDIT.Click
+        Try
+            If USEREDIT = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            showform(True, gridbill.GetFocusedRowCellValue("BEAMISSUENO"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
-    '            GRIDDETAILS.Rows.Add(
-    '                GRIDDETAILS.RowCount + 1, "", ROW("NAME"), ROW("GODOWN"), ROW("BEAMJONO"), ROW("JONO"), "",
-    '                Format(Convert.ToDateTime(ROW("BEAMJODATE")), "dd/MM/yyyy"),
-    '                Format(Val(ROW("TOTALMTRS")), "0.00"),
-    '                "",
-    '                "",
-    '                "",
-    '                "",
-    '                "",
-    '                ROW("REMARKS")
-    '                )
+    Private Sub gridbill_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles gridbill.DoubleClick
+        Try
+            If USEREDIT = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            showform(True, gridbill.GetFocusedRowCellValue("BEAMISSUENO"))
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
-    '        Next
+    Private Sub CMDADD_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton1.Click
+        Try
+            If USERADD = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            showform(False, 0)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
-    '    Catch ex As Exception
-    '        Throw ex
-    '    End Try
+    Private Sub TOOLREFRESH_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TOOLREFRESH.Click
+        Try
+            If USEREDIT = False And USERVIEW = False Then
+                MsgBox("Insufficient Rights")
+                Exit Sub
+            End If
+            fillgrid()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub TOOLEXCEL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButton2.Click
+        Try
+            Dim PATH As String = "" = ""
+            If FileIO.FileSystem.FileExists(PATH) = True Then FileIO.FileSystem.DeleteFile(PATH)
+            PATH = Application.StartupPath & "\Beam Job In Details.XLS"
 
-    'End Sub
-    'Private Sub GRIDDETAILS_DoubleClick(sender As Object, e As EventArgs) Handles GRIDDETAILS.DoubleClick
+            Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
+            opti.ShowGridLines = True
 
-    '    If GRIDDETAILS.CurrentRow Is Nothing Then Exit Sub
+            Dim workbook As String = PATH
+            If FileIO.FileSystem.FileExists(PATH) = True Then Interaction.GetObject(workbook).close(False)
+            GC.Collect()
 
-    '    Dim OBJ As New BeamJobIn
+            Dim PERIOD As String = AccFrom & " - " & AccTo
 
-    '    OBJ.MdiParent = MDIMain
-    '    OBJ.EDIT = True
-    '    OBJ.TEMPBEAMJONO = Val(GRIDDETAILS.CurrentRow.Cells(GBEAMJONO.Index).Value)
+            opti.SheetName = "Beam Job In Details"
+            gridbill.ExportToXls(PATH, opti)
+            EXCELCMPHEADER(PATH, "Beam Job In Details", gridbill.VisibleColumns.Count + gridbill.GroupCount, "", PERIOD)
 
-    '    OBJ.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
-    '    Me.Close()
-
-    ' End Sub
 End Class
