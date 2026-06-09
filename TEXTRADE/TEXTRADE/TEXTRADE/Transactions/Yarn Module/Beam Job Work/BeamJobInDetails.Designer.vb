@@ -56,6 +56,7 @@ Partial Class BeamJobInDetails
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.CMDEDIT = New System.Windows.Forms.Button()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -363,6 +364,7 @@ Partial Class BeamJobInDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDEDIT)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
@@ -381,6 +383,15 @@ Partial Class BeamJobInDetails
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
         Me.ToolStrip1.TabIndex = 255
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'CMDEDIT
+        '
+        Me.CMDEDIT.Location = New System.Drawing.Point(707, 550)
+        Me.CMDEDIT.Name = "CMDEDIT"
+        Me.CMDEDIT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDEDIT.TabIndex = 256
+        Me.CMDEDIT.Text = "&Edit"
+        Me.CMDEDIT.UseVisualStyleBackColor = True
         '
         'BeamJobInDetails
         '
@@ -436,4 +447,5 @@ Partial Class BeamJobInDetails
     Friend WithEvents CMBNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TXTBEAMJONO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMBJONO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDEDIT As Button
 End Class
