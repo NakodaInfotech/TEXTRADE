@@ -53,6 +53,7 @@ Public Class GreyRecdKnittingDetails
             Dim objclsCMST As New ClsCommonMaster
             Dim dt As DataTable = objclsCMST.search("ISNULL(GREYRECDKNITTING.GREY_NO, 0) AS SRNO, ISNULL(GREYRECDKNITTING.GREY_date, GETDATE()) AS DATE, ISNULL(GODOWNMASTER.GODOWN_name, '') AS GODOWN, ISNULL(LEDGERS.Acc_cmpname, '') AS NAME, ISNULL(GREYRECDKNITTING.GREY_challanno, '') AS CHALLANNO, ISNULL(GREYRECDKNITTING.GREY_CHALLANDATE, GETDATE()) AS CHALLANDATE, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSNAME, ISNULL(GREYRECDKNITTING.GREY_LRNO, '') AS LRNO, ISNULL(GREYRECDKNITTING.GREY_LRDATE, GETDATE()) AS LRDATE, ISNULL(GREYRECDKNITTING.GREY_TOTALQTY, 0) AS TOTALQTY, ISNULL(GREYRECDKNITTING.GREY_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(GREYRECDKNITTING.GREY_TOTALWT, 0) AS TOTALWT, ISNULL(GREYRECDKNITTING.GREY_remarks, '') AS REMARKS, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(YARNQUALITYMASTER.YARN_NAME, '') AS YARNQUALITY, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGN, ISNULL(COLORMASTER.COLOR_name, '') AS SHADE, ISNULL(GREYRECDKNITTING_DESC.GREY_ROLLNO, '') AS ROLLNO, ISNULL(GREYRECDKNITTING_DESC.GREY_QTY, 0) AS QTY, ISNULL(GREYRECDKNITTING_DESC.GREY_MTRS, 0) AS MTRS, ISNULL(GREYRECDKNITTING_DESC.GREY_WT, 0) AS WT, ROUND(ISNULL(DESIGNCARD.DESIGN_FWT,0),3) AS AVGWT, (CASE WHEN ISNULL(GREYRECDKNITTING_DESC.GREY_WT, 0) > 0 AND ISNULL(GREYRECDKNITTING_DESC.GREY_MTRS, 0) > 0 THEN ROUND(ISNULL(GREYRECDKNITTING_DESC.GREY_WT, 0)/ISNULL(GREYRECDKNITTING_DESC.GREY_MTRS, 0),3) ELSE 0 END) AS RECDAVGWT, ISNULL(GREYRECDKNITTING_DESC.GREY_LOOMNO, '') AS LOOMNO, ISNULL(GREYRECDKNITTING_DESC.GREY_BARCODE, '') AS BARCODE", "", " GODOWNMASTER INNER JOIN GREYRECDKNITTING ON GODOWNMASTER.GODOWN_id = GREYRECDKNITTING.GREY_GODOWNID INNER JOIN LEDGERS ON GREYRECDKNITTING.GREY_LEDGERID = LEDGERS.Acc_id INNER JOIN GREYRECDKNITTING_DESC ON GREYRECDKNITTING.GREY_NO = GREYRECDKNITTING_DESC.GREY_NO AND GREYRECDKNITTING.GREY_yearid = GREYRECDKNITTING_DESC.GREY_YEARID INNER JOIN ITEMMASTER ON GREYRECDKNITTING_DESC.GREY_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN YARNQUALITYMASTER ON GREYRECDKNITTING_DESC.GREY_QUALITYID = YARNQUALITYMASTER.YARN_ID LEFT OUTER JOIN DESIGNMASTER ON GREYRECDKNITTING_DESC.GREY_DESIGNID = DESIGNMASTER.DESIGN_id LEFT OUTER JOIN COLORMASTER ON GREYRECDKNITTING_DESC.GREY_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON GREYRECDKNITTING.GREY_transledgerid = TRANSLEDGERS.Acc_id LEFT OUTER JOIN DESIGNCARD ON GREYRECDKNITTING_DESC.GREY_ITEMID = DESIGNCARD.DESIGN_ITEMID", " and dbo.GREYRECDKNITTING.GREY_yearid=" & YearId & " order by dbo.GREYRECDKNITTING.GREY_no ")
             gridbilldetails.DataSource = dt
+            APPLYTOLEARNACECOLOR()
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
                 gridbill.TopRowIndex = gridbill.RowCount - 15
@@ -130,6 +131,51 @@ Public Class GreyRecdKnittingDetails
             MsgBox("Grey Recd Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
         End Try
     End Sub
+    Sub APPLYTOLEARNACECOLOR()
+        Try
+            Const TOLERANCE As Decimal = 0.02D
 
+            For i As Integer = 0 To gridbill.RowCount - 1
+                Dim dtrow As DataRow = gridbill.GetDataRow(i)
+                If dtrow Is Nothing Then Continue For
+
+                Dim recdAvgWt As Decimal = Val(dtrow("RECDAVGWT"))
+                Dim designAvgWt As Decimal = Val(dtrow("AVGWT"))
+
+                If designAvgWt > 0 AndAlso recdAvgWt > 0 Then
+                    Dim diff As Decimal = Math.Abs(recdAvgWt - designAvgWt)
+                    If diff > TOLERANCE Then
+                        gridbill.SetRowCellValue(i, "CHK", gridbill.GetRowCellValue(i, "CHK")) ' force row into view
+                    End If
+                End If
+            Next
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+    Private Sub gridbill_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles gridbill.RowStyle
+        Try
+            Const TOLERANCE As Decimal = 0.02D
+
+            If e.RowHandle < 0 Then Exit Sub  ' Skip group/footer rows
+
+            Dim dtrow As DataRow = gridbill.GetDataRow(e.RowHandle)
+            If dtrow Is Nothing Then Exit Sub
+
+            Dim recdAvgWt As Decimal = Val(dtrow("RECDAVGWT"))
+            Dim designAvgWt As Decimal = Val(dtrow("AVGWT"))
+
+            If designAvgWt > 0 AndAlso recdAvgWt > 0 Then
+                Dim diff As Decimal = Math.Abs(recdAvgWt - designAvgWt)
+                If diff > TOLERANCE Then
+                    e.Appearance.BackColor = Color.LightCoral
+                    e.Appearance.BackColor2 = Color.LightCoral
+                    e.HighPriority = True
+                End If
+            End If
+
+        Catch ex As Exception
+        End Try
+    End Sub
 
 End Class

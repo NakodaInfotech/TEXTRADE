@@ -438,7 +438,6 @@ Public Class YarnLoomEfficiency
     End Sub
 
     Private Sub Loanmaster_load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
         Try
             Dim DTROW() As DataRow
 
@@ -450,9 +449,6 @@ Public Class YarnLoomEfficiency
             USERDELETE = DTROW(0).Item(4)
 
             Cursor.Current = Cursors.WaitCursor
-
-
-
             clear()
             If edit = True Then
                 SHOWDATA()
@@ -466,11 +462,8 @@ Public Class YarnLoomEfficiency
     End Sub
     Sub SHOWDATA()
         Try
-
             clear()
-
             If edit = True Then
-
                 If USEREDIT = False And USERVIEW = False Then
                     MsgBox("Insufficient Rights")
                     Exit Sub
@@ -598,7 +591,6 @@ Public Class YarnLoomEfficiency
             edit = False
         End If
     End Sub
-
     Private Sub toolnext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolnext.Click
         TEMPYLENO = Val(txteffno.Text) + 1
         getmax_loan_no()
@@ -611,11 +603,9 @@ Public Class YarnLoomEfficiency
             edit = False
         End If
     End Sub
-
     Private Sub SaveToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveToolStripButton.Click
         Call cmdok_Click(sender, e)
     End Sub
-
     Private Sub tooldelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tooldelete.Click
         Call cmddelete_Click(sender, e)
     End Sub
@@ -651,8 +641,6 @@ Public Class YarnLoomEfficiency
         End Try
 
     End Sub
-
-
     Private Sub cmbitemname_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CMBITEMNAME.KeyPress, CMBYARNQ.KeyPress
         commakeypress(e, CMBITEMNAME, Me)
     End Sub
@@ -663,7 +651,6 @@ Public Class YarnLoomEfficiency
     Private Sub tstxtbillno_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles tstxtbillno.KeyPress
         numkeypress(e, sender, Me)
     End Sub
-
     Private Sub tstxtbillno_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles tstxtbillno.Validating
         TEMPYLENO = Val(tstxtbillno.Text)
         clear()
@@ -675,9 +662,6 @@ Public Class YarnLoomEfficiency
             edit = False
         End If
     End Sub
-
-
-
     'Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
     '    Try
     '        If edit = True Then
@@ -691,7 +675,6 @@ Public Class YarnLoomEfficiency
     '        Throw ex
     '    End Try
     'End Sub
-
     Private Sub txtgridremarks_Validated(sender As Object, e As EventArgs) Handles txtgridremarks.Validated
         Try
             If CMBLOOM.Text.Trim <> "" And CMBITEMNAME.Text.Trim <> "" And Val(TXTRECMTRS.Text.Trim) > 0 Then
@@ -730,10 +713,7 @@ Public Class YarnLoomEfficiency
         Try
             Dim objclsCMST As New ClsCommonMaster
 
-            ' 🔥 FIX: assign to dtLoom (NOT dt)
-            dtLoom = objclsCMST.search(" LOOM_NO, BEAM_NAME, BEAM_NO ", "", "BEAMLOOMSTATUS",
-            " AND WEAVER_NAME = '" & cmbname.Text.Trim & "' AND LOOM_STATUS = 'OCCUPIED' ORDER BY LOOM_NO ")
-
+            dtLoom = objclsCMST.search(" LOOM_NO, BEAM_NAME, BEAM_NO ", "", "BEAMLOOMSTATUS", " AND WEAVER_NAME = '" & cmbname.Text.Trim & "' AND LOOM_STATUS = 'OCCUPIED' ORDER BY LOOM_NO ")
             If dtLoom IsNot Nothing AndAlso dtLoom.Rows.Count > 0 Then
                 CMBLOOM.DataSource = dtLoom
                 CMBLOOM.DisplayMember = "LOOM_NO"
@@ -753,24 +733,36 @@ Public Class YarnLoomEfficiency
     End Sub
     Private Sub CMBLOOM_Validated(sender As Object, e As EventArgs) Handles CMBLOOM.Validated
         Try
-            If gridDoubleClick = True Then
-                Exit Sub
-            End If
+            'If gridDoubleClick = True Then
+            '    Exit Sub
+            'End If
+
             If dtLoom IsNot Nothing Then
                 For Each dr As DataRow In dtLoom.Rows
                     If dr("LOOM_NO").ToString.Trim = CMBLOOM.Text.Trim Then
                         CMBITEMNAME.Text = dr("BEAM_NAME").ToString
                         TXTBEAMNO.Text = dr("BEAM_NO").ToString
-                        Exit Sub
+                        Exit For
                     End If
                 Next
             End If
 
-            '' If not found
-            'TXTBEAMNO.Clear()
-            If gridDoubleClick = False Then   ' ← ADD THIS CHECK
-                CMBITEMNAME.Text = ""
-                TXTBEAMNO.Clear()
+            If gridDoubleClick = False Then
+                If CMBLOOM.Text.Trim = "" Then
+                    CMBITEMNAME.Text = ""
+                    TXTBEAMNO.Clear()
+                End If
+            End If
+
+            If CMBLOOM.Text.Trim <> "" Then
+                Dim objCMST As New ClsCommonMaster
+                Dim dtRPM As DataTable = objCMST.search(" TOP 1 YLE_RPM ", "", " YARNLOOMEFFICIENCY_DESC INNER JOIN YARNLOOMEFFICIENCY ON YARNLOOMEFFICIENCY_DESC.YLE_NO = YARNLOOMEFFICIENCY.YLE_NO AND YARNLOOMEFFICIENCY_DESC.YLE_YEARID = YARNLOOMEFFICIENCY.YLE_YEARID ", " AND YARNLOOMEFFICIENCY_DESC.YLE_LOOMNO = '" & CMBLOOM.Text.Trim & "' AND YARNLOOMEFFICIENCY_DESC.YLE_YEARID = " & YearId & " ORDER BY YARNLOOMEFFICIENCY.YLE_NO DESC ")
+                If dtRPM IsNot Nothing AndAlso dtRPM.Rows.Count > 0 Then
+                    Dim lastRPM As Decimal = Val(dtRPM.Rows(0).Item("YLE_RPM"))
+                    If lastRPM > 0 Then
+                        TXTRPM.Text = Format(lastRPM, "0.00")
+                    End If
+                End If
             End If
 
         Catch ex As Exception
@@ -865,47 +857,24 @@ Public Class YarnLoomEfficiency
 
     Private Sub CMBSET_Validated(sender As Object, e As EventArgs) Handles CMBSET.Validated
         Try
-            ' ── Guards ──────────────────────────────────────────────
             If CMBSET.Text.Trim = "" Then Exit Sub
             If cmbname.Text.Trim = "" Then Exit Sub
 
-            ' ── Query via ClsCommonMaster.search ────────────────────
             Dim objCMST As New ClsCommonMaster
-            Dim dt As DataTable = objCMST.search(
-            " LOOMMASTER_DESC.LOOM_NO, LOOMMASTER_DESC.LOOM_GROUPINGSET, LEDGERS.Acc_cmpname, BEAMLOOMSTATUS.BEAM_NAME, BEAMLOOMSTATUS.BEAM_NO ",
-            "",
-            " LOOMMASTER_DESC 
-              INNER JOIN LOOMMASTER ON LOOMMASTER_DESC.LOOM_ID = LOOMMASTER.LOOM_ID 
-              LEFT OUTER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id 
-              LEFT OUTER JOIN BEAMLOOMSTATUS ON BEAMLOOMSTATUS.LOOM_NO = LOOMMASTER_DESC.LOOM_NO 
-                AND BEAMLOOMSTATUS.WEAVER_NAME = LEDGERS.Acc_cmpname ",
-            " AND BEAMLOOMSTATUS.LOOM_STATUS='OCCUPIED' AND LOOMMASTER_DESC.LOOM_GROUPINGSET = '" & CMBSET.Text.Trim & "'" &
-            " AND LEDGERS.Acc_cmpname = '" & cmbname.Text.Trim & "'" &
-            " AND LOOMMASTER.LOOM_YEARID = " & YearId &
-            " ORDER BY LOOMMASTER_DESC.LOOM_NO ")
-
+            Dim dt As DataTable = objCMST.search(" LOOMMASTER_DESC.LOOM_NO, LOOMMASTER_DESC.LOOM_GROUPINGSET, LEDGERS.Acc_cmpname, BEAMLOOMSTATUS.BEAM_NAME, BEAMLOOMSTATUS.BEAM_NO ", "", " LOOMMASTER_DESC INNER JOIN LOOMMASTER ON LOOMMASTER_DESC.LOOM_ID = LOOMMASTER.LOOM_ID LEFT OUTER JOIN LEDGERS ON LOOMMASTER.LOOM_WEAVERID = LEDGERS.Acc_id LEFT OUTER JOIN BEAMLOOMSTATUS ON BEAMLOOMSTATUS.LOOM_NO = LOOMMASTER_DESC.LOOM_NO AND BEAMLOOMSTATUS.WEAVER_NAME = LEDGERS.Acc_cmpname ", " AND BEAMLOOMSTATUS.LOOM_STATUS='OCCUPIED' AND LOOMMASTER_DESC.LOOM_GROUPINGSET = '" & CMBSET.Text.Trim & "' AND LEDGERS.Acc_cmpname = '" & cmbname.Text.Trim & "' AND LOOMMASTER.LOOM_YEARID = " & YearId & " ORDER BY LOOMMASTER_DESC.LOOM_NO ")
             If dt Is Nothing OrElse dt.Rows.Count = 0 Then
                 MsgBox("No Looms found for Set: " & CMBSET.Text.Trim)
                 Exit Sub
             End If
-
             gridloan.Rows.Clear()
 
-            ' ── Fill grid ───────────────────────────────────────────
             Dim srno As Integer = 1
             For Each dr As DataRow In dt.Rows
                 Dim loomNo As String = dr("LOOM_NO").ToString.Trim
                 Dim beamName As String = If(IsDBNull(dr("BEAM_NAME")), "", dr("BEAM_NAME").ToString.Trim)
                 Dim beamNo As String = If(IsDBNull(dr("BEAM_NO")), "0", dr("BEAM_NO").ToString.Trim)
 
-                gridloan.Rows.Add(srno, loomNo, beamName, Val(beamNo), "0.00", "0.00",
-                "0.00",     ' GRECMTRS
-                "0.00",     ' GWEFT
-                "0.00",     ' GWARP
-                "0.00",     ' GEFFPER
-                "0.00",     ' GAVGPICK
-                ""          ' GGRIDREMARKS
-            )
+                gridloan.Rows.Add(srno, loomNo, beamName, Val(beamNo), "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "0.00", "")
                 srno += 1
             Next
 
