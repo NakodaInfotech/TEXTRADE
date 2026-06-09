@@ -138,7 +138,7 @@ Public Class GodownwiseDetails
             GDESIGNNO.Caption = "Coil Width"
             GBALENO.Caption = "Coil No"
             GPIECETYPE.Caption = "Coil Type"
-            GCOLOR.Visible = False
+            GCOLOR.Caption = "Finish"
             GRACK.Visible = False
             GSHELF.Visible = False
         End If

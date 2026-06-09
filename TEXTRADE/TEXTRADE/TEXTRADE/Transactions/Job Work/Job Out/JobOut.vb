@@ -1119,6 +1119,7 @@ LINE1:
                 getsrno(GRIDJO)
                 TOTAL()
                 GRIDJO.FirstDisplayedScrollingRowIndex = GRIDJO.RowCount - 1
+                If ClientName = "SWPL" Then CHECKmultipleitem()
             End If
         Catch ex As Exception
             Throw ex
@@ -3102,5 +3103,31 @@ LINE1:
             Throw ex
         End Try
     End Sub
+    Sub CHECKmultipleitem()
+        Try
+            ' Collect distinct item names from grid
+            Dim itemSet As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase)
 
+            For Each ROW As DataGridViewRow In GRIDJO.Rows
+                If ROW.Cells(GSRNO.Index).Value IsNot Nothing Then
+                    Dim itemName As String = ROW.Cells(GMERCHANT.Index).Value.ToString.Trim
+                    If itemName <> "" Then
+                        itemSet.Add(itemName)
+                    End If
+                End If
+            Next
+
+            ' If more than 1 distinct item — warn user
+            If itemSet.Count > 1 Then
+                Dim itemList As String = String.Join(vbCrLf, itemSet)
+                MsgBox("Warning: Multiple Item Names selected in grid:" & vbCrLf & vbCrLf &
+                       itemList & vbCrLf & vbCrLf &
+                       "Please verify before saving.",
+                       MsgBoxStyle.Exclamation, "Multiple Items Found")
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

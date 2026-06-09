@@ -43,7 +43,13 @@ Public Class GreyRecdKnitting
 
     Private Sub CMBNAME_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
-            FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+            If ClientName = "SWPL" Then
+                FILLNAME(cmbname, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS') AND ACC_TYPE = 'ACCOUNTS'")
+
+            Else
+                FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -56,7 +62,11 @@ Public Class GreyRecdKnitting
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                If ClientName = "SWPL" Then
+                    OBJLEDGER.STRSEARCH = " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS' Or GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS' AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                Else
+                    OBJLEDGER.STRSEARCH = " AND GROUPMASTER.GROUP_SECONDARY ='SUNDRY CREDITORS'  AND LEDGERS.ACC_TYPE = 'ACCOUNTS'"
+                End If
                 OBJLEDGER.ShowDialog()
                 If OBJLEDGER.TEMPCODE <> "" Then CMBCODE.Text = OBJLEDGER.TEMPCODE
                 If OBJLEDGER.TEMPNAME <> "" Then cmbname.Text = OBJLEDGER.TEMPNAME
@@ -68,7 +78,11 @@ Public Class GreyRecdKnitting
 
     Private Sub CMBNAME_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles cmbname.Validating
         Try
-            If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS", cmbtrans.Text)
+            If ClientName = "SWPL" Then
+                If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS'", "SUNDRY CREDITORS", "ACCOUNTS", cmbtrans.Text)
+            Else
+                If cmbname.Text.Trim <> "" Then NAMEVALIDATE(cmbname, CMBCODE, e, Me, txtadd, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS'", "SUNDRY CREDITORS", "ACCOUNTS", cmbtrans.Text)
+            End If
         Catch ex As Exception
             Throw ex
         End Try
@@ -300,6 +314,7 @@ NEXTLINE:
                     bln = False
                 End If
             End If
+
 
             Return bln
         Catch ex As Exception
@@ -2352,9 +2367,6 @@ NEXTLINE:
             Throw ex
         End Try
     End Sub
-
-
-
     Private Sub cmbqtyunit_Enter(sender As Object, e As EventArgs) Handles cmbqtyunit.Enter
         Try
             If cmbqtyunit.Text.Trim = "" Then fillunit(cmbqtyunit)
@@ -2458,10 +2470,31 @@ NEXTLINE:
 
     Private Sub TXTWT_Validated(sender As Object, e As EventArgs) Handles TXTWT.Validated
         Try
-            If Val(TXTMTRS.Text.Trim) > 0 And Val(TXTWT.Text.Trim) > 0 Then
-                Dim WT As Decimal = Val(TXTWT.Text.Trim) / Val(TXTMTRS.Text.Trim)
-                If Val(WT.ToString("0.000")) > 0 Then
-                    TXTRECDAVGWT.Text = WT.ToString("0.000")
+            If ClientName = "SWPL" Then
+                If Val(TXTMTRS.Text.Trim) > 0 And Val(TXTWT.Text.Trim) > 0 Then
+                    Dim WT As Decimal = Val(TXTWT.Text.Trim) / Val(TXTMTRS.Text.Trim)
+                    If Val(WT.ToString("0.000")) > 0 Then
+                        TXTRECDAVGWT.Text = WT.ToString("0.000")
+
+                        ' ── Tolerance Check ─────────────────────────────────
+                        Dim recdAvgWt As Decimal = Val(TXTRECDAVGWT.Text.Trim)
+                        Dim designAvgWt As Decimal = Val(TXTAVGWT.Text.Trim)
+                        Dim TOLERANCE As Decimal = 0.02D  ' 20 gms
+
+                        If designAvgWt > 0 Then  ' Only check if DesignCard AvgWt is loaded
+                            Dim diff As Decimal = Math.Abs(recdAvgWt - designAvgWt)
+                            If diff > TOLERANCE Then
+                                MsgBox("Warning: Recd Avg Wt (" & recdAvgWt.ToString("0.000") & ") " &
+                                   "is outside ±20gms tolerance of Design Avg Wt (" & designAvgWt.ToString("0.000") & ")." &
+                                   vbCrLf & "Difference: " & diff.ToString("0.000"), MsgBoxStyle.Exclamation, "Weight Tolerance Exceeded")
+                                TXTRECDAVGWT.BackColor = Color.LightCoral   ' Visual indicator
+                            Else
+                                TXTRECDAVGWT.BackColor = Color.LightGreen   ' Within tolerance
+                            End If
+                        End If
+                        ' ────────────────────────────────────────────────────
+
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -2484,10 +2517,13 @@ NEXTLINE:
     End Function
     Private Sub cmbitemname_Validated(sender As Object, e As EventArgs) Handles cmbitemname.Validated
         Try
-            Dim OBJCMN As New ClsCommon
+            If ClientName = "SWPL" Then
+
+                Dim OBJCMN As New ClsCommon
             Dim DT As DataTable = OBJCMN.SEARCH("ITEMMASTER.item_name,  ROUND(ISNULL(DESIGNCARD.DESIGN_FWT,0),3) AS AVGWT ", "", " DESIGNCARD INNER JOIN ITEMMASTER ON DESIGNCARD.DESIGN_ITEMID = ITEMMASTER.item_id ", " AND ITEMMASTER.ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID = " & YearId)
-            If DT.Rows.Count > 0 Then
-                TXTAVGWT.Text = Format(Val(DT.Rows(0).Item("AVGWT")), "0.000")
+                If DT.Rows.Count > 0 Then
+                    TXTAVGWT.Text = Format(Val(DT.Rows(0).Item("AVGWT")), "0.000")
+                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -2496,10 +2532,12 @@ NEXTLINE:
 
     Private Sub TXTLOOMNO_Validated(sender As Object, e As EventArgs) Handles TXTLOOMNO.Validated
         Try
-            Dim OBJCMN As New ClsCommon
+            If ClientName = "SWPL" Then
+                Dim OBJCMN As New ClsCommon
             Dim DT As DataTable = OBJCMN.SEARCH("YARNLOOMEFFICIENCY_DESC.YLE_no, YARNLOOMEFFICIENCY_DESC.YLE_GRIDSRNO, YARNLOOMEFFICIENCY_DESC.YLE_LOOMNO, YARNLOOMEFFICIENCY_DESC.YLE_ITEMNAME AS ITEMNAME, YARNLOOMEFFICIENCY_DESC.YLE_BEAMNO, YARNLOOMEFFICIENCY_DESC.YLE_RPM, YARNLOOMEFFICIENCY_DESC.YLE_PICKS, YARNLOOMEFFICIENCY_DESC.YLE_RECMTRS, YARNLOOMEFFICIENCY_DESC.YLE_WEFT, YARNLOOMEFFICIENCY_DESC.YLE_WARP, YARNLOOMEFFICIENCY_DESC.YLE_EFFPER, YARNLOOMEFFICIENCY_DESC.YLE_AVGPICK, YARNLOOMEFFICIENCY_DESC.YLE_GRIDREMARKS, YARNLOOMEFFICIENCY_DESC.YLE_MODIFIEDBY, BEAMLOOMSTATUS.LOOM_STATUS, BEAMLOOMSTATUS.BEAM_STATUS, LOOMMASTER_DESC.LOOM_GROUPINGSET", "", "  YARNLOOMEFFICIENCY_DESC INNER JOIN BEAMLOOMSTATUS ON YARNLOOMEFFICIENCY_DESC.YLE_LOOMNO = BEAMLOOMSTATUS.LOOM_NO INNER JOIN LOOMMASTER_DESC ON YARNLOOMEFFICIENCY_DESC.YLE_LOOMNO = LOOMMASTER_DESC.LOOM_NO ", " AND (BEAMLOOMSTATUS.BEAM_STATUS = 'ON LOOM') AND (BEAMLOOMSTATUS.LOOM_STATUS = 'OCCUPIED')  AND LOOMMASTER_DESC.LOOM_NO= '" & TXTLOOMNO.Text.Trim & "'AND YARNLOOMEFFICIENCY_DESC.YLE_YEARID = " & YearId)
-            If DT.Rows.Count > 0 Then
-                cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
+                If DT.Rows.Count > 0 Then
+                    cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
+                End If
             End If
         Catch ex As Exception
             Throw ex
