@@ -43,7 +43,13 @@ Public Class GreyRecdKnitting
 
     Private Sub CMBNAME_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbname.Enter
         Try
-            FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+            If ClientName = "SWPL" Then
+                FILLNAME(cmbname, EDIT, " AND (GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' OR GROUPMASTER.GROUP_SECONDARY = 'SUNDRY DEBTORS') AND ACC_TYPE = 'ACCOUNTS'")
+
+            Else
+                FILLNAME(cmbname, EDIT, " AND GROUPMASTER.GROUP_SECONDARY = 'SUNDRY CREDITORS' AND ACC_TYPE = 'ACCOUNTS'")
+
+            End If
         Catch ex As Exception
             Throw ex
         End Try
