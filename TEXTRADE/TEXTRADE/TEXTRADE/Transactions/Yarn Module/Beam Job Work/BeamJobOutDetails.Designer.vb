@@ -34,14 +34,20 @@ Partial Class BeamJobOutDetails
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GBEAMJONO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GPROCESSNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPROCESS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBEAMNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBEAMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTALENDS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GWT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGAMANO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNOTEREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GSECTION = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GROLLNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GBREAKAGE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKDONE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -54,12 +60,6 @@ Partial Class BeamJobOutDetails
         Me.CMDADD = New System.Windows.Forms.Button()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.GPARTYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GSECTION = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GROLLNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GBREAKAGE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,7 +182,7 @@ Partial Class BeamJobOutDetails
         '
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMJONO, Me.GDATE, Me.GPARTYNAME, Me.GGODOWN, Me.GPROCESSNAME, Me.GBEAMNO, Me.GBEAMNAME, Me.GMILLNAME, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GWT, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBREAKAGE, Me.GNOTEREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GBEAMJONO, Me.GDATE, Me.GNAME, Me.GGODOWN, Me.GPROCESS, Me.GBEAMNO, Me.GBEAMNAME, Me.GMILLNAME, Me.GTOTALENDS, Me.GTOTALMTRS, Me.GWT, Me.GGAMANO, Me.GSECTION, Me.GROLLNO, Me.GBREAKAGE, Me.GGRIDREMARKS})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -215,6 +215,16 @@ Partial Class BeamJobOutDetails
         Me.GDATE.Visible = True
         Me.GDATE.VisibleIndex = 1
         '
+        'GNAME
+        '
+        Me.GNAME.Caption = "Party Name"
+        Me.GNAME.FieldName = "NAME"
+        Me.GNAME.Name = "GNAME"
+        Me.GNAME.OptionsColumn.AllowEdit = False
+        Me.GNAME.Visible = True
+        Me.GNAME.VisibleIndex = 2
+        Me.GNAME.Width = 146
+        '
         'GGODOWN
         '
         Me.GGODOWN.Caption = "Godown"
@@ -225,15 +235,15 @@ Partial Class BeamJobOutDetails
         Me.GGODOWN.VisibleIndex = 3
         Me.GGODOWN.Width = 130
         '
-        'GPROCESSNAME
+        'GPROCESS
         '
-        Me.GPROCESSNAME.Caption = "Process Name"
-        Me.GPROCESSNAME.FieldName = "PROCESSNAME"
-        Me.GPROCESSNAME.Name = "GPROCESSNAME"
-        Me.GPROCESSNAME.OptionsColumn.AllowEdit = False
-        Me.GPROCESSNAME.Visible = True
-        Me.GPROCESSNAME.VisibleIndex = 4
-        Me.GPROCESSNAME.Width = 152
+        Me.GPROCESS.Caption = "Process Name"
+        Me.GPROCESS.FieldName = "PROCESS"
+        Me.GPROCESS.Name = "GPROCESS"
+        Me.GPROCESS.OptionsColumn.AllowEdit = False
+        Me.GPROCESS.Visible = True
+        Me.GPROCESS.VisibleIndex = 4
+        Me.GPROCESS.Width = 152
         '
         'GBEAMNO
         '
@@ -254,6 +264,16 @@ Partial Class BeamJobOutDetails
         Me.GBEAMNAME.VisibleIndex = 6
         Me.GBEAMNAME.Width = 180
         '
+        'GMILLNAME
+        '
+        Me.GMILLNAME.Caption = "Mill Name"
+        Me.GMILLNAME.FieldName = "MILLNAME"
+        Me.GMILLNAME.Name = "GMILLNAME"
+        Me.GMILLNAME.OptionsColumn.AllowEdit = False
+        Me.GMILLNAME.Visible = True
+        Me.GMILLNAME.VisibleIndex = 7
+        Me.GMILLNAME.Width = 130
+        '
         'GTOTALENDS
         '
         Me.GTOTALENDS.Caption = "Total Ends"
@@ -265,6 +285,17 @@ Partial Class BeamJobOutDetails
         Me.GTOTALENDS.Visible = True
         Me.GTOTALENDS.VisibleIndex = 8
         Me.GTOTALENDS.Width = 60
+        '
+        'GTOTALMTRS
+        '
+        Me.GTOTALMTRS.Caption = "Total Mtrs"
+        Me.GTOTALMTRS.DisplayFormat.FormatString = "0.000"
+        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
+        Me.GTOTALMTRS.Name = "GTOTALMTRS"
+        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
+        Me.GTOTALMTRS.Visible = True
+        Me.GTOTALMTRS.VisibleIndex = 9
         '
         'GWT
         '
@@ -290,15 +321,42 @@ Partial Class BeamJobOutDetails
         Me.GGAMANO.VisibleIndex = 11
         Me.GGAMANO.Width = 60
         '
-        'GNOTEREMARKS
+        'GSECTION
         '
-        Me.GNOTEREMARKS.Caption = "Note / Remarks"
-        Me.GNOTEREMARKS.FieldName = "NOTEREMARKS"
-        Me.GNOTEREMARKS.Name = "GNOTEREMARKS"
-        Me.GNOTEREMARKS.OptionsColumn.AllowEdit = False
-        Me.GNOTEREMARKS.Visible = True
-        Me.GNOTEREMARKS.VisibleIndex = 15
-        Me.GNOTEREMARKS.Width = 240
+        Me.GSECTION.Caption = "Section"
+        Me.GSECTION.FieldName = "SECTION"
+        Me.GSECTION.Name = "GSECTION"
+        Me.GSECTION.OptionsColumn.AllowEdit = False
+        Me.GSECTION.Visible = True
+        Me.GSECTION.VisibleIndex = 12
+        '
+        'GROLLNO
+        '
+        Me.GROLLNO.Caption = "Roll No"
+        Me.GROLLNO.FieldName = "ROLLNO"
+        Me.GROLLNO.Name = "GROLLNO"
+        Me.GROLLNO.OptionsColumn.AllowEdit = False
+        Me.GROLLNO.Visible = True
+        Me.GROLLNO.VisibleIndex = 13
+        '
+        'GBREAKAGE
+        '
+        Me.GBREAKAGE.Caption = "Breakage"
+        Me.GBREAKAGE.FieldName = "BREAKAGE"
+        Me.GBREAKAGE.Name = "GBREAKAGE"
+        Me.GBREAKAGE.OptionsColumn.AllowEdit = False
+        Me.GBREAKAGE.Visible = True
+        Me.GBREAKAGE.VisibleIndex = 14
+        '
+        'GGRIDREMARKS
+        '
+        Me.GGRIDREMARKS.Caption = "Note / Remarks"
+        Me.GGRIDREMARKS.FieldName = "GRIDREMARKS"
+        Me.GGRIDREMARKS.Name = "GGRIDREMARKS"
+        Me.GGRIDREMARKS.OptionsColumn.AllowEdit = False
+        Me.GGRIDREMARKS.Visible = True
+        Me.GGRIDREMARKS.VisibleIndex = 15
+        Me.GGRIDREMARKS.Width = 240
         '
         'CHKDONE
         '
@@ -387,64 +445,6 @@ Partial Class BeamJobOutDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GPARTYNAME
-        '
-        Me.GPARTYNAME.Caption = "Party Name"
-        Me.GPARTYNAME.FieldName = "PARTYNAME"
-        Me.GPARTYNAME.Name = "GPARTYNAME"
-        Me.GPARTYNAME.OptionsColumn.AllowEdit = False
-        Me.GPARTYNAME.Visible = True
-        Me.GPARTYNAME.VisibleIndex = 2
-        Me.GPARTYNAME.Width = 146
-        '
-        'GMILLNAME
-        '
-        Me.GMILLNAME.Caption = "Mill Name"
-        Me.GMILLNAME.FieldName = "MILL NAME"
-        Me.GMILLNAME.Name = "GMILLNAME"
-        Me.GMILLNAME.OptionsColumn.AllowEdit = False
-        Me.GMILLNAME.Visible = True
-        Me.GMILLNAME.VisibleIndex = 7
-        Me.GMILLNAME.Width = 130
-        '
-        'GTOTALMTRS
-        '
-        Me.GTOTALMTRS.Caption = "Total Mtrs"
-        Me.GTOTALMTRS.DisplayFormat.FormatString = "0.000"
-        Me.GTOTALMTRS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALMTRS.FieldName = "TOTALMTRS"
-        Me.GTOTALMTRS.Name = "GTOTALMTRS"
-        Me.GTOTALMTRS.OptionsColumn.AllowEdit = False
-        Me.GTOTALMTRS.Visible = True
-        Me.GTOTALMTRS.VisibleIndex = 9
-        '
-        'GSECTION
-        '
-        Me.GSECTION.Caption = "Section"
-        Me.GSECTION.FieldName = "SECTION"
-        Me.GSECTION.Name = "GSECTION"
-        Me.GSECTION.OptionsColumn.AllowEdit = False
-        Me.GSECTION.Visible = True
-        Me.GSECTION.VisibleIndex = 12
-        '
-        'GROLLNO
-        '
-        Me.GROLLNO.Caption = "Roll No"
-        Me.GROLLNO.FieldName = "ROLLNO"
-        Me.GROLLNO.Name = "GROLLNO"
-        Me.GROLLNO.OptionsColumn.AllowEdit = False
-        Me.GROLLNO.Visible = True
-        Me.GROLLNO.VisibleIndex = 13
-        '
-        'GBREAKAGE
-        '
-        Me.GBREAKAGE.Caption = "Breakage"
-        Me.GBREAKAGE.FieldName = "BREAKAGE"
-        Me.GBREAKAGE.Name = "GBREAKAGE"
-        Me.GBREAKAGE.OptionsColumn.AllowEdit = False
-        Me.GBREAKAGE.Visible = True
-        Me.GBREAKAGE.VisibleIndex = 14
-        '
         'BeamJobOutDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -480,7 +480,7 @@ Partial Class BeamJobOutDetails
     Private WithEvents GBEAMJONO As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents GGODOWN As DevExpress.XtraGrid.Columns.GridColumn
-    Private WithEvents GPROCESSNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Private WithEvents GPROCESS As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents GBEAMNO As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents GBEAMNAME As DevExpress.XtraGrid.Columns.GridColumn
     Private WithEvents CHKDONE As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
@@ -495,7 +495,7 @@ Partial Class BeamJobOutDetails
     Friend WithEvents CMDADD As Button
     Friend WithEvents PRINTDIALOG As PrintDialog
     Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
-    Friend WithEvents GPARTYNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOTALMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GTOTALENDS As DevExpress.XtraGrid.Columns.GridColumn
@@ -504,5 +504,5 @@ Partial Class BeamJobOutDetails
     Friend WithEvents GROLLNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBREAKAGE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGAMANO As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GNOTEREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGRIDREMARKS As DevExpress.XtraGrid.Columns.GridColumn
 End Class

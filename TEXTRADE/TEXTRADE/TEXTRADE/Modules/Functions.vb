@@ -282,6 +282,50 @@ PRINT 1,1
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
 
+
+            ElseIf ClientName = "MAHAKALI" Then
+
+                'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                Dim TEMPWIDTH As String = ""
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                End If
+
+                oWrite.WriteLine("SIZE 102.5 mm, 50 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 783,363,""ROMAN.TTF"",180,1,18,""" & ITEMNAME & """
+TEXT 783,170,""ROMAN.TTF"",180,1,16,""WIDTH""
+TEXT 613,170,""ROMAN.TTF"",180,1,16,"":""
+TEXT 587,170,""ROMAN.TTF"",180,1,16,""" & TEMPWIDTH & """
+TEXT 783,114,""ROMAN.TTF"",180,1,16,""MTRS""
+TEXT 613,114,""ROMAN.TTF"",180,1,16,"":""
+TEXT 587,114,""ROMAN.TTF"",180,1,16,""" & Format(Val(MTRS),"0.00") & """
+TEXT 783,57,""ROMAN.TTF"",180,1,16,""GRADE""
+TEXT 613,57,""ROMAN.TTF"",180,1,16,"":""
+TEXT 587,57,""ROMAN.TTF"",180,1,16,""FRESH""
+QRCODE 290,286,L,10,A,180,M2,S7,""" & BARCODE & """
+TEXT 275,47,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
+BAR 39,305, 748, 3
+TEXT 783,227,""ROMAN.TTF"",180,1,16,""SHADE""
+TEXT 613,227,""ROMAN.TTF"",180,1,16,"":""
+TEXT 587,227,""ROMAN.TTF"",180,1,16,""" & SHADE & """
+TEXT 783,284,""ROMAN.TTF"",180,1,16,""DESIGN""
+TEXT 613,284,""ROMAN.TTF"",180,1,16,"":""
+TEXT 587,284,""ROMAN.TTF"",180,1,16,""" & DESIGNNO & """
+PRINT 1,1")
+                oWrite.Dispose()
+
+
             ElseIf ClientName = "MILUXE" Then
 
                 'NORMAL BARCODE

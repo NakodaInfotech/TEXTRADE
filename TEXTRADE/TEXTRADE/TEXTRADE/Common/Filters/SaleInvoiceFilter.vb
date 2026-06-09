@@ -253,7 +253,7 @@ Public Class SaleInvoiceFilter
 
                 If ClientName = "SUPRIYA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Then
                     OBJSALE.FRMSTRING = "LABEL"
-                ElseIf ClientName = "PARAMOUNT" Or ClientName = "MILUXE" Or ClientName = "SOFTAS" Then
+                ElseIf ClientName = "PARAMOUNT" Or ClientName = "MILUXE" Or ClientName = "SOFTAS" Or ClientName = "MAHAKALI" Then
                     OBJSALE.FRMSTRING = "100X50"
                 Else
                     OBJSALE.FRMSTRING = "100X75"

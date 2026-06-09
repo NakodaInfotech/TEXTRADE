@@ -363,7 +363,7 @@ Public Class AccountsMaster
                     TXTRD.Text = dttable.Rows(0).Item("RD")
                     TXTHINDINAME.Text = dttable.Rows(0).Item("HINDINAME")
                     cmbrounder.Text = dttable.Rows(0).Item("ROUNDER")
-                    TXTINCENTIVEPER.Text = dttable.Rows(0).Item("INCENTIVEPER")
+                    TXTINCENTIVEPER.Text = Format(Val(dttable.Rows(0).Item("INCENTIVEPER")), "0.00")
                     If Convert.ToBoolean(dttable.Rows(0).Item("GSTINVERIFIED")) = True Then
                         CHKGSTINVERIFIED.CheckState = CheckState.Checked
                         PBSUCCESS.Visible = True
