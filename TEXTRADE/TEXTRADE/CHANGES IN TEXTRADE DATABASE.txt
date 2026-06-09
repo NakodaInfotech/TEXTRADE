@@ -8475,3 +8475,8 @@ STORESLOAN
 STORLOAN_TENTATIVEDAYS -----  int	
 
 UPDATE STORESLOAN SET STORLOAN_TENTATIVEDAYS = 0
+
+*********************************************************************************
+DONE IN SYC
+DONE IN SWPL
+DONE IN MASHOK
