@@ -1842,6 +1842,19 @@ LINE1:
                 OBJGDN.FORMULA = "{GDN.GDN_no}=" & Val(GDNNO) & " and {GDN.GDN_yearid}=" & YearId
                 OBJGDN.PARTYNAME = cmbname.Text.Trim
                 OBJGDN.agentname = CMBAGENT.Text.Trim
+                If ClientName = "VINTAGEINDIA" Then
+                    Dim lotNos As New List(Of String)
+                    For Each row As DataGridViewRow In GRIDGDN.Rows
+                        If row.Cells(GGRIDLOTNO.Index).Value IsNot Nothing AndAlso
+           row.Cells(GGRIDLOTNO.Index).Value.ToString().Trim() <> "" Then
+                            Dim lotVal As String = row.Cells(GGRIDLOTNO.Index).Value.ToString().Trim()
+                            If Not lotNos.Contains(lotVal) Then
+                                lotNos.Add(lotVal)
+                            End If
+                        End If
+                    Next
+                    OBJGDN.LOTNO = String.Join(",", lotNos)
+                End If
                 If (ClientName = "RAJKRIPA" Or ClientName = "MANISH" Or ClientName = "SSC" Or ClientName = "SNCM") AndAlso MsgBox("Wish to Print Rate?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.PRINTRATE = True
                 If ClientName = "MYCOT" Or ClientName = "SHUBHI" Then OBJGDN.PRINTRATE = True
                 If (ClientName = "MANSI" Or ClientName = "CHINTAN") AndAlso MsgBox("Print Challan for Garments?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJGDN.FRMSTRING = "GDNGARMENT"

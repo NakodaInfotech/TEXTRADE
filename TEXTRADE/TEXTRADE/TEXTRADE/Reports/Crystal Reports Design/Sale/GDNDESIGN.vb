@@ -134,6 +134,8 @@ Public Class GDNDESIGN
     Public PRINTSETTING As Object = Nothing
     Public NOOFCOPIES As Integer = 1
     Public JOBWORKLABEL As Boolean = False
+    Public LOTNO As String
+
 
 
     Private Sub GDNDESIGN_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -586,6 +588,24 @@ Public Class GDNDESIGN
                     'If HIDEPCSDETAILS = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     'If PRINTRATE = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTRATE").Text = 1 Else RPTGDN_VINTAGE.DataDefinition.FormulaFields("PRINTRATE").Text = 0
                     'If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "SIMPLEX" Or ClientName = "CHINTAN" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "KENCOT" Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+
+
+                    'Dim DT As DataTable = OBJCMN.SEARCH(" DISTINCT ISNULL(GRN.GRN_NO, 0) AS INWARDNO, GRN.GRN_DATE AS INWARDDATE, ISNULL(LEDGERS.ACC_CMPNAME, '') AS SUPPLIER", "", " GDN_DESC LEFT OUTER JOIN  GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.grn_yearid = " & YearId)
+                    'If DT.Rows.Count > 0 Then
+                    '    ' If DT.Rows(0).Item("REMARKS") <> "" Then MsgBox(DT.Rows(0).Item("REMARKS"), MsgBoxStyle.Critical)
+                    '    OBJ.DataDefinition.FormulaFields("INWARDNO").Text = DT.Rows(0).Item("INWARDNO")
+                    '    OBJ.DataDefinition.FormulaFields("INWARDDATE").Text = DT.Rows(0).Item("INWARDDATE")
+                    '    OBJ.DataDefinition.FormulaFields("SUPPLIER").Text = DT.Rows(0).Item("SUPPLIER")
+
+                    'End If
+                    If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
+                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_NO,0) AS INWARDNO, GRN.GRN_DATE AS INWARDDATE, ISNULL(LEDGERS.ACC_CMPNAME,'') AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 Then
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDNO").Text = CStr(Val(DT.Rows(0).Item("INWARDNO")))
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDDATE")), "dd/MM/yyyy") & "'"
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("SUPPLIER").Text = "'" & DT.Rows(0).Item("SUPPLIER").ToString() & "'"
+                        End If
+                    End If
                     If JOBWORKLABEL = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1
                     RPTGDN_VINTAGE.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     crpo.ReportSource = RPTGDN_VINTAGE
@@ -964,6 +984,23 @@ Public Class GDNDESIGN
                     RPTGDN_A5.Export()
                     RPTGDN_A5.DataDefinition.FormulaFields("SENDMAIL").Text = "0"
                 ElseIf ClientName = "VINTAGEINDIA" Then
+                    Dim OBJCMN As New ClsCommon
+                    'Dim DT As DataTable = OBJCMN.SEARCH(" DISTINCT ISNULL(GRN.GRN_NO, 0) AS INWARDNO, GRN.GRN_DATE AS INWARDDATE, ISNULL(LEDGERS.ACC_CMPNAME, '') AS SUPPLIER", "", " GDN_DESC LEFT OUTER JOIN  GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.grn_yearid = " & YearId)
+                    'If DT.Rows.Count > 0 Then
+                    '    ' If DT.Rows(0).Item("REMARKS") <> "" Then MsgBox(DT.Rows(0).Item("REMARKS"), MsgBoxStyle.Critical)
+                    '    OBJ.DataDefinition.FormulaFields("INWARDNO").Text = DT.Rows(0).Item("INWARDNO")
+                    '    OBJ.DataDefinition.FormulaFields("INWARDDATE").Text = DT.Rows(0).Item("INWARDDATE")
+                    '    OBJ.DataDefinition.FormulaFields("SUPPLIER").Text = DT.Rows(0).Item("SUPPLIER")
+
+                    'End If
+                    If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
+                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_NO,0) AS INWARDNO, GRN.GRN_DATE AS INWARDDATE, ISNULL(LEDGERS.ACC_CMPNAME,'') AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 Then
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDNO").Text = CStr(Val(DT.Rows(0).Item("INWARDNO")))
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDDATE")), "dd/MM/yyyy") & "'"
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("SUPPLIER").Text = "'" & DT.Rows(0).Item("SUPPLIER").ToString() & "'"
+                        End If
+                    End If
                     RPTGDN_VINTAGE.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                     RPTGDN_VINTAGE.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     expo = RPTGDN_VINTAGE.ExportOptions
@@ -1419,6 +1456,23 @@ Public Class GDNDESIGN
                     '    OBJ.Subreports(0).DataDefinition.FormulaFields("PRINTINYARDS").Text = 0
                     'End If
                     'If PARTYCHANGEADD <> "" Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("SHIPPINGADD").Text = "'" & PARTYCHANGEADD & "'"
+                    Dim OBJCMN As New ClsCommon
+                    'Dim DT As DataTable = OBJCMN.SEARCH(" DISTINCT ISNULL(GRN.GRN_NO, 0) AS INWARDNO, GRN.GRN_DATE AS INWARDDATE, ISNULL(LEDGERS.ACC_CMPNAME, '') AS SUPPLIER", "", " GDN_DESC LEFT OUTER JOIN  GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.grn_yearid = " & YearId)
+                    'If DT.Rows.Count > 0 Then
+                    '    ' If DT.Rows(0).Item("REMARKS") <> "" Then MsgBox(DT.Rows(0).Item("REMARKS"), MsgBoxStyle.Critical)
+                    '    OBJ.DataDefinition.FormulaFields("INWARDNO").Text = DT.Rows(0).Item("INWARDNO")
+                    '    OBJ.DataDefinition.FormulaFields("INWARDDATE").Text = DT.Rows(0).Item("INWARDDATE")
+                    '    OBJ.DataDefinition.FormulaFields("SUPPLIER").Text = DT.Rows(0).Item("SUPPLIER")
+
+                    'End If
+                    If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
+                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_NO,0) AS INWARDNO, GRN.GRN_DATE AS INWARDDATE, ISNULL(LEDGERS.ACC_CMPNAME,'') AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 Then
+                            OBJ.DataDefinition.FormulaFields("INWARDNO").Text = CStr(Val(DT.Rows(0).Item("INWARDNO")))
+                            OBJ.DataDefinition.FormulaFields("INWARDDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDDATE")), "dd/MM/yyyy") & "'"
+                            OBJ.DataDefinition.FormulaFields("SUPPLIER").Text = "'" & DT.Rows(0).Item("SUPPLIER").ToString() & "'"
+                        End If
+                    End If
                     If JOBWORKLABEL = True Then OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 0
                     'If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     'If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "CHINTAN" Or ClientName = "KENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"

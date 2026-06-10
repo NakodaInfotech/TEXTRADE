@@ -1053,6 +1053,7 @@ LINE1:
                 TXTCHECKEDBY.Text = UserName
                 GBALENO.HeaderText = "Pcs No"
                 GQUALITY.Visible = False
+                GPIECETYPE.ReadOnly = False
             End If
             If ClientName = "SNCM" Then
                 GPIECETYPE.ReadOnly = False

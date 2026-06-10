@@ -2704,6 +2704,7 @@ LINE1:
     End Sub
 
     Private Sub TXTRATE_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles TXTRATE.Validated, TXTAQTY.Validated, TXTAFOLDPER.Validated
+        GETHSNCODE()
         CALC()
         TOTAL()
     End Sub
