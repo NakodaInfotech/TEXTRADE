@@ -32,6 +32,7 @@ Partial Class JobOutGridDetails
         Me.GTYPENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPARTYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -61,7 +62,7 @@ Partial Class JobOutGridDetails
         Me.ToolStripdelete = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GPARTYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,6 +72,7 @@ Partial Class JobOutGridDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.CMBTYPE)
         Me.BlendPanel1.Controls.Add(Me.LBLTYPE)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
@@ -171,6 +173,15 @@ Partial Class JobOutGridDetails
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 2
         Me.GNAME.Width = 250
+        '
+        'GPARTYNAME
+        '
+        Me.GPARTYNAME.Caption = "Party Name"
+        Me.GPARTYNAME.FieldName = "PARTYNAME"
+        Me.GPARTYNAME.Name = "GPARTYNAME"
+        Me.GPARTYNAME.Visible = True
+        Me.GPARTYNAME.VisibleIndex = 3
+        Me.GPARTYNAME.Width = 250
         '
         'GGODOWN
         '
@@ -371,7 +382,7 @@ Partial Class JobOutGridDetails
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(620, 550)
+        Me.cmdexit.Location = New System.Drawing.Point(663, 550)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 3
@@ -434,21 +445,26 @@ Partial Class JobOutGridDetails
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(534, 550)
+        Me.cmdok.Location = New System.Drawing.Point(577, 550)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 2
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GPARTYNAME
+        'CMDSAVELAYOUT
         '
-        Me.GPARTYNAME.Caption = "Party Name"
-        Me.GPARTYNAME.FieldName = "PARTYNAME"
-        Me.GPARTYNAME.Name = "GPARTYNAME"
-        Me.GPARTYNAME.Visible = True
-        Me.GPARTYNAME.VisibleIndex = 3
-        Me.GPARTYNAME.Width = 250
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 550)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 450
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'JobOutGridDetails
         '
@@ -510,4 +526,5 @@ Partial Class JobOutGridDetails
     Friend WithEvents GPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPARTYNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class

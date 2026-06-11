@@ -754,7 +754,7 @@ PRINT 1,1")
 
                 If TEMPHEADER = "1" Then TEMPCODE = "SY" Else TEMPCODE = "JV"
                 If WEAVERNAME <> "" Then
-                    DT = OBJCMN.SEARCH(" ISNULL(LEDGERS.ACC_REMARKS,'') AS LEDGERCODE ", "", " LEDGERS ", " AND LEDGERS.ACC_CMPNAME = '" & WEAVERNAME & "' AND LEDGERS.ACC_YEARID = " & YearId)
+                    DT = OBJCMN.SEARCH(" ISNULL(LEDGERS.ACC_CODE,'') AS LEDGERCODE ", "", " LEDGERS ", " AND LEDGERS.ACC_CMPNAME = '" & WEAVERNAME & "' AND LEDGERS.ACC_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then TEMPCODE = TEMPCODE & DT.Rows(0).Item("LEDGERCODE")
                 End If
 

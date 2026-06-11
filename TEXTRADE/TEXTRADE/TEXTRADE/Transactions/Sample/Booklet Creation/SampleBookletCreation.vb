@@ -1,6 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.DashboardCommon.Printing
 
 Public Class SampleBookletCreation
 
@@ -44,7 +45,7 @@ Public Class SampleBookletCreation
     End Sub
 
     Private Sub cmdclear_Click(sender As Object, e As EventArgs) Handles cmdclear.Click
-        clear()
+        CLEAR()
         EDIT = False
         SMDATE.Focus()
     End Sub
@@ -102,7 +103,7 @@ Public Class SampleBookletCreation
         Try
             Cursor.Current = Cursors.WaitCursor
             EP.Clear()
-            If Not errorvalid() Then
+            If Not ERRORVALID() Then
                 Exit Sub
             End If
 
@@ -175,7 +176,7 @@ Public Class SampleBookletCreation
                 MsgBox("Details Updated")
                 EDIT = False
             End If
-            clear()
+            CLEAR()
         Catch ex As Exception
             Throw ex
         End Try
@@ -184,7 +185,7 @@ Public Class SampleBookletCreation
     Private Sub SampleBookletCreation_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         Try
             If (e.KeyCode = Windows.Forms.Keys.Escape) Then   'for Exit
-                If errorvalid() = True Then
+                If ERRORVALID() = True Then
                     Dim tempmsg As Integer = MessageBox.Show("Save Changes?", "", MessageBoxButtons.YesNo)
                     If tempmsg = vbYes Then cmdok_Click(sender, e)
                 End If
@@ -207,7 +208,7 @@ Public Class SampleBookletCreation
 
     Sub FILLCMB()
         Try
-            If CMBPARTYNAME.Text.Trim = "" Then fillname(CMBPARTYNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' ")
+            If CMBPARTYNAME.Text.Trim = "" Then FILLNAME(CMBPARTYNAME, EDIT, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors' ")
             FILLDESIGN(CMBDESIGN, cmbitemname.Text.Trim)
             FILLCOLOR(CMBSHADE, CMBDESIGN.Text.Trim, cmbitemname.Text.Trim)
             If CMBGODOWN.Text.Trim = "" Then fillGODOWN(CMBGODOWN, EDIT)
@@ -403,7 +404,7 @@ LINE1:
                 EDIT = True
                 SampleBookletCreation_Load(sender, e)
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
             If GRIDSMP.RowCount = 0 And TEMPNO > 0 Then
@@ -427,12 +428,12 @@ LINE1:
             GETMAXNO()
             Dim MAXNO As Integer
             MAXNO = TXTNO.Text.Trim
-            clear()
+            CLEAR()
             If Val(TXTNO.Text) - 1 >= TEMPNO Then
                 EDIT = True
                 SampleBookletCreation_Load(sender, e)
             Else
-                clear()
+                CLEAR()
                 EDIT = False
             End If
             If GRIDSMP.RowCount = 0 And TEMPNO < MAXNO Then
@@ -472,9 +473,9 @@ LINE1:
 
 
                     Dim OBJISSUE As New ClsSampleBookletCreation
-                    ALPARAVAL.Add(TEMPNO)
-                    ALPARAVAL.Add(YearId)
-                    OBJISSUE.alParaval = ALPARAVAL
+                    alParaval.Add(TEMPNO)
+                    alParaval.Add(YearId)
+                    OBJISSUE.alParaval = alParaval
                     Dim INTRESULT As Integer = OBJISSUE.Delete()
                     MsgBox("Sample Booklet Deleted")
                     EDIT = False
@@ -482,7 +483,7 @@ LINE1:
             Else
                 MsgBox("Delete is only in Edit Mode")
             End If
-            clear()
+            CLEAR()
             cmbitemname.Focus()
         Catch ex As Exception
             Throw ex
@@ -556,7 +557,7 @@ LINE1:
                     EDIT = True
                     SampleBookletCreation_Load(sender, e)
                 Else
-                    clear()
+                    CLEAR()
                     EDIT = False
                 End If
             End If
@@ -687,6 +688,17 @@ LINE1:
     Private Sub CMBSAMPLETYPE_Validating(sender As Object, e As CancelEventArgs) Handles CMBSAMPLETYPE.Validating
         Try
             If CMBSAMPLETYPE.Text.Trim <> "" Then SAMPLETYPEVALIDATE(CMBSAMPLETYPE, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub SampleBookletCreation_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If ClientName = "SOFTAS" Then
+                CMBDESIGN.TabStop = False
+                CMBSHADE.TabStop = False
+            End If
         Catch ex As Exception
             Throw ex
         End Try

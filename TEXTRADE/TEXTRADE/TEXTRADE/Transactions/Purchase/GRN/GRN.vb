@@ -1792,7 +1792,7 @@ NEXTLINE:
             If CMBPIECETYPE.Text.Trim = "" Then fillPIECETYPE(CMBPIECETYPE)
 
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("CMP_NAME AS CMPNAME", "", "CMPMASTER", " AND CMP_ID <> " & CmpId)
+            Dim DT As DataTable = OBJCMN.SEARCH("CMP_NAME AS CMPNAME", "", "CMPMASTER", " AND CMPMASTER.CMP_PASSWORD <> 'Infosys@123' AND CMP_ID <> " & CmpId)
             For Each ROW As DataRow In DT.Rows
                 CMBCMPNAME.Items.Add(ROW("CMPNAME"))
             Next
@@ -3617,8 +3617,8 @@ LINE1:
                 GAMOUNT.Visible = True
             End If
 
-            If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "VINTAGEINDIA" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Then
-                If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Then
+            If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "VINTAGEINDIA" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Or ClientName = "MAHAKALI" Then
+                If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Or ClientName = "MAHAKALI" Then
                     LBLCMPNAME.Visible = True
                     CMBCMPNAME.Visible = True
                 End If
@@ -4029,7 +4029,7 @@ LINE1:
 
     Private Sub TXTCHNO_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTCHNO.Validated
         Try
-            If (ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SHEETAL" Or ClientName = "SNCM" Or ClientName = "MYCOT") And CMBCMPNAME.Text.Trim <> "" And Val(TXTCHNO.Text.Trim) > 0 And EDIT = False And FRMSTRING = "GRN FANCY" Then
+            If (ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SHEETAL" Or ClientName = "SNCM" Or ClientName = "MYCOT" Or ClientName = "MAHAKALI") And CMBCMPNAME.Text.Trim <> "" And Val(TXTCHNO.Text.Trim) > 0 And EDIT = False And FRMSTRING = "GRN FANCY" Then
                 'GET YEARID FROM SELECTED CMP 
                 Dim TEMPYEARID As Integer = 0
                 Dim TEMPCMPID As Integer = 0
@@ -4310,7 +4310,7 @@ LINE1:
                     Exit Sub
                 End If
 
-                If ClientName = "SHEETAL" Then
+                If ClientName = "SHEETAL" Or ClientName = "MAHAKALI" Or ClientName = "MYCOT" Then
                     'NOW FETCH STOCK RECO OUT  DATA
                     Dim OBJSA As New ClsStockAdjustment()
                     DTTABLE = OBJSA.SELECTSTOCKADJUSTMENT(Val(TXTCHNO.Text.Trim), TEMPCMPID, 0, TEMPYEARID)
