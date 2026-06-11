@@ -326,14 +326,77 @@ Public Class GDNFilter
             For i As Integer = 0 To GRIDBILLITEM.RowCount - 1
                 Dim dtrow As DataRow = GRIDBILLITEM.GetDataRow(i)
                 If Convert.ToBoolean(dtrow("CHK")) = True Then
-                    If ITEMCLAUSE = "" Then ITEMCLAUSE = " AND ({ITEMMASTER.ITEM_NAME})= '" & dtrow("ITEMNAME") & "'" Else ITEMCLAUSE = ITEMCLAUSE & " OR {ITEMMASTER.ITEM_NAME} = '" & dtrow("ITEMNAME") & "'"
+                    Dim ItemName As String = dtrow("ITEMNAME").ToString.Trim
+                    ' Escape double quotes for Crystal Reports
+                    ItemName = ItemName.Replace("""", """""")
+                    If ITEMCLAUSE = "" Then
+                        ITEMCLAUSE = " AND ({ITEMMASTER.ITEM_NAME} = """ & ItemName & """"
+                    Else
+                        ITEMCLAUSE &= " OR {ITEMMASTER.ITEM_NAME} = """ & ItemName & """"
+                    End If
                 End If
             Next
-
             If ITEMCLAUSE <> "" Then
-                ITEMCLAUSE = ITEMCLAUSE & ")"
-                OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & ITEMCLAUSE
+                ITEMCLAUSE &= ")"
+                OBJGRN.WHERECLAUSE &= ITEMCLAUSE
             End If
+
+            'FOR DESIGN
+            Dim DESIGNCLAUSE As String = ""
+            gridbilldesign.ClearColumnsFilter()
+            For i As Integer = 0 To gridbilldesign.RowCount - 1
+                Dim dtrow As DataRow = gridbilldesign.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    Dim DesignNo As String = dtrow("DESIGNNO").ToString.Trim
+                    ' Escape double quotes for Crystal Reports
+                    DesignNo = DesignNo.Replace("""", """""")
+                    If DESIGNCLAUSE = "" Then
+                        DESIGNCLAUSE = " AND ({DESIGNMASTER.DESIGN_NO} = """ & DesignNo & """"
+                    Else
+                        DESIGNCLAUSE &= " OR {DESIGNMASTER.DESIGN_NO} = """ & DesignNo & """"
+                    End If
+                End If
+            Next
+            If DESIGNCLAUSE <> "" Then
+                DESIGNCLAUSE &= ")"
+                OBJGRN.WHERECLAUSE &= DESIGNCLAUSE
+            End If
+
+            'FOR SHADE
+            Dim COLORCLAUSE As String = ""
+            gridbillcolor.ClearColumnsFilter()
+            For i As Integer = 0 To gridbillcolor.RowCount - 1
+                Dim dtrow As DataRow = gridbillcolor.GetDataRow(i)
+                If Convert.ToBoolean(dtrow("CHK")) = True Then
+                    Dim Color As String = dtrow("COLOR").ToString.Trim
+                    ' Escape double quotes for Crystal Reports
+                    Color = Color.Replace("""", """""")
+                    If COLORCLAUSE = "" Then
+                        COLORCLAUSE = " AND ({COLORMASTER.COLOR_NAME} = """ & Color & """"
+                    Else
+                        COLORCLAUSE &= " OR {COLORMASTER.COLOR_NAME} = """ & Color & """"
+                    End If
+                End If
+            Next
+            If COLORCLAUSE <> "" Then
+                COLORCLAUSE &= ")"
+                OBJGRN.WHERECLAUSE &= COLORCLAUSE
+            End If
+
+            ''FOR ITEMNAME
+            'Dim ITEMCLAUSE As String = ""
+            'GRIDBILLITEM.ClearColumnsFilter()
+            'For i As Integer = 0 To GRIDBILLITEM.RowCount - 1
+            '    Dim dtrow As DataRow = GRIDBILLITEM.GetDataRow(i)
+            '    If Convert.ToBoolean(dtrow("CHK")) = True Then
+            '        If ITEMCLAUSE = "" Then ITEMCLAUSE = " AND ({ITEMMASTER.ITEM_NAME})= '" & dtrow("ITEMNAME") & "'" Else ITEMCLAUSE = ITEMCLAUSE & " OR {ITEMMASTER.ITEM_NAME} = '" & dtrow("ITEMNAME") & "'"
+            '    End If
+            'Next
+
+            'If ITEMCLAUSE <> "" Then
+            '    ITEMCLAUSE = ITEMCLAUSE & ")"
+            '    OBJGRN.WHERECLAUSE = OBJGRN.WHERECLAUSE & ITEMCLAUSE
+            'End If
 
 
             ''FOR DESIGN
