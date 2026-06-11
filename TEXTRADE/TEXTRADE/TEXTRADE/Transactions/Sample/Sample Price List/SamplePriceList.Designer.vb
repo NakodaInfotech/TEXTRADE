@@ -120,6 +120,7 @@ Partial Class SamplePriceList
         Me.LBLDATE = New System.Windows.Forms.Label()
         Me.LBLSRNO = New System.Windows.Forms.Label()
         Me.lblpartyname = New System.Windows.Forms.Label()
+        Me.CHKBLANKPAPER = New System.Windows.Forms.CheckBox()
         CType(Me.GRIDSPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -582,6 +583,7 @@ Partial Class SamplePriceList
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKBLANKPAPER)
         Me.BlendPanel1.Controls.Add(Me.Label3)
         Me.BlendPanel1.Controls.Add(Me.TXTCOPY)
         Me.BlendPanel1.Controls.Add(Me.txtrefno)
@@ -1095,6 +1097,17 @@ Partial Class SamplePriceList
         Me.lblpartyname.TabIndex = 15
         Me.lblpartyname.Text = "Party / Agent Name"
         '
+        'CHKBLANKPAPER
+        '
+        Me.CHKBLANKPAPER.AutoSize = True
+        Me.CHKBLANKPAPER.BackColor = System.Drawing.Color.Transparent
+        Me.CHKBLANKPAPER.Location = New System.Drawing.Point(658, 4)
+        Me.CHKBLANKPAPER.Name = "CHKBLANKPAPER"
+        Me.CHKBLANKPAPER.Size = New System.Drawing.Size(99, 19)
+        Me.CHKBLANKPAPER.TabIndex = 805
+        Me.CHKBLANKPAPER.Text = "Blank Header"
+        Me.CHKBLANKPAPER.UseVisualStyleBackColor = False
+        '
         'SamplePriceList
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1204,4 +1217,5 @@ Partial Class SamplePriceList
     Friend WithEvents GNARRATION As DataGridViewTextBoxColumn
     Friend WithEvents GWIDTH As DataGridViewTextBoxColumn
     Friend WithEvents TXTWIDTH As TextBox
+    Friend WithEvents CHKBLANKPAPER As CheckBox
 End Class
