@@ -301,7 +301,7 @@ Public Class StockReco
             Dim bln As Boolean = True
 
 
-            If ALLOWADJMTRSDIFF = False And Val(LBLTOTALINMTRS.Text.Trim) < Val(LBLTOTALOUTMTRS.Text.Trim) Or ((ClientName = "RMANILAL" Or ClientName = "SARAYU") And ALLOWADJMTRSDIFF = False And Val(LBLTOTALINMTRS.Text.Trim) <> Val(LBLTOTALOUTMTRS.Text.Trim)) Then
+            If ALLOWADJMTRSDIFF = False And Val(LBLTOTALINMTRS.Text.Trim) < Val(LBLTOTALOUTMTRS.Text.Trim) Or ((ClientName = "RMANILAL" Or ClientName = "SARAYU" Or ClientName = "SOFTAS") And ALLOWADJMTRSDIFF = False And Val(LBLTOTALINMTRS.Text.Trim) <> Val(LBLTOTALOUTMTRS.Text.Trim)) Then
                 EP.SetError(TXTMTRSDIFF, " In Mtrs Cannot be Less than Out Mtrs")
                 bln = False
             End If
@@ -1739,6 +1739,8 @@ LINE1:
                 CMBDESIGN.Text = ""
                 cmbcolor.Text = ""
             End If
+
+            If ClientName = "SOFTAS" Then CMBDESIGN.Text = cmbitemname.Text.Trim
 
         Catch ex As Exception
             Throw ex
