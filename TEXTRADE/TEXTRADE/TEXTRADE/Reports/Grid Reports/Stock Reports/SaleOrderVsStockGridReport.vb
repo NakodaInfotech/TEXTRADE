@@ -166,10 +166,10 @@ Public Class SaleOrderVsStockGridReport
             Dim DTROW As DataRow = GRIDBILL.GetDataRow(I)
 
             'THEY DONT WANT TO ADD DYEING MTRS IN BALSTOCK
-            If ClientName = "YASHVI" Then
-                DTROW("BALMTRS") = (Val(DTROW("MTRS")) + Val(DTROW("PACKINGMTRS"))) - Val(DTROW("PENDINGMTRS"))
-            Else
+            If ClientName = "MAHAVIRPOLYCOT" Then
                 DTROW("BALMTRS") = (Val(DTROW("MTRS")) + Val(DTROW("PACKINGMTRS")) + Val(DTROW("DYEINGMTRS"))) - Val(DTROW("PENDINGMTRS"))
+            Else
+                DTROW("BALMTRS") = (Val(DTROW("MTRS")) + Val(DTROW("PACKINGMTRS"))) - Val(DTROW("PENDINGMTRS"))
             End If
         Next
     End Sub

@@ -29,6 +29,7 @@ Partial Class JobInGridDetails
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGODOWN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPIECETYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSHADE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,6 +48,7 @@ Partial Class JobInGridDetails
         Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBARCODE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPURCHASEPARTYNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GOPERATOR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
@@ -56,8 +58,7 @@ Partial Class JobInGridDetails
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GPIECETYPE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GOPERATOR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,6 +68,7 @@ Partial Class JobInGridDetails
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSAVELAYOUT)
         Me.BlendPanel1.Controls.Add(Me.gridbilldetails)
         Me.BlendPanel1.Controls.Add(Me.cmdexit)
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
@@ -136,6 +138,14 @@ Partial Class JobInGridDetails
         Me.GGODOWN.Caption = "Godown"
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
+        '
+        'GPIECETYPE
+        '
+        Me.GPIECETYPE.Caption = "Piece Type"
+        Me.GPIECETYPE.FieldName = "PIECETYPE"
+        Me.GPIECETYPE.Name = "GPIECETYPE"
+        Me.GPIECETYPE.Visible = True
+        Me.GPIECETYPE.VisibleIndex = 4
         '
         'GITEMNAME
         '
@@ -296,6 +306,14 @@ Partial Class JobInGridDetails
         Me.GPURCHASEPARTYNAME.VisibleIndex = 19
         Me.GPURCHASEPARTYNAME.Width = 250
         '
+        'GOPERATOR
+        '
+        Me.GOPERATOR.Caption = "Contractor"
+        Me.GOPERATOR.FieldName = "OPERATOR"
+        Me.GOPERATOR.Name = "GOPERATOR"
+        Me.GOPERATOR.Visible = True
+        Me.GOPERATOR.VisibleIndex = 20
+        '
         'cmdexit
         '
         Me.cmdexit.BackColor = System.Drawing.Color.Transparent
@@ -303,7 +321,7 @@ Partial Class JobInGridDetails
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.Black
-        Me.cmdexit.Location = New System.Drawing.Point(620, 535)
+        Me.cmdexit.Location = New System.Drawing.Point(663, 535)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(80, 28)
         Me.cmdexit.TabIndex = 4
@@ -374,28 +392,26 @@ Partial Class JobInGridDetails
         Me.cmdok.FlatAppearance.BorderSize = 0
         Me.cmdok.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdok.ForeColor = System.Drawing.Color.Black
-        Me.cmdok.Location = New System.Drawing.Point(534, 535)
+        Me.cmdok.Location = New System.Drawing.Point(577, 535)
         Me.cmdok.Name = "cmdok"
         Me.cmdok.Size = New System.Drawing.Size(80, 28)
         Me.cmdok.TabIndex = 3
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GPIECETYPE
+        'CMDSAVELAYOUT
         '
-        Me.GPIECETYPE.Caption = "Piece Type"
-        Me.GPIECETYPE.FieldName = "PIECETYPE"
-        Me.GPIECETYPE.Name = "GPIECETYPE"
-        Me.GPIECETYPE.Visible = True
-        Me.GPIECETYPE.VisibleIndex = 4
-        '
-        'GOPERATOR
-        '
-        Me.GOPERATOR.Caption = "Contractor"
-        Me.GOPERATOR.FieldName = "OPERATOR"
-        Me.GOPERATOR.Name = "GOPERATOR"
-        Me.GOPERATOR.Visible = True
-        Me.GOPERATOR.VisibleIndex = 20
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 535)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 449
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'JobInGridDetails
         '
@@ -454,4 +470,5 @@ Partial Class JobInGridDetails
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GOPERATOR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CMDSAVELAYOUT As Button
 End Class
