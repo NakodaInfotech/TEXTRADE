@@ -1687,7 +1687,7 @@ LINE1:
         '    GINDESIGN.HeaderText = "Size"
         'End If
 
-        If ClientName = "SONU" Or ClientName = "KCRAYON" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MNARESH" Or ClientName = "MYCOT" Then
+        If ClientName = "SONU" Or ClientName = "KCRAYON" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MNARESH" Then
             LBLCMPNAME.Visible = True
             CMBCMPNAME.Visible = True
             LBLCHNO.Visible = True
