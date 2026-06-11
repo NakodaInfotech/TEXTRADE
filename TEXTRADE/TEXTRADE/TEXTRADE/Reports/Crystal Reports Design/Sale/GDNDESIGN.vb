@@ -599,6 +599,24 @@ Public Class GDNDESIGN
 
                     'End If
                     If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
+                        Dim DT2 As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(BS.PCS, 0) AS BALLUMPS,ISNULL(BS.MTRS, 0) AS BALMTRS", "", "( SELECT  LOTNO, YEARID, SUM(PCS) AS PCS, SUM(MTRS) AS MTRS FROM BARCODESTOCK WHERE LOTNO ='" & LOTNO & "' AND YEARID =" & YearId & " GROUP BY LOTNO, YEARID) AS BS LEFT OUTER JOIN GDN_DESC ON BS.LOTNO = GDN_DESC.GDN_GRIDLOTNO AND BS.YEARID = GDN_DESC.GDN_YEARID")
+                        If DT2.Rows.Count > 0 Then
+                            ' Get the subreport object first
+                            Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
+
+                            ' Now set formula fields on the SUBREPORT, not the main report
+                            subReport.DataDefinition.FormulaFields("BALLUMPS").Text = Val(DT2.Rows(0).Item("BALLUMPS")).ToString("0")
+                            subReport.DataDefinition.FormulaFields("BALMTRS").Text = Val(DT2.Rows(0).Item("BALMTRS")).ToString("0.00")
+                        End If
+                        Dim DT1 As DataTable = OBJCMN.SEARCH("DISTINCT  ISNULL(INHOUSECHECKING.CHECK_TOTALCHECKEDPCS,0) AS RECDPCS,  ISNULL(INHOUSECHECKING.CHECK_TOTALCHECKEDMTRS,0) AS RECDMTRS", "", "INHOUSECHECKING LEFT OUTER JOIN  GDN_DESC ON INHOUSECHECKING.CHECK_LOTNO = GDN_DESC.GDN_GRIDLOTNO  AND INHOUSECHECKING.CHECK_YEARID = GDN_DESC.GDN_YEARID", " AND INHOUSECHECKING.CHECK_TYPE = 'GRN' AND INHOUSECHECKING.CHECK_LOTNO = '" & LOTNO & "' AND INHOUSECHECKING.CHECK_YEARID = " & YearId)
+                        If DT1.Rows.Count > 0 Then
+                            ' Get the subreport object first
+                            Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
+
+                            ' Now set formula fields on the SUBREPORT, not the main report
+                            subReport.DataDefinition.FormulaFields("RECDPCS").Text = Val(DT1.Rows(0).Item("RECDPCS")).ToString("0")
+                            subReport.DataDefinition.FormulaFields("RECDMTRS").Text = Val(DT1.Rows(0).Item("RECDMTRS")).ToString("0.00")
+                        End If
                         Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_NO,0) AS INWARDNO, GRN.GRN_DATE AS INWARDDATE, ISNULL(LEDGERS.ACC_CMPNAME,'') AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
                         If DT.Rows.Count > 0 Then
                             RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDNO").Text = CStr(Val(DT.Rows(0).Item("INWARDNO")))
@@ -1466,6 +1484,12 @@ Public Class GDNDESIGN
 
                     'End If
                     If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
+                        Dim DT1 As DataTable = OBJCMN.SEARCH("DISTINCT  ISNULL(GRN.GRN_TOTALQTY,0) AS RECDPCS,  ISNULL(GRN.GRN_TOTALMTRS,0) AS RECDMTRS", "", "GRN LEFT OUTER JOIN  GDN_DESC ON GRN.GRN_PLOTNO = GDN_DESC.GDN_GRIDLOTNO  AND GRN.GRN_YEARID = GDN_DESC.GDN_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
+                        If DT1.Rows.Count > 0 Then
+                            OBJ.DataDefinition.FormulaFields("RECDPCS").Text = Format(Val(DT1.Rows(0).Item("RECDPCS")), "0")
+                            OBJ.DataDefinition.FormulaFields("RECDMTRS").Text = Format(Val(DT1.Rows(0).Item("RECDMTRS")), "0")
+                        End If
+
                         Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_NO,0) AS INWARDNO, GRN.GRN_DATE AS INWARDDATE, ISNULL(LEDGERS.ACC_CMPNAME,'') AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
                         If DT.Rows.Count > 0 Then
                             OBJ.DataDefinition.FormulaFields("INWARDNO").Text = CStr(Val(DT.Rows(0).Item("INWARDNO")))
