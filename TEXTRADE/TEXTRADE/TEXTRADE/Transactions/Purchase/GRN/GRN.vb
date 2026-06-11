@@ -4310,7 +4310,7 @@ LINE1:
                     Exit Sub
                 End If
 
-                If ClientName = "SHEETAL" Or ClientName = "MAHAKALI" Then
+                If ClientName = "SHEETAL" Or ClientName = "MAHAKALI" Or ClientName = "MYCOT" Then
                     'NOW FETCH STOCK RECO OUT  DATA
                     Dim OBJSA As New ClsStockAdjustment()
                     DTTABLE = OBJSA.SELECTSTOCKADJUSTMENT(Val(TXTCHNO.Text.Trim), TEMPCMPID, 0, TEMPYEARID)
