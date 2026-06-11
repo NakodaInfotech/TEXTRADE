@@ -3935,7 +3935,7 @@ LINESINGLE:
     Private Sub TXTPARTYPONO_Validated(sender As Object, e As EventArgs) Handles TXTPARTYPONO.Validated
         Try
             'MAKE THIS STAMPING DEFAULT FOR PARTY, ONLY FOR SOFTAS
-            If (ClientName = "SOFTAS") And txtgridremarks.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTPARTYPONO.Text.Trim <> "" Then
+            If (ClientName = "SOFTAS") And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTPARTYPONO.Text.Trim <> "" Then
 
                 'FIRST CHECK WHETHER THIS STAMP FOR THIS PARTY AND ITEM IS PRESENT OR NOT, IF NOT THEN CREATE NEW OR ELSE UPDATE
                 Dim OBJCMN As New ClsCommon
