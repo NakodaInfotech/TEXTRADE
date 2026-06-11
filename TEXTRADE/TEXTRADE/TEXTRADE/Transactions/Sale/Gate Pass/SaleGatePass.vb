@@ -1051,7 +1051,7 @@ LINE1:
 
             End If
 
-            If ClientName = "SHEETAL" Then
+            If ClientName = "SHEETAL" Or ClientName = "MAHAKALI" Then
                 TXTBARCODE.Visible = True
                 Label2.Visible = True
             End If
@@ -1235,7 +1235,7 @@ LINE1:
                             ROW.Cells(GVERIFIED.Index).Value = 1
                         End If
                     Next
-                ElseIf ClientName = "SHEETAL" Then
+                ElseIf ClientName = "SHEETAL" Or ClientName = "MAHAKALI" Then
 
                     'CHECK WHETHER BARCODE IS ALREADY PRESENT IN GRID OR NOT
                     For Each ROW As DataGridViewRow In GRIDGP.Rows

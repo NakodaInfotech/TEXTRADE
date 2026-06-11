@@ -1830,7 +1830,7 @@ LINE1:
                 Exit Sub
             End If
 
-            If ClientName = "MOMAI" Or ClientName = "SHEETAL" Or ClientName = "ROVIRO" Then
+            If ClientName = "MOMAI" Or ClientName = "SHEETAL" Or ClientName = "MAHAKALI" Or ClientName = "ROVIRO" Then
                 If MsgBox("Wish to Print Label?", MsgBoxStyle.YesNo) = vbYes Then PRINTBARCODE()
             End If
 
@@ -1894,7 +1894,35 @@ LINE1:
             If ClientName = "MOMAI" Then GoTo MOMAILINE : 
 
 
-            If ClientName = "SHEETAL" Then
+            If ClientName = "MAHAKALI" Then
+
+                oWrite.WriteLine("SIZE 100 mm, 50 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 758,362,""ROMAN.TTF"",180,1,16,""PARTY NAME""
+TEXT 493,362,""ROMAN.TTF"",180,1,16,"":""
+TEXT 462,362,""ROMAN.TTF"",180,1,16,""" & cmbname.Text.Trim & """
+TEXT 757,298,""ROMAN.TTF"",180,1,16,""TRANSPORT""
+TEXT 493,298,""ROMAN.TTF"",180,1,16,"":""
+TEXT 462,298,""ROMAN.TTF"",180,1,16,""" & CMBTRANS.Text.Trim & """
+TEXT 758,234,""ROMAN.TTF"",180,1,16,""CITY NAME""
+TEXT 462,234,""0"",180,17,16,""" & cmbcity.Text.Trim & """
+TEXT 493,234,""ROMAN.TTF"",180,1,16,"":""
+TEXT 758,170,""ROMAN.TTF"",180,1,16,""BALE NO""
+TEXT 462,170,""0"",180,17,16,""" & txtgdnno.Text.Trim & " X " & TXTBALENOFROM.Text.Trim & """
+TEXT 493,170,""ROMAN.TTF"",180,1,16,"":""
+QRCODE 224,209,L,8,A,180,M2,S7,""" & Val(txtgdnno.Text.Trim) & """
+PRINT 1,1")
+                oWrite.Dispose()
+
+            ElseIf ClientName = "SHEETAL" Then
                 oWrite.WriteLine("SIZE 97.5 mm, 75.1 mm
 GAP 3 mm, 0 mm
 DIRECTION 0,0
