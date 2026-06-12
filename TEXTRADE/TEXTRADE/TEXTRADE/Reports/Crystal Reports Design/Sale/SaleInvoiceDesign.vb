@@ -100,6 +100,9 @@ Public Class SaleInvoiceDesign
     Dim RPTPOSTATUSIMG As New POStatuswithImgReport
     Dim RPTPOSTATUSITEM As New POItemStatusReport
 
+    Dim RPTSOPCSWISE As New SOPcsWiseReport
+
+
     Dim RPTYARNPOSTATUSDTLS As New YarnPOStatusDetailsReport
 
 
@@ -183,6 +186,8 @@ Public Class SaleInvoiceDesign
             If FRMSTRING = "MONTHLYPURSALE" Then crTables = RPTMONTHLYPURSALE.Database.Tables
 
             If FRMSTRING = "SOSTATUS" Then crTables = RPTSOSTATUS.Database.Tables
+            If FRMSTRING = "SOPCSWISE" Then crTables = RPTSOPCSWISE.Database.Tables
+
             If FRMSTRING = "SOSTATUSDTLS" Then crTables = RPTSOSTATUSDTLS.Database.Tables
             If FRMSTRING = "SOSTATUSDATE" Then crTables = RPTSOSTATUSDATE.Database.Tables
             If FRMSTRING = "CUTWISEDTLS" Then crTables = RPTSOCUTDTLS.Database.Tables
@@ -380,6 +385,8 @@ Public Class SaleInvoiceDesign
                 crpo.ReportSource = RPTSOSTATUS
                 RPTSOSTATUS.DataDefinition.FormulaFields("TYPE").Text = "'" & PENDINGSO & "'"
                 RPTSOSTATUS.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+            ElseIf FRMSTRING = "SOPCSWISE" Then
+                crpo.ReportSource = RPTSOPCSWISE
             ElseIf FRMSTRING = "SOSTATUSDTLS" Then
                 crpo.ReportSource = RPTSOSTATUSDTLS
                 RPTSOSTATUSDTLS.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
@@ -918,6 +925,15 @@ SKIPINVOICE:
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTSOSTATUS.Export()
+
+
+            ElseIf FRMSTRING = "SOPCSWISE" Then
+                expo = RPTSOPCSWISE.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTSOPCSWISE.Export()
+
             ElseIf FRMSTRING = "SOSTATUSDTLS" Then
                 expo = RPTSOSTATUSDTLS.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile

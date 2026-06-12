@@ -774,6 +774,12 @@
       <DependentUpon>InvoiceReport_LAXMI.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Sale Order\SOPcsWiseReport.vb">
+      <DependentUpon>SOPcsWiseReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Stock\Stock Reports\BarcodeStockSummSmallReport.vb">
       <DependentUpon>BarcodeStockSummSmallReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -9691,6 +9697,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Sale Invoice\InvoiceReport_LAXMI.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceReport_LAXMI.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Sale Order\SOPcsWiseReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SOPcsWiseReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Stock\Stock Reports\BarcodeStockSummSmallReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
