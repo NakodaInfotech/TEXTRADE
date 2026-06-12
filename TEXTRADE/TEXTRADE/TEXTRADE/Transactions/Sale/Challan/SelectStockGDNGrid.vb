@@ -86,7 +86,7 @@ Public Class SelectStockGDNGrid
     Private Sub SelectStockGDNGrid_Shown(sender As Object, e As EventArgs) Handles Me.Shown
         Try
             gridbill.Focus()
-            gridbill.FocusedColumn = gridbill.Columns("BALENO")
+            If ClientName = "ANKUSH" Or ClientName = "SWPL" Or ClientName = "MMC" Or ClientName = "APPLE" Then gridbill.FocusedColumn = gridbill.Columns("BALENO") Else gridbill.FocusedColumn = gridbill.Columns("ITEMNAME")
             gridbill.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle
             gridbill.ShowEditor()
 

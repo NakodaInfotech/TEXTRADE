@@ -31,6 +31,7 @@ Public Class SampleOrderDesign
     Public PARTYNAME As String
     Public AGENTNAME As String
     Public SHIPTONAME As String
+    Public BLANKPAPER As Boolean = False
 
     Public DIRECTPRINT As Boolean = False
     Public DIRECTMAIL As Boolean = False
@@ -98,6 +99,7 @@ Public Class SampleOrderDesign
                 crpo.ReportSource = RPTSMP
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                 crpo.ReportSource = RPTSMPPRICELIST
+                If BLANKPAPER = True Then RPTSMPPRICELIST.DataDefinition.FormulaFields("WHITELABEL").Text = 1
             ElseIf FRMSTRING = "SAMPLEORDER" Then
                 crpo.ReportSource = RPTSMPORDER
             ElseIf FRMSTRING = "SOSTATUS" Then

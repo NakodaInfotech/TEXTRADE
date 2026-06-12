@@ -1,6 +1,7 @@
 ﻿
 Imports System.ComponentModel
 Imports BL
+Imports DevExpress.DashboardCommon.Printing
 
 Public Class SamplePriceList
 
@@ -375,7 +376,7 @@ CHECKNEXTLINE:
             USERDELETE = DTROW(0).Item(4)
 
             Cursor.Current = Cursors.WaitCursor
-            fillcmb()
+            FILLCMB()
             CLEAR()
 
             If EDIT = True Then
@@ -655,6 +656,7 @@ LINE1:
             If MsgBox("Wish to Print?", MsgBoxStyle.YesNo) = vbNo Then Exit Sub
             Dim OBJSMP As New SampleOrderDesign
             OBJSMP.MdiParent = MDIMain
+            OBJSMP.BLANKPAPER = CHKBLANKPAPER.Checked
             OBJSMP.FRMSTRING = "SAMPLEPRICELIST"
             OBJSMP.FORMULA = "{SAMPLEPRICELIST.SPL_no}=" & Val(TXTSPLNO.Text.Trim) & " and {SAMPLEPRICELIST.SPL_yearid}=" & YearId
             OBJSMP.Show()
@@ -925,7 +927,7 @@ LINE1:
 
     Private Sub CMBAGENT_Validating(sender As Object, e As CancelEventArgs) Handles CMBAGENT.Validating
         Try
-            If CMBAGENT.Text.Trim <> "" Then namevalidate(CMBAGENT, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "AGENT")
+            If CMBAGENT.Text.Trim <> "" Then NAMEVALIDATE(CMBAGENT, CMBCODE, e, Me, TXTADD, " and GROUPMASTER.GROUP_SECONDARY = 'Sundry Creditors'", "Sundry Creditors", "AGENT")
         Catch ex As Exception
             Throw ex
         End Try
@@ -1040,6 +1042,9 @@ NEXTLINE:
             '    MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
             '    Exit Sub
             'End If
+
+            If ClientName = "SOFTAS" Then TXTWIDTH_Validated(sender, e)
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -1120,6 +1125,14 @@ NEXTLINE:
             End If
             If ClientName = "VINTAGEINDIA" Then
                 GNARRATION.HeaderText = "Lot No"
+            End If
+
+            If ClientName = "SOFTAS" Then
+                CMBQUALITY.TabStop = False
+                CMBDESIGN.TabStop = False
+                CMBCOLOR.TabStop = False
+                TXTMTRS.TabStop = False
+                CHKBLANKPAPER.Checked = True
             End If
         Catch ex As Exception
             Throw ex
