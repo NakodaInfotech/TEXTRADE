@@ -4310,7 +4310,7 @@ LINE1:
                     Exit Sub
                 End If
 
-                If ClientName = "SHEETAL" Or ClientName = "MAHAKALI" Or ClientName = "MYCOT" Then
+                If ClientName = "SHEETAL" Or ClientName = "MAHAKALI" Then
                     'NOW FETCH STOCK RECO OUT  DATA
                     Dim OBJSA As New ClsStockAdjustment()
                     DTTABLE = OBJSA.SELECTSTOCKADJUSTMENT(Val(TXTCHNO.Text.Trim), TEMPCMPID, 0, TEMPYEARID)
@@ -4835,7 +4835,7 @@ LINE1:
                         End If
 
                         cmbtrans.Text = dr("TRANSNAME").ToString
-                        gridgrn.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("BALENO"), dr("DESIGN"), dr("PRINTDESC"), dr("COLOR"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), "", "", 0, 0, 0, 0, "Mtrs", 0, dr("BARCODE"), 0, "", 0, 0, 0, 0, 0, 0, "")
+                        gridgrn.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("BALENO"), dr("DESIGN"), dr("PRINTDESC"), dr("COLOR"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), "", "", 0, 0, 0, 0, "Mtrs", 0, dr("BARCODE"), 0, 0, 0, 0, 0, 0, "")
                     Next
                     TOTAL()
                     gridgrn.FirstDisplayedScrollingRowIndex = gridgrn.RowCount - 1
