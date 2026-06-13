@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class GDNReport_VINTAGE
+Public Class SOPcsWiseReport
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class GDNReport_VINTAGE
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "GDNReport_VINTAGE.rpt"
+            Return "SOPcsWiseReport.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class GDNReport_VINTAGE
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "TEXTRADE.GDNReport_VINTAGE.rpt"
+            Return "TEXTRADE.SOPcsWiseReport.rpt"
         End Get
         Set
             'Do nothing
@@ -62,7 +62,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection13() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(1)
         End Get
@@ -70,7 +70,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property PageHeaderSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(2)
         End Get
@@ -78,7 +78,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection14() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(3)
         End Get
@@ -86,7 +86,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection2() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(4)
         End Get
@@ -94,7 +94,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection4() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupHeaderSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(5)
         End Get
@@ -102,7 +102,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection17() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property Section3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(6)
         End Get
@@ -110,7 +110,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection19() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupFooterSection3() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(7)
         End Get
@@ -118,7 +118,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageHeaderSection11() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(8)
         End Get
@@ -126,7 +126,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupHeaderSection1() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property GroupFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(9)
         End Get
@@ -134,7 +134,7 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property DetailSection2() As CrystalDecisions.CrystalReports.Engine.Section
+    Public ReadOnly Property Section4() As CrystalDecisions.CrystalReports.Engine.Section
         Get
             Return Me.ReportDefinition.Sections(10)
         End Get
@@ -142,63 +142,15 @@ Public Class GDNReport_VINTAGE
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property GroupFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(11)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property ReportFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(12)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageFooterSection1() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(13)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
     Public ReadOnly Property Section5() As CrystalDecisions.CrystalReports.Engine.Section
         Get
-            Return Me.ReportDefinition.Sections(14)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageFooterSection2() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(15)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageFooterSection5() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(16)
-        End Get
-    End Property
-    
-    <Browsable(false),  _
-     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property PageFooterSection4() As CrystalDecisions.CrystalReports.Engine.Section
-        Get
-            Return Me.ReportDefinition.Sections(17)
+            Return Me.ReportDefinition.Sections(11)
         End Get
     End Property
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedGDNReport_VINTAGE
+Public Class CachedSOPcsWiseReport
     Inherits Component
     Implements ICachedReport
     
@@ -240,7 +192,7 @@ Public Class CachedGDNReport_VINTAGE
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As GDNReport_VINTAGE = New GDNReport_VINTAGE()
+        Dim rpt As SOPcsWiseReport = New SOPcsWiseReport()
         rpt.Site = Me.Site
         Return rpt
     End Function

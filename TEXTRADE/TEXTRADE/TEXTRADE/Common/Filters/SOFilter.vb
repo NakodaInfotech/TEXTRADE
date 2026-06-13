@@ -170,6 +170,8 @@ Public Class SOFilter
                     OBJGRN.FRMSTRING = "SOSTATUSQUALITY"
                 ElseIf RBORDERSTOCK.Checked = True And ClientName = "DRDRAPES" Then
                     OBJGRN.FRMSTRING = "ORDERVSSTOCK"
+                ElseIf RDPCSWISE.Checked = True Then
+                    OBJGRN.FRMSTRING = "SOPCSWISE"
                 ElseIf RBORDERSTOCK.Checked = True Or RDBITEMGRIDREPORT.Checked = True Then
 
                     'OPEN ORDERVSSTOCK REPORT

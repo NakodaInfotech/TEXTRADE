@@ -127,6 +127,8 @@ Partial Class SOFilter
         Me.GCHKMILL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RDPCSWISE = New System.Windows.Forms.RadioButton()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GPFILTERS.SuspendLayout()
         Me.GPORDERNO.SuspendLayout()
@@ -161,7 +163,6 @@ Partial Class SOFilter
         '
         'BlendPanel2
         '
-        Me.BlendPanel2.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
         Me.BlendPanel2.Controls.Add(Me.GPFILTERS)
         Me.BlendPanel2.Controls.Add(Me.GPORDERNO)
         Me.BlendPanel2.Controls.Add(Me.CMBORDERTYPE)
@@ -185,7 +186,7 @@ Partial Class SOFilter
         Me.BlendPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
-        Me.BlendPanel2.Size = New System.Drawing.Size(1234, 581)
+        Me.BlendPanel2.Size = New System.Drawing.Size(1234, 601)
         Me.BlendPanel2.TabIndex = 0
         '
         'GPFILTERS
@@ -551,7 +552,7 @@ Partial Class SOFilter
         Me.GPITEM.BackColor = System.Drawing.Color.Transparent
         Me.GPITEM.Controls.Add(Me.CHKSELECTITEM)
         Me.GPITEM.Controls.Add(Me.GRIDBILLDETAILSITEM)
-        Me.GPITEM.Location = New System.Drawing.Point(30, 187)
+        Me.GPITEM.Location = New System.Drawing.Point(30, 204)
         Me.GPITEM.Name = "GPITEM"
         Me.GPITEM.Size = New System.Drawing.Size(215, 359)
         Me.GPITEM.TabIndex = 10
@@ -635,7 +636,7 @@ Partial Class SOFilter
         Me.GPSHADE.BackColor = System.Drawing.Color.Transparent
         Me.GPSHADE.Controls.Add(Me.CHKSELECTCOLOR)
         Me.GPSHADE.Controls.Add(Me.gridbilldetailscolor)
-        Me.GPSHADE.Location = New System.Drawing.Point(461, 187)
+        Me.GPSHADE.Location = New System.Drawing.Point(461, 204)
         Me.GPSHADE.Name = "GPSHADE"
         Me.GPSHADE.Size = New System.Drawing.Size(215, 359)
         Me.GPSHADE.TabIndex = 12
@@ -711,7 +712,7 @@ Partial Class SOFilter
         Me.GPDESIGN.BackColor = System.Drawing.Color.Transparent
         Me.GPDESIGN.Controls.Add(Me.CHKSELECTDESIGN)
         Me.GPDESIGN.Controls.Add(Me.gridbilldetailsdesign)
-        Me.GPDESIGN.Location = New System.Drawing.Point(240, 187)
+        Me.GPDESIGN.Location = New System.Drawing.Point(240, 204)
         Me.GPDESIGN.Name = "GPDESIGN"
         Me.GPDESIGN.Size = New System.Drawing.Size(215, 359)
         Me.GPDESIGN.TabIndex = 11
@@ -788,7 +789,7 @@ Partial Class SOFilter
         Me.GPPARTYNAME.Controls.Add(Me.GroupBox6)
         Me.GPPARTYNAME.Controls.Add(Me.gridbilldetails)
         Me.GPPARTYNAME.Controls.Add(Me.CHKSELECTALL)
-        Me.GPPARTYNAME.Location = New System.Drawing.Point(682, 187)
+        Me.GPPARTYNAME.Location = New System.Drawing.Point(682, 204)
         Me.GPPARTYNAME.Name = "GPPARTYNAME"
         Me.GPPARTYNAME.Size = New System.Drawing.Size(540, 359)
         Me.GPPARTYNAME.TabIndex = 9
@@ -1025,6 +1026,7 @@ Partial Class SOFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RDPCSWISE)
         Me.GroupBox3.Controls.Add(Me.RDBQUALITY)
         Me.GroupBox3.Controls.Add(Me.RDBITEMGRIDREPORT)
         Me.GroupBox3.Controls.Add(Me.RDBITEMSMALL)
@@ -1040,7 +1042,7 @@ Partial Class SOFilter
         Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(693, 14)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(296, 159)
+        Me.GroupBox3.Size = New System.Drawing.Size(296, 184)
         Me.GroupBox3.TabIndex = 8
         Me.GroupBox3.TabStop = False
         '
@@ -1273,7 +1275,7 @@ Partial Class SOFilter
         Me.cmdshow.FlatAppearance.BorderSize = 0
         Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdshow.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdshow.Location = New System.Drawing.Point(526, 553)
+        Me.cmdshow.Location = New System.Drawing.Point(526, 570)
         Me.cmdshow.Name = "cmdshow"
         Me.cmdshow.Size = New System.Drawing.Size(88, 28)
         Me.cmdshow.TabIndex = 13
@@ -1287,7 +1289,7 @@ Partial Class SOFilter
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(620, 553)
+        Me.cmdexit.Location = New System.Drawing.Point(620, 570)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(88, 28)
         Me.cmdexit.TabIndex = 14
@@ -1299,7 +1301,7 @@ Partial Class SOFilter
         Me.GPMILLNAME.BackColor = System.Drawing.Color.Transparent
         Me.GPMILLNAME.Controls.Add(Me.CHKSELECTMILL)
         Me.GPMILLNAME.Controls.Add(Me.GRIDMILLDETAILS)
-        Me.GPMILLNAME.Location = New System.Drawing.Point(325, 187)
+        Me.GPMILLNAME.Location = New System.Drawing.Point(325, 204)
         Me.GPMILLNAME.Name = "GPMILLNAME"
         Me.GPMILLNAME.Size = New System.Drawing.Size(296, 359)
         Me.GPMILLNAME.TabIndex = 765
@@ -1371,10 +1373,30 @@ Partial Class SOFilter
         Me.GMILLNAME.VisibleIndex = 1
         Me.GMILLNAME.Width = 200
         '
+        'RDPCSWISE
+        '
+        Me.RDPCSWISE.AutoSize = True
+        Me.RDPCSWISE.Location = New System.Drawing.Point(147, 157)
+        Me.RDPCSWISE.Name = "RDPCSWISE"
+        Me.RDPCSWISE.Size = New System.Drawing.Size(73, 18)
+        Me.RDPCSWISE.TabIndex = 12
+        Me.RDPCSWISE.Text = "Pcs Wise"
+        Me.RDPCSWISE.UseVisualStyleBackColor = True
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Location = New System.Drawing.Point(147, 157)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(73, 18)
+        Me.RadioButton1.TabIndex = 12
+        Me.RadioButton1.Text = "Pcs Wise"
+        Me.RadioButton1.UseVisualStyleBackColor = True
+        '
         'SOFilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1234, 581)
+        Me.ClientSize = New System.Drawing.Size(1234, 601)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -1532,4 +1554,6 @@ Partial Class SOFilter
     Friend WithEvents RBAGENT As RadioButton
     Friend WithEvents RBACCOUNT As RadioButton
     Friend WithEvents RDBQUALITY As RadioButton
+    Friend WithEvents RDPCSWISE As RadioButton
+    Friend WithEvents RadioButton1 As RadioButton
 End Class
