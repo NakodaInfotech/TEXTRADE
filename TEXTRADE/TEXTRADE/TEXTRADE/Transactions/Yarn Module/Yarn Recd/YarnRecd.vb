@@ -459,7 +459,7 @@ CHECKNEXTLINE:
             Dim ORDERRATE As String = ""
 
             For Each row As Windows.Forms.DataGridViewRow In GRIDORDER.Rows
-                If row.Cells(0).Value <> Nothing AndAlso Val(row.Cells(ORECDBAGS.Index).Value) > 0 Then
+                If row.Cells(0).Value <> Nothing AndAlso Val(row.Cells(ORECDWT.Index).Value) > 0 Then
 
                     If ORDERGRIDSRNO = "" Then
                         ORDERGRIDSRNO = Val(row.Cells(OSRNO.Index).Value)
@@ -1845,7 +1845,11 @@ LINE1:
                 LBLYARN.Text = "Yarn Recd (FINISH)"
             End If
 
-
+            If ClientName = "MMC" Then
+                TXTGRIDLRNO.Enabled = False
+                GWT.ReadOnly = False
+                GRATE.ReadOnly = False
+            End If
 
             Me.Text = "Yarn Recd (" & TYPE & ")"
         Catch ex As Exception
@@ -2429,6 +2433,14 @@ SKIPLINE:
                 e.Cancel = True
             End If
 
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub TXTLRNO_Validated(sender As Object, e As EventArgs) Handles TXTLRNO.Validated
+        Try
+            If TXTLRNO.Text.Trim <> "" And ClientName = "MMC" Then TXTGRIDLRNO.Text = TXTLRNO.Text.Trim
         Catch ex As Exception
             Throw ex
         End Try

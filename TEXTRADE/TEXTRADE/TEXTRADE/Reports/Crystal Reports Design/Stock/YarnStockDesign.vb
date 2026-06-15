@@ -22,6 +22,7 @@ Public Class YarnStockDesign
     Dim RPTSHADESTOCKDETAIL As New YarnShadeWiseStockDetailReport
     Dim RPTFINISHBOXDETAIL As New YarnFinishBoxWiseStockDetailReport
     Dim RPTFINISHBOXSUMM As New YarnFinishBoxWiseStockReport
+    Dim RPTYARNSHADEDETAIL As New YarnQualityShadeWiseStockDetailReport
 
     Dim RPTJOBBERSTOCKDTLS As New JobberWiseYarnStockDetailReport
     Dim RPTJOBBERSTOCKSUMM As New JobberWiseYarnStockReport
@@ -84,6 +85,7 @@ Public Class YarnStockDesign
             If FRMSTRING = "SHADESTOCKDETAIL" Then crTables = RPTSHADESTOCKDETAIL.Database.Tables
             If FRMSTRING = "FINISHBOXDETAIL" Then crTables = RPTFINISHBOXDETAIL.Database.Tables
             If FRMSTRING = "FINISHBOXSUMM" Then crTables = RPTFINISHBOXSUMM.Database.Tables
+            If FRMSTRING = "QUALITYSHADEDETAIL" Then crTables = RPTYARNSHADEDETAIL.Database.Tables
 
             If FRMSTRING = "JOBBERQUALITYSTOCKSUMM" Then crTables = RPTJOBBERYARNSTOCKSUMM.Database.Tables
             If FRMSTRING = "JOBBERSTOCKSUMM" Then crTables = RPTJOBBERSTOCKSUMM.Database.Tables
@@ -162,6 +164,11 @@ Public Class YarnStockDesign
                 RPTFINISHBOXSUMM.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
                 RPTFINISHBOXSUMM.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
                 crpo.ReportSource = RPTFINISHBOXSUMM
+            ElseIf FRMSTRING = "QUALITYSHADEDETAIL" Then
+                RPTYARNSHADEDETAIL.DataDefinition.FormulaFields("PERIOD").Text = "' QUALITY-SHADE STOCK DETAIL - " & PERIOD & "'"
+                RPTYARNSHADEDETAIL.DataDefinition.FormulaFields("FROMDATE").Text = "'" & Format(Convert.ToDateTime(FROMDATE).Date, "MM/dd/yyyy") & "'"
+                RPTYARNSHADEDETAIL.DataDefinition.FormulaFields("TODATE").Text = "'" & Format(Convert.ToDateTime(TODATE).Date, "MM/dd/yyyy") & "'"
+                crpo.ReportSource = RPTYARNSHADEDETAIL
 
 
             ElseIf FRMSTRING = "JOBBERQUALITYSTOCKSUMM" Then
@@ -332,6 +339,13 @@ Public Class YarnStockDesign
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
                 RPTFINISHBOXSUMM.Export()
+
+            ElseIf FRMSTRING = "QUALITYSHADEDETAIL" Then
+                expo = RPTYARNSHADEDETAIL.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTYARNSHADEDETAIL.Export()
 
 
 

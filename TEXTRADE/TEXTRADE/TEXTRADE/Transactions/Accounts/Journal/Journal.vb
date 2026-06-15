@@ -1060,7 +1060,7 @@ LINE1:
                 Dim DTBILLS As DataTable = OBJSELECTBILL.DTBILLS
                 For Each DTROW As DataRow In DTBILLS.Rows
                     GETBILL(DTROW("BILLNO"))
-                    If txtrefno.Text.Trim <> "" And (Val(txtdebit.Text.Trim) > 0 Or Val(txtcredit.Text.Trim) > 0) And ClientName <> "SUPRIYA" Then txtcredit_Validated(sender, e)
+                    If txtrefno.Text.Trim <> "" And (Val(txtdebit.Text.Trim) > 0 Or Val(txtcredit.Text.Trim) > 0) And ClientName <> "SUPRIYA" And ClientName <> "MMC" Then txtcredit_Validated(sender, e)
                 Next
 
                 'If OBJSELECTBILL.BILLNO <> "" Then SELECTEDBILLNO = OBJSELECTBILL.BILLNO
