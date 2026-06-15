@@ -828,6 +828,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Stock\YarnQualityShadeWiseStockDetailReport.vb">
+      <DependentUpon>YarnQualityShadeWiseStockDetailReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Yarn Job order\YarnJobOrderCommonReport.vb">
       <DependentUpon>YarnJobOrderCommonReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -9733,6 +9739,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Outstanding Reports\OutstandingReportAgent_RunBal_Rec.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OutstandingReportAgent_RunBal_Rec.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Stock\YarnQualityShadeWiseStockDetailReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>YarnQualityShadeWiseStockDetailReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Yarn Job order\YarnJobOrderCommonReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

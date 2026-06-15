@@ -142,6 +142,8 @@ Public Class YarnStockFilter
                 OBJSTOCK.FRMSTRING = "FINISHBOXSUMM"
             ElseIf RBYARNCATEGORYWISESTOCK.Checked = True Then
                 OBJSTOCK.FRMSTRING = "CATEGORYWISESTOCK"
+            ElseIf RBYARNQUALITYSHADEDETAILS.Checked = True Then
+                OBJSTOCK.FRMSTRING = "QUALITYSHADEDETAIL"
             End If
 
             OBJSTOCK.Show()
