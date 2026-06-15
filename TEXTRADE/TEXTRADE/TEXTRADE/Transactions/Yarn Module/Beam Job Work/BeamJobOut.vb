@@ -596,17 +596,17 @@ LINE1:
                     For Each ROW As DataRow In dttable.Rows
                         GRIDBEAM.Rows.Add(Val(ROW("GRIDSRNO")), Val(ROW("BEAMNO")), ROW("BEAMNAME"), ROW("MILLNAME"), Val(ROW("TOTALENDS")), Val(ROW("GRIDTOTALMTRS")), ROW("BEAMWT"), Val(ROW("GAMANO")), Val(ROW("SECTION")), Val(ROW("ROLLNO")), Val(ROW("BREAKAGE")), ROW("GRIDREMARKS"), ROW("FROMNO"), ROW("FROMSRNO"), ROW("FROMTYPE"), Val(ROW("GRIDDONE")), Val(ROW("OUTWT")))
 
-                        'If Convert.ToBoolean(ROW("GRIDDONE")) = True Then
-                        '    lbllocked.Visible = True
-                        '    PBlock.Visible = True
-                        '    GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
-                        'End If
+                        If Convert.ToBoolean(ROW("GRIDDONE")) = True Then
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                            GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                        End If
 
-                        'If Val(ROW("OUTMTRS")) > 0 Then
-                        '    lbllocked.Visible = True
-                        '    PBlock.Visible = True
-                        '    GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
-                        'End If
+                        If Val(ROW("OUTWT")) > 0 Then
+                            lbllocked.Visible = True
+                            PBlock.Visible = True
+                            GRIDBEAM.Rows(GRIDBEAM.RowCount - 1).DefaultCellStyle.BackColor = Color.Yellow
+                        End If
                     Next
 
 

@@ -321,7 +321,7 @@ LINE1:
         CMBJONO.Text = ""
         TXTREMARKS.Clear()
         CMBNAME.Enabled = True
-
+        CMBJONO.Enabled = True
         GRIDBEAM.RowCount = 0
 
         GETMAX_BEAMJO_NO()
@@ -586,7 +586,8 @@ LINE1:
                     CMBJONO.Text = dttable.Rows(0).Item("JONO")
 
 
-
+                    CMBNAME.Enabled = False
+                    CMBJONO.Enabled = False
                     CMDSELECTYARNISSUE.Enabled = False
 
                     'ITEM GRID
@@ -721,7 +722,7 @@ LINE1:
         If String.IsNullOrEmpty(e.FormattedValue.ToString) Then Return
         Select Case colNum
 
-            Case GTOTALMTRS.Index
+            Case GTOTALMTRS.Index, GWT.Index
                 Dim dDebit As Decimal
                 Dim bValid As Boolean = Decimal.TryParse(e.FormattedValue.ToString, dDebit)
 
@@ -839,6 +840,7 @@ LINE1:
                 Next
                 getsrno(GRIDBEAM)
                 TOTAL()
+                CMBJONO.Enabled = False
 
             Else
                 MsgBox("No Details Found For This Job No", MsgBoxStyle.Information)
