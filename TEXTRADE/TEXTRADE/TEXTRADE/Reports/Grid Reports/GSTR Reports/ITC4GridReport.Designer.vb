@@ -44,35 +44,36 @@ Partial Class ITC4GridReport
         Me.GSGST = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCESS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TBJWTOMFG = New System.Windows.Forms.TabPage()
-        Me.cmdexit = New System.Windows.Forms.Button()
-        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
-        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.gridbilldetails1 = New DevExpress.XtraGrid.GridControl()
         Me.gridbill1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GGSTIN1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GSTATE1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GNATUREOFTRANS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANNO1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCHALLANDATE1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GNATUREOFTRANS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GOTHERCHNO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GGOODSDESC1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GUOM1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTOTALQTY1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GOTHERDATE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GTAXABLEAMT1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GOTHERCGSTIN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GOTHERSTATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GOTHERINVNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GOTHERINVDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGOODSDESC1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GUOM1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTOTALQTY1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GTAXABLEAMT1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.cmdexit = New System.Windows.Forms.Button()
+        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
+        Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
+        Me.GDIFF = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TBMFGTOJW.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TBJWTOMFG.SuspendLayout()
-        Me.ToolStrip2.SuspendLayout()
         CType(Me.gridbilldetails1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip2.SuspendLayout()
         Me.SuspendLayout()
         '
         'BlendPanel2
@@ -161,7 +162,7 @@ Partial Class ITC4GridReport
         '
         Me.GSTATE.Caption = "State Name"
         Me.GSTATE.FieldName = "STATE"
-        Me.GSTATE.ImageIndex = 0
+        Me.GSTATE.ImageOptions.ImageIndex = 0
         Me.GSTATE.Name = "GSTATE"
         Me.GSTATE.Visible = True
         Me.GSTATE.VisibleIndex = 2
@@ -295,38 +296,6 @@ Partial Class ITC4GridReport
         Me.TBJWTOMFG.Text = "JW TO MFG"
         Me.TBJWTOMFG.UseVisualStyleBackColor = True
         '
-        'cmdexit
-        '
-        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
-        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.cmdexit.FlatAppearance.BorderSize = 0
-        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(580, 519)
-        Me.cmdexit.Name = "cmdexit"
-        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
-        Me.cmdexit.TabIndex = 651
-        Me.cmdexit.Text = "E&xit"
-        Me.cmdexit.UseVisualStyleBackColor = False
-        '
-        'ToolStrip2
-        '
-        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
-        Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(1184, 25)
-        Me.ToolStrip2.TabIndex = 255
-        Me.ToolStrip2.Text = "ToolStrip2"
-        '
-        'PrintToolStripButton
-        '
-        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
-        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PrintToolStripButton.Name = "PrintToolStripButton"
-        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
-        Me.PrintToolStripButton.Text = "&Print"
-        '
         'gridbilldetails1
         '
         Me.gridbilldetails1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -342,7 +311,7 @@ Partial Class ITC4GridReport
         '
         Me.gridbill1.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill1.Appearance.Row.Options.UseFont = True
-        Me.gridbill1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GGSTIN1, Me.GSTATE1, Me.GCHALLANNO1, Me.GCHALLANDATE1, Me.GNATUREOFTRANS, Me.GOTHERCHNO, Me.GOTHERDATE, Me.GOTHERCGSTIN, Me.GOTHERSTATE, Me.GOTHERINVNO, Me.GOTHERINVDATE, Me.GGOODSDESC1, Me.GUOM1, Me.GTOTALQTY1, Me.GTAXABLEAMT1})
+        Me.gridbill1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GGSTIN1, Me.GSTATE1, Me.GCHALLANNO1, Me.GCHALLANDATE1, Me.GNATUREOFTRANS, Me.GOTHERCHNO, Me.GOTHERDATE, Me.GOTHERCGSTIN, Me.GOTHERSTATE, Me.GOTHERINVNO, Me.GOTHERINVDATE, Me.GGOODSDESC1, Me.GUOM1, Me.GTOTALQTY1, Me.GTAXABLEAMT1, Me.GDIFF})
         Me.gridbill1.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill1.GridControl = Me.gridbilldetails1
         Me.gridbill1.Name = "gridbill1"
@@ -365,21 +334,11 @@ Partial Class ITC4GridReport
         '
         Me.GSTATE1.Caption = "State Name"
         Me.GSTATE1.FieldName = "STATE"
-        Me.GSTATE1.ImageIndex = 0
+        Me.GSTATE1.ImageOptions.ImageIndex = 0
         Me.GSTATE1.Name = "GSTATE1"
         Me.GSTATE1.Visible = True
         Me.GSTATE1.VisibleIndex = 2
         Me.GSTATE1.Width = 220
-        '
-        'GNATUREOFTRANS
-        '
-        Me.GNATUREOFTRANS.Caption = "Nature Of Trans"
-        Me.GNATUREOFTRANS.FieldName = "NATUREOFTRANS"
-        Me.GNATUREOFTRANS.Name = "GNATUREOFTRANS"
-        Me.GNATUREOFTRANS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GNATUREOFTRANS.Visible = True
-        Me.GNATUREOFTRANS.VisibleIndex = 3
-        Me.GNATUREOFTRANS.Width = 80
         '
         'GCHALLANNO1
         '
@@ -401,6 +360,16 @@ Partial Class ITC4GridReport
         Me.GCHALLANDATE1.VisibleIndex = 0
         Me.GCHALLANDATE1.Width = 80
         '
+        'GNATUREOFTRANS
+        '
+        Me.GNATUREOFTRANS.Caption = "Nature Of Trans"
+        Me.GNATUREOFTRANS.FieldName = "NATUREOFTRANS"
+        Me.GNATUREOFTRANS.Name = "GNATUREOFTRANS"
+        Me.GNATUREOFTRANS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GNATUREOFTRANS.Visible = True
+        Me.GNATUREOFTRANS.VisibleIndex = 3
+        Me.GNATUREOFTRANS.Width = 80
+        '
         'GOTHERCHNO
         '
         Me.GOTHERCHNO.Caption = "Other ChNo"
@@ -411,35 +380,6 @@ Partial Class ITC4GridReport
         Me.GOTHERCHNO.VisibleIndex = 4
         Me.GOTHERCHNO.Width = 80
         '
-        'GGOODSDESC1
-        '
-        Me.GGOODSDESC1.Caption = "Goods Desc"
-        Me.GGOODSDESC1.FieldName = "GOODSDESC"
-        Me.GGOODSDESC1.Name = "GGOODSDESC1"
-        Me.GGOODSDESC1.Visible = True
-        Me.GGOODSDESC1.VisibleIndex = 5
-        Me.GGOODSDESC1.Width = 220
-        '
-        'GUOM1
-        '
-        Me.GUOM1.Caption = "Uom"
-        Me.GUOM1.FieldName = "UOM"
-        Me.GUOM1.Name = "GUOM1"
-        Me.GUOM1.Visible = True
-        Me.GUOM1.VisibleIndex = 7
-        Me.GUOM1.Width = 80
-        '
-        'GTOTALQTY1
-        '
-        Me.GTOTALQTY1.Caption = "Total Qty"
-        Me.GTOTALQTY1.DisplayFormat.FormatString = "0.00"
-        Me.GTOTALQTY1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GTOTALQTY1.FieldName = "TOTALQTY"
-        Me.GTOTALQTY1.Name = "GTOTALQTY1"
-        Me.GTOTALQTY1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
-        Me.GTOTALQTY1.Visible = True
-        Me.GTOTALQTY1.VisibleIndex = 6
-        '
         'GOTHERDATE
         '
         Me.GOTHERDATE.Caption = "Other Date"
@@ -449,14 +389,6 @@ Partial Class ITC4GridReport
         Me.GOTHERDATE.Name = "GOTHERDATE"
         Me.GOTHERDATE.Visible = True
         Me.GOTHERDATE.VisibleIndex = 9
-        '
-        'GTAXABLEAMT1
-        '
-        Me.GTAXABLEAMT1.Caption = "Taxable Amt"
-        Me.GTAXABLEAMT1.FieldName = "TAXABLEAMT"
-        Me.GTAXABLEAMT1.Name = "GTAXABLEAMT1"
-        Me.GTAXABLEAMT1.Visible = True
-        Me.GTAXABLEAMT1.VisibleIndex = 10
         '
         'GOTHERCGSTIN
         '
@@ -492,6 +424,83 @@ Partial Class ITC4GridReport
         Me.GOTHERINVDATE.Visible = True
         Me.GOTHERINVDATE.VisibleIndex = 14
         '
+        'GGOODSDESC1
+        '
+        Me.GGOODSDESC1.Caption = "Goods Desc"
+        Me.GGOODSDESC1.FieldName = "GOODSDESC"
+        Me.GGOODSDESC1.Name = "GGOODSDESC1"
+        Me.GGOODSDESC1.Visible = True
+        Me.GGOODSDESC1.VisibleIndex = 5
+        Me.GGOODSDESC1.Width = 220
+        '
+        'GUOM1
+        '
+        Me.GUOM1.Caption = "Uom"
+        Me.GUOM1.FieldName = "UOM"
+        Me.GUOM1.Name = "GUOM1"
+        Me.GUOM1.Visible = True
+        Me.GUOM1.VisibleIndex = 7
+        Me.GUOM1.Width = 80
+        '
+        'GTOTALQTY1
+        '
+        Me.GTOTALQTY1.Caption = "Total Qty"
+        Me.GTOTALQTY1.DisplayFormat.FormatString = "0.00"
+        Me.GTOTALQTY1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GTOTALQTY1.FieldName = "TOTALQTY"
+        Me.GTOTALQTY1.Name = "GTOTALQTY1"
+        Me.GTOTALQTY1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
+        Me.GTOTALQTY1.Visible = True
+        Me.GTOTALQTY1.VisibleIndex = 6
+        '
+        'GTAXABLEAMT1
+        '
+        Me.GTAXABLEAMT1.Caption = "Taxable Amt"
+        Me.GTAXABLEAMT1.FieldName = "TAXABLEAMT"
+        Me.GTAXABLEAMT1.Name = "GTAXABLEAMT1"
+        Me.GTAXABLEAMT1.Visible = True
+        Me.GTAXABLEAMT1.VisibleIndex = 10
+        '
+        'cmdexit
+        '
+        Me.cmdexit.BackColor = System.Drawing.Color.Transparent
+        Me.cmdexit.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cmdexit.FlatAppearance.BorderSize = 0
+        Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.cmdexit.Location = New System.Drawing.Point(580, 519)
+        Me.cmdexit.Name = "cmdexit"
+        Me.cmdexit.Size = New System.Drawing.Size(80, 28)
+        Me.cmdexit.TabIndex = 651
+        Me.cmdexit.Text = "E&xit"
+        Me.cmdexit.UseVisualStyleBackColor = False
+        '
+        'ToolStrip2
+        '
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintToolStripButton})
+        Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip2.Name = "ToolStrip2"
+        Me.ToolStrip2.Size = New System.Drawing.Size(1184, 25)
+        Me.ToolStrip2.TabIndex = 255
+        Me.ToolStrip2.Text = "ToolStrip2"
+        '
+        'PrintToolStripButton
+        '
+        Me.PrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.PrintToolStripButton.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.PrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.PrintToolStripButton.Name = "PrintToolStripButton"
+        Me.PrintToolStripButton.Size = New System.Drawing.Size(23, 22)
+        Me.PrintToolStripButton.Text = "&Print"
+        '
+        'GDIFF
+        '
+        Me.GDIFF.Caption = "Diff"
+        Me.GDIFF.FieldName = "TOTALDIFF"
+        Me.GDIFF.Name = "GDIFF"
+        Me.GDIFF.Visible = True
+        Me.GDIFF.VisibleIndex = 15
+        '
         'ITC4GridReport
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -510,10 +519,10 @@ Partial Class ITC4GridReport
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TBJWTOMFG.ResumeLayout(False)
-        Me.ToolStrip2.ResumeLayout(False)
-        Me.ToolStrip2.PerformLayout()
         CType(Me.gridbilldetails1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip2.ResumeLayout(False)
+        Me.ToolStrip2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -560,4 +569,5 @@ Partial Class ITC4GridReport
     Friend WithEvents GOTHERSTATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GOTHERINVNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GOTHERINVDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDIFF As DevExpress.XtraGrid.Columns.GridColumn
 End Class

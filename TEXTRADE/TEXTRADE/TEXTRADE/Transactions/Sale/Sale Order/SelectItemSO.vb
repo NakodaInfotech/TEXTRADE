@@ -128,8 +128,8 @@ Public Class SelectItemSO
                     If Val(DTROW1("ORDERPCS")) > 0 Then Exit For
                 Next
                 If Val(DTROW("CUT")) = 0 AndAlso gridbill.FocusedRowHandle > 0 Then DTROW("CUT") = Val(DTROW1("CUT"))
-                CALC()
             End If
+            CALC()
         Catch ex As Exception
             Throw ex
         End Try
@@ -139,7 +139,7 @@ Public Class SelectItemSO
         Try
             For I As Integer = 0 To gridbill.RowCount - 1
                 Dim DTROW As DataRow = gridbill.GetDataRow(I)
-                If Val(DTROW("CUT")) > 0 And Val(DTROW("ORDERPCS")) > 0 Then DTROW("ORDERMTRS") = Format(Val(DTROW("CUT")) * Val(DTROW("ORDERPCS")), "0.00")
+                If Val(DTROW("CUT")) > 0 Then DTROW("ORDERMTRS") = Format(Val(DTROW("CUT")) * Val(DTROW("ORDERPCS")), "0.00")
             Next
         Catch ex As Exception
             Throw ex
