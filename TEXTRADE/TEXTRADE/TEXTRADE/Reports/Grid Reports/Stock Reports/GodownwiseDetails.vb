@@ -177,6 +177,10 @@ Public Class GodownwiseDetails
             GWT.VisibleIndex = GTOTALMTRS.VisibleIndex + 1
         End If
 
+        If ClientName = "SANGHVI" Then
+            GCATEGORY.Visible = True
+        End If
+
 
     End Sub
 

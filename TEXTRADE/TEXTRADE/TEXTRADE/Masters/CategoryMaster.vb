@@ -1023,4 +1023,32 @@ Public Class CategoryMaster
         End Try
     End Sub
 
+    Private Sub txtremarks_KeyDown(sender As Object, e As KeyEventArgs) Handles txtremarks.KeyDown
+        Try
+            If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
+            If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
+
+            If e.KeyCode = Keys.F1 Then
+                Dim OBJREMARKS As New SelectRemarks
+                OBJREMARKS.FRMSTRING = "NARRATION"
+                OBJREMARKS.ShowDialog()
+
+                If ClientName = "SANGHVI" Then
+
+                    If OBJREMARKS.TEMPNAME <> "" Then
+                        If txtremarks.Text = "" Then
+                            txtremarks.Text = OBJREMARKS.TEMPNAME
+                        Else
+                            txtremarks.Text &= "," & OBJREMARKS.TEMPNAME
+                        End If
+                    End If
+
+                Else
+                    If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
+                End If
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class

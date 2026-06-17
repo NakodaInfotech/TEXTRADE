@@ -1644,8 +1644,7 @@ line1:
             If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then
                 LBLDEPT.Visible = False
                 CMBDEPARTMENT.Visible = False
-                lblcategory.Visible = False
-                cmbcategory.Visible = False
+
 
                 txtreorder.Visible = False
                 If ClientName = "SANGHVI" Then
@@ -1682,6 +1681,8 @@ line1:
                 LBLREORDER.Text = "Area"
                 LBLOPRATE.Visible = True
                 txtreorder.Visible = True
+                lblcategory.Visible = False
+                cmbcategory.Visible = False
             End If
 
             If ClientName = "SNCM" Then
