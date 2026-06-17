@@ -78,6 +78,8 @@ Public Class SampleOrderDesign
                 crTables = RPTSMP.Database.Tables
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                 crTables = RPTSMPPRICELIST.Database.Tables
+                RPTSMPPRICELIST.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+
             ElseIf FRMSTRING = "SAMPLEORDER" Then
 
                 crTables = RPTSMPORDER.Database.Tables
@@ -104,6 +106,8 @@ Public Class SampleOrderDesign
                 crpo.ReportSource = RPTSMP
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                 crpo.ReportSource = RPTSMPPRICELIST
+                RPTSMPPRICELIST.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+
                 If BLANKPAPER = True Then RPTSMPPRICELIST.DataDefinition.FormulaFields("WHITELABEL").Text = 1
             ElseIf FRMSTRING = "SAMPLEORDER" Then
                 crpo.ReportSource = RPTSMPORDER
