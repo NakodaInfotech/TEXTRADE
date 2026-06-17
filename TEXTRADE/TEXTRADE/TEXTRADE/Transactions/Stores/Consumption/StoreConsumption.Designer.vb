@@ -27,9 +27,10 @@ Partial Class StoreConsumption
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StoreConsumption))
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSELECTSTOCK = New System.Windows.Forms.Button()
         Me.TXTTAKENBY = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CMBMACHINE = New System.Windows.Forms.ComboBox()
@@ -43,11 +44,6 @@ Partial Class StoreConsumption
         Me.LBLTOTALQTY = New System.Windows.Forms.Label()
         Me.LBLTOTAL = New System.Windows.Forms.Label()
         Me.GRIDCONSUME = New System.Windows.Forms.DataGridView()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDESC = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GUNIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TXTADD = New System.Windows.Forms.TextBox()
         Me.cmbcode = New System.Windows.Forms.ComboBox()
         Me.tstxtbillno = New System.Windows.Forms.TextBox()
@@ -78,6 +74,11 @@ Partial Class StoreConsumption
         Me.TXTQTY = New System.Windows.Forms.TextBox()
         Me.CMDEXIT = New System.Windows.Forms.Button()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDESC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GQTY = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GUNIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.GRIDCONSUME, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -89,6 +90,7 @@ Partial Class StoreConsumption
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CMDSELECTSTOCK)
         Me.BlendPanel1.Controls.Add(Me.TXTTAKENBY)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.CMBMACHINE)
@@ -128,6 +130,19 @@ Partial Class StoreConsumption
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(784, 507)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'CMDSELECTSTOCK
+        '
+        Me.CMDSELECTSTOCK.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSELECTSTOCK.FlatAppearance.BorderSize = 0
+        Me.CMDSELECTSTOCK.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSELECTSTOCK.ForeColor = System.Drawing.Color.Black
+        Me.CMDSELECTSTOCK.Location = New System.Drawing.Point(453, 465)
+        Me.CMDSELECTSTOCK.Name = "CMDSELECTSTOCK"
+        Me.CMDSELECTSTOCK.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSELECTSTOCK.TabIndex = 872
+        Me.CMDSELECTSTOCK.Text = "Select Stock"
+        Me.CMDSELECTSTOCK.UseVisualStyleBackColor = False
         '
         'TXTTAKENBY
         '
@@ -208,6 +223,7 @@ Partial Class StoreConsumption
         Me.CMBUNIT.Name = "CMBUNIT"
         Me.CMBUNIT.Size = New System.Drawing.Size(80, 23)
         Me.CMBUNIT.TabIndex = 8
+        Me.CMBUNIT.Visible = False
         '
         'TXTSRNO
         '
@@ -220,6 +236,7 @@ Partial Class StoreConsumption
         Me.TXTSRNO.Size = New System.Drawing.Size(40, 23)
         Me.TXTSRNO.TabIndex = 856
         Me.TXTSRNO.TabStop = False
+        Me.TXTSRNO.Visible = False
         '
         'TXTDESC
         '
@@ -230,6 +247,7 @@ Partial Class StoreConsumption
         Me.TXTDESC.Name = "TXTDESC"
         Me.TXTDESC.Size = New System.Drawing.Size(200, 23)
         Me.TXTDESC.TabIndex = 6
+        Me.TXTDESC.Visible = False
         '
         'TXTISSUEDTO
         '
@@ -297,7 +315,6 @@ Partial Class StoreConsumption
         Me.GRIDCONSUME.Location = New System.Drawing.Point(20, 160)
         Me.GRIDCONSUME.MultiSelect = False
         Me.GRIDCONSUME.Name = "GRIDCONSUME"
-        Me.GRIDCONSUME.ReadOnly = True
         Me.GRIDCONSUME.RowHeadersVisible = False
         Me.GRIDCONSUME.RowHeadersWidth = 30
         Me.GRIDCONSUME.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
@@ -311,53 +328,6 @@ Partial Class StoreConsumption
         Me.GRIDCONSUME.Size = New System.Drawing.Size(675, 241)
         Me.GRIDCONSUME.TabIndex = 9
         Me.GRIDCONSUME.TabStop = False
-        '
-        'GSRNO
-        '
-        Me.GSRNO.HeaderText = "Sr"
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 40
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.HeaderText = "Store Item Name"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.ReadOnly = True
-        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GITEMNAME.Width = 250
-        '
-        'GDESC
-        '
-        Me.GDESC.HeaderText = "Desc"
-        Me.GDESC.Name = "GDESC"
-        Me.GDESC.ReadOnly = True
-        Me.GDESC.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDESC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDESC.Width = 200
-        '
-        'GQTY
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GQTY.HeaderText = "Qty"
-        Me.GQTY.Name = "GQTY"
-        Me.GQTY.ReadOnly = True
-        Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GQTY.Width = 75
-        '
-        'GUNIT
-        '
-        Me.GUNIT.HeaderText = "Unit"
-        Me.GUNIT.Name = "GUNIT"
-        Me.GUNIT.ReadOnly = True
-        Me.GUNIT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GUNIT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GUNIT.Width = 80
         '
         'TXTADD
         '
@@ -566,6 +536,7 @@ Partial Class StoreConsumption
         Me.CMBSTOREITEMNAME.Name = "CMBSTOREITEMNAME"
         Me.CMBSTOREITEMNAME.Size = New System.Drawing.Size(250, 23)
         Me.CMBSTOREITEMNAME.TabIndex = 5
+        Me.CMBSTOREITEMNAME.Visible = False
         '
         'Label6
         '
@@ -663,6 +634,7 @@ Partial Class StoreConsumption
         Me.TXTQTY.Size = New System.Drawing.Size(75, 23)
         Me.TXTQTY.TabIndex = 7
         Me.TXTQTY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TXTQTY.Visible = False
         '
         'CMDEXIT
         '
@@ -670,7 +642,7 @@ Partial Class StoreConsumption
         Me.CMDEXIT.FlatAppearance.BorderSize = 0
         Me.CMDEXIT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CMDEXIT.ForeColor = System.Drawing.Color.Black
-        Me.CMDEXIT.Location = New System.Drawing.Point(488, 465)
+        Me.CMDEXIT.Location = New System.Drawing.Point(540, 465)
         Me.CMDEXIT.Name = "CMDEXIT"
         Me.CMDEXIT.Size = New System.Drawing.Size(80, 28)
         Me.CMDEXIT.TabIndex = 14
@@ -682,6 +654,52 @@ Partial Class StoreConsumption
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
+        '
+        'GSRNO
+        '
+        Me.GSRNO.HeaderText = "Sr"
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 40
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.HeaderText = "Store Item Name"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.ReadOnly = True
+        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GITEMNAME.Width = 250
+        '
+        'GDESC
+        '
+        Me.GDESC.HeaderText = "Desc"
+        Me.GDESC.Name = "GDESC"
+        Me.GDESC.ReadOnly = True
+        Me.GDESC.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDESC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDESC.Width = 200
+        '
+        'GQTY
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GQTY.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GQTY.HeaderText = "Qty"
+        Me.GQTY.Name = "GQTY"
+        Me.GQTY.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GQTY.Width = 75
+        '
+        'GUNIT
+        '
+        Me.GUNIT.HeaderText = "Unit"
+        Me.GUNIT.Name = "GUNIT"
+        Me.GUNIT.ReadOnly = True
+        Me.GUNIT.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GUNIT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GUNIT.Width = 80
         '
         'StoreConsumption
         '
@@ -744,11 +762,6 @@ Partial Class StoreConsumption
     Friend WithEvents TXTDESC As TextBox
     Friend WithEvents TXTSRNO As TextBox
     Friend WithEvents CMBUNIT As ComboBox
-    Friend WithEvents GSRNO As DataGridViewTextBoxColumn
-    Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
-    Friend WithEvents GDESC As DataGridViewTextBoxColumn
-    Friend WithEvents GQTY As DataGridViewTextBoxColumn
-    Friend WithEvents GUNIT As DataGridViewTextBoxColumn
     Friend WithEvents EP As ErrorProvider
     Friend WithEvents LBLGODOWN As Label
     Friend WithEvents CMBGODOWN As ComboBox
@@ -756,4 +769,10 @@ Partial Class StoreConsumption
     Friend WithEvents Label9 As Label
     Friend WithEvents TXTTAKENBY As TextBox
     Friend WithEvents Label1 As Label
+    Friend WithEvents CMDSELECTSTOCK As Button
+    Friend WithEvents GSRNO As DataGridViewTextBoxColumn
+    Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
+    Friend WithEvents GDESC As DataGridViewTextBoxColumn
+    Friend WithEvents GQTY As DataGridViewTextBoxColumn
+    Friend WithEvents GUNIT As DataGridViewTextBoxColumn
 End Class

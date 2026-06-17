@@ -239,6 +239,49 @@ Public Class StoreStockReco
             '    bln = False
             'End If
 
+
+
+
+            If GRIDSTOCKOUT.RowCount > 0 And EDIT = False Then
+                For Each ROW As DataGridViewRow In GRIDSTOCKOUT.Rows
+                    Dim OBJCMN As New ClsCommonMaster
+                    Dim DT As DataTable = OBJCMN.search("SUM(QTY)AS QTY", "", "STORESTOCKREGISTER", "AND GODOWN='" & CMBGODOWN.Text.Trim & "' AND ITEMNAME = '" & ROW.Cells(GITEMNAME.Index).Value & "'  AND YEARID = " & YearId)
+                    If DT.Rows.Count <= 0 Then GoTo LINE1
+                    If Val(ROW.Cells(GQTY.Index).Value) > Format(Val(DT.Rows(0).Item(0)), "0.000") Then
+LINE1:
+                        EP.SetError(LBLTOTALOUTQTY, "Stock Not Present ! ")
+                        GRIDSTOCKOUT.CurrentRow.DefaultCellStyle.BackColor = Drawing.Color.Yellow
+                        bln = False
+                    End If
+                Next
+            End If
+
+            If GRIDSTOCKOUT.RowCount > 0 And EDIT = True Then
+                For Each ROW As DataGridViewRow In GRIDSTOCKOUT.Rows
+                    Dim BALQTY As Double = 0
+                    Dim objclscommon As New ClsCommonMaster
+                    Dim dt As DataTable = objclscommon.search("SUM(QTY) - SUM(ISSQTY) AS QTY", "", "STORESTOCKREGISTER", "AND GODOWN='" & CMBGODOWN.Text.Trim & "' AND ITEMNAME = '" & ROW.Cells(GITEMNAME.Index).Value & "' AND YEARID = " & YearId)
+                    If dt.Rows.Count > 0 Then BALQTY = Format(Val(dt.Rows(0).Item(0)), "0.000")
+
+                    dt = objclscommon.search(" ISNULL(STORESTOCKADJUSTMENT_DESC.SA_QTY,0) QTY ", "", " STORESTOCKADJUSTMENT_DESC INNER JOIN STOREITEMMASTER ON STORESTOCKADJUSTMENT_DESC.SA_ITEMID = STOREITEMMASTER.STOREITEM_ID AND STORESTOCKADJUSTMENT_DESC.SA_YEARID = STOREITEMMASTER.STOREITEM_YEARID ", " AND STORESTOCKADJUSTMENT_DESC.SA_NO = " & TEMPRECONO & " and STOREITEMMASTER.STOREITEM_NAME = '" & ROW.Cells(GITEMNAME.Index).Value & "'  AND STORESTOCKADJUSTMENT_DESC.SA_YEARID = " & YearId)
+                    If dt.Rows.Count > 0 Then BALQTY = BALQTY + Val(dt.Rows(0).Item(0))
+
+                    If Val(ROW.Cells(GQTY.Index).Value) > BALQTY Then
+                        EP.SetError(LBLTOTALOUTQTY, "Stock Not Present! " & BALQTY)
+                        GRIDSTOCKOUT.CurrentRow.DefaultCellStyle.BackColor = Drawing.Color.Yellow
+                        bln = False
+                    End If
+                    BALQTY = 0
+                Next
+            End If
+
+
+
+
+
+
+
+
             Return bln
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -586,7 +629,7 @@ Public Class StoreStockReco
 
             Select Case colNum
 
-                Case GQTY.Index, GUNIT.Index, GRATE.Index
+                Case GQTY.Index
                     Dim dDebit As Decimal
                     Dim bValid As Boolean = Decimal.TryParse(e.FormattedValue.ToString, dDebit)
 
