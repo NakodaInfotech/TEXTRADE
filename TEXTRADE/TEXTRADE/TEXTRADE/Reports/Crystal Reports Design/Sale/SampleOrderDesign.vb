@@ -6,7 +6,6 @@ Imports System.Windows.Forms
 Imports System.IO
 
 Public Class SampleOrderDesign
-    Dim OBJ As New Object
 
 
     Public FORMULA As String
@@ -82,6 +81,8 @@ Public Class SampleOrderDesign
             ElseIf FRMSTRING = "SAMPLEORDER" Then
 
                 crTables = RPTSMPORDER.Database.Tables
+                RPTSMPORDER.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+
             ElseIf FRMSTRING = "SOSTATUS" Then
                 crTables = RPTSOSTATUS.Database.Tables
             ElseIf FRMSTRING = "SOSTATUSDTLS" Then
@@ -106,7 +107,7 @@ Public Class SampleOrderDesign
                 If BLANKPAPER = True Then RPTSMPPRICELIST.DataDefinition.FormulaFields("WHITELABEL").Text = 1
             ElseIf FRMSTRING = "SAMPLEORDER" Then
                 crpo.ReportSource = RPTSMPORDER
-                OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+                RPTSMPORDER.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
             ElseIf FRMSTRING = "SOSTATUS" Then
                 crpo.ReportSource = RPTSOSTATUS
             ElseIf FRMSTRING = "SOSTATUSDTLS" Then
