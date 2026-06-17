@@ -7,6 +7,7 @@ Imports System.IO
 
 Public Class SampleOrderDesign
 
+
     Public FORMULA As String
     Public PENDINGSO As String
 
@@ -77,8 +78,13 @@ Public Class SampleOrderDesign
                 crTables = RPTSMP.Database.Tables
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                 crTables = RPTSMPPRICELIST.Database.Tables
+                RPTSMPPRICELIST.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+
             ElseIf FRMSTRING = "SAMPLEORDER" Then
+
                 crTables = RPTSMPORDER.Database.Tables
+                RPTSMPORDER.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+
             ElseIf FRMSTRING = "SOSTATUS" Then
                 crTables = RPTSOSTATUS.Database.Tables
             ElseIf FRMSTRING = "SOSTATUSDTLS" Then
@@ -95,13 +101,17 @@ Public Class SampleOrderDesign
 
             crpo.SelectionFormula = FORMULA
 
+
             If FRMSTRING = "SAMPLENOTE" Then
                 crpo.ReportSource = RPTSMP
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                 crpo.ReportSource = RPTSMPPRICELIST
+                RPTSMPPRICELIST.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+
                 If BLANKPAPER = True Then RPTSMPPRICELIST.DataDefinition.FormulaFields("WHITELABEL").Text = 1
             ElseIf FRMSTRING = "SAMPLEORDER" Then
                 crpo.ReportSource = RPTSMPORDER
+                RPTSMPORDER.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
             ElseIf FRMSTRING = "SOSTATUS" Then
                 crpo.ReportSource = RPTSOSTATUS
             ElseIf FRMSTRING = "SOSTATUSDTLS" Then
@@ -280,6 +290,8 @@ Public Class SampleOrderDesign
             Next
 
             OBJ.RecordSelectionFormula = FORMULA
+            crpo.ReportSource = OBJ
+
 
             If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
                 OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
