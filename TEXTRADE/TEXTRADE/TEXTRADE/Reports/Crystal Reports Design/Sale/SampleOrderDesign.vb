@@ -6,6 +6,8 @@ Imports System.Windows.Forms
 Imports System.IO
 
 Public Class SampleOrderDesign
+    Dim OBJ As New Object
+
 
     Public FORMULA As String
     Public PENDINGSO As String
@@ -78,6 +80,7 @@ Public Class SampleOrderDesign
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
                 crTables = RPTSMPPRICELIST.Database.Tables
             ElseIf FRMSTRING = "SAMPLEORDER" Then
+
                 crTables = RPTSMPORDER.Database.Tables
             ElseIf FRMSTRING = "SOSTATUS" Then
                 crTables = RPTSOSTATUS.Database.Tables
@@ -95,6 +98,7 @@ Public Class SampleOrderDesign
 
             crpo.SelectionFormula = FORMULA
 
+
             If FRMSTRING = "SAMPLENOTE" Then
                 crpo.ReportSource = RPTSMP
             ElseIf FRMSTRING = "SAMPLEPRICELIST" Then
@@ -102,6 +106,7 @@ Public Class SampleOrderDesign
                 If BLANKPAPER = True Then RPTSMPPRICELIST.DataDefinition.FormulaFields("WHITELABEL").Text = 1
             ElseIf FRMSTRING = "SAMPLEORDER" Then
                 crpo.ReportSource = RPTSMPORDER
+                OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
             ElseIf FRMSTRING = "SOSTATUS" Then
                 crpo.ReportSource = RPTSOSTATUS
             ElseIf FRMSTRING = "SOSTATUSDTLS" Then
@@ -280,6 +285,8 @@ Public Class SampleOrderDesign
             Next
 
             OBJ.RecordSelectionFormula = FORMULA
+            crpo.ReportSource = OBJ
+
 
             If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
                 OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
