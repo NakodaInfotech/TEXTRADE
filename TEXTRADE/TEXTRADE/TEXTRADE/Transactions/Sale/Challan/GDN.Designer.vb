@@ -33,6 +33,10 @@ Partial Class GDN
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -45,10 +49,6 @@ Partial Class GDN
         Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CHKTHIRDPARTY = New System.Windows.Forms.CheckBox()
         Me.LBLDYEINGRECNO = New System.Windows.Forms.Label()
@@ -190,10 +190,19 @@ Partial Class GDN
         Me.GSOSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GPARTYPONO = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GWT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GRACK = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LBLTOTALMTRS = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.LBLTOTALPCS = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.CMBLOCALTRANS = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.GRIDSUMM = New System.Windows.Forms.DataGridView()
+        Me.SITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SDESIGNNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CHKCHANGEADD = New System.Windows.Forms.CheckBox()
         Me.TXTDELIVERYADDRESS = New System.Windows.Forms.TextBox()
         Me.TXTDISPATCHADDRESS = New System.Windows.Forms.TextBox()
@@ -230,12 +239,6 @@ Partial Class GDN
         Me.SSTOREUNIT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.GRIDSUMM = New System.Windows.Forms.DataGridView()
-        Me.SITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SDESIGNNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SPCS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.SALELOCK, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBlock, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -245,12 +248,12 @@ Partial Class GDN
         Me.TabPage1.SuspendLayout()
         CType(Me.GRIDGDN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
+        CType(Me.GRIDSUMM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.GRIDORDER, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
         CType(Me.GRIDCONSUME, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GRIDSUMM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
@@ -1724,7 +1727,7 @@ Partial Class GDN
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         Me.GRIDGDN.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDGDN.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDGDN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GPRINTDESC, Me.GDESIGN, Me.GSHADE, Me.GBALENO, Me.GGRIDLOTNO, Me.Gpcs, Me.GUNIT, Me.GCUT, Me.Gmtrs, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GBARCODE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GSALEDONE, Me.GSONO, Me.GSOSRNO, Me.GPARTYPONO, Me.GWT})
+        Me.GRIDGDN.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GQUALITY, Me.GPRINTDESC, Me.GDESIGN, Me.GSHADE, Me.GBALENO, Me.GGRIDLOTNO, Me.Gpcs, Me.GUNIT, Me.GCUT, Me.Gmtrs, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GBARCODE, Me.GFROMNO, Me.GFROMSRNO, Me.GFROMTYPE, Me.GSALEDONE, Me.GSONO, Me.GSOSRNO, Me.GPARTYPONO, Me.GWT, Me.GRACK})
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1747,7 +1750,7 @@ Partial Class GDN
         Me.GRIDGDN.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.GRIDGDN.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDGDN.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.GRIDGDN.Size = New System.Drawing.Size(1745, 258)
+        Me.GRIDGDN.Size = New System.Drawing.Size(1816, 258)
         Me.GRIDGDN.TabIndex = 0
         Me.GRIDGDN.TabStop = False
         '
@@ -1965,6 +1968,14 @@ Partial Class GDN
         Me.GWT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.GWT.Width = 80
         '
+        'GRACK
+        '
+        Me.GRACK.HeaderText = "Rack"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.ReadOnly = True
+        Me.GRACK.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRACK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
         'LBLTOTALMTRS
         '
         Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
@@ -2004,6 +2015,8 @@ Partial Class GDN
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(247, Byte), Integer))
+        Me.TabPage2.Controls.Add(Me.CMBLOCALTRANS)
+        Me.TabPage2.Controls.Add(Me.Label1)
         Me.TabPage2.Controls.Add(Me.GRIDSUMM)
         Me.TabPage2.Controls.Add(Me.CHKCHANGEADD)
         Me.TabPage2.Controls.Add(Me.TXTDELIVERYADDRESS)
@@ -2021,6 +2034,119 @@ Partial Class GDN
         Me.TabPage2.Size = New System.Drawing.Size(1200, 318)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "2. Transport Details"
+        '
+        'CMBLOCALTRANS
+        '
+        Me.CMBLOCALTRANS.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBLOCALTRANS.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBLOCALTRANS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBLOCALTRANS.FormattingEnabled = True
+        Me.CMBLOCALTRANS.Location = New System.Drawing.Point(96, 11)
+        Me.CMBLOCALTRANS.MaxDropDownItems = 14
+        Me.CMBLOCALTRANS.Name = "CMBLOCALTRANS"
+        Me.CMBLOCALTRANS.Size = New System.Drawing.Size(274, 22)
+        Me.CMBLOCALTRANS.TabIndex = 905
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(19, 15)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(74, 14)
+        Me.Label1.TabIndex = 906
+        Me.Label1.Text = "Local Tempo"
+        '
+        'GRIDSUMM
+        '
+        Me.GRIDSUMM.AllowUserToAddRows = False
+        Me.GRIDSUMM.AllowUserToDeleteRows = False
+        Me.GRIDSUMM.AllowUserToResizeColumns = False
+        Me.GRIDSUMM.AllowUserToResizeRows = False
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDSUMM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
+        Me.GRIDSUMM.BackgroundColor = System.Drawing.Color.White
+        Me.GRIDSUMM.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GRIDSUMM.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.GRIDSUMM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
+        Me.GRIDSUMM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.GRIDSUMM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SITEMNAME, Me.SDESIGNNO, Me.SSHADE, Me.SPCS, Me.SMTRS})
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSUMM.DefaultCellStyle = DataGridViewCellStyle12
+        Me.GRIDSUMM.GridColor = System.Drawing.SystemColors.Control
+        Me.GRIDSUMM.Location = New System.Drawing.Point(413, 19)
+        Me.GRIDSUMM.MultiSelect = False
+        Me.GRIDSUMM.Name = "GRIDSUMM"
+        Me.GRIDSUMM.RowHeadersVisible = False
+        Me.GRIDSUMM.RowHeadersWidth = 30
+        Me.GRIDSUMM.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Black
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White
+        Me.GRIDSUMM.RowsDefaultCellStyle = DataGridViewCellStyle13
+        Me.GRIDSUMM.RowTemplate.Height = 20
+        Me.GRIDSUMM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSUMM.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.GRIDSUMM.Size = New System.Drawing.Size(711, 281)
+        Me.GRIDSUMM.TabIndex = 904
+        Me.GRIDSUMM.TabStop = False
+        '
+        'SITEMNAME
+        '
+        Me.SITEMNAME.HeaderText = "Item Name"
+        Me.SITEMNAME.Name = "SITEMNAME"
+        Me.SITEMNAME.ReadOnly = True
+        Me.SITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SITEMNAME.Width = 200
+        '
+        'SDESIGNNO
+        '
+        Me.SDESIGNNO.HeaderText = "Design No"
+        Me.SDESIGNNO.Name = "SDESIGNNO"
+        Me.SDESIGNNO.ReadOnly = True
+        Me.SDESIGNNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SDESIGNNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SDESIGNNO.Width = 200
+        '
+        'SSHADE
+        '
+        Me.SSHADE.HeaderText = "Color"
+        Me.SSHADE.Name = "SSHADE"
+        Me.SSHADE.ReadOnly = True
+        Me.SSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SSHADE.Width = 120
+        '
+        'SPCS
+        '
+        Me.SPCS.HeaderText = "Pcs"
+        Me.SPCS.Name = "SPCS"
+        Me.SPCS.ReadOnly = True
+        Me.SPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SPCS.Width = 80
+        '
+        'SMTRS
+        '
+        Me.SMTRS.HeaderText = "Mtrs"
+        Me.SMTRS.Name = "SMTRS"
+        Me.SMTRS.ReadOnly = True
+        Me.SMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.SMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.SMTRS.Width = 80
         '
         'CHKCHANGEADD
         '
@@ -2462,96 +2588,6 @@ Partial Class GDN
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'GRIDSUMM
-        '
-        Me.GRIDSUMM.AllowUserToAddRows = False
-        Me.GRIDSUMM.AllowUserToDeleteRows = False
-        Me.GRIDSUMM.AllowUserToResizeColumns = False
-        Me.GRIDSUMM.AllowUserToResizeRows = False
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(223, Byte), Integer), CType(CType(248, Byte), Integer))
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDSUMM.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
-        Me.GRIDSUMM.BackgroundColor = System.Drawing.Color.White
-        Me.GRIDSUMM.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.GRIDSUMM.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.GRIDSUMM.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
-        Me.GRIDSUMM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GRIDSUMM.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SITEMNAME, Me.SDESIGNNO, Me.SSHADE, Me.SPCS, Me.SMTRS})
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSUMM.DefaultCellStyle = DataGridViewCellStyle12
-        Me.GRIDSUMM.GridColor = System.Drawing.SystemColors.Control
-        Me.GRIDSUMM.Location = New System.Drawing.Point(413, 19)
-        Me.GRIDSUMM.MultiSelect = False
-        Me.GRIDSUMM.Name = "GRIDSUMM"
-        Me.GRIDSUMM.RowHeadersVisible = False
-        Me.GRIDSUMM.RowHeadersWidth = 30
-        Me.GRIDSUMM.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Black
-        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White
-        Me.GRIDSUMM.RowsDefaultCellStyle = DataGridViewCellStyle13
-        Me.GRIDSUMM.RowTemplate.Height = 20
-        Me.GRIDSUMM.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSUMM.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.GRIDSUMM.Size = New System.Drawing.Size(711, 281)
-        Me.GRIDSUMM.TabIndex = 904
-        Me.GRIDSUMM.TabStop = False
-        '
-        'SITEMNAME
-        '
-        Me.SITEMNAME.HeaderText = "Item Name"
-        Me.SITEMNAME.Name = "SITEMNAME"
-        Me.SITEMNAME.ReadOnly = True
-        Me.SITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SITEMNAME.Width = 200
-        '
-        'SDESIGNNO
-        '
-        Me.SDESIGNNO.HeaderText = "Design No"
-        Me.SDESIGNNO.Name = "SDESIGNNO"
-        Me.SDESIGNNO.ReadOnly = True
-        Me.SDESIGNNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SDESIGNNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SDESIGNNO.Width = 200
-        '
-        'SSHADE
-        '
-        Me.SSHADE.HeaderText = "Color"
-        Me.SSHADE.Name = "SSHADE"
-        Me.SSHADE.ReadOnly = True
-        Me.SSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SSHADE.Width = 120
-        '
-        'SPCS
-        '
-        Me.SPCS.HeaderText = "Pcs"
-        Me.SPCS.Name = "SPCS"
-        Me.SPCS.ReadOnly = True
-        Me.SPCS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SPCS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SPCS.Width = 80
-        '
-        'SMTRS
-        '
-        Me.SMTRS.HeaderText = "Mtrs"
-        Me.SMTRS.Name = "SMTRS"
-        Me.SMTRS.ReadOnly = True
-        Me.SMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.SMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.SMTRS.Width = 80
-        '
         'GDN
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2576,13 +2612,13 @@ Partial Class GDN
         CType(Me.GRIDGDN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        CType(Me.GRIDSUMM, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         CType(Me.GRIDORDER, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
         CType(Me.GRIDCONSUME, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GRIDSUMM, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2742,6 +2778,15 @@ Partial Class GDN
     Friend WithEvents CHKCHANGEADD As CheckBox
     Friend WithEvents TXTDELIVERYADDRESS As TextBox
     Friend WithEvents CHKTHIRDPARTY As CheckBox
+    Friend WithEvents LBLTOTALWT As Label
+    Friend WithEvents GRIDSUMM As DataGridView
+    Friend WithEvents SITEMNAME As DataGridViewTextBoxColumn
+    Friend WithEvents SDESIGNNO As DataGridViewTextBoxColumn
+    Friend WithEvents SSHADE As DataGridViewTextBoxColumn
+    Friend WithEvents SPCS As DataGridViewTextBoxColumn
+    Friend WithEvents SMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents CMBLOCALTRANS As ComboBox
+    Friend WithEvents Label1 As Label
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GPIECETYPE As DataGridViewTextBoxColumn
     Friend WithEvents GITEMNAME As DataGridViewTextBoxColumn
@@ -2767,11 +2812,5 @@ Partial Class GDN
     Friend WithEvents GSOSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GPARTYPONO As DataGridViewTextBoxColumn
     Friend WithEvents GWT As DataGridViewTextBoxColumn
-    Friend WithEvents LBLTOTALWT As Label
-    Friend WithEvents GRIDSUMM As DataGridView
-    Friend WithEvents SITEMNAME As DataGridViewTextBoxColumn
-    Friend WithEvents SDESIGNNO As DataGridViewTextBoxColumn
-    Friend WithEvents SSHADE As DataGridViewTextBoxColumn
-    Friend WithEvents SPCS As DataGridViewTextBoxColumn
-    Friend WithEvents SMTRS As DataGridViewTextBoxColumn
+    Friend WithEvents GRACK As DataGridViewTextBoxColumn
 End Class

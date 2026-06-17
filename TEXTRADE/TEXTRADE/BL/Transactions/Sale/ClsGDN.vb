@@ -155,6 +155,8 @@ Public Class ClsGDN
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -207,6 +209,8 @@ Public Class ClsGDN
                 .Add(New SqlClient.SqlParameter("@DELIVERYADD", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LOCALTRANS", alParaval(I)))
                 I = I + 1
 
 
@@ -358,6 +362,8 @@ Public Class ClsGDN
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@WT", alParaval(I)))
                 I = I + 1
+                .Add(New SqlClient.SqlParameter("@RACK", alParaval(I)))
+                I = I + 1
 
 
                 'grid parameters
@@ -410,6 +416,8 @@ Public Class ClsGDN
                 .Add(New SqlClient.SqlParameter("@DELIVERYADD", alParaval(I)))
                 I = I + 1
                 .Add(New SqlClient.SqlParameter("@TOTALWT", alParaval(I)))
+                I = I + 1
+                .Add(New SqlClient.SqlParameter("@LOCALTRANS", alParaval(I)))
                 I = I + 1
 
                 .Add(New SqlClient.SqlParameter("@GDNNO", alParaval(I)))
