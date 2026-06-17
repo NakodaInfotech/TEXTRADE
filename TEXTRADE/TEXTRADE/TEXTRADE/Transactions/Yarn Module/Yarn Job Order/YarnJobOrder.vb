@@ -593,13 +593,7 @@ LINE1:
     Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
         Try
             If EDIT = True Then PRINTREPORT()
-
-            If ClientName = "MMC" Then
-                PRINTBARCODE()
-            End If
-
-
-
+            If ClientName = "MMC" Then PRINTBARCODE()
         Catch ex As Exception
             Throw ex
         End Try
@@ -636,12 +630,13 @@ LINE1:
 
                 'IF barcode is used the BARCODE printING WILL BE BLOCKED
                 'If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
-
-                BARCODEPRINTING(ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, ROW.Cells(GREFNO.Index).Value, ROW.Cells(GPARENTITEM.Index).Value)
+                For I As Integer = 1 To Val(txtcopies.Text.Trim)
+                    BARCODEPRINTING(ROW.Cells(GITEMNAME.Index).Value, ROW.Cells(GDESIGN.Index).Value, ROW.Cells(GSHADE.Index).Value, ROW.Cells(GREFNO.Index).Value, ROW.Cells(GPARENTITEM.Index).Value)
+                Next
 
 NEXTLINE:
 
-            Next
+                Next
 
         Catch ex As Exception
             Throw ex
@@ -1192,7 +1187,7 @@ PRINT 1,1")
                         Dim DT1 As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_PICKS,0) AS PICKS ", "", " ITEMMASTER", " AND ITEMMASTER.ITEM_NAME = '" & DTROW("ITEMNAME") & "' AND ITEMMASTER.item_yearid = " & YearId & "")
                         'If DT1.Rows.Count > 0 Then LBLRATE.Text = Format(Val(DT1.Rows(0).Item("LASTRATE")), "0.00")
 
-                        GRIDBEAM.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), "", DTROW("GRIDPARTYPONO"), 0, Format(Val(DT1.Rows(0).Item("PICKS")), "0.00"), 0, 0, Format(Val(DTROW("MTRS")), "0.00"), "")
+                        GRIDBEAM.Rows.Add(0, DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), "", DTROW("SONO"), 0, Format(Val(DT1.Rows(0).Item("PICKS")), "0.00"), 0, 0, Format(Val(DTROW("MTRS")), "0.00"), "")
 
 NEXTLINE:
                     Next

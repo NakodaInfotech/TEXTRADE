@@ -46,6 +46,7 @@ Partial Class YarnStockFilter
         Me.CMBGODOWN = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.RBYARNCATEGORYWISESTOCK = New System.Windows.Forms.RadioButton()
         Me.RBYARNBEAMSTOCK = New System.Windows.Forms.RadioButton()
         Me.RDBFINISHSUMM = New System.Windows.Forms.RadioButton()
         Me.RDBFINISHDETAIL = New System.Windows.Forms.RadioButton()
@@ -60,7 +61,7 @@ Partial Class YarnStockFilter
         Me.RBDESIGNSUMM = New System.Windows.Forms.RadioButton()
         Me.cmdshow = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.RBYARNCATEGORYWISESTOCK = New System.Windows.Forms.RadioButton()
+        Me.RBYARNQUALITYSHADEDETAILS = New System.Windows.Forms.RadioButton()
         Me.BlendPanel2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -92,7 +93,7 @@ Partial Class YarnStockFilter
         Me.BlendPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel2.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel2.Name = "BlendPanel2"
-        Me.BlendPanel2.Size = New System.Drawing.Size(441, 516)
+        Me.BlendPanel2.Size = New System.Drawing.Size(441, 606)
         Me.BlendPanel2.TabIndex = 0
         '
         'CMBCATEGORY
@@ -173,7 +174,7 @@ Partial Class YarnStockFilter
         Me.GroupBox1.Controls.Add(Me.dtfrom)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(78, 411)
+        Me.GroupBox1.Location = New System.Drawing.Point(78, 500)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(280, 53)
         Me.GroupBox1.TabIndex = 8
@@ -357,6 +358,7 @@ Partial Class YarnStockFilter
         'GroupBox3
         '
         Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.RBYARNQUALITYSHADEDETAILS)
         Me.GroupBox3.Controls.Add(Me.RBYARNCATEGORYWISESTOCK)
         Me.GroupBox3.Controls.Add(Me.RBYARNBEAMSTOCK)
         Me.GroupBox3.Controls.Add(Me.RDBFINISHSUMM)
@@ -373,9 +375,19 @@ Partial Class YarnStockFilter
         Me.GroupBox3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(29, 215)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(382, 188)
+        Me.GroupBox3.Size = New System.Drawing.Size(382, 277)
         Me.GroupBox3.TabIndex = 7
         Me.GroupBox3.TabStop = False
+        '
+        'RBYARNCATEGORYWISESTOCK
+        '
+        Me.RBYARNCATEGORYWISESTOCK.AutoSize = True
+        Me.RBYARNCATEGORYWISESTOCK.Location = New System.Drawing.Point(20, 164)
+        Me.RBYARNCATEGORYWISESTOCK.Name = "RBYARNCATEGORYWISESTOCK"
+        Me.RBYARNCATEGORYWISESTOCK.Size = New System.Drawing.Size(159, 18)
+        Me.RBYARNCATEGORYWISESTOCK.TabIndex = 12
+        Me.RBYARNCATEGORYWISESTOCK.Text = "Yarn Category Wise Stock"
+        Me.RBYARNCATEGORYWISESTOCK.UseVisualStyleBackColor = True
         '
         'RBYARNBEAMSTOCK
         '
@@ -506,7 +518,7 @@ Partial Class YarnStockFilter
         Me.cmdshow.FlatAppearance.BorderSize = 0
         Me.cmdshow.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdshow.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdshow.Location = New System.Drawing.Point(127, 477)
+        Me.cmdshow.Location = New System.Drawing.Point(127, 566)
         Me.cmdshow.Name = "cmdshow"
         Me.cmdshow.Size = New System.Drawing.Size(88, 28)
         Me.cmdshow.TabIndex = 9
@@ -520,27 +532,27 @@ Partial Class YarnStockFilter
         Me.cmdexit.FlatAppearance.BorderSize = 0
         Me.cmdexit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdexit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.cmdexit.Location = New System.Drawing.Point(221, 477)
+        Me.cmdexit.Location = New System.Drawing.Point(221, 566)
         Me.cmdexit.Name = "cmdexit"
         Me.cmdexit.Size = New System.Drawing.Size(88, 28)
         Me.cmdexit.TabIndex = 10
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'RBYARNCATEGORYWISESTOCK
+        'RBYARNQUALITYSHADEDETAILS
         '
-        Me.RBYARNCATEGORYWISESTOCK.AutoSize = True
-        Me.RBYARNCATEGORYWISESTOCK.Location = New System.Drawing.Point(20, 164)
-        Me.RBYARNCATEGORYWISESTOCK.Name = "RBYARNCATEGORYWISESTOCK"
-        Me.RBYARNCATEGORYWISESTOCK.Size = New System.Drawing.Size(159, 18)
-        Me.RBYARNCATEGORYWISESTOCK.TabIndex = 12
-        Me.RBYARNCATEGORYWISESTOCK.Text = "Yarn Category Wise Stock"
-        Me.RBYARNCATEGORYWISESTOCK.UseVisualStyleBackColor = True
+        Me.RBYARNQUALITYSHADEDETAILS.AutoSize = True
+        Me.RBYARNQUALITYSHADEDETAILS.Location = New System.Drawing.Point(20, 188)
+        Me.RBYARNQUALITYSHADEDETAILS.Name = "RBYARNQUALITYSHADEDETAILS"
+        Me.RBYARNQUALITYSHADEDETAILS.Size = New System.Drawing.Size(233, 18)
+        Me.RBYARNQUALITYSHADEDETAILS.TabIndex = 13
+        Me.RBYARNQUALITYSHADEDETAILS.Text = "Yarn Quality - Shade Wise Detail Stock"
+        Me.RBYARNQUALITYSHADEDETAILS.UseVisualStyleBackColor = True
         '
         'YarnStockFilter
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(441, 516)
+        Me.ClientSize = New System.Drawing.Size(441, 606)
         Me.Controls.Add(Me.BlendPanel2)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KeyPreview = True
@@ -596,4 +608,5 @@ Partial Class YarnStockFilter
     Friend WithEvents RDBFINISHDETAIL As RadioButton
     Friend WithEvents RBYARNBEAMSTOCK As RadioButton
     Friend WithEvents RBYARNCATEGORYWISESTOCK As RadioButton
+    Friend WithEvents RBYARNQUALITYSHADEDETAILS As RadioButton
 End Class

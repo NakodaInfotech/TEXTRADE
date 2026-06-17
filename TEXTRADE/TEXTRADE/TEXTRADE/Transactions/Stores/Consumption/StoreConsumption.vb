@@ -291,6 +291,42 @@ Public Class StoreConsumption
             bln = False
         End If
 
+
+
+        If GRIDCONSUME.RowCount > 0 And EDIT = False Then
+            For Each ROW As DataGridViewRow In GRIDCONSUME.Rows
+                Dim OBJCMN As New ClsCommonMaster
+                Dim DT As DataTable = OBJCMN.search("SUM(QTY)", "", "STORESTOCKREGISTER", "AND GODOWN='" & CMBGODOWN.Text.Trim & "' AND ITEMNAME = '" & ROW.Cells(GITEMNAME.Index).Value & "'  AND YEARID = " & YearId)
+                If DT.Rows.Count <= 0 Then GoTo LINE1
+                If Val(ROW.Cells(GQTY.Index).Value) > Format(Val(DT.Rows(0).Item(0)), "0.000") Then
+LINE1:
+                    EP.SetError(LBLTOTALQTY, "Stock Not Present ! ")
+                    GRIDCONSUME.CurrentRow.DefaultCellStyle.BackColor = Drawing.Color.Yellow
+                    bln = False
+                End If
+            Next
+        End If
+
+        If GRIDCONSUME.RowCount > 0 And EDIT = True Then
+            For Each ROW As DataGridViewRow In GRIDCONSUME.Rows
+                Dim BALQTY As Double = 0
+                Dim objclscommon As New ClsCommonMaster
+                Dim dt As DataTable = objclscommon.search("SUM(QTY)- SUM(ISSQTY) AS QTY", "", "STORESTOCKREGISTER", "AND GODOWN='" & CMBGODOWN.Text.Trim & "' AND ITEMNAME = '" & ROW.Cells(GITEMNAME.Index).Value & "' AND YEARID = " & YearId)
+                If dt.Rows.Count > 0 Then BALQTY = Format(Val(dt.Rows(0).Item(0)), "0.000")
+
+                dt = objclscommon.search(" ISNULL(CONSUMPTION_DESC.CONSUME_QTY, 0) AS QTY ", "", " CONSUMPTION_DESC INNER JOIN STOREITEMMASTER ON CONSUMPTION_DESC.CONSUME_ITEMID = STOREITEMMASTER.STOREITEM_ID AND CONSUMPTION_DESC.CONSUME_yearid = STOREITEMMASTER.STOREITEM_YEARID INNER JOIN CONSUMPTION ON CONSUMPTION_DESC.CONSUME_no = CONSUMPTION.CONSUME_NO AND CONSUMPTION_DESC.CONSUME_yearid = CONSUMPTION.CONSUME_yearid", " AND CONSUMPTION_DESC.CONSUME_NO = " & TEMPCONSUMENO & " and STOREITEMMASTER.STOREITEM_NAME = '" & ROW.Cells(GITEMNAME.Index).Value & "'  AND CONSUMPTION_DESC.CONSUME_Yearid = " & YearId)
+                If dt.Rows.Count > 0 Then BALQTY = BALQTY + Val(dt.Rows(0).Item(0))
+
+                If Val(ROW.Cells(GQTY.Index).Value) > BALQTY Then
+                    EP.SetError(LBLTOTALQTY, "Stock Not Present! " & BALQTY)
+                    GRIDCONSUME.CurrentRow.DefaultCellStyle.BackColor = Drawing.Color.Yellow
+                    bln = False
+                End If
+                BALQTY = 0
+            Next
+        End If
+
+
         Return bln
     End Function
 
@@ -634,6 +670,34 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDSELECTSTOCK_Click(sender As Object, e As EventArgs) Handles CMDSELECTSTOCK.Click
+        Try
+            If CMBGODOWN.Text.Trim = "" And GRIDCONSUME.RowCount = 0 Then
+                MsgBox("Please Select Godown First", MsgBoxStyle.Critical)
+                CMBGODOWN.Focus()
+                Exit Sub
+            End If
+
+            Dim DTTABLE As New DataTable
+            Dim OBJSELECTGDN As New SelectStoreStock
+            OBJSELECTGDN.GODOWN = CMBGODOWN.Text.Trim
+            OBJSELECTGDN.ShowDialog()
+            DTTABLE = OBJSELECTGDN.DT
+
+            If DTTABLE.Rows.Count > 0 Then
+                For Each dr As DataRow In DTTABLE.Rows
+                    GRIDCONSUME.Rows.Add(0, dr("ITEMNAME"), "", Format(Val(dr("QTY")), "0.00"), dr("UNIT"))
+                Next
+                GRIDCONSUME.FirstDisplayedScrollingRowIndex = GRIDCONSUME.RowCount - 1
+                getsrno(GRIDCONSUME)
+
+                total()
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
     Private Sub CMBUNIT_Enter(sender As Object, e As EventArgs) Handles CMBUNIT.Enter
         Try
             If CMBUNIT.Text.Trim = "" Then fillunit(CMBUNIT)
@@ -663,5 +727,30 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub GRIDCONSUME_CellValidating(sender As Object, e As DataGridViewCellValidatingEventArgs) Handles GRIDCONSUME.CellValidating
+        Dim colNum As Integer = GRIDCONSUME.Columns(e.ColumnIndex).Index
+        If String.IsNullOrEmpty(e.FormattedValue.ToString) Then Return
+        Select Case colNum
+
+            Case GQTY.Index
+                Dim dDebit As Decimal
+                Dim bValid As Boolean = Decimal.TryParse(e.FormattedValue.ToString, dDebit)
+
+                If bValid Then
+                    If GRIDCONSUME.CurrentCell.Value = Nothing Then GRIDCONSUME.CurrentCell.Value = "0.00"
+                    GRIDCONSUME.CurrentCell.Value = Convert.ToDecimal(GRIDCONSUME.Item(colNum, e.RowIndex).Value)
+                    total()
+                Else
+                    MessageBox.Show("Invalid Number Entered")
+                    e.Cancel = True
+                    'Exit Sub
+                End If
+
+
+        End Select
+
+
     End Sub
 End Class

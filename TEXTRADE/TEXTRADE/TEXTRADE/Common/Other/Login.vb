@@ -341,6 +341,11 @@ line1:
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000', VERSION_PCNAME='" & pcName & "'", "", "")
                         GoTo LINE1
                     End If
+                ElseIf ClientName = "DIPESH" Then     '(DILIP SILK MILLS) -- BHAVESH BHAI
+                    If Now.Date > DateTime.Parse("25.06.2026 00:00") Then
+                        Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000', VERSION_PCNAME='" & pcName & "'", "", "")
+                        GoTo LINE1
+                    End If
                 ElseIf ClientName = "DRDRAPES" Then
                     ALLOWDIGITALSIGN = True
                     If Now.Date > DateTime.Parse("15.04.2027 00:00") Then
@@ -410,6 +415,7 @@ line1:
                 ElseIf ClientName = "KENCOT" Then
                     HIDESAMPLEMODULE = False
                     HIDEDYEINGPROGRAM = False
+                    HIDECATALOG = False
                     If Now.Date > DateTime.Parse("15.04.2027 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000', VERSION_PCNAME='" & pcName & "'", "", "")
                         GoTo LINE1

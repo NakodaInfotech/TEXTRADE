@@ -1540,7 +1540,7 @@ SET PARTIAL_CUTTER OFF
 <xpml></page></xpml><xpml><page quantity='1' pitch='38.0 mm'></xpml>SET TEAR ON
 CLS
 CODEPAGE 1252
-TEXT 388,284,""0"",180,14,14,"""  & CMPNAME & """
+TEXT 388,284,""0"",180,14,14,""" & CMPNAME & """
 BAR 22,241, 356, 3
 TEXT 380,222,""0"",180,12,12,""D. NO""
 TEXT 280,222,""0"",180,12,12,"":""
@@ -1560,125 +1560,149 @@ PRINT 1,1
 
                             oWrite.WriteLine("<xpml><page quantity='0' pitch='45.0 mm'></xpml>I8,A")
                             oWrite.WriteLine("ZN")
-                                oWrite.WriteLine("q600")
-                                oWrite.WriteLine("O")
-                                oWrite.WriteLine("JF")
-                                oWrite.WriteLine("ZT")
-                                oWrite.WriteLine("Q360,B25")
-                                oWrite.WriteLine("KI80")
-                                oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='45.0 mm'></xpml>N")
-                                oWrite.WriteLine("B590,133,2,1,2,4,82,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
-                                oWrite.WriteLine("A510,42,2,4,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
-                                oWrite.WriteLine("A590,345,2,3,2,2,N,""" & CMBMERCHANT.Text.Trim & """")
-                                oWrite.WriteLine("A590,288,2,2,2,2,N,""D.NO""")
-                                oWrite.WriteLine("A590,237,2,2,2,2,N,""SHADE""")
-                                oWrite.WriteLine("A590,186,2,2,2,2,N,""WIDTH""")
-                                oWrite.WriteLine("A464,288,2,2,2,2,N,"":""")
-                                oWrite.WriteLine("A464,237,2,2,2,2,N,"":""")
-                                oWrite.WriteLine("A464,186,2,2,2,2,N,"":""")
-                                oWrite.WriteLine("A439,288,2,2,2,2,N,""" & CMBDESIGNNO.Text.Trim & """")
-                                oWrite.WriteLine("A439,242,2,3,2,2,N,""" & CMBCOLOR.Text.Trim & """")
+                            oWrite.WriteLine("q600")
+                            oWrite.WriteLine("O")
+                            oWrite.WriteLine("JF")
+                            oWrite.WriteLine("ZT")
+                            oWrite.WriteLine("Q360,B25")
+                            oWrite.WriteLine("KI80")
+                            oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='45.0 mm'></xpml>N")
+                            oWrite.WriteLine("B590,133,2,1,2,4,82,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                            oWrite.WriteLine("A510,42,2,4,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                            oWrite.WriteLine("A590,345,2,3,2,2,N,""" & CMBMERCHANT.Text.Trim & """")
+                            oWrite.WriteLine("A590,288,2,2,2,2,N,""D.NO""")
+                            oWrite.WriteLine("A590,237,2,2,2,2,N,""SHADE""")
+                            oWrite.WriteLine("A590,186,2,2,2,2,N,""WIDTH""")
+                            oWrite.WriteLine("A464,288,2,2,2,2,N,"":""")
+                            oWrite.WriteLine("A464,237,2,2,2,2,N,"":""")
+                            oWrite.WriteLine("A464,186,2,2,2,2,N,"":""")
+                            oWrite.WriteLine("A439,288,2,2,2,2,N,""" & CMBDESIGNNO.Text.Trim & """")
+                            oWrite.WriteLine("A439,242,2,3,2,2,N,""" & CMBCOLOR.Text.Trim & """")
 
-                                oWrite.WriteLine("A439,186,2,2,2,2,N,""" & TEMPWIDTH & """")
-                                oWrite.WriteLine("P1")
-                                oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
+                            oWrite.WriteLine("A439,186,2,2,2,2,N,""" & TEMPWIDTH & """")
+                            oWrite.WriteLine("P1")
+                            oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
+                            oWrite.Dispose()
+
+
+
+                        ElseIf ClientName = "SPCORP" Then
+
+                            oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>I8,A")
+                            oWrite.WriteLine("ZN")
+                            oWrite.WriteLine("q380")
+                            oWrite.WriteLine("O")
+                            oWrite.WriteLine("JF")
+                            oWrite.WriteLine("ZT")
+                            oWrite.WriteLine("Q400,25")
+                            oWrite.WriteLine("KI80")
+                            oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>N")
+                            oWrite.WriteLine("A362,287,2,4,1,1,N,""" & CMBMERCHANT.Text.Trim & """")
+                            oWrite.WriteLine("LO12,243,355,3")
+                            oWrite.WriteLine("A362,222,2,1,2,2,N,""" & CMBDESIGNNO.Text.Trim & """")
+                            oWrite.WriteLine("B367,119,2,1,2,4,71,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                            oWrite.WriteLine("A293,42,2,4,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
+                            oWrite.WriteLine("A362,171,2,4,1,1,N,""WIDTH""")
+                            oWrite.WriteLine("A266,171,2,4,1,1,N,"":""")
+
+                            oWrite.WriteLine("A241,171,2,4,1,1,N,""" & TEMPWIDTH & """")
+                            'oWrite.WriteLine("A279,385,2,5,1,1,N,""SEHCO""")
+                            oWrite.WriteLine("LO12,297,355,3")
+                            oWrite.WriteLine("P1")
+                            oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
+                            oWrite.Dispose()
+
+                        ElseIf ClientName = "SUPRIYA" Then
+
+                            'FOR SAMELE STICKER
+                            If TEMPHEADER = "1" Then
+                                oWrite.WriteLine("G0")
+                                oWrite.WriteLine("n")
+                                oWrite.WriteLine("M0500")
+                                oWrite.WriteLine("O0214")
+                                oWrite.WriteLine("V0")
+                                oWrite.WriteLine("t1")
+                                oWrite.WriteLine("Kf0070")
+                                oWrite.WriteLine("L")
+                                oWrite.WriteLine("D11")
+                                oWrite.WriteLine("A2")
+                                oWrite.WriteLine("1W1D66000003301172,LA," & TXTBARCODE.Text.Trim)
+                                oWrite.WriteLine("ySPM")
+                                oWrite.WriteLine("1911A0600200122" & TXTBARCODE.Text.Trim)
+                                oWrite.WriteLine("1911C0801280010" & CmpName)
+                                oWrite.WriteLine("1911A1000990010" & CMBMERCHANT.Text.Trim)
+                                oWrite.WriteLine("1911A0800820010D.NO")
+                                oWrite.WriteLine("1911A0800820048:")
+                                oWrite.WriteLine("1911A1000800056" & CMBDESIGNNO.Text.Trim)
+                                oWrite.WriteLine("1911A0800640010S.NO")
+                                oWrite.WriteLine("1911A0800640048:")
+                                oWrite.WriteLine("1911A0800640056" & CMBCOLOR.Text.Trim)
+                                oWrite.WriteLine("1911A0800450010WIDTH")
+                                oWrite.WriteLine("1911A0800450048:")
+
+
+                                oWrite.WriteLine("1911A0800450056" & TEMPWIDTH)
+                                oWrite.WriteLine("1X1100001240006L176001")
+                                oWrite.WriteLine("1911A0800280010" & TEMPREMARKS)
+                                If CmpName = "SUPRIYA SILK INDUSTRIES" Then oWrite.WriteLine("1911C0800040061DEEP BLUE") Else oWrite.WriteLine("1911C0800040061ROYAL TEX")
+                                oWrite.WriteLine("Q0001")
+                                oWrite.WriteLine("E")
                                 oWrite.Dispose()
 
-
-
-                            ElseIf ClientName = "SPCORP" Then
-
-                                oWrite.WriteLine("<xpml><page quantity='0' pitch='25.0 mm'></xpml>I8,A")
-                                oWrite.WriteLine("ZN")
-                                oWrite.WriteLine("q380")
-                                oWrite.WriteLine("O")
-                                oWrite.WriteLine("JF")
-                                oWrite.WriteLine("ZT")
-                                oWrite.WriteLine("Q400,25")
-                                oWrite.WriteLine("KI80")
-                                oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='25.0 mm'></xpml>N")
-                                oWrite.WriteLine("A362,287,2,4,1,1,N,""" & CMBMERCHANT.Text.Trim & """")
-                                oWrite.WriteLine("LO12,243,355,3")
-                                oWrite.WriteLine("A362,222,2,1,2,2,N,""" & CMBDESIGNNO.Text.Trim & """")
-                                oWrite.WriteLine("B367,119,2,1,2,4,71,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
-                                oWrite.WriteLine("A293,42,2,4,1,1,N,""" & TXTBARCODE.Text.Trim & """") 'BARCODE
-                                oWrite.WriteLine("A362,171,2,4,1,1,N,""WIDTH""")
-                                oWrite.WriteLine("A266,171,2,4,1,1,N,"":""")
-
-                                oWrite.WriteLine("A241,171,2,4,1,1,N,""" & TEMPWIDTH & """")
-                                'oWrite.WriteLine("A279,385,2,5,1,1,N,""SEHCO""")
-                                oWrite.WriteLine("LO12,297,355,3")
-                                oWrite.WriteLine("P1")
+                            Else
+                                'FOR REGISTER STICKER
+                                oWrite.WriteLine("<xpml><page quantity='0' pitch='22.0 mm'></xpml>G0")
+                                oWrite.WriteLine("n")
+                                oWrite.WriteLine("M0500")
+                                oWrite.WriteLine("O0214")
+                                oWrite.WriteLine("V0")
+                                oWrite.WriteLine("t1")
+                                oWrite.WriteLine("Kf0070")
+                                oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='22.0 mm'></xpml>L")
+                                oWrite.WriteLine("D11")
+                                oWrite.WriteLine("A2")
+                                oWrite.WriteLine("1W1D44000002101352,LA," & TXTBARCODE.Text.Trim)
+                                oWrite.WriteLine("ySPM")
+                                oWrite.WriteLine("1911A0600100130" & TXTBARCODE.Text.Trim)
+                                oWrite.WriteLine("1911C1000670006" & CMBMERCHANT.Text.Trim)
+                                oWrite.WriteLine("1911C1000490006D.NO")
+                                oWrite.WriteLine("1911C1000490044:")
+                                oWrite.WriteLine("1911C1000490050" & CMBDESIGNNO.Text.Trim)
+                                oWrite.WriteLine("1911C1000330006S.NO")
+                                oWrite.WriteLine("1911C1000330044:")
+                                oWrite.WriteLine("1911C1000330050" & CMBCOLOR.Text.Trim)
+                                oWrite.WriteLine("Q0001")
+                                oWrite.WriteLine("E")
                                 oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
                                 oWrite.Dispose()
+                            End If
 
-                            ElseIf ClientName = "SUPRIYA" Then
+                        ElseIf ClientName = "SWPL" Then
 
-                                'FOR SAMELE STICKER
-                                If TEMPHEADER = "1" Then
-                                    oWrite.WriteLine("G0")
-                                    oWrite.WriteLine("n")
-                                    oWrite.WriteLine("M0500")
-                                    oWrite.WriteLine("O0214")
-                                    oWrite.WriteLine("V0")
-                                    oWrite.WriteLine("t1")
-                                    oWrite.WriteLine("Kf0070")
-                                    oWrite.WriteLine("L")
-                                    oWrite.WriteLine("D11")
-                                    oWrite.WriteLine("A2")
-                                    oWrite.WriteLine("1W1D66000003301172,LA," & TXTBARCODE.Text.Trim)
-                                    oWrite.WriteLine("ySPM")
-                                    oWrite.WriteLine("1911A0600200122" & TXTBARCODE.Text.Trim)
-                                    oWrite.WriteLine("1911C0801280010" & CmpName)
-                                    oWrite.WriteLine("1911A1000990010" & CMBMERCHANT.Text.Trim)
-                                    oWrite.WriteLine("1911A0800820010D.NO")
-                                    oWrite.WriteLine("1911A0800820048:")
-                                    oWrite.WriteLine("1911A1000800056" & CMBDESIGNNO.Text.Trim)
-                                    oWrite.WriteLine("1911A0800640010S.NO")
-                                    oWrite.WriteLine("1911A0800640048:")
-                                    oWrite.WriteLine("1911A0800640056" & CMBCOLOR.Text.Trim)
-                                    oWrite.WriteLine("1911A0800450010WIDTH")
-                                    oWrite.WriteLine("1911A0800450048:")
+                            oWrite.WriteLine("SIZE 77.5 mm, 40 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 597,299,""ROMAN.TTF"",180,1,16,""" & TEMPCATEGORY & """
+TEXT 597,218,""ROMAN.TTF"",180,1,20,""D.NO""
+TEXT 419,218,""ROMAN.TTF"",180,1,20,"":""
+TEXT 398,218,""ROMAN.TTF"",180,1,20,""" & CMBMERCHANT.Text.Trim & """
+TEXT 597,143,""ROMAN.TTF"",180,1,20,""WIDTH""
+TEXT 419,143,""ROMAN.TTF"",180,1,20,"":""
+TEXT 398,143,""ROMAN.TTF"",180,1,20,""" & TEMPWIDTH & """
+QRCODE 219,212,L,9,A,180,M2,S7,""" & TXTBARCODE.Text.Trim & """
+BAR 20,236, 577, 3
+TEXT 597,67,""ROMAN.TTF"",180,1,20,""" & TXTBARCODE.Text.Trim & """
+PRINT 1,1")
+                            oWrite.Dispose()
 
-
-                                    oWrite.WriteLine("1911A0800450056" & TEMPWIDTH)
-                                    oWrite.WriteLine("1X1100001240006L176001")
-                                    oWrite.WriteLine("1911A0800280010" & TEMPREMARKS)
-                                    If CmpName = "SUPRIYA SILK INDUSTRIES" Then oWrite.WriteLine("1911C0800040061DEEP BLUE") Else oWrite.WriteLine("1911C0800040061ROYAL TEX")
-                                    oWrite.WriteLine("Q0001")
-                                    oWrite.WriteLine("E")
-                                    oWrite.Dispose()
-
-                                Else
-                                    'FOR REGISTER STICKER
-                                    oWrite.WriteLine("<xpml><page quantity='0' pitch='22.0 mm'></xpml>G0")
-                                    oWrite.WriteLine("n")
-                                    oWrite.WriteLine("M0500")
-                                    oWrite.WriteLine("O0214")
-                                    oWrite.WriteLine("V0")
-                                    oWrite.WriteLine("t1")
-                                    oWrite.WriteLine("Kf0070")
-                                    oWrite.WriteLine("<xpml></page></xpml><xpml><page quantity='1' pitch='22.0 mm'></xpml>L")
-                                    oWrite.WriteLine("D11")
-                                    oWrite.WriteLine("A2")
-                                    oWrite.WriteLine("1W1D44000002101352,LA," & TXTBARCODE.Text.Trim)
-                                    oWrite.WriteLine("ySPM")
-                                    oWrite.WriteLine("1911A0600100130" & TXTBARCODE.Text.Trim)
-                                    oWrite.WriteLine("1911C1000670006" & CMBMERCHANT.Text.Trim)
-                                    oWrite.WriteLine("1911C1000490006D.NO")
-                                    oWrite.WriteLine("1911C1000490044:")
-                                    oWrite.WriteLine("1911C1000490050" & CMBDESIGNNO.Text.Trim)
-                                    oWrite.WriteLine("1911C1000330006S.NO")
-                                    oWrite.WriteLine("1911C1000330044:")
-                                    oWrite.WriteLine("1911C1000330050" & CMBCOLOR.Text.Trim)
-                                    oWrite.WriteLine("Q0001")
-                                    oWrite.WriteLine("E")
-                                    oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
-                                    oWrite.Dispose()
-                                End If
-
-
-                            ElseIf ClientName = "YASHVI" Then
+                        ElseIf ClientName = "YASHVI" Then
 
                                 If TEMPHEADER = "1" Then
                                 oWrite.WriteLine("SIZE 72.5 mm, 50 mm")
@@ -3182,6 +3206,32 @@ PRINT 1,1
                                         oWrite.WriteLine("<xpml></page></xpml><xpml><end/></xpml>")
                                         oWrite.Dispose()
                                     End If
+
+
+                                ElseIf ClientName = "SWPL" Then
+
+                                    oWrite.WriteLine("SIZE 77.5 mm, 40 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 597,299,""ROMAN.TTF"",180,1,16,""" & TEMPCATEGORY & """
+TEXT 597,218,""ROMAN.TTF"",180,1,20,""D.NO""
+TEXT 419,218,""ROMAN.TTF"",180,1,20,"":""
+TEXT 398,218,""ROMAN.TTF"",180,1,20,""" & ROW("ITEMNAME") & """
+TEXT 597,143,""ROMAN.TTF"",180,1,20,""WIDTH""
+TEXT 419,143,""ROMAN.TTF"",180,1,20,"":""
+TEXT 398,143,""ROMAN.TTF"",180,1,20,""" & TEMPWIDTH & """
+QRCODE 219,212,L,9,A,180,M2,S7,""" & ROW("BARCODE") & """
+BAR 20,236, 577, 3
+TEXT 597,67,""ROMAN.TTF"",180,1,20,""" & ROW("BARCODE") & """
+PRINT 1,1")
+                                    oWrite.Dispose()
 
                                 ElseIf ClientName = "YASHVI" Then
 

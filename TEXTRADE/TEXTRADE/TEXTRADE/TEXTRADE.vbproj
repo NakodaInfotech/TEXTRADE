@@ -774,6 +774,12 @@
       <DependentUpon>InvoiceReport_LAXMI.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Crystal Reports\Sale Order\SOPcsWiseReport.vb">
+      <DependentUpon>SOPcsWiseReport.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reports\Crystal Reports\Stock\Stock Reports\BarcodeStockSummSmallReport.vb">
       <DependentUpon>BarcodeStockSummSmallReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -818,6 +824,12 @@
     </Compile>
     <Compile Include="Reports\Crystal Reports\Outstanding Reports\OutstandingReportAgent_RunBal_Rec.vb">
       <DependentUpon>OutstandingReportAgent_RunBal_Rec.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Reports\Crystal Reports\Stock\YarnQualityShadeWiseStockDetailReport.vb">
+      <DependentUpon>YarnQualityShadeWiseStockDetailReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -9692,6 +9704,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceReport_LAXMI.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Sale Order\SOPcsWiseReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SOPcsWiseReport.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Stock\Stock Reports\BarcodeStockSummSmallReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>BarcodeStockSummSmallReport.vb</LastGenOutput>
@@ -9723,6 +9739,10 @@
     <EmbeddedResource Include="Reports\Crystal Reports\Outstanding Reports\OutstandingReportAgent_RunBal_Rec.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>OutstandingReportAgent_RunBal_Rec.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Crystal Reports\Stock\YarnQualityShadeWiseStockDetailReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>YarnQualityShadeWiseStockDetailReport.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Crystal Reports\Yarn Job order\YarnJobOrderCommonReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
