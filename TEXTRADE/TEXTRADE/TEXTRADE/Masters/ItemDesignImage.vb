@@ -226,7 +226,7 @@ Public Class ItemDesignImage
                 intResult = OBJIMAGE.UPDATE()
                 'MsgBox("Details Updated")
             End If
-            If ClientName = "AVIS" Then Button1_ClickAsync(sender, e)
+            Button1_ClickAsync(sender, e)
             CLEAR()
             EDIT = False
             CMBITEMNAME.Focus()

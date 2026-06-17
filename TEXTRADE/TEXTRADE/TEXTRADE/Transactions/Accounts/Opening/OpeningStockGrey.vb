@@ -11,6 +11,8 @@ Public Class OpeningStockGrey
     Public EDIT As Boolean
     Public tempMsg As Integer
     Public FRMSTRING As String
+    Dim TEMPBALENO As String = ""   'WE NEED TO THIS VARIALBLE TO VALIDATE BALENO FOR DUPLICATION IN STOCK
+
 
     Sub getsrno(ByRef grid As System.Windows.Forms.DataGridView)
         Try
@@ -1107,28 +1109,61 @@ Public Class OpeningStockGrey
 
     Private Sub TXTBALENO_Validating(sender As Object, e As CancelEventArgs) Handles TXTBALENO.Validating
         Try
-            'CHECK FOR DUPLICATE BALENO
-            If ClientName = "SWPL" And TXTBALENO.Text.Trim <> "" And GRIDDOUBLECLICK = False Then
-                Dim OBJCMN As New ClsCommon
-                Dim DT As DataTable = OBJCMN.SEARCH("BARCODE", "", "BARCODESTOCK", " AND BALENO = '" & TXTBALENO.Text.Trim & "' AND YEARID = " & YearId)
-                If DT.Rows.Count > 0 Then
-                    MsgBox("Bale No Already Present in Stock", MsgBoxStyle.Critical)
-                    e.Cancel = True
-                    Exit Sub
+            If TXTBALENO.Text.Trim = "" Then Exit Sub
+
+            If VALIDATEBALENO = True Then
+                If gridstock.RowCount > 0 Then
+                    If Not CHECKROLL() Then
+                        MsgBox("Bale No already Present in Grid below")
+                        TXTBALENO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
+                End If
+
+
+                If GRIDDOUBLECLICK = False Or (GRIDDOUBLECLICK = True And TEMPBALENO <> TXTBALENO.Text.Trim) Then
+                    If Not GETUNIQBALENO(TXTBALENO.Text.Trim) Then
+                        MessageBox.Show("Bale No " & TXTBALENO.Text & " Already Present in Stock!", "Duplicate Bale No", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        TXTBALENO.Clear()
+                        e.Cancel = True
+                        Exit Sub
+                    End If
                 End If
             End If
+
+
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
 
+    Function CHECKROLL() As Boolean
+        Try
+            Dim bln As Boolean = True
+            For Each ROW As DataGridViewRow In gridstock.Rows
+                If (GRIDDOUBLECLICK = True And TEMPROW <> ROW.Index) Or GRIDDOUBLECLICK = False Then
+                    If TXTBALENO.Text.Trim = ROW.Cells(GBALENO.Index).Value Then bln = False
+                End If
+            Next
+            Return bln
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
     Private Sub TXTLRNO_Validating(sender As Object, e As CancelEventArgs) Handles TXTLRNO.Validating
         If cmbpiecetype.Text.Trim <> "" And cmbmerchant.Text.Trim <> "" And Val(txtpcs.Text.Trim) > 0 Then
+
+
+
             If ClientName <> "AXIS" And ClientName <> "GELATO" And Val(txtMtrs.Text.Trim) = 0 Then Exit Sub
             If cmbtype.Text.Trim = "INHOUSE" Then
                 If cmbgodown.Text.Trim <> "" Then
                     Dim TEMPQTY As Integer = Val(txtpcs.Text.Trim)
                     If ClientName = "CHINTAN" Then TEMPQTY = Val(TXTYARDS.Text.Trim)
+
+
 
                     If ClientName = "AVIS" Or ClientName = "MARKIN" Or (ClientName = "AXIS" And Val(txtMtrs.Text.Trim) > 0) Then
                         If Val(txtcut.Text.Trim) > 0 Then txtMtrs.Text = Val(txtcut.Text.Trim)
