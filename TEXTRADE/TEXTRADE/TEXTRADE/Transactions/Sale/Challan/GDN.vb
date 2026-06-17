@@ -682,10 +682,14 @@ CHECKNEXTLINEMTRS:
                 For Each DTR As DataRow In NEWDT.Rows
                     If txtpono.Text.Trim = "" Then
                         txtpono.Text = DTR("PONO").ToString
-                        TXTTRANSREMARKS.Text = DTR("PONO").ToString
+                        If ClientName <> "ANKUSH" Then
+                            TXTTRANSREMARKS.Text = DTR("PONO").ToString
+                        End If
                     Else
                         txtpono.Text = txtpono.Text & "," & DTR("PONO").ToString
-                        TXTTRANSREMARKS.Text = TXTTRANSREMARKS.Text & "," & DTR("PONO").ToString
+                        If ClientName <> "ANKUSH" Then
+                            TXTTRANSREMARKS.Text = TXTTRANSREMARKS.Text & "," & DTR("PONO").ToString
+                        End If
                     End If
                 Next
 
