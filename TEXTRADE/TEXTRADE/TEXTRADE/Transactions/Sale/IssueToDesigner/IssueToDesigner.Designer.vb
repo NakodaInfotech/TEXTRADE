@@ -27,8 +27,8 @@ Partial Class IssueToDesigner
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(IssueToDesigner))
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
         Me.CMDSELECTORDER = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -46,15 +46,6 @@ Partial Class IssueToDesigner
         Me.Label10 = New System.Windows.Forms.Label()
         Me.LBLTOTALMTRS = New System.Windows.Forms.Label()
         Me.GRIDISSUE = New System.Windows.Forms.DataGridView()
-        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GORDERNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GORDERSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GORDERTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.TXTREMARKS = New System.Windows.Forms.TextBox()
         Me.CMDCLEAR = New System.Windows.Forms.Button()
@@ -71,6 +62,15 @@ Partial Class IssueToDesigner
         Me.toolnext = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GORDERNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GPARTYNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GITEMNAME = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GDESIGN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GSHADE = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GMTRS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GORDERSRNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GORDERTYPE = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BlendPanel1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -282,7 +282,7 @@ Partial Class IssueToDesigner
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(861, 262)
+        Me.Label10.Location = New System.Drawing.Point(786, 262)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(31, 14)
         Me.Label10.TabIndex = 22
@@ -293,7 +293,7 @@ Partial Class IssueToDesigner
         Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALMTRS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(893, 262)
+        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(818, 262)
         Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
         Me.LBLTOTALMTRS.Size = New System.Drawing.Size(79, 14)
         Me.LBLTOTALMTRS.TabIndex = 23
@@ -345,88 +345,6 @@ Partial Class IssueToDesigner
         Me.GRIDISSUE.Size = New System.Drawing.Size(991, 257)
         Me.GRIDISSUE.TabIndex = 15
         Me.GRIDISSUE.TabStop = False
-        '
-        'GSRNO
-        '
-        Me.GSRNO.HeaderText = "Sr."
-        Me.GSRNO.Name = "GSRNO"
-        Me.GSRNO.ReadOnly = True
-        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSRNO.Width = 30
-        '
-        'GORDERNO
-        '
-        Me.GORDERNO.HeaderText = "Order No"
-        Me.GORDERNO.Name = "GORDERNO"
-        Me.GORDERNO.ReadOnly = True
-        Me.GORDERNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GORDERNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GORDERNO.Width = 120
-        '
-        'GPARTYNAME
-        '
-        Me.GPARTYNAME.HeaderText = "Party Name"
-        Me.GPARTYNAME.Name = "GPARTYNAME"
-        Me.GPARTYNAME.ReadOnly = True
-        Me.GPARTYNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GPARTYNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GPARTYNAME.Width = 250
-        '
-        'GITEMNAME
-        '
-        Me.GITEMNAME.HeaderText = "Item Name"
-        Me.GITEMNAME.Name = "GITEMNAME"
-        Me.GITEMNAME.ReadOnly = True
-        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GITEMNAME.Width = 200
-        '
-        'GDESIGN
-        '
-        Me.GDESIGN.HeaderText = "Design"
-        Me.GDESIGN.Name = "GDESIGN"
-        Me.GDESIGN.ReadOnly = True
-        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GDESIGN.Width = 120
-        '
-        'GSHADE
-        '
-        Me.GSHADE.HeaderText = "Shade"
-        Me.GSHADE.Name = "GSHADE"
-        Me.GSHADE.ReadOnly = True
-        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GSHADE.Width = 150
-        '
-        'GMTRS
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
-        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GMTRS.HeaderText = "Mtrs"
-        Me.GMTRS.Name = "GMTRS"
-        Me.GMTRS.ReadOnly = True
-        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'GORDERSRNO
-        '
-        Me.GORDERSRNO.HeaderText = "Order Sr No"
-        Me.GORDERSRNO.Name = "GORDERSRNO"
-        Me.GORDERSRNO.ReadOnly = True
-        Me.GORDERSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GORDERSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GORDERSRNO.Visible = False
-        '
-        'GORDERTYPE
-        '
-        Me.GORDERTYPE.HeaderText = "Order Type"
-        Me.GORDERTYPE.Name = "GORDERTYPE"
-        Me.GORDERTYPE.ReadOnly = True
-        Me.GORDERTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GORDERTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.GORDERTYPE.Visible = False
         '
         'GroupBox5
         '
@@ -588,6 +506,89 @@ Partial Class IssueToDesigner
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
+        'GSRNO
+        '
+        Me.GSRNO.HeaderText = "Sr."
+        Me.GSRNO.Name = "GSRNO"
+        Me.GSRNO.ReadOnly = True
+        Me.GSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSRNO.Width = 30
+        '
+        'GORDERNO
+        '
+        Me.GORDERNO.HeaderText = "Order No"
+        Me.GORDERNO.Name = "GORDERNO"
+        Me.GORDERNO.ReadOnly = True
+        Me.GORDERNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GORDERNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GORDERNO.Width = 120
+        '
+        'GPARTYNAME
+        '
+        Me.GPARTYNAME.HeaderText = "Party Name"
+        Me.GPARTYNAME.Name = "GPARTYNAME"
+        Me.GPARTYNAME.ReadOnly = True
+        Me.GPARTYNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GPARTYNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GPARTYNAME.Width = 280
+        '
+        'GITEMNAME
+        '
+        Me.GITEMNAME.HeaderText = "Item Name"
+        Me.GITEMNAME.Name = "GITEMNAME"
+        Me.GITEMNAME.ReadOnly = True
+        Me.GITEMNAME.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GITEMNAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GITEMNAME.Width = 220
+        '
+        'GDESIGN
+        '
+        Me.GDESIGN.HeaderText = "Design"
+        Me.GDESIGN.Name = "GDESIGN"
+        Me.GDESIGN.ReadOnly = True
+        Me.GDESIGN.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GDESIGN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GDESIGN.Width = 150
+        '
+        'GSHADE
+        '
+        Me.GSHADE.HeaderText = "Shade"
+        Me.GSHADE.Name = "GSHADE"
+        Me.GSHADE.ReadOnly = True
+        Me.GSHADE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GSHADE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GSHADE.Visible = False
+        Me.GSHADE.Width = 150
+        '
+        'GMTRS
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight
+        Me.GMTRS.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GMTRS.HeaderText = "Mtrs"
+        Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.ReadOnly = True
+        Me.GMTRS.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GMTRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'GORDERSRNO
+        '
+        Me.GORDERSRNO.HeaderText = "Order Sr No"
+        Me.GORDERSRNO.Name = "GORDERSRNO"
+        Me.GORDERSRNO.ReadOnly = True
+        Me.GORDERSRNO.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GORDERSRNO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GORDERSRNO.Visible = False
+        '
+        'GORDERTYPE
+        '
+        Me.GORDERTYPE.HeaderText = "Order Type"
+        Me.GORDERTYPE.Name = "GORDERTYPE"
+        Me.GORDERTYPE.ReadOnly = True
+        Me.GORDERTYPE.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GORDERTYPE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.GORDERTYPE.Visible = False
+        '
         'IssueToDesigner
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -646,6 +647,7 @@ Partial Class IssueToDesigner
     Friend WithEvents Label6 As Label
     Friend WithEvents CMBDESIGNERNAME As ComboBox
     Friend WithEvents CMDSELECTORDER As Button
+    Friend WithEvents EP As ErrorProvider
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GORDERNO As DataGridViewTextBoxColumn
     Friend WithEvents GPARTYNAME As DataGridViewTextBoxColumn
@@ -655,5 +657,4 @@ Partial Class IssueToDesigner
     Friend WithEvents GMTRS As DataGridViewTextBoxColumn
     Friend WithEvents GORDERSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GORDERTYPE As DataGridViewTextBoxColumn
-    Friend WithEvents EP As ErrorProvider
 End Class
