@@ -36,7 +36,7 @@ Public Class IssueToDesigner
 
     Sub GETMAX_ISSENTRY()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(ME_NO),0) + 1 ", "MANUALENTRY", "  AND ME_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(ISS_NO),0) + 1 ", "ISSUETODESIGNER", "  AND ISS_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
