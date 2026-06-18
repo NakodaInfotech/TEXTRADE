@@ -1254,7 +1254,7 @@ NEXTLINE:
 
                     CMBTRANS.Text = dr("TRANSNAME").ToString
                     cmbcity.Text = dr("CITY").ToString
-                    'CMBLOCALTRANS.Text = dr("LOCALTRANS").ToString
+                    CMBLOCALTRANS.Text = dr("LOCALTRANS").ToString
 
                     TXTLRNO.Text = dr("LRNO").ToString
                     'LRDATE.Text = Format(Convert.ToDateTime(dr("LRDATE")).Date, "dd/MM/yyyy")
@@ -1275,7 +1275,7 @@ NEXTLINE:
 
                     txtremarks.Text = Convert.ToString(dr("REMARKS").ToString)
                     TXTMERCHANT.Text = Convert.ToString(dr("ITEMNAME").ToString)
-                    GRIDGDN.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("PRINTDESC"), dr("DESIGN"), dr("COLOR"), dr("BALENO"), dr("GRIDLOTNO"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"), dr("SALEDONE"), dr("GRIDSONO"), dr("GRIDSOSRNO"), dr("GRIDPARTYPONO"), Val(dr("WT")))
+                    GRIDGDN.Rows.Add(dr("GRIDSRNO").ToString, dr("PIECETYPE"), dr("ITEMNAME").ToString, dr("QUALITY"), dr("PRINTDESC"), dr("DESIGN"), dr("COLOR"), dr("BALENO"), dr("GRIDLOTNO"), Format(Val(dr("PCS")), "0"), dr("UNIT"), Format(Val(dr("CUT")), "0.00"), Format(Val(dr("MTRS")), "0.00"), Format(Val(dr("RATE")), "0.00"), dr("PER"), Format(Val(dr("AMOUNT")), "0.00"), dr("BARCODE"), dr("FROMNO"), dr("FROMSRNO"), dr("FROMTYPE"), dr("SALEDONE"), dr("GRIDSONO"), dr("GRIDSOSRNO"), dr("GRIDPARTYPONO"), Val(dr("WT")), dr("RACK"))
 
                     If Convert.ToBoolean(dr("DONE")) = True Or Val(dr("OUTMTRS")) > 0 Or Val(dr("OUTPCS")) > 0 Then
                         lbllocked.Visible = True
