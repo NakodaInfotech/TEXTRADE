@@ -39,19 +39,25 @@ Partial Class DesignMasterDetail
         Me.GFINISHING = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GEXTRA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GTOTAL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCADNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMILLNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GBLOCKED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCREATED = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCUTTINGRECD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GDRAPINGRECD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.BlendPanel1.SuspendLayout()
         Me.SuspendLayout()
@@ -118,6 +124,7 @@ Partial Class DesignMasterDetail
         Me.GRIDBILLDETAILS.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GRIDBILLDETAILS.MainView = Me.GRIDBILL
         Me.GRIDBILLDETAILS.Name = "GRIDBILLDETAILS"
+        Me.GRIDBILLDETAILS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit2})
         Me.GRIDBILLDETAILS.Size = New System.Drawing.Size(982, 499)
         Me.GRIDBILLDETAILS.TabIndex = 326
         Me.GRIDBILLDETAILS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GRIDBILL})
@@ -126,7 +133,7 @@ Partial Class DesignMasterDetail
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GPURRATE, Me.GSALERATE, Me.GWRATE, Me.GITEMNAME, Me.GFABRIC, Me.GDYEING, Me.GJOBWORK, Me.GFINISHING, Me.GEXTRA, Me.GTOTAL, Me.GREMARKS, Me.GCADNO, Me.GMILLNAME, Me.GBLOCKED, Me.GCREATED})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GPURRATE, Me.GSALERATE, Me.GWRATE, Me.GITEMNAME, Me.GFABRIC, Me.GDYEING, Me.GJOBWORK, Me.GFINISHING, Me.GEXTRA, Me.GTOTAL, Me.GREMARKS, Me.GCADNO, Me.GMILLNAME, Me.GBLOCKED, Me.GCREATED, Me.GCUTTINGRECD, Me.GDRAPINGRECD})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AllowIncrementalSearch = True
@@ -234,6 +241,15 @@ Partial Class DesignMasterDetail
         Me.GTOTAL.FieldName = "TOTAL"
         Me.GTOTAL.Name = "GTOTAL"
         '
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 8
+        Me.GREMARKS.Width = 200
+        '
         'GCADNO
         '
         Me.GCADNO.Caption = "CAD No"
@@ -268,6 +284,36 @@ Partial Class DesignMasterDetail
         Me.GCREATED.Name = "GCREATED"
         Me.GCREATED.Visible = True
         Me.GCREATED.VisibleIndex = 7
+        '
+        'GCUTTINGRECD
+        '
+        Me.GCUTTINGRECD.Caption = "Cutting Recd"
+        Me.GCUTTINGRECD.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GCUTTINGRECD.FieldName = "CUTTINGRECD"
+        Me.GCUTTINGRECD.Name = "GCUTTINGRECD"
+        Me.GCUTTINGRECD.Visible = True
+        Me.GCUTTINGRECD.VisibleIndex = 9
+        Me.GCUTTINGRECD.Width = 80
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        '
+        'GDRAPINGRECD
+        '
+        Me.GDRAPINGRECD.Caption = "Draping Recd"
+        Me.GDRAPINGRECD.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GDRAPINGRECD.FieldName = "DRAPINGRECD"
+        Me.GDRAPINGRECD.Name = "GDRAPINGRECD"
+        Me.GDRAPINGRECD.Visible = True
+        Me.GDRAPINGRECD.VisibleIndex = 10
+        Me.GDRAPINGRECD.Width = 80
+        '
+        'RepositoryItemCheckEdit2
+        '
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
         '
         'ToolStrip1
         '
@@ -318,15 +364,6 @@ Partial Class DesignMasterDetail
         Me.BlendPanel1.Size = New System.Drawing.Size(1006, 581)
         Me.BlendPanel1.TabIndex = 332
         '
-        'GREMARKS
-        '
-        Me.GREMARKS.Caption = "Remarks"
-        Me.GREMARKS.FieldName = "REMARKS"
-        Me.GREMARKS.Name = "GREMARKS"
-        Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 8
-        Me.GREMARKS.Width = 200
-        '
         'DesignMasterDetail
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -342,6 +379,8 @@ Partial Class DesignMasterDetail
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.BlendPanel1.ResumeLayout(False)
@@ -377,4 +416,8 @@ Partial Class DesignMasterDetail
     Friend WithEvents GBLOCKED As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCREATED As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCUTTINGRECD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GDRAPINGRECD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
