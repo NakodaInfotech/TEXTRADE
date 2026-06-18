@@ -14726,6 +14726,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="UploadDoc.ashx" />
     <None Include="Upload.ashx" />
   </ItemGroup>
   <ItemGroup>
