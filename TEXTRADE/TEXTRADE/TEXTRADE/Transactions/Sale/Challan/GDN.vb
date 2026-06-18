@@ -342,7 +342,7 @@ Public Class GDN
                 End If
             End If
 
-            If lbllocked.Visible = True And (ClientName = "MMC" And UserName <> "Admin") Then
+            If lbllocked.Visible = True And ((ClientName = "MMC" Or ClientName = "MAHAVIRPOLYCOT") And UserName <> "Admin") Then
                 EP.SetError(lbllocked, "Invoice Raised, Delete Invoice First")
                 bln = False
             End If

@@ -476,7 +476,7 @@ LINE1:
             GRIDCOVER.RowCount = 0
             txtremarks.Clear()
             TXTCOURIERDOCKETNO.Clear()
-            TXTCOURIERNAME.Clear()
+            If ClientName = "MAHAVIRPOLYCOT" Then TXTCOURIERNAME.Text = "EXPRESS COURIER" Else TXTCOURIERNAME.Clear()
             COURIERDATE.Clear()
             LBLWHATSAPP.Visible = False
             GETMAXNO()

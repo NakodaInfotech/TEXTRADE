@@ -81,7 +81,7 @@ Public Class ItemPriceListPrint
     Sub fillcmb()
         Try
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT CAST (0 AS BIT) AS CHK, CATEGORYMASTER.CATEGORY_NAME AS CATEGORY ", " ", " CATEGORYMASTER ", " ORDER BY CATEGORYMASTER.CATEGORY_NAME")
+            Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT CAST (0 AS BIT) AS CHK, CATEGORYMASTER.CATEGORY_NAME AS CATEGORY ", " ", " CATEGORYMASTER  ", " AND CATEGORY_YEARID = " & YearId & " ORDER BY CATEGORYMASTER.CATEGORY_NAME")
             GRIDITEMDETAILS.DataSource = DT
             If DT.Rows.Count > 0 Then
                 GRIDITEM.FocusedRowHandle = GRIDITEM.RowCount - 1

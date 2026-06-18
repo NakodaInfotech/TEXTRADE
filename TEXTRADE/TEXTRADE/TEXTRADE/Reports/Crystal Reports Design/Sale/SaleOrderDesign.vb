@@ -260,13 +260,13 @@ Public Class SaleOrderDesign
             Dim oDfDopt As New DiskFileDestinationOptions
 
             If FRMSTRING = "" Then
-                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_SOREPORT.PDF"
+                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_" & SONO & "_SOREPORT.PDF"
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
                 expo.DestinationOptions = oDfDopt
 
             ElseIf FRMSTRING = "SOCAD" Then
-                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_SOREPORT.PDF"
+                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_" & SONO & "_SOREPORT.PDF"
                 expo = RPTSO_AVIS_CAD.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
@@ -274,7 +274,7 @@ Public Class SaleOrderDesign
                 RPTSO_AVIS_CAD.Export()
 
             ElseIf FRMSTRING = "SOREPORT" Then
-                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_SOREPORT.PDF"
+                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_" & SONO & "_SOREPORT.PDF"
                 If ClientName = "SAFFRON" Then
                     expo = RPTSO_SAFFRON.ExportOptions
                     expo.ExportDestinationType = ExportDestinationType.DiskFile
@@ -369,7 +369,7 @@ Public Class SaleOrderDesign
                 End If
 
             Else
-                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_SOREPORT.PDF"
+                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_" & SONO & "_SOREPORT.PDF"
                 '  expo = rptssum.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
@@ -466,9 +466,9 @@ Public Class SaleOrderDesign
 
                 Dim TEMPATTACHMENT As String = ""
                 If FRMSTRING = "" Then
-                    TEMPATTACHMENT = PARTYNAME & "_SOREPORT"
+                    TEMPATTACHMENT = PARTYNAME & "_" & SONO & "_SOREPORT"
                 ElseIf FRMSTRING = "SOREPORT" Or FRMSTRING = "SOCAD" Then
-                    TEMPATTACHMENT = PARTYNAME & "_SOREPORT"
+                    TEMPATTACHMENT = PARTYNAME & "_" & SONO & "_SOREPORT"
                 ElseIf FRMSTRING = "SCHEDULEREPORT" Then
                     TEMPATTACHMENT = "SCHEDULEREPORT"
                 ElseIf FRMSTRING = "SAMPLENOTE" Then
@@ -503,9 +503,9 @@ Public Class SaleOrderDesign
             Transfer()
 
             If FRMSTRING = "" Then
-                tempattachment = PARTYNAME & "_SOREPORT"
+                tempattachment = PARTYNAME & "_" & SONO & "_SOREPORT"
             ElseIf FRMSTRING = "SOREPORT" Or FRMSTRING = "SOCAD" Then
-                tempattachment = PARTYNAME & "_SOREPORT"
+                tempattachment = PARTYNAME & "_" & SONO & "_SOREPORT"
             ElseIf FRMSTRING = "SCHEDULEREPORT" Then
                 tempattachment = "SCHEDULEREPORT"
             ElseIf FRMSTRING = "SAMPLENOTE" Then

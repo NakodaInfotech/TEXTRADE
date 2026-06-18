@@ -49,6 +49,7 @@ Partial Class DesignMasterDetail
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -125,7 +126,7 @@ Partial Class DesignMasterDetail
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GPURRATE, Me.GSALERATE, Me.GWRATE, Me.GITEMNAME, Me.GFABRIC, Me.GDYEING, Me.GJOBWORK, Me.GFINISHING, Me.GEXTRA, Me.GTOTAL, Me.GCADNO, Me.GMILLNAME, Me.GBLOCKED, Me.GCREATED})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GPURRATE, Me.GSALERATE, Me.GWRATE, Me.GITEMNAME, Me.GFABRIC, Me.GDYEING, Me.GJOBWORK, Me.GFINISHING, Me.GEXTRA, Me.GTOTAL, Me.GREMARKS, Me.GCADNO, Me.GMILLNAME, Me.GBLOCKED, Me.GCREATED})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AllowIncrementalSearch = True
@@ -140,7 +141,7 @@ Partial Class DesignMasterDetail
         '
         Me.GNAME.Caption = "Design No"
         Me.GNAME.FieldName = "DESIGNNO"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.Visible = True
         Me.GNAME.VisibleIndex = 0
@@ -317,6 +318,15 @@ Partial Class DesignMasterDetail
         Me.BlendPanel1.Size = New System.Drawing.Size(1006, 581)
         Me.BlendPanel1.TabIndex = 332
         '
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 8
+        Me.GREMARKS.Width = 200
+        '
         'DesignMasterDetail
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -366,4 +376,5 @@ Partial Class DesignMasterDetail
     Friend WithEvents GMILLNAME As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GBLOCKED As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCREATED As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
 End Class

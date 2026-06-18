@@ -1059,9 +1059,7 @@ LINE1:
             If ClientName = "DRDRAPES" Then GDESCRIPTION.ReadOnly = False
 
             If ClientName = "VINTAGEINDIA" Or ClientName = "MAHAVIRPOLYCOT" Then
-                LBLTXTVEHICLENO.Visible = False
                 TXTVEHICLENO.Visible = False
-
                 CMBVEHICLENAME.Visible = True
             End If
         Catch ex As Exception

@@ -701,7 +701,8 @@ Public Class GRNChecking
                         GRIDCHECKING.RowCount = 0
                         dt = OBJ.SEARCH("GRN_MTRS AS MTRS, GRN_BALENO AS BALENO", "", "  GRN_DESC ", " AND GRN_NO = " & Val(selectGRNtable.Rows(i).Item("GRNNO")) & " AND GRN_GRIDTYPE = '" & selectGRNtable.Rows(i).Item("TYPE") & "' AND GRN_YEARID = " & YearId & " ORDER BY GRN_DESC.GRN_GRIDSRNO ")
                         For Each ROW As DataRow In dt.Rows
-                            If ClientName = "MAHAVIRPOLYCOT" Then ROW("BALENO") = ""
+                            'CHANGES DONE AS PER ANKIT BHAI AS ON 17-06-26
+                            'If ClientName = "MAHAVIRPOLYCOT" Then ROW("BALENO") = ""
                             GRIDCHECKING.Rows.Add(GRIDCHECKING.RowCount + 1, Format(Val(ROW("MTRS")), "0.00"), Format(Val(ROW("MTRS")), "0.00"), ROW("BALENO"), "Yes", 0.0, 0.0, 0)
                         Next
                     End If

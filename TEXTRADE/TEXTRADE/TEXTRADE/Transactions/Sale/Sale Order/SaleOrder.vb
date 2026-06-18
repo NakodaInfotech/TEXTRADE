@@ -1381,7 +1381,7 @@ line1:
                     If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
                     If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SNCM" And Val(DT.Rows(0).Item("CDPER")) > 0 And ClientName <> "MASHOK" And ClientName <> "ABHEE" Then txtcd.Text = Val(DT.Rows(0).Item("CDPER"))
                     If ClientName <> "CC" And ClientName <> "C3" And ClientName <> "SHREEDEV" Then TXTCONSIGNEE.Text = cmbname.Text
-                    If ClientName = "SIDDHGIRI" Then
+                    If ClientName = "SIDDHGIRI" Or ClientName = "MAHAVIRPOLYCOT" Then
                         If DT.Rows(0).Item("AGENT") <> "" Then CMBAGENT.Text = DT.Rows(0).Item("AGENT")
                         If DT.Rows(0).Item("TRANS1") <> "" Then cmbtrans.Text = DT.Rows(0).Item("TRANS1")
                         If DT.Rows(0).Item("CITYNAME") <> "" Then cmbcity.Text = DT.Rows(0).Item("CITYNAME")
@@ -2808,7 +2808,7 @@ LINESINGLE:
                 If (ClientName = "MAHAVIR" Or ClientName = "BARKHA" Or ClientName = "MAHAJAN" Or ClientName = "SHUBHI" Or ClientName = "SUBHLAXMI" Or ClientName = "SMS" Or ClientName = "RAJKRIPA" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "SHEETAL" Or ClientName = "MILUXE") Then
                     DT = OBJCMN.SEARCH("  ISNULL(item_reorder, 0) AS CUT, ISNULL(ITEM_RATE, 0) AS RATE,ISNULL(ITEM_FOLD, '') AS [DESC],ISNULL(UNITMASTER.unit_abbr, '') AS UNIT, ISNULL(CATEGORY_NAME,'') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEM_CATEGORYID = CATEGORY_ID LEFT OUTER JOIN UNITMASTER ON ITEMMASTER.item_unitid = UNITMASTER.unit_id ", " AND ITEMMASTER.item_name = '" & cmbitemname.Text.Trim & "' AND ITEMMASTER.ITEM_YEARID='" & YearId & "' ")
                     If DT.Rows.Count > 0 Then
-                        If ClientName <> "SIDDHGIRI" And ClientName <> "MASHOK" And ClientName <> "ABHEE" And ClientName <> "AFW" Then TXTCUT.Text = DT.Rows(0).Item("CUT")
+                        If ClientName <> "SIDDHGIRI" And ClientName <> "MASHOK" And ClientName <> "ABHEE" And ClientName <> "AFW" And ClientName <> "MAHAVIRPOLYCOT" Then TXTCUT.Text = DT.Rows(0).Item("CUT")
                         LBLCATEGORY.Text = DT.Rows(0).Item("CATEGORY")
 
                         'COZ RATE WILL BE FETCHED FROM PARTYITEMWISECHART, IF CHKFETCHDESC IS TRUE THEN 
