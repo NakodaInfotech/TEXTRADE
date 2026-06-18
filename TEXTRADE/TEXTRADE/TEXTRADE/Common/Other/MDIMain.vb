@@ -5365,6 +5365,9 @@ SKIPLINE:
             End If
             If ClientName <> "ABHEE" Then PartyWiseBaleRate.Visible = False
             If ALLOWWHATSAPP = True Then AUTOWHATSAPP_MENU.Visible = True
+            If ClientName = "DSM" Then
+                AUTODESIGNCREATION_MASTER.Visible = True
+            End If
         Catch ex As Exception
             Throw ex
         End Try

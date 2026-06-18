@@ -24,6 +24,8 @@ Partial Class DesignCreation
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.CMBITEM = New System.Windows.Forms.ComboBox()
         Me.TXTDESIGNNO = New System.Windows.Forms.TextBox()
         Me.CMDCLEAR = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
@@ -35,10 +37,8 @@ Partial Class DesignCreation
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTDESIGNCODE = New System.Windows.Forms.TextBox()
         Me.CMBDESIGNERNAME = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.LBLDESIGNERNAME = New System.Windows.Forms.Label()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.CMBITEM = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.Ep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -59,12 +59,36 @@ Partial Class DesignCreation
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.TXTDESIGNCODE)
         Me.BlendPanel1.Controls.Add(Me.CMBDESIGNERNAME)
-        Me.BlendPanel1.Controls.Add(Me.Label3)
+        Me.BlendPanel1.Controls.Add(Me.LBLDESIGNERNAME)
         Me.BlendPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BlendPanel1.Location = New System.Drawing.Point(0, 0)
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(690, 164)
         Me.BlendPanel1.TabIndex = 0
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(370, 15)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(65, 15)
+        Me.Label5.TabIndex = 22
+        Me.Label5.Text = "Item Name"
+        '
+        'CMBITEM
+        '
+        Me.CMBITEM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBITEM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBITEM.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBITEM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMBITEM.FormattingEnabled = True
+        Me.CMBITEM.Location = New System.Drawing.Point(441, 12)
+        Me.CMBITEM.MaxDropDownItems = 14
+        Me.CMBITEM.Name = "CMBITEM"
+        Me.CMBITEM.Size = New System.Drawing.Size(241, 23)
+        Me.CMBITEM.TabIndex = 21
         '
         'TXTDESIGNNO
         '
@@ -194,46 +218,22 @@ Partial Class DesignCreation
         Me.CMBDESIGNERNAME.Size = New System.Drawing.Size(241, 23)
         Me.CMBDESIGNERNAME.TabIndex = 0
         '
-        'Label3
+        'LBLDESIGNERNAME
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(29, 15)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(89, 15)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Designer Name"
+        Me.LBLDESIGNERNAME.AutoSize = True
+        Me.LBLDESIGNERNAME.BackColor = System.Drawing.Color.Transparent
+        Me.LBLDESIGNERNAME.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLDESIGNERNAME.Location = New System.Drawing.Point(29, 15)
+        Me.LBLDESIGNERNAME.Name = "LBLDESIGNERNAME"
+        Me.LBLDESIGNERNAME.Size = New System.Drawing.Size(89, 15)
+        Me.LBLDESIGNERNAME.TabIndex = 2
+        Me.LBLDESIGNERNAME.Text = "Designer Name"
         '
         'Ep
         '
         Me.Ep.BlinkRate = 0
         Me.Ep.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.Ep.ContainerControl = Me
-        '
-        'CMBITEM
-        '
-        Me.CMBITEM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBITEM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBITEM.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBITEM.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMBITEM.FormattingEnabled = True
-        Me.CMBITEM.Location = New System.Drawing.Point(441, 12)
-        Me.CMBITEM.MaxDropDownItems = 14
-        Me.CMBITEM.Name = "CMBITEM"
-        Me.CMBITEM.Size = New System.Drawing.Size(241, 23)
-        Me.CMBITEM.TabIndex = 21
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(370, 15)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(65, 15)
-        Me.Label5.TabIndex = 22
-        Me.Label5.Text = "Item Name"
         '
         'DesignCreation
         '
@@ -252,7 +252,7 @@ Partial Class DesignCreation
 
     Friend WithEvents BlendPanel1 As VbPowerPack.BlendPanel
     Friend WithEvents CMBDESIGNERNAME As ComboBox
-    Friend WithEvents Label3 As Label
+    Friend WithEvents LBLDESIGNERNAME As Label
     Friend WithEvents TXTTO As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents TXTFROM As TextBox
