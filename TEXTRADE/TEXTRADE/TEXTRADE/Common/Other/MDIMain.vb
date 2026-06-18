@@ -6208,6 +6208,8 @@ SKIPLINE:
                 ALPARAVAL.Add("")   'LINE2
                 ALPARAVAL.Add("")   'PARENTDESIGNNO
                 ALPARAVAL.Add("")    'DESIGNER
+                ALPARAVAL.Add(0)    'CUTTINGRECD
+                ALPARAVAL.Add(0)    'DRAPINGRECD
 
 
                 OBJSM.alParaval = ALPARAVAL
@@ -7917,6 +7919,8 @@ SKIPLINE:
                         OBJDESIGN.alParaval.Add("")   'LINE2
                         OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
                         OBJDESIGN.alParaval.Add("")    'DESIGNER
+                        OBJDESIGN.alParaval.Add(0)  'CUTTINGRECD
+                        OBJDESIGN.alParaval.Add(0)  'DRAPINGRECD
 
 
 
@@ -11463,6 +11467,8 @@ SKIPLINE:
                             OBJDESIGN.alParaval.Add("")   'LINE2
                             OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
                             OBJDESIGN.alParaval.Add("")    'DESIGNER
+                            OBJDESIGN.alParaval.Add(0)  'CUTTINGRECD
+                            OBJDESIGN.alParaval.Add(0)  'DRAPINGRECD
 
 
 
@@ -12138,6 +12144,8 @@ SKIPLINE:
                         OBJDESIGN.alParaval.Add("")   'LINE2
                         OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
                         OBJDESIGN.alParaval.Add("")    'DESIGNER
+                        OBJDESIGN.alParaval.Add(0)  'CUTTINGRECD
+                        OBJDESIGN.alParaval.Add(0)  'DRAPINGRECD
 
 
 
