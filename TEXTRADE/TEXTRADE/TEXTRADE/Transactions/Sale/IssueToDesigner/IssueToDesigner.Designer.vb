@@ -30,7 +30,7 @@ Partial Class IssueToDesigner
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(IssueToDesigner))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
-        Me.CMDSELECTGDN = New System.Windows.Forms.Button()
+        Me.CMDSELECTORDER = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CMBDESIGNERNAME = New System.Windows.Forms.ComboBox()
         Me.CMBCODE = New System.Windows.Forms.ComboBox()
@@ -83,7 +83,7 @@ Partial Class IssueToDesigner
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
-        Me.BlendPanel1.Controls.Add(Me.CMDSELECTGDN)
+        Me.BlendPanel1.Controls.Add(Me.CMDSELECTORDER)
         Me.BlendPanel1.Controls.Add(Me.Label6)
         Me.BlendPanel1.Controls.Add(Me.CMBDESIGNERNAME)
         Me.BlendPanel1.Controls.Add(Me.CMBCODE)
@@ -109,19 +109,19 @@ Partial Class IssueToDesigner
         Me.BlendPanel1.Size = New System.Drawing.Size(1059, 581)
         Me.BlendPanel1.TabIndex = 2
         '
-        'CMDSELECTGDN
+        'CMDSELECTORDER
         '
-        Me.CMDSELECTGDN.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSELECTGDN.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSELECTGDN.FlatAppearance.BorderSize = 0
-        Me.CMDSELECTGDN.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSELECTGDN.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.CMDSELECTGDN.Location = New System.Drawing.Point(556, 499)
-        Me.CMDSELECTGDN.Name = "CMDSELECTGDN"
-        Me.CMDSELECTGDN.Size = New System.Drawing.Size(93, 28)
-        Me.CMDSELECTGDN.TabIndex = 964
-        Me.CMDSELECTGDN.Text = "Select &Order"
-        Me.CMDSELECTGDN.UseVisualStyleBackColor = False
+        Me.CMDSELECTORDER.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSELECTORDER.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSELECTORDER.FlatAppearance.BorderSize = 0
+        Me.CMDSELECTORDER.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSELECTORDER.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.CMDSELECTORDER.Location = New System.Drawing.Point(556, 499)
+        Me.CMDSELECTORDER.Name = "CMDSELECTORDER"
+        Me.CMDSELECTORDER.Size = New System.Drawing.Size(93, 28)
+        Me.CMDSELECTORDER.TabIndex = 964
+        Me.CMDSELECTORDER.Text = "Select &Order"
+        Me.CMDSELECTORDER.UseVisualStyleBackColor = False
         '
         'Label6
         '
@@ -293,7 +293,7 @@ Partial Class IssueToDesigner
         Me.LBLTOTALMTRS.BackColor = System.Drawing.Color.Transparent
         Me.LBLTOTALMTRS.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBLTOTALMTRS.ForeColor = System.Drawing.Color.Black
-        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(894, 262)
+        Me.LBLTOTALMTRS.Location = New System.Drawing.Point(893, 262)
         Me.LBLTOTALMTRS.Name = "LBLTOTALMTRS"
         Me.LBLTOTALMTRS.Size = New System.Drawing.Size(79, 14)
         Me.LBLTOTALMTRS.TabIndex = 23
@@ -645,7 +645,7 @@ Partial Class IssueToDesigner
     Friend WithEvents GRIDISSUE As DataGridView
     Friend WithEvents Label6 As Label
     Friend WithEvents CMBDESIGNERNAME As ComboBox
-    Friend WithEvents CMDSELECTGDN As Button
+    Friend WithEvents CMDSELECTORDER As Button
     Friend WithEvents GSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GORDERNO As DataGridViewTextBoxColumn
     Friend WithEvents GPARTYNAME As DataGridViewTextBoxColumn
