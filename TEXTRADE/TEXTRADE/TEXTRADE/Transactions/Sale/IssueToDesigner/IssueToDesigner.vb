@@ -117,16 +117,17 @@ Public Class IssueToDesigner
                         TXTNO.Text = TEMPISSNO
                         'TXTPRONO.ReadOnly = True
                         DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")), "dd/MM/yyyy")
-                        CMBDESIGNERNAME.Text = dr("NAME")
+                        CMBDESIGNERNAME.Text = dr("DESIGNERNAME")
                         TXTREMARKS.Text = dr("REMARKS")
                         LBLTOTALMTRS.Text = dr("TOTALMTRS")
 
-                        GRIDISSUE.Rows.Add(Val(dr("GRIDSRNO")), dr("ORDERNO"), dr("NAME"), dr("ITEMNAME"), dr("DESIGN"), dr("SHADE"), Format(Val(dr("MTRS")), "0.00"), dr("ORDERSRNO"), dr("ORDERTYPE"))
+                        GRIDISSUE.Rows.Add(Val(dr("GRIDSRNO")), dr("ORDERNO"), dr("NAME"), dr("ITEMNAME"), dr("DESIGN"), dr("COLOR"), Format(Val(dr("MTRS")), "0.00"), dr("ORDERSRNO"), dr("ORDERTYPE"))
                     Next
 
                     GRIDISSUE.FirstDisplayedScrollingRowIndex = GRIDISSUE.RowCount - 1
                     TOTAL()
                     DTDATE.Focus()
+                    CMBDESIGNERNAME.Enabled = False
                 Else
                     EDIT = False
                     CLEAR()
