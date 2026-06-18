@@ -39,7 +39,11 @@ Public Class DesignCreation
                 If Val(TXTFROM.Text.Trim) < Val(TXTTO.Text.Trim) Then
                     If MsgBox("Wish to Save Designs from " & Val(TXTFROM.Text.Trim) & " To " & Val(TXTTO.Text.Trim) & " ?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                     For I As Integer = Val(TXTFROM.Text.Trim) To Val(TXTTO.Text.Trim)
-                        DESIGNNO = "VI-" & TXTDESIGNCODE.Text.Trim & "_" & I
+                        If ClientName = "VINTAGEINDIA" Then
+                            DESIGNNO = "VI-" & TXTDESIGNCODE.Text.Trim & "_" & I
+                        Else
+                            DESIGNNO = I
+                        End If
                         TXTDESIGNNO.Text = DESIGNNO
                         If Not CHECKDUPLICATE() Then
                             Exit Sub
@@ -219,5 +223,11 @@ Public Class DesignCreation
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
+    End Sub
+
+    Private Sub DesignCreation_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If ClientName = "DSM" Then
+            LBLDESIGNERNAME.Text = "Printer Name"
+        End If
     End Sub
 End Class
