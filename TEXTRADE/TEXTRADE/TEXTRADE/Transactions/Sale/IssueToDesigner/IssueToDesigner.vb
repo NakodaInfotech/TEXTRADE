@@ -31,6 +31,7 @@ Public Class IssueToDesigner
         LBLTOTALMTRS.Text = 0.00
         GETMAX_ISSENTRY()
         tstxtbillno.Clear()
+        CMBDESIGNERNAME.Enabled = True
 
     End Sub
 
@@ -73,7 +74,7 @@ Public Class IssueToDesigner
 
     Sub FILLCMB()
         Try
-            If CMBDESIGNERNAME.Text.Trim = "" Then fillitemcode(CMBDESIGNERNAME, EDIT)
+            If CMBDESIGNERNAME.Text.Trim = "" Then fillDESIGNER(CMBDESIGNERNAME, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -430,7 +431,42 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDSELECTORDER_Click(sender As Object, e As EventArgs) Handles CMDSELECTORDER.Click
+        Try
+            If CMBDESIGNERNAME.Text.Trim = "" Then
+                MsgBox("Select Designer Name", MsgBoxStyle.Critical)
+                CMBDESIGNERNAME.Focus()
+                Exit Sub
+            End If
 
+            Dim DTSO As New DataTable
+            Dim OBJSELECTSO As New SelectSO
+            OBJSELECTSO.PARTYNAME = CMBDESIGNERNAME.Text.Trim
+            OBJSELECTSO.ShowDialog()
+            DTSO = OBJSELECTSO.DT
+
+            If DTSO.Rows.Count > 0 Then
+
+                'BEFORE ADDING THE ROW IN ORDERDER GRID CHECK WHETHER SAME ORDERNO AN SRNO IS PRESENT IN GRID OR NOT
+                For Each DTROW As DataRow In DTSO.Rows
+                    For Each ROW As DataGridViewRow In GRIDISSUE.Rows
+                        If Val(ROW.Cells(GORDERNO.Index).Value) = Val(DTROW("SONO")) And Val(ROW.Cells(GORDERSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(GORDERTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
+                    Next
+
+                    GRIDISSUE.Rows.Add(0, DTROW("SONO"), DTROW("NAME"), DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("MTRS"), DTROW("GRIDSRNO"), DTROW("TYPE"))
+NEXTLINE:
+                Next
+                getsrno(GRIDISSUE)
+
+            End If
+
+            CMBDESIGNERNAME.Enabled = False
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
 
     Private Sub GRIDMANUALENTRY_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDISSUE.KeyDown
         Try
@@ -477,5 +513,20 @@ LINE1:
         numkeypress(e, sender, Me)
     End Sub
 
+    Private Sub CMBDESIGNERNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGNERNAME.Validating
+        Try
+            If CMBDESIGNERNAME.Text.Trim <> "" Then DESIGNERVALIDATE(CMBDESIGNERNAME, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDESIGNERNAME_Enter(sender As Object, e As EventArgs) Handles CMBDESIGNERNAME.Enter
+        Try
+            If CMBDESIGNERNAME.Text.Trim = "" Then fillDESIGNER(CMBDESIGNERNAME, EDIT)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 
