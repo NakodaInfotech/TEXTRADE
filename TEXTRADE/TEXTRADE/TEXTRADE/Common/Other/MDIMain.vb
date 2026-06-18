@@ -254,6 +254,15 @@ Public Class MDIMain
                 JOBBERYARNSTOCKFILTER_MASTER.Visible = True
             End If
 
+
+
+
+
+            If ClientName = "DSM" Then
+                IssueToDesigner_MASTER.Visible = True
+            End If
+
+
             If ClientName = "KARAN" Or ClientName = "TINUMINU" Then
                 EMBPRODUCTION_MASTER.Visible = True
                 EMBPROD_FILTER.Visible = True
@@ -12629,5 +12638,27 @@ SKIPLINE:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub AddNewDesignerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewDesignerToolStripMenuItem.Click
+        Try
+            Dim OBJSHELF As New IssueToDesigner
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem8_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem8.Click
+
+        Try
+            Dim OBJSHELF As New IssueToDesignerDetails
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Sub
 End Class
