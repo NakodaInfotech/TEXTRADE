@@ -97,6 +97,10 @@ Public Class ClsDesignMaster
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DESIGNER", alParaval(I)))
                 I += 1
+                .Add(New SqlClient.SqlParameter("@CUTTINGRECD", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DRAPINGRECD", alParaval(I)))
+                I += 1
 
             End With
 
@@ -201,6 +205,10 @@ Public Class ClsDesignMaster
                 .Add(New SqlClient.SqlParameter("@PARENTDESIGNNO", alParaval(I)))
                 I += 1
                 .Add(New SqlClient.SqlParameter("@DESIGNER", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@CUTTINGRECD", alParaval(I)))
+                I += 1
+                .Add(New SqlClient.SqlParameter("@DRAPINGRECD", alParaval(I)))
                 I += 1
 
                 .Add(New SqlClient.SqlParameter("@DESIGNID", alParaval(I)))

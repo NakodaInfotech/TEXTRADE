@@ -81,18 +81,22 @@ Public Class DesignCreation
                         Dim PRINT As String = ""
                         Dim COLOR As String = ""
                         Dim BLOCKED As String = ""
+                        Dim SHADETYPE As String = ""
 
                         alParaval.Add(gridsrno)
                         alParaval.Add(BASE)
                         alParaval.Add(PRINT)
                         alParaval.Add(COLOR)
                         alParaval.Add(BLOCKED)
+                        alParaval.Add(SHADETYPE)
 
                         alParaval.Add("")
                         alParaval.Add("")
                         alParaval.Add("")
                         alParaval.Add(CMBDESIGNERNAME.Text.Trim)
-                        alParaval.Add("")
+                        alParaval.Add(0)
+                        alParaval.Add(0)
+
 
                         Dim objDESIGN As New ClsDesignMaster
                         objDESIGN.alParaval = alParaval
@@ -107,6 +111,8 @@ Public Class DesignCreation
                         End If
                     Next
                     MsgBox("Details Added")
+                Else
+                    MsgBox("Please enter Proper Designs")
 
                 End If
             Else
@@ -201,9 +207,11 @@ Public Class DesignCreation
                 Dim OBJCMN As New ClsCommon
                 Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(DESIGNER_DCODE, '') AS DESIGNCODE ", "", "DESIGNERMASTER ", " and DESIGNERMASTER.DESIGNER_name = '" & CMBDESIGNERNAME.Text.Trim & "' and DESIGNERMASTER.DESIGNER_YEARid = " & YearId)
                 If DT.Rows.Count > 0 Then
-                    If TXTDESIGNCODE.Text.Trim = "" Then TXTDESIGNCODE.Text = DT.Rows(0).Item("DESIGNCODE")
+                    If ClientName <> "DSM" Then
+                        If TXTDESIGNCODE.Text.Trim = "" Then TXTDESIGNCODE.Text = DT.Rows(0).Item("DESIGNCODE")
+                    End If
                 End If
-            End If
+                End If
         Catch ex As Exception
             Throw ex
         End Try

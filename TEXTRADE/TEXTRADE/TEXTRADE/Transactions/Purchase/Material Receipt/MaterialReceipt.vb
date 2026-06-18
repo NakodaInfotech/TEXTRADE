@@ -5304,17 +5304,20 @@ LINE1:
 
                             OBJDESIGN.alParaval.Add(DBNull.Value)
 
-                            OBJDESIGN.alParaval.Add("")   'LINE1
-                            OBJDESIGN.alParaval.Add("")   'LINE2
-                            OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
-                            OBJDESIGN.alParaval.Add("")    'DESIGNER
-
                             OBJDESIGN.alParaval.Add("") 'GRIDSRNO
                             OBJDESIGN.alParaval.Add("") 'BASE
                             OBJDESIGN.alParaval.Add("") 'PRINT
                             OBJDESIGN.alParaval.Add("") 'COLOR
                             OBJDESIGN.alParaval.Add(0) 'COLORBLOCKED
                             OBJDESIGN.alParaval.Add("") 'SHADETYPE
+
+                            OBJDESIGN.alParaval.Add("")   'LINE1
+                            OBJDESIGN.alParaval.Add("")   'LINE2
+                            OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
+                            OBJDESIGN.alParaval.Add("")    'DESIGNER
+                            OBJDESIGN.alParaval.Add(0)  'CUTTINGRECD
+                            OBJDESIGN.alParaval.Add(0)  'DRAPINGRECD
+
 
                             Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
                         End If

@@ -98,6 +98,9 @@ Public Class DesignMaster
                         TXTLINE2.Text = dr("LINE2").ToString
                         CMBPARENTDESIGNNO.Text = dr("PARENTDESIGNNO").ToString
                         CMBCREATEDBY.Text = dr("DESIGNER").ToString
+                        CHKCUTTINGRECD.Checked = Convert.ToBoolean(dttable.Rows(0).Item("CUTTINGRECD"))
+                        CHKDRAPINGRECD.Checked = Convert.ToBoolean(dttable.Rows(0).Item("DRAPINGRECD"))
+
 
                     Next
 
@@ -213,6 +216,8 @@ Public Class DesignMaster
             alParaval.Add(TXTLINE2.Text.Trim)
             alParaval.Add(CMBPARENTDESIGNNO.Text.Trim)
             alParaval.Add(CMBCREATEDBY.Text.Trim)
+            alParaval.Add(CHKCUTTINGRECD.CheckState)
+            alParaval.Add(CHKDRAPINGRECD.CheckState)
 
 
             Dim objDESIGN As New ClsDesignMaster
@@ -277,6 +282,8 @@ Public Class DesignMaster
             TXTLINE2.Clear()
             CMBPARENTDESIGNNO.Text = ""
             CMBCREATEDBY.Text = ""
+            CHKCUTTINGRECD.CheckState = CheckState.Unchecked
+            CHKDRAPINGRECD.CheckState = CheckState.Unchecked
 
 
         Catch ex As Exception
@@ -331,7 +338,7 @@ Public Class DesignMaster
             Ep.SetError(CMBDESIGNNO, "Fill Design No")
             bln = False
         End If
-        If CMBCREATEDBY.Text.Trim.Length = 0 And ClientName = "VINTAGEINDIA" Then
+        If CMBCREATEDBY.Text.Trim.Length = 0 And (ClientName = "VINTAGEINDIA" Or ClientName = "DSM") Then
             Ep.SetError(CMBCREATEDBY, "Fill Designer Name")
             bln = False
         End If
@@ -515,6 +522,9 @@ Public Class DesignMaster
                 LBLSALERATE.Visible = False
                 CMBMILL.Visible = False
                 Label5.Visible = False
+            End If
+            If ClientName = "DSM" Then
+                LBLDESIGNERNAME.Text = "Printer Name"
             End If
 
         Catch ex As Exception
@@ -843,6 +853,22 @@ Public Class DesignMaster
             If CMBPARENTDESIGNNO.Text.Trim = "" Then FILLDESIGN(CMBPARENTDESIGNNO, "")
         Catch ex As Exception
             Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBCREATEDBY_Enter(sender As Object, e As EventArgs) Handles CMBCREATEDBY.Enter
+        Try
+            If CMBCREATEDBY.Text.Trim = "" Then fillDESIGNER(CMBCREATEDBY)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBCREATEDBY_Validating(sender As Object, e As CancelEventArgs) Handles CMBCREATEDBY.Validating
+        Try
+            If CMBCREATEDBY.Text.Trim <> "" Then DESIGNERVALIDATE(CMBCREATEDBY, e, Me)
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
 End Class
