@@ -1,39 +1,64 @@
-﻿Public Class UploadDoc :   IHttpHandler
+﻿<%@ WebHandler Language="C#" Class="UploadDoc" %>
+
+using System;
+using System.IO;
+using System.Web;
+
+public class UploadDoc : IHttpHandler
 {
-    Public void ProcessRequest(HttpContext context)
+    public void ProcessRequest(HttpContext context)
     {
-        Try
+        try
         {
-            If (context.Request.Files.Count == 0)
+            if (context.Request.Files.Count == 0)
             {
+                context.Response.StatusCode = 400;
                 context.Response.Write("No file received");
-                Return;
+                return;
             }
 
             HttpPostedFile file = context.Request.Files[0];
-            
-            // The filename contains the relative path Documents/SALEINVOICE/UPLOADDOCS/filename.pdf
-            String relativePath = file.FileName.Replace("/", "\\");
-            
-            // Build full server path
-            String savePath = context.Server.MapPath("~/" + relativePath);
-            
-            // Create directory if Not exists
-            String dir = Path.GetDirectoryName(savePath);
-            If (!Directory.Exists(dir))
+
+            if (file.ContentLength == 0)
+            {
+                context.Response.StatusCode = 400;
+                context.Response.Write("Empty file");
+                return;
+            }
+
+            // The filename field contains relative path like:
+            // Documents/SALEINVOICE/UPLOADDOCS/1001_1_invoice.pdf
+            string relativePath = file.FileName
+                .Replace("/", "\\")
+                .TrimStart('\\');
+
+            // Build full physical path on server
+            string savePath = context.Server.MapPath("~/" + relativePath.Replace("\\", "/"));
+
+            // Create directory if it doesn't exist
+            string dir = Path.GetDirectoryName(savePath);
+            if (!Directory.Exists(dir))
+            {
                 Directory.CreateDirectory(dir);
-            
+            }
+
+            // Save the file
             file.SaveAs(savePath);
-            
+
             context.Response.ContentType = "text/plain";
+            context.Response.StatusCode = 200;
             context.Response.Write("OK:" + relativePath);
         }
-        Catch (Exception ex)
+        catch (Exception ex)
         {
             context.Response.StatusCode = 500;
+            context.Response.ContentType = "text/plain";
             context.Response.Write("Error: " + ex.Message);
         }
     }
 
-    Public bool IsReusable => False;
+    public bool IsReusable
+    {
+        get { return false; }
+    }
 }
