@@ -1,15 +1,16 @@
 ﻿
 
-Imports BL
+Imports System.ComponentModel
 Imports System.IO
 Imports System.Net
-Imports System.ComponentModel
+Imports System.Threading.Tasks
+Imports BL
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
-Imports RestSharp
-Imports Newtonsoft.Json
-Imports TaxProEInvoice.API
 Imports DevExpress.CodeParser
+Imports Newtonsoft.Json
+Imports RestSharp
+Imports TaxProEInvoice.API
 
 Public Class InvoiceMaster
 
@@ -5659,27 +5660,106 @@ LINE1:
         End Try
     End Sub
 
-    Private Sub cmdupload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdupload.Click
+    Private Async Sub cmdupload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdupload.Click
         If (EDIT = True And USEREDIT = False And USERVIEW = False) Or (EDIT = False And USERADD = False) Then
             MsgBox("Insufficient Rights")
             Exit Sub
         End If
 
-        OpenFileDialog1.Filter = "Pictures (*.bmp;*.jpeg;*.png;*.pdf)|*.bmp;*.jpeg;*.png;*.pdf"
+        OpenFileDialog1.Filter = "Documents (*.bmp;*.jpeg;*.png;*.pdf)|*.bmp;*.jpeg;*.png;*.pdf"
         OpenFileDialog1.ShowDialog()
+
+        If String.IsNullOrWhiteSpace(OpenFileDialog1.FileName) Then Exit Sub
 
         OpenFileDialog1.AddExtension = True
         TXTFILENAME.Text = OpenFileDialog1.SafeFileName
         txtimgpath.Text = OpenFileDialog1.FileName
-        TXTNEWIMGPATH.Text = Application.StartupPath & "\UPLOADDOCS\" & TXTINVOICENO.Text.Trim & txtuploadsrno.Text.Trim & TXTFILENAME.Text.Trim
-        On Error Resume Next
 
-        If txtimgpath.Text.Trim.Length <> 0 Then
-            PBSoftCopy.ImageLocation = txtimgpath.Text.Trim
-            PBSoftCopy.Load(txtimgpath.Text.Trim)
+        ' Upload to IIS immediately
+        Dim uploaded As Boolean = Await UploadScannedDocAsync(OpenFileDialog1.FileName)
+
+        If uploaded Then
+            ' TXTNEWIMGPATH already set inside UploadScannedDocAsync
+            Try
+                PBSoftCopy.ImageLocation = txtimgpath.Text.Trim
+                PBSoftCopy.Load(txtimgpath.Text.Trim)
+            Catch ex As Exception
+                ' Not an image (e.g. PDF), skip preview silently
+            End Try
             txtuploadsrno.Focus()
         End If
     End Sub
+    Private Async Function UploadScannedDocAsync(filePath As String) As Task(Of Boolean)
+        Try
+            ' Build upload URL for scanned docs
+            ' Based on your IIS path: /TEXTRADE/Documents/SALEINVOICE/UPLOADDOCS/
+            Dim baseUrl As String = CATALOGIP  ' e.g. http://122.179.159.186/TEXTRADE/images/
+
+            ' Strip to root: http://122.179.159.186/TEXTRADE/
+            Dim rootUrl As String = baseUrl
+            If rootUrl.EndsWith("/") Then rootUrl = rootUrl.Substring(0, rootUrl.Length - 1)
+
+            ' Remove last segment (images folder)
+            Dim lastSlash As Integer = rootUrl.LastIndexOf("/")
+            If lastSlash > -1 Then rootUrl = rootUrl.Substring(0, lastSlash + 1)
+
+            ' Target upload handler
+            Dim uploadUrl As String = rootUrl & "UploadDoc.ashx"
+            ' Result: http://122.179.159.186/TEXTRADE/UploadDoc.ashx
+
+            If String.IsNullOrWhiteSpace(filePath) OrElse Not IO.File.Exists(filePath) Then
+                MessageBox.Show("File not found: " & filePath)
+                Return False
+            End If
+
+            ' Generate target filename: INVOICENO_SRNO_originalname.ext
+            Dim targetFileName As String = Val(TXTINVOICENO.Text.Trim) & "_" &
+                                       txtuploadsrno.Text.Trim & "_" &
+                                       IO.Path.GetFileName(filePath)
+
+            ' Target path on server
+            Dim targetPath As String = "Documents/SALEINVOICE/UPLOADDOCS/" & targetFileName
+
+            Using client As New System.Net.Http.HttpClient()
+                Using content As New System.Net.Http.MultipartFormDataContent()
+                    Using fileStream = IO.File.OpenRead(filePath)
+                        Dim fileContent As New System.Net.Http.StreamContent(fileStream)
+
+                        ' Set MIME type based on extension
+                        Dim ext As String = IO.Path.GetExtension(filePath).ToLowerInvariant()
+                        Dim mimeType As String = "application/octet-stream"
+                        Select Case ext
+                            Case ".jpg", ".jpeg" : mimeType = "image/jpeg"
+                            Case ".png" : mimeType = "image/png"
+                            Case ".pdf" : mimeType = "application/pdf"
+                            Case ".bmp" : mimeType = "image/bmp"
+                        End Select
+
+                        fileContent.Headers.ContentType = New System.Net.Http.Headers.MediaTypeHeaderValue(mimeType)
+
+                        ' Pass the full target path as filename so server knows where to save
+                        content.Add(fileContent, "file", targetPath)
+
+                        Dim response = Await client.PostAsync(uploadUrl, content)
+
+                        If response.IsSuccessStatusCode Then
+                            Dim result As String = Await response.Content.ReadAsStringAsync()
+                            ' Store the accessible URL in grid
+                            TXTNEWIMGPATH.Text = rootUrl & targetPath
+                            Return True
+                        Else
+                            MessageBox.Show("Upload failed: " & response.StatusCode.ToString())
+                            Return False
+                        End If
+                    End Using
+                End Using
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Upload error: " & ex.Message)
+            Return False
+        End Try
+    End Function
 
     Private Sub txtuploadsrno_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtuploadsrno.GotFocus
         If GRIDUPLOADDOUBLECLICK = False Then

@@ -256,6 +256,7 @@
     <Compile Include="Transactions\BlanketModule\ClsBlanketRepresentation.vb" />
     <Compile Include="Transactions\Complaint Solved\ClsComplaintSolved.vb" />
     <Compile Include="Transactions\DyeingPriceList\ClsDyeingPriceList.vb" />
+    <Compile Include="Transactions\Sale\ClsIssueToDesigner.vb" />
     <Compile Include="Transactions\Sale\ClsPosterOrder.vb" />
     <Compile Include="Transactions\Sale\ClsSalesEnquiry.vb" />
     <Compile Include="Transactions\Sale\ClsSecurityInwardOutward.vb" />
