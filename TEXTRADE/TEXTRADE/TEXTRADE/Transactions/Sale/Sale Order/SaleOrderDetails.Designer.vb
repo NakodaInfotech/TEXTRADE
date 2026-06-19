@@ -25,6 +25,7 @@ Partial Class SaleOrderDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SaleOrderDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.CHKPENDING = New System.Windows.Forms.CheckBox()
         Me.TXTFROM = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -88,7 +89,7 @@ Partial Class SaleOrderDetails
         Me.cmdok = New System.Windows.Forms.Button()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
+        Me.GDESIGNERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +120,20 @@ Partial Class SaleOrderDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 5
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(448, 541)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 809
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'CHKPENDING
         '
@@ -234,7 +249,7 @@ Partial Class SaleOrderDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSONO, Me.GREFNO, Me.GDATE, Me.GNAME, Me.GSHIPTO, Me.GAGENTNAME, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GGRIDPONO, Me.GDESC, Me.GQUALITY, Me.GPCS, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GPER, Me.GBALPCS, Me.GBALMTRS, Me.GPARTYPONO, Me.GAMT, Me.GSALESMAN, Me.GDELDATE, Me.GREMARKS, Me.GCLOSED, Me.GFORWARD, Me.GCLOSEDDATE, Me.GREASON, Me.GUSERNAME, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GPARENTDESIGNNO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSONO, Me.GREFNO, Me.GDATE, Me.GNAME, Me.GSHIPTO, Me.GAGENTNAME, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GGRIDPONO, Me.GDESC, Me.GQUALITY, Me.GPCS, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GPER, Me.GBALPCS, Me.GBALMTRS, Me.GPARTYPONO, Me.GAMT, Me.GSALESMAN, Me.GDELDATE, Me.GREMARKS, Me.GCLOSED, Me.GFORWARD, Me.GCLOSEDDATE, Me.GREASON, Me.GUSERNAME, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GPARENTDESIGNNO, Me.GDESIGNERNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Images = Me.imageList1
         Me.gridbill.Name = "gridbill"
@@ -739,19 +754,12 @@ Partial Class SaleOrderDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'CMDSAVELAYOUT
+        'GDESIGNERNAME
         '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(448, 541)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 809
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
+        Me.GDESIGNERNAME.Caption = "Designer Name"
+        Me.GDESIGNERNAME.FieldName = "DESIGNERNAME"
+        Me.GDESIGNERNAME.Name = "GDESIGNERNAME"
+        Me.GDESIGNERNAME.Width = 130
         '
         'SaleOrderDetails
         '
@@ -839,4 +847,5 @@ Partial Class SaleOrderDetails
     Friend WithEvents CHKPENDING As CheckBox
     Friend WithEvents GPARENTDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GDESIGNERNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

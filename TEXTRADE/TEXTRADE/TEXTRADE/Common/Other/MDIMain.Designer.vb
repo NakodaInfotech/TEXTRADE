@@ -1373,9 +1373,11 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.IssueToDesigner_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewDesignerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditExistingEntryToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IssueToDesigner_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator359 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator360 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -4188,7 +4190,7 @@ Partial Class MDIMain
         '
         'SaleToolStripMenuItem
         '
-        Me.SaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SO_MASTER, Me.SCHEDULE_MASTER, Me.PS_MASTER, Me.FINALPS_MASTER, Me.GDN_MASTER, Me.GATEPASS_MASTER, Me.TRANSCHALLAN_MASTER, Me.TRANSCHALLAN_SEPERATOR, Me.SALE_MASTER, Me.SALERETURNCHALLAN_MASTER, Me.SALERET_MASTER, Me.SALERET_SEPERATOR, Me.SECURITYINWARDOUTWARD_MASTER, Me.IssueToDesigner_MASTER})
+        Me.SaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SO_MASTER, Me.IssueToDesigner_MASTER, Me.SCHEDULE_MASTER, Me.PS_MASTER, Me.FINALPS_MASTER, Me.GDN_MASTER, Me.GATEPASS_MASTER, Me.TRANSCHALLAN_MASTER, Me.TRANSCHALLAN_SEPERATOR, Me.SALE_MASTER, Me.SALERETURNCHALLAN_MASTER, Me.SALERET_MASTER, Me.SALERET_SEPERATOR, Me.SECURITYINWARDOUTWARD_MASTER, Me.ToolStripSeparator359})
         Me.SaleToolStripMenuItem.Name = "SaleToolStripMenuItem"
         Me.SaleToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.SaleToolStripMenuItem.Text = "&Sale"
@@ -10016,14 +10018,6 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
-        'IssueToDesigner_MASTER
-        '
-        Me.IssueToDesigner_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewDesignerToolStripMenuItem, Me.EditExistingEntryToolStripMenuItem8})
-        Me.IssueToDesigner_MASTER.Name = "IssueToDesigner_MASTER"
-        Me.IssueToDesigner_MASTER.Size = New System.Drawing.Size(206, 22)
-        Me.IssueToDesigner_MASTER.Text = "Issue To Designer"
-        Me.IssueToDesigner_MASTER.Visible = False
-        '
         'AddNewDesignerToolStripMenuItem
         '
         Me.AddNewDesignerToolStripMenuItem.Name = "AddNewDesignerToolStripMenuItem"
@@ -10035,6 +10029,24 @@ Partial Class MDIMain
         Me.EditExistingEntryToolStripMenuItem8.Name = "EditExistingEntryToolStripMenuItem8"
         Me.EditExistingEntryToolStripMenuItem8.Size = New System.Drawing.Size(180, 22)
         Me.EditExistingEntryToolStripMenuItem8.Text = "Edit Existing Entry"
+        '
+        'IssueToDesigner_MASTER
+        '
+        Me.IssueToDesigner_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewDesignerToolStripMenuItem, Me.EditExistingEntryToolStripMenuItem8, Me.ToolStripSeparator360})
+        Me.IssueToDesigner_MASTER.Name = "IssueToDesigner_MASTER"
+        Me.IssueToDesigner_MASTER.Size = New System.Drawing.Size(206, 22)
+        Me.IssueToDesigner_MASTER.Text = "Issue To Designer"
+        Me.IssueToDesigner_MASTER.Visible = False
+        '
+        'ToolStripSeparator359
+        '
+        Me.ToolStripSeparator359.Name = "ToolStripSeparator359"
+        Me.ToolStripSeparator359.Size = New System.Drawing.Size(203, 6)
+        '
+        'ToolStripSeparator360
+        '
+        Me.ToolStripSeparator360.Name = "ToolStripSeparator360"
+        Me.ToolStripSeparator360.Size = New System.Drawing.Size(177, 6)
         '
         'MDIMain
         '
@@ -11415,4 +11427,6 @@ Partial Class MDIMain
     Friend WithEvents IssueToDesigner_MASTER As ToolStripMenuItem
     Friend WithEvents AddNewDesignerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EditExistingEntryToolStripMenuItem8 As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator360 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator359 As ToolStripSeparator
 End Class

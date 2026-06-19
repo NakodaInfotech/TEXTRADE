@@ -498,6 +498,30 @@ Public Class SampleBarcode
                             End If
 
 
+                        ElseIf ClientName = "DSM" Then
+
+                            oWrite.WriteLine("SIZE 104.5 mm, 38 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 809,279,""ROMAN.TTF"",180,1,20,""" & CMBMERCHANT.Text.Trim & """
+TEXT 809,195,""ROMAN.TTF"",180,1,20,""" & CMBDESIGNNO.Text.Trim & """
+QRCODE 594,169,L,7,A,180,M2,S7,""" & TXTBARCODE.Text.Trim & """
+TEXT 809,56,""ROMAN.TTF"",180,1,11,""" & TXTBARCODE.Text.Trim & """
+TEXT 385,279,""ROMAN.TTF"",180,1,20,""" & CMBMERCHANT.Text.Trim & """
+TEXT 385,195,""ROMAN.TTF"",180,1,20,""" & CMBDESIGNNO.Text.Trim & """
+QRCODE 170,169,L,7,A,180,M2,S7,""" & TXTBARCODE.Text.Trim & """
+TEXT 385,56,""ROMAN.TTF"",180,1,11,""" & TXTBARCODE.Text.Trim & """
+PRINT 1,1")
+                            oWrite.Dispose()
+
                         ElseIf ClientName = "GELATO" Then
 
                             oWrite.WriteLine("<xpml><page quantity='0' pitch='70.1 mm'></xpml>G0")
@@ -2082,7 +2106,29 @@ PRINT 1,1")
 
 
 
+                                ElseIf ClientName = "DSM" Then
 
+                                    oWrite.WriteLine("SIZE 104.5 mm, 38 mm
+GAP 3 mm, 0 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 809,279,""ROMAN.TTF"",180,1,20,""" & ROW("ITEMNAME") & """
+TEXT 809,195,""ROMAN.TTF"",180,1,20,""" & ROW("DESIGNNO") & """
+QRCODE 594,169,L,7,A,180,M2,S7,""" & ROW("BARCODE") & """
+TEXT 809,56,""ROMAN.TTF"",180,1,11,""" & ROW("BARCODE") & """
+TEXT 385,279,""ROMAN.TTF"",180,1,20,""" & ROW("ITEMNAME") & """
+TEXT 385,195,""ROMAN.TTF"",180,1,20,""" & ROW("DESIGNNO") & """
+QRCODE 170,169,L,7,A,180,M2,S7,""" & ROW("BARCODE") & """
+TEXT 385,56,""ROMAN.TTF"",180,1,11,""" & ROW("BARCODE") & """
+PRINT 1,1")
+                                    oWrite.Dispose()
 
 
 
