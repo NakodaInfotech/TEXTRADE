@@ -21,6 +21,9 @@ Public Class SaleOrderDesign
     Dim RPTSO_AVIS_CAD As New SOReport_AVIS_CAD
     Dim RPTSO_MAHAVIRPOLYCOT As New SOReport_MAHAVIRPOLYCOT
 
+    Dim RPTSO_ISSUETODESIGNER As New SOIssueDesignerReport
+
+
 
 
     Dim RPTSTOCKRECO As New StockRecoReport
@@ -116,6 +119,8 @@ Public Class SaleOrderDesign
                 crTables = RPTSO_AVIS_CAD.Database.Tables
             ElseIf FRMSTRING = "SCHEDULEREPORT" Then
                 crTables = RPTSCHREPORT.Database.Tables
+            ElseIf FRMSTRING = "ISSUETODESIGNER" Then
+                crTables = RPTSO_ISSUETODESIGNER.Database.Tables
             ElseIf FRMSTRING = "STOCKRECO" Then
                 If ClientName = "MOHATUL" Then
                     crTables = RPTSTOCKRECO_CUTTING.Database.Tables
@@ -168,6 +173,8 @@ Public Class SaleOrderDesign
                 crpo.ReportSource = RPTSO_AVIS_CAD
             ElseIf FRMSTRING = "SCHEDULEREPORT" Then
                 crpo.ReportSource = RPTSCHREPORT
+            ElseIf FRMSTRING = "ISSUETODESIGNER" Then
+                crpo.ReportSource = RPTSO_ISSUETODESIGNER
             ElseIf FRMSTRING = "STOCKRECO" Then
                 If ClientName = "MOHATUL" Then
                     crpo.ReportSource = RPTSTOCKRECO_CUTTING
@@ -234,6 +241,12 @@ Public Class SaleOrderDesign
         ElseIf FRMSTRING = "STOCKRECO" Then
             tempattachment = "STOCKRECO"
             objmail.subject = "Stock Reco"
+
+
+        ElseIf FRMSTRING = "ISSUETODESIGNER" Then
+            tempattachment = "ISSUETODESIGNER"
+            objmail.subject = "ISSUETODESIGNER"
+
         End If
 
         Try
@@ -368,6 +381,14 @@ Public Class SaleOrderDesign
                     RPTSTOCKRECO.Export()
                 End If
 
+            ElseIf FRMSTRING = "ISSUETODESIGNER" Then
+                expo = RPTSO_ISSUETODESIGNER.ExportOptions
+                expo.ExportDestinationType = ExportDestinationType.DiskFile
+                expo.ExportFormatType = ExportFormatType.PortableDocFormat
+                expo.DestinationOptions = oDfDopt
+                RPTSO_ISSUETODESIGNER.Export()
+
+
             Else
                 oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_" & SONO & "_SOREPORT.PDF"
                 '  expo = rptssum.ExportOptions
@@ -443,6 +464,9 @@ Public Class SaleOrderDesign
                 Else
                     OBJ = New StockRecoReport
                 End If
+
+            ElseIf FRMSTRING = "ISSUETODESIGNER" Then
+                OBJ = New SOIssueDesignerReport
             End If
 
 
@@ -477,6 +501,8 @@ Public Class SaleOrderDesign
                     TEMPATTACHMENT = "SAMPLEPRICELIST"
                 ElseIf FRMSTRING = "STOCKRECO" Then
                     TEMPATTACHMENT = "STOCKRECO"
+                ElseIf FRMSTRING = "ISSUETODESIGNER" Then
+                    TEMPATTACHMENT = "ISSUETODESIGNER"
                 End If
 
 
@@ -514,6 +540,8 @@ Public Class SaleOrderDesign
                 tempattachment = "SAMPLEPRICELIST"
             ElseIf FRMSTRING = "STOCKRECO" Then
                 tempattachment = "STOCKRECO"
+            ElseIf FRMSTRING = "ISSUETODESIGNER" Then
+                tempattachment = "ISSUETODESIGNER"
             End If
 
             Dim OBJWHATSAPP As New SendWhatsapp

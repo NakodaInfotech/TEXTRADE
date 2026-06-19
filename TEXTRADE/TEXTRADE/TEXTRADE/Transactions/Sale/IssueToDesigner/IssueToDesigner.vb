@@ -241,6 +241,7 @@ Public Class IssueToDesigner
                 MessageBox.Show("Details Updated")
                 EDIT = False
             End If
+            PRINTREPORT()
 
             CLEAR()
             CMBDESIGNERNAME.Focus()
@@ -467,6 +468,33 @@ NEXTLINE:
             Throw ex
         End Try
 
+    End Sub
+
+    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
+        Try
+            If EDIT = True Then PRINTREPORT()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+
+    Sub PRINTREPORT()
+        Try
+            If MsgBox("Wish to Print Issue To Designer?", MsgBoxStyle.YesNo) = vbYes Then
+                Dim OBJsaleOrder As New SaleOrderDesign
+                OBJsaleOrder.MdiParent = MDIMain
+                OBJsaleOrder.FRMSTRING = "ISSUETODESIGNER"
+                OBJsaleOrder.PARTYNAME = CMBDESIGNERNAME.Text.Trim
+                OBJsaleOrder.SONO = Val(TXTNO.Text.Trim)
+                OBJsaleOrder.FORMULA = "{ISSUETODESIGNER.ISS_no}=" & Val(TXTNO.Text) & " and {ISSUETODESIGNER.ISS_yearid}=" & YearId
+                OBJsaleOrder.Show()
+
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     Private Sub GRIDMANUALENTRY_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDISSUE.KeyDown
