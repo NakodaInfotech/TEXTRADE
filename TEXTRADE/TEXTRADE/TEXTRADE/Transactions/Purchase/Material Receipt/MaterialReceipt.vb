@@ -3973,7 +3973,7 @@ LINE1:
 
                     CMBLOTNO.Enabled = False
                     If ClientName = "SOFTAS" Then CMBCHECKSRNO.Text = 1
-                    If ClientName = "KEMLINO" Or ClientName = "SHREENAKODA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "YASHVI" Or ClientName = "MOHATUL" Or ClientName = "SIDDHGIRI" Or ClientName = "RMANILAL" Then
+                    If ClientName = "KEMLINO" Or ClientName = "SHREENAKODA" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "YASHVI" Or ClientName = "MOHATUL" Or ClientName = "SIDDHGIRI" Or ClientName = "RMANILAL" Or ClientName = "MIRANO" Then
                         cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
                         CMBDESIGN.Text = DT.Rows(0).Item("DESIGN")
                     End If
