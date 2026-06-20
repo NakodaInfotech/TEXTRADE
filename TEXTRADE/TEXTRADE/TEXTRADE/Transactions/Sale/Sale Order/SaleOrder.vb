@@ -3385,8 +3385,31 @@ NEXTLINE1:
                         End If
                     End If
 
+                    'FOR DSM - WARN IF SAME ITEM + DESIGN ALREADY EXISTS IN GRID
+                    If ClientName = "DSM" Then
+                        Dim ITEMEXISTS As Boolean = False
+                        If DT.Rows(0).Item("ITEMNAME").ToString.Trim <> "" AndAlso DT.Rows(0).Item("DESIGNNO").ToString.Trim <> "" Then
+                            For Each ROW As DataGridViewRow In GRIDSO.Rows
+                                If ROW.Cells(gitemname.Index).Value IsNot Nothing AndAlso ROW.Cells(GDESIGN.Index).Value IsNot Nothing Then
+                                    If ROW.Cells(gitemname.Index).Value.ToString = DT.Rows(0).Item("ITEMNAME").ToString AndAlso
+                                   ROW.Cells(GDESIGN.Index).Value.ToString = DT.Rows(0).Item("DESIGNNO").ToString Then
+                                        ITEMEXISTS = True
+                                        Exit For
+                                    End If
+                                End If
+                            Next
 
+                            If ITEMEXISTS Then
+                                If MsgBox("Same Item and Design already present in Grid. Wish to Proceed?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, "Confirm") = MsgBoxResult.No Then
+                                    GoTo LINE1
+                                End If
+                            End If
+                        Else
+                            MsgBox("Item Name Or Design is Blank")
+                            GoTo LINE1
 
+                        End If
+                    End If
                     GRIDSO.Rows.Add(GRIDSO.RowCount + 1, DT.Rows(0).Item("ITEMNAME"), DT.Rows(0).Item("QUALITY"), DT.Rows(0).Item("DESIGNNO"), "", DT.Rows(0).Item("COLOR"), "", Val(txtQTY.Text.Trim), cmbqtyunit.Text.Trim, Format(Val(TXTCUT.Text.Trim), "0.00"), Format(Val(TXTMTRS.Text.Trim), "0.00"), Format(Val(RATE), "0.00"), CMBPER.Text.Trim, 0, Format(SCHEDDATE.Value.Date, "dd/MM/yyyy"), 0, 0, 0, 0, 0)
                     GRIDSO.FirstDisplayedScrollingRowIndex = GRIDSO.RowCount - 1
 
@@ -3621,6 +3644,15 @@ LINE1:
                                 OBJDESIGN.alParaval.Add("") 'BASE
                                 OBJDESIGN.alParaval.Add("") 'PRINT
                                 OBJDESIGN.alParaval.Add("") 'COLOR
+                                OBJDESIGN.alParaval.Add(0) 'COLORBLOCKED
+                                OBJDESIGN.alParaval.Add("") 'SHADETYPE
+
+                                OBJDESIGN.alParaval.Add("")   'LINE1
+                                OBJDESIGN.alParaval.Add("")   'LINE2
+                                OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
+                                OBJDESIGN.alParaval.Add("")    'DESIGNER
+                                OBJDESIGN.alParaval.Add(0)  'CUTTINGRECD
+                                OBJDESIGN.alParaval.Add(0)  'DRAPINGRECD
 
                                 Dim INTRESCAT As Integer = OBJDESIGN.SAVE()
                             End If

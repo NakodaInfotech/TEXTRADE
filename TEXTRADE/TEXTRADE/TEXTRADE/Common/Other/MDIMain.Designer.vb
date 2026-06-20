@@ -1373,6 +1373,9 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.IssueToDesigner_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewDesignerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -4185,7 +4188,7 @@ Partial Class MDIMain
         '
         'SaleToolStripMenuItem
         '
-        Me.SaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SO_MASTER, Me.SCHEDULE_MASTER, Me.PS_MASTER, Me.FINALPS_MASTER, Me.GDN_MASTER, Me.GATEPASS_MASTER, Me.TRANSCHALLAN_MASTER, Me.TRANSCHALLAN_SEPERATOR, Me.SALE_MASTER, Me.SALERETURNCHALLAN_MASTER, Me.SALERET_MASTER, Me.SALERET_SEPERATOR, Me.SECURITYINWARDOUTWARD_MASTER})
+        Me.SaleToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SO_MASTER, Me.SCHEDULE_MASTER, Me.PS_MASTER, Me.FINALPS_MASTER, Me.GDN_MASTER, Me.GATEPASS_MASTER, Me.TRANSCHALLAN_MASTER, Me.TRANSCHALLAN_SEPERATOR, Me.SALE_MASTER, Me.SALERETURNCHALLAN_MASTER, Me.SALERET_MASTER, Me.SALERET_SEPERATOR, Me.SECURITYINWARDOUTWARD_MASTER, Me.IssueToDesigner_MASTER})
         Me.SaleToolStripMenuItem.Name = "SaleToolStripMenuItem"
         Me.SaleToolStripMenuItem.Size = New System.Drawing.Size(195, 22)
         Me.SaleToolStripMenuItem.Text = "&Sale"
@@ -4530,13 +4533,13 @@ Partial Class MDIMain
         'SECURITYINWARDOUTWARDADD
         '
         Me.SECURITYINWARDOUTWARDADD.Name = "SECURITYINWARDOUTWARDADD"
-        Me.SECURITYINWARDOUTWARDADD.Size = New System.Drawing.Size(168, 22)
+        Me.SECURITYINWARDOUTWARDADD.Size = New System.Drawing.Size(180, 22)
         Me.SECURITYINWARDOUTWARDADD.Text = "Add New Entry"
         '
         'SECURITYINWARDOUTWARDEDIT
         '
         Me.SECURITYINWARDOUTWARDEDIT.Name = "SECURITYINWARDOUTWARDEDIT"
-        Me.SECURITYINWARDOUTWARDEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.SECURITYINWARDOUTWARDEDIT.Size = New System.Drawing.Size(180, 22)
         Me.SECURITYINWARDOUTWARDEDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator22
@@ -8563,13 +8566,13 @@ Partial Class MDIMain
         'BEAMJOBOUT_ADD
         '
         Me.BEAMJOBOUT_ADD.Name = "BEAMJOBOUT_ADD"
-        Me.BEAMJOBOUT_ADD.Size = New System.Drawing.Size(180, 22)
+        Me.BEAMJOBOUT_ADD.Size = New System.Drawing.Size(168, 22)
         Me.BEAMJOBOUT_ADD.Text = "Add New Entry"
         '
         'BEAMJOBOUT_EDIT
         '
         Me.BEAMJOBOUT_EDIT.Name = "BEAMJOBOUT_EDIT"
-        Me.BEAMJOBOUT_EDIT.Size = New System.Drawing.Size(180, 22)
+        Me.BEAMJOBOUT_EDIT.Size = New System.Drawing.Size(168, 22)
         Me.BEAMJOBOUT_EDIT.Text = "Edit Existing Entry"
         '
         'BEAMJOBIN_MASTER
@@ -8582,13 +8585,13 @@ Partial Class MDIMain
         'BEAMJOBIN_ADD
         '
         Me.BEAMJOBIN_ADD.Name = "BEAMJOBIN_ADD"
-        Me.BEAMJOBIN_ADD.Size = New System.Drawing.Size(180, 22)
+        Me.BEAMJOBIN_ADD.Size = New System.Drawing.Size(168, 22)
         Me.BEAMJOBIN_ADD.Text = "Add New Entry"
         '
         'EditExistingEntryToolStripMenuItem7
         '
         Me.EditExistingEntryToolStripMenuItem7.Name = "EditExistingEntryToolStripMenuItem7"
-        Me.EditExistingEntryToolStripMenuItem7.Size = New System.Drawing.Size(180, 22)
+        Me.EditExistingEntryToolStripMenuItem7.Size = New System.Drawing.Size(168, 22)
         Me.EditExistingEntryToolStripMenuItem7.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator339
@@ -10013,6 +10016,26 @@ Partial Class MDIMain
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
         '
+        'IssueToDesigner_MASTER
+        '
+        Me.IssueToDesigner_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewDesignerToolStripMenuItem, Me.EditExistingEntryToolStripMenuItem8})
+        Me.IssueToDesigner_MASTER.Name = "IssueToDesigner_MASTER"
+        Me.IssueToDesigner_MASTER.Size = New System.Drawing.Size(206, 22)
+        Me.IssueToDesigner_MASTER.Text = "Issue To Designer"
+        Me.IssueToDesigner_MASTER.Visible = False
+        '
+        'AddNewDesignerToolStripMenuItem
+        '
+        Me.AddNewDesignerToolStripMenuItem.Name = "AddNewDesignerToolStripMenuItem"
+        Me.AddNewDesignerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AddNewDesignerToolStripMenuItem.Text = "Add New Entry"
+        '
+        'EditExistingEntryToolStripMenuItem8
+        '
+        Me.EditExistingEntryToolStripMenuItem8.Name = "EditExistingEntryToolStripMenuItem8"
+        Me.EditExistingEntryToolStripMenuItem8.Size = New System.Drawing.Size(180, 22)
+        Me.EditExistingEntryToolStripMenuItem8.Text = "Edit Existing Entry"
+        '
         'MDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -11389,4 +11412,7 @@ Partial Class MDIMain
     Friend WithEvents BeamJobOutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BEAMJOBOUT_ADD As ToolStripMenuItem
     Friend WithEvents BEAMJOBOUT_EDIT As ToolStripMenuItem
+    Friend WithEvents IssueToDesigner_MASTER As ToolStripMenuItem
+    Friend WithEvents AddNewDesignerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditExistingEntryToolStripMenuItem8 As ToolStripMenuItem
 End Class

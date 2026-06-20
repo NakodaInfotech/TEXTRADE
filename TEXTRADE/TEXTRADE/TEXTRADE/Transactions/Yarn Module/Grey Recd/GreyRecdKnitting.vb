@@ -671,7 +671,7 @@ LINE1:
                 Dim OBJGREY As New ClsGreyRecdKnitting
                 Dim DTTABLE As DataTable = OBJGREY.selectGREY(Val(TXTGREYNO.Text.Trim), CmpId, YearId)
                 For Each dr As DataRow In DTTABLE.Rows
-                    GRIDGREY.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("DESIGNNO").ToString, dr("COLOR").ToString, dr("LOOMNO"), dr("ROLLNO"), Format(dr("qty"), "0.00"), dr("UNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("WT"), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"))
+                    GRIDGREY.Rows.Add(dr("GRIDSRNO").ToString, dr("ITEMNAME").ToString, dr("QUALITY").ToString, dr("DESIGNNO").ToString, dr("COLOR").ToString, dr("LOOMNO"), dr("ROLLNO"), Format(dr("qty"), "0.00"), dr("UNIT").ToString, Format(dr("MTRS"), "0.00"), Format(dr("WT"), "0.00"), Format(dr("AVGWT"), "0.00"), Format(dr("RECDAVGWT"), "0.00"), dr("RACK"), dr("SHELF"), dr("BARCODE"), dr("GRIDDONE").ToString, dr("OUTPCS"), dr("OUTMTRS"))
                 Next
 
 

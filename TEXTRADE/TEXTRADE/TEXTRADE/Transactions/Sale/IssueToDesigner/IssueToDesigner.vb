@@ -31,12 +31,13 @@ Public Class IssueToDesigner
         LBLTOTALMTRS.Text = 0.00
         GETMAX_ISSENTRY()
         tstxtbillno.Clear()
+        CMBDESIGNERNAME.Enabled = True
 
     End Sub
 
     Sub GETMAX_ISSENTRY()
         Dim DTTABLE As New DataTable
-        DTTABLE = getmax(" isnull(max(ME_NO),0) + 1 ", "MANUALENTRY", "  AND ME_yearid=" & YearId)
+        DTTABLE = getmax(" isnull(max(ISS_NO),0) + 1 ", "ISSUETODESIGNER", "  AND ISS_yearid=" & YearId)
         If DTTABLE.Rows.Count > 0 Then TXTNO.Text = DTTABLE.Rows(0).Item(0)
     End Sub
 
@@ -73,7 +74,7 @@ Public Class IssueToDesigner
 
     Sub FILLCMB()
         Try
-            If CMBDESIGNERNAME.Text.Trim = "" Then fillitemcode(CMBDESIGNERNAME, EDIT)
+            If CMBDESIGNERNAME.Text.Trim = "" Then fillDESIGNER(CMBDESIGNERNAME, EDIT)
         Catch ex As Exception
             Throw ex
         End Try
@@ -116,16 +117,17 @@ Public Class IssueToDesigner
                         TXTNO.Text = TEMPISSNO
                         'TXTPRONO.ReadOnly = True
                         DTDATE.Text = Format(Convert.ToDateTime(dr("DATE")), "dd/MM/yyyy")
-                        CMBDESIGNERNAME.Text = dr("NAME")
+                        CMBDESIGNERNAME.Text = dr("DESIGNERNAME")
                         TXTREMARKS.Text = dr("REMARKS")
                         LBLTOTALMTRS.Text = dr("TOTALMTRS")
 
-                        GRIDISSUE.Rows.Add(Val(dr("GRIDSRNO")), dr("ORDERNO"), dr("NAME"), dr("ITEMNAME"), dr("DESIGN"), dr("SHADE"), Format(Val(dr("MTRS")), "0.00"), dr("ORDERSRNO"), dr("ORDERTYPE"))
+                        GRIDISSUE.Rows.Add(Val(dr("GRIDSRNO")), dr("ORDERNO"), dr("NAME"), dr("ITEMNAME"), dr("DESIGN"), dr("COLOR"), Format(Val(dr("MTRS")), "0.00"), dr("ORDERSRNO"), dr("ORDERTYPE"))
                     Next
 
                     GRIDISSUE.FirstDisplayedScrollingRowIndex = GRIDISSUE.RowCount - 1
                     TOTAL()
                     DTDATE.Focus()
+                    CMBDESIGNERNAME.Enabled = False
                 Else
                     EDIT = False
                     CLEAR()
@@ -239,6 +241,7 @@ Public Class IssueToDesigner
                 MessageBox.Show("Details Updated")
                 EDIT = False
             End If
+            PRINTREPORT()
 
             CLEAR()
             CMBDESIGNERNAME.Focus()
@@ -430,7 +433,69 @@ LINE1:
         End Try
     End Sub
 
+    Private Sub CMDSELECTORDER_Click(sender As Object, e As EventArgs) Handles CMDSELECTORDER.Click
+        Try
+            If CMBDESIGNERNAME.Text.Trim = "" Then
+                MsgBox("Select Designer Name", MsgBoxStyle.Critical)
+                CMBDESIGNERNAME.Focus()
+                Exit Sub
+            End If
 
+            Dim DTSO As New DataTable
+            Dim OBJSELECTSO As New SelectSO
+            OBJSELECTSO.PARTYNAME = CMBDESIGNERNAME.Text.Trim
+            OBJSELECTSO.ShowDialog()
+            DTSO = OBJSELECTSO.DT
+
+            If DTSO.Rows.Count > 0 Then
+
+                'BEFORE ADDING THE ROW IN ORDERDER GRID CHECK WHETHER SAME ORDERNO AN SRNO IS PRESENT IN GRID OR NOT
+                For Each DTROW As DataRow In DTSO.Rows
+                    For Each ROW As DataGridViewRow In GRIDISSUE.Rows
+                        If Val(ROW.Cells(GORDERNO.Index).Value) = Val(DTROW("SONO")) And Val(ROW.Cells(GORDERSRNO.Index).Value) = Val(DTROW("GRIDSRNO")) And ROW.Cells(GORDERTYPE.Index).Value = DTROW("TYPE") Then GoTo NEXTLINE
+                    Next
+
+                    GRIDISSUE.Rows.Add(0, DTROW("SONO"), DTROW("NAME"), DTROW("ITEMNAME"), DTROW("DESIGN"), DTROW("COLOR"), DTROW("MTRS"), DTROW("GRIDSRNO"), DTROW("TYPE"))
+NEXTLINE:
+                Next
+                getsrno(GRIDISSUE)
+
+            End If
+
+            CMBDESIGNERNAME.Enabled = False
+            TOTAL()
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+    Private Sub PrintToolStripButton_Click(sender As Object, e As EventArgs) Handles PrintToolStripButton.Click
+        Try
+            If EDIT = True Then PRINTREPORT()
+        Catch ex As Exception
+            If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
+        End Try
+    End Sub
+
+
+    Sub PRINTREPORT()
+        Try
+            If MsgBox("Wish to Print Issue To Designer?", MsgBoxStyle.YesNo) = vbYes Then
+                Dim OBJsaleOrder As New SaleOrderDesign
+                OBJsaleOrder.MdiParent = MDIMain
+                OBJsaleOrder.FRMSTRING = "ISSUETODESIGNER"
+                OBJsaleOrder.PARTYNAME = CMBDESIGNERNAME.Text.Trim
+                OBJsaleOrder.SONO = Val(TXTNO.Text.Trim)
+                OBJsaleOrder.FORMULA = "{ISSUETODESIGNER.ISS_no}=" & Val(TXTNO.Text) & " and {ISSUETODESIGNER.ISS_yearid}=" & YearId
+                OBJsaleOrder.Show()
+
+            End If
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     Private Sub GRIDMANUALENTRY_KeyDown(sender As Object, e As KeyEventArgs) Handles GRIDISSUE.KeyDown
         Try
@@ -477,5 +542,20 @@ LINE1:
         numkeypress(e, sender, Me)
     End Sub
 
+    Private Sub CMBDESIGNERNAME_Validating(sender As Object, e As CancelEventArgs) Handles CMBDESIGNERNAME.Validating
+        Try
+            If CMBDESIGNERNAME.Text.Trim <> "" Then DESIGNERVALIDATE(CMBDESIGNERNAME, e, Me)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub CMBDESIGNERNAME_Enter(sender As Object, e As EventArgs) Handles CMBDESIGNERNAME.Enter
+        Try
+            If CMBDESIGNERNAME.Text.Trim = "" Then fillDESIGNER(CMBDESIGNERNAME, EDIT)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 End Class
 

@@ -23,14 +23,16 @@ Partial Class DesignMaster
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.cmddelete = New System.Windows.Forms.Button()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMBCOPYDESIGN = New System.Windows.Forms.ComboBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.CMBPARENTDESIGNNO = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.LBLDESIGNERNAME = New System.Windows.Forms.Label()
         Me.CMBCREATEDBY = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TXTLINE1 = New System.Windows.Forms.TextBox()
@@ -88,8 +90,8 @@ Partial Class DesignMaster
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.Ep = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.CMBCOPYDESIGN = New System.Windows.Forms.ComboBox()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.CHKCUTTINGRECD = New System.Windows.Forms.CheckBox()
+        Me.CHKDRAPINGRECD = New System.Windows.Forms.CheckBox()
         Me.BlendPanel1.SuspendLayout()
         Me.GRPSHADE.SuspendLayout()
         CType(Me.GRIDSHADE, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,10 +117,12 @@ Partial Class DesignMaster
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.CHKDRAPINGRECD)
+        Me.BlendPanel1.Controls.Add(Me.CHKCUTTINGRECD)
         Me.BlendPanel1.Controls.Add(Me.CMBCOPYDESIGN)
         Me.BlendPanel1.Controls.Add(Me.Label8)
         Me.BlendPanel1.Controls.Add(Me.CMBPARENTDESIGNNO)
-        Me.BlendPanel1.Controls.Add(Me.Label6)
+        Me.BlendPanel1.Controls.Add(Me.LBLDESIGNERNAME)
         Me.BlendPanel1.Controls.Add(Me.CMBCREATEDBY)
         Me.BlendPanel1.Controls.Add(Me.Label1)
         Me.BlendPanel1.Controls.Add(Me.TXTLINE1)
@@ -169,6 +173,30 @@ Partial Class DesignMaster
         Me.BlendPanel1.Size = New System.Drawing.Size(1097, 573)
         Me.BlendPanel1.TabIndex = 0
         '
+        'CMBCOPYDESIGN
+        '
+        Me.CMBCOPYDESIGN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CMBCOPYDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CMBCOPYDESIGN.BackColor = System.Drawing.Color.LemonChiffon
+        Me.CMBCOPYDESIGN.FormattingEnabled = True
+        Me.CMBCOPYDESIGN.Location = New System.Drawing.Point(743, 40)
+        Me.CMBCOPYDESIGN.Name = "CMBCOPYDESIGN"
+        Me.CMBCOPYDESIGN.Size = New System.Drawing.Size(215, 23)
+        Me.CMBCOPYDESIGN.TabIndex = 503
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label8.Location = New System.Drawing.Point(664, 44)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(73, 14)
+        Me.Label8.TabIndex = 504
+        Me.Label8.Text = "Copy Design"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'CMBPARENTDESIGNNO
         '
         Me.CMBPARENTDESIGNNO.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
@@ -180,17 +208,17 @@ Partial Class DesignMaster
         Me.CMBPARENTDESIGNNO.Size = New System.Drawing.Size(95, 23)
         Me.CMBPARENTDESIGNNO.TabIndex = 15
         '
-        'Label6
+        'LBLDESIGNERNAME
         '
-        Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(334, 40)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(91, 22)
-        Me.Label6.TabIndex = 502
-        Me.Label6.Text = "Designer Name"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LBLDESIGNERNAME.BackColor = System.Drawing.Color.Transparent
+        Me.LBLDESIGNERNAME.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLDESIGNERNAME.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.LBLDESIGNERNAME.Location = New System.Drawing.Point(334, 40)
+        Me.LBLDESIGNERNAME.Name = "LBLDESIGNERNAME"
+        Me.LBLDESIGNERNAME.Size = New System.Drawing.Size(91, 22)
+        Me.LBLDESIGNERNAME.TabIndex = 502
+        Me.LBLDESIGNERNAME.Text = "Designer Name"
+        Me.LBLDESIGNERNAME.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CMBCREATEDBY
         '
@@ -415,37 +443,37 @@ Partial Class DesignMaster
         Me.GRIDSHADE.AllowUserToDeleteRows = False
         Me.GRIDSHADE.AllowUserToResizeColumns = False
         Me.GRIDSHADE.AllowUserToResizeRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
-        Me.GRIDSHADE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer))
+        Me.GRIDSHADE.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.GRIDSHADE.BackgroundColor = System.Drawing.Color.White
         Me.GRIDSHADE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GRIDSHADE.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.GRIDSHADE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.GRIDSHADE.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.GRIDSHADE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.GRIDSHADE.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.GSRNO, Me.GBASE, Me.GPRINT, Me.GCOLOR, Me.GBLOCKED, Me.GSHADETYPE})
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.GRIDSHADE.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.GRIDSHADE.DefaultCellStyle = DataGridViewCellStyle3
         Me.GRIDSHADE.GridColor = System.Drawing.SystemColors.ControlText
         Me.GRIDSHADE.Location = New System.Drawing.Point(11, 41)
         Me.GRIDSHADE.Margin = New System.Windows.Forms.Padding(2)
         Me.GRIDSHADE.MultiSelect = False
         Me.GRIDSHADE.Name = "GRIDSHADE"
         Me.GRIDSHADE.RowHeadersVisible = False
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black
-        Me.GRIDSHADE.RowsDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Black
+        Me.GRIDSHADE.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.GRIDSHADE.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.GRIDSHADE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.GRIDSHADE.Size = New System.Drawing.Size(695, 333)
@@ -848,29 +876,27 @@ Partial Class DesignMaster
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'CMBCOPYDESIGN
+        'CHKCUTTINGRECD
         '
-        Me.CMBCOPYDESIGN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CMBCOPYDESIGN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CMBCOPYDESIGN.BackColor = System.Drawing.Color.LemonChiffon
-        Me.CMBCOPYDESIGN.FormattingEnabled = True
-        Me.CMBCOPYDESIGN.Location = New System.Drawing.Point(743, 40)
-        Me.CMBCOPYDESIGN.Name = "CMBCOPYDESIGN"
-        Me.CMBCOPYDESIGN.Size = New System.Drawing.Size(215, 23)
-        Me.CMBCOPYDESIGN.TabIndex = 503
+        Me.CHKCUTTINGRECD.AutoSize = True
+        Me.CHKCUTTINGRECD.BackColor = System.Drawing.Color.Transparent
+        Me.CHKCUTTINGRECD.Location = New System.Drawing.Point(669, 76)
+        Me.CHKCUTTINGRECD.Name = "CHKCUTTINGRECD"
+        Me.CHKCUTTINGRECD.Size = New System.Drawing.Size(93, 19)
+        Me.CHKCUTTINGRECD.TabIndex = 505
+        Me.CHKCUTTINGRECD.Text = "Cutting Recd"
+        Me.CHKCUTTINGRECD.UseVisualStyleBackColor = False
         '
-        'Label8
+        'CHKDRAPINGRECD
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(664, 44)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(73, 14)
-        Me.Label8.TabIndex = 504
-        Me.Label8.Text = "Copy Design"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CHKDRAPINGRECD.AutoSize = True
+        Me.CHKDRAPINGRECD.BackColor = System.Drawing.Color.Transparent
+        Me.CHKDRAPINGRECD.Location = New System.Drawing.Point(768, 76)
+        Me.CHKDRAPINGRECD.Name = "CHKDRAPINGRECD"
+        Me.CHKDRAPINGRECD.Size = New System.Drawing.Size(99, 19)
+        Me.CHKDRAPINGRECD.TabIndex = 506
+        Me.CHKDRAPINGRECD.Text = "Draping Recd"
+        Me.CHKDRAPINGRECD.UseVisualStyleBackColor = False
         '
         'DesignMaster
         '
@@ -946,7 +972,7 @@ Partial Class DesignMaster
     Friend WithEvents LBLLINE As Label
     Friend WithEvents TXTLINE2 As TextBox
     Friend WithEvents LBLLINE1 As Label
-    Friend WithEvents Label6 As Label
+    Friend WithEvents LBLDESIGNERNAME As Label
     Friend WithEvents CMBCREATEDBY As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents CMBPARENTDESIGNNO As ComboBox
@@ -958,4 +984,6 @@ Partial Class DesignMaster
     Friend WithEvents GSHADETYPE As DataGridViewComboBoxColumn
     Friend WithEvents CMBCOPYDESIGN As ComboBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents CHKDRAPINGRECD As CheckBox
+    Friend WithEvents CHKCUTTINGRECD As CheckBox
 End Class

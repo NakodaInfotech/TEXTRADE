@@ -254,6 +254,15 @@ Public Class MDIMain
                 JOBBERYARNSTOCKFILTER_MASTER.Visible = True
             End If
 
+
+
+
+
+            If ClientName = "DSM" Then
+                IssueToDesigner_MASTER.Visible = True
+            End If
+
+
             If ClientName = "KARAN" Or ClientName = "TINUMINU" Then
                 EMBPRODUCTION_MASTER.Visible = True
                 EMBPROD_FILTER.Visible = True
@@ -6208,6 +6217,8 @@ SKIPLINE:
                 ALPARAVAL.Add("")   'LINE2
                 ALPARAVAL.Add("")   'PARENTDESIGNNO
                 ALPARAVAL.Add("")    'DESIGNER
+                ALPARAVAL.Add(0)    'CUTTINGRECD
+                ALPARAVAL.Add(0)    'DRAPINGRECD
 
 
                 OBJSM.alParaval = ALPARAVAL
@@ -7917,6 +7928,8 @@ SKIPLINE:
                         OBJDESIGN.alParaval.Add("")   'LINE2
                         OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
                         OBJDESIGN.alParaval.Add("")    'DESIGNER
+                        OBJDESIGN.alParaval.Add(0)  'CUTTINGRECD
+                        OBJDESIGN.alParaval.Add(0)  'DRAPINGRECD
 
 
 
@@ -11463,6 +11476,8 @@ SKIPLINE:
                             OBJDESIGN.alParaval.Add("")   'LINE2
                             OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
                             OBJDESIGN.alParaval.Add("")    'DESIGNER
+                            OBJDESIGN.alParaval.Add(0)  'CUTTINGRECD
+                            OBJDESIGN.alParaval.Add(0)  'DRAPINGRECD
 
 
 
@@ -12138,6 +12153,8 @@ SKIPLINE:
                         OBJDESIGN.alParaval.Add("")   'LINE2
                         OBJDESIGN.alParaval.Add("")   'PARENTDESIGNNO
                         OBJDESIGN.alParaval.Add("")    'DESIGNER
+                        OBJDESIGN.alParaval.Add(0)  'CUTTINGRECD
+                        OBJDESIGN.alParaval.Add(0)  'DRAPINGRECD
 
 
 
@@ -12621,5 +12638,27 @@ SKIPLINE:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub AddNewDesignerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewDesignerToolStripMenuItem.Click
+        Try
+            Dim OBJSHELF As New IssueToDesigner
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Private Sub EditExistingEntryToolStripMenuItem8_Click(sender As Object, e As EventArgs) Handles EditExistingEntryToolStripMenuItem8.Click
+
+        Try
+            Dim OBJSHELF As New IssueToDesignerDetails
+            OBJSHELF.MdiParent = Me
+            OBJSHELF.Show()
+        Catch ex As Exception
+            Throw ex
+        End Try
+
     End Sub
 End Class

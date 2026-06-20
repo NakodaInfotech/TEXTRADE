@@ -342,6 +342,7 @@ line1:
                         GoTo LINE1
                     End If
                 ElseIf ClientName = "DSM" Then     '(DILIP SILK MILLS) -- BHAVESH BHAI
+                    HIDESAMPLEMODULE = False
                     If Now.Date > DateTime.Parse("15.06.2027 00:00") Then
                         Dim DTNEW As DataTable = OBJCMN.Execute_Any_String("UPDATE VERSION SET VERSION_NO='1.0.0000', VERSION_PCNAME='" & pcName & "'", "", "")
                         GoTo LINE1
@@ -1080,7 +1081,7 @@ line1:
 
 
 
-                If DT.Rows(0).Item("VERSION") <> "2.0.009" Then
+                If DT.Rows(0).Item("VERSION") <> "2.0.010" Then
                     MsgBox("Please Install New Version", MsgBoxStyle.Critical)
 LINE1:
                     MsgBox(" VERSION EXPIRED PLEASE CONTACT NAKODA INFOTECH ON 02249724411 PC:-" & DT.Rows(0).Item("PCNAME"), MsgBoxStyle.Critical)
