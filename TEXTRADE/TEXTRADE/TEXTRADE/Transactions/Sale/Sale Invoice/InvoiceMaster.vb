@@ -5718,7 +5718,7 @@ LINE1:
                                        IO.Path.GetFileName(filePath)
 
             ' Target path on server
-            Dim targetPath As String = "Documents/SALEINVOICE/UPLOADDOCS/" & targetFileName
+            Dim targetPath As String = rootUrl & "Documents/SALEINVOICE/UPLOADDOCS/" & targetFileName
 
             Using client As New System.Net.Http.HttpClient()
                 Using content As New System.Net.Http.MultipartFormDataContent()
@@ -5741,14 +5741,16 @@ LINE1:
                         content.Add(fileContent, "file", targetPath)
 
                         Dim response = Await client.PostAsync(uploadUrl, content)
+                        Dim result As String = Await response.Content.ReadAsStringAsync()
+
+                        ' Show full error detail
+                        MessageBox.Show("Status: " & response.StatusCode.ToString() &
+                vbCrLf & "Response: " & result.Substring(0, Math.Min(500, result.Length)))
 
                         If response.IsSuccessStatusCode Then
-                            Dim result As String = Await response.Content.ReadAsStringAsync()
-                            ' Store the accessible URL in grid
-                            TXTNEWIMGPATH.Text = rootUrl & targetPath
+                            TXTNEWIMGPATH.Text = rootUrl & "Documents/SALEINVOICE/UPLOADDOCS/" & targetFileName
                             Return True
                         Else
-                            MessageBox.Show("Upload failed: " & response.StatusCode.ToString())
                             Return False
                         End If
                     End Using
@@ -5773,7 +5775,7 @@ LINE1:
 
     Private Sub CMDVIEW_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CMDVIEW.Click
         Try
-            If txtimgpath.Text.Trim <> "" Then
+            If TXTNEWIMGPATH.Text.Trim <> "" Then
                 If Path.GetExtension(txtimgpath.Text.Trim) = ".pdf" Then
                     System.Diagnostics.Process.Start(txtimgpath.Text.Trim)
                 Else
