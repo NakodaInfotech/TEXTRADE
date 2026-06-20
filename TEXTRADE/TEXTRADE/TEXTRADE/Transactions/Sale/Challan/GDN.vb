@@ -2750,6 +2750,10 @@ NEXTLINE:
 
             If ClientName = "VINTAGEINDIA" Then
                 CHKHOLD.CheckState = CheckState.Unchecked
+                CMBCONTRACTOR.Visible = True
+                LBLCONTRACTOR.Visible = True
+                LBLCONTRACTOR.Text = "Description"
+
             End If
 
         Catch ex As Exception
