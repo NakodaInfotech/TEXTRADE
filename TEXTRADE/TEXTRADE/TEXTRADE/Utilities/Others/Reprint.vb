@@ -84,7 +84,7 @@ Public Class Reprint
 
             If ClientName = "MNARESH" Then
                 TEMPHEADER = 1
-                If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
+
             End If
 
             Dim OBJCMN As New ClsCommon
