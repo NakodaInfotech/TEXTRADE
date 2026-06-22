@@ -231,7 +231,7 @@ Public Class GDNDetails
                     If CHKHIDEPCS.Checked = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                     OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-                ElseIf ClientName = "SOFTAS" Then
+                ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     OBJ = New GDNReport_SOFTAS
                 ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                     OBJ = New GDNReport_SHEETAL
@@ -397,7 +397,7 @@ Public Class GDNDetails
                         If CHKHIDEPCS.Checked = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                         OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                         OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-                    ElseIf ClientName = "SOFTAS" Then
+                    ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                         OBJ = New GDNReport_SOFTAS
                     ElseIf ClientName = "SHEETAL" Or ClientName = "MILUXE" Then
                         OBJ = New GDNReport_SHEETAL

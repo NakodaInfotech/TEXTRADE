@@ -93,7 +93,7 @@ Public Class GDN
         TXTTRANSREMARKS.Clear()
 
         cmbcity.Text = ""
-        If ClientName = "SOFTAS" Or ClientName = "AVIS" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then
+        If ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "AVIS" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then
             TXTBALENOFROM.Text = 1
         Else
             TXTBALENOFROM.Clear()
@@ -2608,7 +2608,7 @@ NEXTLINE:
                 TXTMULTISONO.Visible = True
             End If
 
-            If ClientName = "SOFTAS" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "VINTAGEINDIA" Then
+            If ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "AMAN" Or ClientName = "AARYA" Or ClientName = "VINTAGEINDIA" Then
                 CMBPIECETYPE.Text = "FRESH"
                 CMBPIECETYPE.TabStop = False
                 CMBQUALITY.TabStop = False
@@ -2622,7 +2622,7 @@ NEXTLINE:
                     TXTCONSIGNEE.TabStop = False
                 End If
 
-                If ClientName = "SOFTAS" Then
+                If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     GPARTYPONO.HeaderText = "Party Item"
                     OPARTYPONO.HeaderText = "Party Item"
                 End If
@@ -2874,7 +2874,7 @@ NEXTLINE:
                     Dim CCRATE As Double = 0
                     Dim CUT As Double = 0
 
-                    If ClientName = "SOFTAS" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Or ClientName = "MASHOK" Or ClientName = "SWPL" Or ClientName = "APPLE" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
+                    If ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "DEVEN" Or ClientName = "DILIP" Or ClientName = "DILIPNEW" Or ClientName = "VINIT" Or ClientName = "CHINTAN" Or ClientName = "MASHOK" Or ClientName = "SWPL" Or ClientName = "APPLE" Then CUT = 0 Else CUT = Format(Val(DTROWPS("CUT")), "0.00")
 
                     Dim OBJCMN As New ClsCommon
                     If ClientName = "CC" Or ClientName = "C3" Then
@@ -2944,7 +2944,7 @@ NEXTLINE:
                                 CUT = 0
                                 DTROWPS("MTRS") = 0
                             End If
-                            If ClientName = "KENCOT" Or ClientName = "SAFFRON" Or ClientName = "NTC" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Or ClientName = "RAJKRIPA" Or ClientName = "MANSI" Then GRIDDESC = DTROWPS("GRIDREMARKS")
+                            If ClientName = "KENCOT" Or ClientName = "SAFFRON" Or ClientName = "NTC" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Or ClientName = "RAJKRIPA" Or ClientName = "MANSI" Then GRIDDESC = DTROWPS("GRIDREMARKS")
 
                             GRIDGDN.Rows.Add(0, DTROWPS("PIECETYPE"), DTROWPS("ITEMNAME"), DTROWPS("QUALITY"), GRIDDESC, DTROWPS("DESIGNNO"), DTROWPS("COLOR"), DTROWPS("BALENO"), DTROWPS("LOTNO"), Val(DTROWPS("PCS")), DTROWPS("UNIT"), CUT, Format(Val(DTROWPS("MTRS")), "0.00"), CCRATE, PER, 0, DTROWPS("BARCODE"), DTROWPS("FROMNO"), DTROWPS("FROMSRNO"), DTROWPS("TYPE"), 0, 0, 0, "", Val(DTROWPS("WT")), DTROWPS("RACK"))
                         End If
@@ -3297,7 +3297,7 @@ LINE1:
 
         GRIDGDN.FirstDisplayedScrollingRowIndex = GRIDGDN.RowCount - 1
 
-        If ClientName <> "SKF" And ClientName <> "MANIBHADRA" And ClientName <> "ALENCOT" And ClientName <> "MNARESH" And ClientName <> "SOFTAS" And ClientName <> "MANISH" And ClientName <> "MVIKASKUMAR" And ClientName <> "MOMAI" And ClientName <> "SMS" And ClientName <> "SHREEVALLABH" And ClientName <> "RAJDEEP" And ClientName <> "KREEVE" And ClientName <> "MSSYNTHETICS" And ClientName <> "AMAN" And ClientName <> "BALAJI" And ClientName <> "VINAYAK" And ClientName <> "MAFATLAL" And ClientName <> "NAMOCOT" And ClientName <> "NR" Then
+        If ClientName <> "SKF" And ClientName <> "MANIBHADRA" And ClientName <> "ALENCOT" And ClientName <> "MNARESH" And ClientName <> "SOFTAS" And ClientName <> "MYCOT" And ClientName <> "MANISH" And ClientName <> "MVIKASKUMAR" And ClientName <> "MOMAI" And ClientName <> "SMS" And ClientName <> "SHREEVALLABH" And ClientName <> "RAJDEEP" And ClientName <> "KREEVE" And ClientName <> "MSSYNTHETICS" And ClientName <> "AMAN" And ClientName <> "BALAJI" And ClientName <> "VINAYAK" And ClientName <> "MAFATLAL" And ClientName <> "NAMOCOT" And ClientName <> "NR" Then
 
             CMBITEMNAME.Text = ""
             TXTDESCRIPTION.Clear()
@@ -3699,7 +3699,7 @@ LINE1:
         Try
             Dim OBJCMN As New ClsCommon
             Dim DT As New DataTable
-            If ClientName = "SOFTAS" And CMBITEMNAME.Text.Trim <> "" Then TXTDESCRIPTION.Text = CMBITEMNAME.Text.Trim
+            If (ClientName = "SOFTAS" Or ClientName = "MYCOT") And CMBITEMNAME.Text.Trim <> "" Then TXTDESCRIPTION.Text = CMBITEMNAME.Text.Trim
             If ClientName = "SMS" Or ClientName = "KREEVE" Or ClientName = "MVIKASKUMAR" Or ClientName = "MANISH" Or ClientName = "SIDDHPOLYCOT" Or ClientName = "SHAILESHTRADING" Then
                 DT = OBJCMN.Execute_Any_String(" SELECT ISNULL(ITEMMASTER.ITEM_REORDER,0) AS CUT, ISNULL(ITEMMASTER.ITEM_RATE,0) AS RATE, ISNULL(UNITMASTER.UNIT_ABBR,'') AS UNIT FROM ITEMMASTER LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNIT_ID WHERE ITEM_NAME = '" & CMBITEMNAME.Text.Trim & "' AND ITEM_YEARID = " & YearId, "", "")
                 If DT.Rows.Count > 0 Then
@@ -3829,7 +3829,7 @@ LINE1:
 
 
 
-                    If ClientName = "KENCOT" Or ClientName = "SAFFRON" Or ClientName = "NTC" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Or ClientName = "RAJKRIPA" Or ClientName = "MANSI" Then GRIDREMARKS = DT.Rows(0).Item("GRIDREMARKS")
+                    If ClientName = "KENCOT" Or ClientName = "SAFFRON" Or ClientName = "NTC" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SHREENAKODA" Or ClientName = "RAJKRIPA" Or ClientName = "MANSI" Then GRIDREMARKS = DT.Rows(0).Item("GRIDREMARKS")
                     If ClientName = "KRFABRICS" Then
                         GRIDREMARKS = DT.Rows(0).Item("BALENO")
                         DT.Rows(0).Item("BALENO") = ""

@@ -89,7 +89,7 @@ Public Class InvoiceMaster
         CMBSCREENTYPE.Text = INVOICESCREENTYPE
         HIDEVIEW()
 
-        If ClientName = "AVIS" Or ClientName = "SOFTAS" Then
+        If ClientName = "AVIS" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
             GPARTYPONO.Visible = True
             GRIDINVOICE.Width = 1330
         End If
@@ -106,7 +106,7 @@ Public Class InvoiceMaster
         TXTGSTIN.Clear()
         TXTMULTISONO.Clear()
         txtpartypono.Clear()
-        If ClientName = "SOFTAS" Then TXTBALENOFROM.Text = 1 Else TXTBALENOFROM.Clear()
+        If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then TXTBALENOFROM.Text = 1 Else TXTBALENOFROM.Clear()
         TXTBALENOTO.Clear()
         CMBHASTE.Text = ""
         CMBTERM.Text = ""
@@ -2604,7 +2604,7 @@ Public Class InvoiceMaster
     Private Function ERRORVALID() As Boolean
         Dim bln As Boolean = True
 
-        If (ClientName = "SBA" Or ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "MASHOK") And txtchallan.Text.Trim <> TXTINVOICENO.Text.Trim And txtchallan.Text.Trim <> "" Then
+        If (ClientName = "SBA" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "MASHOK") And txtchallan.Text.Trim <> TXTINVOICENO.Text.Trim And txtchallan.Text.Trim <> "" Then
             If MsgBox("Invoice No and Challan No does not match, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
                 EP.SetError(txtchallan, "Invoice No and Challan No does not match")
                 bln = False
@@ -3990,11 +3990,11 @@ AFWSKIPLINE:    'SKIP DIRECTLY HERE FOR AFW (AHWAMEGH)
 
                             TXTBALENOTO.Text = Val(dr("BALENOTO"))
                             CHALLANDATE.Text = Convert.ToDateTime(dr("CHALLANDATE")).Date
-                            If ClientName = "SBA" Or ClientName = "SOFTAS" Then INVOICEDATE.Text = Convert.ToDateTime(dr("CHALLANDATE")).Date
+                            If ClientName = "SBA" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Then INVOICEDATE.Text = Convert.ToDateTime(dr("CHALLANDATE")).Date
                             If dr("CITY") <> "" Then CMBTOCITY.Text = dr("CITY")
                             If ClientName = "AVIS" Then CMBTOCITY.Text = dr("CITY")
                             If ClientName <> "TCOT" And ClientName <> "REALCORPORATION" Then cmbname.Enabled = False
-                            If ClientName = "ALENCOT" Or ClientName = "SOFTAS" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "KEMLINO" Or ClientName = "KCRAYON" Or ClientName = "VSTRADERS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Then txtremarks.Text = dr("REMARKS")
+                            If ClientName = "ALENCOT" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "KEMLINO" Or ClientName = "KCRAYON" Or ClientName = "VSTRADERS" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Then txtremarks.Text = dr("REMARKS")
                         Next
                     End If
                 Next
@@ -6619,7 +6619,7 @@ NORATE:
                 End If
             End If
 
-            If ClientName = "SKF" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Or ClientName = "NIRAJ" Or ClientName = "SOFTAS" Or ClientName = "SONAL" Or ClientName = "MINALFAB" Or ClientName = "ARPITA" Then
+            If ClientName = "SKF" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Or ClientName = "NIRAJ" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "SONAL" Or ClientName = "MINALFAB" Or ClientName = "ARPITA" Then
                 If ClientName <> "NIRAJ" And ClientName <> "MASHOK" And ClientName <> "ABHEE" Then LBLPACKING.Text = "Dyeing Name"
                 txtchallan.ReadOnly = False
                 txtchallan.TabStop = True
@@ -6634,7 +6634,7 @@ NORATE:
 
             If ClientName = "MBB" Or ClientName = "MSANCHITKUMAR" Then GDESCRIPTION.ReadOnly = False
 
-            If ClientName = "SOFTAS" Then
+            If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                 CMBQUALITY.TabStop = False
                 CMBDESIGN.TabStop = False
                 CMBSHADE.TabStop = False
@@ -6652,7 +6652,7 @@ NORATE:
             End If
 
 
-            If ClientName = "KDFAB" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SAKARIA" Or ClientName = "NVAHAN" Or ClientName = "SUCCESS" Or ClientName = "NIRAJ" Or ClientName = "TCOT" Or ClientName = "SOFTAS" Or ClientName = "RMANILAL" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "YASHVI" Or ClientName = "MINALFAB" Then
+            If ClientName = "KDFAB" Or ClientName = "SANGHVI" Or ClientName = "TINUMINU" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Or ClientName = "SAKARIA" Or ClientName = "NVAHAN" Or ClientName = "SUCCESS" Or ClientName = "NIRAJ" Or ClientName = "TCOT" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "RMANILAL" Or ClientName = "YUMILONE" Or ClientName = "REVAANT" Or ClientName = "YASHVI" Or ClientName = "MINALFAB" Then
                 LBLBALEFROM.Text = "Bls/Bundle"
                 LBLBALETO.Visible = False
                 TXTBALENOTO.Visible = False

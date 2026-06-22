@@ -279,7 +279,7 @@ Public Class GDNDESIGN
                     crTables = RPTGDN_SVS.Database.Tables
                 ElseIf ClientName = "BALAJI" Or ClientName = "NAYRA" Or ClientName = "NR" Then
                     crTables = RPTGDN_BALAJI.Database.Tables
-                ElseIf ClientName = "SOFTAS" Then
+                ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     crTables = RPTGDN_SOFTAS.Database.Tables
                 ElseIf ClientName = "SKF" Then
                     crTables = RPTGDN_SKF.Database.Tables
@@ -502,7 +502,7 @@ Public Class GDNDESIGN
                     RPTGDN_BALAJI.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                     RPTGDN_BALAJI.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     crpo.ReportSource = RPTGDN_BALAJI
-                ElseIf ClientName = "SOFTAS" Then
+                ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     If WHITELABEL = True Then RPTGDN_SOFTAS.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTGDN_SOFTAS.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     If HIDEPCSDETAILS = True Then RPTGDN_SOFTAS.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN_SOFTAS.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     RPTGDN_SOFTAS.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
@@ -823,7 +823,7 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTGDN_BALAJI.Export()
 
-                ElseIf ClientName = "SOFTAS" Then
+                ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
 
                     expo = RPTGDN_SOFTAS.ExportOptions
                     expo.ExportDestinationType = ExportDestinationType.DiskFile
@@ -1419,7 +1419,7 @@ Public Class GDNDESIGN
                     If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                     OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-                ElseIf ClientName = "SOFTAS" Then
+                ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     OBJ = New GDNReport_SOFTAS
                 ElseIf ClientName = "SKF" Then
                     OBJ = New GDNReport_SKF
