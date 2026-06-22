@@ -51,6 +51,8 @@ Partial Class SampleBarcode
         Me.GITEMBLOCKED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNBLOCKED = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCOLORBLOCKED = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDESIGNREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDESIGNERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TXTREMARKS = New System.Windows.Forms.TextBox()
         Me.TXTBARCODE = New System.Windows.Forms.TextBox()
         Me.CMBDESIGNNO = New System.Windows.Forms.ComboBox()
@@ -65,7 +67,6 @@ Partial Class SampleBarcode
         Me.CHKPRINT = New System.Windows.Forms.CheckBox()
         Me.TXTNO = New System.Windows.Forms.TextBox()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GDESIGNREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -259,7 +260,7 @@ Partial Class SampleBarcode
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GNO, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GREMARKS, Me.GBARCODE, Me.GCATEGORY, Me.GITEMBLOCKED, Me.GDESIGNBLOCKED, Me.GCOLORBLOCKED, Me.GDESIGNREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSRNO, Me.GNO, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GREMARKS, Me.GBARCODE, Me.GCATEGORY, Me.GITEMBLOCKED, Me.GDESIGNBLOCKED, Me.GCOLORBLOCKED, Me.GDESIGNREMARKS, Me.GDESIGNERNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsCustomization.AllowQuickHideColumns = False
@@ -384,6 +385,20 @@ Partial Class SampleBarcode
         Me.GCOLORBLOCKED.Caption = "COLORBLOCKED"
         Me.GCOLORBLOCKED.FieldName = "COLORBLOCKED"
         Me.GCOLORBLOCKED.Name = "GCOLORBLOCKED"
+        '
+        'GDESIGNREMARKS
+        '
+        Me.GDESIGNREMARKS.Caption = "Design Remarks"
+        Me.GDESIGNREMARKS.FieldName = "DESIGNREMARKS"
+        Me.GDESIGNREMARKS.Name = "GDESIGNREMARKS"
+        Me.GDESIGNREMARKS.Width = 200
+        '
+        'GDESIGNERNAME
+        '
+        Me.GDESIGNERNAME.Caption = "Designer Name"
+        Me.GDESIGNERNAME.FieldName = "DESIGNERNAME"
+        Me.GDESIGNERNAME.Name = "GDESIGNERNAME"
+        Me.GDESIGNERNAME.Width = 130
         '
         'TXTREMARKS
         '
@@ -542,13 +557,6 @@ Partial Class SampleBarcode
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
         '
-        'GDESIGNREMARKS
-        '
-        Me.GDESIGNREMARKS.Caption = "Design Remarks"
-        Me.GDESIGNREMARKS.FieldName = "DESIGNREMARKS"
-        Me.GDESIGNREMARKS.Name = "GDESIGNREMARKS"
-        Me.GDESIGNREMARKS.Width = 200
-        '
         'SampleBarcode
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -613,4 +621,5 @@ Partial Class SampleBarcode
     Friend WithEvents GDESIGNBLOCKED As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCOLORBLOCKED As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDESIGNREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GDESIGNERNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

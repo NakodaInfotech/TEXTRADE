@@ -330,7 +330,7 @@ Public Class SaleOrder
         End If
 
         If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then txtQTY.Clear()
-        If ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" Then
+        If ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "DSM" Then
             TXTPARTYPONO.Clear()
             TXTMTRS.Clear()
         End If
@@ -362,7 +362,7 @@ Public Class SaleOrder
             If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then TXTCUT.Clear()
             cmbcolor.Focus()
         End If
-        If ClientName = "SHREEVALLABH" Or ClientName = "RAJDEEP" Or ClientName = "KRISHNA" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "APPLE" Or ClientName = "MMC" Then CMBDESIGN.Focus()
+        If ClientName = "SHREEVALLABH" Or ClientName = "RAJDEEP" Or ClientName = "KRISHNA" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "DSM" Then CMBDESIGN.Focus()
 
         If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SUPRIYA" Or ClientName = "SMS" Or ClientName = "BARKHA" Or ClientName = "SONU" Or ClientName = "MNARESH" Or ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then
             TXTRATE.Clear()
@@ -2712,7 +2712,7 @@ LINESINGLE:
                     If DT.Rows.Count > 0 Then cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
                 End If
 
-                If ClientName <> "KRISHNA" And ClientName <> "SHEETAL" Then
+                If ClientName <> "KRISHNA" And ClientName <> "SHEETAL" And ClientName <> "DSM" Then
 
                     If ClientName <> "SHREENAKODA" And ClientName <> "YASHVI" And ClientName <> "AVIS" Then GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim)
                     Dim DTITEM As New DataTable

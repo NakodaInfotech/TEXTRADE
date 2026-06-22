@@ -382,6 +382,7 @@ Public Class SaleOrderDesign
                 End If
 
             ElseIf FRMSTRING = "ISSUETODESIGNER" Then
+                oDfDopt.DiskFileName = Application.StartupPath & "\ISSUETOPRINTER.PDF"
                 expo = RPTSO_ISSUETODESIGNER.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
