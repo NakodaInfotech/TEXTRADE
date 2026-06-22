@@ -3238,19 +3238,19 @@
     <value>&amp;Save</value>
   </data>
   <data name="CheckingReportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="CheckingReportToolStripMenuItem.Text" xml:space="preserve">
     <value>Checking Report</value>
   </data>
   <data name="DOReportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="DOReportToolStripMenuItem.Text" xml:space="preserve">
     <value>D.O Report</value>
   </data>
   <data name="ToolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 6</value>
+    <value>177, 6</value>
   </data>
   <data name="PrintToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

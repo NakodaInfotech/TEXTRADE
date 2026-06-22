@@ -33,6 +33,8 @@ Partial Class GRNChecking
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.TXTREFLOTNO = New System.Windows.Forms.TextBox()
+        Me.Label33 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.TXTQUALITYWT = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -155,8 +157,6 @@ Partial Class GRNChecking
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.TXTREFLOTNO = New System.Windows.Forms.TextBox()
-        Me.Label33 = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.pbcopy, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -249,6 +249,22 @@ Partial Class GRNChecking
         Me.BlendPanel1.Controls.Add(Me.ToolStrip1)
         Me.BlendPanel1.Controls.Add(Me.ShapeContainer1)
         Me.BlendPanel1.Name = "BlendPanel1"
+        '
+        'TXTREFLOTNO
+        '
+        Me.TXTREFLOTNO.BackColor = System.Drawing.Color.Linen
+        Me.TXTREFLOTNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        resources.ApplyResources(Me.TXTREFLOTNO, "TXTREFLOTNO")
+        Me.TXTREFLOTNO.Name = "TXTREFLOTNO"
+        Me.TXTREFLOTNO.ReadOnly = True
+        Me.TXTREFLOTNO.TabStop = False
+        '
+        'Label33
+        '
+        resources.ApplyResources(Me.Label33, "Label33")
+        Me.Label33.BackColor = System.Drawing.Color.Transparent
+        Me.Label33.ForeColor = System.Drawing.Color.Black
+        Me.Label33.Name = "Label33"
         '
         'Label32
         '
@@ -1230,22 +1246,6 @@ Partial Class GRNChecking
         Me.EP.BlinkRate = 0
         Me.EP.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         Me.EP.ContainerControl = Me
-        '
-        'TXTREFLOTNO
-        '
-        Me.TXTREFLOTNO.BackColor = System.Drawing.Color.Linen
-        Me.TXTREFLOTNO.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        resources.ApplyResources(Me.TXTREFLOTNO, "TXTREFLOTNO")
-        Me.TXTREFLOTNO.Name = "TXTREFLOTNO"
-        Me.TXTREFLOTNO.ReadOnly = True
-        Me.TXTREFLOTNO.TabStop = False
-        '
-        'Label33
-        '
-        resources.ApplyResources(Me.Label33, "Label33")
-        Me.Label33.BackColor = System.Drawing.Color.Transparent
-        Me.Label33.ForeColor = System.Drawing.Color.Black
-        Me.Label33.Name = "Label33"
         '
         'GRNChecking
         '

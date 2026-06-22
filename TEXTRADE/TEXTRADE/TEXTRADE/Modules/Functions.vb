@@ -309,7 +309,7 @@ TEXT 613,170,""ROMAN.TTF"",180,1,16,"":""
 TEXT 587,170,""ROMAN.TTF"",180,1,16,""" & TEMPWIDTH & """
 TEXT 783,114,""ROMAN.TTF"",180,1,16,""MTRS""
 TEXT 613,114,""ROMAN.TTF"",180,1,16,"":""
-TEXT 587,114,""ROMAN.TTF"",180,1,16,""" & Format(Val(MTRS),"0.00") & """
+TEXT 587,114,""ROMAN.TTF"",180,1,16,""" & Format(Val(MTRS), "0.00") & """
 TEXT 783,57,""ROMAN.TTF"",180,1,16,""GRADE""
 TEXT 613,57,""ROMAN.TTF"",180,1,16,"":""
 TEXT 587,57,""ROMAN.TTF"",180,1,16,""FRESH""
@@ -5095,51 +5095,13 @@ PRINT 1,1")
                 oWrite.Dispose()
 
             ElseIf ClientName = "MNARESH" Then
-
-                'oWrite.WriteLine("I8,A")
-                'oWrite.WriteLine("ZN")
-                'oWrite.WriteLine("q799")
-                'oWrite.WriteLine("O")
-                'oWrite.WriteLine("JF")
-                'oWrite.WriteLine("KIZZQ0")
-                'oWrite.WriteLine("KI9+0.0")
-                'oWrite.WriteLine("ZT")
-                'oWrite.WriteLine("Q400,25")
-                'oWrite.WriteLine("Arglabel 500 31")
-                'oWrite.WriteLine("exit")
-                'oWrite.WriteLine("N")
-                'oWrite.WriteLine("A770,367,2,2,2,2,N,""ITEM""")
-                'oWrite.WriteLine("B776,132,2,1,4,8,78,N,""" & BARCODE & """") 'BARCODE
-                'oWrite.WriteLine("A538,48,2,1,2,2,N,""" & BARCODE & """") 'BARCODE
-                'oWrite.WriteLine("A770,200,2,2,2,2,N,""BALE""")
-                'oWrite.WriteLine("A651,367,2,2,2,2,N,"":""")
-                'oWrite.WriteLine("A651,200,2,2,2,2,N,"":""")
-                'oWrite.WriteLine("A625,367,2,2,2,2,N,""" & ITEMNAME & """")
-
-                ''IT WAS WIDTH INSTAEAD OF BALENO, WE HAVE CHANGED AS PER THEIR REQUEST
-                '''GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
-                ''Dim TEMPWIDTH As String
-                ''Dim OBJCMN As New ClsCommon
-                ''Dim DT As DataTable = OBJCMN.search(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
-                ''If DT.Rows.Count > 0 Then
-                ''    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
-                ''End If
-
-                'oWrite.WriteLine("A625,200,2,2,2,2,N,""" & BALENO & """")
-                'oWrite.WriteLine("A289,214,2,3,3,3,N,""" & Format(Val(MTRS), "0.00") & """")
-                'oWrite.WriteLine("A421,200,2,2,2,2,N,""MTRS""")
-                'oWrite.WriteLine("A318,200,2,2,2,2,N,"":""")
-                'oWrite.WriteLine("A770,256,2,2,2,2,N,""SHADE""")
-                'oWrite.WriteLine("A651,256,2,2,2,2,N,"":""")
-                'oWrite.WriteLine("A625,256,2,2,2,2,N,""" & SHADE & """")
-                'oWrite.WriteLine("A770,312,2,2,2,2,N,""D.NO""")
-                'oWrite.WriteLine("A651,312,2,2,2,2,N,"":""")
-                'oWrite.WriteLine("A625,312,2,2,2,2,N,""" & DESIGNNO & """")
-                'oWrite.WriteLine("P1")
-                'oWrite.Dispose()
+                If TEMPHEADER = 1 Then
 
 
-                oWrite.WriteLine("SIZE 100 mm, 50 mm
+                    oWrite.WriteLine("SIZE 104.1 mm, 50.8 mm
+GAP 3 mm, 0 mm
+SPEED 6
+DENSITY 10
 DIRECTION 0,0
 REFERENCE 0,0
 OFFSET 0 mm
@@ -5148,26 +5110,75 @@ SET CUTTER OFF
 SET PARTIAL_CUTTER OFF
 SET TEAR ON
 CLS
+BAR 27,317, 776, 4
 CODEPAGE 1252
-TEXT 758,366,""ROMAN.TTF"",180,1,14,""ITEM""
-TEXT 626,366,""ROMAN.TTF"",180,1,14,"":""
-TEXT 594,366,""ROMAN.TTF"",180,1,14,""" & ITEMNAME & """
-TEXT 758,294,""ROMAN.TTF"",180,1,14,""D. NO""
-TEXT 626,294,""ROMAN.TTF"",180,1,14,"":""
-TEXT 594,294,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
-TEXT 758,222,""ROMAN.TTF"",180,1,14,""SHADE""
-TEXT 626,222,""ROMAN.TTF"",180,1,14,"":""
-TEXT 594,222,""ROMAN.TTF"",180,1,14,""" & SHADE & """
-TEXT 758,150,""ROMAN.TTF"",180,1,14,""BALE""
-TEXT 626,150,""ROMAN.TTF"",180,1,14,"":""
-TEXT 594,150,""ROMAN.TTF"",180,1,14,""" & BALENO & """
-TEXT 759,71,""ROMAN.TTF"",180,1,14,""MTRS""
-TEXT 627,71,""ROMAN.TTF"",180,1,14,"":""
-TEXT 595,76,""ROMAN.TTF"",180,1,18,""" & Format(Val(MTRS), "0.00") & """
-QRCODE 264,299,L,8,A,180,M2,S7,""" & BARCODE & """
-TEXT 263,114,""ROMAN.TTF"",180,1,11,""" & BARCODE & """
+TEXT 797,299,""0"",180,17,17,""LOT NO""
+TEXT 797,227,""0"",180,19,17,""D.NO""
+TEXT 797,157,""0"",180,17,17,""SHADE""
+TEXT 797,87,""0"",180,19,17,""MTRS""
+TEXT 639,303,""ROMAN.TTF"",180,1,18,"":""
+TEXT 639,232,""ROMAN.TTF"",180,1,18,"":""
+TEXT 639,165,""ROMAN.TTF"",180,1,18,"":""
+TEXT 639,95,""ROMAN.TTF"",180,1,18,"":""
+BOX 21,20,323,310,4
+QRCODE 257,283,L,8,A,180,M2,S7,""" & BARCODE & """
+TEXT 315,97,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
+TEXT 612,86,""ROMAN.TTF"",180,1,18,""" & Format(Val(MTRS), "0.00") & """
+TEXT 612,152,""ROMAN.TTF"",180,1,14,""" & SHADE & """
+TEXT 612,223,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
+TEXT 612,298,""ROMAN.TTF"",180,1,14,""" & LOTNO & """
+BOX 330,20,807,310,4
+BAR 27,392, 776, 4
+TEXT 808,378,""0"",180,18,18,""" & ITEMNAME & """
 PRINT 1,1")
-                oWrite.Dispose()
+                    oWrite.Dispose()
+
+
+
+                Else
+
+                    oWrite.WriteLine("SIZE 104.1 mm, 50.8 mm
+GAP 3 mm, 0 mm
+SPEED 6
+DENSITY 10
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+SET TEAR ON
+CLS
+BAR 27,317, 776, 4
+CODEPAGE 1252
+TEXT 797,227,""0"",180,18,17,""SHADE""
+TEXT 797,157,""0"",180,17,17,""BALE""
+TEXT 797,87,""0"",180,19,17,""MTRS""
+TEXT 639,303,""ROMAN.TTF"",180,1,18,"":""
+TEXT 639,232,""ROMAN.TTF"",180,1,18,"":""
+TEXT 639,165,""ROMAN.TTF"",180,1,18,"":""
+TEXT 639,95,""ROMAN.TTF"",180,1,18,"":""
+BOX 21,20,323,310,4
+QRCODE 257,283,L,8,A,180,M2,S7,""" & BARCODE & """
+TEXT 315,97,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
+TEXT 612,86,""ROMAN.TTF"",180,1,18,""" & Format(Val(MTRS), "0.00") & """
+TEXT 612,152,""ROMAN.TTF"",180,1,14,""" & BALENO & """
+TEXT 612,223,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
+BOX 330,20,807,310,4
+BAR 27,392, 776, 4
+TEXT 808,378,""0"",180,18,18,""" & ITEMNAME & """
+TEXT 612,294,""ROMAN.TTF"",180,1,14,""" & SHADE & """
+TEXT 797,298,""0"",180,19,17,""D.NO""
+PRINT 1,1")
+                    oWrite.Dispose()
+
+
+
+                End If
+
+
+
+
 
 
             ElseIf ClientName = "MANINATH" Then
