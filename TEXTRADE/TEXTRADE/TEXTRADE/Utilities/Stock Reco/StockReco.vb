@@ -825,6 +825,12 @@ Public Class StockReco
                     If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
                 End If
 
+
+                If ClientName = "MNARESH" Then
+                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 For NORMAL" & Chr(13) & "2 For Finish Inward")
+                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
+                End If
+
                 For Each ROW As DataGridViewRow In GRIDSTOCKIN.Rows
                     'TO PRINT BARCODE FROM SELECTED SRNO
                     If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then

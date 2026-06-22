@@ -520,6 +520,12 @@ Public Class InHouseChecking
                     If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
                 End If
 
+
+                If ClientName = "MNARESH" Then
+                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 For NORMAL" & Chr(13) & "2 For Finish Inward")
+                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
+                End If
+
                 Dim NARR As String = ""
                 Dim OBJCHECKING As New ClsInHouseChecking()
                 Dim dttable As DataTable = OBJCHECKING.SELECTCHECKING(TEMPCHECKINGNO, YearId)

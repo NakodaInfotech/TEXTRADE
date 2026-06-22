@@ -1318,6 +1318,8 @@ LINE1:
         End Try
     End Sub
 
+
+
     Private Sub cmbtrans_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles cmbtrans.KeyDown
         Try
             If e.KeyCode = Keys.Oemcomma Then e.SuppressKeyPress = True
