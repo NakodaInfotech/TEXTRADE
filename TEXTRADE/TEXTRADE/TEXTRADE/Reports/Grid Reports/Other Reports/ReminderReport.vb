@@ -13,10 +13,12 @@ Public Class ReminderReport
     Private Sub ReminderReport_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Try
             If e.KeyCode = Windows.Forms.Keys.Escape Then
-                Me.Close()
+                If ClientName <> "SHEETAL" Then
+                    Me.Close()
+                End If
             ElseIf e.KeyCode = Keys.Space And e.Control = True Then
-                'SELECT ALL DATA
-                For i As Integer = 0 To gridbill.RowCount - 1
+                    'SELECT ALL DATA
+                    For i As Integer = 0 To gridbill.RowCount - 1
                     Dim dtrow As DataRow = gridbill.GetDataRow(i)
                     dtrow("DONE") = Not Convert.ToBoolean(dtrow("DONE"))
                 Next
