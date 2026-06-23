@@ -2260,7 +2260,7 @@ SKIPLINE:
         numkeypress(e, TXTCONES, Me)
     End Sub
 
-    Private Sub TXTWT_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress, TXTHAMALICHARGES.KeyPress
+    Private Sub TXTHAMALICHARGES_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTHAMALICHARGES.KeyPress
         numdot(e, TXTWT, Me)
     End Sub
 
@@ -2444,5 +2444,38 @@ SKIPLINE:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TXTWT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTWT.KeyPress
+        If sender Is TXTWT Then
+            ' Allow Backspace always
+            If e.KeyChar = Chr(8) Then
+                e.Handled = False
+                Return
+            End If
+
+            ' Allow only digits and dot
+            If Not (Char.IsDigit(e.KeyChar) OrElse e.KeyChar = ".") Then
+                e.Handled = True
+                Return
+            End If
+
+            ' Allow only one dot
+            If e.KeyChar = "." AndAlso TXTWT.Text.Contains(".") Then
+                e.Handled = True
+                Return
+            End If
+
+            ' Restrict to 3 decimal places
+            Dim dotPos As Integer = TXTWT.Text.IndexOf(".")
+            If dotPos >= 0 Then
+                Dim decimals As Integer = TXTWT.Text.Length - dotPos - 1
+                If TXTWT.SelectionStart > dotPos AndAlso decimals >= 3 AndAlso e.KeyChar <> Chr(8) Then
+                    e.Handled = True
+                    Return
+                End If
+            End If
+
+        End If
     End Sub
 End Class
