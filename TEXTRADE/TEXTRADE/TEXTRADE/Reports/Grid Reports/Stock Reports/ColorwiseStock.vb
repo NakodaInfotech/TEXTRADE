@@ -128,7 +128,14 @@ Public Class ColorwiseStock
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable = OBJCMN.Execute_Any_String("DELETE FROM TEMPNILSTOCK WHERE YEARID = " & YearId, "", "")
 
+            'For i As Integer = 0 To gridbill.RowCount - 1
+            '    Dim dtrow As DataRow = gridbill.GetDataRow(i)
+            '    DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPNILSTOCK VALUES ('" & dtrow("ITEMNAME") & "','" & dtrow("DESIGNNO") & "','" & dtrow("COLOR") & "'," & CmpId & "," & YearId & ")", "", "")
+            'Next
             For i As Integer = 0 To gridbill.RowCount - 1
+                If gridbill.IsRowVisible(i) <> DevExpress.XtraGrid.Views.Grid.RowVisibleState.Visible Then
+                    Continue For
+                End If
                 Dim dtrow As DataRow = gridbill.GetDataRow(i)
                 DT = OBJCMN.Execute_Any_String("INSERT INTO TEMPNILSTOCK VALUES ('" & dtrow("ITEMNAME") & "','" & dtrow("DESIGNNO") & "','" & dtrow("COLOR") & "'," & CmpId & "," & YearId & ")", "", "")
             Next
