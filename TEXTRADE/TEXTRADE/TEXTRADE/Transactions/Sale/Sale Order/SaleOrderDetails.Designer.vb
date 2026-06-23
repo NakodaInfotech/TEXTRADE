@@ -74,6 +74,7 @@ Partial Class SaleOrderDetails
         Me.GAGENTEMAIL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPARENTDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -90,7 +91,6 @@ Partial Class SaleOrderDetails
         Me.cmdok = New System.Windows.Forms.Button()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -628,6 +628,13 @@ Partial Class SaleOrderDetails
         Me.GDESIGNERNAME.Name = "GDESIGNERNAME"
         Me.GDESIGNERNAME.Width = 130
         '
+        'GGRIDSRNO
+        '
+        Me.GGRIDSRNO.Caption = "Grid Sr No"
+        Me.GGRIDSRNO.FieldName = "GRIDSRNO"
+        Me.GGRIDSRNO.Name = "GGRIDSRNO"
+        Me.GGRIDSRNO.Width = 60
+        '
         'imageList1
         '
         Me.imageList1.ImageStream = CType(resources.GetObject("imageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -761,13 +768,6 @@ Partial Class SaleOrderDetails
         Me.PRINTDIALOG.AllowSomePages = True
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
-        '
-        'GGRIDSRNO
-        '
-        Me.GGRIDSRNO.Caption = "Grid Sr No"
-        Me.GGRIDSRNO.FieldName = "GRIDSRNO"
-        Me.GGRIDSRNO.Name = "GGRIDSRNO"
-        Me.GGRIDSRNO.Width = 100
         '
         'SaleOrderDetails
         '
