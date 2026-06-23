@@ -2130,6 +2130,8 @@ LINE1:
                     TOOLREFRESH.Visible = True
                     CHKPRINTSERIES.Visible = True
                     If CmpName = "SIDDHIM COTFAB LLP" Then CHKPRINTSERIES.CheckState = True
+
+
                     TXTSERIES.Visible = True
                     GSERIES.Visible = True
                     cmbcolor.Left = TXTSERIES.Left + TXTSERIES.Width
@@ -2152,13 +2154,20 @@ LINE1:
                 CMBPER.TabStop = False
             End If
 
+
+
+
+
             If ClientName = "REALCORPORATION" Or ClientName = "MMC" Or ClientName = "VINTAGEINDIA" Then gdesc.HeaderText = "Bale No"
 
             If ClientName = "RAJKRIPA" Then
                 CHKPRINTSERIES.Visible = True
                 CHKPRINTSERIES.Text = "Fetch Description"
             End If
-            If ClientName = "MYCOT" Then cmbname.TabStop = True
+            If ClientName = "MYCOT" Then
+                cmbname.TabStop = True
+                CHKPRINTSERIES.CheckState = CheckState.Checked
+            End If
 
             If ClientName = "SUPEEMA" Or ClientName = "SURYODAYA" Or ClientName = "SARAYU" Or ClientName = "AFW" Then HIDEALLISSUE = False
             HIDEVIEW()
