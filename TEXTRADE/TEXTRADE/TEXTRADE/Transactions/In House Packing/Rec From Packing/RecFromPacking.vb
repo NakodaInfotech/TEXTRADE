@@ -19,7 +19,6 @@ Public Class RecFromPacking
     Public Sub New()
         InitializeComponent()
         FILLCMB()
-
     End Sub
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
@@ -227,7 +226,7 @@ Public Class RecFromPacking
 
 
             'THIS VALIDATION IS FOR LONGATION
-            If Val(TXTRUNNINGBAL.Text.Trim) < 0 And Val(TXTISSUEMTRS.Text.Trim) > 0 And HIDEALLISSUE = True And (ClientName = "SOFTAS" Or ClientName = "ANKUSH") Then
+            If Val(TXTRUNNINGBAL.Text.Trim) < 0 And Val(TXTISSUEMTRS.Text.Trim) > 0 And HIDEALLISSUE = True And (ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "ANKUSH") Then
                 If Format(Val(TXTRUNNINGBAL.Text.Trim) * -1 / Val(TXTISSUEMTRS.Text.Trim) * 100, "0.00") > 10 Then
                     If MsgBox("Longation is Greater then 10%, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
                         EP.SetError(TXTRUNNINGBAL, " Longation Cannot be Geater than 10%")
@@ -631,7 +630,7 @@ Public Class RecFromPacking
             EDIT = False
             clear()
             FILLBARCODE()
-            If ClientName = "SOFTAS" Then CMBBARCODE.Focus() Else cmbGodown.Focus()
+            If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then CMBBARCODE.Focus() Else cmbGodown.Focus()
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         Finally
@@ -735,7 +734,8 @@ Public Class RecFromPacking
                 End If
 
 
-                If (ClientName = "SOFTAS" Or ClientName = "MYCOT") And CHKPRINTSERIES.Checked = True Then
+
+                If ClientName = "SOFTAS" Or ClientName = "MYCOT" And CHKPRINTSERIES.Checked = True Then
                     TEMPHEADER = "PRINTSERIES"
                 End If
 
@@ -752,7 +752,8 @@ Public Class RecFromPacking
 
 
                 If ClientName = "MNARESH" Then
-                    TEMPHEADER = 1
+                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 For NORMAL" & Chr(13) & "2 For Finish Inward")
+                    If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
                 End If
 
                 For Each ROW As DataGridViewRow In GRIDREC.Rows
@@ -765,7 +766,8 @@ Public Class RecFromPacking
                     If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
                     Dim BALENO As String = ""
                     If ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "ANKUSH" Or ClientName = "MNARESH" Then BALENO = ROW.Cells(gdesc.Index).Value
-                    If (ClientName = "SOFTAS" Or ClientName = "MYCOT") And CHKPRINTSERIES.Checked = True Then BALENO = ROW.Cells(GSERIES.Index).Value
+
+                    If ClientName = "SOFTAS" Or ClientName = "MYCOT" And CHKPRINTSERIES.Checked = True Then BALENO = ROW.Cells(GSERIES.Index).Value
 
                     'FOR AVIS GET LOTNO FROM ISSUE TO PACK FOR EACH ENTRY NO
                     Dim OBJCMN As New ClsCommon
@@ -1168,15 +1170,15 @@ NEXTLINE:
 
             GRIDREC.FirstDisplayedScrollingRowIndex = GRIDREC.RowCount - 1
 
-            If ClientName = "SOFTAS" Then CMBQUALITY.Text = ""
+            If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then CMBQUALITY.Text = ""
 
             If ClientName = "YASHVI" Then TXTMTRS.Text = Val(TXTRUNNINGBAL.Text.Trim) Else TXTMTRS.Clear()
-            If ClientName <> "SHREENAKODA" And ClientName <> "SOFTAS" And ClientName <> "MOHATUL" And ClientName <> "ANKUSH" Then CMBRACK.Text = ""
+            If ClientName <> "SHREENAKODA" And ClientName <> "SOFTAS" And ClientName <> "MYCOT" And ClientName <> "MOHATUL" And ClientName <> "ANKUSH" Then CMBRACK.Text = ""
             CMBSHELF.Text = ""
-            If ClientName <> "SOFTAS" Then TXTSERIES.Clear()
+            If ClientName <> "SOFTAS" And ClientName <> "MYCOT" Then TXTSERIES.Clear()
             txtsrno.Text = GRIDREC.RowCount + 1
             If ClientName = "YASHVI" Or ClientName = "SHREENAKODA" Then TXTCUT.Focus() Else CMBPIECETYPE.Focus()
-            If ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then TXTMTRS.Focus()
+            If ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then TXTMTRS.Focus()
 
             If ClientName = "KCRAYON" Or ClientName = "SWPL" Or ClientName = "APPLE" Or ClientName = "MMC" Then TXTGRIDREMARKS.Clear()
             If ClientName = "SUPRIYA" Or ClientName = "YASHVI" Then TXTCUT.Clear()
@@ -1278,7 +1280,7 @@ NEXTLINE:
             CMBASHELF.Text = ""
             TXTASRNO.Text = GRIDAREC.RowCount + 1
             If ClientName = "YASHVI" Or ClientName = "SHREENAKODA" Then TXTACUT.Focus() Else CMBAPIECETYPE.Focus()
-            If ClientName = "SOFTAS" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then TXTAMTRS.Focus()
+            If ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "KOTHARI" Or ClientName = "KOTHARINEW" Then TXTAMTRS.Focus()
             If ClientName = "KCRAYON" Then TXTAGRIDREMARKS.Clear()
             If ClientName = "SUPRIYA" Then TXTACUT.Clear()
             If ClientName = "AFW" Then CMBACOLOR.Focus()
@@ -1574,17 +1576,17 @@ LINE1:
 
 
                 Dim WHERECLAUSE As String = ""
-                If (ClientName = "YASHVI" Or ClientName = "SOFTAS") Then WHERECLAUSE = " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' "
-                If (ClientName = "RAJKRIPA" And CHKPRINTSERIES.CheckState = CheckState.Checked) Or ClientName = "YASHVI" Or ClientName = "SOFTAS" Then
+                If (ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MYCOT") Then WHERECLAUSE = " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' "
+                If (ClientName = "RAJKRIPA" And CHKPRINTSERIES.CheckState = CheckState.Checked) Or ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     DT = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING, ISNULL(PARTYITEMWISECHART.PAR_PARTYITEMNAME, '') AS PARTYITEMNAME", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & sender.Text.Trim & "' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
                     If DT.Rows.Count > 0 Then
                         For Each DTROW As DataRow In DT.Rows
                             TXTGRIDREMARKS.Text = DT.Rows(0).Item("STAMPING")
-                            If ClientName = "SOFTAS" Then TXTSERIES.Text = DT.Rows(0).Item("PARTYITEMNAME")
+                            If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then TXTSERIES.Text = DT.Rows(0).Item("PARTYITEMNAME")
                         Next
                     End If
                 End If
-                If ClientName = "SOFTAS" Then CMBDESIGN.Text = cmbitemname.Text.Trim
+                If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then CMBDESIGN.Text = cmbitemname.Text.Trim
             End If
         Catch ex As Exception
             Throw ex
@@ -1842,7 +1844,7 @@ LINE1:
 
                 fillgrid()
             Else
-                If ClientName <> "AVIS" And ClientName <> "SOFTAS" Then
+                If ClientName <> "AVIS" And ClientName <> "SOFTAS" And ClientName <> "MYCOT" Then
                     If CMBPIECETYPE.Text.Trim = "" Then
                         MsgBox("Enter Piece Type", MsgBoxStyle.Critical)
                         CMBPIECETYPE.Focus()
@@ -1927,7 +1929,7 @@ LINE1:
     Private Sub txtgridremarks_Validated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TXTGRIDREMARKS.Validated
         Try
             'MAKE THIS STAMPING DEFAULT FOR PARTY
-            If (ClientName = "YASHVI" Or ClientName = "SOFTAS") And TXTGRIDREMARKS.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" Then
+            If (ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MYCOT") And TXTGRIDREMARKS.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" Then
 
                 'FIRST CHECK WHETHER THIS STAMP FOR THIS PARTY AND ITEM IS PRESENT OR NOT, IF NOT THEN CREATE NEW OR ELSE UPDATE
                 Dim OBJCMN As New ClsCommon
@@ -1944,7 +1946,7 @@ LINE1:
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
                     ALPARAVAL.Add(0)    'RATE
-                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTSERIES.Text.Trim) Else ALPARAVAL.Add("")
+                    If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then ALPARAVAL.Add(TXTSERIES.Text.Trim) Else ALPARAVAL.Add("")
                     ALPARAVAL.Add(TXTGRIDREMARKS.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
@@ -2118,20 +2120,18 @@ LINE1:
                 TXTLONGATIONPER.Visible = True
             End If
 
-            If ClientName = "SUPRIYA" Or ClientName = "SHREENAKODA" Or ClientName = "SOFTAS" Then
+            If ClientName = "SUPRIYA" Or ClientName = "SHREENAKODA" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                 TXTFROMNO.ReadOnly = False
                 TXTFROMSRNO.ReadOnly = False
                 TXTFROMNO.TabStop = True
                 TXTFROMSRNO.TabStop = True
                 txtqty.ReadOnly = False
                 CMBQUALITY.TabStop = False
-                If ClientName = "SOFTAS" Then
+                If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     gdesc.HeaderText = "Series"
                     TOOLREFRESH.Visible = True
                     CHKPRINTSERIES.Visible = True
                     If CmpName = "SIDDHIM COTFAB LLP" Then CHKPRINTSERIES.CheckState = True
-
-
                     TXTSERIES.Visible = True
                     GSERIES.Visible = True
                     cmbcolor.Left = TXTSERIES.Left + TXTSERIES.Width
@@ -2154,10 +2154,6 @@ LINE1:
                 CMBPER.TabStop = False
             End If
 
-
-
-
-
             If ClientName = "REALCORPORATION" Or ClientName = "MMC" Or ClientName = "VINTAGEINDIA" Then gdesc.HeaderText = "Bale No"
 
             If ClientName = "RAJKRIPA" Then
@@ -2166,7 +2162,8 @@ LINE1:
             End If
             If ClientName = "MYCOT" Then
                 cmbname.TabStop = True
-                CHKPRINTSERIES.CheckState = CheckState.Checked
+
+                CHKPRINTSERIES.Checked = True
             End If
 
             If ClientName = "SUPEEMA" Or ClientName = "SURYODAYA" Or ClientName = "SARAYU" Or ClientName = "AFW" Then HIDEALLISSUE = False
@@ -2402,7 +2399,7 @@ LINE1:
 
                 FILLAGRID()
             Else
-                If ClientName <> "AVIS" And ClientName <> "SOFTAS" Then
+                If ClientName <> "AVIS" And ClientName <> "SOFTAS" And ClientName <> "MYCOT" Then
                     If CMBAPIECETYPE.Text.Trim = "" Then
                         MsgBox("Enter Piece Type", MsgBoxStyle.Critical)
                         CMBAPIECETYPE.Focus()
@@ -2639,7 +2636,7 @@ LINE1:
     Private Sub TXTSERIES_Validated(sender As Object, e As EventArgs) Handles TXTSERIES.Validated
         Try
             'MAKE THIS STAMPING DEFAULT FOR PARTY, ONLY FOR SOFTAS
-            If (ClientName = "SOFTAS") And TXTGRIDREMARKS.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTSERIES.Text.Trim <> "" Then
+            If (ClientName = "SOFTAS" Or ClientName = "MYCOT") And TXTGRIDREMARKS.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTSERIES.Text.Trim <> "" Then
 
                 'FIRST CHECK WHETHER THIS STAMP FOR THIS PARTY AND ITEM IS PRESENT OR NOT, IF NOT THEN CREATE NEW OR ELSE UPDATE
                 Dim OBJCMN As New ClsCommon
@@ -2656,7 +2653,7 @@ LINE1:
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
                     ALPARAVAL.Add(0)    'RATE
-                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTSERIES.Text.Trim) Else ALPARAVAL.Add("")
+                    If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then ALPARAVAL.Add(TXTSERIES.Text.Trim) Else ALPARAVAL.Add("")
                     ALPARAVAL.Add(TXTGRIDREMARKS.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
