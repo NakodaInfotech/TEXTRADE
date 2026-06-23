@@ -74,6 +74,7 @@ Partial Class SaleOrderClose
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GDESIGNERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -257,7 +258,7 @@ Partial Class SaleOrderClose
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCLOSED, Me.GSONO, Me.GREFNO, Me.GGRIDSRNO, Me.GDATE, Me.GNAME, Me.GAGENTNAME, Me.GDISPATCHTO, Me.GCITY, Me.GITEMNAME, Me.GDESIGNNO, Me.GQUALITY, Me.GCOLOR, Me.GGRIDPONO, Me.GPCS, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GRECDPCS, Me.GRECDMTRS, Me.GBALPCS, Me.GBALMTRS, Me.GBALPER, Me.GSTOCKPCS, Me.GSTOCKMTRS, Me.GPARTYPONO, Me.GDELDATE, Me.GREMARKS, Me.GTYPE, Me.GFORWARD, Me.GCLOSEDDATE, Me.GREASON})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCLOSED, Me.GSONO, Me.GREFNO, Me.GGRIDSRNO, Me.GDATE, Me.GNAME, Me.GAGENTNAME, Me.GDISPATCHTO, Me.GCITY, Me.GITEMNAME, Me.GDESIGNNO, Me.GQUALITY, Me.GCOLOR, Me.GGRIDPONO, Me.GPCS, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GRECDPCS, Me.GRECDMTRS, Me.GBALPCS, Me.GBALMTRS, Me.GBALPER, Me.GSTOCKPCS, Me.GSTOCKMTRS, Me.GPARTYPONO, Me.GDELDATE, Me.GREMARKS, Me.GTYPE, Me.GFORWARD, Me.GCLOSEDDATE, Me.GREASON, Me.GDESIGNERNAME})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsView.ColumnAutoWidth = False
@@ -657,6 +658,13 @@ Partial Class SaleOrderClose
         Me.cmdok.Text = "&Save"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GDESIGNERNAME
+        '
+        Me.GDESIGNERNAME.Caption = "Designer Name"
+        Me.GDESIGNERNAME.FieldName = "DESIGNERNAME"
+        Me.GDESIGNERNAME.Name = "GDESIGNERNAME"
+        Me.GDESIGNERNAME.Width = 130
+        '
         'SaleOrderClose
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -730,4 +738,5 @@ Partial Class SaleOrderClose
     Friend WithEvents GREFNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDISPATCHTO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GDESIGNERNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

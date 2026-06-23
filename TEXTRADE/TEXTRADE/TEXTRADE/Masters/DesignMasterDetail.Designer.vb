@@ -54,6 +54,7 @@ Partial Class DesignMasterDetail
         Me.ExcelExport = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.GDESIGNERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GRIDBILLDETAILS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,7 +134,7 @@ Partial Class DesignMasterDetail
         '
         Me.GRIDBILL.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GRIDBILL.Appearance.Row.Options.UseFont = True
-        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GPURRATE, Me.GSALERATE, Me.GWRATE, Me.GITEMNAME, Me.GFABRIC, Me.GDYEING, Me.GJOBWORK, Me.GFINISHING, Me.GEXTRA, Me.GTOTAL, Me.GREMARKS, Me.GCADNO, Me.GMILLNAME, Me.GBLOCKED, Me.GCREATED, Me.GCUTTINGRECD, Me.GDRAPINGRECD})
+        Me.GRIDBILL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GNAME, Me.GPURRATE, Me.GSALERATE, Me.GWRATE, Me.GITEMNAME, Me.GFABRIC, Me.GDYEING, Me.GJOBWORK, Me.GFINISHING, Me.GEXTRA, Me.GTOTAL, Me.GREMARKS, Me.GCADNO, Me.GMILLNAME, Me.GBLOCKED, Me.GCREATED, Me.GCUTTINGRECD, Me.GDRAPINGRECD, Me.GDESIGNERNAME})
         Me.GRIDBILL.GridControl = Me.GRIDBILLDETAILS
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AllowIncrementalSearch = True
@@ -364,6 +365,15 @@ Partial Class DesignMasterDetail
         Me.BlendPanel1.Size = New System.Drawing.Size(1006, 581)
         Me.BlendPanel1.TabIndex = 332
         '
+        'GDESIGNERNAME
+        '
+        Me.GDESIGNERNAME.Caption = "Designer Name"
+        Me.GDESIGNERNAME.FieldName = "DESIGNERNAME"
+        Me.GDESIGNERNAME.Name = "GDESIGNERNAME"
+        Me.GDESIGNERNAME.Visible = True
+        Me.GDESIGNERNAME.VisibleIndex = 11
+        Me.GDESIGNERNAME.Width = 130
+        '
         'DesignMasterDetail
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -420,4 +430,5 @@ Partial Class DesignMasterDetail
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GDRAPINGRECD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GDESIGNERNAME As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -279,7 +279,7 @@ Public Class GDNDESIGN
                     crTables = RPTGDN_SVS.Database.Tables
                 ElseIf ClientName = "BALAJI" Or ClientName = "NAYRA" Or ClientName = "NR" Then
                     crTables = RPTGDN_BALAJI.Database.Tables
-                ElseIf ClientName = "SOFTAS" Then
+                ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     crTables = RPTGDN_SOFTAS.Database.Tables
                 ElseIf ClientName = "SKF" Then
                     crTables = RPTGDN_SKF.Database.Tables
@@ -502,7 +502,7 @@ Public Class GDNDESIGN
                     RPTGDN_BALAJI.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                     RPTGDN_BALAJI.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     crpo.ReportSource = RPTGDN_BALAJI
-                ElseIf ClientName = "SOFTAS" Then
+                ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     If WHITELABEL = True Then RPTGDN_SOFTAS.DataDefinition.FormulaFields("WHITELABEL").Text = 1 Else RPTGDN_SOFTAS.DataDefinition.FormulaFields("WHITELABEL").Text = 0
                     If HIDEPCSDETAILS = True Then RPTGDN_SOFTAS.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else RPTGDN_SOFTAS.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     RPTGDN_SOFTAS.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
@@ -637,7 +637,7 @@ Public Class GDNDESIGN
                             subReport.DataDefinition.FormulaFields("RECDPCS").Text = Val(DT1.Rows(0).Item("RECDPCS")).ToString("0")
                             subReport.DataDefinition.FormulaFields("RECDMTRS").Text = Val(DT1.Rows(0).Item("RECDMTRS")).ToString("0.00")
                         End If
-                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_NO, 0) AS INWARDNO, GRN.GRN_DATE AS INWARDDATE, CASE WHEN ISNULL(PACKINGLEDGERS.ACC_CMPNAME, '') = '' THEN ISNULL(LEDGERS.ACC_CMPNAME, '') ELSE PACKINGLEDGERS.ACC_CMPNAME END AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GRN.GRN_PACKINGID = PACKINGLEDGERS.ACC_ID AND GRN.GRN_YEARID = PACKINGLEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
+                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_CHALLANNO, 0) AS INWARDNO, GRN.GRN_CHALLANDT AS INWARDDATE, CASE WHEN ISNULL(PACKINGLEDGERS.ACC_CMPNAME, '') = '' THEN ISNULL(LEDGERS.ACC_CMPNAME, '') ELSE PACKINGLEDGERS.ACC_CMPNAME END AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GRN.GRN_PACKINGID = PACKINGLEDGERS.ACC_ID AND GRN.GRN_YEARID = PACKINGLEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
                         If DT.Rows.Count > 0 Then
                             RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDNO").Text = CStr(Val(DT.Rows(0).Item("INWARDNO")))
                             RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDDATE")), "dd/MM/yyyy") & "'"
@@ -823,7 +823,7 @@ Public Class GDNDESIGN
                     expo.DestinationOptions = oDfDopt
                     RPTGDN_BALAJI.Export()
 
-                ElseIf ClientName = "SOFTAS" Then
+                ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
 
                     expo = RPTGDN_SOFTAS.ExportOptions
                     expo.ExportDestinationType = ExportDestinationType.DiskFile
@@ -1419,7 +1419,7 @@ Public Class GDNDESIGN
                     If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
                     OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
-                ElseIf ClientName = "SOFTAS" Then
+                ElseIf ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                     OBJ = New GDNReport_SOFTAS
                 ElseIf ClientName = "SKF" Then
                     OBJ = New GDNReport_SKF

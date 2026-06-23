@@ -323,14 +323,14 @@ Public Class SaleOrder
 
         txtsrno.Text = GRIDSO.RowCount + 1
 
-        If ClientName = "AVIS" Or ClientName = "SOFTAS" Then
+        If ClientName = "AVIS" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
             If cmbcolor.SelectedIndex < cmbcolor.Items.Count - 1 Then cmbcolor.SelectedIndex = cmbcolor.SelectedIndex + 1 Else cmbcolor.Text = ""
         Else
             cmbcolor.Text = ""
         End If
 
-        If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then txtQTY.Clear()
-        If ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" Then
+        If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "MYCOT" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then txtQTY.Clear()
+        If ClientName <> "SOFTAS" And ClientName <> "MYCOT" And ClientName <> "SIDDHGIRI" And ClientName <> "DSM" Then
             TXTPARTYPONO.Clear()
             TXTMTRS.Clear()
         End If
@@ -359,10 +359,10 @@ Public Class SaleOrder
             If ClientName <> "SUPEEMA" Then TXTRATE.Clear()
             cmbitemname.Focus()
         Else
-            If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then TXTCUT.Clear()
+            If ClientName <> "KOTHARI" And ClientName <> "KOTHARINEW" And ClientName <> "SOFTAS" And ClientName <> "MYCOT" And ClientName <> "SIDDHGIRI" And ClientName <> "SHEETAL" Then TXTCUT.Clear()
             cmbcolor.Focus()
         End If
-        If ClientName = "SHREEVALLABH" Or ClientName = "RAJDEEP" Or ClientName = "KRISHNA" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "APPLE" Or ClientName = "MMC" Then CMBDESIGN.Focus()
+        If ClientName = "SHREEVALLABH" Or ClientName = "RAJDEEP" Or ClientName = "KRISHNA" Or ClientName = "SIDDHGIRI" Or ClientName = "SNCM" Or ClientName = "REALCORPORATION" Or ClientName = "APPLE" Or ClientName = "MMC" Or ClientName = "DSM" Then CMBDESIGN.Focus()
 
         If ClientName = "INDRAPUJAFABRICS" Or ClientName = "INDRAPUJAIMPEX" Or ClientName = "SUPRIYA" Or ClientName = "SMS" Or ClientName = "BARKHA" Or ClientName = "SONU" Or ClientName = "MNARESH" Or ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then
             TXTRATE.Clear()
@@ -470,6 +470,8 @@ Public Class SaleOrder
                 CHKFETCHDESC.CheckState = CheckState.Checked
             ElseIf ClientName = "AVIS" Then
                 cmbqtyunit.Text = "Mtrs"
+            ElseIf ClientName = "MYCOT" Then
+                cmbqtyunit.Text = "LUMP"
             ElseIf ClientName = "KRISHNA" Or ClientName = "SONU" Or ClientName = "SOFTAS" Or ClientName = "ANOX" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "APPLE" Then
                 cmbqtyunit.Text = "ROLL"
             ElseIf ClientName = "MYCOT" Then
@@ -693,7 +695,7 @@ Public Class SaleOrder
         End If
 
 
-        If CMBPACKINGTYPE.Text.Trim.Length = 0 And ClientName = "SOFTAS" Then
+        If CMBPACKINGTYPE.Text.Trim.Length = 0 And (ClientName = "SOFTAS" Or ClientName = "MYCOT") Then
             EP.SetError(CMBPACKINGTYPE, " Please Fill Packing Type")
             bln = False
         End If
@@ -1718,7 +1720,7 @@ LINE1:
                     GoTo LINE1
                 End If
             End If
-            If ClientName = "KRISHNA" Or ClientName = "KRFABRICS" Or ClientName = "AVIS" Or ClientName = "SHREENAKODA" Or ClientName = "SOFTAS" Then
+            If ClientName = "KRISHNA" Or ClientName = "KRFABRICS" Or ClientName = "AVIS" Or ClientName = "SHREENAKODA" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                 If MsgBox("Wish to Print SO Report With Rate?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJsaleOrder.RATERACK = "RATE" Else OBJsaleOrder.RATERACK = "RACK"
             End If
 
@@ -2285,14 +2287,14 @@ LINE1:
                 'total()
 
                 'IF COLOR IS NOT BLANK THEN ADD ONLY THAT MATCHING
-                If cmbcolor.Text.Trim = "" And GRIDDOUBLECLICK = False And ClientName = "SOFTAS" Then
+                If cmbcolor.Text.Trim = "" And GRIDDOUBLECLICK = False And (ClientName = "SOFTAS" Or ClientName = "MYCOT") Then
                     If MsgBox("Enter Order for all Shade?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then GoTo LINESINGLE
                     Dim OBJCMN As New ClsCommon
                     Dim DT As DataTable = OBJCMN.Execute_Any_String(" SELECT COLORMASTER.COLOR_name AS MATCHING FROM DESIGNMASTER INNER JOIN DESIGNMASTER_COLOR ON DESIGNMASTER.DESIGN_id = DESIGNMASTER_COLOR.DESIGN_ID INNER JOIN COLORMASTER ON DESIGNMASTER_COLOR.DESIGN_COLORID = COLORMASTER.COLOR_id WHERE DESIGNMASTER.DESIGN_NO = '" & CMBDESIGN.Text.Trim & "' AND DESIGNMASTER.DESIGN_YEARID = " & YearId, "", "")
                     For Each DTROW As DataRow In DT.Rows
 
                         GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, DTROW("MATCHING"))
-                        If ClientName = "SOFTAS" And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
+                        If (ClientName = "SOFTAS" Or ClientName = "MYCOT") And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
                             If MsgBox("Mtrs Greater than Balance Stock, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                         End If
 
@@ -2304,19 +2306,19 @@ LINE1:
                 Else
 LINESINGLE:
 
-                    If ClientName = "SOFTAS" And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
+                    If (ClientName = "SOFTAS" Or ClientName = "MYCOT") And EDIT = False And Val(TXTMTRSBAL.Text.Trim) < Val(TXTMTRS.Text.Trim) Then
                         If MsgBox("Mtrs Greater than Balance Stock, Wish to Proceed?", MsgBoxStyle.YesNo) = MsgBoxResult.No Then Exit Sub
                     End If
-                    If ClientName = "SOFTAS" AndAlso cmbcolor.Text.Trim <> "" Then
+                    If (ClientName = "SOFTAS" Or ClientName = "MYCOT") AndAlso cmbcolor.Text.Trim <> "" Then
                         fillgrid(cmbcolor.Text.Trim)
                     Else
-                        If ClientName = "SOFTAS" Then
+                        If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                             MsgBox("Please Enter Shade", MsgBoxStyle.Critical)
                             cmbcolor.Focus()
                             Exit Sub
                         End If
                     End If
-                    If ClientName <> "SOFTAS" And ClientName <> "SWPL" Then fillgrid(cmbcolor.Text.Trim)
+                    If ClientName <> "SOFTAS" And ClientName <> "MYCOT" And ClientName <> "SWPL" Then fillgrid(cmbcolor.Text.Trim)
                     TOTAL()
                 End If
             Else
@@ -2706,7 +2708,7 @@ LINESINGLE:
             Dim DT As New DataTable
 
             If CMBDESIGN.Text.Trim <> "" And GRIDDOUBLECLICK = False Then
-                If ClientName = "SOFTAS" Then cmbcolor.Text = ""
+                If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then cmbcolor.Text = ""
 
                 'GET ITEMNAME AUTO
                 If (ClientName = "AVIS" Or ClientName = "KRISHNA" Or ClientName = "NTC" Or ClientName = "SWPL") And CMBDESIGN.Text.Trim <> "" Then
@@ -2714,9 +2716,9 @@ LINESINGLE:
                     If DT.Rows.Count > 0 Then cmbitemname.Text = DT.Rows(0).Item("ITEMNAME")
                 End If
 
-                If ClientName <> "KRISHNA" And ClientName <> "SHEETAL" Then
+                If ClientName <> "KRISHNA" And ClientName <> "SHEETAL" And ClientName <> "DSM" Then
 
-                    If ClientName <> "SHREENAKODA" And ClientName <> "YASHVI" And ClientName <> "AVIS" Then GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim)
+                    If ClientName <> "SHREENAKODA" And ClientName <> "YASHVI" And ClientName <> "AVIS" And ClientName <> "MYCOT" Then GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim)
                     Dim DTITEM As New DataTable
 
                     'OPEN THIS BOX IF SHADES ARE PRESENT FOR SELECTED DESIGN
@@ -2776,19 +2778,19 @@ LINESINGLE:
                 End If
 
                 If ClientName = "MAHAVIRPOLYCOT" Then CMBDESIGN.Text = ""
-                If ClientName = "SOFTAS" Then CMBDESIGN.Text = cmbitemname.Text.Trim
+                If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then CMBDESIGN.Text = cmbitemname.Text.Trim
 
                 Dim DTITEM As New DataTable
 
                 'GET STAMPING
                 Dim WHERECLAUSE As String = ""
-                If (ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MSANCHITKUMAR") Then WHERECLAUSE = " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' "
-                If ClientName = "RAJKRIPA" Or ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MSANCHITKUMAR" Then
+                If (ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "MSANCHITKUMAR") Then WHERECLAUSE = " AND ledgers.acc_cmpname = '" & cmbname.Text.Trim & "' "
+                If ClientName = "RAJKRIPA" Or ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "MSANCHITKUMAR" Then
                     DT = OBJCMN.SEARCH(" ISNULL(PARTYITEMWISECHART.PAR_STAMPING, '') AS STAMPING, ISNULL(PARTYITEMWISECHART.PAR_PARTYITEMNAME, '') AS PARTYITEMNAME, ISNULL(PAR_RATE,0) AS RATE", "", " PARTYITEMWISECHART LEFT OUTER JOIN LEDGERS ON PARTYITEMWISECHART.PAR_LEDGERID = LEDGERS.Acc_id INNER JOIN ITEMMASTER ON PARTYITEMWISECHART.PAR_ITEMID = ITEMMASTER.item_id ", WHERECLAUSE & " AND ITEMMASTER.ITEM_NAME = '" & cmbitemname.Text.Trim & " ' AND PARTYITEMWISECHART.PAR_YEARID = " & YearId)
                     If DT.Rows.Count > 0 AndAlso txtgridremarks.Text.Trim = "" Then
                         CMBGRIDREMARKS.Text = DT.Rows(0).Item("STAMPING")
                         txtgridremarks.Text = DT.Rows(0).Item("STAMPING")
-                        If ClientName = "SOFTAS" Then TXTPARTYPONO.Text = DT.Rows(0).Item("PARTYITEMNAME")
+                        If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then TXTPARTYPONO.Text = DT.Rows(0).Item("PARTYITEMNAME")
                         TXTRATE.Text = Val(DT.Rows(0).Item("RATE"))
                     End If
                 End If
@@ -2862,7 +2864,7 @@ LINESINGLE:
     Private Sub txtgridremarks_Validated(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtgridremarks.Validated
         Try
             'MAKE THIS STAMPING DEFAULT FOR PARTY
-            If (ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MSANCHITKUMAR") And txtgridremarks.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" Then
+            If (ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "MSANCHITKUMAR") And txtgridremarks.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" Then
 
                 'FIRST CHECK WHETHER THIS STAMP FOR THIS PARTY AND ITEM IS PRESENT OR NOT, IF NOT THEN CREATE NEW OR ELSE UPDATE
                 Dim OBJCMN As New ClsCommon
@@ -2879,7 +2881,7 @@ LINESINGLE:
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
                     ALPARAVAL.Add(0)    'RATE
-                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTPARTYPONO.Text.Trim) Else ALPARAVAL.Add("")
+                    If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then ALPARAVAL.Add(TXTPARTYPONO.Text.Trim) Else ALPARAVAL.Add("")
                     ALPARAVAL.Add(txtgridremarks.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
@@ -3101,7 +3103,7 @@ LINESINGLE:
 
     Private Sub cmbcolor_Validated(sender As Object, e As EventArgs) Handles cmbcolor.Validated
         Try
-            If (ClientName = "SAFFRON" Or ClientName = "SOFTAS" Or ClientName = "ANOX" Or ClientName = "SIDDHGIRI") And cmbitemname.Text.Trim <> "" Then
+            If (ClientName = "SAFFRON" Or ClientName = "SOFTAS" Or ClientName = "MYCOT" Or ClientName = "ANOX" Or ClientName = "SIDDHGIRI") And cmbitemname.Text.Trim <> "" Then
                 GETSTOCK(cmbitemname.Text.Trim, CMBDESIGN.Text.Trim, cmbcolor.Text.Trim)
             End If
         Catch ex As Exception
@@ -3815,7 +3817,7 @@ LINE1:
         Try
 
             'MAKE THIS STAMPING DEFAULT FOR PARTY
-            If (ClientName = "YASHVI" Or ClientName = "SOFTAS") And txtgridremarks.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" Then
+            If (ClientName = "YASHVI" Or ClientName = "SOFTAS" Or ClientName = "MYCOT") And txtgridremarks.Text.Trim <> "" And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" Then
 
                 'FIRST CHECK WHETHER THIS STAMP FOR THIS PARTY AND ITEM IS PRESENT OR NOT, IF NOT THEN CREATE NEW OR ELSE UPDATE
                 Dim OBJCMN As New ClsCommon
@@ -3832,7 +3834,7 @@ LINE1:
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
                     ALPARAVAL.Add(0)    'RATE
-                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTPARTYPONO.Text.Trim) Else ALPARAVAL.Add("")
+                    If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then ALPARAVAL.Add(TXTPARTYPONO.Text.Trim) Else ALPARAVAL.Add("")
                     ALPARAVAL.Add(CMBGRIDREMARKS.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
@@ -3953,7 +3955,7 @@ LINE1:
             If ClientName = "SWPL" Then
                 If cmbitemname.Text.Trim <> "" And cmbqtyunit.Text.Trim <> "" And ((SALEORDERONMTRS = False And Val(txtQTY.Text.Trim) > 0) Or (SALEORDERONMTRS = True And Val(TXTMTRS.Text.Trim) > 0)) Then
 LINESINGLE:
-                    If ClientName <> "SOFTAS" Then fillgrid(cmbcolor.Text.Trim)
+                    If ClientName <> "SOFTAS" And ClientName <> "MYCOT" Then fillgrid(cmbcolor.Text.Trim)
                     TOTAL()
                 Else
                     MsgBox("Enter Proper Details", MsgBoxStyle.Critical)
@@ -3969,7 +3971,7 @@ LINESINGLE:
     Private Sub TXTPARTYPONO_Validated(sender As Object, e As EventArgs) Handles TXTPARTYPONO.Validated
         Try
             'MAKE THIS STAMPING DEFAULT FOR PARTY, ONLY FOR SOFTAS
-            If (ClientName = "SOFTAS") And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTPARTYPONO.Text.Trim <> "" Then
+            If (ClientName = "SOFTAS" Or ClientName = "MYCOT") And cmbname.Text.Trim <> "" And cmbitemname.Text.Trim <> "" And TXTPARTYPONO.Text.Trim <> "" Then
 
                 'FIRST CHECK WHETHER THIS STAMP FOR THIS PARTY AND ITEM IS PRESENT OR NOT, IF NOT THEN CREATE NEW OR ELSE UPDATE
                 Dim OBJCMN As New ClsCommon
@@ -3986,7 +3988,7 @@ LINESINGLE:
                     ALPARAVAL.Add(cmbname.Text.Trim)
                     ALPARAVAL.Add(cmbitemname.Text.Trim)
                     ALPARAVAL.Add(0)    'RATE
-                    If ClientName = "SOFTAS" Then ALPARAVAL.Add(TXTPARTYPONO.Text.Trim) Else ALPARAVAL.Add("")
+                    If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then ALPARAVAL.Add(TXTPARTYPONO.Text.Trim) Else ALPARAVAL.Add("")
                     ALPARAVAL.Add(txtgridremarks.Text.Trim)
                     ALPARAVAL.Add(CmpId)
                     ALPARAVAL.Add(Userid)
