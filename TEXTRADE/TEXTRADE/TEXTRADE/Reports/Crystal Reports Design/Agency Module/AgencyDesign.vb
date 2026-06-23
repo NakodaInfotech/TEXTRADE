@@ -30,6 +30,7 @@ Public Class AgencyDesign
     Public OUTSTANDINGWITHLR As Boolean = False
     Public SHOWINDEX As Boolean = False
     Public OUTSTANDINGREPORTS As Boolean = False
+    Public SHOWPURNAME As Boolean = False
 
     Public DIRECTPRINT As Boolean = False
     Public DIRECTMAIL As Boolean = False
@@ -54,6 +55,7 @@ Public Class AgencyDesign
                 OBJ = New SOReport
             ElseIf FRMSTRING = "ORDERDETAILS" Then
                 OBJ = New AgencySOStatusDetailsReport
+                If SHOWPURNAME = True Then OBJ.Subreports(0).DataDefinition.FormulaFields("SHOWPURNAME").Text = 1
 
             ElseIf FRMSTRING = "AGENCYOUTDAYSBUYER" Then
                 OBJ = New AgencyOutstandingReport_BuyerDays

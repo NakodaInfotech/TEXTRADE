@@ -583,6 +583,10 @@ Public Class AgencyOrderGridReport
             OBJSO.MdiParent = MDIMain
             OBJSO.FRMSTRING = "ORDERDETAILS"
             OBJSO.FORMULA = "{ALLSALEORDER.SO_YEARID} = " & YearId
+
+            If MsgBox("Show Purchaser Name?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJSO.SHOWPURNAME = True
+
+
             If chkdate.Checked = True Then
                 getFromToDate()
                 OBJSO.FORMULA = OBJSO.FORMULA & " and {@DATE} in date " & fromD & " to date " & toD & ""
@@ -659,6 +663,7 @@ Public Class AgencyOrderGridReport
                 ORDERCLAUSE = ORDERCLAUSE & ")"
                 OBJSO.FORMULA = OBJSO.FORMULA & ORDERCLAUSE
             End If
+
 
             'If RDBPENDING.Checked = True Then OBJSO.FORMULA = OBJSO.FORMULA & " AND {ALLSALEORDER_DESC.BALANCE} > 0 AND {ALLSALEORDER_DESC.SO_CLOSED}=FALSE "
             'If RDBCOMPLETE.Checked = True Then OBJSO.FORMULA = OBJSO.FORMULA & " AND {ALLSALEORDER_DESC.BALANCE} <= 0 AND {ALLSALEORDER_DESC.SO_CLOSED}=FALSE"
