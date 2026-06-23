@@ -84,6 +84,7 @@ Public Class StockDesign
             If FRMSTRING = "NILSTOCKREPORT" Then
                 OBJ = New NilStockReport
                 OBJ.DataDefinition.FormulaFields("PERIOD").Text = "'" & PERIOD & "'"
+                strsearch = "{TEMPNILSTOCK.YEARID} = " & YearId & " AND {TEMPNILSTOCK.CMPID} = " & CmpId
             End If
 
 SKIPINVOICE:
