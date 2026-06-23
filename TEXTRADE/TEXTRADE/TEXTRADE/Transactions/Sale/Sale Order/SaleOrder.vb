@@ -2155,7 +2155,7 @@ LINE1:
                 GRATE.ReadOnly = True
             End If
 
-            If ClientName = "SOFTAS" Then
+            If ClientName = "SOFTAS" Or ClientName = "MYCOT" Then
                 gdesc.ReadOnly = False
                 GPARTYPONO.HeaderText = "Party Item"
                 gdesc.HeaderText = "Series"
