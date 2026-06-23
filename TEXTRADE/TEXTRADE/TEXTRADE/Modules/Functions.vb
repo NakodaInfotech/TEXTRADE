@@ -4375,6 +4375,66 @@ PRINT 1,1")
                 oWrite.WriteLine("E")
                 oWrite.Dispose()
 
+
+
+
+
+
+            ElseIf ClientName = "MYCOT" Then
+
+                oWrite.WriteLine("SIZE 99.10 mm, 50 mm")
+                oWrite.WriteLine("GAP 3 mm, 0 mm")
+                oWrite.WriteLine("DIRECTION 0,0")
+                oWrite.WriteLine("REFERENCE 0,0")
+                oWrite.WriteLine("OFFSET 0 mm")
+                oWrite.WriteLine("SET PEEL OFF")
+                oWrite.WriteLine("SET CUTTER OFF")
+                oWrite.WriteLine("SET PARTIAL_CUTTER OFF")
+                oWrite.WriteLine("SET TEAR ON")
+                oWrite.WriteLine("CLS")
+                oWrite.WriteLine("CODEPAGE 1252")
+                oWrite.WriteLine("TEXT 771,188,""ROMAN.TTF"",180,1,14,""WIDTH""")
+
+
+                'GET PACKING TYPE  FROM LEDGERS INNER JOIN WITH PACKINGTYPE
+                Dim OBJCMN As New ClsCommon
+                Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(PACKINGTYPEMASTER.PACKINGTYPE_name,'') AS PACKINGTYPE ", "", " LEDGERS INNER JOIN PACKINGTYPEMASTER ON LEDGERS.ACC_PACKINGTYPEID = PACKINGTYPEMASTER.PACKINGTYPE_id AND LEDGERS.Acc_yearid = PACKINGTYPEMASTER.PACKINGTYPE_yearid", " AND  LEDGERS.Acc_cmpname = '" & WEAVERNAME & "' AND LEDGERS.Acc_yearid = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    WEAVERNAME = DT.Rows(0).Item("PACKINGTYPE")
+                End If
+
+                oWrite.WriteLine("TEXT 771,379,""ROMAN.TTF"",180,1,24,""" & WEAVERNAME & """")
+                oWrite.WriteLine("TEXT 771,247,""ROMAN.TTF"",180,1,14,""SHADE""")
+                oWrite.WriteLine("TEXT 609,247,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 585,247,""ROMAN.TTF"",180,1,14,""" & SHADE & """")
+                oWrite.WriteLine("TEXT 609,188,""ROMAN.TTF"",180,1,14,"":""")
+
+                'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
+                Dim TEMPWIDTH As String
+                DT = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(CATEGORYMASTER.CATEGORY_NAME, '') AS CATEGORY", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id ", " AND ITEM_NAME = '" & ITEMNAME & "' AND ITEM_YEARID = " & YearId)
+                If DT.Rows.Count > 0 Then
+                    TEMPWIDTH = DT.Rows(0).Item("WIDTH")
+                End If
+
+                oWrite.WriteLine("TEXT 585,188,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """")
+                oWrite.WriteLine("TEXT 771,69,""ROMAN.TTF"",180,1,14,""MTRS""")
+                oWrite.WriteLine("TEXT 609,69,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 585,75,""ROMAN.TTF"",180,1,18,""" & MTRS & """")
+                oWrite.WriteLine("QRCODE 253,255,L,8,A,180,M2,S7,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 253,81,""ROMAN.TTF"",180,1,8,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 771,129,""ROMAN.TTF"",180,1,14,""LOT NO""")
+                oWrite.WriteLine("TEXT 609,129,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 585,129,""ROMAN.TTF"",180,1,14,""" & LOTNO & """")
+                oWrite.WriteLine("TEXT 771,307,""ROMAN.TTF"",180,1,14,""SERIES""")
+                oWrite.WriteLine("TEXT 609,307,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 585,312,""ROMAN.TTF"",180,1,18,""" & GRIDDESC & " " & DESIGNNO & """")
+                oWrite.WriteLine("TEXT 259,47,""ROMAN.TTF"",180,1,14,""RACK""")
+                oWrite.WriteLine("TEXT 139,47,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 115,47,""ROMAN.TTF"",180,1,14,""" & RACK & """")
+                oWrite.WriteLine("PRINT 1,1")
+                oWrite.Dispose()
+
+
             ElseIf ClientName = "GELATO" Then
 
                 oWrite.WriteLine("<xpml><page quantity='0' pitch='70.1 mm'></xpml>G0")
