@@ -244,8 +244,8 @@ Public Class SaleOrderDesign
 
 
         ElseIf FRMSTRING = "ISSUETODESIGNER" Then
-            tempattachment = "ISSUETODESIGNER"
-            objmail.subject = "ISSUETODESIGNER"
+            tempattachment = "ISSUETOPRINTER"
+            objmail.subject = "ISSUETOPRINTER"
 
         End If
 
