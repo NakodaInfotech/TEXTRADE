@@ -73,6 +73,8 @@ Partial Class SaleOrderDetails
         Me.GAGENTWHATSAAP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAGENTEMAIL = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPARENTDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GDESIGNERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GGRIDSRNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
@@ -89,7 +91,6 @@ Partial Class SaleOrderDetails
         Me.cmdok = New System.Windows.Forms.Button()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
-        Me.GDESIGNERNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -249,7 +250,7 @@ Partial Class SaleOrderDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSONO, Me.GREFNO, Me.GDATE, Me.GNAME, Me.GSHIPTO, Me.GAGENTNAME, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GGRIDPONO, Me.GDESC, Me.GQUALITY, Me.GPCS, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GPER, Me.GBALPCS, Me.GBALMTRS, Me.GPARTYPONO, Me.GAMT, Me.GSALESMAN, Me.GDELDATE, Me.GREMARKS, Me.GCLOSED, Me.GFORWARD, Me.GCLOSEDDATE, Me.GREASON, Me.GUSERNAME, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GPARENTDESIGNNO, Me.GDESIGNERNAME})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.GSONO, Me.GREFNO, Me.GDATE, Me.GNAME, Me.GSHIPTO, Me.GAGENTNAME, Me.GITEMNAME, Me.GDESIGNNO, Me.GCOLOR, Me.GGRIDPONO, Me.GDESC, Me.GQUALITY, Me.GPCS, Me.GCUT, Me.GMTRS, Me.GRATE, Me.GPER, Me.GBALPCS, Me.GBALMTRS, Me.GPARTYPONO, Me.GAMT, Me.GSALESMAN, Me.GDELDATE, Me.GREMARKS, Me.GCLOSED, Me.GFORWARD, Me.GCLOSEDDATE, Me.GREASON, Me.GUSERNAME, Me.GPARTYWHATSAAP, Me.GPARTYEMAIL, Me.GAGENTWHATSAAP, Me.GAGENTEMAIL, Me.GPARENTDESIGNNO, Me.GDESIGNERNAME, Me.GGRIDSRNO})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Images = Me.imageList1
         Me.gridbill.Name = "gridbill"
@@ -620,6 +621,20 @@ Partial Class SaleOrderDetails
         Me.GPARENTDESIGNNO.Name = "GPARENTDESIGNNO"
         Me.GPARENTDESIGNNO.OptionsColumn.AllowEdit = False
         '
+        'GDESIGNERNAME
+        '
+        Me.GDESIGNERNAME.Caption = "Designer Name"
+        Me.GDESIGNERNAME.FieldName = "DESIGNERNAME"
+        Me.GDESIGNERNAME.Name = "GDESIGNERNAME"
+        Me.GDESIGNERNAME.Width = 130
+        '
+        'GGRIDSRNO
+        '
+        Me.GGRIDSRNO.Caption = "Grid Sr No"
+        Me.GGRIDSRNO.FieldName = "GRIDSRNO"
+        Me.GGRIDSRNO.Name = "GGRIDSRNO"
+        Me.GGRIDSRNO.Width = 60
+        '
         'imageList1
         '
         Me.imageList1.ImageStream = CType(resources.GetObject("imageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
@@ -754,13 +769,6 @@ Partial Class SaleOrderDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'GDESIGNERNAME
-        '
-        Me.GDESIGNERNAME.Caption = "Designer Name"
-        Me.GDESIGNERNAME.FieldName = "DESIGNERNAME"
-        Me.GDESIGNERNAME.Name = "GDESIGNERNAME"
-        Me.GDESIGNERNAME.Width = 130
-        '
         'SaleOrderDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -848,4 +856,5 @@ Partial Class SaleOrderDetails
     Friend WithEvents GPARENTDESIGNNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
     Friend WithEvents GDESIGNERNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GGRIDSRNO As DevExpress.XtraGrid.Columns.GridColumn
 End Class

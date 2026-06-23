@@ -714,25 +714,31 @@ SET PARTIAL_CUTTER OFF
 SET TEAR ON
 CLS
 CODEPAGE 1252
-TEXT 658,457,""ROMAN.TTF"",180,1,12,""QUALITY""
-TEXT 511,457,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,457,""ROMAN.TTF"",180,1,12,""" & ITEMNAME & """
-TEXT 658,399,""ROMAN.TTF"",180,1,12,""DESIGN""
-TEXT 511,399,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,401,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
-TEXT 658,341,""ROMAN.TTF"",180,1,12,""COLOR""
-TEXT 511,341,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,341,""ROMAN.TTF"",180,1,12,""" & SHADE & """
-TEXT 658,283,""ROMAN.TTF"",180,1,12,""MTRS""
-TEXT 511,283,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,283,""ROMAN.TTF"",180,1,12,""" & Format(Val(MTRS), "0.00") & """
-TEXT 658,225,""ROMAN.TTF"",180,1,12,""ROLL NO""
-TEXT 511,225,""ROMAN.TTF"",180,1,12,"":""
-TEXT 492,225,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
-BARCODE 658,173,""128M"",85,0,180,3,6,""" & BARCODE & """
-TEXT 320,285,""ROMAN.TTF"",180,1,12,""RACK""
-TEXT 217,285,""ROMAN.TTF"",180,1,12,"":""
-TEXT 193,285,""ROMAN.TTF"",180,1,12,""" & RACK & """
+TEXT 698,457,""ROMAN.TTF"",180,1,12,""QUALITY""
+TEXT 556,457,""ROMAN.TTF"",180,1,12,"":""
+TEXT 532,457,""ROMAN.TTF"",180,1,12,""" & ITEMNAME & """
+TEXT 698,399,""ROMAN.TTF"",180,1,12,""DESIGN""
+TEXT 556,399,""ROMAN.TTF"",180,1,12,"":""
+TEXT 532,400,""ROMAN.TTF"",180,1,14,""" & DESIGNNO & """
+TEXT 698,339,""ROMAN.TTF"",180,1,12,""COLOR""
+TEXT 556,341,""ROMAN.TTF"",180,1,12,"":""
+TEXT 532,337,""ROMAN.TTF"",180,1,12,""" & SHADE & """
+TEXT 698,282,""ROMAN.TTF"",180,1,12,""MTRS""
+TEXT 556,283,""ROMAN.TTF"",180,1,12,"":""
+TEXT 532,279,""ROMAN.TTF"",180,1,12,""" & Format(Val(MTRS), "0.00") & """
+TEXT 698,117,""ROMAN.TTF"",180,1,12,""ROLL NO""
+TEXT 556,117,""ROMAN.TTF"",180,1,12,"":""
+TEXT 533,117,""ROMAN.TTF"",180,1,12,""" & BARCODE & """
+BARCODE 698,226,""128M"",85,0,180,3,6,""" & BARCODE & """
+TEXT 377,285,""ROMAN.TTF"",180,1,12,""RACK""
+TEXT 261,285,""ROMAN.TTF"",180,1,12,"":""
+TEXT 235,285,""ROMAN.TTF"",180,1,12,""" & RACK & """
+TEXT 378,399,""ROMAN.TTF"",180,1,12,""LOTNO""
+TEXT 235,401,""ROMAN.TTF"",180,1,14,""" & LOTNO & """
+TEXT 261,399,""ROMAN.TTF"",180,1,12,"":""
+TEXT 378,341,""ROMAN.TTF"",180,1,12,""UNIT""
+TEXT 261,341,""ROMAN.TTF"",180,1,12,"":""
+TEXT 235,341,""ROMAN.TTF"",180,1,12,""" & UNIT & """
 PRINT 1,1")
                 oWrite.Dispose()
 
@@ -4393,7 +4399,7 @@ PRINT 1,1")
                 oWrite.WriteLine("SET TEAR ON")
                 oWrite.WriteLine("CLS")
                 oWrite.WriteLine("CODEPAGE 1252")
-                oWrite.WriteLine("TEXT 771,188,""ROMAN.TTF"",180,1,14,""WIDTH""")
+                oWrite.WriteLine("TEXT 771,156,""ROMAN.TTF"",180,1,10,""WIDTH""")
 
 
                 'GET PACKING TYPE  FROM LEDGERS INNER JOIN WITH PACKINGTYPE
@@ -4403,11 +4409,11 @@ PRINT 1,1")
                     WEAVERNAME = DT.Rows(0).Item("PACKINGTYPE")
                 End If
 
-                oWrite.WriteLine("TEXT 771,379,""ROMAN.TTF"",180,1,24,""" & WEAVERNAME & """")
-                oWrite.WriteLine("TEXT 771,247,""ROMAN.TTF"",180,1,14,""SHADE""")
-                oWrite.WriteLine("TEXT 609,247,""ROMAN.TTF"",180,1,14,"":""")
-                oWrite.WriteLine("TEXT 585,247,""ROMAN.TTF"",180,1,14,""" & SHADE & """")
-                oWrite.WriteLine("TEXT 609,188,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 518,382,""ROMAN.TTF"",180,1,18,""" & WEAVERNAME & """")
+                oWrite.WriteLine("TEXT 771,207,""ROMAN.TTF"",180,1,10,""SHADE""")
+                oWrite.WriteLine("TEXT 665,214,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 638,207,""ROMAN.TTF"",180,1,12,""" & SHADE & """")
+                oWrite.WriteLine("TEXT 665,162,""ROMAN.TTF"",180,1,14,"":""")
 
                 'GET REMARKS FROM CATEGORYMASTER LEFT OUTER JOIN FROM ITEMMASTER
                 Dim TEMPWIDTH As String
@@ -4416,21 +4422,24 @@ PRINT 1,1")
                     TEMPWIDTH = DT.Rows(0).Item("WIDTH")
                 End If
 
-                oWrite.WriteLine("TEXT 585,188,""ROMAN.TTF"",180,1,14,""" & TEMPWIDTH & """")
-                oWrite.WriteLine("TEXT 771,69,""ROMAN.TTF"",180,1,14,""MTRS""")
-                oWrite.WriteLine("TEXT 609,69,""ROMAN.TTF"",180,1,14,"":""")
-                oWrite.WriteLine("TEXT 585,75,""ROMAN.TTF"",180,1,18,""" & MTRS & """")
-                oWrite.WriteLine("QRCODE 253,255,L,8,A,180,M2,S7,""" & BARCODE & """")
-                oWrite.WriteLine("TEXT 253,81,""ROMAN.TTF"",180,1,8,""" & BARCODE & """")
-                oWrite.WriteLine("TEXT 771,129,""ROMAN.TTF"",180,1,14,""LOT NO""")
-                oWrite.WriteLine("TEXT 609,129,""ROMAN.TTF"",180,1,14,"":""")
-                oWrite.WriteLine("TEXT 585,129,""ROMAN.TTF"",180,1,14,""" & LOTNO & """")
-                oWrite.WriteLine("TEXT 771,307,""ROMAN.TTF"",180,1,14,""SERIES""")
-                oWrite.WriteLine("TEXT 609,307,""ROMAN.TTF"",180,1,14,"":""")
-                If TEMPHEADER = "PRINTSERIES" And BALENO <> "" Then oWrite.WriteLine("TEXT 585,312,""ROMAN.TTF"",180,1,18,""" & BALENO & " " & DESIGNNO & """") Else oWrite.WriteLine("TEXT 585,312,""ROMAN.TTF"",180,1,18,""" & BALENO & " " & DESIGNNO & """")
-                oWrite.WriteLine("TEXT 259,47,""ROMAN.TTF"",180,1,14,""RACK""")
-                oWrite.WriteLine("TEXT 139,47,""ROMAN.TTF"",180,1,14,"":""")
-                oWrite.WriteLine("TEXT 115,47,""ROMAN.TTF"",180,1,14,""" & RACK & """")
+                oWrite.WriteLine("TEXT 638,157,""ROMAN.TTF"",180,1,12,""" & TEMPWIDTH & """")
+                oWrite.WriteLine("TEXT 771,53,""ROMAN.TTF"",180,1,10,""MTRS""")
+                oWrite.WriteLine("TEXT 665,58,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 638,58,""ROMAN.TTF"",180,1,14,""" & MTRS & """")
+                oWrite.WriteLine("QRCODE 228,259,L,8,A,180,M2,S7,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 228,85,""ROMAN.TTF"",180,1,8,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 228,85,""ROMAN.TTF"",180,1,8,180,1,14,""LOT NO""")
+                oWrite.WriteLine("TEXT 665,110,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 638,108,""ROMAN.TTF"",180,1,12,""" & LOTNO & """")
+                oWrite.WriteLine("TEXT 771,258,""ROMAN.TTF"",180,1,10,""SERIES""")
+                oWrite.WriteLine("TEXT 665,266,""ROMAN.TTF"",180,1,14,"":""")
+                If TEMPHEADER = "PRINTSERIES" Then oWrite.WriteLine("TEXT 638,262,""ROMAN.TTF"",180,1,14,""" & GRIDDESC & """")
+                oWrite.WriteLine("TEXT 234,51,""ROMAN.TTF"",180,1,14,""RACK""")
+                oWrite.WriteLine("TEXT 114,51,""ROMAN.TTF"",180,1,14,"":""")
+                oWrite.WriteLine("TEXT 90,51,""ROMAN.TTF"",180,1,14,""" & RACK & """")
+                oWrite.WriteLine("TEXT 770,309,""ROMAN.TTF"",180,1,10,""ITEM""")
+                If TEMPHEADER = "PRINTSERIES" And BALENO <> "" Then oWrite.WriteLine("TEXT 637,311,""ROMAN.TTF"",180,1,12,""" & BALENO & """") Else oWrite.WriteLine("TEXT 637,311,""ROMAN.TTF"",180,1,12,""" & ITEMNAME & """")
+                oWrite.WriteLine("TEXT 664,315,""ROMAN.TTF"",180,1,14,"":""")
                 oWrite.WriteLine("PRINT 1,1")
                 oWrite.Dispose()
 
