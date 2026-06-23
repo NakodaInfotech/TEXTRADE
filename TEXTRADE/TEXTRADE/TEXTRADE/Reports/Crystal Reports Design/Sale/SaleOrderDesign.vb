@@ -391,6 +391,7 @@ Public Class SaleOrderDesign
 
 
             Else
+
                 oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_" & SONO & "_SOREPORT.PDF"
                 '  expo = rptssum.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
