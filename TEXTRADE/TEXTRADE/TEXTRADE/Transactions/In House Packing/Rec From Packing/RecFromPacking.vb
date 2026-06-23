@@ -19,7 +19,6 @@ Public Class RecFromPacking
     Public Sub New()
         InitializeComponent()
         FILLCMB()
-
     End Sub
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
