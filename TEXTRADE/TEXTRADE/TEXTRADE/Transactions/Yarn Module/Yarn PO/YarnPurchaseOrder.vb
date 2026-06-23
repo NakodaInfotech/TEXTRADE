@@ -198,7 +198,7 @@ Public Class YarnPurchaseOrder
                         CMBORDERTYPE.Text = Convert.ToString(dr("ORDERTYPE"))
                         txtremarks.Text = Convert.ToString(dr("REMARKS"))
 
-                        GRIDPO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("DESC").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("SHADE").ToString, dr("PSHADE").ToString, Format(Val(dr("BAGS")), "0.00"), dr("UNIT").ToString, Format(Val(dr("WT")), "0.00"), Val(dr("CONES")), Format(Val(dr("RATE")), "0.00"), Format(Val(dr("AMT")), "0.00"), Val(dr("RECDBAGS")), Val(dr("RECDWT")), dr("DONE").ToString, dr("CLOSED"))
+                        GRIDPO.Rows.Add(dr("GRIDSRNO").ToString, dr("YARNQUALITY").ToString, dr("DESC").ToString, dr("MILLNAME").ToString, dr("DESIGN").ToString, dr("SHADE").ToString, dr("PSHADE").ToString, Format(Val(dr("BAGS")), "0.00"), dr("UNIT").ToString, Format(Val(dr("WT")), "0.000"), Val(dr("CONES")), Format(Val(dr("RATE")), "0.00"), Format(Val(dr("AMT")), "0.00"), Val(dr("RECDBAGS")), Val(dr("RECDWT")), dr("DONE").ToString, dr("CLOSED"))
 
 
                         If Val(dr("RECDBAGS")) > 0 Or Val(dr("RECDWT")) > 0 Then
@@ -420,12 +420,12 @@ Public Class YarnPurchaseOrder
 
     Sub TOTAL()
         LBLTOTALBAGS.Text = "0"
-        LBLTOTALWT.Text = "0.00"
+        LBLTOTALWT.Text = "0.000"
         LBLTOTALCONES.Text = 0
         lbltotalamt.Text = "0.00"
         If GRIDPO.RowCount > 0 Then
             For Each row As DataGridViewRow In GRIDPO.Rows
-                row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(GWT.Index).Value), "0.00")
+                row.Cells(gamt.Index).Value = Format(Val(row.Cells(grate.Index).Value) * Val(row.Cells(GWT.Index).Value), "0.000")
                 If Val(row.Cells(GBAGS.Index).Value) <> 0 Then LBLTOTALBAGS.Text = Val(LBLTOTALBAGS.Text) + Val(row.Cells(GBAGS.Index).Value)
                 If Val(row.Cells(GWT.Index).Value) <> 0 Then LBLTOTALWT.Text = Val(LBLTOTALWT.Text) + Val(row.Cells(GWT.Index).Value)
                 If Val(row.Cells(GCONES.Index).Value) <> 0 Then LBLTOTALCONES.Text = Val(LBLTOTALCONES.Text) + Val(row.Cells(GCONES.Index).Value)
@@ -482,7 +482,7 @@ Public Class YarnPurchaseOrder
 
         GRIDPO.Enabled = True
         If GRIDDOUBLECLICK = False Then
-            GRIDPO.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, TXTDESC.Text.Trim, CMBMILLNAME.Text.Trim, CMBDESIGN.Text.Trim, CMBCOLOR.Text.Trim, TXTPSHADE.Text.Trim, Val(TXTBAGS.Text.Trim), CMBUNIT.Text.Trim, Val(TXTWT.Text.Trim), Val(TXTCONES.Text.Trim), Val(TXTRATE.Text.Trim), 0, 0, 0, 0, 0)
+            GRIDPO.Rows.Add(Val(txtsrno.Text.Trim), CMBYARNQUALITY.Text.Trim, TXTDESC.Text.Trim, CMBMILLNAME.Text.Trim, CMBDESIGN.Text.Trim, CMBCOLOR.Text.Trim, TXTPSHADE.Text.Trim, Val(TXTBAGS.Text.Trim), CMBUNIT.Text.Trim, Format(Val(TXTWT.Text.Trim), "0.000"), Val(TXTCONES.Text.Trim), Val(TXTRATE.Text.Trim), 0, 0, 0, 0, 0)
             getsrno(GRIDPO)
         ElseIf GRIDDOUBLECLICK = True Then
             GRIDPO.Item(GYARNQUALITY.Index, TEMPROW).Value = CMBYARNQUALITY.Text.Trim
@@ -493,7 +493,7 @@ Public Class YarnPurchaseOrder
             GRIDPO.Item(GPCOLOR.Index, TEMPROW).Value = TXTPSHADE.Text.Trim
             GRIDPO.Item(GBAGS.Index, TEMPROW).Value = Val(TXTBAGS.Text.Trim)
             GRIDPO.Item(GUNIT.Index, TEMPROW).Value = CMBUNIT.Text.Trim
-            GRIDPO.Item(GWT.Index, TEMPROW).Value = Val(TXTWT.Text.Trim)
+            GRIDPO.Item(GWT.Index, TEMPROW).Value = Format(Val(TXTWT.Text.Trim), "0.000")
             GRIDPO.Item(GCONES.Index, TEMPROW).Value = Val(TXTCONES.Text.Trim)
             GRIDPO.Item(grate.Index, TEMPROW).Value = Val(TXTRATE.Text.Trim)
             GRIDDOUBLECLICK = False
@@ -546,7 +546,7 @@ Public Class YarnPurchaseOrder
         End If
     End Sub
 
-    Private Sub txtqty_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTWT.KeyPress, TXTRATE.KeyPress
+    Private Sub txtqty_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TXTRATE.KeyPress
         numdotkeypress(e, sender, Me)
     End Sub
 
@@ -665,7 +665,7 @@ Public Class YarnPurchaseOrder
                     If GRIDPO.CurrentCell.Value = Nothing Then GRIDPO.CurrentCell.Value = "0.00"
                     GRIDPO.CurrentCell.Value = Convert.ToDecimal(GRIDPO.Item(colNum, e.RowIndex).Value)
                     '' everything is good
-                    GRIDPO.Rows(e.RowIndex).Cells(gamt.Index).Value = Format(Val(GRIDPO.Rows(e.RowIndex).Cells(grate.Index).EditedFormattedValue) * Val(GRIDPO.Rows(e.RowIndex).Cells(GWT.Index).EditedFormattedValue), "0.00")
+                    GRIDPO.Rows(e.RowIndex).Cells(gamt.Index).Value = Format(Val(GRIDPO.Rows(e.RowIndex).Cells(grate.Index).EditedFormattedValue) * Val(GRIDPO.Rows(e.RowIndex).Cells(GWT.Index).EditedFormattedValue), "0.000")
                 Else
                     MessageBox.Show("Invalid Number Entered")
                     e.Cancel = True
@@ -997,6 +997,39 @@ LINE1:
         Catch ex As Exception
             Throw ex
         End Try
+    End Sub
+
+    Private Sub TXTWT_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TXTWT.KeyPress
+        If sender Is TXTWT Then
+            ' Allow Backspace always
+            If e.KeyChar = Chr(8) Then
+                e.Handled = False
+                Return
+            End If
+
+            ' Allow only digits and dot
+            If Not (Char.IsDigit(e.KeyChar) OrElse e.KeyChar = ".") Then
+                e.Handled = True
+                Return
+            End If
+
+            ' Allow only one dot
+            If e.KeyChar = "." AndAlso TXTWT.Text.Contains(".") Then
+                e.Handled = True
+                Return
+            End If
+
+            ' Restrict to 3 decimal places
+            Dim dotPos As Integer = TXTWT.Text.IndexOf(".")
+            If dotPos >= 0 Then
+                Dim decimals As Integer = TXTWT.Text.Length - dotPos - 1
+                If TXTWT.SelectionStart > dotPos AndAlso decimals >= 3 AndAlso e.KeyChar <> Chr(8) Then
+                    e.Handled = True
+                    Return
+                End If
+            End If
+
+        End If
     End Sub
 End Class
 
