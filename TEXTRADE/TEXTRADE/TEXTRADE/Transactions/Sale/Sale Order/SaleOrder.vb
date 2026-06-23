@@ -474,6 +474,8 @@ Public Class SaleOrder
                 cmbqtyunit.Text = "LUMP"
             ElseIf ClientName = "KRISHNA" Or ClientName = "SONU" Or ClientName = "SOFTAS" Or ClientName = "ANOX" Or ClientName = "MAHAVIRPOLYCOT" Or ClientName = "APPLE" Then
                 cmbqtyunit.Text = "ROLL"
+            ElseIf ClientName = "MYCOT" Then
+                cmbqtyunit.Text = "LUMP"
             Else
                 cmbqtyunit.Text = "PCS"
             End If

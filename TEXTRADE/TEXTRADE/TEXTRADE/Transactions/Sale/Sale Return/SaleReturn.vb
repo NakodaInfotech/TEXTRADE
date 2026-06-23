@@ -1323,6 +1323,11 @@ Public Class SaleReturn
                     If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
                 End If
 
+
+                If ClientName = "MNARESH" Then
+                    TEMPHEADER = 1
+                End If
+
                 For Each ROW As DataGridViewRow In GRIDSALRET.Rows
                     'TO PRINT BARCODE FROM SELECTED SRNO
                     If (Val(TXTFROM.Text.Trim) > 0 And Val(TXTTO.Text.Trim) > 0) Then

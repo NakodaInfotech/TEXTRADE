@@ -2982,7 +2982,7 @@ LINE1:
                         If DTPER.Rows.Count > 0 AndAlso DTPER.Rows(0).Item("UNIT") = "Pcs" Then PER = "Pcs"
                     End If
 
-                    If ClientName = "TCOT" Or ClientName = "SUPEEMA" Then PCS = Val(DT.Rows(0).Item("PCS")) Else PCS = 1
+                    If ClientName = "TCOT" Or ClientName = "SUPEEMA" Or ClientName = "KCRAYON" Then PCS = Val(DT.Rows(0).Item("PCS")) Else PCS = 1
 
                     'GET WRATE FROM DESIGNMASTER
                     If ClientName = "SANGHVI" Or ClientName = "TINUMINU" Then

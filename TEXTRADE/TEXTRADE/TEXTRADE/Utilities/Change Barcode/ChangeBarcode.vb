@@ -562,6 +562,10 @@ Public Class ChangeBarcode
                     If TEMPHEADER = "5" Then SUPRIYAHEADER = "5"
                 End If
 
+                If ClientName = "MNARESH" Then
+                    TEMPHEADER = 1
+                End If
+
                 For Each ROW As DataGridViewRow In GRIDCHANGEBARCODE.Rows
                     For I As Integer = 1 To Val(txtcopies.Text.Trim)
                         BARCODEPRINTING(ROW.Cells(GBARCODE.Index).Value, ROW.Cells(GPIECETYPE.Index).Value, CMBITEMNAME.Text.Trim, CMBQUALITY.Text.Trim, CMBDESIGN.Text.Trim, CMBSHADE.Text.Trim, CMBUNIT.Text.Trim, ROW.Cells(GLOTNO.Index).Value, ROW.Cells(GPRINTDESC.Index).Value, ROW.Cells(GPRINTDESC.Index).Value, Val(ROW.Cells(GMTRS.Index).Value), 1, Val(ROW.Cells(GCUT.Index).Value), ROW.Cells(GRACK.Index).Value, TEMPHEADER, SUPRIYAHEADER, WHOLESALEBARCODE, "", "", ROW.Cells(GSHELF.Index).Value)

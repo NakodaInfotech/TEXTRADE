@@ -735,6 +735,7 @@ Public Class RecFromPacking
                 End If
 
 
+<<<<<<< HEAD
                 If ClientName = "SOFTAS" Or ClientName = "MYCOT" And CHKPRINTSERIES.Checked = True Then
                     TEMPHEADER = "PRINTSERIES"
                 End If
@@ -766,6 +767,7 @@ Public Class RecFromPacking
                     If Val(ROW.Cells(GOUTMTRS.Index).Value) > 0 Then GoTo NEXTLINE
                     Dim BALENO As String = ""
                     If ClientName = "SSC" Or ClientName = "REALCORPORATION" Or ClientName = "ANKUSH" Or ClientName = "MNARESH" Then BALENO = ROW.Cells(gdesc.Index).Value
+<<<<<<< HEAD
                     If ClientName = "SOFTAS" Or ClientName = "MYCOT" And CHKPRINTSERIES.Checked = True Then BALENO = ROW.Cells(GSERIES.Index).Value
 
                     'FOR AVIS GET LOTNO FROM ISSUE TO PACK FOR EACH ENTRY NO
@@ -2158,6 +2160,7 @@ LINE1:
             End If
             If ClientName = "MYCOT" Then
                 cmbname.TabStop = True
+<<<<<<< HEAD
                 CHKPRINTSERIES.Checked = True
             End If
 
