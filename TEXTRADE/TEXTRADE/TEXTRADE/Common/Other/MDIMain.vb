@@ -3546,7 +3546,7 @@ Public Class MDIMain
         'TAKE BACKUP
         Dim TEMPMSG As Integer = MsgBox("Create Backup?", MsgBoxStyle.YesNo)
         If TEMPMSG = vbYes Then
-
+            Dim backupName As String = "TEXTRADE BACKUP " & Now.Day & "-" & Now.Month & "-" & Now.Year
             'CHECKING FOR BACKUP FOLDER
             If FileIO.FileSystem.DirectoryExists("C:\TEXTRADEBACKUP") = False Then FileIO.FileSystem.CreateDirectory("C:\TEXTRADEBACKUP")
 
@@ -3557,6 +3557,9 @@ Public Class MDIMain
 
             'IF SAME DATE'S BACKUP EXIST THEN DELETE IT THEN RECREATE IT
             If FileIO.FileSystem.FileExists("C:\TEXTRADEBACKUP\BACKUP\TEXTRADE BACKUP " & Now.Day & "-" & Now.Month & "-" & Now.Year & ".bak") Then FileIO.FileSystem.DeleteFile("C:\TEXTRADEBACKUP\BACKUP\TEXTRADE BACKUP " & Now.Day & "-" & Now.Month & "-" & Now.Year & ".bak")
+
+            ' Delete old .zip if exists  
+            If FileIO.FileSystem.FileExists("C:\TEXTRADEBACKUP\" & backupName & ".zip") Then FileIO.FileSystem.DeleteFile("C:\TEXTRADEBACKUP\" & backupName & ".zip")
 
             Dim OBJCMN As New ClsCommon
             On Error Resume Next
