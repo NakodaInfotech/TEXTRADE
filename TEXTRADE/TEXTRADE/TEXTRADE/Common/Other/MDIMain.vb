@@ -258,7 +258,7 @@ Public Class MDIMain
 
 
 
-            If ClientName = "DSM" Then
+            If ClientName = "DSM" Or ClientName = "MYCOT" Then
                 IssueToDesigner_MASTER.Visible = True
             End If
 

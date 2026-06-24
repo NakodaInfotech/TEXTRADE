@@ -662,7 +662,7 @@ CHECKNEXTLINE:
                         bln = False
                     End If
 
-                    If ITEMCOSTCENTRE = True And Val(row.Cells(GPURRATE.Index).Value) = 0 Then
+                    If (ITEMCOSTCENTRE = True Or ClientName = "MYCOT") And Val(row.Cells(GPURRATE.Index).Value) = 0 Then
                         EP.SetError(cmbname, "Rate Cannot be 0")
                         bln = False
                     End If
@@ -3607,7 +3607,7 @@ LINE1:
             End If
 
 
-            If ClientName = "YASHVI" Or ClientName = "MNARESH" Then
+            If ClientName = "YASHVI" Or ClientName = "MNARESH" Or ClientName = "MYCOT" Then
                 TXTBALEWT.Visible = True
                 LBLBALEWT.Visible = True
                 TXTPURRATE.Visible = True
