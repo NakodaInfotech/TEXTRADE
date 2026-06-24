@@ -1500,19 +1500,31 @@ line1:
 
 
                 'DONT ALLOW TO DELETE ANY ROW IF LOCKED IS VISIBLE
-                If lbllocked.Visible = True Then
-                    MessageBox.Show("Unable to Delete Row, Sale Order is Locked")
-                    Exit Sub
+                If ClientName <> "DSM" Then
+                    If lbllocked.Visible = True Then
+                        MessageBox.Show("Unable to Delete Row, Sale Order is Locked")
+                        Exit Sub
+                    End If
+                End If
+
+                If ClientName = "DSM" Then
+                    If Convert.ToBoolean(GRIDSO.CurrentRow.Cells(GCLOSED.Index).Value) = True Then
+                        MsgBox("Unable to Delete Row, Sale Order is Locked")
+                        Exit Sub
+                    End If
+
                 End If
 
 
+
+
                 GRIDSO.Rows.RemoveAt(GRIDSO.CurrentRow.Index)
-                TOTAL()
-                getsrno(GRIDSO)
-            ElseIf e.KeyCode = Keys.F5 Then
-                EDITROW()
-            ElseIf e.KeyCode = Keys.F12 And GRIDSO.RowCount > 0 Then
-                If GRIDSO.CurrentRow.Cells(gitemname.Index).Value <> "" Then GRIDSO.Rows.Add(CloneWithValues(GRIDSO.CurrentRow))
+                    TOTAL()
+                    getsrno(GRIDSO)
+                ElseIf e.KeyCode = Keys.F5 Then
+                    EDITROW()
+                ElseIf e.KeyCode = Keys.F12 And GRIDSO.RowCount > 0 Then
+                    If GRIDSO.CurrentRow.Cells(gitemname.Index).Value <> "" Then GRIDSO.Rows.Add(CloneWithValues(GRIDSO.CurrentRow))
             End If
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
