@@ -5302,6 +5302,10 @@ SKIPLINE:
                 COSTCENTER_MASTER.Visible = True
             End If
 
+            If ClientName = "INDRAPUJAFABRICS" Then
+                SAMPLENOTE_MASTER.Visible = True
+            End If
+
             If ClientName = "SAFFRON" Or ClientName = "SAFFRONOFF" Or ClientName = "SWPL" Then
                 JOBOUTTYPE_MASTER.Visible = True
                 JOBOUTTYPE_TOOL.Visible = True
