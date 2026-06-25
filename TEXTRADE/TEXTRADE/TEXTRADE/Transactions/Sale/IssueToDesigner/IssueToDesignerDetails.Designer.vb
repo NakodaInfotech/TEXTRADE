@@ -36,6 +36,7 @@ Partial Class IssueToDesignerDetails
         Me.GITEMNAME = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GDESIGNNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GMTRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CHKEDIT = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.APPROXDATE = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.CMDOK = New System.Windows.Forms.Button()
@@ -45,9 +46,12 @@ Partial Class IssueToDesignerDetails
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TOOLMAIL = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripRefresh = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.GREMARKS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
+        Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GRIDBILL, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,7 +125,9 @@ Partial Class IssueToDesignerDetails
         Me.GRIDBILL.GridControl = Me.gridbilldetails
         Me.GRIDBILL.Name = "GRIDBILL"
         Me.GRIDBILL.OptionsBehavior.AllowIncrementalSearch = True
-        Me.GRIDBILL.OptionsBehavior.Editable = False
+        Me.GRIDBILL.OptionsSelection.CheckBoxSelectorColumnWidth = 30
+        Me.GRIDBILL.OptionsSelection.MultiSelect = True
+        Me.GRIDBILL.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
         Me.GRIDBILL.OptionsView.ColumnAutoWidth = False
         Me.GRIDBILL.OptionsView.ShowAutoFilterRow = True
         Me.GRIDBILL.OptionsView.ShowFooter = True
@@ -133,7 +139,7 @@ Partial Class IssueToDesignerDetails
         Me.GSRNO.Name = "GSRNO"
         Me.GSRNO.OptionsColumn.AllowEdit = False
         Me.GSRNO.Visible = True
-        Me.GSRNO.VisibleIndex = 0
+        Me.GSRNO.VisibleIndex = 1
         Me.GSRNO.Width = 40
         '
         'GDATE
@@ -145,7 +151,7 @@ Partial Class IssueToDesignerDetails
         Me.GDATE.Name = "GDATE"
         Me.GDATE.OptionsColumn.AllowEdit = False
         Me.GDATE.Visible = True
-        Me.GDATE.VisibleIndex = 1
+        Me.GDATE.VisibleIndex = 2
         Me.GDATE.Width = 80
         '
         'GDESIGNERNAME
@@ -155,7 +161,7 @@ Partial Class IssueToDesignerDetails
         Me.GDESIGNERNAME.Name = "GDESIGNERNAME"
         Me.GDESIGNERNAME.OptionsColumn.AllowEdit = False
         Me.GDESIGNERNAME.Visible = True
-        Me.GDESIGNERNAME.VisibleIndex = 2
+        Me.GDESIGNERNAME.VisibleIndex = 3
         Me.GDESIGNERNAME.Width = 180
         '
         'GGRIDSRNO
@@ -165,7 +171,7 @@ Partial Class IssueToDesignerDetails
         Me.GGRIDSRNO.Name = "GGRIDSRNO"
         Me.GGRIDSRNO.OptionsColumn.AllowEdit = False
         Me.GGRIDSRNO.Visible = True
-        Me.GGRIDSRNO.VisibleIndex = 3
+        Me.GGRIDSRNO.VisibleIndex = 4
         Me.GGRIDSRNO.Width = 80
         '
         'GORDERNO
@@ -175,7 +181,7 @@ Partial Class IssueToDesignerDetails
         Me.GORDERNO.Name = "GORDERNO"
         Me.GORDERNO.OptionsColumn.AllowEdit = False
         Me.GORDERNO.Visible = True
-        Me.GORDERNO.VisibleIndex = 4
+        Me.GORDERNO.VisibleIndex = 5
         Me.GORDERNO.Width = 100
         '
         'GNAME
@@ -185,7 +191,7 @@ Partial Class IssueToDesignerDetails
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
-        Me.GNAME.VisibleIndex = 5
+        Me.GNAME.VisibleIndex = 6
         Me.GNAME.Width = 200
         '
         'GITEMNAME
@@ -195,7 +201,7 @@ Partial Class IssueToDesignerDetails
         Me.GITEMNAME.Name = "GITEMNAME"
         Me.GITEMNAME.OptionsColumn.AllowEdit = False
         Me.GITEMNAME.Visible = True
-        Me.GITEMNAME.VisibleIndex = 6
+        Me.GITEMNAME.VisibleIndex = 7
         Me.GITEMNAME.Width = 200
         '
         'GDESIGNNO
@@ -205,7 +211,7 @@ Partial Class IssueToDesignerDetails
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.OptionsColumn.AllowEdit = False
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 7
+        Me.GDESIGNNO.VisibleIndex = 8
         Me.GDESIGNNO.Width = 100
         '
         'GMTRS
@@ -213,10 +219,21 @@ Partial Class IssueToDesignerDetails
         Me.GMTRS.Caption = "Mtrs"
         Me.GMTRS.FieldName = "MTRS"
         Me.GMTRS.Name = "GMTRS"
+        Me.GMTRS.OptionsColumn.AllowEdit = False
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 8
+        Me.GMTRS.VisibleIndex = 9
         Me.GMTRS.Width = 100
+        '
+        'GREMARKS
+        '
+        Me.GREMARKS.Caption = "Remarks"
+        Me.GREMARKS.FieldName = "REMARKS"
+        Me.GREMARKS.Name = "GREMARKS"
+        Me.GREMARKS.OptionsColumn.AllowEdit = False
+        Me.GREMARKS.Visible = True
+        Me.GREMARKS.VisibleIndex = 10
+        Me.GREMARKS.Width = 100
         '
         'CHKEDIT
         '
@@ -257,7 +274,7 @@ Partial Class IssueToDesignerDetails
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ADDNEW, Me.toolStripSeparator, Me.PrintToolStripButton, Me.ToolStripSeparator1, Me.ToolStripRefresh, Me.ToolStripSeparator2})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ADDNEW, Me.toolStripSeparator, Me.PrintToolStripButton, Me.ToolStripSeparator1, Me.TOOLMAIL, Me.ToolStripSeparator3, Me.ToolStripRefresh, Me.ToolStripSeparator2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1234, 25)
@@ -290,6 +307,20 @@ Partial Class IssueToDesignerDetails
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
         '
+        'TOOLMAIL
+        '
+        Me.TOOLMAIL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TOOLMAIL.Image = Global.TEXTRADE.My.Resources.Resources.MAIL_IMAGE
+        Me.TOOLMAIL.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TOOLMAIL.Name = "TOOLMAIL"
+        Me.TOOLMAIL.Size = New System.Drawing.Size(23, 22)
+        Me.TOOLMAIL.Text = "Mail Credit Note Directly"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
         'ToolStripRefresh
         '
         Me.ToolStripRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -304,15 +335,12 @@ Partial Class IssueToDesignerDetails
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 25)
         '
-        'GREMARKS
+        'PRINTDIALOG
         '
-        Me.GREMARKS.Caption = "Remarks"
-        Me.GREMARKS.FieldName = "REMARKS"
-        Me.GREMARKS.Name = "GREMARKS"
-        Me.GREMARKS.OptionsColumn.AllowEdit = False
-        Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 9
-        Me.GREMARKS.Width = 100
+        Me.PRINTDIALOG.AllowSelection = True
+        Me.PRINTDIALOG.AllowSomePages = True
+        Me.PRINTDIALOG.ShowHelp = True
+        Me.PRINTDIALOG.UseEXDialog = True
         '
         'IssueToDesignerDetails
         '
@@ -364,4 +392,8 @@ Partial Class IssueToDesignerDetails
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents GMTRS As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GREMARKS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TOOLMAIL As ToolStripButton
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents PRINTDOC As System.Drawing.Printing.PrintDocument
+    Friend WithEvents PRINTDIALOG As PrintDialog
 End Class

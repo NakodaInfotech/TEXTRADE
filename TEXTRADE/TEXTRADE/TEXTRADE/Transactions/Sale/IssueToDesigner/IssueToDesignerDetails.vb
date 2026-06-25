@@ -8,8 +8,10 @@ Public Class IssueToDesignerDetails
 
     Dim USERADD, USEREDIT, USERDELETE, USERVIEW As Boolean
     Public TEMPMANUALNO As Integer
+    Dim DTMAIL As New DataTable
+    Dim DTWHATSAPP As New DataTable
 
-        Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
+    Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
             Me.Close()
         End Sub
         Private Sub ManualEntryDetails_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -37,9 +39,26 @@ Public Class IssueToDesignerDetails
         USERADD = DTROW(0).Item(1)
             USEREDIT = DTROW(0).Item(2)
             USERVIEW = DTROW(0).Item(3)
-            USERDELETE = DTROW(0).Item(4)
+        USERDELETE = DTROW(0).Item(4)
 
-            If USEREDIT = False And USERVIEW = False Then
+
+
+        DTMAIL.Columns.Add("INVNO")
+        DTMAIL.Columns.Add("REGID")
+        DTMAIL.Columns.Add("REGNAME")
+        DTMAIL.Columns.Add("PRINTINITIALS")
+        DTMAIL.Columns.Add("DATE")
+        DTMAIL.Columns.Add("NAME")
+        DTMAIL.Columns.Add("PARTYEMAILID")
+        DTMAIL.Columns.Add("AGENTNAME")
+        DTMAIL.Columns.Add("AGENTEMAILID")
+        DTMAIL.Columns.Add("GRANDTOTAL")
+        DTMAIL.Columns.Add("SUBJECT")
+        DTMAIL.Columns.Add("ATTACHMENT")
+        DTMAIL.Columns.Add("FILENAME")
+
+
+        If USEREDIT = False And USERVIEW = False Then
                 MsgBox("Insufficient Rights")
                 Exit Sub
             End If
@@ -104,6 +123,97 @@ Public Class IssueToDesignerDetails
             End Try
         End Sub
 
+    Private Sub TOOLMAIL_Click(sender As Object, e As EventArgs) Handles TOOLMAIL.Click
+        Try
+
+            If MsgBox("Wish to Mail Selected Issue To Designer ?", MsgBoxStyle.YesNo) = vbYes Then
+                CMDOK.Focus()
+                SERVERPROPSELECTED(True)
+            End If
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+    End Sub
+
+
+
+    Sub SERVERPROPSELECTED(Optional ByVal INVOICEMAIL As Boolean = False, Optional ByVal WHATSAPP As Boolean = False)
+        Try
+
+            Dim ALATTACHMENT As New ArrayList
+            Dim FILENAME As New ArrayList
+            Dim partyFiles As New Dictionary(Of String, List(Of String)) 'mobile → pdf list
+            Dim partyRows As New Dictionary(Of String, DataRow) 'mobile → store party info
+            DTMAIL.Rows.Clear()
+            DTWHATSAPP.Rows.Clear()
+
+
+            If INVOICEMAIL = False And WHATSAPP = False Then
+                If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
+            End If
+
+            Dim SELECTEDROWS As Int32() = GRIDBILL.GetSelectedRows()
+            For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
+                Dim ROW As DataRow = GRIDBILL.GetDataRow(SELECTEDROWS(I))
+
+                Dim OBJINVOICE As New SaleOrderDesign
+                OBJINVOICE.MdiParent = MDIMain
+                OBJINVOICE.DIRECTPRINT = True
+                OBJINVOICE.FRMSTRING = "ISSUETODESIGNER"
+                OBJINVOICE.DIRECTMAIL = INVOICEMAIL
+                OBJINVOICE.DIRECTWHATSAPP = WHATSAPP
+                OBJINVOICE.PARTYNAME = ROW("DESIGNERNAME")
+                OBJINVOICE.PRINTSETTING = PRINTDIALOG
+                OBJINVOICE.SONO = Val(ROW("TEMPISSNO"))
+                OBJINVOICE.Show()
+                OBJINVOICE.Close()
+
+
+                ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("DESIGNERNAME") & "TEMPISSNO_" & Val(ROW("TEMPISSNO")) & ".pdf")
+                FILENAME.Add(ROW("DESIGNERNAME") & "TEMPISSNO_" & Val(ROW("TEMPISSNO")) & ".pdf")
+                Dim invoicePath As String = ALATTACHMENT(ALATTACHMENT.Count - 1).ToString
+
+                'ADDINT IN DTEMAIL
+                DTMAIL.Rows.Add(ROW("TEMPISSNO"), 0, "", "", ROW("DATE"), ROW("DESIGNERNAME"), "", "", "", "", "", Application.StartupPath & "\" & ROW("DESIGNERNAME") & "ISSUETODESIGNER_" & Val(ROW("TEMPISSNO")) & ".pdf", ROW("DESIGNERNAME") & "TEMPISSNO_" & Val(ROW("TEMPISSNO")) & ".pdf")
+
+                ''ADDING IN DTWHATSAPP
+                'If ClientName = "MAHAVIRPOLYCOT" Then ROW("AGENTWHATSAPP") = ""
+                'If CHKMERGEDPDF.CheckState = False Then
+
+                '    DTWHATSAPP.Rows.Add(ROW("SRNO"), DT.Rows(0).Item("REGID"), cmbregister.Text.Trim, ROW("PRINTINITIALS"), ROW("DATE"), ROW("NAME"), ROW("PARTYWHATSAPP"), ROW("AGENTNAME"), ROW("AGENTWHATSAPP"), Val(ROW("GRANDTOTAL")), UCase(CmpName) & " - Invoice No. " & ROW("PRINTINITIALS") & " Dated " & ROW("DATE"), Application.StartupPath & "\" & ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf", ROW("NAME") & "INVOICE_" & Val(ROW("SRNO")) & ".pdf")
+
+                'End If
+                'DT = OBJCMN.Execute_Any_String("UPDATE INVOICEMASTER SET INVOICE_SENDWHATSAPP = 1, INVOICE_PRINT = 1 FROM InvoiceMaster INNER JOIN REGISTERMASTER On INVOICEMASTER.INVOICE_REGISTERID = REGISTERMASTER.register_id WHERE INVOICE_NO = " & Val(ROW("SRNO")) & " AND REGISTER_NAME '" & cmbregister.Text.Trim & "'  AND INVOICE_YEARID = " & YearId, "", "")
+
+            Next
+
+            If INVOICEMAIL Then
+                If DTMAIL.Rows.Count = 0 Then Exit Sub
+                Dim OBJEMAIL As New SendMultipleMail
+                OBJEMAIL.FORMTYPE = "ISSUETODESIGNER"
+                OBJEMAIL.DT = DTMAIL
+                OBJEMAIL.ShowDialog()
+                Exit Sub
+            End If
+
+
+
+            'If WHATSAPP = True Then
+            '    If DTWHATSAPP.Rows.Count = 0 Then Exit Sub
+            '    Dim OBJWHATSAPP As New SendMultipleWhatsapp
+            '    OBJWHATSAPP.PATH = ALATTACHMENT
+            '    OBJWHATSAPP.FILENAME = FILENAME
+            '    OBJWHATSAPP.DT = DTWHATSAPP
+            '    OBJWHATSAPP.ShowDialog()
+            'End If
+
+
+
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
 
     Private Sub GRIDJOB_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GRIDBILL.DoubleClick
