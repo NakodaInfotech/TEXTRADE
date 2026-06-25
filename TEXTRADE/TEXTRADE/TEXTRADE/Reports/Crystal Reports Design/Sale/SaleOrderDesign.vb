@@ -382,7 +382,7 @@ Public Class SaleOrderDesign
                 End If
 
             ElseIf FRMSTRING = "ISSUETODESIGNER" Then
-                oDfDopt.DiskFileName = Application.StartupPath & "\ISSUETOPRINTER.PDF"
+                oDfDopt.DiskFileName = Application.StartupPath & "\" & PARTYNAME & "_" & SONO & "_ISSUETOPRINTER.PDF"
                 expo = RPTSO_ISSUETODESIGNER.ExportOptions
                 expo.ExportDestinationType = ExportDestinationType.DiskFile
                 expo.ExportFormatType = ExportFormatType.PortableDocFormat
@@ -504,7 +504,8 @@ Public Class SaleOrderDesign
                 ElseIf FRMSTRING = "STOCKRECO" Then
                     TEMPATTACHMENT = "STOCKRECO"
                 ElseIf FRMSTRING = "ISSUETODESIGNER" Then
-                    TEMPATTACHMENT = "ISSUETODESIGNER"
+                    TEMPATTACHMENT = PARTYNAME & "_" & "ISSUETODESIGNER"
+
                 End If
 
 
