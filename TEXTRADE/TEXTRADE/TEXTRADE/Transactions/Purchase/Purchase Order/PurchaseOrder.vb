@@ -634,6 +634,12 @@ Public Class PurchaseOrder
 
         If ClientName <> "MOMAI" And ClientName <> "LAXMI" Then
             For Each row As DataGridViewRow In gridpo.Rows
+                If ClientName = "SHEETAL" Then
+                    If (Val(row.Cells(gQty.Index).Value) = 0 And Val(row.Cells(GMTRS.Index).Value) = 0) Then
+                        EP.SetError(cmbname, "Qty and Mtrs Cannot be 0")
+                        bln = False
+                    End If
+                End If
                 If Val(row.Cells(GMTRS.Index).Value) = 0 Then
                     EP.SetError(txtqty, "Mtrs Cannot be 0")
                     bln = False
