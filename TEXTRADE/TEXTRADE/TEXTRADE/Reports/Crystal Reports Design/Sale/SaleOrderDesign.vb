@@ -225,7 +225,7 @@ Public Class SaleOrderDesign
             tempattachment = PARTYNAME & "_SOREPORT"
             objmail.subject = "Sale Order"
         ElseIf FRMSTRING = "SOREPORT" Or FRMSTRING = "SOCAD" Then
-            tempattachment = PARTYNAME & "_SOREPORT"
+            tempattachment = PARTYNAME & "_" & SONO & "_SOREPORT"
             objmail.subject = "Sale Order"
 
         ElseIf FRMSTRING = "SCHEDULEREPORT" Then

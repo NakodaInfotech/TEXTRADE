@@ -117,7 +117,7 @@ Public Class DesignMasterDetail
                 GTOTAL.Visible = True
             End If
             If FETCHITEMWISEDESIGN = True Or ClientName = "NTC" Then GITEMNAME.Visible = True
-            If ClientName = "DSM" Then
+            If ClientName = "DSM" Or ClientName = "MYCOT" Then
                 GCADNO.Visible = False
                 GMILLNAME.Visible = False
                 GPURRATE.Visible = False
