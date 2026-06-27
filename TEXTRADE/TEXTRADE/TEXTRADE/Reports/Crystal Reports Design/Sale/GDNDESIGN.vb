@@ -599,6 +599,16 @@ Public Class GDNDESIGN
 
                     'End If
                     If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
+
+                        Dim DT5 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(STOCKADJUSTMENT_DESC.SA_MTRS, 0))AS SAMPLEMTRS   ", "", "STOCKADJUSTMENT_DESC  LEFT OUTER JOIN PIECETYPEMASTER ON STOCKADJUSTMENT_DESC.SA_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id ", " AND SA_LOTNO = '" & LOTNO & "' AND SA_YEARID = " & YearId & " AND PIECETYPEMASTER.PIECETYPE_name IN ('SAMPLE', 'FENT')")
+                        If DT5.Rows.Count > 0 Then
+                            ' Get the subreport object first
+                            Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
+
+                            ' Now set formula fields on the SUBREPORT, not the main report
+                            subReport.DataDefinition.FormulaFields("SAMPLEMTRS").Text = Val(DT5.Rows(0).Item("SAMPLEMTRS")).ToString("0.00")
+                        End If
+
                         Dim DT4 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(GDN_DESC.GDN_PCS, 0))AS DELIVEREDLUMPS,SUM(ISNULL(GDN_DESC.GDN_MTRS, 0))AS DELIVEREDMTRS ", "", "GDN_DESC ", " AND GDN_GRIDLOTNO = '" & LOTNO & "' AND GDN_YEARID = " & YearId)
                         If DT4.Rows.Count > 0 Then
                             ' Get the subreport object first
@@ -637,14 +647,19 @@ Public Class GDNDESIGN
                             subReport.DataDefinition.FormulaFields("RECDPCS").Text = Val(DT1.Rows(0).Item("RECDPCS")).ToString("0")
                             subReport.DataDefinition.FormulaFields("RECDMTRS").Text = Val(DT1.Rows(0).Item("RECDMTRS")).ToString("0.00")
                         End If
-                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_CHALLANNO, '') AS INWARDNO, GRN.GRN_CHALLANDT AS INWARDDATE, CASE WHEN ISNULL(PACKINGLEDGERS.ACC_CMPNAME, '') = '' THEN ISNULL(LEDGERS.ACC_CMPNAME, '') ELSE PACKINGLEDGERS.ACC_CMPNAME END AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GRN.GRN_PACKINGID = PACKINGLEDGERS.ACC_ID AND GRN.GRN_YEARID = PACKINGLEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
+                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_CHALLANNO, '') AS INWARDNO, GRN.GRN_CHALLANDT AS INWARDDATE,GRN.GRN_DATE AS INWARDLOTDATE, CASE WHEN ISNULL(PACKINGLEDGERS.ACC_CMPNAME, '') = '' THEN ISNULL(LEDGERS.ACC_CMPNAME, '') ELSE PACKINGLEDGERS.ACC_CMPNAME END AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GRN.GRN_PACKINGID = PACKINGLEDGERS.ACC_ID AND GRN.GRN_YEARID = PACKINGLEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
                         If DT.Rows.Count > 0 Then
                             RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDNO").Text = "'" & DT.Rows(0).Item("INWARDNO").ToString() & "'"
                             RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDDATE")), "dd/MM/yyyy") & "'"
                             RPTGDN_VINTAGE.DataDefinition.FormulaFields("SUPPLIER").Text = "'" & DT.Rows(0).Item("SUPPLIER").ToString() & "'"
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDLOTDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDLOTDATE")), "dd/MM/yyyy") & "'"
+
                         End If
                     End If
+
                     If JOBWORKLABEL = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1
+                    Dim subRptPreview = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+                    subRptPreview.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"  ' Show in preview
                     RPTGDN_VINTAGE.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     crpo.ReportSource = RPTGDN_VINTAGE
                 Else
@@ -1520,6 +1535,8 @@ Public Class GDNDESIGN
                     If JOBWORKLABEL = True Then OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 0
                     'If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     'If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "CHINTAN" Or ClientName = "KENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    Dim subRptPrint = OBJ.Subreports("GDNSHRINKAGE")
+                    subRptPrint.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"  ' Hide when printing
                     OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
 
                 Else
@@ -1566,7 +1583,11 @@ Public Class GDNDESIGN
 
             If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
                 OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
+                ' ADD THESE 3 LINES 👇
+                Dim subRptPrint = OBJ.Subreports("GDNSHRINKAGE")
+                subRptPrint.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
                 OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
+                subRptPrint.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"  ' Reset after print
             Else
                 Dim expo As New ExportOptions
                 Dim oDfDopt As New DiskFileDestinationOptions
