@@ -1519,10 +1519,14 @@ PRINT 1,1
                             'GET RATE
                             Dim TEMPRATE As Double = 0
                             Dim TEMPHSN As String = ""
+                            ' Dim TEMPREMARKS As String = ""
+
                             DT = OBJCMN.SEARCH("ITEMMASTER.ITEM_RATE AS RATE, ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID", " AND ISNULL(ITEMMASTER.ITEM_NAME,'') = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
                             If DT.Rows.Count > 0 Then
                                 TEMPRATE = Val(DT.Rows(0).Item("RATE"))
                                 TEMPHSN = DT.Rows(0).Item("HSNCODE")
+
+
                             End If
 
                             oWrite.WriteLine("<xpml><page quantity='0' pitch='40.0 mm'></xpml>^XA
@@ -1568,7 +1572,7 @@ PRINT 1,1
 ^FT78,303
 ^AFN,26,13^FD:^FS
 ^FT102,303
-^AFN,26,13^FD" & TXTREMARKS.Text.Trim & "^FS
+^AFN,26,13^FD" & TEMPREMARKS & "^FS
 ^FO27,40
 ^BY2,2.5^B3N,N,56,N,N^FD" & TXTBARCODE.Text.Trim & "^FS
 ^FT180,116
@@ -2972,7 +2976,7 @@ BAR 11,267, 356, 3
 TEXT 371,239,""0"",180,16,16,""" & ROW("ITEMNAME") & """
 TEXT 371,172,""0"",180,12,12,""RATE""
 TEXT 271,172,""0"",180,12,12,"":""
-TEXT 252,172,""0"",180,12,12,""" & TEMPRATE & """/-""""
+TEXT 252,172,""0"",180,12,12,""" & TEMPRATE & """
 QRCODE 154,174,L,7,A,180,M2,S7,""" & ROW("BARCODE") & """
 TEXT 371,117,""0"",180,12,12,""WIDTH""
 TEXT 371,62,""0"",180,12,12,""" & ROW("BARCODE") & """
@@ -3227,7 +3231,7 @@ PRINT 1,1
 ^FT78,303
 ^AFN,26,13^FD:^FS
 ^FT102,303
-^AFN,26,13^FD" & ROW("REMARKS") & "^FS
+^AFN,26,13^FD" & TEMPREMARKS & "^FS
 ^FO27,40
 ^BY2,2.5^B3N,N,56,N,N^FD" & ROW("BARCODE") & "^FS
 ^FT180,116
