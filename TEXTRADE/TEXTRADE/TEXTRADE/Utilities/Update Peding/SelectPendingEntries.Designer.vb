@@ -23,6 +23,7 @@ Partial Class SelectPendingEntries
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
         Me.CMDEXCEL = New System.Windows.Forms.Button()
         Me.CMDOK = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -38,16 +39,18 @@ Partial Class SelectPendingEntries
         Me.GTYPE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.CMDREFRESH = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
-        Me.CHKSELECTALL = New System.Windows.Forms.CheckBox()
+        Me.PBEXCEL = New System.Windows.Forms.PictureBox()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBEXCEL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BlendPanel1
         '
         Me.BlendPanel1.AutoSize = True
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.PBEXCEL)
         Me.BlendPanel1.Controls.Add(Me.CHKSELECTALL)
         Me.BlendPanel1.Controls.Add(Me.CMDEXCEL)
         Me.BlendPanel1.Controls.Add(Me.CMDOK)
@@ -59,6 +62,19 @@ Partial Class SelectPendingEntries
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1284, 550)
         Me.BlendPanel1.TabIndex = 13
+        '
+        'CHKSELECTALL
+        '
+        Me.CHKSELECTALL.AutoSize = True
+        Me.CHKSELECTALL.BackColor = System.Drawing.Color.Transparent
+        Me.CHKSELECTALL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CHKSELECTALL.ForeColor = System.Drawing.Color.Black
+        Me.CHKSELECTALL.Location = New System.Drawing.Point(47, 7)
+        Me.CHKSELECTALL.Name = "CHKSELECTALL"
+        Me.CHKSELECTALL.Size = New System.Drawing.Size(77, 18)
+        Me.CHKSELECTALL.TabIndex = 14
+        Me.CHKSELECTALL.Text = "Select All"
+        Me.CHKSELECTALL.UseVisualStyleBackColor = False
         '
         'CMDEXCEL
         '
@@ -238,18 +254,15 @@ Partial Class SelectPendingEntries
         Me.cmdexit.Text = "E&xit"
         Me.cmdexit.UseVisualStyleBackColor = False
         '
-        'CHKSELECTALL
+        'PBEXCEL
         '
-        Me.CHKSELECTALL.AutoSize = True
-        Me.CHKSELECTALL.BackColor = System.Drawing.Color.Transparent
-        Me.CHKSELECTALL.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CHKSELECTALL.ForeColor = System.Drawing.Color.Black
-        Me.CHKSELECTALL.Location = New System.Drawing.Point(47, 7)
-        Me.CHKSELECTALL.Name = "CHKSELECTALL"
-        Me.CHKSELECTALL.Size = New System.Drawing.Size(77, 18)
-        Me.CHKSELECTALL.TabIndex = 14
-        Me.CHKSELECTALL.Text = "Select All"
-        Me.CHKSELECTALL.UseVisualStyleBackColor = False
+        Me.PBEXCEL.Image = Global.TEXTRADE.My.Resources.Resources.Excel_icon
+        Me.PBEXCEL.Location = New System.Drawing.Point(145, 3)
+        Me.PBEXCEL.Name = "PBEXCEL"
+        Me.PBEXCEL.Size = New System.Drawing.Size(25, 25)
+        Me.PBEXCEL.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PBEXCEL.TabIndex = 810
+        Me.PBEXCEL.TabStop = False
         '
         'SelectPendingEntries
         '
@@ -266,6 +279,7 @@ Partial Class SelectPendingEntries
         Me.BlendPanel1.PerformLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBEXCEL, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -288,4 +302,5 @@ Partial Class SelectPendingEntries
     Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDEXCEL As Button
     Friend WithEvents CHKSELECTALL As CheckBox
+    Friend WithEvents PBEXCEL As PictureBox
 End Class

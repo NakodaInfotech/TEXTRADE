@@ -200,6 +200,8 @@ Public Class MaterialReceipt
             LBLTOTALAMT.Text = 0.0
             TXTRUNNINGBALPCS.Clear()
             TXTRUNNINGBALMTRS.Clear()
+            LBLSHRINKAGE.Text = 0.0
+
 
             For Each ROW As DataGridViewRow In GRIDMATREC.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
@@ -221,6 +223,9 @@ Public Class MaterialReceipt
 
             TXTRUNNINGBALPCS.Text = Val(TXTBALPCS.Text.Trim) - Val(lbltotalqty.Text.Trim)
             TXTRUNNINGBALMTRS.Text = Val(TXTBALMTRS.Text.Trim) - Val(LBLTOTALRECDMTRS.Text.Trim)
+
+            LBLSHRINKAGE.Text = Format((Val(LBLTOTALDIFF.Text) / Val(LBLTOTALMTRS.Text) * 100), "0.00")
+
 
         Catch ex As Exception
             Throw ex
@@ -4326,6 +4331,11 @@ LINE1:
                     TXTCUT.ReadOnly = False
                 End If
 
+            End If
+
+            If PCSTOPCSDETAILS = True Then
+                Label20.Visible = True
+                LBLSHRINKAGE.Visible = True
             End If
 
 
