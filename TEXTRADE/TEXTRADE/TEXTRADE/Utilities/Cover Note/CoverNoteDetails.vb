@@ -9,6 +9,8 @@ Public Class CoverNoteDetails
     Public EDIT As Boolean
     Dim TEMPCOVERNO As Integer
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
+    Dim DTMAIL As New DataTable
+    Dim DTWHATSAPP As New DataTable
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -42,6 +44,37 @@ Public Class CoverNoteDetails
                 Exit Sub
             End If
 
+
+
+            DTMAIL.Columns.Add("INVNO")
+            DTMAIL.Columns.Add("REGID")
+            DTMAIL.Columns.Add("REGNAME")
+            DTMAIL.Columns.Add("PRINTINITIALS")
+            DTMAIL.Columns.Add("DATE")
+            DTMAIL.Columns.Add("NAME")
+            DTMAIL.Columns.Add("PARTYEMAILID")
+            DTMAIL.Columns.Add("AGENTNAME")
+            DTMAIL.Columns.Add("AGENTEMAILID")
+            DTMAIL.Columns.Add("GRANDTOTAL")
+            DTMAIL.Columns.Add("SUBJECT")
+            DTMAIL.Columns.Add("ATTACHMENT")
+            DTMAIL.Columns.Add("FILENAME")
+
+            DTWHATSAPP.Columns.Add("INVNO")
+            DTWHATSAPP.Columns.Add("REGID")
+            DTWHATSAPP.Columns.Add("REGNAME")
+            DTWHATSAPP.Columns.Add("PRINTINITIALS")
+            DTWHATSAPP.Columns.Add("DATE")
+            DTWHATSAPP.Columns.Add("NAME")
+            DTWHATSAPP.Columns.Add("PARTYWHATSAPP")
+            DTWHATSAPP.Columns.Add("AGENTNAME")
+            DTWHATSAPP.Columns.Add("AGENTWHATSAPP")
+            DTWHATSAPP.Columns.Add("GRANDTOTAL")
+            DTWHATSAPP.Columns.Add("SUBJECT")
+            DTWHATSAPP.Columns.Add("ATTACHMENT")
+            DTWHATSAPP.Columns.Add("FILENAME")
+
+
             fillgrid(" and dbo.COVERNOTE.COVER_YEARID=" & YearId & " order by dbo.COVERNOTE.COVER_NO ")
         Catch ex As Exception
             Throw ex
@@ -52,7 +85,7 @@ Public Class CoverNoteDetails
         Try
             Dim objclsCMST As New ClsCommonMaster
             Dim dt As DataTable
-            dt = objclsCMST.search("CAST(0 AS BIT) AS CHK,COVERNOTE.COVER_NO AS TEMPCOVERNO, COVERNOTE.COVER_COVERDATE AS COVERDATE, ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(AGENTMASTER.Acc_cmpname, '') AS AGENT,  ISNULL(COVERNOTE.COVER_REMARKS, '') AS REMARKS, COVERNOTE_DESC.COVER_SRNO AS SRNO, ISNULL(COVERNOTE_DESC.COVER_INVNO, 0) AS INVNO, ISNULL(REGISTERMASTER.register_name, '') AS REGNAME, ISNULL(COVERNOTE_DESC.COVER_INVINITIALS, '') AS INVINITIALS, ISNULL(COVERNOTE_DESC.COVER_PRINTINITIALS, '') AS PRINTINITIALS, ISNULL(COVERNOTE_DESC.COVER_INVDATE, '') AS INVDATE, ISNULL(COVERNOTE_DESC.COVER_LRNO, '') AS LRNO, ISNULL(COVERNOTE_DESC.COVER_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(COVERNOTE_DESC.COVER_TOTALPCS, 0) AS TOTALPCS, ISNULL(COVERNOTE_DESC.COVER_GRANDTOTAL, 0) AS GRANDTOTAL, ISNULL(COVERNOTE_DESC.COVER_LRDATE, '') AS LRDATE, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, ISNULL(GRIDLEDGERS.Acc_cmpname, '') AS GRIDNAME, ISNULL(GRIDAGENTLEDGERS.Acc_cmpname, '') AS GRIDAGENTNAME, ISNULL(COVERNOTE.COVER_COURIERNAME, '') AS COURIERNAME, ISNULL(COVERNOTE.COVER_COURIERDOCKETNO, '') AS COURIERDOCKETNO, COVERNOTE.COVER_COURIERDATE AS COURIERDATE ", "", " COVERNOTE INNER JOIN COVERNOTE_DESC ON COVERNOTE.COVER_NO = COVERNOTE_DESC.COVER_NO AND COVERNOTE.COVER_YEARID = COVERNOTE_DESC.COVER_YEARID LEFT OUTER JOIN LEDGERS AS GRIDAGENTLEDGERS ON COVERNOTE_DESC.COVER_AGENTNAMEID = GRIDAGENTLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS GRIDLEDGERS ON COVERNOTE_DESC.COVER_PARTYNAMEID = GRIDLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON COVERNOTE_DESC.COVER_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN REGISTERMASTER ON COVERNOTE_DESC.COVER_REGID = REGISTERMASTER.register_id LEFT OUTER JOIN LEDGERS AS AGENTMASTER ON COVERNOTE.COVER_AGENTID = AGENTMASTER.Acc_id LEFT OUTER JOIN LEDGERS ON COVERNOTE.COVER_LEDGERID = LEDGERS.Acc_id  ", TEMPCONDITION)
+            dt = objclsCMST.search("CAST(0 AS BIT) AS CHK,COVERNOTE.COVER_NO AS TEMPCOVERNO, COVERNOTE.COVER_COVERDATE AS COVERDATE, ISNULL(LEDGERS.Acc_cmpname, '') AS PARTYNAME, ISNULL(AGENTMASTER.Acc_cmpname, '') AS AGENT,ISNULL(LEDGERS.Acc_email, '') AS PARTYMAIL, ISNULL(LEDGERS.ACC_WHATSAPPNO, '') AS PARTYWHATSAPP, ISNULL(AGENTMASTER.Acc_email, '')  AS AGENTMAIL, ISNULL(AGENTMASTER.ACC_WHATSAPPNO, '') AS AGENTWHATSAPP,  ISNULL(COVERNOTE.COVER_REMARKS, '') AS REMARKS, COVERNOTE_DESC.COVER_SRNO AS SRNO, ISNULL(COVERNOTE_DESC.COVER_INVNO, 0) AS INVNO, ISNULL(REGISTERMASTER.register_name, '') AS REGNAME, ISNULL(COVERNOTE_DESC.COVER_INVINITIALS, '') AS INVINITIALS, ISNULL(COVERNOTE_DESC.COVER_PRINTINITIALS, '') AS PRINTINITIALS, ISNULL(COVERNOTE_DESC.COVER_INVDATE, '') AS INVDATE, ISNULL(COVERNOTE_DESC.COVER_LRNO, '') AS LRNO, ISNULL(COVERNOTE_DESC.COVER_TOTALMTRS, 0) AS TOTALMTRS, ISNULL(COVERNOTE_DESC.COVER_TOTALPCS, 0) AS TOTALPCS, ISNULL(COVERNOTE_DESC.COVER_GRANDTOTAL, 0) AS GRANDTOTAL, ISNULL(COVERNOTE_DESC.COVER_LRDATE, '') AS LRDATE, ISNULL(TRANSLEDGERS.Acc_cmpname, '') AS TRANSPORT, ISNULL(GRIDLEDGERS.Acc_cmpname, '') AS GRIDNAME, ISNULL(GRIDAGENTLEDGERS.Acc_cmpname, '') AS GRIDAGENTNAME, ISNULL(COVERNOTE.COVER_COURIERNAME, '') AS COURIERNAME, ISNULL(COVERNOTE.COVER_COURIERDOCKETNO, '') AS COURIERDOCKETNO, COVERNOTE.COVER_COURIERDATE AS COURIERDATE ", "", " COVERNOTE INNER JOIN COVERNOTE_DESC ON COVERNOTE.COVER_NO = COVERNOTE_DESC.COVER_NO AND COVERNOTE.COVER_YEARID = COVERNOTE_DESC.COVER_YEARID LEFT OUTER JOIN LEDGERS AS GRIDAGENTLEDGERS ON COVERNOTE_DESC.COVER_AGENTNAMEID = GRIDAGENTLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS GRIDLEDGERS ON COVERNOTE_DESC.COVER_PARTYNAMEID = GRIDLEDGERS.Acc_id LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON COVERNOTE_DESC.COVER_TRANSID = TRANSLEDGERS.Acc_id LEFT OUTER JOIN REGISTERMASTER ON COVERNOTE_DESC.COVER_REGID = REGISTERMASTER.register_id LEFT OUTER JOIN LEDGERS AS AGENTMASTER ON COVERNOTE.COVER_AGENTID = AGENTMASTER.Acc_id LEFT OUTER JOIN LEDGERS ON COVERNOTE.COVER_LEDGERID = LEDGERS.Acc_id  ", TEMPCONDITION)
             gridbilldetails.DataSource = dt
             If dt.Rows.Count > 0 Then
                 gridbill.FocusedRowHandle = gridbill.RowCount - 1
@@ -648,6 +681,8 @@ Public Class CoverNoteDetails
 
             Dim ALATTACHMENT As New ArrayList
             Dim FILENAME As New ArrayList
+            DTMAIL.Rows.Clear()
+            DTWHATSAPP.Rows.Clear()
 
             If INVOICEMAIL = False And WHATSAPP = False Then
                 If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings Else Exit Sub
@@ -657,37 +692,54 @@ Public Class CoverNoteDetails
             If TEMPMSG2 = vbYes Then
 
                 Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
-                For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
-                    Dim ROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
+                For I As Integer = 0 To Val(gridbill.RowCount - 1)
+                    Dim ROW As DataRow = gridbill.GetDataRow(I)
+                    If ROW("CHK") = True Then
 
-                    Dim OBJINV As New SaleInvoiceDesign
-                    OBJINV.MdiParent = MDIMain
-                    OBJINV.DIRECTPRINT = True
-                    OBJINV.FRMSTRING = "MAINCOVERNOTE"
-                    OBJINV.DIRECTMAIL = INVOICEMAIL
-                    OBJINV.DIRECTWHATSAPP = WHATSAPP
-                    OBJINV.PRINTSETTING = PRINTDIALOG
-                    OBJINV.PARTYNAME = ROW("PARTYNAME")
-                    OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(ROW("TEMPCOVERNO")) & " and {COVERNOTE.COVER_YEARID}=" & YearId
-                    OBJINV.COVERNOTENO = Val(ROW("TEMPCOVERNO"))
-                    OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
-                    OBJINV.Show()
-                    OBJINV.Close()
-                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
-                    FILENAME.Add(ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+
+                        Dim OBJINV As New SaleInvoiceDesign
+                        OBJINV.MdiParent = MDIMain
+                        OBJINV.DIRECTPRINT = True
+                        OBJINV.FRMSTRING = "MAINCOVERNOTE"
+                        OBJINV.DIRECTMAIL = INVOICEMAIL
+                        OBJINV.DIRECTWHATSAPP = WHATSAPP
+                        OBJINV.PRINTSETTING = PRINTDIALOG
+                        OBJINV.PARTYNAME = ROW("PARTYNAME")
+                        OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(ROW("TEMPCOVERNO")) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+                        OBJINV.COVERNOTENO = Val(ROW("TEMPCOVERNO"))
+                        OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
+                        OBJINV.Show()
+                        OBJINV.Close()
+                        ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+                        FILENAME.Add(ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+
+
+
+                        'ADDINT IN DTEMAIL
+                        DTMAIL.Rows.Add(ROW("TEMPCOVERNO"), 0, "", ROW("INVNO"), ROW("COVERDATE"), ROW("PARTYNAME"), ROW("PARTYMAIL"), "", "", Val(ROW("GRANDTOTAL")), UCase(CmpName) & " - Cover Note No. " & ROW("INVNO") & " Dated " & ROW("COVERDATE"), Application.StartupPath & "\" & ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf", ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+
+                        'ADDING IN DTWHATSAPP
+
+                        DTWHATSAPP.Rows.Add(ROW("TEMPCOVERNO"), 0, "", ROW("INVNO"), ROW("COVERDATE"), ROW("PARTYNAME"), ROW("PARTYWHATSAPP"), "", "", Val(ROW("GRANDTOTAL")), UCase(CmpName) & " - Cover Note No. " & ROW("INVNO") & " Dated " & ROW("COVERDATE"), Application.StartupPath & "\" & ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf", ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+
+                    End If
                 Next
 
                 If INVOICEMAIL Then
-                    Dim OBJMAIL As New SendMail
-                    OBJMAIL.ALATTACHMENT = ALATTACHMENT
-                    OBJMAIL.subject = "MAINAGENTCOVERNOTE"
-                    OBJMAIL.ShowDialog()
+                    If DTMAIL.Rows.Count = 0 Then Exit Sub
+                    Dim OBJEMAIL As New SendMultipleMail
+                    OBJEMAIL.FORMTYPE = "COVERNOTE"
+                    OBJEMAIL.DT = DTMAIL
+                    OBJEMAIL.ShowDialog()
+                    Exit Sub
                 End If
 
                 If WHATSAPP = True Then
-                    Dim OBJWHATSAPP As New SendWhatsapp
+                    If DTWHATSAPP.Rows.Count = 0 Then Exit Sub
+                    Dim OBJWHATSAPP As New SendMultipleWhatsapp
                     OBJWHATSAPP.PATH = ALATTACHMENT
                     OBJWHATSAPP.FILENAME = FILENAME
+                    OBJWHATSAPP.DT = DTWHATSAPP
                     OBJWHATSAPP.ShowDialog()
                 End If
 
@@ -695,37 +747,57 @@ Public Class CoverNoteDetails
 
                 MsgBox("Wish to Send Agent Cover Note ?", MsgBoxStyle.YesNo)
                 Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
-                For I As Integer = 0 To Val(SELECTEDROWS.Length - 1)
-                    Dim ROW As DataRow = gridbill.GetDataRow(SELECTEDROWS(I))
-                    Dim OBJINV As New SaleInvoiceDesign
-                    OBJINV.MdiParent = MDIMain
-                    OBJINV.DIRECTPRINT = True
-                    OBJINV.FRMSTRING = "MAINAGENTCOVERNOTE"
-                    OBJINV.DIRECTMAIL = INVOICEMAIL
-                    OBJINV.DIRECTWHATSAPP = WHATSAPP
-                    OBJINV.PRINTSETTING = PRINTDIALOG
-                    OBJINV.PRINTSETTING = PRINTDIALOG
-                    OBJINV.AGENTNAME = ROW("AGENT")
-                    OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(ROW("TEMPCOVERNO")) & " and {COVERNOTE.COVER_YEARID}=" & YearId
-                    OBJINV.COVERNOTENO = Val(ROW("TEMPCOVERNO"))
-                    OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
-                    OBJINV.Show()
-                    OBJINV.Close()
-                    ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("AGENT") & "_AGENTCOVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
-                    FILENAME.Add(ROW("AGENT") & "_AGENTCOVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+                For I As Integer = 0 To Val(gridbill.RowCount - 1)
+                    Dim ROW As DataRow = gridbill.GetDataRow(I)
+                    If ROW("CHK") = True Then
+
+                        Dim OBJINV As New SaleInvoiceDesign
+                        OBJINV.MdiParent = MDIMain
+                        OBJINV.DIRECTPRINT = True
+                        OBJINV.FRMSTRING = "MAINAGENTCOVERNOTE"
+                        OBJINV.DIRECTMAIL = INVOICEMAIL
+                        OBJINV.DIRECTWHATSAPP = WHATSAPP
+                        OBJINV.PRINTSETTING = PRINTDIALOG
+                        OBJINV.PRINTSETTING = PRINTDIALOG
+                        OBJINV.AGENTNAME = ROW("AGENT")
+                        OBJINV.WHERECLAUSE = "{COVERNOTE.COVER_NO}=" & Val(ROW("TEMPCOVERNO")) & " and {COVERNOTE.COVER_YEARID}=" & YearId
+                        OBJINV.COVERNOTENO = Val(ROW("TEMPCOVERNO"))
+                        OBJINV.NOOFCOPIES = Val(TXTCOPIES.Text.Trim)
+                        OBJINV.Show()
+                        OBJINV.Close()
+                        ALATTACHMENT.Add(Application.StartupPath & "\" & ROW("AGENT") & "_AGENTCOVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+                        FILENAME.Add(ROW("AGENT") & "_AGENTCOVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+
+
+
+
+                        'ADDINT IN DTEMAIL
+                        DTMAIL.Rows.Add(ROW("TEMPCOVERNO"), 0, "", ROW("INVNO"), ROW("COVERDATE"), "", "", ROW("AGENT"), ROW("AGENTMAIL"), Val(ROW("GRANDTOTAL")), UCase(CmpName) & " - Cover Note No. " & ROW("INVNO") & " Dated " & ROW("COVERDATE"), Application.StartupPath & "\" & ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf", ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+
+                        'ADDING IN DTWHATSAPP
+
+                        DTWHATSAPP.Rows.Add(ROW("TEMPCOVERNO"), 0, "", ROW("INVNO"), ROW("COVERDATE"), "", "", ROW("AGENT"), ROW("AGENTWHATSAPP"), Val(ROW("GRANDTOTAL")), UCase(CmpName) & " - Cover Note No. " & ROW("INVNO") & " Dated " & ROW("COVERDATE"), Application.StartupPath & "\" & ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf", ROW("PARTYNAME") & "_COVERNOTE_" & Val(ROW("TEMPCOVERNO")) & ".pdf")
+
+                    End If
+
+
                 Next
 
                 If INVOICEMAIL Then
-                    Dim OBJMAIL As New SendMail
-                    OBJMAIL.ALATTACHMENT = ALATTACHMENT
-                    OBJMAIL.subject = "MAINAGENTCOVERNOTE"
-                    OBJMAIL.ShowDialog()
+                    If DTMAIL.Rows.Count = 0 Then Exit Sub
+                    Dim OBJEMAIL As New SendMultipleMail
+                    OBJEMAIL.FORMTYPE = "COVERNOTE"
+                    OBJEMAIL.DT = DTMAIL
+                    OBJEMAIL.ShowDialog()
+                    Exit Sub
                 End If
 
                 If WHATSAPP = True Then
-                    Dim OBJWHATSAPP As New SendWhatsapp
+                    If DTWHATSAPP.Rows.Count = 0 Then Exit Sub
+                    Dim OBJWHATSAPP As New SendMultipleWhatsapp
                     OBJWHATSAPP.PATH = ALATTACHMENT
                     OBJWHATSAPP.FILENAME = FILENAME
+                    OBJWHATSAPP.DT = DTWHATSAPP
                     OBJWHATSAPP.ShowDialog()
                 End If
             End If

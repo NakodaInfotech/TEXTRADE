@@ -69,6 +69,10 @@ Partial Class CoverNoteDetails
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.imageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.GPARTYMAIL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GPARTYWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAGENMAIL = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GAGENTWHATSAPP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,7 +180,7 @@ Partial Class CoverNoteDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GNAME, Me.GAGENT, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GGRIDNAME, Me.GGRIDAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GTRANSPORT, Me.GLRDATE, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL, Me.GCOURIERNAME, Me.GCOURIERDOCKETNO, Me.GCOURIERDATE, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GCHK, Me.gsrno, Me.gdate, Me.GNAME, Me.GAGENT, Me.GINVNO, Me.GREGNAME, Me.GINVINITIALS, Me.GPRINTINITIALS, Me.GGRIDNAME, Me.GGRIDAGENTNAME, Me.GINVDATE, Me.GLRNO, Me.GTRANSPORT, Me.GLRDATE, Me.GTOTALMTRS, Me.GTOTALPCS, Me.GGRANDTOTAL, Me.GCOURIERNAME, Me.GCOURIERDOCKETNO, Me.GCOURIERDATE, Me.GREMARKS, Me.GPARTYMAIL, Me.GPARTYWHATSAPP, Me.GAGENMAIL, Me.GAGENTWHATSAPP})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.AllowIncrementalSearch = True
@@ -527,6 +531,38 @@ Partial Class CoverNoteDetails
         Me.imageList1.Images.SetKeyName(0, "")
         Me.imageList1.Images.SetKeyName(1, "")
         '
+        'GPARTYMAIL
+        '
+        Me.GPARTYMAIL.Caption = "Party Mail"
+        Me.GPARTYMAIL.FieldName = "PARTYMAIL"
+        Me.GPARTYMAIL.Name = "GPARTYMAIL"
+        Me.GPARTYMAIL.Visible = True
+        Me.GPARTYMAIL.VisibleIndex = 22
+        '
+        'GPARTYWHATSAPP
+        '
+        Me.GPARTYWHATSAPP.Caption = "Party Whatsapp"
+        Me.GPARTYWHATSAPP.FieldName = "PARTYWHATSAPP"
+        Me.GPARTYWHATSAPP.Name = "GPARTYWHATSAPP"
+        Me.GPARTYWHATSAPP.Visible = True
+        Me.GPARTYWHATSAPP.VisibleIndex = 23
+        '
+        'GAGENMAIL
+        '
+        Me.GAGENMAIL.Caption = "Agent Mail"
+        Me.GAGENMAIL.FieldName = "AGENTMAIL"
+        Me.GAGENMAIL.Name = "GAGENMAIL"
+        Me.GAGENMAIL.Visible = True
+        Me.GAGENMAIL.VisibleIndex = 24
+        '
+        'GAGENTWHATSAPP
+        '
+        Me.GAGENTWHATSAPP.Caption = "Agent Whatsapp"
+        Me.GAGENTWHATSAPP.FieldName = "AGENTWHATSAPP"
+        Me.GAGENTWHATSAPP.Name = "GAGENTWHATSAPP"
+        Me.GAGENTWHATSAPP.Visible = True
+        Me.GAGENTWHATSAPP.VisibleIndex = 25
+        '
         'CoverNoteDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -593,4 +629,8 @@ Partial Class CoverNoteDetails
     Private WithEvents imageList1 As ImageList
     Friend WithEvents GCHK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gridbill As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GPARTYMAIL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GPARTYWHATSAPP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAGENMAIL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GAGENTWHATSAPP As DevExpress.XtraGrid.Columns.GridColumn
 End Class
