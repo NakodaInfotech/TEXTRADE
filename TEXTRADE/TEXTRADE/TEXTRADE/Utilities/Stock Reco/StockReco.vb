@@ -1741,7 +1741,12 @@ LINE1:
                 End If
             End If
 
-            If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "YASHVI" Then
+            If ClientName = "YASHVI" Then
+                CMBDESIGN.Text = ""
+                cmbcolor.Text = ""
+            End If
+
+            If ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False Then
                 CMBDESIGN.Text = ""
                 cmbcolor.Text = ""
             End If
