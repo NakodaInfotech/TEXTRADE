@@ -5367,7 +5367,7 @@ LINE1:
             End If
             If ClientName = "SOFTAS" And cmbitemname.Text.Trim <> "" Then CMBDESIGN.Text = cmbitemname.Text.Trim
 
-            If ClientName = "MAHAVIRPOLYCOT" And EDIT = False Then
+            If ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False Then
                 CMBDESIGN.Text = ""
                 cmbcolor.Text = ""
             End If
