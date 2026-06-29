@@ -120,4 +120,24 @@ Public Class SelectPendingEntries
             Throw ex
         End Try
     End Sub
+
+    Private Sub PBEXCEL_Click(sender As Object, e As EventArgs) Handles PBEXCEL.Click
+        Try
+            Dim PATH As String = "" = ""
+            If FileIO.FileSystem.FileExists(PATH) = True Then FileIO.FileSystem.DeleteFile(PATH)
+            PATH = Application.StartupPath & "\Pending Entry Details.XLS"
+
+            Dim opti As New DevExpress.XtraPrinting.XlsExportOptions
+            opti.ShowGridLines = True
+
+            Dim PERIOD As String = AccFrom & " - " & AccTo
+
+            opti.SheetName = "Pending Entry Details"
+            gridbill.ExportToXls(PATH, opti)
+            EXCELCMPHEADER(PATH, "Pending Entry Details", gridbill.VisibleColumns.Count + gridbill.GroupCount, "", PERIOD)
+
+        Catch ex As Exception
+            MsgBox("Pending Entry Details Excel File is Open, Please Close the File first then try to Export", MsgBoxStyle.Critical)
+        End Try
+    End Sub
 End Class

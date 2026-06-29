@@ -5366,6 +5366,11 @@ LINE1:
                 End If
             End If
             If ClientName = "SOFTAS" And cmbitemname.Text.Trim <> "" Then CMBDESIGN.Text = cmbitemname.Text.Trim
+
+            If ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False Then
+                CMBDESIGN.Text = ""
+                cmbcolor.Text = ""
+            End If
         Catch ex As Exception
             Throw ex
         End Try
