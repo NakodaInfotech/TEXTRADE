@@ -247,6 +247,9 @@ Public Class SampleBarcode
 
     Sub SAVE()
         Try
+            '' IF ADD ANY COLUM HERE THEN ADD ON ALSO 
+            '' DESIGNMASTER  ---  CMDBARCODEGERATION.CLICK
+
             Dim ALPARAVAL As New ArrayList
             Dim OBJSM As New ClsSampleBarcode
 
