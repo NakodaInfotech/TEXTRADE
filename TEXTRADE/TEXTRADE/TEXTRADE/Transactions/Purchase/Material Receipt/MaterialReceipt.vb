@@ -4605,6 +4605,12 @@ NEXTLINE:
                 If ClientName = "SOFTAS" Then CMBDESIGN.Text = cmbitemname.Text.Trim
             End If
 
+
+            If ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False Then
+                CMBDESIGN.Text = ""
+                cmbcolor.Text = ""
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -4833,6 +4839,15 @@ NEXTLINE:
                         cmbcolor.Focus()
                         Exit Sub
                     End If
+                ElseIf ClientName = "MAHAVIRPOLYCOT" Then
+                    If ClientName = "MAHAVIRPOLYCOT" And CMBRACK.Text.Trim <> "" Then
+                        FILLGRID()
+                    Else
+                        MsgBox("Please Enter Rack", MsgBoxStyle.Critical)
+                        CMBRACK.Focus()
+                        Exit Sub
+                    End If
+
                 Else
                     FILLGRID()
                 End If

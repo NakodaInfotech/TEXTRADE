@@ -3623,8 +3623,8 @@ LINE1:
                 GAMOUNT.Visible = True
             End If
 
-            If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "VINTAGEINDIA" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Or ClientName = "MAHAKALI" Then
-                If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Or ClientName = "MAHAKALI" Then
+            If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "VINTAGEINDIA" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Or ClientName = "MAHAKALI" Or ClientName = "MIRANO" Then
+                If ClientName = "YASHVI" Or ClientName = "KRISHNA" Or ClientName = "RMANILAL" Or ClientName = "SNCM" Or ClientName = "SHEETAL" Or ClientName = "MYCOT" Or ClientName = "MAHAKALI" Or ClientName = "MIRANO" Then
                     LBLCMPNAME.Visible = True
                     CMBCMPNAME.Visible = True
                 End If
@@ -5451,6 +5451,16 @@ LINE1:
                         Exit Sub
                     End If
                 End If
+
+
+
+                If ClientName = "MAHAVIRPOLYCOT" AndAlso FRMSTRING = "GRN FANCY" Then
+                    If CMBRACK.Text.Trim = "" Then
+                        MessageBox.Show("Rack is Blank. Please Enter Rack.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
+                End If
+
 
                 If VALIDATEBALENO = True And TXTBALENO.Text.Trim = "" And CMBPIECETYPE.Text = "FRESH" Then
                     MessageBox.Show("Please Enter Bale No !", "Bale No Required", MessageBoxButtons.OK, MessageBoxIcon.Error)
