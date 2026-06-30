@@ -23,6 +23,7 @@ Partial Class MaterialReceiptDetails
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.cmdexit = New System.Windows.Forms.Button()
         Me.cmdok = New System.Windows.Forms.Button()
         Me.gridbilldetails = New DevExpress.XtraGrid.GridControl()
@@ -58,7 +59,7 @@ Partial Class MaterialReceiptDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
+        Me.GWIDTH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +80,20 @@ Partial Class MaterialReceiptDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 7
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 541)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 925
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'cmdexit
         '
@@ -127,7 +142,7 @@ Partial Class MaterialReceiptDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GCHALLANNO, Me.GDATE, Me.GNAME, Me.GLOTNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GCOLOR, Me.GDESIGNNO, Me.GPCSNO, Me.GBALENO, Me.GQTYUNIT, Me.GPCS, Me.GMTRS, Me.GRECDMTRS, Me.GDIFF, Me.GYESNO, Me.GREMARKS, Me.GCONTDESIGNRECD, Me.CHKFORRETURN, Me.GUSERNAME, Me.GPER, Me.GAMOUNT, Me.GRATE, Me.GBARCODE})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GCHALLANNO, Me.GDATE, Me.GNAME, Me.GLOTNO, Me.GPIECETYPE, Me.GITEMNAME, Me.GCOLOR, Me.GDESIGNNO, Me.GPCSNO, Me.GBALENO, Me.GQTYUNIT, Me.GPCS, Me.GMTRS, Me.GRECDMTRS, Me.GDIFF, Me.GYESNO, Me.GREMARKS, Me.GCONTDESIGNRECD, Me.CHKFORRETURN, Me.GUSERNAME, Me.GPER, Me.GAMOUNT, Me.GRATE, Me.GBARCODE, Me.GWIDTH})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -418,19 +433,12 @@ Partial Class MaterialReceiptDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select Material Receipt to Change"
         '
-        'CMDSAVELAYOUT
+        'GWIDTH
         '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(491, 541)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 925
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
+        Me.GWIDTH.Caption = "Width"
+        Me.GWIDTH.FieldName = "WIDTH"
+        Me.GWIDTH.Name = "GWIDTH"
+        Me.GWIDTH.Width = 80
         '
         'MaterialReceiptDetails
         '
@@ -490,4 +498,5 @@ Partial Class MaterialReceiptDetails
     Friend WithEvents GBARCODE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GQTYUNIT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GWIDTH As DevExpress.XtraGrid.Columns.GridColumn
 End Class
