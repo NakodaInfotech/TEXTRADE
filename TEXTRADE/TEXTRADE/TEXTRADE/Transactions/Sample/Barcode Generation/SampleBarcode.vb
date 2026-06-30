@@ -3865,8 +3865,12 @@ NEXTLINE:
 
     Private Sub CMBMERCHANT_Validated(sender As Object, e As EventArgs) Handles CMBMERCHANT.Validated
         Try
-            CMBDESIGNNO.Text = ""
-            CMBCOLOR.Text = ""
+
+            If GRIDDOUBLECLICK = False Then
+                CMBDESIGNNO.Text = ""
+                CMBCOLOR.Text = ""
+            End If
+
 
         Catch ex As Exception
             Throw ex
