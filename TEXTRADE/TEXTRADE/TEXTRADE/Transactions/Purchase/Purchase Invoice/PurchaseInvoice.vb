@@ -4366,7 +4366,12 @@ LINE1:
                 End If
 
             End If
-            If ClientName = "MAHAVIRPOLYCOT" Then CMBDESIGN.Text = ""
+
+            If ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False Then
+                CMBDESIGN.Text = ""
+                cmbcolor.Text = ""
+            End If
+
 
         Catch ex As Exception
             Throw ex

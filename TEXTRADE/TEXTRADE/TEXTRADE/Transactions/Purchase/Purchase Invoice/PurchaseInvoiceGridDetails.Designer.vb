@@ -36,6 +36,7 @@ Partial Class PurchaseInvoiceGridDetails
         Me.gridbill = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.gsrno = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gdate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCHANGEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.gname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGSTIN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GADDRESS = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -101,7 +102,7 @@ Partial Class PurchaseInvoiceGridDetails
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
-        Me.GCHANGEDATE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWIDTH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -258,7 +259,7 @@ Partial Class PurchaseInvoiceGridDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GCHANGEDATE, Me.gname, Me.GGSTIN, Me.GADDRESS, Me.GAGENT, Me.GDYEINGNAME, Me.GPARTYBILLNO, Me.GEWAYBILLNO, Me.GCHALLANLOTNO, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESC, Me.GDESIGNNO, Me.GCOLOR, Me.GAQTY, Me.GFOLDPER, Me.GLOTNO, Me.GBALENO, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GCATEGORY, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GLRNO, Me.GREGNAME, Me.GPER, Me.GFROMCITY, Me.GTOCITY, Me.GMONTHNAME, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDT, Me.GGRNNO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GCHANGEDATE, Me.gname, Me.GGSTIN, Me.GADDRESS, Me.GAGENT, Me.GDYEINGNAME, Me.GPARTYBILLNO, Me.GEWAYBILLNO, Me.GCHALLANLOTNO, Me.GITEMNAME, Me.GHSNCODE, Me.GQUALITY, Me.GDESC, Me.GDESIGNNO, Me.GCOLOR, Me.GAQTY, Me.GFOLDPER, Me.GLOTNO, Me.GBALENO, Me.GQTY, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GBILLAMT, Me.GCHARGES, Me.GFOOTERDISCPER, Me.GFOOTERDISCAMT, Me.GDISAMT, Me.GSPDISCAMT, Me.GTOTALTAXABLEAMT, Me.GCGSTPER, Me.GTOTALCGSTAMT, Me.GSGSTPER, Me.GTOTALSGSTAMT, Me.GIGSTPER, Me.GTOTALIGSTAMT, Me.GTOTALAMT, Me.GRETURN, Me.GPAIDAMT, Me.GBALANCE, Me.GREMARKS, Me.GBILLDISPUTE, Me.GBILLCHECKED, Me.GPURTYPE, Me.GCATEGORY, Me.GTRANSPORT, Me.GTRANSGSTIN, Me.GLRNO, Me.GREGNAME, Me.GPER, Me.GFROMCITY, Me.GTOCITY, Me.GMONTHNAME, Me.GCOMPLAINT, Me.GCOMPLAINTBY, Me.GCOMPLAINTDT, Me.GGRNNO, Me.GWIDTH})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -285,6 +286,12 @@ Partial Class PurchaseInvoiceGridDetails
         Me.gdate.Visible = True
         Me.gdate.VisibleIndex = 1
         Me.gdate.Width = 80
+        '
+        'GCHANGEDATE
+        '
+        Me.GCHANGEDATE.Caption = "Change Dt"
+        Me.GCHANGEDATE.FieldName = "CHANGEDATE"
+        Me.GCHANGEDATE.Name = "GCHANGEDATE"
         '
         'gname
         '
@@ -883,11 +890,12 @@ Partial Class PurchaseInvoiceGridDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select an Invoice to Change"
         '
-        'GCHANGEDATE
+        'GWIDTH
         '
-        Me.GCHANGEDATE.Caption = "Change Dt"
-        Me.GCHANGEDATE.FieldName = "CHANGEDATE"
-        Me.GCHANGEDATE.Name = "GCHANGEDATE"
+        Me.GWIDTH.Caption = "Width"
+        Me.GWIDTH.FieldName = "WIDTH"
+        Me.GWIDTH.Name = "GWIDTH"
+        Me.GWIDTH.Width = 100
         '
         'PurchaseInvoiceGridDetails
         '
@@ -990,4 +998,5 @@ Partial Class PurchaseInvoiceGridDetails
     Friend WithEvents GCOMPLAINTDT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GGRNNO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCHANGEDATE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWIDTH As DevExpress.XtraGrid.Columns.GridColumn
 End Class

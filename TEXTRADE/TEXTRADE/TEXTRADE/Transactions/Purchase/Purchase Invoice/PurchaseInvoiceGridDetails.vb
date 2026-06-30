@@ -232,6 +232,8 @@ Public Class PurchaseInvoiceGridDetails
         End Try
     End Sub
 
+
+
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
         Try
 
@@ -292,6 +294,10 @@ Public Class PurchaseInvoiceGridDetails
         If ClientName = "ABHEE" Or ClientName = "MASHOK" Then
             GCHANGEDATE.Visible = True
             GCHANGEDATE.VisibleIndex = gdate.VisibleIndex + 1
+        End If
+        If ClientName = "MAHAVIRPOLYCOT" Then
+            GWIDTH.Visible = True
+            GWIDTH.VisibleIndex = 11
         End If
 
     End Sub
