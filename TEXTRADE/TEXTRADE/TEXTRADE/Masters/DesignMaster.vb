@@ -838,14 +838,14 @@ Public Class DesignMaster
 
     Private Sub CMDGENERATEBARCODE_Click(sender As Object, e As EventArgs) Handles CMDGENERATEBARCODE.Click
         Try
-
-            '' FIRST CREATE ITEM DESIGN SAMPLE BARCODE
-
             Dim alParaval As New ArrayList
             Dim DTTABLE As DataTable
-
             Dim OBJCMN As New ClsCommon
             Dim DT As DataTable
+
+
+
+            '' FIRST CREATE ITEM DESIGN SAMPLE BARCODE
             DT = OBJCMN.SEARCH("ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO ", "", " SAMPLEBARCODE INNER JOIN  ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id AND SAMPLEBARCODE.SB_YEARID = ITEMMASTER.item_yearid INNER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id AND SAMPLEBARCODE.SB_YEARID = DESIGNMASTER.DESIGN_yearid", " AND ITEMMASTER.item_name = '" & CMBITEM.Text.Trim & "' AND    DESIGNMASTER.DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "'  AND SAMPLEBARCODE.SB_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then GoTo Line1
 
@@ -873,10 +873,12 @@ Public Class DesignMaster
 Line1:
 
 
+
             '' AND ITS FOR ITEM DESIGN SHADE WISE SAMPLE BARCODE
 
             For Each ROW As Windows.Forms.DataGridViewRow In GRIDSHADE.Rows
 
+                alParaval.Clear()
                 Dim DT1 As DataTable
                 DT1 = OBJCMN.SEARCH("ISNULL(ITEMMASTER.item_name,'') AS ITEMNAME, ISNULL(COLORMASTER.COLOR_name,'') AS COLOR, ISNULL(DESIGNMASTER.DESIGN_NO,'') AS DESIGNNO ", "", " SAMPLEBARCODE INNER JOIN ITEMMASTER ON SAMPLEBARCODE.SB_ITEMID = ITEMMASTER.item_id AND SAMPLEBARCODE.SB_YEARID = ITEMMASTER.item_yearid INNER JOIN COLORMASTER ON SAMPLEBARCODE.SB_COLORID = COLORMASTER.COLOR_id AND SAMPLEBARCODE.SB_YEARID = COLORMASTER.COLOR_yearid INNER JOIN DESIGNMASTER ON SAMPLEBARCODE.SB_DESIGNID = DESIGNMASTER.DESIGN_id AND SAMPLEBARCODE.SB_YEARID = DESIGNMASTER.DESIGN_yearid ", " AND ITEMMASTER.item_name = '" & CMBITEM.Text.Trim & "' AND   DESIGNMASTER.DESIGN_NO = '" & CMBDESIGNNO.Text.Trim & "' AND COLORMASTER.COLOR_name = '" & ROW.Cells(GCOLOR.Index).Value.ToString & "'  AND SAMPLEBARCODE.SB_YEARID = " & YearId)
                 If DT1.Rows.Count > 0 Then GoTo NEXTLINE
@@ -896,13 +898,18 @@ Line1:
                 alParaval.Add(YearId)
                 alParaval.Add(0)
 
+
                 Dim objclsPurord As New ClsSampleBarcode()
                 objclsPurord.ALPARAVAL = alParaval
-                objclsPurord.SAVE()
-
+                Dim DT2 As DataTable = objclsPurord.SAVE()
 NEXTLINE:
 
             Next
+
+
+
+
+
 
         Catch ex As Exception
             Throw ex
