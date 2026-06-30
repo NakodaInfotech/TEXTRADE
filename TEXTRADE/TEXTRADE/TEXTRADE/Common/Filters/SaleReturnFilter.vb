@@ -101,13 +101,18 @@ Public Class SaleReturnFilter
             If RDBPARTY.Checked = True Then
                 If CHKSUMMARY.CheckState = CheckState.Unchecked Then OBJSALRET.FRMSTRING = "PARTYWISEDTLS" Else OBJSALRET.FRMSTRING = "PARTYWISESUMM"
                 If CMBNAME.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {LEDGERS.ACC_CMPNAME}='" & CMBNAME.Text.Trim & "'"
+                If CMBAGENT.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {AGENTLEDGERS.ACC_CMPNAME}='" & CMBAGENT.Text.Trim & "'"
 
             ElseIf RDBAGENT.Checked = True Then
                 If CHKSUMMARY.CheckState = CheckState.Unchecked Then OBJSALRET.FRMSTRING = "AGENTWISEDTLS" Else OBJSALRET.FRMSTRING = "AGENTWISESUMM"
+                If CMBAGENT.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {AGENTLEDGERS.ACC_CMPNAME}='" & CMBAGENT.Text.Trim & "'"
+
 
             ElseIf RDGODOWN.Checked = True Then
                 If CHKSUMMARY.CheckState = CheckState.Unchecked Then OBJSALRET.FRMSTRING = "GODOWNWISEDTLS" Else OBJSALRET.FRMSTRING = "GODOWNWISESUMM"
                 If CMBGODOWN.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {GODOWNMASTER.GODOWN_NAME}='" & CMBGODOWN.Text.Trim & "'"
+                If CMBAGENT.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {AGENTLEDGERS.ACC_CMPNAME}='" & CMBAGENT.Text.Trim & "'"
+
 
             ElseIf RDITEM.Checked = True Then
                 If CHKSUMMARY.CheckState = CheckState.Unchecked Then OBJSALRET.FRMSTRING = "ITEMWISEDTLS" Else OBJSALRET.FRMSTRING = "ITEMWISESUMM"
