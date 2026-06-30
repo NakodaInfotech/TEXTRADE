@@ -2837,7 +2837,9 @@ LINESINGLE:
                             CMBPER.Text = "Mtrs"
                         End If
                         If ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then cmbqtyunit.Text = DT.Rows(0).Item("UNIT")
-                        If ClientName = "MAHAVIR" Then txtgridremarks.Text = DT.Rows(0).Item("DESC")
+                        If ClientName = "MAHAVIR" Then
+                            txtgridremarks.Text = DT.Rows(0).Item("DESC")
+                        End If
                     End If
                 End If
 
@@ -2865,6 +2867,12 @@ LINESINGLE:
                     txtgridremarks.Clear()
                     TXTRATE.Clear()
                     cmbitemname.Focus()
+                End If
+
+
+                If ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False Then
+                    CMBDESIGN.Text = ""
+                    cmbcolor.Text = ""
                 End If
 
             End If

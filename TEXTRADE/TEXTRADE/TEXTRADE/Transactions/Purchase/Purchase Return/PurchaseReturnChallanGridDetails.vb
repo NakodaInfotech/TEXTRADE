@@ -360,4 +360,18 @@ Public Class PurchaseReturnChallanGridDetails
             Throw ex
         End Try
     End Sub
+
+    Private Sub PurchaseReturnChallanGridDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If ClientName = "MAHAVIRPOLYCOT" Then
+                GWIDTH.Visible = True
+                GWIDTH.VisibleIndex = 6
+            End If
+
+        Catch ex As Exception
+            Throw ex
+
+
+        End Try
+    End Sub
 End Class
