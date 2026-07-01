@@ -752,7 +752,7 @@ Public Class RecFromPacking
 
 
                 If ClientName = "MNARESH" Then
-                    TEMPHEADER = InputBox("Enter Sticker Type " & Chr(13) & "1 For NORMAL" & Chr(13) & "2 For Finish Inward")
+                    TEMPHEADER = 1
                     If TEMPHEADER <> "1" And TEMPHEADER <> "2" Then Exit Sub
                 End If
 
