@@ -5203,42 +5203,6 @@ PRINT 1,1")
 
                 Else
 
-                    oWrite.WriteLine("SIZE 104.1 mm, 50.8 mm
-GAP 3 mm, 0 mm
-SPEED 6
-DENSITY 10
-DIRECTION 0,0
-REFERENCE 0,0
-OFFSET 0 mm
-SET PEEL OFF
-SET CUTTER OFF
-SET PARTIAL_CUTTER OFF
-SET TEAR ON
-CLS
-BAR 27,317, 776, 4
-CODEPAGE 1252
-TEXT 797,227,""0"",180,18,17,""SHADE""
-TEXT 797,157,""0"",180,17,17,""BALE""
-TEXT 797,87,""0"",180,19,17,""MTRS""
-TEXT 639,303,""ROMAN.TTF"",180,1,18,"":""
-TEXT 639,232,""ROMAN.TTF"",180,1,18,"":""
-TEXT 639,165,""ROMAN.TTF"",180,1,18,"":""
-TEXT 639,95,""ROMAN.TTF"",180,1,18,"":""
-BOX 21,20,323,310,4
-QRCODE 257,283,L,8,A,180,M2,S7,""" & BARCODE & """
-TEXT 295,97,""ROMAN.TTF"",180,1,14,""" & BARCODE & """
-TEXT 612,89,""ROMAN.TTF"",180,1,20,""" & Format(Val(MTRS), "0.00") & """
-TEXT 612,152,""ROMAN.TTF"",180,1,16,""" & BALENO & """
-TEXT 612,226,""ROMAN.TTF"",180,1,16,""" & SHADE & """
-BOX 330,20,807,310,4
-BAR 27,392, 776, 4
-TEXT 808,378,""0"",180,18,18,""" & ITEMNAME & """
-TEXT 612,297,""ROMAN.TTF"",180,1,16,""" & DESIGNNO & """
-TEXT 797,298,""0"",180,19,17,""D.NO""
-PRINT 1,1")
-                    oWrite.Dispose()
-
-
 
 
                     oWrite.WriteLine("SIZE 100 mm, 50 mm
@@ -5271,8 +5235,7 @@ TEXT 587,216,""ROMAN.TTF"",180,1,15,""" & SHADE & """
 TEXT 587,290,""ROMAN.TTF"",180,1,15,""" & DESIGNNO & """
 BAR 33,386, 728, 4
 TEXT 765,370,""0"",180,17,17,""" & ITEMNAME & """
-PRINT 1,1
-")
+PRINT 1,1")
                     oWrite.Dispose()
 
 
