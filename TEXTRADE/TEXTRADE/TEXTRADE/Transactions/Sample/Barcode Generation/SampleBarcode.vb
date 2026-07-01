@@ -1293,6 +1293,53 @@ PRINT 1,1
 ")
                             oWrite.Dispose()
 
+
+
+
+
+                        ElseIf ClientName = "MAHAKALI" Then
+
+                            Dim TEMPRATE As Double = 0
+
+                            DT = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_GSM, '') AS GSM, ISNULL(ITEMMASTER.ITEM_RATE, '') AS RATE ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+                            If DT.Rows.Count > 0 Then
+                                TEMPRATE = Val(DT.Rows(0).Item("RATE"))
+                            End If
+
+
+                            oWrite.WriteLine("<xpml><page quantity='0' pitch='50.8 mm'></xpml>SIZE 99.1 mm, 50.8 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+<xpml></page></xpml><xpml><page quantity='1' pitch='50.8 mm'></xpml>SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 766,358,""0"",180,13,11,""ITEM""
+TEXT 766,279,""0"",180,11,11,""DESIGN""
+TEXT 766,197,""0"",180,11,11,""WIDTH""
+TEXT 766,116,""0"",180,11,11,""RATE""
+TEXT 689,46,""0"",180,12,12,""A PRODUCT BY M. T. (MUMBAI - 400002)""
+TEXT 639,358,""0"",180,11,11,"":""
+TEXT 639,279,""0"",180,11,11,"":""
+TEXT 639,197,""0"",180,11,11,"":""
+TEXT 639,116,""0"",180,11,11,"":""
+TEXT 613,358,""0"",180,13,11,""" & CMBMERCHANT.Text.Trim & """
+TEXT 613,279,""0"",180,13,11,""" & CMBDESIGNNO.Text.Trim & """
+TEXT 613,197,""0"",180,13,11,""" & TEMPWIDTH & """
+TEXT 613,116,""0"",180,13,11,""" & Format(Val(TEMPRATE), "0.00") & """
+QRCODE 182,240,L,7,A,180,M2,S7,""" & TXTBARCODE.Text.Trim & """
+TEXT 182,86,""0"",180,8,8,""" & TXTBARCODE.Text.Trim & """
+PRINT 1,1
+<xpml></page></xpml><xpml><end/></xpml>")
+
+                            oWrite.Dispose()
+
+
+
+
                         ElseIf ClientName = "MYCOT" Then
 
                             Dim TEMPRATE As Double = 0
@@ -2952,6 +2999,49 @@ BARCODE 558,104,""128M"",59,0,180,2,4,""" & ROW("BARCODE") & """
 TEXT 465,39,""ROMAN.TTF"",180,1,10,""" & ROW("BARCODE") & """
 PRINT 1,1
 ")
+                                    oWrite.Dispose()
+
+
+
+
+
+                                ElseIf ClientName = "MAHAKALI" Then
+
+                                    Dim TEMPRATE As Double = 0
+
+                                    DT = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_GSM, '') AS GSM, ISNULL(ITEMMASTER.ITEM_RATE, '') AS RATE  ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                                    If DT.Rows.Count > 0 Then
+                                        TEMPRATE = Val(DT.Rows(0).Item("RATE"))
+                                    End If
+
+                                    oWrite.WriteLine("<xpml><page quantity='0' pitch='50.8 mm'></xpml>SIZE 99.1 mm, 50.8 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+<xpml></page></xpml><xpml><page quantity='1' pitch='50.8 mm'></xpml>SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 766,358,""0"",180,13,11,""ITEM""
+TEXT 766,279,""0"",180,11,11,""DESIGN""
+TEXT 766,197,""0"",180,11,11,""WIDTH""
+TEXT 766,116,""0"",180,11,11,""RATE""
+TEXT 689,46,""0"",180,12,12,""A PRODUCT BY M. T. (MUMBAI - 400002)""
+TEXT 639,358,""0"",180,11,11,"":""
+TEXT 639,279,""0"",180,11,11,"":""
+TEXT 639,197,""0"",180,11,11,"":""
+TEXT 639,116,""0"",180,11,11,"":""
+TEXT 613,358,""0"",180,13,11,""" & ROW("ITEMNAME") & """
+TEXT 613,279,""0"",180,13,11,""" & ROW("DESIGNNO") & """
+TEXT 613,197,""0"",180,13,11,""" & TEMPWIDTH & """
+TEXT 613,116,""0"",180,13,11,""" & Format(Val(TEMPRATE), "0.00") & """
+QRCODE 182,240,L,7,A,180,M2,S7,""" & ROW("BARCODE") & """
+TEXT 182,86,""0"",180,8,8,""" & ROW("BARCODE") & """
+PRINT 1,1
+<xpml></page></xpml><xpml><end/></xpml>")
+
                                     oWrite.Dispose()
 
 
