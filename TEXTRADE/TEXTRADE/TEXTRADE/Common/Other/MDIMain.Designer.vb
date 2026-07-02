@@ -467,6 +467,10 @@ Partial Class MDIMain
         Me.ToolStripSeparator30 = New System.Windows.Forms.ToolStripSeparator()
         Me.SOCLOSE = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.IssueToDesigner_MASTER = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewDesignerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditExistingEntryToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator360 = New System.Windows.Forms.ToolStripSeparator()
         Me.SCHEDULE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SCHEDULEADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SCHEDULEEDIT = New System.Windows.Forms.ToolStripMenuItem()
@@ -513,6 +517,7 @@ Partial Class MDIMain
         Me.SECURITYINWARDOUTWARD_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SECURITYINWARDOUTWARDADD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SECURITYINWARDOUTWARDEDIT = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator359 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripSeparator22 = New System.Windows.Forms.ToolStripSeparator()
         Me.SAMPLEMODULE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
         Me.SAMPLEBARCODE_MASTER = New System.Windows.Forms.ToolStripMenuItem()
@@ -1373,11 +1378,6 @@ Partial Class MDIMain
         Me.LBLCHECKIN = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SyncTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.AddNewDesignerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditExistingEntryToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IssueToDesigner_MASTER = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator359 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripSeparator360 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip.SuspendLayout
         Me.TOOLSTRIP_MAIN.SuspendLayout
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit
@@ -4235,6 +4235,31 @@ Partial Class MDIMain
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(210, 6)
         '
+        'IssueToDesigner_MASTER
+        '
+        Me.IssueToDesigner_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewDesignerToolStripMenuItem, Me.EditExistingEntryToolStripMenuItem8, Me.ToolStripSeparator360})
+        Me.IssueToDesigner_MASTER.Name = "IssueToDesigner_MASTER"
+        Me.IssueToDesigner_MASTER.Size = New System.Drawing.Size(206, 22)
+        Me.IssueToDesigner_MASTER.Text = "Issue To Designer"
+        Me.IssueToDesigner_MASTER.Visible = False
+        '
+        'AddNewDesignerToolStripMenuItem
+        '
+        Me.AddNewDesignerToolStripMenuItem.Name = "AddNewDesignerToolStripMenuItem"
+        Me.AddNewDesignerToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
+        Me.AddNewDesignerToolStripMenuItem.Text = "Add New Entry"
+        '
+        'EditExistingEntryToolStripMenuItem8
+        '
+        Me.EditExistingEntryToolStripMenuItem8.Name = "EditExistingEntryToolStripMenuItem8"
+        Me.EditExistingEntryToolStripMenuItem8.Size = New System.Drawing.Size(168, 22)
+        Me.EditExistingEntryToolStripMenuItem8.Text = "Edit Existing Entry"
+        '
+        'ToolStripSeparator360
+        '
+        Me.ToolStripSeparator360.Name = "ToolStripSeparator360"
+        Me.ToolStripSeparator360.Size = New System.Drawing.Size(165, 6)
+        '
         'SCHEDULE_MASTER
         '
         Me.SCHEDULE_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SCHEDULEADD, Me.SCHEDULEEDIT, Me.ToolStripSeparator140})
@@ -4535,14 +4560,19 @@ Partial Class MDIMain
         'SECURITYINWARDOUTWARDADD
         '
         Me.SECURITYINWARDOUTWARDADD.Name = "SECURITYINWARDOUTWARDADD"
-        Me.SECURITYINWARDOUTWARDADD.Size = New System.Drawing.Size(180, 22)
+        Me.SECURITYINWARDOUTWARDADD.Size = New System.Drawing.Size(168, 22)
         Me.SECURITYINWARDOUTWARDADD.Text = "Add New Entry"
         '
         'SECURITYINWARDOUTWARDEDIT
         '
         Me.SECURITYINWARDOUTWARDEDIT.Name = "SECURITYINWARDOUTWARDEDIT"
-        Me.SECURITYINWARDOUTWARDEDIT.Size = New System.Drawing.Size(180, 22)
+        Me.SECURITYINWARDOUTWARDEDIT.Size = New System.Drawing.Size(168, 22)
         Me.SECURITYINWARDOUTWARDEDIT.Text = "Edit Existing Entry"
+        '
+        'ToolStripSeparator359
+        '
+        Me.ToolStripSeparator359.Name = "ToolStripSeparator359"
+        Me.ToolStripSeparator359.Size = New System.Drawing.Size(203, 6)
         '
         'ToolStripSeparator22
         '
@@ -4674,20 +4704,20 @@ Partial Class MDIMain
         '
         Me.TRANSFERSAMPLEADD.Enabled = False
         Me.TRANSFERSAMPLEADD.Name = "TRANSFERSAMPLEADD"
-        Me.TRANSFERSAMPLEADD.Size = New System.Drawing.Size(168, 22)
+        Me.TRANSFERSAMPLEADD.Size = New System.Drawing.Size(180, 22)
         Me.TRANSFERSAMPLEADD.Text = "Add New Entry"
         '
         'TRANSFERSAMPLEEDIT
         '
         Me.TRANSFERSAMPLEEDIT.Enabled = False
         Me.TRANSFERSAMPLEEDIT.Name = "TRANSFERSAMPLEEDIT"
-        Me.TRANSFERSAMPLEEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.TRANSFERSAMPLEEDIT.Size = New System.Drawing.Size(180, 22)
         Me.TRANSFERSAMPLEEDIT.Text = "Edit Existing Entry"
         '
         'ToolStripSeparator267
         '
         Me.ToolStripSeparator267.Name = "ToolStripSeparator267"
-        Me.ToolStripSeparator267.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator267.Size = New System.Drawing.Size(177, 6)
         '
         'ToolStripSeparator269
         '
@@ -4701,25 +4731,26 @@ Partial Class MDIMain
         Me.SAMPLENOTE_MASTER.Name = "SAMPLENOTE_MASTER"
         Me.SAMPLENOTE_MASTER.Size = New System.Drawing.Size(239, 22)
         Me.SAMPLENOTE_MASTER.Text = "Sample Note"
+        Me.SAMPLENOTE_MASTER.Visible = False
         '
         'SAMPLENOTEADD
         '
         Me.SAMPLENOTEADD.Enabled = False
         Me.SAMPLENOTEADD.Name = "SAMPLENOTEADD"
-        Me.SAMPLENOTEADD.Size = New System.Drawing.Size(168, 22)
+        Me.SAMPLENOTEADD.Size = New System.Drawing.Size(180, 22)
         Me.SAMPLENOTEADD.Text = "&Add New Entry"
         '
         'SAMPLENOTEEDIT
         '
         Me.SAMPLENOTEEDIT.Enabled = False
         Me.SAMPLENOTEEDIT.Name = "SAMPLENOTEEDIT"
-        Me.SAMPLENOTEEDIT.Size = New System.Drawing.Size(168, 22)
+        Me.SAMPLENOTEEDIT.Size = New System.Drawing.Size(180, 22)
         Me.SAMPLENOTEEDIT.Text = "&Edit Existing Entry"
         '
         'ToolStripSeparator49
         '
         Me.ToolStripSeparator49.Name = "ToolStripSeparator49"
-        Me.ToolStripSeparator49.Size = New System.Drawing.Size(165, 6)
+        Me.ToolStripSeparator49.Size = New System.Drawing.Size(177, 6)
         '
         'SAMPLEPRICELIST_MASTER
         '
@@ -10017,36 +10048,6 @@ Partial Class MDIMain
         '
         Me.SyncTimer.Enabled = True
         Me.SyncTimer.Interval = 3600000
-        '
-        'AddNewDesignerToolStripMenuItem
-        '
-        Me.AddNewDesignerToolStripMenuItem.Name = "AddNewDesignerToolStripMenuItem"
-        Me.AddNewDesignerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.AddNewDesignerToolStripMenuItem.Text = "Add New Entry"
-        '
-        'EditExistingEntryToolStripMenuItem8
-        '
-        Me.EditExistingEntryToolStripMenuItem8.Name = "EditExistingEntryToolStripMenuItem8"
-        Me.EditExistingEntryToolStripMenuItem8.Size = New System.Drawing.Size(180, 22)
-        Me.EditExistingEntryToolStripMenuItem8.Text = "Edit Existing Entry"
-        '
-        'IssueToDesigner_MASTER
-        '
-        Me.IssueToDesigner_MASTER.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewDesignerToolStripMenuItem, Me.EditExistingEntryToolStripMenuItem8, Me.ToolStripSeparator360})
-        Me.IssueToDesigner_MASTER.Name = "IssueToDesigner_MASTER"
-        Me.IssueToDesigner_MASTER.Size = New System.Drawing.Size(206, 22)
-        Me.IssueToDesigner_MASTER.Text = "Issue To Designer"
-        Me.IssueToDesigner_MASTER.Visible = False
-        '
-        'ToolStripSeparator359
-        '
-        Me.ToolStripSeparator359.Name = "ToolStripSeparator359"
-        Me.ToolStripSeparator359.Size = New System.Drawing.Size(203, 6)
-        '
-        'ToolStripSeparator360
-        '
-        Me.ToolStripSeparator360.Name = "ToolStripSeparator360"
-        Me.ToolStripSeparator360.Size = New System.Drawing.Size(177, 6)
         '
         'MDIMain
         '

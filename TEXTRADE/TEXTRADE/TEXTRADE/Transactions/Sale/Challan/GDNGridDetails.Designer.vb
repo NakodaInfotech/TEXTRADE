@@ -46,6 +46,7 @@ Partial Class GDNGridDetails
         Me.GBALENO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GGRIDLOTNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GUNIT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GRATE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GPER = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GAMOUNT = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,7 +73,7 @@ Partial Class GDNGridDetails
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.lbl = New System.Windows.Forms.Label()
         Me.cmdok = New System.Windows.Forms.Button()
-        Me.GRACK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GWIDTH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,7 +177,7 @@ Partial Class GDNGridDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GTYPECHALLANNO, Me.gsrno, Me.GCHALLANNO, Me.gdate, Me.GNAME, Me.GDESCRIPTION, Me.GPACKING, Me.GSONO, Me.GMULTISONO, Me.gSODATE, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GBALENO, Me.GGRIDLOTNO, Me.GUNIT, Me.GRACK, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GCATEGORY, Me.gtotalpcs, Me.GTOTALMTRS, Me.GTOTALBALES, Me.GBALENOFROM, Me.GJOBBERNAME, Me.GCONSIGNEE, Me.Gagent, Me.GPARTYPONO, Me.GHOLD, Me.GGRIDPARTYPONO, Me.GBARCODE, Me.GTRANSPORT, Me.GGRIDSONO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GTYPECHALLANNO, Me.gsrno, Me.GCHALLANNO, Me.gdate, Me.GNAME, Me.GDESCRIPTION, Me.GPACKING, Me.GSONO, Me.GMULTISONO, Me.gSODATE, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GBALENO, Me.GGRIDLOTNO, Me.GUNIT, Me.GRACK, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GCATEGORY, Me.gtotalpcs, Me.GTOTALMTRS, Me.GTOTALBALES, Me.GBALENOFROM, Me.GJOBBERNAME, Me.GCONSIGNEE, Me.Gagent, Me.GPARTYPONO, Me.GHOLD, Me.GGRIDPARTYPONO, Me.GBARCODE, Me.GTRANSPORT, Me.GGRIDSONO, Me.GWIDTH})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -323,6 +324,16 @@ Partial Class GDNGridDetails
         Me.GUNIT.Name = "GUNIT"
         Me.GUNIT.Visible = True
         Me.GUNIT.VisibleIndex = 15
+        '
+        'GRACK
+        '
+        Me.GRACK.Caption = "Rack"
+        Me.GRACK.FieldName = "RACK"
+        Me.GRACK.Name = "GRACK"
+        Me.GRACK.OptionsColumn.AllowEdit = False
+        Me.GRACK.Visible = True
+        Me.GRACK.VisibleIndex = 16
+        Me.GRACK.Width = 80
         '
         'GRATE
         '
@@ -563,15 +574,12 @@ Partial Class GDNGridDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
-        'GRACK
+        'GWIDTH
         '
-        Me.GRACK.Caption = "Rack"
-        Me.GRACK.FieldName = "RACK"
-        Me.GRACK.Name = "GRACK"
-        Me.GRACK.OptionsColumn.AllowEdit = False
-        Me.GRACK.Visible = True
-        Me.GRACK.VisibleIndex = 16
-        Me.GRACK.Width = 80
+        Me.GWIDTH.Caption = "Width"
+        Me.GWIDTH.FieldName = "WIDTH"
+        Me.GWIDTH.Name = "GWIDTH"
+        Me.GWIDTH.Width = 80
         '
         'GDNGridDetails
         '
@@ -645,4 +653,5 @@ Partial Class GDNGridDetails
     Friend WithEvents GGRIDSONO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
     Friend WithEvents GRACK As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWIDTH As DevExpress.XtraGrid.Columns.GridColumn
 End Class

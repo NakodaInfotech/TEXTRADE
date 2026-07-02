@@ -247,6 +247,9 @@ Public Class SampleBarcode
 
     Sub SAVE()
         Try
+            '' IF ADD ANY COLUM HERE THEN ADD ON ALSO 
+            '' DESIGNMASTER  ---  CMDBARCODEGERATION.CLICK
+
             Dim ALPARAVAL As New ArrayList
             Dim OBJSM As New ClsSampleBarcode
 
@@ -1290,6 +1293,53 @@ PRINT 1,1
 ")
                             oWrite.Dispose()
 
+
+
+
+
+                        ElseIf ClientName = "MAHAKALI" Then
+
+                            Dim TEMPRATE As Double = 0
+
+                            DT = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_GSM, '') AS GSM, ISNULL(ITEMMASTER.ITEM_RATE, '') AS RATE ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+                            If DT.Rows.Count > 0 Then
+                                TEMPRATE = Val(DT.Rows(0).Item("RATE"))
+                            End If
+
+
+                            oWrite.WriteLine("<xpml><page quantity='0' pitch='50.8 mm'></xpml>SIZE 99.1 mm, 50.8 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+<xpml></page></xpml><xpml><page quantity='1' pitch='50.8 mm'></xpml>SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 766,358,""0"",180,13,11,""ITEM""
+TEXT 766,279,""0"",180,11,11,""DESIGN""
+TEXT 766,197,""0"",180,11,11,""WIDTH""
+TEXT 766,116,""0"",180,11,11,""RATE""
+TEXT 689,46,""0"",180,12,12,""A PRODUCT BY M. T. (MUMBAI - 400002)""
+TEXT 639,358,""0"",180,11,11,"":""
+TEXT 639,279,""0"",180,11,11,"":""
+TEXT 639,197,""0"",180,11,11,"":""
+TEXT 639,116,""0"",180,11,11,"":""
+TEXT 613,358,""0"",180,13,11,""" & CMBMERCHANT.Text.Trim & """
+TEXT 613,279,""0"",180,13,11,""" & CMBDESIGNNO.Text.Trim & """
+TEXT 613,197,""0"",180,13,11,""" & TEMPWIDTH & """
+TEXT 613,116,""0"",180,13,11,""" & Format(Val(TEMPRATE), "0.00") & """
+QRCODE 182,240,L,7,A,180,M2,S7,""" & TXTBARCODE.Text.Trim & """
+TEXT 182,86,""0"",180,8,8,""" & TXTBARCODE.Text.Trim & """
+PRINT 1,1
+<xpml></page></xpml><xpml><end/></xpml>")
+
+                            oWrite.Dispose()
+
+
+
+
                         ElseIf ClientName = "MYCOT" Then
 
                             Dim TEMPRATE As Double = 0
@@ -1519,10 +1569,14 @@ PRINT 1,1
                             'GET RATE
                             Dim TEMPRATE As Double = 0
                             Dim TEMPHSN As String = ""
+                            ' Dim TEMPREMARKS As String = ""
+
                             DT = OBJCMN.SEARCH("ITEMMASTER.ITEM_RATE AS RATE, ISNULL(HSNMASTER.HSN_CODE,'') AS HSNCODE ", "", " ITEMMASTER LEFT OUTER JOIN HSNMASTER ON ITEMMASTER.ITEM_HSNCODEID = HSNMASTER.HSN_ID", " AND ISNULL(ITEMMASTER.ITEM_NAME,'') = '" & CMBMERCHANT.Text.Trim & "' AND ITEM_YEARID = " & YearId)
                             If DT.Rows.Count > 0 Then
                                 TEMPRATE = Val(DT.Rows(0).Item("RATE"))
                                 TEMPHSN = DT.Rows(0).Item("HSNCODE")
+
+
                             End If
 
                             oWrite.WriteLine("<xpml><page quantity='0' pitch='40.0 mm'></xpml>^XA
@@ -1568,7 +1622,7 @@ PRINT 1,1
 ^FT78,303
 ^AFN,26,13^FD:^FS
 ^FT102,303
-^AFN,26,13^FD" & TXTREMARKS.Text.Trim & "^FS
+^AFN,26,13^FD" & TEMPREMARKS & "^FS
 ^FO27,40
 ^BY2,2.5^B3N,N,56,N,N^FD" & TXTBARCODE.Text.Trim & "^FS
 ^FT180,116
@@ -2948,6 +3002,49 @@ PRINT 1,1
                                     oWrite.Dispose()
 
 
+
+
+
+                                ElseIf ClientName = "MAHAKALI" Then
+
+                                    Dim TEMPRATE As Double = 0
+
+                                    DT = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_GSM, '') AS GSM, ISNULL(ITEMMASTER.ITEM_RATE, '') AS RATE  ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & ROW("ITEMNAME") & "' AND ITEM_YEARID = " & YearId)
+                                    If DT.Rows.Count > 0 Then
+                                        TEMPRATE = Val(DT.Rows(0).Item("RATE"))
+                                    End If
+
+                                    oWrite.WriteLine("<xpml><page quantity='0' pitch='50.8 mm'></xpml>SIZE 99.1 mm, 50.8 mm
+DIRECTION 0,0
+REFERENCE 0,0
+OFFSET 0 mm
+SET PEEL OFF
+SET CUTTER OFF
+SET PARTIAL_CUTTER OFF
+<xpml></page></xpml><xpml><page quantity='1' pitch='50.8 mm'></xpml>SET TEAR ON
+CLS
+CODEPAGE 1252
+TEXT 766,358,""0"",180,13,11,""ITEM""
+TEXT 766,279,""0"",180,11,11,""DESIGN""
+TEXT 766,197,""0"",180,11,11,""WIDTH""
+TEXT 766,116,""0"",180,11,11,""RATE""
+TEXT 689,46,""0"",180,12,12,""A PRODUCT BY M. T. (MUMBAI - 400002)""
+TEXT 639,358,""0"",180,11,11,"":""
+TEXT 639,279,""0"",180,11,11,"":""
+TEXT 639,197,""0"",180,11,11,"":""
+TEXT 639,116,""0"",180,11,11,"":""
+TEXT 613,358,""0"",180,13,11,""" & ROW("ITEMNAME") & """
+TEXT 613,279,""0"",180,13,11,""" & ROW("DESIGNNO") & """
+TEXT 613,197,""0"",180,13,11,""" & TEMPWIDTH & """
+TEXT 613,116,""0"",180,13,11,""" & Format(Val(TEMPRATE), "0.00") & """
+QRCODE 182,240,L,7,A,180,M2,S7,""" & ROW("BARCODE") & """
+TEXT 182,86,""0"",180,8,8,""" & ROW("BARCODE") & """
+PRINT 1,1
+<xpml></page></xpml><xpml><end/></xpml>")
+
+                                    oWrite.Dispose()
+
+
                                 ElseIf ClientName = "MYCOT" Then
 
                                     Dim TEMPRATE As Double = 0
@@ -2972,7 +3069,7 @@ BAR 11,267, 356, 3
 TEXT 371,239,""0"",180,16,16,""" & ROW("ITEMNAME") & """
 TEXT 371,172,""0"",180,12,12,""RATE""
 TEXT 271,172,""0"",180,12,12,"":""
-TEXT 252,172,""0"",180,12,12,""" & TEMPRATE & """/-""""
+TEXT 252,172,""0"",180,12,12,""" & TEMPRATE & """
 QRCODE 154,174,L,7,A,180,M2,S7,""" & ROW("BARCODE") & """
 TEXT 371,117,""0"",180,12,12,""WIDTH""
 TEXT 371,62,""0"",180,12,12,""" & ROW("BARCODE") & """
@@ -3227,7 +3324,7 @@ PRINT 1,1
 ^FT78,303
 ^AFN,26,13^FD:^FS
 ^FT102,303
-^AFN,26,13^FD" & ROW("REMARKS") & "^FS
+^AFN,26,13^FD" & TEMPREMARKS & "^FS
 ^FO27,40
 ^BY2,2.5^B3N,N,56,N,N^FD" & ROW("BARCODE") & "^FS
 ^FT180,116
@@ -3858,8 +3955,12 @@ NEXTLINE:
 
     Private Sub CMBMERCHANT_Validated(sender As Object, e As EventArgs) Handles CMBMERCHANT.Validated
         Try
-            CMBDESIGNNO.Text = ""
-            CMBCOLOR.Text = ""
+
+            If GRIDDOUBLECLICK = False Then
+                CMBDESIGNNO.Text = ""
+                CMBCOLOR.Text = ""
+            End If
+
 
         Catch ex As Exception
             Throw ex

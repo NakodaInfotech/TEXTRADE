@@ -20,7 +20,7 @@ Public Class SendWhatsapp
     Public FILENAME As New ArrayList
     Dim RESPONSE As String = ""
     Public FRMSTRING As String = ""
-
+    Public CAPTION As New ArrayList
     Public MSG As String = ""
 
     Private Sub cmdcancel_Click(sender As Object, e As EventArgs) Handles cmdcancel.Click
@@ -93,6 +93,8 @@ Public Class SendWhatsapp
 
             Dim JOINCLAUSE As String = ""
             Dim WHERECLAUSE As String = ""
+            Dim STOCKSELECT As String = ""
+            Dim GROUPBY As String = ""        ' ← EMPTY BY DEFAULT
             If CHKSTOCK.Checked = True Then
                 'JOINCLAUSE = " INNER JOIN BARCODESTOCK ON ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = BARCODESTOCK.ITEMID AND ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = BARCODESTOCK.DESIGNID AND ITEMDESIGNIMAGE.ITEMDESIGN_COLORID = BARCODESTOCK.COLORID AND BARCODESTOCK.PIECETYPE = 'FRESH'"
                 JOINCLAUSE = " INNER JOIN BARCODESTOCK ON ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = BARCODESTOCK.ITEMID AND ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = BARCODESTOCK.DESIGNID AND BARCODESTOCK.PIECETYPE = 'FRESH'"
@@ -101,15 +103,17 @@ Public Class SendWhatsapp
                 Dim DTUNIT As DataTable = OBJCMN.SEARCH("UNIT_ABBR", "", "DEFAULTSTOCKUNIT", "")
                 If DTUNIT.Rows.Count > 0 Then WHERECLAUSE = " AND BARCODESTOCK.UNIT IN (SELECT UNIT_ABBR FROM DEFAULTSTOCKUNIT)"
 
+                STOCKSELECT = ", ISNULL(SUM(BARCODESTOCK.MTRS),0) AS STOCKMTR"   ' ← ADD THIS INSIDE IF BLOCK ONLY
+                GROUPBY = " GROUP BY ITEMMASTER.item_name, DESIGNMASTER.DESIGN_NO, ITEMDESIGNIMAGE.ITEMDESIGN_NO, ITEMDESIGNIMAGE.ITEMDESIGN_FILENAME"  ' ← ONLY WHEN CHECKED
             End If
 
             'Dim DTDESIGN As DataTable = objclsCMST.search(" DISTINCT CAST(0 AS BIT) AS CHK, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, ISNULL(COLORMASTER.COLOR_name, '') AS COLOR, ITEMDESIGNIMAGE.ITEMDESIGN_NO AS CATALOGNO ", "", " ITEMDESIGNIMAGE INNER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.item_id LEFT OUTER JOIN COLORMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_COLORID = COLORMASTER.COLOR_id LEFT OUTER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id " & JOINCLAUSE, " and ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = " & YearId)
 
             Dim DTDESIGN As New DataTable
             If RBUPLOAD.Checked = True Then
-                DTDESIGN = objclsCMST.search(" DISTINCT CAST(0 AS BIT) AS CHK, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, '' AS COLOR, ITEMDESIGNIMAGE.ITEMDESIGN_NO AS CATALOGNO, ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_FILENAME,'') AS FILENAME ", "", " ITEMDESIGNIMAGE INNER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.item_id INNER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id " & JOINCLAUSE, " AND ITEMDESIGNIMAGE.ITEMDESIGN_IMAGE1 IS NOT NULL and ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = " & YearId & WHERECLAUSE)
+                DTDESIGN = objclsCMST.search(" DISTINCT CAST(0 AS BIT) AS CHK, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, '' AS COLOR, ITEMDESIGNIMAGE.ITEMDESIGN_NO AS CATALOGNO, ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_FILENAME,'') AS FILENAME" & STOCKSELECT, "", " ITEMDESIGNIMAGE INNER JOIN ITEMMASTER On ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.item_id INNER JOIN DESIGNMASTER On ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id " & JOINCLAUSE, " And ITEMDESIGNIMAGE.ITEMDESIGN_IMAGE1 Is Not NULL And ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = " & YearId & WHERECLAUSE & " GROUP BY ITEMMASTER.item_name, DesignMaster.DESIGN_NO, ItemDesignImage.ITEMDESIGN_NO, ItemDesignImage.ITEMDESIGN_FILENAME")
             Else
-                DTDESIGN = objclsCMST.search(" DISTINCT CAST(0 AS BIT) AS CHK, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, '' AS COLOR, ITEMDESIGNIMAGE.ITEMDESIGN_NO AS CATALOGNO, ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_FILENAME,'') AS FILENAME ", "", " ITEMDESIGNIMAGE INNER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.item_id INNER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id " & JOINCLAUSE, " AND ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_FILENAME,'') <> '' and ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = " & YearId & WHERECLAUSE)
+                DTDESIGN = objclsCMST.search(" DISTINCT CAST(0 As BIT) As CHK, ISNULL(ITEMMASTER.item_name, '') AS ITEMNAME, ISNULL(DESIGNMASTER.DESIGN_NO, '') AS DESIGNNO, '' AS COLOR, ITEMDESIGNIMAGE.ITEMDESIGN_NO AS CATALOGNO, ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_FILENAME,'') AS FILENAME" & STOCKSELECT, "", " ITEMDESIGNIMAGE INNER JOIN ITEMMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_ITEMID = ITEMMASTER.item_id INNER JOIN DESIGNMASTER ON ITEMDESIGNIMAGE.ITEMDESIGN_DESIGNID = DESIGNMASTER.DESIGN_id " & JOINCLAUSE, " AND ISNULL(ITEMDESIGNIMAGE.ITEMDESIGN_FILENAME,'') <> '' and ITEMDESIGNIMAGE.ITEMDESIGN_YEARID = " & YearId & WHERECLAUSE & " GROUP BY ITEMMASTER.item_name, DESIGNMASTER.DESIGN_NO, ITEMDESIGNIMAGE.ITEMDESIGN_NO, ITEMDESIGNIMAGE.ITEMDESIGN_FILENAME")
             End If
             GRIDDESIGNDETAILS.DataSource = DTDESIGN
             If DTDESIGN.Rows.Count > 0 Then
@@ -200,6 +204,10 @@ Public Class SendWhatsapp
                     Dim dtrow As DataRow = GRIDDESIGN.GetDataRow(i)
                     If Convert.ToBoolean(dtrow("CHK")) = True Then
 
+                        Dim STOCKTEXT As String = ""
+                        If CHKSTOCK.Checked = True Then STOCKTEXT = " | Stock: " & dtrow("STOCKMTR") & " Mtrs"
+
+
                         If RBUPLOAD.Checked = True Then
                             Dim OBJCMN As New ClsCommon
                             Dim DTIMG As DataTable = OBJCMN.SEARCH("ITEMDESIGN_IMAGE1 AS PHOTO", "", " ITEMDESIGNIMAGE ", " AND ITEMDESIGN_IMAGE1 IS NOT NULL AND ITEMDESIGN_NO = " & dtrow("CATALOGNO") & " AND ITEMDESIGN_YEARID = " & YearId)
@@ -211,6 +219,7 @@ Public Class SendWhatsapp
                                 File.WriteAllBytes(Application.StartupPath & “\" & dtrow("ITEMNAME") & dtrow("CATALOGNO") & YearId & ".jpeg”, DirectCast(DR("PHOTO"), Byte()))
                                 PATH.Add(Application.StartupPath & “\" & dtrow("ITEMNAME") & dtrow("CATALOGNO") & YearId & ".jpeg”)
                                 FILENAME.Add(dtrow("ITEMNAME") & dtrow("CATALOGNO") & YearId & ".jpeg”)
+                                CAPTION.Add("Design: " & dtrow("DESIGNNO") & " | Stock: " & dtrow("STOCKMTR") & " Mtrs")
                             Next
 
                         Else
@@ -228,6 +237,7 @@ Public Class SendWhatsapp
                                 MyImage.Save(Application.StartupPath & "\IMAGES\" & dtrow("FILENAME"))
                                 PATH.Add(Application.StartupPath & “\IMAGES\" & dtrow("FILENAME"))
                                 FILENAME.Add(dtrow("FILENAME"))
+                                CAPTION.Add("Design: " & dtrow("DESIGNNO") & " | Stock: " & dtrow("STOCKMTR") & " Mtrs")
                                 MyWebClient.Dispose()
                                 MyImage.Dispose()
                             Else
@@ -235,6 +245,7 @@ Public Class SendWhatsapp
                                 If File.Exists(CATALOGPATH & "\" & dtrow("FILENAME")) = True Then
                                     PATH.Add(CATALOGPATH & "\" & dtrow("FILENAME"))
                                     FILENAME.Add(dtrow("FILENAME"))
+                                    CAPTION.Add("Design: " & dtrow("DESIGNNO") & STOCKTEXT)
                                 End If
 
                             End If
@@ -255,7 +266,7 @@ NEXTLINE:
 
                 For J As Integer = 0 To strArray.Count - 1
                     If TXTPARTYNO.Text.Trim <> "" Then
-                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(J), PATH(I), FILENAME(I))
+                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(J), PATH(I), FILENAME(I), CAPTION(I))
                         ERRORMESSAGE(TXTPARTYNO.Text)
                     End If
                 Next
@@ -263,7 +274,7 @@ NEXTLINE:
                 strArray = Split(TXTAGENTNO.Text.Trim, ";")
                 For K As Integer = 0 To strArray.Count - 1
                     If TXTAGENTNO.Text.Trim <> "" Then
-                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(K), PATH(I), FILENAME(I))
+                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(K), PATH(I), FILENAME(I), CAPTION(I))
                         ERRORMESSAGE(TXTAGENTNO.Text)
                     End If
                 Next
@@ -271,7 +282,7 @@ NEXTLINE:
                 strArray = Split(TXTOTHERNO1.Text.Trim, ";")
                 For L As Integer = 0 To strArray.Count - 1
                     If TXTOTHERNO1.Text.Trim <> "" Then
-                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(L), PATH(I), FILENAME(I))
+                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(L), PATH(I), FILENAME(I), CAPTION(I))
                         ERRORMESSAGE(TXTOTHERNO1.Text)
                     End If
                 Next
@@ -279,7 +290,7 @@ NEXTLINE:
                 strArray = Split(TXTOTHERNO2.Text.Trim, ";")
                 For M As Integer = 0 To strArray.Count - 1
                     If TXTOTHERNO2.Text.Trim <> "" Then
-                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(M), PATH(I), FILENAME(I))
+                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(M), PATH(I), FILENAME(I), CAPTION(I))
                         ERRORMESSAGE(TXTOTHERNO2.Text)
                     End If
                 Next
@@ -287,7 +298,7 @@ NEXTLINE:
                 strArray = Split(TXTOTHERNO3.Text.Trim, ";")
                 For N As Integer = 0 To strArray.Count - 1
                     If TXTOTHERNO3.Text.Trim <> "" Then
-                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(N), PATH(I), FILENAME(I))
+                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(N), PATH(I), FILENAME(I), CAPTION(I))
                         ERRORMESSAGE(TXTOTHERNO3.Text)
                     End If
                 Next
@@ -295,13 +306,13 @@ NEXTLINE:
                 strArray = Split(TXTSALESMANNO.Text.Trim, ";")
                 For N As Integer = 0 To strArray.Count - 1
                     If TXTSALESMANNO.Text.Trim <> "" Then
-                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(N), PATH(I), FILENAME(I))
+                        RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(N), PATH(I), FILENAME(I), CAPTION(I))
                         ERRORMESSAGE(TXTSALESMANNO.Text)
                     End If
                 Next
 
                 If TXTAUTOCC.Text.Trim <> "" Then
-                    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & TXTAUTOCC.Text.Trim, PATH(I), FILENAME(I))
+                    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & TXTAUTOCC.Text.Trim, PATH(I), FILENAME(I), CAPTION(I))
                     ERRORMESSAGE(TXTAUTOCC.Text)
                 End If
 
@@ -316,7 +327,7 @@ NEXTLINE:
 
                             For M As Integer = 0 To strArray.Count - 1
                                 If dtrow("WHATSAPP") <> "" Then
-                                    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(M), PATH(I), FILENAME(I))
+                                    RESPONSE = Await SENDWHATSAPPATTACHMENT("91" & strArray(M), PATH(I), FILENAME(I), CAPTION(I))
                                     ERRORMESSAGE(dtrow("WHATSAPP"))
                                 End If
                             Next

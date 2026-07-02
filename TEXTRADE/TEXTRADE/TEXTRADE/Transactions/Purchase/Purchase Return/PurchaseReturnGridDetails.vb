@@ -294,5 +294,10 @@ Public Class PurchaseReturnGridDetails
             GAQTY.VisibleIndex = 26
             GAFOLDPER.VisibleIndex = 27
         End If
+
+        If ClientName = "MAHAVIRPOLYCOT" Then
+            GWIDTH.Visible = True
+            GWIDTH.VisibleIndex = 26
+        End If
     End Sub
 End Class

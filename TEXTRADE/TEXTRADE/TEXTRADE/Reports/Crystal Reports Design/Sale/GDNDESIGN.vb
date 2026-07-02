@@ -4,6 +4,7 @@ Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
 Imports System.Windows.Forms
 Imports System.IO
+Imports DevExpress.CodeParser
 
 Public Class GDNDESIGN
 
@@ -598,7 +599,31 @@ Public Class GDNDESIGN
                     '    OBJ.DataDefinition.FormulaFields("SUPPLIER").Text = DT.Rows(0).Item("SUPPLIER")
 
                     'End If
+
+                    ' Get subreport reference once and apply login info
+                    Dim subReportShrinkage = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+                    Dim subTable As Table
+                    For Each subTable In subReportShrinkage.Database.Tables
+                        Dim subLogonInfo As TableLogOnInfo = subTable.LogOnInfo
+                        subLogonInfo.ConnectionInfo = crConnecttionInfo
+                        subTable.ApplyLogOnInfo(subLogonInfo)
+                    Next
                     If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
+
+                        Dim DT5 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(STOCKADJUSTMENT_DESC.SA_MTRS, 0))AS SAMPLEMTRS   ", "", "STOCKADJUSTMENT_DESC  LEFT OUTER JOIN PIECETYPEMASTER ON STOCKADJUSTMENT_DESC.SA_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id ", " AND SA_LOTNO = '" & LOTNO & "' AND SA_YEARID = " & YearId & " AND PIECETYPEMASTER.PIECETYPE_name IN ('SAMPLE', 'FENT')")
+                        If DT5.Rows.Count > 0 Then
+                            Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+
+                            ' Safely handle DBNull before passing to formula field
+                            Dim sampleMtrs As Decimal = 0
+                            If Not IsDBNull(DT5.Rows(0).Item("SAMPLEMTRS")) Then
+                                sampleMtrs = Convert.ToDecimal(DT5.Rows(0).Item("SAMPLEMTRS"))
+                            End If
+
+                            subReport.DataDefinition.FormulaFields("SAMPLEMTRS").Text = sampleMtrs.ToString("0.00")
+
+                        End If
+
                         Dim DT4 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(GDN_DESC.GDN_PCS, 0))AS DELIVEREDLUMPS,SUM(ISNULL(GDN_DESC.GDN_MTRS, 0))AS DELIVEREDMTRS ", "", "GDN_DESC ", " AND GDN_GRIDLOTNO = '" & LOTNO & "' AND GDN_YEARID = " & YearId)
                         If DT4.Rows.Count > 0 Then
                             ' Get the subreport object first
@@ -637,16 +662,23 @@ Public Class GDNDESIGN
                             subReport.DataDefinition.FormulaFields("RECDPCS").Text = Val(DT1.Rows(0).Item("RECDPCS")).ToString("0")
                             subReport.DataDefinition.FormulaFields("RECDMTRS").Text = Val(DT1.Rows(0).Item("RECDMTRS")).ToString("0.00")
                         End If
-                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_CHALLANNO, '') AS INWARDNO, GRN.GRN_CHALLANDT AS INWARDDATE, CASE WHEN ISNULL(PACKINGLEDGERS.ACC_CMPNAME, '') = '' THEN ISNULL(LEDGERS.ACC_CMPNAME, '') ELSE PACKINGLEDGERS.ACC_CMPNAME END AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GRN.GRN_PACKINGID = PACKINGLEDGERS.ACC_ID AND GRN.GRN_YEARID = PACKINGLEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
+                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_CHALLANNO, '') AS INWARDNO, GRN.GRN_CHALLANDT AS INWARDDATE,GRN.GRN_DATE AS INWARDLOTDATE, CASE WHEN ISNULL(PACKINGLEDGERS.ACC_CMPNAME, '') = '' THEN ISNULL(LEDGERS.ACC_CMPNAME, '') ELSE PACKINGLEDGERS.ACC_CMPNAME END AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GRN.GRN_PACKINGID = PACKINGLEDGERS.ACC_ID AND GRN.GRN_YEARID = PACKINGLEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
                         If DT.Rows.Count > 0 Then
                             RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDNO").Text = "'" & DT.Rows(0).Item("INWARDNO").ToString() & "'"
                             RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDDATE")), "dd/MM/yyyy") & "'"
                             RPTGDN_VINTAGE.DataDefinition.FormulaFields("SUPPLIER").Text = "'" & DT.Rows(0).Item("SUPPLIER").ToString() & "'"
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("INWARDLOTDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDLOTDATE")), "dd/MM/yyyy") & "'"
+
                         End If
                     End If
+
                     If JOBWORKLABEL = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1
+                    Dim subRptPreview = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+                    subRptPreview.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"  ' Show in preview
                     RPTGDN_VINTAGE.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     crpo.ReportSource = RPTGDN_VINTAGE
+
+
                 Else
                     If PRINTINYARDS = True Then
                         RPTGDN.DataDefinition.FormulaFields("PRINTINYARDS").Text = 1
@@ -697,6 +729,7 @@ Public Class GDNDESIGN
             '************************ END *******************
             crpo.Zoom(100)
             crpo.Refresh()
+
 
         Catch ex As Exception
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
@@ -1520,6 +1553,8 @@ Public Class GDNDESIGN
                     If JOBWORKLABEL = True Then OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 0
                     'If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     'If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "CHINTAN" Or ClientName = "KENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
+                    Dim subRptPrint = OBJ.Subreports("GDNSHRINKAGE")
+                    subRptPrint.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"  ' Hide when printing
                     OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
 
                 Else
@@ -1564,9 +1599,16 @@ Public Class GDNDESIGN
 
             OBJ.RecordSelectionFormula = FORMULA
 
+            If FRMSTRING = "GDN" And ClientName = "VINTAGEINDIA" Then
+                Dim subRpt = OBJ.Subreports("GDNSHRINKAGE")
+                subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
+            End If
+
             If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
                 OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
+
                 OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
+
             Else
                 Dim expo As New ExportOptions
                 Dim oDfDopt As New DiskFileDestinationOptions
@@ -1620,17 +1662,51 @@ Public Class GDNDESIGN
     End Sub
 
     Private Sub PrintToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PrintToolStripButton.Click
+        'Try
+        '    If Val(TXTCOPIES.Text.Trim) <= 0 Then
+        '        MsgBox("No of Copies cannot be zero", MsgBoxStyle.Critical)
+        '        Exit Sub
+        '    Else
+        '        If FRMSTRING = "GDN" Then RPTGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+
+        '        If FRMSTRING = "GDNGARMENT" Then RPTGDN_GARMENT.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+        '            If FRMSTRING = "PROFORMA" Then RPTPROFORMA.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+        '            If FRMSTRING = "TRANSGDN" Then RPTTRANSGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+        '            If FRMSTRING = "JOBOUT" Then RPTJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0) Else RPTJO_SAFFRON.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+        '            If FRMSTRING = "GREYJOBOUT" Then RPTGJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+        '            'If FRMSTRING = "GDN" AndAlso ClientName = "VINTAGEINDIA" Then
+        '            '    Dim subRpt = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+        '            '    subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
+        '            '    crpo.Refresh()
+        '            'End If
+        '        End If
+        'Catch ex As Exception
+        '    Throw ex
+        'End Try
         Try
             If Val(TXTCOPIES.Text.Trim) <= 0 Then
                 MsgBox("No of Copies cannot be zero", MsgBoxStyle.Critical)
                 Exit Sub
             Else
-                If FRMSTRING = "GDN" Then RPTGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
-                If FRMSTRING = "GDNGARMENT" Then RPTGDN_GARMENT.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
-                If FRMSTRING = "PROFORMA" Then RPTPROFORMA.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
-                If FRMSTRING = "TRANSGDN" Then RPTTRANSGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
-                If FRMSTRING = "JOBOUT" Then RPTJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0) Else RPTJO_SAFFRON.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
-                If FRMSTRING = "GREYJOBOUT" Then RPTGJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                If FRMSTRING = "GDN" AndAlso ClientName = "VINTAGEINDIA" Then
+                    Dim subRpt = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+                    subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
+                    RPTGDN_VINTAGE.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                    subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"
+                    'crpo.Refresh()
+                ElseIf FRMSTRING = "GDN" Then
+                    RPTGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                ElseIf FRMSTRING = "GDNGARMENT" Then
+                    RPTGDN_GARMENT.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                ElseIf FRMSTRING = "PROFORMA" Then
+                    RPTPROFORMA.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                ElseIf FRMSTRING = "TRANSGDN" Then
+                    RPTTRANSGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                ElseIf FRMSTRING = "JOBOUT" Then
+                    RPTJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                ElseIf FRMSTRING = "GREYJOBOUT" Then
+                    RPTGJO.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
+                End If
             End If
         Catch ex As Exception
             Throw ex
@@ -1643,10 +1719,11 @@ Public Class GDNDESIGN
 
     Private Sub GDNDESIGN_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
         Try
-            If ClientName = "DAKSH" Or ClientName = "SHALIBHADRA" Then
+            If ClientName = "DAKSH" Or ClientName = "SHALIBHADRA" Or ClientName = "VINTAGEINDIA" Then
                 PrintToolStripButton.Visible = True
                 TXTCOPIES.Visible = True
             End If
+            TXTCOPIES.Text = "1"
         Catch ex As Exception
             Throw ex
         End Try
@@ -1694,4 +1771,16 @@ Public Class GDNDESIGN
             Throw ex
         End Try
     End Sub
+    'Private Sub crpo_PrintButtonClicked(sender As Object, e As EventArgs) Handles crpo.
+
+    '    Try
+    '        If FRMSTRING = "GDN" AndAlso ClientName = "VINTAGEINDIA" Then
+    '            Dim subRpt = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+    '            subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
+    '            crpo.Refresh()
+    '        End If
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+    'End Sub
 End Class

@@ -1693,7 +1693,7 @@ LINE1:
         '    GINDESIGN.HeaderText = "Size"
         'End If
 
-        If ClientName = "SONU" Or ClientName = "KCRAYON" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MNARESH" Then
+        If ClientName = "SONU" Or ClientName = "KCRAYON" Or ClientName = "INDRAPUJAFABRICS" Or ClientName = "MNARESH" Or ClientName = "MIRANO" Then
             LBLCMPNAME.Visible = True
             CMBCMPNAME.Visible = True
             LBLCHNO.Visible = True
@@ -1741,7 +1741,12 @@ LINE1:
                 End If
             End If
 
-            If ClientName = "MAHAVIRPOLYCOT" Or ClientName = "YASHVI" Then
+            If ClientName = "YASHVI" Then
+                CMBDESIGN.Text = ""
+                cmbcolor.Text = ""
+            End If
+
+            If ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False Then
                 CMBDESIGN.Text = ""
                 cmbcolor.Text = ""
             End If

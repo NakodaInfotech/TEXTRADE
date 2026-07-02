@@ -2837,7 +2837,9 @@ LINESINGLE:
                             CMBPER.Text = "Mtrs"
                         End If
                         If ClientName = "SIDDHGIRI" Or ClientName = "MASHOK" Or ClientName = "ABHEE" Then cmbqtyunit.Text = DT.Rows(0).Item("UNIT")
-                        If ClientName = "MAHAVIR" Then txtgridremarks.Text = DT.Rows(0).Item("DESC")
+                        If ClientName = "MAHAVIR" Then
+                            txtgridremarks.Text = DT.Rows(0).Item("DESC")
+                        End If
                     End If
                 End If
 
@@ -2865,6 +2867,12 @@ LINESINGLE:
                     txtgridremarks.Clear()
                     TXTRATE.Clear()
                     cmbitemname.Focus()
+                End If
+
+
+                If ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False Then
+                    CMBDESIGN.Text = ""
+                    cmbcolor.Text = ""
                 End If
 
             End If
@@ -3163,7 +3171,7 @@ LINESINGLE:
 
             Dim TEMPWIDTH As String = ""
             Dim OBJCMN As New ClsCommon
-            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WEAVE, '') AS WEAVE, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & cmbitemname.Text.Trim & "' AND ITEM_YEARID = " & YearId)
+            Dim DT As DataTable = OBJCMN.SEARCH(" ISNULL(ITEMMASTER.ITEM_WEAVE, '') AS WEAVE, ISNULL(ITEMMASTER.ITEM_REMARKS, '') AS REMARKS, ISNULL(ITEMMASTER.ITEM_DISPLAYNAME, '') AS ITEMDISPLAYNAME, ISNULL(ITEMMASTER.ITEM_WIDTH, '') AS WIDTH, ISNULL(CATEGORYMASTER.CATEGORY_NAME,'') AS CATEGORY ", "", " ITEMMASTER LEFT OUTER JOIN CATEGORYMASTER ON ITEMMASTER.item_categoryid = CATEGORYMASTER.category_id LEFT OUTER JOIN UNITMASTER ON ITEM_UNITID = UNITMASTER.UNIT_ID", " AND ITEM_NAME = '" & GRIDSO.Item(gitemname.Index, GRIDSO.CurrentRow.Index).Value.ToString & "' AND ITEM_YEARID = " & YearId)
             If DT.Rows.Count > 0 Then
                 TEMPWIDTH = DT.Rows(0).Item("WIDTH")
             End If

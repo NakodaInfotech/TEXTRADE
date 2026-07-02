@@ -25,6 +25,7 @@ Partial Class GRNDetails
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GRNDetails))
         Me.BlendPanel1 = New VbPowerPack.BlendPanel()
+        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -87,7 +88,7 @@ Partial Class GRNDetails
         Me.lbl = New System.Windows.Forms.Label()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
-        Me.CMDSAVELAYOUT = New System.Windows.Forms.Button()
+        Me.GWIDTH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,6 +119,20 @@ Partial Class GRNDetails
         Me.BlendPanel1.Name = "BlendPanel1"
         Me.BlendPanel1.Size = New System.Drawing.Size(1234, 581)
         Me.BlendPanel1.TabIndex = 5
+        '
+        'CMDSAVELAYOUT
+        '
+        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
+        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
+        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
+        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(398, 526)
+        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
+        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
+        Me.CMDSAVELAYOUT.TabIndex = 810
+        Me.CMDSAVELAYOUT.Text = "Save Layout"
+        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -278,7 +293,7 @@ Partial Class GRNDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!)
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GITEMNAME, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GPIECETYPE, Me.GMTRS, Me.GJOBBERNAME, Me.GLOTNO, Me.GLOTDATE, Me.GPURRATE, Me.GRECDPCS, Me.GRECDMTRS, Me.GBALENO, Me.GBROKER, Me.GGODOWN, Me.GPONO, Me.GCATEGORY, Me.GTRANSPORT, Me.GCHALLANDATE, Me.GREMARKS, Me.GLOTREADY, Me.GLRNO, Me.GPER, Me.GAMOUNT, Me.GHSNCODE, Me.GQUALITYWT, Me.GREFLOTNO, Me.GCREATEDBY, Me.GCHECKDONE, Me.GDELIVERYTO})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLAN, Me.GITEMNAME, Me.GWIDTH, Me.GQUALITY, Me.GDESIGNNO, Me.GSHADE, Me.GQTY, Me.GPIECETYPE, Me.GMTRS, Me.GJOBBERNAME, Me.GLOTNO, Me.GLOTDATE, Me.GPURRATE, Me.GRECDPCS, Me.GRECDMTRS, Me.GBALENO, Me.GBROKER, Me.GGODOWN, Me.GPONO, Me.GCATEGORY, Me.GTRANSPORT, Me.GCHALLANDATE, Me.GREMARKS, Me.GLOTREADY, Me.GLRNO, Me.GPER, Me.GAMOUNT, Me.GHSNCODE, Me.GQUALITYWT, Me.GREFLOTNO, Me.GCREATEDBY, Me.GCHECKDONE, Me.GDELIVERYTO})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, "")})
@@ -355,7 +370,7 @@ Partial Class GRNDetails
         Me.GDESIGNNO.FieldName = "DESIGNNO"
         Me.GDESIGNNO.Name = "GDESIGNNO"
         Me.GDESIGNNO.Visible = True
-        Me.GDESIGNNO.VisibleIndex = 6
+        Me.GDESIGNNO.VisibleIndex = 7
         Me.GDESIGNNO.Width = 80
         '
         'GSHADE
@@ -364,7 +379,7 @@ Partial Class GRNDetails
         Me.GSHADE.FieldName = "SHADE"
         Me.GSHADE.Name = "GSHADE"
         Me.GSHADE.Visible = True
-        Me.GSHADE.VisibleIndex = 7
+        Me.GSHADE.VisibleIndex = 8
         '
         'GQTY
         '
@@ -375,7 +390,7 @@ Partial Class GRNDetails
         Me.GQTY.Name = "GQTY"
         Me.GQTY.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GQTY.Visible = True
-        Me.GQTY.VisibleIndex = 8
+        Me.GQTY.VisibleIndex = 9
         Me.GQTY.Width = 60
         '
         'GPIECETYPE
@@ -395,7 +410,7 @@ Partial Class GRNDetails
         Me.GMTRS.Name = "GMTRS"
         Me.GMTRS.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GMTRS.Visible = True
-        Me.GMTRS.VisibleIndex = 9
+        Me.GMTRS.VisibleIndex = 10
         '
         'GJOBBERNAME
         '
@@ -403,7 +418,7 @@ Partial Class GRNDetails
         Me.GJOBBERNAME.FieldName = "JOBBERNAME"
         Me.GJOBBERNAME.Name = "GJOBBERNAME"
         Me.GJOBBERNAME.Visible = True
-        Me.GJOBBERNAME.VisibleIndex = 10
+        Me.GJOBBERNAME.VisibleIndex = 11
         Me.GJOBBERNAME.Width = 180
         '
         'GLOTNO
@@ -412,7 +427,7 @@ Partial Class GRNDetails
         Me.GLOTNO.FieldName = "LOTNO"
         Me.GLOTNO.Name = "GLOTNO"
         Me.GLOTNO.Visible = True
-        Me.GLOTNO.VisibleIndex = 12
+        Me.GLOTNO.VisibleIndex = 13
         '
         'GLOTDATE
         '
@@ -422,7 +437,7 @@ Partial Class GRNDetails
         Me.GLOTDATE.FieldName = "LOTDATE"
         Me.GLOTDATE.Name = "GLOTDATE"
         Me.GLOTDATE.Visible = True
-        Me.GLOTDATE.VisibleIndex = 14
+        Me.GLOTDATE.VisibleIndex = 15
         '
         'GPURRATE
         '
@@ -432,7 +447,7 @@ Partial Class GRNDetails
         Me.GPURRATE.FieldName = "PURRATE"
         Me.GPURRATE.Name = "GPURRATE"
         Me.GPURRATE.Visible = True
-        Me.GPURRATE.VisibleIndex = 11
+        Me.GPURRATE.VisibleIndex = 12
         '
         'GRECDPCS
         '
@@ -442,7 +457,7 @@ Partial Class GRNDetails
         Me.GRECDPCS.FieldName = "RECDPCS"
         Me.GRECDPCS.Name = "GRECDPCS"
         Me.GRECDPCS.Visible = True
-        Me.GRECDPCS.VisibleIndex = 13
+        Me.GRECDPCS.VisibleIndex = 14
         '
         'GRECDMTRS
         '
@@ -452,7 +467,7 @@ Partial Class GRNDetails
         Me.GRECDMTRS.FieldName = "RECDMTRS"
         Me.GRECDMTRS.Name = "GRECDMTRS"
         Me.GRECDMTRS.Visible = True
-        Me.GRECDMTRS.VisibleIndex = 15
+        Me.GRECDMTRS.VisibleIndex = 16
         '
         'GBALENO
         '
@@ -460,7 +475,7 @@ Partial Class GRNDetails
         Me.GBALENO.FieldName = "BALENO"
         Me.GBALENO.Name = "GBALENO"
         Me.GBALENO.Visible = True
-        Me.GBALENO.VisibleIndex = 16
+        Me.GBALENO.VisibleIndex = 17
         '
         'GBROKER
         '
@@ -468,7 +483,7 @@ Partial Class GRNDetails
         Me.GBROKER.FieldName = "BROKER"
         Me.GBROKER.Name = "GBROKER"
         Me.GBROKER.Visible = True
-        Me.GBROKER.VisibleIndex = 17
+        Me.GBROKER.VisibleIndex = 18
         Me.GBROKER.Width = 180
         '
         'GGODOWN
@@ -477,7 +492,7 @@ Partial Class GRNDetails
         Me.GGODOWN.FieldName = "GODOWN"
         Me.GGODOWN.Name = "GGODOWN"
         Me.GGODOWN.Visible = True
-        Me.GGODOWN.VisibleIndex = 18
+        Me.GGODOWN.VisibleIndex = 19
         Me.GGODOWN.Width = 140
         '
         'GPONO
@@ -486,7 +501,7 @@ Partial Class GRNDetails
         Me.GPONO.FieldName = "PONO"
         Me.GPONO.Name = "GPONO"
         Me.GPONO.Visible = True
-        Me.GPONO.VisibleIndex = 19
+        Me.GPONO.VisibleIndex = 20
         '
         'GCATEGORY
         '
@@ -494,7 +509,7 @@ Partial Class GRNDetails
         Me.GCATEGORY.FieldName = "CATEGORY"
         Me.GCATEGORY.Name = "GCATEGORY"
         Me.GCATEGORY.Visible = True
-        Me.GCATEGORY.VisibleIndex = 20
+        Me.GCATEGORY.VisibleIndex = 21
         '
         'GTRANSPORT
         '
@@ -502,7 +517,7 @@ Partial Class GRNDetails
         Me.GTRANSPORT.FieldName = "TRANSNAME"
         Me.GTRANSPORT.Name = "GTRANSPORT"
         Me.GTRANSPORT.Visible = True
-        Me.GTRANSPORT.VisibleIndex = 21
+        Me.GTRANSPORT.VisibleIndex = 22
         Me.GTRANSPORT.Width = 200
         '
         'GCHALLANDATE
@@ -513,7 +528,7 @@ Partial Class GRNDetails
         Me.GCHALLANDATE.FieldName = "CHALLANDATE"
         Me.GCHALLANDATE.Name = "GCHALLANDATE"
         Me.GCHALLANDATE.Visible = True
-        Me.GCHALLANDATE.VisibleIndex = 22
+        Me.GCHALLANDATE.VisibleIndex = 23
         '
         'GREMARKS
         '
@@ -521,7 +536,7 @@ Partial Class GRNDetails
         Me.GREMARKS.FieldName = "REMARKS"
         Me.GREMARKS.Name = "GREMARKS"
         Me.GREMARKS.Visible = True
-        Me.GREMARKS.VisibleIndex = 23
+        Me.GREMARKS.VisibleIndex = 24
         Me.GREMARKS.Width = 150
         '
         'GLOTREADY
@@ -530,7 +545,7 @@ Partial Class GRNDetails
         Me.GLOTREADY.FieldName = "LOTREADY"
         Me.GLOTREADY.Name = "GLOTREADY"
         Me.GLOTREADY.Visible = True
-        Me.GLOTREADY.VisibleIndex = 24
+        Me.GLOTREADY.VisibleIndex = 25
         '
         'GLRNO
         '
@@ -538,7 +553,7 @@ Partial Class GRNDetails
         Me.GLRNO.FieldName = "LRNO"
         Me.GLRNO.Name = "GLRNO"
         Me.GLRNO.Visible = True
-        Me.GLRNO.VisibleIndex = 25
+        Me.GLRNO.VisibleIndex = 26
         '
         'GPER
         '
@@ -546,7 +561,7 @@ Partial Class GRNDetails
         Me.GPER.FieldName = "PER"
         Me.GPER.Name = "GPER"
         Me.GPER.Visible = True
-        Me.GPER.VisibleIndex = 26
+        Me.GPER.VisibleIndex = 27
         '
         'GAMOUNT
         '
@@ -555,7 +570,7 @@ Partial Class GRNDetails
         Me.GAMOUNT.Name = "GAMOUNT"
         Me.GAMOUNT.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum)})
         Me.GAMOUNT.Visible = True
-        Me.GAMOUNT.VisibleIndex = 27
+        Me.GAMOUNT.VisibleIndex = 28
         '
         'GHSNCODE
         '
@@ -563,7 +578,7 @@ Partial Class GRNDetails
         Me.GHSNCODE.FieldName = "HSNCODE"
         Me.GHSNCODE.Name = "GHSNCODE"
         Me.GHSNCODE.Visible = True
-        Me.GHSNCODE.VisibleIndex = 28
+        Me.GHSNCODE.VisibleIndex = 29
         '
         'GQUALITYWT
         '
@@ -573,7 +588,7 @@ Partial Class GRNDetails
         Me.GQUALITYWT.FieldName = "QUALITYWT"
         Me.GQUALITYWT.Name = "GQUALITYWT"
         Me.GQUALITYWT.Visible = True
-        Me.GQUALITYWT.VisibleIndex = 29
+        Me.GQUALITYWT.VisibleIndex = 30
         '
         'GREFLOTNO
         '
@@ -581,7 +596,7 @@ Partial Class GRNDetails
         Me.GREFLOTNO.FieldName = "REFLOTNO"
         Me.GREFLOTNO.Name = "GREFLOTNO"
         Me.GREFLOTNO.Visible = True
-        Me.GREFLOTNO.VisibleIndex = 30
+        Me.GREFLOTNO.VisibleIndex = 31
         Me.GREFLOTNO.Width = 120
         '
         'GCREATEDBY
@@ -590,7 +605,7 @@ Partial Class GRNDetails
         Me.GCREATEDBY.FieldName = "CREATEDBY"
         Me.GCREATEDBY.Name = "GCREATEDBY"
         Me.GCREATEDBY.Visible = True
-        Me.GCREATEDBY.VisibleIndex = 31
+        Me.GCREATEDBY.VisibleIndex = 32
         Me.GCREATEDBY.Width = 100
         '
         'GCHECKDONE
@@ -600,7 +615,7 @@ Partial Class GRNDetails
         Me.GCHECKDONE.Name = "GCHECKDONE"
         Me.GCHECKDONE.OptionsColumn.AllowEdit = False
         Me.GCHECKDONE.Visible = True
-        Me.GCHECKDONE.VisibleIndex = 32
+        Me.GCHECKDONE.VisibleIndex = 33
         Me.GCHECKDONE.Width = 80
         '
         'GDELIVERYTO
@@ -610,7 +625,7 @@ Partial Class GRNDetails
         Me.GDELIVERYTO.Name = "GDELIVERYTO"
         Me.GDELIVERYTO.OptionsColumn.AllowEdit = False
         Me.GDELIVERYTO.Visible = True
-        Me.GDELIVERYTO.VisibleIndex = 33
+        Me.GDELIVERYTO.VisibleIndex = 34
         Me.GDELIVERYTO.Width = 200
         '
         'imageList1
@@ -711,19 +726,12 @@ Partial Class GRNDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
-        'CMDSAVELAYOUT
+        'GWIDTH
         '
-        Me.CMDSAVELAYOUT.BackColor = System.Drawing.Color.Transparent
-        Me.CMDSAVELAYOUT.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.CMDSAVELAYOUT.FlatAppearance.BorderSize = 0
-        Me.CMDSAVELAYOUT.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CMDSAVELAYOUT.ForeColor = System.Drawing.Color.Black
-        Me.CMDSAVELAYOUT.Location = New System.Drawing.Point(398, 526)
-        Me.CMDSAVELAYOUT.Name = "CMDSAVELAYOUT"
-        Me.CMDSAVELAYOUT.Size = New System.Drawing.Size(80, 28)
-        Me.CMDSAVELAYOUT.TabIndex = 810
-        Me.CMDSAVELAYOUT.Text = "Save Layout"
-        Me.CMDSAVELAYOUT.UseVisualStyleBackColor = False
+        Me.GWIDTH.Caption = "Width"
+        Me.GWIDTH.FieldName = "WIDTH"
+        Me.GWIDTH.Name = "GWIDTH"
+        Me.GWIDTH.Width = 80
         '
         'GRNDetails
         '
@@ -812,4 +820,5 @@ Partial Class GRNDetails
     Friend WithEvents GPIECETYPE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDELIVERYTO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CMDSAVELAYOUT As Button
+    Friend WithEvents GWIDTH As DevExpress.XtraGrid.Columns.GridColumn
 End Class

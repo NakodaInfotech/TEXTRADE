@@ -255,6 +255,8 @@ Partial Class MaterialReceipt
         Me.EP = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.LBLCATEGORY = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.LBLSHRINKAGE = New System.Windows.Forms.Label()
         Me.BlendPanel1.SuspendLayout()
         Me.GBMTRS1.SuspendLayout()
         CType(Me.GRIDMTRS1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -278,6 +280,8 @@ Partial Class MaterialReceipt
         'BlendPanel1
         '
         Me.BlendPanel1.Blend = New VbPowerPack.BlendFill(VbPowerPack.BlendStyle.Vertical, System.Drawing.Color.FromArgb(CType(CType(213, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(248, Byte), Integer)), System.Drawing.SystemColors.Window)
+        Me.BlendPanel1.Controls.Add(Me.Label20)
+        Me.BlendPanel1.Controls.Add(Me.LBLSHRINKAGE)
         Me.BlendPanel1.Controls.Add(Me.CHKBLANKPAPER)
         Me.BlendPanel1.Controls.Add(Me.LBL3)
         Me.BlendPanel1.Controls.Add(Me.TXTPRNO)
@@ -2709,6 +2713,32 @@ Partial Class MaterialReceipt
         Me.LBLCATEGORY.TabIndex = 908
         Me.LBLCATEGORY.Visible = False
         '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.BackColor = System.Drawing.Color.Transparent
+        Me.Label20.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.Red
+        Me.Label20.Location = New System.Drawing.Point(566, 443)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(81, 15)
+        Me.Label20.TabIndex = 940
+        Me.Label20.Text = "Shrinkage % ="
+        Me.Label20.Visible = False
+        '
+        'LBLSHRINKAGE
+        '
+        Me.LBLSHRINKAGE.BackColor = System.Drawing.Color.Transparent
+        Me.LBLSHRINKAGE.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLSHRINKAGE.ForeColor = System.Drawing.Color.Red
+        Me.LBLSHRINKAGE.Location = New System.Drawing.Point(621, 443)
+        Me.LBLSHRINKAGE.Name = "LBLSHRINKAGE"
+        Me.LBLSHRINKAGE.Size = New System.Drawing.Size(58, 15)
+        Me.LBLSHRINKAGE.TabIndex = 941
+        Me.LBLSHRINKAGE.Text = "0.00"
+        Me.LBLSHRINKAGE.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LBLSHRINKAGE.Visible = False
+        '
         'MaterialReceipt
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -2947,4 +2977,6 @@ Partial Class MaterialReceipt
     Friend WithEvents GFROMSRNO As DataGridViewTextBoxColumn
     Friend WithEvents GFROMTYPE As DataGridViewTextBoxColumn
     Friend WithEvents GPCSNO As DataGridViewTextBoxColumn
+    Friend WithEvents Label20 As Label
+    Friend WithEvents LBLSHRINKAGE As Label
 End Class

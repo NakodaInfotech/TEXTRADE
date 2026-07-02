@@ -200,6 +200,8 @@ Public Class MaterialReceipt
             LBLTOTALAMT.Text = 0.0
             TXTRUNNINGBALPCS.Clear()
             TXTRUNNINGBALMTRS.Clear()
+            LBLSHRINKAGE.Text = 0.0
+
 
             For Each ROW As DataGridViewRow In GRIDMATREC.Rows
                 If ROW.Cells(gsrno.Index).Value <> Nothing Then
@@ -221,6 +223,9 @@ Public Class MaterialReceipt
 
             TXTRUNNINGBALPCS.Text = Val(TXTBALPCS.Text.Trim) - Val(lbltotalqty.Text.Trim)
             TXTRUNNINGBALMTRS.Text = Val(TXTBALMTRS.Text.Trim) - Val(LBLTOTALRECDMTRS.Text.Trim)
+
+            LBLSHRINKAGE.Text = Format((Val(LBLTOTALDIFF.Text) / Val(LBLTOTALMTRS.Text) * 100), "0.00")
+
 
         Catch ex As Exception
             Throw ex
@@ -4328,6 +4333,11 @@ LINE1:
 
             End If
 
+            If PCSTOPCSDETAILS = True Then
+                Label20.Visible = True
+                LBLSHRINKAGE.Visible = True
+            End If
+
 
             If ClientName = "SOFTAS" Or ClientName = "SHREENAKODA" Or ClientName = "SWPL" Then
                 CMBCHECKSRNO.TabStop = False
@@ -4595,6 +4605,12 @@ NEXTLINE:
                 If ClientName = "SOFTAS" Then CMBDESIGN.Text = cmbitemname.Text.Trim
             End If
 
+
+            If ClientName = "MAHAVIRPOLYCOT" And GRIDDOUBLECLICK = False Then
+                CMBDESIGN.Text = ""
+                cmbcolor.Text = ""
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
@@ -4823,6 +4839,15 @@ NEXTLINE:
                         cmbcolor.Focus()
                         Exit Sub
                     End If
+                ElseIf ClientName = "MAHAVIRPOLYCOT" Then
+                    If ClientName = "MAHAVIRPOLYCOT" And CMBRACK.Text.Trim <> "" Then
+                        FILLGRID()
+                    Else
+                        MsgBox("Please Enter Rack", MsgBoxStyle.Critical)
+                        CMBRACK.Focus()
+                        Exit Sub
+                    End If
+
                 Else
                     FILLGRID()
                 End If

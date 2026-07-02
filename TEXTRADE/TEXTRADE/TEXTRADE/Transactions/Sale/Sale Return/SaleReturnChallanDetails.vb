@@ -363,4 +363,16 @@ Public Class SaleReturnChallanDetails
         End Try
     End Sub
 
+    Private Sub SaleReturnChallanDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Try
+            If ClientName = "MAHAVIRPOLYCOT" Then
+                GWIDTH.Visible = True
+                GWIDTH.VisibleIndex = 7
+            End If
+
+        Catch ex As Exception
+            Throw ex
+
+        End Try
+    End Sub
 End Class

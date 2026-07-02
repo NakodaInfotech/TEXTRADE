@@ -64,6 +64,7 @@ Partial Class PurchaseReturnChallanGridDetails
         Me.cmdok = New System.Windows.Forms.Button()
         Me.PRINTDOC = New System.Drawing.Printing.PrintDocument()
         Me.PRINTDIALOG = New System.Windows.Forms.PrintDialog()
+        Me.GWIDTH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,7 +150,7 @@ Partial Class PurchaseReturnChallanGridDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GGRIDREMARKS, Me.GCHK, Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLANNO, Me.GITEMNAME, Me.GBALENO, Me.GDESIGNNO, Me.GSHADE, Me.GUNIT, Me.gtotalpcs, Me.GTOTALMTRS, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GBARCODE, Me.GREMARKS})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GGRIDREMARKS, Me.GCHK, Me.gsrno, Me.gdate, Me.GNAME, Me.GCHALLANNO, Me.GITEMNAME, Me.GBALENO, Me.GDESIGNNO, Me.GSHADE, Me.GUNIT, Me.gtotalpcs, Me.GTOTALMTRS, Me.GRATE, Me.GPER, Me.GAMOUNT, Me.GBARCODE, Me.GREMARKS, Me.GWIDTH})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsSelection.CheckBoxSelectorColumnWidth = 30
@@ -206,7 +207,7 @@ Partial Class PurchaseReturnChallanGridDetails
         '
         Me.GNAME.Caption = "Customer Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -467,6 +468,13 @@ Partial Class PurchaseReturnChallanGridDetails
         Me.PRINTDIALOG.ShowHelp = True
         Me.PRINTDIALOG.UseEXDialog = True
         '
+        'GWIDTH
+        '
+        Me.GWIDTH.Caption = "Width"
+        Me.GWIDTH.FieldName = "WIDTH"
+        Me.GWIDTH.Name = "GWIDTH"
+        Me.GWIDTH.Width = 100
+        '
         'PurchaseReturnChallanGridDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -530,4 +538,5 @@ Partial Class PurchaseReturnChallanGridDetails
     Friend WithEvents GRATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAMOUNT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWIDTH As DevExpress.XtraGrid.Columns.GridColumn
 End Class

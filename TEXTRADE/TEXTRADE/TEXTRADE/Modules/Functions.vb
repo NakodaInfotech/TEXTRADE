@@ -4426,9 +4426,9 @@ PRINT 1,1")
                 oWrite.WriteLine("TEXT 771,53,""ROMAN.TTF"",180,1,10,""MTRS""")
                 oWrite.WriteLine("TEXT 665,58,""ROMAN.TTF"",180,1,14,"":""")
                 oWrite.WriteLine("TEXT 638,58,""ROMAN.TTF"",180,1,14,""" & MTRS & """")
-                oWrite.WriteLine("QRCODE 228,259,L,8,A,180,M2,S7,""" & BARCODE & """")
-                oWrite.WriteLine("TEXT 228,85,""ROMAN.TTF"",180,1,8,""" & BARCODE & """")
-                oWrite.WriteLine("TEXT 228,85,""ROMAN.TTF"",180,1,8,180,1,14,""LOT NO""")
+                oWrite.WriteLine("QRCODE 228,267,L,8,A,180,M2,S7,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 228,93,""ROMAN.TTF"",180,1,12,""" & BARCODE & """")
+                oWrite.WriteLine("TEXT 771,105,""ROMAN.TTF"",180,1,10,""LOT NO""")
                 oWrite.WriteLine("TEXT 665,110,""ROMAN.TTF"",180,1,14,"":""")
                 oWrite.WriteLine("TEXT 638,108,""ROMAN.TTF"",180,1,12,""" & LOTNO & """")
                 oWrite.WriteLine("TEXT 771,258,""ROMAN.TTF"",180,1,10,""SERIES""")
@@ -5166,8 +5166,7 @@ PRINT 1,1")
             ElseIf ClientName = "MNARESH" Then
                 If TEMPHEADER = 1 Then
 
-
-                    oWrite.WriteLine("SIZE 104.1 mm, 50.8 mm
+                    oWrite.WriteLine("SIZE 100 mm, 50 mm
 GAP 3 mm, 0 mm
 SPEED 6
 DENSITY 10
@@ -5179,35 +5178,34 @@ SET CUTTER OFF
 SET PARTIAL_CUTTER OFF
 SET TEAR ON
 CLS
-BAR 27,317, 776, 4
+BAR 38,307, 721, 4
 CODEPAGE 1252
-TEXT 797,299,""0"",180,17,17,""LOT NO""
-TEXT 797,227,""0"",180,19,17,""D.NO""
-TEXT 797,157,""0"",180,17,17,""SHADE""
-TEXT 797,87,""0"",180,19,17,""MTRS""
-TEXT 639,303,""ROMAN.TTF"",180,1,18,"":""
-TEXT 639,232,""ROMAN.TTF"",180,1,18,"":""
-TEXT 639,163,""ROMAN.TTF"",180,1,18,"":""
-TEXT 639,95,""ROMAN.TTF"",180,1,18,"":""
-BOX 21,20,323,310,4
-QRCODE 257,283,L,8,A,180,M2,S7,""" & BARCODE & """
-TEXT 295,97,""ROMAN.TTF"",180,1,14,""" & BARCODE & """
-TEXT 612,89,""ROMAN.TTF"",180,1,20,""" & Format(Val(MTRS), "0.00") & """
-TEXT 612,158,""ROMAN.TTF"",180,1,16,""" & SHADE & """
-TEXT 612,226,""ROMAN.TTF"",180,1,16,""" & DESIGNNO & """
-TEXT 612,301,""ROMAN.TTF"",180,1,16,""" & LOTNO & """
-BOX 330,20,807,310,4
-BAR 27,392, 776, 4
-TEXT 808,378,""0"",180,18,18,""" & ITEMNAME & """
-PRINT 1,1
-")
+TEXT 763,287,""0"",180,16,16,""LOT NO""
+TEXT 763,217,""0"",180,18,16,""D.NO""
+TEXT 763,149,""0"",180,16,16,""SHADE""
+TEXT 763,80,""0"",180,18,16,""MTRS""
+TEXT 612,293,""ROMAN.TTF"",180,1,17,"":""
+TEXT 612,223,""ROMAN.TTF"",180,1,17,"":""
+TEXT 612,155,""ROMAN.TTF"",180,1,17,"":""
+TEXT 612,89,""ROMAN.TTF"",180,1,17,"":""
+QRCODE 261,266,L,8,A,180,M2,S7,""" & BARCODE & """
+TEXT 299,79,""0"",180,14,14,""" & BARCODE & """
+TEXT 585,88,""ROMAN.TTF"",180,1,20,""" & Format(Val(MTRS), "0.00") & """
+TEXT 585,148,""ROMAN.TTF"",180,1,15,""" & SHADE & """
+TEXT 585,216,""ROMAN.TTF"",180,1,15,""" & DESIGNNO & """
+TEXT 585,290,""ROMAN.TTF"",180,1,15,""" & LOTNO & """
+BAR 38,386, 721, 4
+TEXT 763,370,""0"",180,17,17,""" & ITEMNAME & """
+PRINT 1,1")
                     oWrite.Dispose()
 
 
 
                 Else
 
-                    oWrite.WriteLine("SIZE 104.1 mm, 50.8 mm
+
+
+                    oWrite.WriteLine("SIZE 100 mm, 50 mm
 GAP 3 mm, 0 mm
 SPEED 6
 DENSITY 10
@@ -5219,26 +5217,24 @@ SET CUTTER OFF
 SET PARTIAL_CUTTER OFF
 SET TEAR ON
 CLS
-BAR 27,317, 776, 4
+BAR 33,307, 728, 4
 CODEPAGE 1252
-TEXT 797,227,""0"",180,18,17,""SHADE""
-TEXT 797,157,""0"",180,17,17,""BALE""
-TEXT 797,87,""0"",180,19,17,""MTRS""
-TEXT 639,303,""ROMAN.TTF"",180,1,18,"":""
-TEXT 639,232,""ROMAN.TTF"",180,1,18,"":""
-TEXT 639,165,""ROMAN.TTF"",180,1,18,"":""
-TEXT 639,95,""ROMAN.TTF"",180,1,18,"":""
-BOX 21,20,323,310,4
-QRCODE 257,283,L,8,A,180,M2,S7,""" & BARCODE & """
-TEXT 295,97,""ROMAN.TTF"",180,1,14,""" & BARCODE & """
-TEXT 612,89,""ROMAN.TTF"",180,1,20,""" & Format(Val(MTRS), "0.00") & """
-TEXT 612,152,""ROMAN.TTF"",180,1,16,""" & BALENO & """
-TEXT 612,226,""ROMAN.TTF"",180,1,16,""" & SHADE & """
-BOX 330,20,807,310,4
-BAR 27,392, 776, 4
-TEXT 808,378,""0"",180,18,18,""" & ITEMNAME & """
-TEXT 612,297,""ROMAN.TTF"",180,1,16,""" & DESIGNNO & """
-TEXT 797,298,""0"",180,19,17,""D.NO""
+TEXT 765,291,""0"",180,16,16,""D.NO""
+TEXT 765,154,""0"",180,18,16,""BALE""
+TEXT 765,219,""0"",180,16,16,""SHADE""
+TEXT 765,84,""0"",180,18,16,""MTRS""
+TEXT 614,293,""ROMAN.TTF"",180,1,17,"":""
+TEXT 614,223,""ROMAN.TTF"",180,1,17,"":""
+TEXT 614,155,""ROMAN.TTF"",180,1,17,"":""
+TEXT 614,89,""ROMAN.TTF"",180,1,17,"":""
+QRCODE 261,266,L,8,A,180,M2,S7,""" & BARCODE & """
+TEXT 299,79,""0"",180,14,14,""" & BARCODE & """
+TEXT 587,88,""ROMAN.TTF"",180,1,20,""" & Format(Val(MTRS), "0.00") & """
+TEXT 587,148,""ROMAN.TTF"",180,1,15,""" & BALENO & """
+TEXT 587,216,""ROMAN.TTF"",180,1,15,""" & SHADE & """
+TEXT 587,290,""ROMAN.TTF"",180,1,15,""" & DESIGNNO & """
+BAR 33,386, 728, 4
+TEXT 765,370,""0"",180,17,17,""" & ITEMNAME & """
 PRINT 1,1")
                     oWrite.Dispose()
 
@@ -5875,7 +5871,7 @@ PRINT 1,1")
 
     '    Return RESPONSE
     'End Function
-    Async Function SENDWHATSAPPATTACHMENT(WHATSAPPNO As String, PATH As String, FILENAME As String) As Threading.Tasks.Task(Of String)
+    Async Function SENDWHATSAPPATTACHMENT(WHATSAPPNO As String, PATH As String, FILENAME As String, Optional CAPTION As String = "") As Threading.Tasks.Task(Of String)
         Try
             'If Not File.Exists(PATH) Then
             '    Return "{""success"":false,""Error"":{""error"":""File not found: " & PATH & """}}"
@@ -5895,7 +5891,7 @@ PRINT 1,1")
             .base64data = base64Data,
             .mimeType = mimeType,
             .filename = justFileName,
-            .caption = ""
+            .caption = CAPTION        '.caption = ""
         })
 
             ' Get base URL (NO trailing slash)

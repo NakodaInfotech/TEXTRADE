@@ -34,11 +34,11 @@ Public Class IssueToDesignerDetails
 
         Private Sub ManualEntryDetails_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-            Dim DTROW() As DataRow
+        Dim DTROW() As DataRow
         DTROW = USERRIGHTS.Select("FormName = 'SALE ORDER'")
         USERADD = DTROW(0).Item(1)
-            USEREDIT = DTROW(0).Item(2)
-            USERVIEW = DTROW(0).Item(3)
+        USEREDIT = DTROW(0).Item(2)
+        USERVIEW = DTROW(0).Item(3)
         USERDELETE = DTROW(0).Item(4)
 
 
@@ -175,7 +175,7 @@ Public Class IssueToDesignerDetails
                 Dim invoicePath As String = ALATTACHMENT(ALATTACHMENT.Count - 1).ToString
 
                 'ADDINT IN DTEMAIL
-                DTMAIL.Rows.Add(ROW("TEMPISSNO"), 0, "", "", ROW("DATE"), ROW("DESIGNERNAME"), "", "", "", "", "", Application.StartupPath & "\" & ROW("DESIGNERNAME") & "ISSUETODESIGNER_" & Val(ROW("TEMPISSNO")) & ".pdf", ROW("DESIGNERNAME") & "TEMPISSNO_" & Val(ROW("TEMPISSNO")) & ".pdf")
+                DTMAIL.Rows.Add(ROW("TEMPISSNO"), 0, "", "", ROW("DATE"), ROW("DESIGNERNAME"), "", "", "", "", "", Application.StartupPath & "\" & ROW("DESIGNERNAME") & "_" & "ISSUETODESIGNER_" & Val(ROW("TEMPISSNO")) & ".pdf", ROW("DESIGNERNAME") & "TEMPISSNO_" & Val(ROW("TEMPISSNO")) & ".pdf")
 
                 ''ADDING IN DTWHATSAPP
                 'If ClientName = "MAHAVIRPOLYCOT" Then ROW("AGENTWHATSAPP") = ""

@@ -69,6 +69,7 @@ Partial Class SaleReturnGridDetails
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.lbl = New System.Windows.Forms.Label()
+        Me.GWIDTH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,7 +135,7 @@ Partial Class SaleReturnGridDetails
         Me.gridbill.Appearance.HeaderPanel.Options.UseFont = True
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGSTIN, Me.GEWAYBILLNO, Me.GCHALLLANNO, Me.GCHALLANDATE, Me.GINVOICENO, Me.GINVOICEDATE, Me.GLRNO, Me.GLRDATE, Me.GBALENO, Me.GAGENT, Me.GHSN, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GAQTY, Me.GFOLDPER, Me.GPCS, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGTOTAL, Me.GREMARKS, Me.GPARTYREFNO, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GTRANSPORT, Me.GPER})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSRNO, Me.GDATE, Me.GNAME, Me.GGSTIN, Me.GEWAYBILLNO, Me.GCHALLLANNO, Me.GCHALLANDATE, Me.GINVOICENO, Me.GINVOICEDATE, Me.GLRNO, Me.GLRDATE, Me.GBALENO, Me.GAGENT, Me.GHSN, Me.GITEMNAME, Me.GDESIGNNO, Me.GSHADE, Me.GAQTY, Me.GFOLDPER, Me.GPCS, Me.GMTRS, Me.GRATE, Me.GAMT, Me.GCGSTPER, Me.GCGSTAMT, Me.GSGSTPER, Me.GSGSTAMT, Me.GIGSTPER, Me.GIGSTAMT, Me.GGTOTAL, Me.GREMARKS, Me.GPARTYREFNO, Me.GDEBITNAME, Me.GDELIVERYAT, Me.GTRANSPORT, Me.GPER, Me.GWIDTH})
         Me.gridbill.CustomizationFormBounds = New System.Drawing.Rectangle(688, 311, 208, 184)
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
@@ -171,7 +172,7 @@ Partial Class SaleReturnGridDetails
         '
         Me.GNAME.Caption = "Name"
         Me.GNAME.FieldName = "NAME"
-        Me.GNAME.ImageIndex = 0
+        Me.GNAME.ImageOptions.ImageIndex = 0
         Me.GNAME.Name = "GNAME"
         Me.GNAME.OptionsColumn.AllowEdit = False
         Me.GNAME.Visible = True
@@ -553,6 +554,13 @@ Partial Class SaleReturnGridDetails
         Me.lbl.TabIndex = 251
         Me.lbl.Text = "Select Material Receipt to Change"
         '
+        'GWIDTH
+        '
+        Me.GWIDTH.Caption = "Width"
+        Me.GWIDTH.FieldName = "WIDTH"
+        Me.GWIDTH.Name = "GWIDTH"
+        Me.GWIDTH.Width = 80
+        '
         'SaleReturnGridDetails
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -621,4 +629,5 @@ Partial Class SaleReturnGridDetails
     Friend WithEvents GPER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GAQTY As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GFOLDPER As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWIDTH As DevExpress.XtraGrid.Columns.GridColumn
 End Class
