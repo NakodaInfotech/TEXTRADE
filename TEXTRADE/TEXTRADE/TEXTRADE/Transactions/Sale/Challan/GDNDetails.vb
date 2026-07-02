@@ -1,7 +1,8 @@
 ﻿
 Imports BL
-Imports CrystalDecisions.Shared
 Imports CrystalDecisions.CrystalReports.Engine
+Imports CrystalDecisions.Shared
+Imports DevExpress.CodeParser
 Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class GDNDetails
@@ -10,6 +11,8 @@ Public Class GDNDetails
     Dim USERADD, USEREDIT, USERVIEW, USERDELETE As Boolean      'USED FOR RIGHT MANAGEMAENT
     Dim DTMAIL As New DataTable
     Dim DTWHATSAPP As New DataTable
+    Public LOTNO As String
+
 
     Private Sub cmdexit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdexit.Click
         Me.Close()
@@ -175,7 +178,7 @@ Public Class GDNDetails
                 End If
                 If MsgBox("Wish to Print Challan from " & TXTFROM.Text.Trim & " To " & TXTTO.Text.Trim & " ?", MsgBoxStyle.YesNo) = vbYes Then
                     If PRINTDIALOG.ShowDialog = DialogResult.OK Then PRINTDOC.PrinterSettings = PRINTDIALOG.PrinterSettings
-                    serverprop(Val(TXTFROM.Text.Trim), Val(TXTTO.Text.Trim), Val(TXTCOPIES.Text.Trim))
+                    SERVERPROP(Val(TXTFROM.Text.Trim), Val(TXTTO.Text.Trim), Val(TXTCOPIES.Text.Trim))
                 End If
             Else
                 If MsgBox("Wish to Print Selected Challan ?", MsgBoxStyle.YesNo) = vbYes Then
@@ -196,9 +199,27 @@ Public Class GDNDetails
             Dim FILENAME As New ArrayList
 
             Dim GARMENTCHALLAN As Boolean = False
-            If (ClientName = "MANSI"  Or ClientName = "CHINTAN") AndAlso MsgBox("Print Challan for Garments?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then GARMENTCHALLAN = True
+            If (ClientName = "MANSI" Or ClientName = "CHINTAN") AndAlso MsgBox("Print Challan for Garments?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then GARMENTCHALLAN = True
+
+            Dim JOBWORKCHALLAN As Boolean = False
+            If ClientName = "VINTAGEINDIA" AndAlso MsgBox("Print Challan for Job Work?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then JOBWORKCHALLAN = True
 
             For I As Integer = fromno To tono
+
+                If ClientName = "VINTAGEINDIA" Then
+                    Dim objclsLot As New ClsCommonMaster
+                    Dim dtLot As DataTable = objclsLot.search("DISTINCT GDN_DESC.GDN_GRIDLOTNO", "", "GDN_DESC", " AND GDN_DESC.GDN_NO = " & Val(I) & " AND GDN_DESC.GDN_YEARID = " & YearId)
+                    Dim lotNos As New List(Of String)
+                    For Each r As DataRow In dtLot.Rows
+                        If r("GDN_GRIDLOTNO") IsNot Nothing AndAlso r("GDN_GRIDLOTNO").ToString().Trim() <> "" Then
+                            Dim lotVal As String = r("GDN_GRIDLOTNO").ToString().Trim()
+                            If Not lotNos.Contains(lotVal) Then lotNos.Add(lotVal)
+                        End If
+                    Next
+                    LOTNO = String.Join(",", lotNos)
+                Else
+                    LOTNO = ""
+                End If
 
                 '**************** SET SERVER ************************
                 Dim crParameterFieldDefinitions As ParameterFieldDefinitions
@@ -277,6 +298,67 @@ Public Class GDNDetails
                 ElseIf ClientName = "PARAS" Or ClientName = "MARKIN" Then
                     OBJ = New GDNReport_PARASMARKIN
                     If CHKWHITELABEL.Checked = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1
+                ElseIf ClientName = "VINTAGEINDIA" Then
+                    OBJ = New GDNReport_VINTAGE
+                    If JOBWORKCHALLAN = True Then
+                        OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = "1"
+                    End If
+                    Dim subRptPrint = OBJ.Subreports("GDNSHRINKAGE")
+                    subRptPrint.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
+
+                    ' ADD THIS: apply login info to the subreport's own tables
+                    Dim subTable As Table
+                    For Each subTable In subRptPrint.Database.Tables
+                        Dim subLogonInfo As TableLogOnInfo = subTable.LogOnInfo
+                        subLogonInfo.ConnectionInfo = crConnecttionInfo
+                        subTable.ApplyLogOnInfo(subLogonInfo)
+                    Next
+
+
+                    If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
+                        Dim OBJCMN As New ClsCommon
+
+                        Dim DT5 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(STOCKADJUSTMENT_DESC.SA_MTRS, 0)) AS SAMPLEMTRS", "", "STOCKADJUSTMENT_DESC LEFT OUTER JOIN PIECETYPEMASTER ON STOCKADJUSTMENT_DESC.SA_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id", " AND SA_LOTNO = '" & LOTNO & "' AND SA_YEARID = " & YearId & " AND PIECETYPEMASTER.PIECETYPE_name IN ('SAMPLE', 'FENT')")
+                        If DT5.Rows.Count > 0 Then
+                            Dim sampleMtrs As Decimal = 0
+                            If Not IsDBNull(DT5.Rows(0).Item("SAMPLEMTRS")) Then sampleMtrs = Convert.ToDecimal(DT5.Rows(0).Item("SAMPLEMTRS"))
+                            subRptPrint.DataDefinition.FormulaFields("SAMPLEMTRS").Text = sampleMtrs.ToString("0.00")
+                        End If
+
+                        Dim DT4 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(GDN_DESC.GDN_PCS, 0)) AS DELIVEREDLUMPS, SUM(ISNULL(GDN_DESC.GDN_MTRS, 0)) AS DELIVEREDMTRS", "", "GDN_DESC", " AND GDN_GRIDLOTNO = '" & LOTNO & "' AND GDN_YEARID = " & YearId)
+                        If DT4.Rows.Count > 0 Then
+                            subRptPrint.DataDefinition.FormulaFields("DELIVEREDLUMPS").Text = Val(DT4.Rows(0).Item("DELIVEREDLUMPS")).ToString("0")
+                            subRptPrint.DataDefinition.FormulaFields("DELIVEREDMTRS").Text = Val(DT4.Rows(0).Item("DELIVEREDMTRS")).ToString("0.00")
+                        End If
+
+                        Dim DT3 As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(LOTCOMPLETED_DESC.LOT_SHRINKAGE,0) AS SHRINKAGEMTRS, ISNULL(LOTCOMPLETED_DESC.LOT_SHRINKAGEPER,0) AS SHRINKAGEPER", "", "LOTCOMPLETED_DESC LEFT OUTER JOIN GDN_DESC ON LOTCOMPLETED_DESC.LOT_LOTNO = GDN_DESC.GDN_GRIDLOTNO AND LOTCOMPLETED_DESC.LOT_YEARID = GDN_DESC.GDN_YEARID", " AND LOTCOMPLETED_DESC.LOT_LOTNO = '" & LOTNO & "' AND LOTCOMPLETED_DESC.LOT_YEARID = " & YearId)
+                        If DT3.Rows.Count > 0 Then
+                            subRptPrint.DataDefinition.FormulaFields("SHRINKAGEMTRS").Text = Val(DT3.Rows(0).Item("SHRINKAGEMTRS")).ToString("0.00")
+                            subRptPrint.DataDefinition.FormulaFields("SHRINKAGEPER").Text = Val(DT3.Rows(0).Item("SHRINKAGEPER")).ToString("0.00")
+                        End If
+
+                        Dim DT2 As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(BS.PCS, 0) AS BALLUMPS, ISNULL(BS.MTRS, 0) AS BALMTRS", "", "(SELECT LOTNO, YEARID, SUM(PCS) AS PCS, SUM(MTRS) AS MTRS FROM BARCODESTOCK WHERE LOTNO = '" & LOTNO & "' AND YEARID = " & YearId & " GROUP BY LOTNO, YEARID) AS BS LEFT OUTER JOIN GDN_DESC ON BS.LOTNO = GDN_DESC.GDN_GRIDLOTNO AND BS.YEARID = GDN_DESC.GDN_YEARID")
+                        If DT2.Rows.Count > 0 Then
+                            subRptPrint.DataDefinition.FormulaFields("BALLUMPS").Text = Val(DT2.Rows(0).Item("BALLUMPS")).ToString("0")
+                            subRptPrint.DataDefinition.FormulaFields("BALMTRS").Text = Val(DT2.Rows(0).Item("BALMTRS")).ToString("0.00")
+                        End If
+
+                        Dim DT1 As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(INHOUSECHECKING.CHECK_TOTALCHECKEDPCS,0) AS RECDPCS, ISNULL(INHOUSECHECKING.CHECK_TOTALCHECKEDMTRS,0) AS RECDMTRS", "", "INHOUSECHECKING LEFT OUTER JOIN GDN_DESC ON INHOUSECHECKING.CHECK_LOTNO = GDN_DESC.GDN_GRIDLOTNO AND INHOUSECHECKING.CHECK_YEARID = GDN_DESC.GDN_YEARID", " AND INHOUSECHECKING.CHECK_TYPE = 'GRN' AND INHOUSECHECKING.CHECK_LOTNO = '" & LOTNO & "' AND INHOUSECHECKING.CHECK_YEARID = " & YearId)
+                        If DT1.Rows.Count > 0 Then
+                            subRptPrint.DataDefinition.FormulaFields("RECDPCS").Text = Val(DT1.Rows(0).Item("RECDPCS")).ToString("0")
+                            subRptPrint.DataDefinition.FormulaFields("RECDMTRS").Text = Val(DT1.Rows(0).Item("RECDMTRS")).ToString("0.00")
+                        End If
+
+                        Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_CHALLANNO, '') AS INWARDNO, GRN.GRN_CHALLANDT AS INWARDDATE, GRN.GRN_DATE AS INWARDLOTDATE, CASE WHEN ISNULL(PACKINGLEDGERS.ACC_CMPNAME, '') = '' THEN ISNULL(LEDGERS.ACC_CMPNAME, '') ELSE PACKINGLEDGERS.ACC_CMPNAME END AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GRN.GRN_PACKINGID = PACKINGLEDGERS.ACC_ID AND GRN.GRN_YEARID = PACKINGLEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
+                        If DT.Rows.Count > 0 Then
+                            OBJ.DataDefinition.FormulaFields("INWARDNO").Text = "'" & DT.Rows(0).Item("INWARDNO").ToString() & "'"
+                            OBJ.DataDefinition.FormulaFields("INWARDDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDDATE")), "dd/MM/yyyy") & "'"
+                            OBJ.DataDefinition.FormulaFields("SUPPLIER").Text = "'" & DT.Rows(0).Item("SUPPLIER").ToString() & "'"
+                            OBJ.DataDefinition.FormulaFields("INWARDLOTDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDLOTDATE")), "dd/MM/yyyy") & "'"
+                        End If
+                    End If
+
+                    OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                 Else
 
                     If GARMENTCHALLAN = True Then
@@ -360,11 +442,28 @@ Public Class GDNDetails
             Dim GARMENTCHALLAN As Boolean = False
             If (ClientName = "MANSI" Or ClientName = "CHINTAN") AndAlso MsgBox("Print Challan For Garments?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then GARMENTCHALLAN = True
 
+            Dim JOBWORKCHALLAN As Boolean = False
+            If ClientName = "VINTAGEINDIA" AndAlso MsgBox("Print Challan for Job Work?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then JOBWORKCHALLAN = True
+
 
             'Dim SELECTEDROWS As Int32() = gridbill.GetSelectedRows()
             For I As Integer = 0 To gridbill.RowCount - 1
                 Dim ROW As DataRow = gridbill.GetDataRow(I)
                 If ROW("CHK") = True Then
+
+                    If ClientName = "VINTAGEINDIA" Then
+                        Dim objclsLot As New ClsCommonMaster
+                        Dim dtLot As DataTable = objclsLot.search("DISTINCT GDN_DESC.GDN_GRIDLOTNO", "", "GDN_DESC", " AND GDN_DESC.GDN_NO = " & Val(ROW("SRNO")) & " AND GDN_DESC.GDN_YEARID = " & YearId)
+                        Dim lotNos As New List(Of String)
+                        For Each r As DataRow In dtLot.Rows
+                            If r("GDN_GRIDLOTNO") IsNot Nothing AndAlso r("GDN_GRIDLOTNO").ToString().Trim() <> "" Then
+                                Dim lotVal As String = r("GDN_GRIDLOTNO").ToString().Trim()
+                                If Not lotNos.Contains(lotVal) Then lotNos.Add(lotVal)
+                            End If
+                        Next
+                        LOTNO = String.Join(",", lotNos)
+                    End If
+
                     '**************** SET SERVER ************************
                     Dim crParameterFieldDefinitions As ParameterFieldDefinitions
                     Dim crParameterFieldDefinition As ParameterFieldDefinition
@@ -441,7 +540,67 @@ Public Class GDNDetails
                         OBJ = New GDNReport_NTC
                     ElseIf ClientName = "PARAS" Or ClientName = "MARKIN" Then
                         OBJ = New GDNReport_PARASMARKIN
-                        If CHKWHITELABEL.Checked = True Then OBJ.DataDefinition.FormulaFields("WHITELABEL").Text = 1
+                    ElseIf ClientName = "VINTAGEINDIA" Then
+                        OBJ = New GDNReport_VINTAGE
+                        If JOBWORKCHALLAN = True Then
+                            OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = "1"
+                        End If
+                        Dim subRptPrint = OBJ.Subreports("GDNSHRINKAGE")
+                        subRptPrint.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
+
+                        ' ADD THIS: apply login info to the subreport's own tables
+                        Dim subTable As Table
+                        For Each subTable In subRptPrint.Database.Tables
+                            Dim subLogonInfo As TableLogOnInfo = subTable.LogOnInfo
+                            subLogonInfo.ConnectionInfo = crConnecttionInfo
+                            subTable.ApplyLogOnInfo(subLogonInfo)
+                        Next
+
+                        If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
+                            Dim OBJCMN As New ClsCommon
+
+                            Dim DT5 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(STOCKADJUSTMENT_DESC.SA_MTRS, 0)) AS SAMPLEMTRS", "", "STOCKADJUSTMENT_DESC LEFT OUTER JOIN PIECETYPEMASTER ON STOCKADJUSTMENT_DESC.SA_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id", " AND SA_LOTNO = '" & LOTNO & "' AND SA_YEARID = " & YearId & " AND PIECETYPEMASTER.PIECETYPE_name IN ('SAMPLE', 'FENT')")
+                            If DT5.Rows.Count > 0 Then
+                                Dim sampleMtrs As Decimal = 0
+                                If Not IsDBNull(DT5.Rows(0).Item("SAMPLEMTRS")) Then sampleMtrs = Convert.ToDecimal(DT5.Rows(0).Item("SAMPLEMTRS"))
+                                subRptPrint.DataDefinition.FormulaFields("SAMPLEMTRS").Text = sampleMtrs.ToString("0.00")
+                            End If
+
+                            Dim DT4 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(GDN_DESC.GDN_PCS, 0)) AS DELIVEREDLUMPS, SUM(ISNULL(GDN_DESC.GDN_MTRS, 0)) AS DELIVEREDMTRS", "", "GDN_DESC", " AND GDN_GRIDLOTNO = '" & LOTNO & "' AND GDN_YEARID = " & YearId)
+                            If DT4.Rows.Count > 0 Then
+                                subRptPrint.DataDefinition.FormulaFields("DELIVEREDLUMPS").Text = Val(DT4.Rows(0).Item("DELIVEREDLUMPS")).ToString("0")
+                                subRptPrint.DataDefinition.FormulaFields("DELIVEREDMTRS").Text = Val(DT4.Rows(0).Item("DELIVEREDMTRS")).ToString("0.00")
+                            End If
+
+                            Dim DT3 As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(LOTCOMPLETED_DESC.LOT_SHRINKAGE,0) AS SHRINKAGEMTRS, ISNULL(LOTCOMPLETED_DESC.LOT_SHRINKAGEPER,0) AS SHRINKAGEPER", "", "LOTCOMPLETED_DESC LEFT OUTER JOIN GDN_DESC ON LOTCOMPLETED_DESC.LOT_LOTNO = GDN_DESC.GDN_GRIDLOTNO AND LOTCOMPLETED_DESC.LOT_YEARID = GDN_DESC.GDN_YEARID", " AND LOTCOMPLETED_DESC.LOT_LOTNO = '" & LOTNO & "' AND LOTCOMPLETED_DESC.LOT_YEARID = " & YearId)
+                            If DT3.Rows.Count > 0 Then
+                                subRptPrint.DataDefinition.FormulaFields("SHRINKAGEMTRS").Text = Val(DT3.Rows(0).Item("SHRINKAGEMTRS")).ToString("0.00")
+                                subRptPrint.DataDefinition.FormulaFields("SHRINKAGEPER").Text = Val(DT3.Rows(0).Item("SHRINKAGEPER")).ToString("0.00")
+                            End If
+
+                            Dim DT2 As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(BS.PCS, 0) AS BALLUMPS, ISNULL(BS.MTRS, 0) AS BALMTRS", "", "(SELECT LOTNO, YEARID, SUM(PCS) AS PCS, SUM(MTRS) AS MTRS FROM BARCODESTOCK WHERE LOTNO = '" & LOTNO & "' AND YEARID = " & YearId & " GROUP BY LOTNO, YEARID) AS BS LEFT OUTER JOIN GDN_DESC ON BS.LOTNO = GDN_DESC.GDN_GRIDLOTNO AND BS.YEARID = GDN_DESC.GDN_YEARID")
+                            If DT2.Rows.Count > 0 Then
+                                subRptPrint.DataDefinition.FormulaFields("BALLUMPS").Text = Val(DT2.Rows(0).Item("BALLUMPS")).ToString("0")
+                                subRptPrint.DataDefinition.FormulaFields("BALMTRS").Text = Val(DT2.Rows(0).Item("BALMTRS")).ToString("0.00")
+                            End If
+
+                            Dim DT1 As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(INHOUSECHECKING.CHECK_TOTALCHECKEDPCS,0) AS RECDPCS, ISNULL(INHOUSECHECKING.CHECK_TOTALCHECKEDMTRS,0) AS RECDMTRS", "", "INHOUSECHECKING LEFT OUTER JOIN GDN_DESC ON INHOUSECHECKING.CHECK_LOTNO = GDN_DESC.GDN_GRIDLOTNO AND INHOUSECHECKING.CHECK_YEARID = GDN_DESC.GDN_YEARID", " AND INHOUSECHECKING.CHECK_TYPE = 'GRN' AND INHOUSECHECKING.CHECK_LOTNO = '" & LOTNO & "' AND INHOUSECHECKING.CHECK_YEARID = " & YearId)
+                            If DT1.Rows.Count > 0 Then
+                                subRptPrint.DataDefinition.FormulaFields("RECDPCS").Text = Val(DT1.Rows(0).Item("RECDPCS")).ToString("0")
+                                subRptPrint.DataDefinition.FormulaFields("RECDMTRS").Text = Val(DT1.Rows(0).Item("RECDMTRS")).ToString("0.00")
+                            End If
+
+                            Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_CHALLANNO, '') AS INWARDNO, GRN.GRN_CHALLANDT AS INWARDDATE, GRN.GRN_DATE AS INWARDLOTDATE, CASE WHEN ISNULL(PACKINGLEDGERS.ACC_CMPNAME, '') = '' THEN ISNULL(LEDGERS.ACC_CMPNAME, '') ELSE PACKINGLEDGERS.ACC_CMPNAME END AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GRN.GRN_PACKINGID = PACKINGLEDGERS.ACC_ID AND GRN.GRN_YEARID = PACKINGLEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
+                            If DT.Rows.Count > 0 Then
+                                OBJ.DataDefinition.FormulaFields("INWARDNO").Text = "'" & DT.Rows(0).Item("INWARDNO").ToString() & "'"
+                                OBJ.DataDefinition.FormulaFields("INWARDDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDDATE")), "dd/MM/yyyy") & "'"
+                                OBJ.DataDefinition.FormulaFields("SUPPLIER").Text = "'" & DT.Rows(0).Item("SUPPLIER").ToString() & "'"
+                                OBJ.DataDefinition.FormulaFields("INWARDLOTDATE").Text = "'" & Format(Convert.ToDateTime(DT.Rows(0).Item("INWARDLOTDATE")), "dd/MM/yyyy") & "'"
+                            End If
+                        End If
+
+                        OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
+
                     Else
 
                         If GARMENTCHALLAN = True Then
@@ -462,6 +621,7 @@ Public Class GDNDetails
                             OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                             If ClientName = "SUPRIYA" AndAlso MsgBox("Print Images?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then OBJ.DataDefinition.FormulaFields("SHOWIMAGE").Text = "1"
                         End If
+                        'End If
                     End If
 
                     crTables = OBJ.Database.Tables

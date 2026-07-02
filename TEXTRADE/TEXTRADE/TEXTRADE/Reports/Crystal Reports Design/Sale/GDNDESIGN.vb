@@ -599,6 +599,15 @@ Public Class GDNDESIGN
                     '    OBJ.DataDefinition.FormulaFields("SUPPLIER").Text = DT.Rows(0).Item("SUPPLIER")
 
                     'End If
+
+                    ' Get subreport reference once and apply login info
+                    Dim subReportShrinkage = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+                    Dim subTable As Table
+                    For Each subTable In subReportShrinkage.Database.Tables
+                        Dim subLogonInfo As TableLogOnInfo = subTable.LogOnInfo
+                        subLogonInfo.ConnectionInfo = crConnecttionInfo
+                        subTable.ApplyLogOnInfo(subLogonInfo)
+                    Next
                     If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
 
                         Dim DT5 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(STOCKADJUSTMENT_DESC.SA_MTRS, 0))AS SAMPLEMTRS   ", "", "STOCKADJUSTMENT_DESC  LEFT OUTER JOIN PIECETYPEMASTER ON STOCKADJUSTMENT_DESC.SA_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id ", " AND SA_LOTNO = '" & LOTNO & "' AND SA_YEARID = " & YearId & " AND PIECETYPEMASTER.PIECETYPE_name IN ('SAMPLE', 'FENT')")
@@ -1597,11 +1606,9 @@ Public Class GDNDESIGN
 
             If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
                 OBJ.PrintOptions.PrinterName = PRINTSETTING.PrinterSettings.PrinterName
-                '' ADD THESE 3 LINES 👇
-                'Dim subRptPrint = OBJ.Subreports("GDNSHRINKAGE")
-                'subRptPrint.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
+
                 OBJ.PrintToPrinter(Val(NOOFCOPIES), True, 0, 0)
-                'subRptPrint.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"  ' Reset after print
+
             Else
                 Dim expo As New ExportOptions
                 Dim oDfDopt As New DiskFileDestinationOptions
