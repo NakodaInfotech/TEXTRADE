@@ -118,4 +118,9 @@ Public Class SamplePriceListGridDetails
         End Try
     End Sub
 
+    Private Sub SamplePriceListGridDetails_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        If ClientName = "VINTAGEINDIA" Then
+            GGRIDNOOFBOOKLET.Caption = "Taka No"
+        End If
+    End Sub
 End Class

@@ -1686,7 +1686,7 @@ Public Class GDNDESIGN
                     subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
                     RPTGDN_VINTAGE.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
                     subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"
-                    crpo.Refresh()
+                    'crpo.Refresh()
                 ElseIf FRMSTRING = "GDN" Then
                     RPTGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
                 ElseIf FRMSTRING = "GDNGARMENT" Then
@@ -1716,6 +1716,7 @@ Public Class GDNDESIGN
                 PrintToolStripButton.Visible = True
                 TXTCOPIES.Visible = True
             End If
+            TXTCOPIES.Text = "1"
         Catch ex As Exception
             Throw ex
         End Try

@@ -5871,7 +5871,7 @@ PRINT 1,1")
 
     '    Return RESPONSE
     'End Function
-    Async Function SENDWHATSAPPATTACHMENT(WHATSAPPNO As String, PATH As String, FILENAME As String) As Threading.Tasks.Task(Of String)
+    Async Function SENDWHATSAPPATTACHMENT(WHATSAPPNO As String, PATH As String, FILENAME As String, Optional CAPTION As String = "") As Threading.Tasks.Task(Of String)
         Try
             'If Not File.Exists(PATH) Then
             '    Return "{""success"":false,""Error"":{""error"":""File not found: " & PATH & """}}"
@@ -5891,7 +5891,7 @@ PRINT 1,1")
             .base64data = base64Data,
             .mimeType = mimeType,
             .filename = justFileName,
-            .caption = ""
+            .caption = CAPTION        '.caption = ""
         })
 
             ' Get base URL (NO trailing slash)
