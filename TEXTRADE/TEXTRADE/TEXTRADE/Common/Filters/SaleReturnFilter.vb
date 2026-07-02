@@ -144,10 +144,14 @@ Public Class SaleReturnFilter
 
             ElseIf RDBMONTHLY.Checked = True Then
                 OBJSALRET.FRMSTRING = "MONTHLY"
+                If CMBAGENT.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {AGENTLEDGERS.ACC_CMPNAME}='" & CMBAGENT.Text.Trim & "'"
+
 
             ElseIf RDBSALERETREGISTERINDETAIL.Checked = True Then
                 OBJSALRET.FRMSTRING = "SALRETREGISTERINDETAIL"
                 OBJSALRET.PERIOD = "SALE RETURN REGISTER IN DETAIL - " & OBJSALRET.PERIOD
+                If CMBAGENT.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {AGENTLEDGERS.ACC_CMPNAME}='" & CMBAGENT.Text.Trim & "'"
+
 
             ElseIf RDBCNREGISTERINDETAIL.Checked = True Then
                 OBJSALRET.WHERECLAUSE = "{CREDITNOTEMASTER.CN_yearid}=" & YearId
@@ -159,6 +163,8 @@ Public Class SaleReturnFilter
                 End If
                 OBJSALRET.FRMSTRING = "CNREGISTERINDETAIL"
                 OBJSALRET.PERIOD = "CREDIT NOTE REGISTER IN DETAIL - " & OBJSALRET.PERIOD
+                If CMBAGENT.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {AGENTLEDGERS.ACC_CMPNAME}='" & CMBAGENT.Text.Trim & "'"
+
 
 
             End If
