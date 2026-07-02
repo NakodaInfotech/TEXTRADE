@@ -215,7 +215,9 @@ Public Class Receipt
 
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
-                OBJLEDGER.STRSEARCH = " and LEDGERS.acc_cmpid = " & CmpId & " and LEDGERS.acc_LOCATIONid = " & Locationid & " and LEDGERS.acc_YEARid = " & YearId
+                Dim WHERECLAUSE As String = ""
+                If ClientName = "ABHEE" Then WHERECLAUSE = " AND groupmaster.group_SECONDARY <> 'Sundry Creditors' "
+                OBJLEDGER.STRSEARCH = " and LEDGERS.acc_cmpid = " & CmpId & " and LEDGERS.acc_LOCATIONid = " & Locationid & WHERECLAUSE & " and LEDGERS.acc_YEARid = " & YearId
                 OBJLEDGER.ShowDialog()
                 If OBJLEDGER.TEMPCODE <> "" Then CMBACCCODE.Text = OBJLEDGER.TEMPCODE
                 If OBJLEDGER.TEMPNAME <> "" Then cmbname.Text = OBJLEDGER.TEMPNAME

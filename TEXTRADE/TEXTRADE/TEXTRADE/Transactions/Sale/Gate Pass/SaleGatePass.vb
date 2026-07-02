@@ -1,6 +1,9 @@
-﻿Imports BL
+﻿Imports System.ComponentModel
 Imports System.IO
-Imports System.ComponentModel
+Imports System.Net.Http
+Imports System.Threading.Tasks
+Imports System.Web.Script.Serialization
+Imports BL
 Imports DevExpress.XtraMap
 
 Public Class SaleGatePass
@@ -1262,8 +1265,7 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
-
-    Private Sub txtremarks_KeyDown(sender As Object, e As KeyEventArgs) Handles txtremarks.KeyDown
+    Private Async Sub txtremarks_KeyDown(sender As Object, e As KeyEventArgs) Handles txtremarks.KeyDown
         Try
             If e.KeyCode = Keys.OemQuotes Then e.SuppressKeyPress = True
 
@@ -1273,10 +1275,77 @@ LINE1:
                 OBJREMARKS.ShowDialog()
                 If OBJREMARKS.TEMPNAME <> "" Then txtremarks.Text = OBJREMARKS.TEMPNAME
             End If
+
+            ' ---- HINDI TRANSLITERATION ON SPACE ----
+            If e.KeyCode = Keys.Space And ClientName = "NAKODAINFOTECH" Then
+                Dim fullText As String = txtremarks.Text.Trim
+                If fullText.Length = 0 Then Return
+
+                ' Get the last word typed (after last space)
+                Dim lastSpaceIdx As Integer = fullText.LastIndexOf(" ")
+                Dim lastWord As String = ""
+
+                If lastSpaceIdx >= 0 Then
+                    lastWord = fullText.Substring(lastSpaceIdx + 1).Trim
+                Else
+                    lastWord = fullText.Trim
+                End If
+
+                If lastWord.Length = 0 Then Return
+
+                ' Only transliterate if word is in English letters (Roman)
+                If Not System.Text.RegularExpressions.Regex.IsMatch(lastWord, "^[a-zA-Z]+$") Then Return
+
+                e.SuppressKeyPress = True  ' suppress the space key
+
+                Dim hindiWord As String = Await TransliterateToHindi(lastWord)
+
+                ' Replace last word with Hindi word + space
+                If lastSpaceIdx >= 0 Then
+                    txtremarks.Text = fullText.Substring(0, lastSpaceIdx + 1) & hindiWord & " "
+                Else
+                    txtremarks.Text = hindiWord & " "
+                End If
+
+                ' Move cursor to end
+                txtremarks.SelectionStart = txtremarks.Text.Length
+                txtremarks.SelectionLength = 0
+            End If
+
         Catch ex As Exception
             Throw ex
         End Try
     End Sub
+    Private Async Function TransliterateToHindi(word As String) As Task(Of String)
+        Try
+            Dim url As String = "https://inputtools.google.com/request?text=" & Uri.EscapeDataString(word) & "&itc=hi-t-i0-und&num=1&cp=0&cs=1&ie=utf-8&oe=utf-8"
+
+            Using client As New HttpClient()
+                client.Timeout = TimeSpan.FromSeconds(3)
+                Dim response As String = Await client.GetStringAsync(url)
+
+                Dim searchPattern As String = "["""
+                Dim startPos As Integer = response.IndexOf("""" & word & """")
+                If startPos < 0 Then Return word
+
+                Dim arrStart As Integer = response.IndexOf(searchPattern, startPos)
+                If arrStart < 0 Then Return word
+
+                Dim hindiStart As Integer = arrStart + 2
+                Dim hindiEnd As Integer = response.IndexOf("""", hindiStart)
+                If hindiEnd < 0 Then Return word
+
+                Dim hindiWord As String = response.Substring(hindiStart, hindiEnd - hindiStart)
+
+                If hindiWord.Length > 0 Then Return hindiWord
+
+            End Using
+
+        Catch ex As Exception
+        End Try
+
+        Return word
+    End Function
 End Class
 
 

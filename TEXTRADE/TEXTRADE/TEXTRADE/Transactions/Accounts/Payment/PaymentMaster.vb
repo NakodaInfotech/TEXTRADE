@@ -2208,6 +2208,7 @@ LINE1:
             If e.KeyCode = Keys.F1 Then
                 Dim OBJLEDGER As New SelectLedger
                 'OBJLEDGER.STRSEARCH = " and acc_cmpid = " & CmpId & " and acc_LOCATIONid = " & Locationid & " and acc_YEARid = " & YearId
+                If ClientName = "ABHEE" Then OBJLEDGER.STRSEARCH = " AND groupmaster.group_SECONDARY <> 'Sundry Debtors' "
                 OBJLEDGER.ShowDialog()
                 If OBJLEDGER.TEMPCODE <> "" Then CMBACCCODE.Text = OBJLEDGER.TEMPCODE
                 If OBJLEDGER.TEMPNAME <> "" Then cmbname.Text = OBJLEDGER.TEMPNAME
