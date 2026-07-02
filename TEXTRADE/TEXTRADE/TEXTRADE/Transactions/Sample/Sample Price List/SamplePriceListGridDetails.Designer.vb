@@ -45,6 +45,7 @@ Partial Class SamplePriceListGridDetails
         Me.TOOLREFRESH = New System.Windows.Forms.ToolStripButton()
         Me.PrintToolStripButton = New System.Windows.Forms.ToolStripButton()
         Me.cmdok = New System.Windows.Forms.Button()
+        Me.GWIDTH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BlendPanel1.SuspendLayout()
         CType(Me.gridbilldetails, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.gridbill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,7 +80,7 @@ Partial Class SamplePriceListGridDetails
         '
         Me.gridbill.Appearance.Row.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.gridbill.Appearance.Row.Options.UseFont = True
-        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSPLNO, Me.GDATE, Me.GNAME, Me.GITEMNAME, Me.GSAMPLETYPE, Me.GQUALITY, Me.GDESIGN, Me.GCOLOR, Me.GRATE, Me.GNARRATION, Me.GGRIDNOOFBOOKLET, Me.GMTRS, Me.GAMOUNT})
+        Me.gridbill.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GSPLNO, Me.GDATE, Me.GNAME, Me.GITEMNAME, Me.GSAMPLETYPE, Me.GQUALITY, Me.GDESIGN, Me.GCOLOR, Me.GRATE, Me.GNARRATION, Me.GGRIDNOOFBOOKLET, Me.GMTRS, Me.GAMOUNT, Me.GWIDTH})
         Me.gridbill.GridControl = Me.gridbilldetails
         Me.gridbill.Name = "gridbill"
         Me.gridbill.OptionsBehavior.Editable = False
@@ -274,6 +275,15 @@ Partial Class SamplePriceListGridDetails
         Me.cmdok.Text = "&Ok"
         Me.cmdok.UseVisualStyleBackColor = False
         '
+        'GWIDTH
+        '
+        Me.GWIDTH.Caption = "Width"
+        Me.GWIDTH.FieldName = "WIDTH"
+        Me.GWIDTH.Name = "GWIDTH"
+        Me.GWIDTH.Visible = True
+        Me.GWIDTH.VisibleIndex = 12
+        Me.GWIDTH.Width = 80
+        '
         'SamplePriceListGridDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -320,4 +330,5 @@ Partial Class SamplePriceListGridDetails
     Friend WithEvents GAMOUNT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GDATE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GNAME As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GWIDTH As DevExpress.XtraGrid.Columns.GridColumn
 End Class

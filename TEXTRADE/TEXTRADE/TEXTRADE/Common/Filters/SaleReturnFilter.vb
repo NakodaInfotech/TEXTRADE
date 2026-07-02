@@ -117,6 +117,8 @@ Public Class SaleReturnFilter
             ElseIf RDITEM.Checked = True Then
                 If CHKSUMMARY.CheckState = CheckState.Unchecked Then OBJSALRET.FRMSTRING = "ITEMWISEDTLS" Else OBJSALRET.FRMSTRING = "ITEMWISESUMM"
                 If CMBITEMNAME.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {ITEMMASTER.ITEM_NAME}='" & CMBITEMNAME.Text.Trim & "'"
+                If CMBAGENT.Text <> "" Then OBJSALRET.WHERECLAUSE = OBJSALRET.WHERECLAUSE & " and {AGENTLEDGERS.ACC_CMPNAME}='" & CMBAGENT.Text.Trim & "'"
+
 
             ElseIf RDQUALITY.Checked = True Then
                 If CHKSUMMARY.CheckState = CheckState.Unchecked Then OBJSALRET.FRMSTRING = "QUALITYWISEDTLS" Else OBJSALRET.FRMSTRING = "QUALITYWISESUMM"
