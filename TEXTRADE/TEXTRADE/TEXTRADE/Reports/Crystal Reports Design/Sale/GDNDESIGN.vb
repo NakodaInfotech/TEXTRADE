@@ -626,14 +626,14 @@ Public Class GDNDESIGN
 
                         End If
 
-                        Dim DT4 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(GDN_DESC.GDN_PCS, 0))AS DELIVEREDLUMPS,SUM(ISNULL(GDN_DESC.GDN_MTRS, 0))AS DELIVEREDMTRS ", "", "GDN_DESC ", " AND GDN_GRIDLOTNO = '" & LOTNO & "' AND GDN_YEARID = " & YearId)
-                        If DT4.Rows.Count > 0 Then
-                            ' Get the subreport object first
-                            'Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
+                        Dim DT4 As DataTable = OBJCMN.SEARCH("ISNULL(SUM(ISNULL(GDN_DESC.GDN_PCS,0)),0) AS DELIVEREDLUMPS, ISNULL(SUM(ISNULL(GDN_DESC.GDN_MTRS,0)),0) AS DELIVEREDMTRS", "", "GDN_DESC", " AND GDN_GRIDLOTNO = '" & LOTNO & "' AND GDN_YEARID = " & YearId)
 
-                            ' Now set formula fields on the SUBREPORT, not the main report
-                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("DELIVEREDLUMPS").Text = Val(DT4.Rows(0).Item("DELIVEREDLUMPS")).ToString("0")
-                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("DELIVEREDMTRS").Text = Val(DT4.Rows(0).Item("DELIVEREDMTRS")).ToString("0.00")
+                        If DT4.Rows.Count > 0 Then
+
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("DELIVEREDLUMPS").Text = Convert.ToDecimal(DT4.Rows(0)("DELIVEREDLUMPS")).ToString("0")
+
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("DELIVEREDMTRS").Text = Convert.ToDecimal(DT4.Rows(0)("DELIVEREDMTRS")).ToString("0.00")
+
                         End If
 
                         Dim DT3 As DataTable = OBJCMN.SEARCH("DISTINCT  ISNULL(LOTCOMPLETED_DESC.LOT_SHRINKAGE,0) AS SHRINKAGEMTRS,  ISNULL(LOTCOMPLETED_DESC.LOT_SHRINKAGEPER,0) AS SHRINKAGEPER ", "", "LOTCOMPLETED_DESC LEFT OUTER JOIN  GDN_DESC ON LOTCOMPLETED_DESC.LOT_LOTNO = GDN_DESC.GDN_GRIDLOTNO  AND LOTCOMPLETED_DESC.LOT_YEARID = GDN_DESC.GDN_YEARID ", " AND LOTCOMPLETED_DESC.LOT_LOTNO = '" & LOTNO & "' AND LOTCOMPLETED_DESC.LOT_YEARID = " & YearId)

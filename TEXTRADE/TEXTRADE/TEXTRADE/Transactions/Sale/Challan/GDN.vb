@@ -4057,4 +4057,16 @@ LINE1:
             If ErrHandle(ex.Message.GetHashCode) = False Then Throw ex
         End Try
     End Sub
+
+    Private Sub CMBLOCALTRANS_Validated(sender As Object, e As EventArgs) Handles CMBLOCALTRANS.Validated
+        Dim OBJCMN As New ClsCommon
+        Dim DT As DataTable = OBJCMN.SEARCH("  ISNULL(VEHICLEMASTER.VEHICLE_NAME,'')  ", "", "VEHICLEMASTER LEFT OUTER JOIN LEDGERS AS TRANSLEDGERS ON VEHICLE_TRANSID = TRANSLEDGERS.Acc_id", " AND TRANSLEDGERS.Acc_cmpname = '" & CMBLOCALTRANS.Text.Trim & "' AND VEHICLEMASTER.VEHICLE_YEARID = " & YearId)
+        If DT.Rows.Count > 0 Then
+            If cmbname.Text.Trim = CMBDISPATCHTO.Text.Trim And ((ClientName = "MANISH" And cmbcity.Text.Trim = "") Or ClientName <> "MANISH") Then cmbcity.Text = DT.Rows(0).Item(0)
+            If DT.Rows(0).Item("BILLTO") <> "" And ClientName = "AARYA" Then CMBDISPATCHTO.Text = DT.Rows(0).Item("BILLTO")
+            TXTMOBILENO.Text = DT.Rows(0).Item("MOBILENO")
+            If EDIT = False Then CHKHOLD.Checked = Convert.ToBoolean(DT.Rows(0).Item("HOLDFORAPPROVAL"))
+            If DT.Rows(0).Item("WARNINGTEXT") <> "" Then MsgBox(DT.Rows(0).Item("WARNINGTEXT"), MsgBoxStyle.Critical)
+        End If
+    End Sub
 End Class

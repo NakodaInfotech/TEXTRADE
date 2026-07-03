@@ -341,6 +341,18 @@ Public Class UpdateRackShelf
 
                     If ROW("TYPE") = "OPENING" Then
                         DT = OBJCMN.Execute_Any_String(" UPDATE STOCKMASTER SET SM_RACKID = " & RACKID & " , SM_SHELFID = " & SHELFID & " WHERE SM_BARCODE = '" & ROW("BARCODE") & "' AND SM_YEARID = " & YearId, "", "")
+
+                        Dim DTCHK As DataTable = OBJCMN.SEARCH(
+                            "SM_RACKID, SM_SHELFID", "",
+                            "STOCKMASTER",
+                            " AND SM_BARCODE = '" & ROW("BARCODE") &
+                            "' AND SM_YEARID = " & YearId)
+
+                        If DTCHK.Rows.Count > 0 Then
+                            If Val(DTCHK.Rows(0)("SM_RACKID")) <> RACKID Then
+                                MsgBox("Rack ID was NOT updated for Barcode : " & ROW("BARCODE"))
+                            End If
+                        End If
                     ElseIf ROW("TYPE") = "GRN" Then
                         DT = OBJCMN.Execute_Any_String(" UPDATE GRN_DESC SET GRN_RACKID = " & RACKID & " , GRN_SHELFID = " & SHELFID & " WHERE GRN_BARCODE = '" & ROW("BARCODE") & "' AND GRN_GRIDTYPE = 'FANCY MATERIAL' AND GRN_YEARID = " & YearId, "", "")
                     ElseIf ROW("TYPE") = "MATREC" Then
