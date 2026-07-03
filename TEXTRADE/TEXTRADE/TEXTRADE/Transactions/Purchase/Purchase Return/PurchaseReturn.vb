@@ -3617,7 +3617,13 @@ NEXTLINE:
                 j = j & """actToStateCode"":""" & SHIPTOSTATECODE & """" & ","
                 j = j & """toStateCode"":""" & PARTYSTATECODE & """" & ","
 
-                If ClientName = "RMANILAL" Then j = j & """transactionType"":""1""," Else j = j & """transactionType"":""4"","
+                'THIS IS OG CODE 
+                'If ClientName = "RMANILAL" Then j = j & """transactionType"":""1""," Else j = j & """transactionType"":""4"","
+                If ClientName = "RMANILAL" OrElse CMBNAME.Text.Trim = CMBDELIVERYAT.Text.Trim Then
+                    j = j & """transactionType"":""1"","
+                Else
+                    j = j & """transactionType"":""4"","
+                End If
                 j = j & """dispatchFromGSTIN"":""" & DISPATCHFROMGSTIN & """" & ","
                 j = j & """dispatchFromTradeName"":""" & DISPATCHFROM & """" & ","
                 j = j & """shipToGSTIN"":""" & SHIPTOGSTIN & """" & ","
