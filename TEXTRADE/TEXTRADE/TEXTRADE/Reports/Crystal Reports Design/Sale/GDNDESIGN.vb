@@ -600,67 +600,69 @@ Public Class GDNDESIGN
 
                     'End If
 
-                    ' Get subreport reference once and apply login info
-                    Dim subReportShrinkage = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
-                    Dim subTable As Table
-                    For Each subTable In subReportShrinkage.Database.Tables
-                        Dim subLogonInfo As TableLogOnInfo = subTable.LogOnInfo
-                        subLogonInfo.ConnectionInfo = crConnecttionInfo
-                        subTable.ApplyLogOnInfo(subLogonInfo)
-                    Next
+                    '' Get subreport reference once and apply login info
+                    'Dim subReportShrinkage = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+                    'Dim subTable As Table
+                    'For Each subTable In subReportShrinkage.Database.Tables
+                    '    Dim subLogonInfo As TableLogOnInfo = subTable.LogOnInfo
+                    '    subLogonInfo.ConnectionInfo = crConnecttionInfo
+                    '    subTable.ApplyLogOnInfo(subLogonInfo)
+                    'Next
                     If LOTNO IsNot Nothing AndAlso LOTNO.Trim() <> "" Then
 
                         Dim DT5 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(STOCKADJUSTMENT_DESC.SA_MTRS, 0))AS SAMPLEMTRS   ", "", "STOCKADJUSTMENT_DESC  LEFT OUTER JOIN PIECETYPEMASTER ON STOCKADJUSTMENT_DESC.SA_PIECETYPEID = PIECETYPEMASTER.PIECETYPE_id ", " AND SA_LOTNO = '" & LOTNO & "' AND SA_YEARID = " & YearId & " AND PIECETYPEMASTER.PIECETYPE_name IN ('SAMPLE', 'FENT')")
                         If DT5.Rows.Count > 0 Then
-                            Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+                            'Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
 
                             ' Safely handle DBNull before passing to formula field
                             Dim sampleMtrs As Decimal = 0
                             If Not IsDBNull(DT5.Rows(0).Item("SAMPLEMTRS")) Then
-                                sampleMtrs = Convert.ToDecimal(DT5.Rows(0).Item("SAMPLEMTRS"))
+                                'sampleMtrs = Convert.ToDecimal(DT5.Rows(0).Item("SAMPLEMTRS"))
+                                sampleMtrs = Val(DT5.Rows(0).Item("SAMPLEMTRS")).ToString("0.00")
+
                             End If
 
-                            subReport.DataDefinition.FormulaFields("SAMPLEMTRS").Text = sampleMtrs.ToString("0.00")
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("SAMPLEMTRS").Text = sampleMtrs
 
                         End If
 
-                        Dim DT4 As DataTable = OBJCMN.SEARCH("DISTINCT SUM(ISNULL(GDN_DESC.GDN_PCS, 0))AS DELIVEREDLUMPS,SUM(ISNULL(GDN_DESC.GDN_MTRS, 0))AS DELIVEREDMTRS ", "", "GDN_DESC ", " AND GDN_GRIDLOTNO = '" & LOTNO & "' AND GDN_YEARID = " & YearId)
-                        If DT4.Rows.Count > 0 Then
-                            ' Get the subreport object first
-                            Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
+                        Dim DT4 As DataTable = OBJCMN.SEARCH("ISNULL(SUM(ISNULL(GDN_DESC.GDN_PCS,0)),0) AS DELIVEREDLUMPS, ISNULL(SUM(ISNULL(GDN_DESC.GDN_MTRS,0)),0) AS DELIVEREDMTRS", "", "GDN_DESC", " AND GDN_GRIDLOTNO = '" & LOTNO & "' AND GDN_YEARID = " & YearId)
 
-                            ' Now set formula fields on the SUBREPORT, not the main report
-                            subReport.DataDefinition.FormulaFields("DELIVEREDLUMPS").Text = Val(DT4.Rows(0).Item("DELIVEREDLUMPS")).ToString("0")
-                            subReport.DataDefinition.FormulaFields("DELIVEREDMTRS").Text = Val(DT4.Rows(0).Item("DELIVEREDMTRS")).ToString("0.00")
+                        If DT4.Rows.Count > 0 Then
+
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("DELIVEREDLUMPS").Text = Convert.ToDecimal(DT4.Rows(0)("DELIVEREDLUMPS")).ToString("0")
+
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("DELIVEREDMTRS").Text = Convert.ToDecimal(DT4.Rows(0)("DELIVEREDMTRS")).ToString("0.00")
+
                         End If
 
                         Dim DT3 As DataTable = OBJCMN.SEARCH("DISTINCT  ISNULL(LOTCOMPLETED_DESC.LOT_SHRINKAGE,0) AS SHRINKAGEMTRS,  ISNULL(LOTCOMPLETED_DESC.LOT_SHRINKAGEPER,0) AS SHRINKAGEPER ", "", "LOTCOMPLETED_DESC LEFT OUTER JOIN  GDN_DESC ON LOTCOMPLETED_DESC.LOT_LOTNO = GDN_DESC.GDN_GRIDLOTNO  AND LOTCOMPLETED_DESC.LOT_YEARID = GDN_DESC.GDN_YEARID ", " AND LOTCOMPLETED_DESC.LOT_LOTNO = '" & LOTNO & "' AND LOTCOMPLETED_DESC.LOT_YEARID = " & YearId)
                         If DT3.Rows.Count > 0 Then
                             ' Get the subreport object first
-                            Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
+                            'Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
 
                             ' Now set formula fields on the SUBREPORT, not the main report
-                            subReport.DataDefinition.FormulaFields("SHRINKAGEMTRS").Text = Val(DT3.Rows(0).Item("SHRINKAGEMTRS")).ToString("0.00")
-                            subReport.DataDefinition.FormulaFields("SHRINKAGEPER").Text = Val(DT3.Rows(0).Item("SHRINKAGEPER")).ToString("0.00")
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("SHRINKAGEMTRS").Text = Val(DT3.Rows(0).Item("SHRINKAGEMTRS")).ToString("0.00")
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("SHRINKAGEPER").Text = Val(DT3.Rows(0).Item("SHRINKAGEPER")).ToString("0.00")
                         End If
 
                         Dim DT2 As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(BS.PCS, 0) AS BALLUMPS,ISNULL(BS.MTRS, 0) AS BALMTRS", "", "( SELECT  LOTNO, YEARID, SUM(PCS) AS PCS, SUM(MTRS) AS MTRS FROM BARCODESTOCK WHERE LOTNO ='" & LOTNO & "' AND YEARID =" & YearId & " GROUP BY LOTNO, YEARID) AS BS LEFT OUTER JOIN GDN_DESC ON BS.LOTNO = GDN_DESC.GDN_GRIDLOTNO AND BS.YEARID = GDN_DESC.GDN_YEARID")
                         If DT2.Rows.Count > 0 Then
                             ' Get the subreport object first
-                            Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
+                            'Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
 
                             ' Now set formula fields on the SUBREPORT, not the main report
-                            subReport.DataDefinition.FormulaFields("BALLUMPS").Text = Val(DT2.Rows(0).Item("BALLUMPS")).ToString("0")
-                            subReport.DataDefinition.FormulaFields("BALMTRS").Text = Val(DT2.Rows(0).Item("BALMTRS")).ToString("0.00")
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("BALLUMPS").Text = Val(DT2.Rows(0).Item("BALLUMPS")).ToString("0")
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("BALMTRS").Text = Val(DT2.Rows(0).Item("BALMTRS")).ToString("0.00")
                         End If
                         Dim DT1 As DataTable = OBJCMN.SEARCH("DISTINCT  ISNULL(INHOUSECHECKING.CHECK_TOTALCHECKEDPCS,0) AS RECDPCS,  ISNULL(INHOUSECHECKING.CHECK_TOTALCHECKEDMTRS,0) AS RECDMTRS", "", "INHOUSECHECKING LEFT OUTER JOIN  GDN_DESC ON INHOUSECHECKING.CHECK_LOTNO = GDN_DESC.GDN_GRIDLOTNO  AND INHOUSECHECKING.CHECK_YEARID = GDN_DESC.GDN_YEARID", " AND INHOUSECHECKING.CHECK_TYPE = 'GRN' AND INHOUSECHECKING.CHECK_LOTNO = '" & LOTNO & "' AND INHOUSECHECKING.CHECK_YEARID = " & YearId)
                         If DT1.Rows.Count > 0 Then
                             ' Get the subreport object first
-                            Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
+                            'Dim subReport = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")  ' exact name of your subreport
 
                             ' Now set formula fields on the SUBREPORT, not the main report
-                            subReport.DataDefinition.FormulaFields("RECDPCS").Text = Val(DT1.Rows(0).Item("RECDPCS")).ToString("0")
-                            subReport.DataDefinition.FormulaFields("RECDMTRS").Text = Val(DT1.Rows(0).Item("RECDMTRS")).ToString("0.00")
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("RECDPCS").Text = Val(DT1.Rows(0).Item("RECDPCS")).ToString("0")
+                            RPTGDN_VINTAGE.DataDefinition.FormulaFields("RECDMTRS").Text = Val(DT1.Rows(0).Item("RECDMTRS")).ToString("0.00")
                         End If
                         Dim DT As DataTable = OBJCMN.SEARCH("DISTINCT ISNULL(GRN.GRN_CHALLANNO, '') AS INWARDNO, GRN.GRN_CHALLANDT AS INWARDDATE,GRN.GRN_DATE AS INWARDLOTDATE, CASE WHEN ISNULL(PACKINGLEDGERS.ACC_CMPNAME, '') = '' THEN ISNULL(LEDGERS.ACC_CMPNAME, '') ELSE PACKINGLEDGERS.ACC_CMPNAME END AS SUPPLIER", "", "GDN_DESC LEFT OUTER JOIN GRN ON GDN_DESC.GDN_GRIDLOTNO = GRN.GRN_PLOTNO AND GDN_DESC.GDN_YEARID = GRN.GRN_YEARID LEFT OUTER JOIN LEDGERS ON GRN.GRN_LEDGERID = LEDGERS.ACC_ID AND GRN.GRN_YEARID = LEDGERS.ACC_YEARID LEFT OUTER JOIN LEDGERS AS PACKINGLEDGERS ON GRN.GRN_PACKINGID = PACKINGLEDGERS.ACC_ID AND GRN.GRN_YEARID = PACKINGLEDGERS.ACC_YEARID", " AND GRN_TYPE = 'FANCY MATERIAL' AND GRN.GRN_PLOTNO = '" & LOTNO & "' AND GRN.GRN_YEARID = " & YearId)
                         If DT.Rows.Count > 0 Then
@@ -673,8 +675,8 @@ Public Class GDNDESIGN
                     End If
 
                     If JOBWORKLABEL = True Then RPTGDN_VINTAGE.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1
-                    Dim subRptPreview = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
-                    subRptPreview.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"  ' Show in preview
+                    'Dim subRptPreview = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+                    RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"  ' Show in preview
                     RPTGDN_VINTAGE.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
                     crpo.ReportSource = RPTGDN_VINTAGE
 
@@ -1553,8 +1555,8 @@ Public Class GDNDESIGN
                     If JOBWORKLABEL = True Then OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 1 Else OBJ.DataDefinition.FormulaFields("JOBWORKLABEL").Text = 0
                     'If HIDEPCSDETAILS = True Then OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 1 Else OBJ.DataDefinition.FormulaFields("HIDEPCSDETAILS").Text = 0
                     'If ClientName = "ALENCOT" Or ClientName = "MANSI" Or ClientName = "CHINTAN" Or ClientName = "KENCOT" Then OBJ.DataDefinition.FormulaFields("SENDMAIL").Text = "1"
-                    Dim subRptPrint = OBJ.Subreports("GDNSHRINKAGE")
-                    subRptPrint.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"  ' Hide when printing
+                    'Dim subRptPrint = OBJ.Subreports("GDNSHRINKAGE")
+                    RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"  ' Hide when printing
                     OBJ.DataDefinition.FormulaFields("CLIENTNAME").Text = "'" & ClientName & "'"
 
                 Else
@@ -1600,8 +1602,8 @@ Public Class GDNDESIGN
             OBJ.RecordSelectionFormula = FORMULA
 
             If FRMSTRING = "GDN" And ClientName = "VINTAGEINDIA" Then
-                Dim subRpt = OBJ.Subreports("GDNSHRINKAGE")
-                subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
+                'Dim subRpt = OBJ.Subreports("GDNSHRINKAGE")
+                RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
             End If
 
             If DIRECTMAIL = False And DIRECTWHATSAPP = False Then
@@ -1689,10 +1691,10 @@ Public Class GDNDESIGN
                 Exit Sub
             Else
                 If FRMSTRING = "GDN" AndAlso ClientName = "VINTAGEINDIA" Then
-                    Dim subRpt = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
-                    subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
+                    'Dim subRpt = RPTGDN_VINTAGE.Subreports("GDNSHRINKAGE")
+                    RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDELUMPS").Text = "1"
                     RPTGDN_VINTAGE.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)
-                    subRpt.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"
+                    RPTGDN_VINTAGE.DataDefinition.FormulaFields("HIDELUMPS").Text = "0"
                     'crpo.Refresh()
                 ElseIf FRMSTRING = "GDN" Then
                     RPTGDN.PrintToPrinter(Val(TXTCOPIES.Text.Trim), True, 0, 0)

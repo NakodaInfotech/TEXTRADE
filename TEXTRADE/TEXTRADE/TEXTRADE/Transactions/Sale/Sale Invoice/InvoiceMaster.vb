@@ -9569,7 +9569,10 @@ NEXTLINE:
 
                 'CHANGES DONE AS PER VISHAL ON 01-12-25
                 'If ClientName = "RMANILAL" Then j = j & """transactionType"":""1""," Else j = j & """transactionType"":""4"","
-                j = j & """transactionType"":""4"","
+
+                'THIS IS THE OG CODE, BUT WE CHANGED TO REGULAR COZ IF BILLTO SHIPTO IS SAME THEN IT IS NOT ALLOWED TO PASS 4, SO WE WILL PASS 1 INSTEAD OF 4
+                'j = j & """transactionType"":""4"","
+                If cmbname.Text.Trim = CMBPACKING.Text.Trim Then j = j & """transactionType"":""1""," Else j = j & """transactionType"":""4"","
                 j = j & """dispatchFromGSTIN"":""" & DISPATCHFROMGSTIN & """" & ","
                 j = j & """dispatchFromTradeName"":""" & DISPATCHFROM & """" & ","
                 j = j & """shipToGSTIN"":""" & SHIPTOGSTIN & """" & ","
