@@ -613,7 +613,8 @@ Public Class SaleOrder
             lbltotalamt.Text = 0.0
             lbltotalqty.Text = 0.0
             lbltotalbale.Text = 0.0
-
+            LBLDISPATCHQTY.Text = 0.0
+            LBLPENDINGQTY.Text = 0.0
             txtexciseAMT.Text = 0.0
             txteducessAMT.Text = 0.0
             txthsecessAMT.Text = 0.0
@@ -632,7 +633,10 @@ Public Class SaleOrder
                 If Val(row.Cells(gcut.Index).EditedFormattedValue) > 0 Then row.Cells(GMTRS.Index).Value = Format(Val(row.Cells(gcut.Index).EditedFormattedValue) * Val(row.Cells(gQty.Index).EditedFormattedValue), "0.00")
                 If Val(row.Cells(gQty.Index).EditedFormattedValue) > 0 Then lbltotalqty.Text = Format(Val(lbltotalqty.Text) + Val(row.Cells(gQty.Index).EditedFormattedValue), "0.00")
                 If Val(row.Cells(GMTRS.Index).EditedFormattedValue) > 0 Then LBLTOTALMTRS.Text = Format(Val(LBLTOTALMTRS.Text) + Val(row.Cells(GMTRS.Index).EditedFormattedValue), "0.00")
-
+                If ClientName = "SHEETAL" Then
+                    If Val(row.Cells(GRECDQTY.Index).EditedFormattedValue) > 0 Then LBLDISPATCHQTY.Text = Format(Val(LBLDISPATCHQTY.Text) + Val(row.Cells(GRECDQTY.Index).EditedFormattedValue), "0.00")
+                    LBLPENDINGQTY.Text = Format(Val(lbltotalqty.Text) - Val(LBLDISPATCHQTY.Text))
+                End If
                 If row.Cells(GPER.Index).EditedFormattedValue = "Mtrs" Then
                     If Val(row.Cells(GRATE.Index).EditedFormattedValue) > 0 Then row.Cells(GAMOUNT.Index).Value = Format(Val(row.Cells(GRATE.Index).EditedFormattedValue) * Val(row.Cells(GMTRS.Index).EditedFormattedValue), "0.00")
                 ElseIf row.Cells(GPER.Index).EditedFormattedValue = "Qty" Then
@@ -679,6 +683,9 @@ Public Class SaleOrder
             lbltotalqty.Text = "0.00"
             lbltotalamt.Text = "0.00"
             LBLTOTALMTRS.Text = "0.00"
+            LBLDISPATCHQTY.Text = "0.00"
+            LBLPENDINGQTY.Text = "0.00"
+
         End If
     End Sub
 
